@@ -15,7 +15,9 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     public float BaseSpeed;
     public bool ActivateOnStart;
     public List<IAdvancedSpriteSheetAnimationListener> Listeners = new List<IAdvancedSpriteSheetAnimationListener>();
-    private static float FixedBaseSpeed = 2;
+    private static float fixedBaseSpeed = 2;
+    private static float fixedCount;
+    private static int fixedFrame;
     [SerializeField]
     private SpriteRenderer renderer;
     private float speed;
@@ -33,7 +35,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         Animations.ForEach(a => a.Split());
         if (FixedSpeed)
         {
-            BaseSpeed = FixedBaseSpeed;
+            BaseSpeed = fixedBaseSpeed;
         }
         if (ActivateOnStart)
         {
@@ -68,6 +70,14 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
                     Listeners.ForEach(a => a.ChangedFrame(currentAnimation, Animations[currentAnimation].Name, currentFrame));
                 }
                 renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+                if (FixedSpeed)
+                {
+                    fixedFrame = currentFrame;
+                }
+            }
+            if (FixedSpeed)
+            {
+                fixedCount = count;
             }
         }
     }
@@ -86,7 +96,9 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
         currentFrame = 0;
-        count = FixedSpeed ? Time.time % speed : 0;
+        count = FixedSpeed ? fixedCount : 0;
+        currentFrame = FixedSpeed ? fixedFrame : 0;
+        Debug.Log(count);
         Active = true;
         renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }

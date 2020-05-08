@@ -30,14 +30,10 @@ public class Unit : MapObject
     }
     public void MarkMovement(int x, int y, int range, int[,] checkedTiles = null)
     {
-        if (x < 0 || y < 0 || x >= GameController.Current.MapSize.x || y >= GameController.Current.MapSize.y)
-        {
-            return;
-        }
-        if (range >= GameController.Current.Map[x, y].MovementCost)
+        if (range >= 0)
         {
             checkedTiles = checkedTiles ?? new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-            if (checkedTiles[x, y] >= range)
+            if (checkedTiles[x, y] > range)
             {
                 return;
             }
@@ -48,14 +44,18 @@ public class Unit : MapObject
                 movementMarker.Origin = this;
                 movementMarker.gameObject.SetActive(true);
             }
-            checkedTiles[x, y] = range;
+            checkedTiles[x, y] = range + 1;
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
                 {
                     if (i == 0 || j == 0)
                     {
-                        MarkMovement(x + i, y + j, range - GameController.Current.Map[x, y].MovementCost, checkedTiles);
+                        if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                        {
+                            continue;
+                        }
+                        MarkMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles);
                     }
                 }
             }
