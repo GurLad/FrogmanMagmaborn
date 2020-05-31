@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour
     [Header("UI")]
     public Text TileInfo;
     public RectTransform TileInfoPanel;
+    public Text UnitInfo;
+    public RectTransform UnitInfoPanel;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -22,11 +25,12 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public InteractState InteractState = InteractState.None;
     private float cursorMoveDelay;
+    private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Vector2Int cursorPos
     {
         get
         {
-            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
+            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), (int)(Cursor.transform.position.y / TileSize));
         }
     }
     private void Start()
@@ -79,21 +83,40 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            InteractWithTile(cursorPos.x, -cursorPos.y);
+            InteractWithTile(cursorPos.x, cursorPos.y);
         }
-        TileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
-        Vector2Int anchor;
-        if (cursorPos.x + cursorPos.y >= 18)
+        if (previousPos != cursorPos)
         {
-            anchor = new Vector2Int(0, 1);
+            TileInfo.text = Map[cursorPos.x, -cursorPos.y].Name + '\n' + (Map[cursorPos.x, -cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, -cursorPos.y].MovementCost + "MOV") : "");
+            Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
+            Vector2Int anchor;
+            if (cursorPos.x >= MapSize.x / 2)
+            {
+                anchor = new Vector2Int(0, 1);
+            }
+            else
+            {
+                anchor = new Vector2Int(1, 1);
+            }
+            if (unit != null)
+            {
+                UnitInfoPanel.gameObject.SetActive(true);
+                UnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.MaxHealth;
+                UnitInfoPanel.anchorMin = anchor;
+                UnitInfoPanel.anchorMax = anchor;
+                UnitInfoPanel.pivot = anchor;
+                UnitInfoPanel.GetComponent<PalettedSprite>().Palette = unit.gameObject.GetComponent<PalettedSprite>().Palette;
+            }
+            else
+            {
+                UnitInfoPanel.gameObject.SetActive(false);
+            }
+            anchor.y -= 1;
+            TileInfoPanel.anchorMin = anchor;
+            TileInfoPanel.anchorMax = anchor;
+            TileInfoPanel.pivot = anchor;
         }
-        else
-        {
-            anchor = new Vector2Int(1, 0);
-        }
-        TileInfoPanel.anchorMin = anchor;
-        TileInfoPanel.anchorMax = anchor;
-        TileInfoPanel.pivot = anchor;
+        previousPos = cursorPos;
     }
     public void InteractWithTile(int x, int y)
     {
@@ -104,6 +127,11 @@ public class GameController : MonoBehaviour
     {
         MapObjects.FindAll(a => a is Marker).ForEach(a => Destroy(a.gameObject));
         MapObjects.RemoveAll(a => a is Marker);
+        previousPos = new Vector2Int(-1, -1);
+    }
+    public Unit FindUnitAtPos(int x, int y)
+    {
+        return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
     }
     int Sign(float number)
     {
