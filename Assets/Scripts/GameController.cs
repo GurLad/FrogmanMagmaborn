@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// Rename to GameController!
-/// </summary>
+using UnityEngine.UI;
+
 public class GameController : MonoBehaviour
 {
     public static GameController Current;
@@ -13,6 +12,9 @@ public class GameController : MonoBehaviour
     [TextArea(3,10)]
     public List<string> Rooms;
     public GameObject Cursor;
+    [Header("UI")]
+    public Text TileInfo;
+    public RectTransform TileInfoPanel;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -20,6 +22,13 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public InteractState InteractState = InteractState.None;
     private float cursorMoveDelay;
+    private Vector2Int cursorPos
+    {
+        get
+        {
+            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
+        }
+    }
     private void Start()
     {
         /*
@@ -70,8 +79,21 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            InteractWithTile((int)(Cursor.transform.position.x / TileSize), (int)(Cursor.transform.position.y / TileSize));
+            InteractWithTile(cursorPos.x, -cursorPos.y);
         }
+        TileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
+        Vector2Int anchor;
+        if (cursorPos.x + cursorPos.y >= 18)
+        {
+            anchor = new Vector2Int(0, 1);
+        }
+        else
+        {
+            anchor = new Vector2Int(1, 0);
+        }
+        TileInfoPanel.anchorMin = anchor;
+        TileInfoPanel.anchorMax = anchor;
+        TileInfoPanel.pivot = anchor;
     }
     public void InteractWithTile(int x, int y)
     {
