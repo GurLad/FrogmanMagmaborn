@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     {
         get
         {
-            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), (int)(Cursor.transform.position.y / TileSize));
+            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
         }
     }
     private void Start()
@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
         }
         if (previousPos != cursorPos)
         {
-            TileInfo.text = Map[cursorPos.x, -cursorPos.y].Name + '\n' + (Map[cursorPos.x, -cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, -cursorPos.y].MovementCost + "MOV") : "");
+            TileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
             Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
             Vector2Int anchor;
             if (cursorPos.x >= MapSize.x / 2)

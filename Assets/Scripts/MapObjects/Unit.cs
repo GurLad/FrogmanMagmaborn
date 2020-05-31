@@ -26,7 +26,7 @@ public class Unit : MapObject
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
-                    MarkMovement(Pos.x, -Pos.y, Movement, checkedTiles, attackFrom);
+                    MarkMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
                     attackFrom = attackFrom.Distinct().ToList();
                     foreach (Vector2Int pos in attackFrom)
                     {
@@ -52,7 +52,7 @@ public class Unit : MapObject
         else if (checkedTiles[x, y] == 0)
         {
             MoveMarker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<MoveMarker>();
-            movementMarker.Pos = new Vector2Int(x, -y);
+            movementMarker.Pos = new Vector2Int(x, y);
             movementMarker.Origin = this;
             movementMarker.gameObject.SetActive(true);
         }
@@ -67,7 +67,7 @@ public class Unit : MapObject
                     {
                         continue;
                     }
-                    if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0)
+                    if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0 && (GameController.Current.FindUnitAtPos(x + i, y + j) == null || GameController.Current.FindUnitAtPos(x + i, y + j).TheTeam == TheTeam))
                     {
                         MarkMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom);
                     }
@@ -88,7 +88,7 @@ public class Unit : MapObject
         else if (checkedTiles[x, y] == 0)
         {
             AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
-            attackMarker.Pos = new Vector2Int(x, -y);
+            attackMarker.Pos = new Vector2Int(x, y);
             attackMarker.Origin = this;
             attackMarker.gameObject.SetActive(true);
         }

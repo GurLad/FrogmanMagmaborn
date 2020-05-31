@@ -14,12 +14,13 @@ public abstract class MapObject : MonoBehaviour
         set
         {
             pos = value;
-            transform.position = new Vector3(pos.x * GameController.Current.TileSize, pos.y * GameController.Current.TileSize, transform.position.z);
+            transform.position = new Vector3(pos.x * GameController.Current.TileSize, -pos.y * GameController.Current.TileSize, transform.position.z);
         }
     }
     public abstract void Interact(InteractState interactState);
     private void Start()
     {
+        Pos = new Vector2Int((int)transform.position.x, -(int)transform.position.y);
         GameController.Current.MapObjects.Add(this);
     }
 }
