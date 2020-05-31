@@ -11,7 +11,10 @@ public class MoveMarker : Marker
         {
             Origin.Pos = Pos;
             GameController.Current.RemoveMarkers();
-            GameController.Current.InteractState = InteractState.None;
+            Origin.MarkAttack();
+            GameController.Current.InteractState = InteractState.Attack;
+            // TEMP, test
+            CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing + "Battle");
         }
     }
 }

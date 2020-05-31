@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
             return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
         }
     }
-    private void Start()
+    private void Awake()
     {
         /*
          * I had a few different ideas:
@@ -70,7 +70,19 @@ public class GameController : MonoBehaviour
                 Cursor.transform.position += new Vector3(
                     Sign(Input.GetAxis("Horizontal")),
                     Sign(Input.GetAxis("Vertical"))) * TileSize;
+                Cursor.transform.position = new Vector3(
+                    Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
+                    -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
+                    Cursor.transform.position.z);
                 cursorMoveDelay = 0.15f;
+                if (cursorPos != previousPos)
+                {
+                    cursorMoveDelay = 0.15f;
+                }
+                else
+                {
+                    cursorMoveDelay -= Time.deltaTime;
+                }
             }
         }
         else
@@ -101,7 +113,7 @@ public class GameController : MonoBehaviour
             if (unit != null)
             {
                 UnitInfoPanel.gameObject.SetActive(true);
-                UnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.MaxHealth;
+                UnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
                 UnitInfoPanel.anchorMin = anchor;
                 UnitInfoPanel.anchorMax = anchor;
                 UnitInfoPanel.pivot = anchor;
@@ -128,6 +140,12 @@ public class GameController : MonoBehaviour
         MapObjects.FindAll(a => a is Marker).ForEach(a => Destroy(a.gameObject));
         MapObjects.RemoveAll(a => a is Marker);
         previousPos = new Vector2Int(-1, -1);
+    }
+    public void FinishMove()
+    {
+        RemoveMarkers();
+        InteractState = InteractState.None;
+        CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing.Replace("Battle", ""));
     }
     public Unit FindUnitAtPos(int x, int y)
     {

@@ -9,10 +9,21 @@ public class AttackMarker : Marker
     {
         if (interactState == InteractState.Attack && Origin.TheTeam == Team.Player)
         {
-            Unit unit = GameController.Current.FindUnitAtPos(Origin.Pos.x, Origin.Pos.y);
+            Unit unit = GameController.Current.FindUnitAtPos(Pos.x, Pos.y);
             if (unit != null)
             {
-                // Fight!
+                if (unit.TheTeam != Origin.TheTeam)
+                {
+                    // Fight!
+                    Origin.Attack(unit);
+                    // ...and counter
+                    unit.Attack(Origin);
+                    GameController.Current.FinishMove();
+                }
+                else if (unit == Origin)
+                {
+                    GameController.Current.FinishMove();
+                }
             }
         }
     }

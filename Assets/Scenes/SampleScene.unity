@@ -544,6 +544,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 1
   palette: 0
+--- !u!1 &374053907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 374053909}
+  - component: {fileID: 374053908}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &374053908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374053907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe8186a97b40324eb61f119bc4c5261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tracks:
+  - Name: Dungeon
+    AudioClip: {fileID: 8300000, guid: 53fddda547aaf6f47b395637c292f92e, type: 3}
+  - Name: DungeonBattle
+    AudioClip: {fileID: 8300000, guid: 88e962b15c997fe4993dab07d9f31f5f, type: 3}
+  FadeSpeed: Infinity
+  Volume: 1
+  PlayOnStart: 1
+  KeepTimestamp: 1
+--- !u!4 &374053909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374053907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &436410375
 Sprite:
   m_ObjectHideFlags: 0
@@ -1219,9 +1271,15 @@ MonoBehaviour:
   TheTeam: 0
   Name: Frogman
   Movement: 5
-  Health: 10
-  MaxHealth: 15
+  Stats:
+    Strength: 4
+    Endurance: 5
+    Pierce: 5
+    Armor: 4
+    Precision: 4
+    Evasion: 5
   AttackRange: 1
+  Health: 10
 --- !u!212 &1111376494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2471,7 +2529,7 @@ GameObject:
   - component: {fileID: 2079869336}
   - component: {fileID: 2079869335}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2534,9 +2592,15 @@ MonoBehaviour:
   TheTeam: 1
   Name: Enemy
   Movement: 5
-  Health: 7
-  MaxHealth: 22
+  Stats:
+    Strength: 5
+    Endurance: 4
+    Pierce: 4
+    Armor: 5
+    Precision: 5
+    Evasion: 4
   AttackRange: 1
+  Health: 7
 --- !u!212 &2079869338
 SpriteRenderer:
   m_ObjectHideFlags: 0

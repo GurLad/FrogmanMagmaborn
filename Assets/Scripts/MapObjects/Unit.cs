@@ -12,11 +12,16 @@ public class Unit : MapObject
     [Header("Stats")]
     public string Name;
     public int Movement;
-    public int Health;
-    //TEMP!! Replace with Stats class
-    public int MaxHealth;
+    public Stats Stats;
     //TEMP!! Replace with Weapon class
     public int AttackRange;
+    [HideInInspector]
+    public int Health;
+    protected override void Start()
+    {
+        base.Start();
+        Health = Stats.MaxHP;
+    }
     public override void Interact(InteractState interactState)
     {
         switch (interactState)
@@ -79,6 +84,45 @@ public class Unit : MapObject
             }
         }
     }
+    public void MarkAttack(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
+    {
+        if (range == -1)
+        {
+            range = AttackRange + 1;
+            x = Pos.x;
+            y = Pos.y;
+        }
+        checkedTiles = checkedTiles ?? new bool[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+        if (checkedTiles[x, y])
+        {
+            return;
+        }
+        else
+        {
+            AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+            attackMarker.Pos = new Vector2Int(x, y);
+            attackMarker.Origin = this;
+            attackMarker.gameObject.SetActive(true);
+        }
+        checkedTiles[x, y] = true;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == 0 || j == 0)
+                {
+                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                    {
+                        continue;
+                    }
+                    if (range - 1 > 0)
+                    {
+                        MarkAttack(x + i, y + j, range - 1, checkedTiles);
+                    }
+                }
+            }
+        }
+    }
     private void MarkAttack(int x, int y, int range, int[,] checkedTiles)
     {
         if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range)
@@ -109,6 +153,20 @@ public class Unit : MapObject
                     }
                 }
             }
+        }
+    }
+    public void Attack(Unit unit)
+    {
+        // Think of a way to implement this with combat animations.
+        int percent = Stats.HitChance(unit.Stats);
+        if (Random.Range(0, 100) < percent)
+        {
+            Debug.Log(Name + " dealt " + Stats.Damage(unit.Stats) + " damage to " + unit.Name);
+            unit.Health -= Stats.Damage(unit.Stats);
+        }
+        else
+        {
+            Debug.Log(Name + " missed " + unit.Name);
         }
     }
 }

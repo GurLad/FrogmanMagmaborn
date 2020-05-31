@@ -98,7 +98,6 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentFrame = 0;
         count = FixedSpeed ? fixedCount : 0;
         currentFrame = FixedSpeed ? fixedFrame : 0;
-        Debug.Log(count);
         Active = true;
         renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }

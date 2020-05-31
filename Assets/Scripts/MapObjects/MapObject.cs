@@ -18,7 +18,7 @@ public abstract class MapObject : MonoBehaviour
         }
     }
     public abstract void Interact(InteractState interactState);
-    private void Start()
+    protected virtual void Start()
     {
         Pos = new Vector2Int((int)transform.position.x, -(int)transform.position.y);
         GameController.Current.MapObjects.Add(this);
