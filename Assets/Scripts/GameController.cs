@@ -14,16 +14,23 @@ public class GameController : MonoBehaviour
     public List<string> Rooms;
     public GameObject Cursor;
     [Header("UI")]
-    public Text TileInfo;
-    public RectTransform TileInfoPanel;
-    public Text UnitInfo;
-    public RectTransform UnitInfoPanel;
+    public RectTransform UITileInfoPanel;
+    public Text UITileInfo;
+    public RectTransform UIUnitInfoPanel;
+    public Text UIUnitInfo;
+    public RectTransform UIFightPanel;
+    public PalettedSprite UIAttackerPanel;
+    public Text UIAttackerInfo;
+    public PalettedSprite UIDefenderPanel;
+    public Text UIDefenderInfo;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
     public List<MapObject> MapObjects;
     [HideInInspector]
     public InteractState InteractState = InteractState.None;
+    [HideInInspector]
+    public Unit Selected;
     private float cursorMoveDelay;
     private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Vector2Int cursorPos
@@ -99,9 +106,9 @@ public class GameController : MonoBehaviour
         }
         if (previousPos != cursorPos)
         {
-            TileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
+            UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
             Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
-            Vector2Int anchor;
+            Vector2 anchor;
             if (cursorPos.x >= MapSize.x / 2)
             {
                 anchor = new Vector2Int(0, 1);
@@ -112,21 +119,38 @@ public class GameController : MonoBehaviour
             }
             if (unit != null)
             {
-                UnitInfoPanel.gameObject.SetActive(true);
-                UnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
-                UnitInfoPanel.anchorMin = anchor;
-                UnitInfoPanel.anchorMax = anchor;
-                UnitInfoPanel.pivot = anchor;
-                UnitInfoPanel.GetComponent<PalettedSprite>().Palette = unit.gameObject.GetComponent<PalettedSprite>().Palette;
+                UIUnitInfoPanel.gameObject.SetActive(true);
+                UIUnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
+                UIUnitInfoPanel.anchorMin = anchor;
+                UIUnitInfoPanel.anchorMax = anchor;
+                UIUnitInfoPanel.pivot = anchor;
+                UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = unit.gameObject.GetComponent<PalettedSprite>().Palette;
+                if (InteractState != InteractState.None && unit.TheTeam != Selected.TheTeam)
+                {
+                    UIFightPanel.gameObject.SetActive(true);
+                    anchor.y = 0.5f;
+                    UIFightPanel.anchorMin = anchor;
+                    UIFightPanel.anchorMax = anchor;
+                    UIFightPanel.pivot = anchor;
+                    UIAttackerPanel.Palette = (int)Selected.TheTeam;
+                    UIDefenderPanel.Palette = (int)unit.TheTeam;
+                    UIAttackerInfo.text = "HP :" + Selected.Health + "\nDMG:" + Selected.Stats.Damage(unit.Stats) + "\nHIT:" + Selected.Stats.HitChance(unit.Stats).ToString().Replace("100", "99");
+                    UIDefenderInfo.text = "HP :" + unit.Health + "\nDMG:" + unit.Stats.Damage(Selected.Stats) + "\nHIT:" + unit.Stats.HitChance(Selected.Stats).ToString().Replace("100", "99");
+                }
+                else
+                {
+                    UIFightPanel.gameObject.SetActive(false);
+                }
             }
             else
             {
-                UnitInfoPanel.gameObject.SetActive(false);
+                UIUnitInfoPanel.gameObject.SetActive(false);
+                UIFightPanel.gameObject.SetActive(false);
             }
-            anchor.y -= 1;
-            TileInfoPanel.anchorMin = anchor;
-            TileInfoPanel.anchorMax = anchor;
-            TileInfoPanel.pivot = anchor;
+            anchor.y = 0;
+            UITileInfoPanel.anchorMin = anchor;
+            UITileInfoPanel.anchorMax = anchor;
+            UITileInfoPanel.pivot = anchor;
         }
         previousPos = cursorPos;
     }
@@ -145,6 +169,7 @@ public class GameController : MonoBehaviour
     {
         RemoveMarkers();
         InteractState = InteractState.None;
+        Selected = null;
         CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing.Replace("Battle", ""));
     }
     public Unit FindUnitAtPos(int x, int y)

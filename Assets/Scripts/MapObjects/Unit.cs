@@ -38,6 +38,7 @@ public class Unit : MapObject
                         MarkAttack(pos.x, pos.y, AttackRange, checkedTiles);
                     }
                     GameController.Current.InteractState = InteractState.Move;
+                    GameController.Current.Selected = this;
                 }
                 break;
             case InteractState.Move:

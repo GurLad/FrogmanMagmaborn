@@ -23,12 +23,12 @@ public class Stats
     }
     public int Damage(Stats other)
     {
-        return Mathf.Max(0, Strength - 2 * Mathf.Max(0, Pierce - other.Armor));
+        return Mathf.Max(0, Strength - 2 * Mathf.Max(0, other.Armor - Pierce));
     }
     /*
      * Calculations:
      * HP = 2 * Endurance
-     * Damage = Attacker's Strength - 2 * max(0, Attacker's Pierce - Defender's Armor)
+     * Damage = Attacker's Strength - 2 * max(0, Defender's Armor - Attacker's Pierce)
      * Hit chance = 100 - 5 * max(0, Defender's Evasion - Attacker's Precision) %
      */
 }
