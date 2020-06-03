@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class PaletteController : MonoBehaviour
 {
-    public static PaletteController Current;
+    public static PaletteController Current
+    {
+        get
+        {
+            if (current == null)
+            {
+                current = FindObjectOfType<PaletteController>();
+            }
+            return current;
+        }
+        private set => current = value;
+    }
     public Palette[] BackgroundPalettes = new Palette[4];
     public Palette[] SpritePalettes = new Palette[4];
+    private static PaletteController current;
 
     private void Reset()
     {
@@ -25,7 +37,7 @@ public class PaletteController : MonoBehaviour
 
     private void Awake()
     {
-        Current = this;
+        current = this;
     }
 }
 

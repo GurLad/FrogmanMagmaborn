@@ -24,8 +24,8 @@ public class PalettedSprite : MonoBehaviour
     private bool ui;
     private SpriteRenderer renderer;
     private Image image;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         ui = (renderer = GetComponent<SpriteRenderer>()) == null;
         if (!ui)

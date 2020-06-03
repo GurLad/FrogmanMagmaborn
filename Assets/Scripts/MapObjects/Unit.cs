@@ -17,17 +17,33 @@ public class Unit : MapObject
     public int AttackRange;
     [HideInInspector]
     public int Health;
+    public bool Moved
+    {
+        get
+        {
+            return moved;
+        }
+        set
+        {
+            moved = value;
+            palette.Palette = moved ? 3 : (int)TheTeam;
+        }
+    }
+    private bool moved;
+    private PalettedSprite palette;
     protected override void Start()
     {
         base.Start();
+        palette = GetComponent<PalettedSprite>();
         Health = Stats.MaxHP;
+        Moved = false;
     }
     public override void Interact(InteractState interactState)
     {
         switch (interactState)
         {
             case InteractState.None:
-                if (TheTeam == Team.Player)
+                if (TheTeam == Team.Player && !Moved)
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                     List<Vector2Int> attackFrom = new List<Vector2Int>();

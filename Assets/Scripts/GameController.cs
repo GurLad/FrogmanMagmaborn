@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour
     public Text UIAttackerInfo;
     public PalettedSprite UIDefenderPanel;
     public Text UIDefenderInfo;
+    public TurnAnimation TurnAnimation;
+    [Header("Misc")]
+    public float EnemyAIMoveDelay = 2;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -31,13 +34,33 @@ public class GameController : MonoBehaviour
     public InteractState InteractState = InteractState.None;
     [HideInInspector]
     public Unit Selected;
+    private Team currentPhase = Team.Player;
+    private bool interactable
+    {
+        get => _interactable;
+        set
+        {
+            _interactable = value;
+            UITileInfoPanel.gameObject.SetActive(_interactable);
+            Cursor.gameObject.SetActive(_interactable);
+        }
+    }
+    private bool _interactable = true;
     private float cursorMoveDelay;
+    private float enemyMoveDelayCount;
     private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Vector2Int cursorPos
     {
         get
         {
             return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
+        }
+    }
+    private List<Unit> units
+    {
+        get
+        {
+            return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
     }
     private void Awake()
@@ -70,89 +93,110 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (cursorMoveDelay <= 0)
+        // Interact/UI code
+        if (interactable)
         {
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.5f)
+            if (cursorMoveDelay <= 0)
             {
-                Cursor.transform.position += new Vector3(
-                    Sign(Input.GetAxis("Horizontal")),
-                    Sign(Input.GetAxis("Vertical"))) * TileSize;
-                Cursor.transform.position = new Vector3(
-                    Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
-                    -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
-                    Cursor.transform.position.z);
-                cursorMoveDelay = 0.15f;
-                if (cursorPos != previousPos)
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.5f)
                 {
+                    Cursor.transform.position += new Vector3(
+                        Sign(Input.GetAxis("Horizontal")),
+                        Sign(Input.GetAxis("Vertical"))) * TileSize;
+                    Cursor.transform.position = new Vector3(
+                        Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
+                        -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
+                        Cursor.transform.position.z);
                     cursorMoveDelay = 0.15f;
+                    if (cursorPos != previousPos)
+                    {
+                        cursorMoveDelay = 0.15f;
+                    }
+                    else
+                    {
+                        cursorMoveDelay -= Time.deltaTime;
+                    }
+                }
+            }
+            else
+            {
+                cursorMoveDelay -= Time.deltaTime;
+            }
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.5f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.5f)
+            {
+                cursorMoveDelay = 0;
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                InteractWithTile(cursorPos.x, cursorPos.y);
+            }
+            if (previousPos != cursorPos)
+            {
+                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
+                Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                Vector2 anchor;
+                if (cursorPos.x >= MapSize.x / 2)
+                {
+                    anchor = new Vector2Int(0, 1);
                 }
                 else
                 {
-                    cursorMoveDelay -= Time.deltaTime;
+                    anchor = new Vector2Int(1, 1);
                 }
+                if (unit != null)
+                {
+                    UIUnitInfoPanel.gameObject.SetActive(true);
+                    UIUnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
+                    UIUnitInfoPanel.anchorMin = anchor;
+                    UIUnitInfoPanel.anchorMax = anchor;
+                    UIUnitInfoPanel.pivot = anchor;
+                    UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
+                    if (InteractState != InteractState.None && unit.TheTeam != Selected.TheTeam)
+                    {
+                        UIFightPanel.gameObject.SetActive(true);
+                        anchor.y = 0.5f;
+                        UIFightPanel.anchorMin = anchor;
+                        UIFightPanel.anchorMax = anchor;
+                        UIFightPanel.pivot = anchor;
+                        UIAttackerPanel.Palette = (int)Selected.TheTeam;
+                        UIDefenderPanel.Palette = (int)unit.TheTeam;
+                        UIAttackerInfo.text = "HP :" + Selected.Health + "\nDMG:" + Selected.Stats.Damage(unit.Stats) + "\nHIT:" + Selected.Stats.HitChance(unit.Stats).ToString().Replace("100", "99");
+                        UIDefenderInfo.text = "HP :" + unit.Health + "\nDMG:" + unit.Stats.Damage(Selected.Stats) + "\nHIT:" + unit.Stats.HitChance(Selected.Stats).ToString().Replace("100", "99");
+                    }
+                    else
+                    {
+                        UIFightPanel.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    UIUnitInfoPanel.gameObject.SetActive(false);
+                    UIFightPanel.gameObject.SetActive(false);
+                }
+                anchor.y = 0;
+                UITileInfoPanel.anchorMin = anchor;
+                UITileInfoPanel.anchorMax = anchor;
+                UITileInfoPanel.pivot = anchor;
             }
+            previousPos = cursorPos;
         }
         else
         {
-            cursorMoveDelay -= Time.deltaTime;
+            UIUnitInfoPanel.gameObject.SetActive(false);
+            UIFightPanel.gameObject.SetActive(false);
         }
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.5f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.5f)
+        if (currentPhase == Team.Enemy)
         {
-            cursorMoveDelay = 0;
+            enemyMoveDelayCount += Time.deltaTime;
+            if (enemyMoveDelayCount > EnemyAIMoveDelay)
+            {
+                enemyMoveDelayCount -= EnemyAIMoveDelay;
+                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Enemy && !a.Moved);
+                // AI
+                FinishMove(currentEnemy);
+            }
         }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            InteractWithTile(cursorPos.x, cursorPos.y);
-        }
-        if (previousPos != cursorPos)
-        {
-            UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
-            Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
-            Vector2 anchor;
-            if (cursorPos.x >= MapSize.x / 2)
-            {
-                anchor = new Vector2Int(0, 1);
-            }
-            else
-            {
-                anchor = new Vector2Int(1, 1);
-            }
-            if (unit != null)
-            {
-                UIUnitInfoPanel.gameObject.SetActive(true);
-                UIUnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
-                UIUnitInfoPanel.anchorMin = anchor;
-                UIUnitInfoPanel.anchorMax = anchor;
-                UIUnitInfoPanel.pivot = anchor;
-                UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = unit.gameObject.GetComponent<PalettedSprite>().Palette;
-                if (InteractState != InteractState.None && unit.TheTeam != Selected.TheTeam)
-                {
-                    UIFightPanel.gameObject.SetActive(true);
-                    anchor.y = 0.5f;
-                    UIFightPanel.anchorMin = anchor;
-                    UIFightPanel.anchorMax = anchor;
-                    UIFightPanel.pivot = anchor;
-                    UIAttackerPanel.Palette = (int)Selected.TheTeam;
-                    UIDefenderPanel.Palette = (int)unit.TheTeam;
-                    UIAttackerInfo.text = "HP :" + Selected.Health + "\nDMG:" + Selected.Stats.Damage(unit.Stats) + "\nHIT:" + Selected.Stats.HitChance(unit.Stats).ToString().Replace("100", "99");
-                    UIDefenderInfo.text = "HP :" + unit.Health + "\nDMG:" + unit.Stats.Damage(Selected.Stats) + "\nHIT:" + unit.Stats.HitChance(Selected.Stats).ToString().Replace("100", "99");
-                }
-                else
-                {
-                    UIFightPanel.gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                UIUnitInfoPanel.gameObject.SetActive(false);
-                UIFightPanel.gameObject.SetActive(false);
-            }
-            anchor.y = 0;
-            UITileInfoPanel.anchorMin = anchor;
-            UITileInfoPanel.anchorMax = anchor;
-            UITileInfoPanel.pivot = anchor;
-        }
-        previousPos = cursorPos;
+        // End Interact/UI code
     }
     public void InteractWithTile(int x, int y)
     {
@@ -165,16 +209,32 @@ public class GameController : MonoBehaviour
         MapObjects.RemoveAll(a => a is Marker);
         previousPos = new Vector2Int(-1, -1);
     }
-    public void FinishMove()
+    public void FinishMove(Unit unit)
     {
         RemoveMarkers();
         InteractState = InteractState.None;
-        Selected = null;
+        unit.Moved = true;
+        if (units.Find(a => a.TheTeam == unit.TheTeam && !a.Moved) == null)
+        {
+            StartPhase((Team)(((int)unit.TheTeam + 1) % 2));
+        }
+        unit = null;
+        // TEMP!!
         CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing.Replace("Battle", ""));
     }
     public Unit FindUnitAtPos(int x, int y)
     {
         return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
+    }
+    public void StartPhase(Team team)
+    {
+        currentPhase = team;
+        TurnAnimation.ShowTurn(team);
+        foreach (var item in units)
+        {
+            item.Moved = false;
+        }
+        interactable = team == Team.Player;
     }
     int Sign(float number)
     {

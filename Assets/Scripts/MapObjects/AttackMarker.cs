@@ -18,11 +18,11 @@ public class AttackMarker : Marker
                     Origin.Attack(unit);
                     // ...and counter
                     unit.Attack(Origin);
-                    GameController.Current.FinishMove();
+                    GameController.Current.FinishMove(Origin);
                 }
                 else if (unit == Origin)
                 {
-                    GameController.Current.FinishMove();
+                    GameController.Current.FinishMove(Origin);
                 }
             }
         }
