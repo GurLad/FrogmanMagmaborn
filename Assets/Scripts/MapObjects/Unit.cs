@@ -47,12 +47,7 @@ public class Unit : MapObject
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
-                    MarkMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
-                    attackFrom = attackFrom.Distinct().ToList();
-                    foreach (Vector2Int pos in attackFrom)
-                    {
-                        MarkAttack(pos.x, pos.y, AttackRange, checkedTiles);
-                    }
+                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
                     GameController.Current.InteractState = InteractState.Move;
                     GameController.Current.Selected = this;
                 }
@@ -65,18 +60,11 @@ public class Unit : MapObject
                 break;
         }
     }
-    public void MarkMovement(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    private void GetMovement(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
     {
         if (checkedTiles[x, y] > range)
         {
             return;
-        }
-        else if (checkedTiles[x, y] == 0)
-        {
-            MoveMarker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<MoveMarker>();
-            movementMarker.Pos = new Vector2Int(x, y);
-            movementMarker.Origin = this;
-            movementMarker.gameObject.SetActive(true);
         }
         checkedTiles[x, y] = range + 1;
         for (int i = -1; i <= 1; i++)
@@ -91,12 +79,78 @@ public class Unit : MapObject
                     }
                     if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0 && (GameController.Current.FindUnitAtPos(x + i, y + j) == null || GameController.Current.FindUnitAtPos(x + i, y + j).TheTeam == TheTeam))
                     {
-                        MarkMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom);
+                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom);
                     }
                     else
                     {
                         attackFrom.Add(new Vector2Int(x + i, y + j));
                     }
+                }
+            }
+        }
+    }
+    private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)
+    {
+        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range)
+        {
+            return;
+        }
+        checkedTiles[x, y] = -(range + 1);
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == 0 || j == 0)
+                {
+                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                    {
+                        continue;
+                    }
+                    if (range - 1 > 0)
+                    {
+                        GetDangerAreaPart(x + i, y + j, range - 1, checkedTiles);
+                    }
+                }
+            }
+        }
+    }
+    private int[,] GetDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    {
+        GetMovement(x, y, range, checkedTiles, attackFrom);
+        attackFrom = attackFrom.Distinct().ToList();
+        foreach (Vector2Int pos in attackFrom)
+        {
+            GetDangerAreaPart(pos.x, pos.y, AttackRange, checkedTiles);
+        }
+        return checkedTiles;
+    }
+    public int[,] GetDangerArea()
+    {
+        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+        List<Vector2Int> attackFrom = new List<Vector2Int>();
+        return GetDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
+    }
+
+    private void MarkDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    {
+        GetDangerArea(x, y, range, checkedTiles, attackFrom);
+        for (int i = 0; i < checkedTiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < checkedTiles.GetLength(1); j++)
+            {
+                if (checkedTiles[i, j] > 0)
+                {
+                    MoveMarker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<MoveMarker>();
+                    movementMarker.Pos = new Vector2Int(i, j);
+                    movementMarker.Origin = this;
+                    movementMarker.gameObject.SetActive(true);
+                }
+                else if (checkedTiles[i, j] < 0)
+                {
+                    AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+                    attackMarker.Pos = new Vector2Int(i, j);
+                    attackMarker.Origin = this;
+                    attackMarker.gameObject.SetActive(true);
                 }
             }
         }
@@ -140,39 +194,49 @@ public class Unit : MapObject
             }
         }
     }
-    private void MarkAttack(int x, int y, int range, int[,] checkedTiles)
+    public void MoveTo(Vector2Int pos)
     {
-        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range)
+        // Add animation etc.
+        Pos = pos;
+    }
+    public void Fight(Unit unit)
+    {
+        Attack(unit);
+        // Kill?
+        unit.Attack(this);
+        // Kill?
+    }
+    public void AI(List<Unit> units)
+    {
+        // Charge
+        int[,] dangerArea = GetDangerArea();
+        List<Unit> enemyEnemies = units.Where(a => a.TheTeam != TheTeam).ToList();
+        foreach (Unit unit in enemyEnemies)
         {
-            return;
-        }
-        else if (checkedTiles[x, y] == 0)
-        {
-            AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
-            attackMarker.Pos = new Vector2Int(x, y);
-            attackMarker.Origin = this;
-            attackMarker.gameObject.SetActive(true);
-        }
-        checkedTiles[x, y] = -(range + 1);
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
+            if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
             {
-                if (i == 0 || j == 0)
+                for (int i = -1; i <= 1; i++)
                 {
-                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                    for (int j = -1; j <= 1; j++)
                     {
-                        continue;
-                    }
-                    if (range - 1 > 0)
-                    {
-                        MarkAttack(x + i, y + j, range - 1, checkedTiles);
+                        if (i == 0 || j == 0)
+                        {
+                            // Currently only works with 1 range weapons
+                            if (dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
+                            {
+                                MoveTo(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j));
+                                Fight(unit);
+                                GameController.Current.FinishMove(this);
+                                return;
+                            }
+                        }
                     }
                 }
             }
         }
+        GameController.Current.FinishMove(this);
     }
-    public void Attack(Unit unit)
+    private void Attack(Unit unit)
     {
         // Think of a way to implement this with combat animations.
         int percent = Stats.HitChance(unit.Stats);

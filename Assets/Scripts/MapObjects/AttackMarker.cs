@@ -15,9 +15,7 @@ public class AttackMarker : Marker
                 if (unit.TheTeam != Origin.TheTeam)
                 {
                     // Fight!
-                    Origin.Attack(unit);
-                    // ...and counter
-                    unit.Attack(Origin);
+                    Origin.Fight(unit);
                     GameController.Current.FinishMove(Origin);
                 }
                 else if (unit == Origin)

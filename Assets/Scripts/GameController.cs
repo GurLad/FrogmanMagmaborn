@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
                 Unit currentEnemy = units.Find(a => a.TheTeam == Team.Enemy && !a.Moved);
                 // AI
-                FinishMove(currentEnemy);
+                currentEnemy.AI(units);
             }
         }
         // End Interact/UI code

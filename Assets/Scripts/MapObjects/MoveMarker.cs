@@ -9,7 +9,7 @@ public class MoveMarker : Marker
     {
         if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
         {
-            Origin.Pos = Pos;
+            Origin.MoveTo(Pos);
             GameController.Current.RemoveMarkers();
             Origin.MarkAttack();
             GameController.Current.InteractState = InteractState.Attack;
