@@ -13,8 +13,6 @@ public class MoveMarker : Marker
             GameController.Current.RemoveMarkers();
             Origin.MarkAttack();
             GameController.Current.InteractState = InteractState.Attack;
-            // TEMP, test
-            CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing + "Battle");
         }
     }
 }

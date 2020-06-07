@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     public TurnAnimation TurnAnimation;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
+    public GameObject Battle;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -93,6 +94,10 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (BattleAnimationController.Current != null)
+        {
+            return;
+        }
         // Interact/UI code
         if (interactable)
         {

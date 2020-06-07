@@ -72,6 +72,17 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             seconderyAudioSource.time = 0;
         }
     }
+    public void SwitchBattleMode(bool on)
+    {
+        if (on)
+        {
+            Play(Playing + "Battle");
+        }
+        else
+        {
+            Play(Playing.Replace("Battle", ""));
+        }
+    }
     private void Update()
     {
         if (seconderyAudioSource.clip != null)

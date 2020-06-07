@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnimationListener
 {
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, WaitTime }
+    public static BattleAnimationController Current;
     [Header("AnimationData")]
     public float AttackerTargetPos = 3;
     public float AttackerSpeed;
+    public float WaitTime = 0.5f;
     public AdvancedSpriteSheetAnimation AttackerAnimation;
     public AdvancedSpriteSheetAnimation DefenderAnimation;
     [Header("Attacker UI")]
@@ -29,8 +32,15 @@ public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnim
     public Unit Defender;
     private State state;
     private Vector3 currentAttackerPos;
+    private float count = 0;
 
-    private void Start()
+    private void Awake()
+    {
+        Current = this;
+        AttackerAnimation.Activate("Idle");
+    }
+
+    public void StartBattle()
     {
         AttackerAnimation.Listeners.Add(this);
         DefenderAnimation.Listeners.Add(this);
@@ -84,6 +94,13 @@ public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnim
             case State.DefenderFinishingAttack:
                 break;
             case State.WaitTime:
+                count += Time.deltaTime;
+                if (count >= WaitTime)
+                {
+                    CrossfadeMusicPlayer.Instance.SwitchBattleMode(false);
+                    GameController.Current.transform.parent.gameObject.SetActive(true);
+                    Destroy(transform.parent.gameObject);
+                }
                 break;
             default:
                 break;
@@ -96,14 +113,14 @@ public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnim
         {
             if (state == State.AttackerAttacking)
             {
-                Attacker.Fight(Defender, false);
+                Attacker.Attack(Defender);
                 UpdateDisplay();
                 AttackerAnimation.Activate("AttackEnd");
                 state = State.AttackerFinishingAttack;
             }
             else if (state == State.DefenderAttacking)
             {
-                Defender.Fight(Attacker, false);
+                Defender.Attack(Attacker);
                 UpdateDisplay();
                 DefenderAnimation.Activate("AttackEnd");
                 state = State.DefenderFinishingAttack;
@@ -120,7 +137,7 @@ public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnim
                 DefenderAnimation.transform.position -= new Vector3(0, 0, DefenderAnimation.transform.position.z - temp);
                 state = State.DefenderAttacking;
             }
-            else if (state == State.DefenderAttacking)
+            else if (state == State.DefenderFinishingAttack)
             {
                 AttackerAnimation.Activate("Idle");
                 DefenderAnimation.Activate("Idle");

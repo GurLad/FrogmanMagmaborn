@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public enum Team { Player, Enemy }
 public class Unit : MapObject
 {
@@ -200,14 +201,14 @@ public class Unit : MapObject
         // Add animation etc.
         Pos = pos;
     }
-    public void Fight(Unit unit, bool counter = true)
+    public void Fight(Unit unit)
     {
-        Attack(unit);
-        // Kill?
-        if (counter)
-        {
-            unit.Fight(this, false);
-        }
+        CrossfadeMusicPlayer.Instance.SwitchBattleMode(true);
+        Instantiate(GameController.Current.Battle);
+        GameController.Current.transform.parent.gameObject.SetActive(false);
+        BattleAnimationController.Current.Attacker = this;
+        BattleAnimationController.Current.Defender = unit;
+        BattleAnimationController.Current.StartBattle();
     }
     public string AttackPreview(Stats other, int padding = 2)
     {
@@ -243,7 +244,7 @@ public class Unit : MapObject
         }
         GameController.Current.FinishMove(this);
     }
-    private void Attack(Unit unit)
+    public void Attack(Unit unit)
     {
         // Think of a way to implement this with combat animations.
         int percent = Stats.HitChance(unit.Stats);
@@ -251,6 +252,7 @@ public class Unit : MapObject
         {
             Debug.Log(Name + " dealt " + Stats.Damage(unit.Stats) + " damage to " + unit.Name);
             unit.Health -= Stats.Damage(unit.Stats);
+            // Kill?
         }
         else
         {
