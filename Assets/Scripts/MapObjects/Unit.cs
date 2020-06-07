@@ -9,8 +9,9 @@ public class Unit : MapObject
     public MoveMarker MovementMarker;
     public AttackMarker AttackMarker;
     public Team TheTeam;
-    [Header("Stats")]
     public string Name;
+    public Sprite Icon;
+    [Header("Stats")]
     public int Movement;
     public Stats Stats;
     //TEMP!! Replace with Weapon class
@@ -199,12 +200,18 @@ public class Unit : MapObject
         // Add animation etc.
         Pos = pos;
     }
-    public void Fight(Unit unit)
+    public void Fight(Unit unit, bool counter = true)
     {
         Attack(unit);
         // Kill?
-        unit.Attack(this);
-        // Kill?
+        if (counter)
+        {
+            unit.Fight(this, false);
+        }
+    }
+    public string AttackPreview(Stats other, int padding = 2)
+    {
+        return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + Stats.Damage(other).ToString().PadRight(padding) + "\nHIT:" + Stats.HitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
     }
     public void AI(List<Unit> units)
     {

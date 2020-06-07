@@ -160,8 +160,8 @@ public class GameController : MonoBehaviour
                         UIFightPanel.pivot = anchor;
                         UIAttackerPanel.Palette = (int)Selected.TheTeam;
                         UIDefenderPanel.Palette = (int)unit.TheTeam;
-                        UIAttackerInfo.text = "HP :" + Selected.Health + "\nDMG:" + Selected.Stats.Damage(unit.Stats) + "\nHIT:" + Selected.Stats.HitChance(unit.Stats).ToString().Replace("100", "99");
-                        UIDefenderInfo.text = "HP :" + unit.Health + "\nDMG:" + unit.Stats.Damage(Selected.Stats) + "\nHIT:" + unit.Stats.HitChance(Selected.Stats).ToString().Replace("100", "99");
+                        UIAttackerInfo.text = Selected.AttackPreview(unit.Stats);
+                        UIDefenderInfo.text = unit.AttackPreview(Selected.Stats);
                     }
                     else
                     {
