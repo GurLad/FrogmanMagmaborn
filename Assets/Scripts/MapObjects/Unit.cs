@@ -204,11 +204,11 @@ public class Unit : MapObject
     public void Fight(Unit unit)
     {
         CrossfadeMusicPlayer.Instance.SwitchBattleMode(true);
-        Instantiate(GameController.Current.Battle);
+        BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
         GameController.Current.transform.parent.gameObject.SetActive(false);
-        BattleAnimationController.Current.Attacker = this;
-        BattleAnimationController.Current.Defender = unit;
-        BattleAnimationController.Current.StartBattle();
+        battleAnimationController.Attacker = this;
+        battleAnimationController.Defender = unit;
+        battleAnimationController.StartBattle();
     }
     public string AttackPreview(Stats other, int padding = 2)
     {

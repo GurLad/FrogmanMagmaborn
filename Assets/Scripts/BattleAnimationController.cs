@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnimationListener
+public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAnimationListener
 {
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, WaitTime }
-    public static BattleAnimationController Current;
     [Header("AnimationData")]
     public float AttackerTargetPos = 3;
     public float AttackerSpeed;
@@ -98,8 +97,7 @@ public class BattleAnimationController : MonoBehaviour, IAdvancedSpriteSheetAnim
                 if (count >= WaitTime)
                 {
                     CrossfadeMusicPlayer.Instance.SwitchBattleMode(false);
-                    GameController.Current.transform.parent.gameObject.SetActive(true);
-                    Destroy(transform.parent.gameObject);
+                    Quit();
                 }
                 break;
             default:

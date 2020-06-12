@@ -103,11 +103,11 @@ public class GameController : MonoBehaviour
         {
             if (cursorMoveDelay <= 0)
             {
-                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.5f)
+                if (Mathf.Abs(Control.GetAxis(SnapAxis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(SnapAxis.Y)) >= 0.5f)
                 {
                     Cursor.transform.position += new Vector3(
-                        Sign(Input.GetAxis("Horizontal")),
-                        Sign(Input.GetAxis("Vertical"))) * TileSize;
+                        Sign(Control.GetAxis(SnapAxis.X)),
+                        Sign(Control.GetAxis(SnapAxis.Y))) * TileSize;
                     Cursor.transform.position = new Vector3(
                         Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
                         -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
@@ -127,11 +127,11 @@ public class GameController : MonoBehaviour
             {
                 cursorMoveDelay -= Time.deltaTime;
             }
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.5f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.5f)
+            if (Mathf.Abs(Control.GetAxis(SnapAxis.X)) < 0.5f && Mathf.Abs(Control.GetAxis(SnapAxis.Y)) < 0.5f)
             {
                 cursorMoveDelay = 0;
             }
-            if (Input.GetButtonUp("Fire1"))
+            if (Control.GetButtonUp(Control.CB.A))
             {
                 InteractWithTile(cursorPos.x, cursorPos.y);
             }
