@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     public GameObject Battle;
+    public GameObject StatusScreen;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -94,7 +95,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (BattleAnimationController.Current != null)
+        if (MidBattleScreen.Current != null)
         {
             return;
         }
@@ -134,6 +135,33 @@ public class GameController : MonoBehaviour
             if (Control.GetButtonUp(Control.CB.A))
             {
                 InteractWithTile(cursorPos.x, cursorPos.y);
+            }
+            else if (Control.GetButtonUp(Control.CB.B))
+            {
+                // Undo turn in move/attack
+                switch (InteractState)
+                {
+                    case InteractState.None:
+                        // Should move to Select button for ease of use
+                        Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                        if (selected != null)
+                        {
+                            StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
+                            transform.parent.gameObject.SetActive(false);
+                            statusScreenController.Show(selected);
+                        }
+                        break;
+                    case InteractState.Move:
+                        Selected = null;
+                        RemoveMarkers();
+                        InteractState = InteractState.None;
+                        break;
+                    case InteractState.Attack:
+                        // TBA
+                        break;
+                    default:
+                        break;
+                }
             }
             if (previousPos != cursorPos)
             {

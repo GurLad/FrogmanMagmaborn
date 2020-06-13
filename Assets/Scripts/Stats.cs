@@ -25,6 +25,11 @@ public class Stats
     {
         return Mathf.Max(0, Strength - 2 * Mathf.Max(0, other.Armor - Pierce));
     }
+    public override string ToString()
+    {
+        return "End:" + Endurance.ToString().PadRight(2) + "Arm:" + Armor.ToString().PadRight(2) + "Eva:" + Evasion.ToString().PadRight(2) +
+            "\nStr:" + Strength.ToString().PadRight(2) + "Pir:" + Pierce.ToString().PadRight(2) + "Pre:" + Precision.ToString().PadRight(2);
+    }
     /*
      * Calculations:
      * HP = 2 * Endurance
