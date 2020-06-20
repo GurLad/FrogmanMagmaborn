@@ -52,7 +52,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 
     private void UpdateDisplay()
     {
-        AttackerInfo.text = Attacker.Name.PadRight(7) + '\n' + Attacker.AttackPreview(Defender.Stats, 3);
+        AttackerInfo.text = Attacker.Name.PadRight(7) + '\n' + Attacker.AttackPreview(Defender, 3);
         AttackerIcon.sprite = Attacker.Icon;
         AttackerHealthbarFull.sizeDelta = new Vector2(Attacker.Health * 4, 8);
         AttackerHealthbarEmpty.sizeDelta = new Vector2(Attacker.Stats.MaxHP * 4, 8);
@@ -60,7 +60,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         {
             item.Palette = (int)Attacker.TheTeam;
         }
-        DefenderInfo.text = Defender.Name.PadRight(7) + '\n' + Defender.AttackPreview(Attacker.Stats, 3);
+        DefenderInfo.text = Defender.Name.PadRight(7) + '\n' + Defender.AttackPreview(Attacker, 3);
         DefenderIcon.sprite = Defender.Icon;
         DefenderHealthbarFull.sizeDelta = new Vector2(Defender.Health * 4, 8);
         DefenderHealthbarEmpty.sizeDelta = new Vector2(Defender.Stats.MaxHP * 4, 8);

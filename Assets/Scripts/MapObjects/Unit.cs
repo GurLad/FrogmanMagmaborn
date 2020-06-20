@@ -210,10 +210,6 @@ public class Unit : MapObject
         battleAnimationController.Defender = unit;
         battleAnimationController.StartBattle();
     }
-    public string AttackPreview(Stats other, int padding = 2)
-    {
-        return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + Stats.Damage(other).ToString().PadRight(padding) + "\nHIT:" + Stats.HitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
-    }
     public void AI(List<Unit> units)
     {
         // Charge
@@ -244,14 +240,26 @@ public class Unit : MapObject
         }
         GameController.Current.FinishMove(this);
     }
+    private int GetHitChance(Unit other)
+    {
+        return 100 - 5 * Mathf.Max(0, other.Stats.Evasion - Stats.Precision);
+    }
+    private int GetDamage(Unit other)
+    {
+        return Mathf.Max(0, Stats.Strength - 2 * Mathf.Max(0, other.Stats.Armor - Stats.Pierce));
+    }
+    public string AttackPreview(Unit other, int padding = 2)
+    {
+        return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + GetDamage(other).ToString().PadRight(padding) + "\nHIT:" + GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
+    }
     public void Attack(Unit unit)
     {
         // Think of a way to implement this with combat animations.
-        int percent = Stats.HitChance(unit.Stats);
+        int percent = GetHitChance(unit);
         if (Random.Range(0, 100) < percent)
         {
-            Debug.Log(Name + " dealt " + Stats.Damage(unit.Stats) + " damage to " + unit.Name);
-            unit.Health -= Stats.Damage(unit.Stats);
+            Debug.Log(Name + " dealt " + GetDamage(unit) + " damage to " + unit.Name);
+            unit.Health -= GetDamage(unit);
             // Kill?
         }
         else

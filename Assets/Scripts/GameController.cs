@@ -193,8 +193,8 @@ public class GameController : MonoBehaviour
                         UIFightPanel.pivot = anchor;
                         UIAttackerPanel.Palette = (int)Selected.TheTeam;
                         UIDefenderPanel.Palette = (int)unit.TheTeam;
-                        UIAttackerInfo.text = Selected.AttackPreview(unit.Stats);
-                        UIDefenderInfo.text = unit.AttackPreview(Selected.Stats);
+                        UIAttackerInfo.text = Selected.AttackPreview(unit);
+                        UIDefenderInfo.text = unit.AttackPreview(Selected);
                     }
                     else
                     {

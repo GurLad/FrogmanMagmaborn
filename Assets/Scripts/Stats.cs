@@ -17,14 +17,14 @@ public class Stats
             return Endurance * 2;
         }
     }
-    public int HitChance(Stats other)
-    {
-        return 100 - 5 * Mathf.Max(0, other.Evasion - Precision);
-    }
-    public int Damage(Stats other)
-    {
-        return Mathf.Max(0, Strength - 2 * Mathf.Max(0, other.Armor - Pierce));
-    }
+    //public int HitChance(Stats other)
+    //{
+    //    return 100 - 5 * Mathf.Max(0, other.Evasion - Precision);
+    //}
+    //public int Damage(Stats other)
+    //{
+    //    return Mathf.Max(0, Strength - 2 * Mathf.Max(0, other.Armor - Pierce));
+    //}
     public override string ToString()
     {
         return "End:" + Endurance.ToString().PadRight(2) + "Arm:" + Armor.ToString().PadRight(2) + "Eva:" + Evasion.ToString().PadRight(2) +
