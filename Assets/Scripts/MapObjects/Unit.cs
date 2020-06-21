@@ -15,8 +15,8 @@ public class Unit : MapObject
     [Header("Stats")]
     public int Movement;
     public Stats Stats;
-    //TEMP!! Replace with Weapon class
-    public int AttackRange;
+    [HideInInspector]
+    public Weapon Weapon;
     [HideInInspector]
     public int Health;
     public bool Moved
@@ -39,6 +39,7 @@ public class Unit : MapObject
         palette = GetComponent<PalettedSprite>();
         Health = Stats.MaxHP;
         Moved = false;
+        Weapon = new Weapon(1);
     }
     public override void Interact(InteractState interactState)
     {
@@ -122,7 +123,7 @@ public class Unit : MapObject
         attackFrom = attackFrom.Distinct().ToList();
         foreach (Vector2Int pos in attackFrom)
         {
-            GetDangerAreaPart(pos.x, pos.y, AttackRange, checkedTiles);
+            GetDangerAreaPart(pos.x, pos.y, Weapon.Range, checkedTiles);
         }
         return checkedTiles;
     }
@@ -161,7 +162,7 @@ public class Unit : MapObject
     {
         if (range == -1)
         {
-            range = AttackRange + 1;
+            range = Weapon.Range + 1;
             x = Pos.x;
             y = Pos.y;
         }
@@ -242,11 +243,11 @@ public class Unit : MapObject
     }
     private int GetHitChance(Unit other)
     {
-        return 100 - 5 * Mathf.Max(0, other.Stats.Evasion - Stats.Precision);
+        return Weapon.Hit - 5 * Mathf.Max(0, other.Stats.Evasion - Stats.Precision);
     }
     private int GetDamage(Unit other)
     {
-        return Mathf.Max(0, Stats.Strength - 2 * Mathf.Max(0, other.Stats.Armor - Stats.Pierce));
+        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor - Stats.Pierce));
     }
     public string AttackPreview(Unit other, int padding = 2)
     {

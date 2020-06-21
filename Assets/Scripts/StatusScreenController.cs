@@ -7,6 +7,7 @@ public class StatusScreenController : MidBattleScreen
 {
     public Text Name;
     public Text Stats;
+    public Text Weapon;
     public Image Icon;
     public RectTransform HealthbarFull;
     public RectTransform HealthbarEmpty;
@@ -15,6 +16,7 @@ public class StatusScreenController : MidBattleScreen
     {
         Name.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
         Stats.text = unit.Stats.ToString();
+        Weapon.text = unit.Weapon.ToString();
         Icon.sprite = unit.Icon;
         HealthbarFull.sizeDelta = new Vector2(unit.Health * 4, 8);
         HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.MaxHP * 4, 8);
