@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackMarker : Marker
 {
-    public Unit Origin;
     public override void Interact(InteractState interactState)
     {
         if (interactState == InteractState.Attack && Origin.TheTeam == Team.Player)

@@ -9,6 +9,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, WaitTime }
     [Header("AnimationData")]
     public float AttackerTargetPos = 3;
+    public float DefenderTargetPos = 4;
     public float AttackerSpeed;
     public float WaitTime = 0.5f;
     public AdvancedSpriteSheetAnimation AttackerAnimation;
@@ -111,23 +112,27 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         {
             if (state == State.AttackerAttacking)
             {
-                Attacker.Attack(Defender);
-                UpdateDisplay();
                 AttackerAnimation.Activate("AttackEnd");
                 state = State.AttackerFinishingAttack;
+                HandleDamage(Attacker, Defender, true);
             }
             else if (state == State.DefenderAttacking)
             {
-                Defender.Attack(Attacker);
-                UpdateDisplay();
                 DefenderAnimation.Activate("AttackEnd");
                 state = State.DefenderFinishingAttack;
+                HandleDamage(Defender, Attacker, false);
             }
         }
         else if (name == "AttackEnd")
         {
             if (state == State.AttackerFinishingAttack)
             {
+                if (Defender == null)
+                {
+                    state = State.WaitTime;
+                    return;
+                }
+                DefenderAnimation.transform.position = new Vector3(DefenderTargetPos, DefenderAnimation.transform.position.y, DefenderAnimation.transform.position.z);
                 DefenderAnimation.Activate("AttackStart");
                 AttackerAnimation.Activate("Idle");
                 float temp = AttackerAnimation.transform.position.z;
@@ -137,6 +142,12 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             }
             else if (state == State.DefenderFinishingAttack)
             {
+                if (Attacker == null)
+                {
+                    state = State.WaitTime;
+                    return;
+                }
+                AttackerAnimation.transform.position = new Vector3(AttackerTargetPos, AttackerAnimation.transform.position.y, AttackerAnimation.transform.position.z);
                 AttackerAnimation.Activate("Idle");
                 DefenderAnimation.Activate("Idle");
                 state = State.WaitTime;
@@ -147,5 +158,38 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public void ChangedFrame(int id, string name, int newFrame)
     {
         // Do nothing
+    }
+
+    private void HandleDamage(Unit attacker, Unit defender, bool attackerAttack)
+    {
+        bool? result = attacker.Attack(defender);
+        switch (result)
+        {
+            case true:
+                // Normal
+                break;
+            case false:
+                // Move for miss
+                if (attackerAttack)
+                {
+                    DefenderAnimation.gameObject.transform.position -= new Vector3(1, 0, 0);
+                }
+                else
+                {
+                    AttackerAnimation.gameObject.transform.position += new Vector3(1, 0, 0);
+                }
+                break;
+            case null:
+                if (attackerAttack)
+                {
+                    Destroy(DefenderAnimation.gameObject);
+                }
+                else
+                {
+                    Destroy(AttackerAnimation.gameObject);
+                }
+                break;
+        }
+        UpdateDisplay();
     }
 }

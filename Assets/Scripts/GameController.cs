@@ -142,6 +142,7 @@ public class GameController : MonoBehaviour
                 switch (InteractState)
                 {
                     case InteractState.None:
+                        RemoveMarkers();
                         // Should move to Select button for ease of use
                         Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
                         if (selected != null)

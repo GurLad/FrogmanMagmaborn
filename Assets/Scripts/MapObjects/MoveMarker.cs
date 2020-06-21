@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MoveMarker : Marker
 {
-    public Unit Origin;
     public override void Interact(InteractState interactState)
     {
         if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)

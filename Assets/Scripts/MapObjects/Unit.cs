@@ -7,8 +7,8 @@ public enum Team { Player, Enemy }
 public class Unit : MapObject
 {
     [Header("Basic info")]
-    public MoveMarker MovementMarker;
-    public AttackMarker AttackMarker;
+    public Marker MovementMarker;
+    public Marker AttackMarker;
     public Team TheTeam;
     public string Name;
     public Sprite Icon;
@@ -46,6 +46,7 @@ public class Unit : MapObject
         switch (interactState)
         {
             case InteractState.None:
+                GameController.Current.RemoveMarkers();
                 if (TheTeam == Team.Player && !Moved)
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
@@ -53,6 +54,12 @@ public class Unit : MapObject
                     MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
                     GameController.Current.InteractState = InteractState.Move;
                     GameController.Current.Selected = this;
+                }
+                else if (TheTeam != Team.Player)
+                {
+                    int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+                    List<Vector2Int> attackFrom = new List<Vector2Int>();
+                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
                 }
                 break;
             case InteractState.Move:
@@ -143,14 +150,14 @@ public class Unit : MapObject
             {
                 if (checkedTiles[i, j] > 0)
                 {
-                    MoveMarker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<MoveMarker>();
+                    Marker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<Marker>();
                     movementMarker.Pos = new Vector2Int(i, j);
                     movementMarker.Origin = this;
                     movementMarker.gameObject.SetActive(true);
                 }
                 else if (checkedTiles[i, j] < 0)
                 {
-                    AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+                    Marker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<Marker>();
                     attackMarker.Pos = new Vector2Int(i, j);
                     attackMarker.Origin = this;
                     attackMarker.gameObject.SetActive(true);
@@ -253,19 +260,26 @@ public class Unit : MapObject
     {
         return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + GetDamage(other).ToString().PadRight(padding) + "\nHIT:" + GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
     }
-    public void Attack(Unit unit)
+    public bool? Attack(Unit unit)
     {
-        // Think of a way to implement this with combat animations.
         int percent = GetHitChance(unit);
         if (Random.Range(0, 100) < percent)
         {
             Debug.Log(Name + " dealt " + GetDamage(unit) + " damage to " + unit.Name);
             unit.Health -= GetDamage(unit);
             // Kill?
+            if (unit.Health <= 0)
+            {
+                GameController.Current.MapObjects.Remove(unit);
+                Destroy(unit.gameObject);
+                return null;
+            }
+            return true;
         }
         else
         {
             Debug.Log(Name + " missed " + unit.Name);
+            return false;
         }
     }
 }

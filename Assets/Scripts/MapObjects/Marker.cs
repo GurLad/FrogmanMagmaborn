@@ -2,4 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Marker : MapObject{}
+public abstract class Marker : MapObject
+{
+    public Unit Origin;
+}
