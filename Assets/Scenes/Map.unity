@@ -236,7 +236,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 48, y: 32}
+  m_SizeDelta: {x: 48, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &136851800
 MonoBehaviour:
@@ -546,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wall
   MovementCost: 99
+  ArmorModifier: 0
 --- !u!212 &330468804
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1120,15 +1121,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.3275168
+    y: 0.21241051
+    width: 0.34362417
+    height: 0.5727924
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1219,6 +1220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Rock
   MovementCost: 2
+  ArmorModifier: 1
 --- !u!212 &586422906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2090,7 +2092,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'TEST
 
-    TEXT'
+    TEXT
+
+    TENT'
 --- !u!222 &1251508932
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2406,6 +2410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: None
   MovementCost: 1
+  ArmorModifier: 0
 --- !u!114 &1291573594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3413,6 +3418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wall
   MovementCost: 99
+  ArmorModifier: 0
 --- !u!114 &1989712108
 MonoBehaviour:
   m_ObjectHideFlags: 0

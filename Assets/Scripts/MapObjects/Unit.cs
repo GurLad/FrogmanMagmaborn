@@ -227,6 +227,7 @@ public class Unit : MapObject
         {
             if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
             {
+                Vector2Int currentBest = new Vector2Int(-1, -1);
                 for (int i = -1; i <= 1; i++)
                 {
                     for (int j = -1; j <= 1; j++)
@@ -236,14 +237,19 @@ public class Unit : MapObject
                             // Currently only works with 1 range weapons
                             if (dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
                             {
-                                MoveTo(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j));
-                                Fight(unit);
-                                GameController.Current.FinishMove(this);
-                                return;
+                                if (currentBest.x < 0 ||
+                                    GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier < GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier ||
+                                    (GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier == GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier &&
+                                     Vector2Int.Distance(currentBest, Pos) > Vector2Int.Distance(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j), Pos)))
+                                {
+                                    currentBest = new Vector2Int(unit.Pos.x + i, unit.Pos.y + j);
+                                }
                             }
                         }
                     }
                 }
+                MoveTo(currentBest);
+                Fight(unit);
             }
         }
         GameController.Current.FinishMove(this);

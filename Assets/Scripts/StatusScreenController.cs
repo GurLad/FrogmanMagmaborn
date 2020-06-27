@@ -27,7 +27,7 @@ public class StatusScreenController : MidBattleScreen
     }
     private void Update()
     {
-        if (Control.GetButtonUp(Control.CB.B))
+        if (Control.GetButtonDown(Control.CB.B))
         {
             Quit();
         }

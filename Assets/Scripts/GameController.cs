@@ -132,11 +132,11 @@ public class GameController : MonoBehaviour
             {
                 cursorMoveDelay = 0;
             }
-            if (Control.GetButtonUp(Control.CB.A))
+            if (Control.GetButtonDown(Control.CB.A))
             {
                 InteractWithTile(cursorPos.x, cursorPos.y);
             }
-            else if (Control.GetButtonUp(Control.CB.B))
+            else if (Control.GetButtonDown(Control.CB.B))
             {
                 // Undo turn in move/attack
                 switch (InteractState)
@@ -166,7 +166,7 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV") : "");
+                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier + "ARM") : "");
                 Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
                 Vector2 anchor;
                 if (cursorPos.x >= MapSize.x / 2)
