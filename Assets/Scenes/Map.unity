@@ -948,7 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 5bd3188103ef63545908071590e19eb4, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: d1ee0a42535fb4247b1b3b4d95255bc4, type: 3}
     NumberOfFrames: 3
     Speed: 0
     Loop: 1
@@ -985,6 +985,10 @@ MonoBehaviour:
     Armor: 5
     Precision: 4
     Evasion: 4
+  Weapon:
+    Hit: 0
+    Damage: 0
+    Range: 0
   Health: 7
 --- !u!212 &479749947
 SpriteRenderer:
@@ -1726,6 +1730,10 @@ MonoBehaviour:
     Armor: 4
     Precision: 4
     Evasion: 5
+  Weapon:
+    Hit: 0
+    Damage: 0
+    Range: 0
   Health: 10
 --- !u!212 &1100327891
 SpriteRenderer:
@@ -1836,6 +1844,10 @@ MonoBehaviour:
     Armor: 4
     Precision: 4
     Evasion: 5
+  Weapon:
+    Hit: 0
+    Damage: 0
+    Range: 0
   Health: 10
 --- !u!212 &1111376494
 SpriteRenderer:
@@ -2581,6 +2593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7922b1b63171e4a9e19ffd303c7148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Origin: {fileID: 0}
 --- !u!212 &1532390036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3544,7 +3557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 5bd3188103ef63545908071590e19eb4, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: d1ee0a42535fb4247b1b3b4d95255bc4, type: 3}
     NumberOfFrames: 3
     Speed: 0
     Loop: 1
@@ -3581,6 +3594,10 @@ MonoBehaviour:
     Armor: 5
     Precision: 4
     Evasion: 4
+  Weapon:
+    Hit: 0
+    Damage: 0
+    Range: 0
   Health: 7
 --- !u!212 &2079869338
 SpriteRenderer:

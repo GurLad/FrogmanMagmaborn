@@ -282,4 +282,19 @@ public class Unit : MapObject
             return false;
         }
     }
+    public string Save()
+    {
+        Debug.Log(JsonUtility.ToJson(this, true));
+        return JsonUtility.ToJson(this);
+    }
+    public void Load(string json)
+    {
+        Marker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
+        Marker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
+        Sprite icon = Icon; // Change to load one depending on class (if enemy) or name (if player)
+        JsonUtility.FromJsonOverwrite(json, this);
+        MovementMarker = movementMarker;
+        AttackMarker = attackMarker;
+        Icon = icon;
+    }
 }
