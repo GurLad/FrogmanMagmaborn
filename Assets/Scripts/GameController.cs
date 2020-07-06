@@ -24,10 +24,12 @@ public class GameController : MonoBehaviour
     public PalettedSprite UIDefenderPanel;
     public Text UIDefenderInfo;
     public TurnAnimation TurnAnimation;
-    [Header("Misc")]
-    public float EnemyAIMoveDelay = 2;
+    [Header("Mid-battle screens")]
     public GameObject Battle;
     public GameObject StatusScreen;
+    [Header("Misc")]
+    public float EnemyAIMoveDelay = 2;
+    public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -65,6 +67,7 @@ public class GameController : MonoBehaviour
             return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
     }
+    private Camera main;
     private void Awake()
     {
         /*
@@ -74,6 +77,7 @@ public class GameController : MonoBehaviour
          * -Roads: continue random number of steps in a direction, change. Randomaly split/stop.
          */
         Current = this;
+        main = Camera.main;
         string selectedRoom = Rooms[Random.Range(0, Rooms.Count)];
         string[] lines = selectedRoom.Split(';');
         Map = new Tile[MapSize.x, MapSize.y];
@@ -95,7 +99,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (MidBattleScreen.Current != null)
+        if (MidBattleScreen.Current != null) // Seems useless, as GameController is anyway disabled as long as this is on?
         {
             return;
         }
@@ -148,7 +152,7 @@ public class GameController : MonoBehaviour
                         if (selected != null)
                         {
                             StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
-                            transform.parent.gameObject.SetActive(false);
+                            TransitionToMidBattleScreen(statusScreenController);
                             statusScreenController.Show(selected);
                         }
                         break;
@@ -269,6 +273,12 @@ public class GameController : MonoBehaviour
             item.Moved = false;
         }
         interactable = team == Team.Player;
+    }
+    public void TransitionToMidBattleScreen(MidBattleScreen screen)
+    {
+        transform.parent.gameObject.SetActive(false);
+        MidBattleScreen.Current = screen;
+        CameraBlackScreen.SetActive(true);
     }
     int Sign(float number)
     {

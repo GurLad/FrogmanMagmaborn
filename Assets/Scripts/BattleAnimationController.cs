@@ -36,7 +36,6 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 
     private void Awake()
     {
-        Current = this;
         AttackerAnimation.Activate("Idle");
     }
 
