@@ -10,6 +10,7 @@ public class ConversationPlayer : MidBattleScreen
     public float LettersPerSecond;
     public Text Name;
     public Text Text;
+    public PortraitHolder Portrait;
     public GameObject Arrow;
     private CurrentState state;
     private ConversationData origin;
@@ -29,7 +30,8 @@ public class ConversationPlayer : MidBattleScreen
                 case CurrentState.Writing:
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        Text.text = origin.Lines[currentLine];
+                        int index = origin.Lines[currentLine].IndexOf(':');
+                        Text.text = origin.Lines[currentLine].Substring(index >= 0 ? index + 2 : 0);
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
                     }
@@ -86,6 +88,7 @@ public class ConversationPlayer : MidBattleScreen
         {
             string[] parts = origin.Lines[currentLine].Split(':');
             Name.text = parts[0]; // Also change image
+            Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
             currentChar = origin.Lines[currentLine].IndexOf(':') + 2;
         }
         else

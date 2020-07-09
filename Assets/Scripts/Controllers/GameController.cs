@@ -106,11 +106,15 @@ public class GameController : MonoBehaviour
     {
         if (MidBattleScreen.Current != null) // For ConversationPlayer
         {
+            UIUnitInfoPanel.gameObject.SetActive(false);
+            UIFightPanel.gameObject.SetActive(false);
+            Cursor.gameObject.SetActive(false);
             return;
         }
         // Interact/UI code
         if (interactable)
         {
+            Cursor.gameObject.SetActive(true);
             if (cursorMoveDelay <= 0)
             {
                 if (Mathf.Abs(Control.GetAxis(SnapAxis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(SnapAxis.Y)) >= 0.5f)
@@ -227,6 +231,7 @@ public class GameController : MonoBehaviour
         {
             UIUnitInfoPanel.gameObject.SetActive(false);
             UIFightPanel.gameObject.SetActive(false);
+            Cursor.gameObject.SetActive(false);
         }
         if (currentPhase == Team.Enemy)
         {

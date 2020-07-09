@@ -52,4 +52,11 @@ public class Palette
             return Colors[i];
         }
     }
+    public Palette()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Colors[i] = Color.black;
+        }
+    }
 }

@@ -36,6 +36,10 @@ public class PalettedSprite : MonoBehaviour
         {
             (image = GetComponent<Image>()).material = Instantiate(Resources.Load<Material>("Palette"));
         }
+    }
+
+    private void Start()
+    {
         UpdatePalette();
     }
 

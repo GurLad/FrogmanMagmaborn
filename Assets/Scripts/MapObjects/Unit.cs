@@ -11,7 +11,7 @@ public class Unit : MapObject
     public Marker AttackMarker;
     public Team TheTeam;
     public string Name;
-    public Sprite Icon;
+    public Portrait Icon;
     [Header("Stats")]
     public int Movement;
     public Stats Stats;
@@ -38,6 +38,7 @@ public class Unit : MapObject
         base.Start();
         palette = GetComponent<PalettedSprite>();
         Health = Stats.MaxHP;
+        Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
         Weapon = new Weapon(1);
     }
@@ -297,7 +298,7 @@ public class Unit : MapObject
     {
         Marker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
         Marker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
-        Sprite icon = Icon; // Change to load one depending on class (if enemy) or name (if player)
+        Portrait icon = Icon; // Move the find portrait code to a function
         JsonUtility.FromJsonOverwrite(json, this);
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
