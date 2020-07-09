@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
+    public int LevelNumber; // Should be hidden
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -94,12 +95,16 @@ public class GameController : MonoBehaviour
             }
         }
     }
+    private void Start()
+    {
+        ConversationController.Current.PlayRandomConversation();
+    }
     /// <summary>
     /// Used for player control.
     /// </summary>
     private void Update()
     {
-        if (MidBattleScreen.Current != null) // Seems useless, as GameController is anyway disabled as long as this is on?
+        if (MidBattleScreen.Current != null) // For ConversationPlayer
         {
             return;
         }

@@ -5,12 +5,23 @@ using UnityEngine;
 
 public class ConversationController : MonoBehaviour
 {
-    public void ChooseConversation(List<ConversationData> options)
+    public static ConversationController Current;
+    public List<TextAsset> Conversations;
+    private List<ConversationData> options;
+    private void Awake()
     {
-        // A ConversationHolder class (or something similar) should hold the options, convert them to ConversationDatas, pick the relevant ones, and call this function.
+        Current = this;
+        options = new List<ConversationData>();
+        foreach (TextAsset conversation in Conversations)
+        {
+            options.Add(new ConversationData(conversation.text));
+        }
+    }
+    public void PlayRandomConversation()
+    {
         options = options.FindAll(a => a.MeetsRequirements());
         options.Sort();
-        // Show the conversation (Play(options[0]))
+        ConversationPlayer.Current.Play(options[0]);
     }
 }
 
@@ -42,8 +53,10 @@ public class ConversationData : IComparable<ConversationData>
         }
         // Current approach, Requirments is a list of strings
         Requirements = new List<string>(parts[1].Split('\n'));
+        Requirements.RemoveAt(0);
         Lines = new List<string>(parts[2].Split('\n'));
-        // Alternate approach with custom classes. Currently theoritcal.
+        Lines.RemoveAt(0);
+        // Alternate approach with custom classes. Currently theoretical.
         //lines = parts[1].Split('\n');
         //for (int i = 0; i < lines.Length; i++)
         //{
@@ -58,8 +71,16 @@ public class ConversationData : IComparable<ConversationData>
             string[] parts = requirement.Split(':');
             switch (parts[0])
             {
-                case "haseCharacter":
+                case "hasCharacter":
                     // Check, return false if false.
+                    break;
+                case "roomNumber":
+                    // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
+                    if (int.Parse(parts[1]) != GameController.Current.LevelNumber)
+                    {
+                        return false;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -84,6 +105,7 @@ public class ConversationData : IComparable<ConversationData>
  * Concept:
  *  Each room (out of the 9 per run, plus maybe the BFOT ones) starts with a conversation, out of a pool of available ones for that specific room.
  *  Some events are global (can appear at any room), local (only appear in the Xth room of a run) or specific (only appear in a specific map).
+ *  Those use the requirements of "roomNumber:X" and "map:ID".
  *  Read text files with the conversation information.
  *  Starts with priority and unique flag, then requirements (ex. hasCharacter, foughtCharacter...), then the event itself.
  * Priority & Unique:
