@@ -586,7 +586,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 268952390}
+  Renderer: {fileID: 0}
 --- !u!114 &268952388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,7 +1350,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 479749947}
+  Renderer: {fileID: 0}
 --- !u!114 &479749946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,6 +1367,7 @@ MonoBehaviour:
   AttackMarker: {fileID: 1532390035}
   TheTeam: 1
   Name: Enemy
+  Class: Skeleton
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -2469,7 +2470,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 883054802}
+  Renderer: {fileID: 0}
 --- !u!114 &883054806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2753,7 +2754,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 1100327891}
+  Renderer: {fileID: 0}
 --- !u!114 &1100327890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2770,6 +2771,7 @@ MonoBehaviour:
   AttackMarker: {fileID: 268952389}
   TheTeam: 0
   Name: Frogman
+  Class: Frogman
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -2894,6 +2896,7 @@ MonoBehaviour:
   AttackMarker: {fileID: 268952389}
   TheTeam: 0
   Name: Frogman
+  Class: Frogman
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -3007,7 +3010,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 1111376494}
+  Renderer: {fileID: 0}
 --- !u!114 &1111376497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3795,7 +3798,7 @@ MonoBehaviour:
   FixedSpeed: 0
   BaseSpeed: 5
   ActivateOnStart: 1
-  renderer: {fileID: 1434846753}
+  Renderer: {fileID: 0}
 --- !u!212 &1434846753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3916,7 +3919,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 1532390036}
+  Renderer: {fileID: 0}
 --- !u!114 &1532390034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,7 +5086,7 @@ MonoBehaviour:
   FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
-  renderer: {fileID: 2079869338}
+  Renderer: {fileID: 0}
 --- !u!114 &2079869337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,6 +5103,7 @@ MonoBehaviour:
   AttackMarker: {fileID: 1532390035}
   TheTeam: 1
   Name: Enemy
+  Class: Skeleton
   Icon:
     Name: 
     Background: {fileID: 0}

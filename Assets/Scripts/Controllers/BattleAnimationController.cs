@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAnimationListener
 {
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, WaitTime }
-    [Header("AnimationData")]
+    [Header("Class Animations")]
+    public List<ClassAnimation> ClassAnimations;
+    [Header("Animation Data")]
     public float AttackerTargetPos = 3;
     public float DefenderTargetPos = 4;
     public float AttackerSpeed;
     public float WaitTime = 0.5f;
-    public AdvancedSpriteSheetAnimation AttackerAnimation;
-    public AdvancedSpriteSheetAnimation DefenderAnimation;
+    public SpriteRenderer AttackerObject;
+    public SpriteRenderer DefenderObject;
     [Header("Attacker UI")]
     public Text AttackerInfo;
     public PortraitHolder AttackerIcon;
@@ -30,22 +32,26 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public Unit Attacker;
     //[HideInInspector]
     public Unit Defender;
+    private AdvancedSpriteSheetAnimation attackerAnimation;
+    private AdvancedSpriteSheetAnimation defenderAnimation;
     private State state;
     private Vector3 currentAttackerPos;
     private float count = 0;
 
-    private void Awake()
-    {
-        AttackerAnimation.Activate("Idle");
-    }
-
     public void StartBattle()
     {
-        AttackerAnimation.Listeners.Add(this);
-        DefenderAnimation.Listeners.Add(this);
-        currentAttackerPos = AttackerAnimation.transform.position;
-        AttackerAnimation.Activate("Walk");
-        DefenderAnimation.Activate("Idle");
+        attackerAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Attacker.Class).Animation, AttackerObject.transform);
+        attackerAnimation.Renderer = AttackerObject;
+        defenderAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Defender.Class).Animation, DefenderObject.transform);
+        defenderAnimation.Renderer = DefenderObject;
+        attackerAnimation.EditorPreview();
+        defenderAnimation.EditorPreview();
+        attackerAnimation.Activate("Idle");
+        attackerAnimation.Listeners.Add(this);
+        defenderAnimation.Listeners.Add(this);
+        currentAttackerPos = AttackerObject.transform.position;
+        attackerAnimation.Activate("Walk");
+        defenderAnimation.Activate("Idle");
         state = State.AttackerWalking;
         UpdateDisplay();
     }
@@ -80,9 +86,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     currentAttackerPos.x = AttackerTargetPos;
                     state = State.AttackerAttacking;
-                    AttackerAnimation.Activate("AttackStart");
+                    attackerAnimation.Activate("AttackStart");
                 }
-                AttackerAnimation.transform.position = currentAttackerPos;
+                AttackerObject.transform.position = currentAttackerPos;
                 break;
             case State.AttackerAttacking:
                 break;
@@ -111,13 +117,13 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         {
             if (state == State.AttackerAttacking)
             {
-                AttackerAnimation.Activate("AttackEnd");
+                attackerAnimation.Activate("AttackEnd");
                 state = State.AttackerFinishingAttack;
                 HandleDamage(Attacker, Defender, true);
             }
             else if (state == State.DefenderAttacking)
             {
-                DefenderAnimation.Activate("AttackEnd");
+                defenderAnimation.Activate("AttackEnd");
                 state = State.DefenderFinishingAttack;
                 HandleDamage(Defender, Attacker, false);
             }
@@ -131,12 +137,12 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                     state = State.WaitTime;
                     return;
                 }
-                DefenderAnimation.transform.position = new Vector3(DefenderTargetPos, DefenderAnimation.transform.position.y, DefenderAnimation.transform.position.z);
-                DefenderAnimation.Activate("AttackStart");
-                AttackerAnimation.Activate("Idle");
-                float temp = AttackerAnimation.transform.position.z;
-                AttackerAnimation.transform.position += new Vector3(0, 0, DefenderAnimation.transform.position.z - temp);
-                DefenderAnimation.transform.position -= new Vector3(0, 0, DefenderAnimation.transform.position.z - temp);
+                DefenderObject.transform.position = new Vector3(DefenderTargetPos, DefenderObject.transform.position.y, DefenderObject.transform.position.z);
+                defenderAnimation.Activate("AttackStart");
+                attackerAnimation.Activate("Idle");
+                float temp = AttackerObject.transform.position.z;
+                AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
+                DefenderObject.transform.position -= new Vector3(0, 0, DefenderObject.transform.position.z - temp);
                 state = State.DefenderAttacking;
             }
             else if (state == State.DefenderFinishingAttack)
@@ -146,9 +152,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                     state = State.WaitTime;
                     return;
                 }
-                AttackerAnimation.transform.position = new Vector3(AttackerTargetPos, AttackerAnimation.transform.position.y, AttackerAnimation.transform.position.z);
-                AttackerAnimation.Activate("Idle");
-                DefenderAnimation.Activate("Idle");
+                AttackerObject.transform.position = new Vector3(AttackerTargetPos, AttackerObject.transform.position.y, AttackerObject.transform.position.z);
+                attackerAnimation.Activate("Idle");
+                defenderAnimation.Activate("Idle");
                 state = State.WaitTime;
             }
         }
@@ -171,24 +177,31 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 // Move for miss
                 if (attackerAttack)
                 {
-                    DefenderAnimation.gameObject.transform.position -= new Vector3(1, 0, 0);
+                    DefenderObject.transform.position -= new Vector3(1, 0, 0);
                 }
                 else
                 {
-                    AttackerAnimation.gameObject.transform.position += new Vector3(1, 0, 0);
+                    AttackerObject.transform.position += new Vector3(1, 0, 0);
                 }
                 break;
             case null:
                 if (attackerAttack)
                 {
-                    Destroy(DefenderAnimation.gameObject);
+                    Destroy(DefenderObject.gameObject);
                 }
                 else
                 {
-                    Destroy(AttackerAnimation.gameObject);
+                    Destroy(AttackerObject.gameObject);
                 }
                 break;
         }
         UpdateDisplay();
     }
+}
+
+[System.Serializable]
+public class ClassAnimation
+{
+    public string Name;
+    public AdvancedSpriteSheetAnimation Animation;
 }

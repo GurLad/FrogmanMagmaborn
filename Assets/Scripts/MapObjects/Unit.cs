@@ -11,6 +11,7 @@ public class Unit : MapObject
     public Marker AttackMarker;
     public Team TheTeam;
     public string Name;
+    public string Class;
     public Portrait Icon;
     [Header("Stats")]
     public int Movement;

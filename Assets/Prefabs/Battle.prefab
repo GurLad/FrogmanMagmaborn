@@ -27,7 +27,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3900944593873646701}
+  - {fileID: 2792545218537385768}
   m_Father: {fileID: 2123345130763740282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,12 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61b04673b26e084eaa125bbca75ab70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClassAnimations:
+  - Name: Frogman
+    Animation: {fileID: 8943749368759779666}
+  - Name: Skeleton
+    Animation: {fileID: 3204646181762830473}
   AttackerTargetPos: 5
   DefenderTargetPos: 4
   AttackerSpeed: 2
   WaitTime: 0.5
-  AttackerAnimation: {fileID: 2123345130645428929}
-  DefenderAnimation: {fileID: 2123345129594904246}
+  AttackerObject: {fileID: 2123345130645428930}
+  DefenderObject: {fileID: 2123345129594904247}
   AttackerInfo: {fileID: 2123345128821395006}
   AttackerIcon: {fileID: 1570050897418362801}
   AttackerHealthbarFull: {fileID: 2123345128687485083}
@@ -649,7 +656,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2123345129594904240}
   - component: {fileID: 2123345129594904247}
-  - component: {fileID: 2123345129594904246}
   - component: {fileID: 2123345129594904245}
   m_Layer: 0
   m_Name: Defender
@@ -722,60 +728,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2123345129594904246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123345129594904244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: f1fe3c6cb6de6aa42a7ccf18e312b1f5, type: 3}
-    NumberOfFrames: 1
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 0}
-  - Name: Walk
-    SpriteSheet: {fileID: 21300000, guid: 5489466cd88e8204589357d43fa6d0e2, type: 3}
-    NumberOfFrames: 4
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Name: AttackStart
-    SpriteSheet: {fileID: 21300000, guid: ad2744a6bf3653447b6a57d6b4a9ed3c, type: 3}
-    NumberOfFrames: 6
-    Speed: 0
-    Loop: 0
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Name: AttackEnd
-    SpriteSheet: {fileID: 21300000, guid: e9dbd888e2cc57d44b2d156aeb9661be, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 0
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  FixedSpeed: 0
-  BaseSpeed: 5
-  ActivateOnStart: 1
-  renderer: {fileID: 2123345129594904247}
 --- !u!114 &2123345129594904245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,7 +1617,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2123345130645428931}
   - component: {fileID: 2123345130645428930}
-  - component: {fileID: 2123345130645428929}
   - component: {fileID: 2123345130645428940}
   m_Layer: 0
   m_Name: Attacker
@@ -1738,60 +1689,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2123345130645428929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123345130645428928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: f1fe3c6cb6de6aa42a7ccf18e312b1f5, type: 3}
-    NumberOfFrames: 1
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 0}
-  - Name: Walk
-    SpriteSheet: {fileID: 21300000, guid: 5489466cd88e8204589357d43fa6d0e2, type: 3}
-    NumberOfFrames: 4
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Name: AttackStart
-    SpriteSheet: {fileID: 21300000, guid: ad2744a6bf3653447b6a57d6b4a9ed3c, type: 3}
-    NumberOfFrames: 6
-    Speed: 0
-    Loop: 0
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Name: AttackEnd
-    SpriteSheet: {fileID: 21300000, guid: e9dbd888e2cc57d44b2d156aeb9661be, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 0
-    Frames:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  FixedSpeed: 0
-  BaseSpeed: 5
-  ActivateOnStart: 0
-  renderer: {fileID: 2123345130645428930}
 --- !u!114 &2123345130645428940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,6 +1738,176 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4208481098567501752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2792545218537385768}
+  - component: {fileID: 3204646181762830473}
+  m_Layer: 0
+  m_Name: Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2792545218537385768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208481098567501752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2123345128646521724}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3204646181762830473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208481098567501752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 7044a59ac3e6b3d42a67ed5af70b3fa5, type: 3}
+    NumberOfFrames: 1
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+  - Name: Walk
+    SpriteSheet: {fileID: 21300000, guid: e53bd4f4d01fde347a0e8dc3bcd199f3, type: 3}
+    NumberOfFrames: 4
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackStart
+    SpriteSheet: {fileID: 21300000, guid: d0135d9fa2a8ddb4285be4e277eefb84, type: 3}
+    NumberOfFrames: 4
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackEnd
+    SpriteSheet: {fileID: 21300000, guid: 6c1e86669b835b243939ed52be371779, type: 3}
+    NumberOfFrames: 2
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  FixedSpeed: 0
+  BaseSpeed: 5
+  ActivateOnStart: 0
+  Renderer: {fileID: 0}
+--- !u!1 &8691815783155171343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3900944593873646701}
+  - component: {fileID: 8943749368759779666}
+  m_Layer: 0
+  m_Name: Frogman
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3900944593873646701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691815783155171343}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2123345128646521724}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8943749368759779666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691815783155171343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: f1fe3c6cb6de6aa42a7ccf18e312b1f5, type: 3}
+    NumberOfFrames: 1
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+  - Name: Walk
+    SpriteSheet: {fileID: 21300000, guid: 5489466cd88e8204589357d43fa6d0e2, type: 3}
+    NumberOfFrames: 4
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackStart
+    SpriteSheet: {fileID: 21300000, guid: ad2744a6bf3653447b6a57d6b4a9ed3c, type: 3}
+    NumberOfFrames: 6
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackEnd
+    SpriteSheet: {fileID: 21300000, guid: e9dbd888e2cc57d44b2d156aeb9661be, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  FixedSpeed: 0
+  BaseSpeed: 5
+  ActivateOnStart: 0
+  Renderer: {fileID: 0}
 --- !u!1001 &3398707273134412469
 PrefabInstance:
   m_ObjectHideFlags: 0

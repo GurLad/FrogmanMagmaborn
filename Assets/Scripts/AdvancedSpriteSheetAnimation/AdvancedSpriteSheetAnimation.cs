@@ -19,7 +19,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     private static float fixedCount;
     private static int fixedFrame;
     [SerializeField]
-    private SpriteRenderer renderer;
+    public SpriteRenderer Renderer;
     private float speed;
     private bool loop;
     private float count = 0;
@@ -27,11 +27,11 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     private int currentFrame = 0;
     private void Reset()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        Renderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
-        renderer = renderer != null ? renderer : GetComponent<SpriteRenderer>();
+        Renderer = Renderer != null ? Renderer : GetComponent<SpriteRenderer>();
         Animations.ForEach(a => a.Split());
         if (FixedSpeed)
         {
@@ -69,7 +69,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
                 {
                     Listeners.ForEach(a => a.ChangedFrame(currentAnimation, Animations[currentAnimation].Name, currentFrame));
                 }
-                renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+                Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
                 if (FixedSpeed)
                 {
                     fixedFrame = currentFrame;
@@ -99,7 +99,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         count = FixedSpeed ? fixedCount : 0;
         currentFrame = FixedSpeed ? fixedFrame : 0;
         Active = true;
-        renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+        Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
     /// <summary>
     /// Switches to the specified animation.
@@ -124,7 +124,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentFrame = 0;
         count = FixedSpeed ? Time.time % speed : 0;
         Active = true;
-        renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+        Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
     /// <summary>
     /// Restarts the current animation.
@@ -134,13 +134,13 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentFrame = 0;
         count = 0;
         Active = true;
-        renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+        Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
     [ContextMenu("Assign first frame to renderer")]
     public void EditorPreview()
     {
         Animations[0].Split();
-        renderer.sprite = Animations[0].Frames[0];
+        Renderer.sprite = Animations[0].Frames[0];
     }
 }
 
