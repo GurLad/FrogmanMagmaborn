@@ -15,11 +15,10 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     public float BaseSpeed;
     public bool ActivateOnStart;
     public List<IAdvancedSpriteSheetAnimationListener> Listeners = new List<IAdvancedSpriteSheetAnimationListener>();
+    public SpriteRenderer Renderer;
     private static float fixedBaseSpeed = 2;
     private static float fixedCount;
     private static int fixedFrame;
-    [SerializeField]
-    public SpriteRenderer Renderer;
     private float speed;
     private bool loop;
     private float count = 0;
