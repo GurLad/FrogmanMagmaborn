@@ -4,14 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class Weapon
 {
+    private const int BASE_HIT = 80;
     public int Hit;
     public int Damage;
     public int Range;
     public Weapon(int level)
     {
-        int minValue = Random.Range(-2, 1);
+        int minValue = Random.Range(-level - 1, 1);
         int maxValue = level - minValue;
-        int[] stats = new int[3]; //Hit, damage, Range
+        int[] stats = new int[3]; // Hit, damage, Range
         for (int i = minValue; i < maxValue; i++)
         {
             stats[Random.Range(0, stats.Length)] += (int)Mathf.Sign(i);
@@ -21,7 +22,7 @@ public class Weapon
         {
             stats[Random.Range(0, stats.Length - 1)] += (int)Mathf.Sign(leftover);
         }
-        Hit = 80 + 5 * stats[0];
+        Hit = BASE_HIT + 5 * stats[0];
         Damage = stats[1];
         Range = 1 + stats[2] / 3;
     }

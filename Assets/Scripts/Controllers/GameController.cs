@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameController : MonoBehaviour
     public float TileSize;
     [TextArea(3,10)]
     public List<string> Rooms;
-    public GameObject Cursor;
+    public List<string> RoomThemes;
     [Header("UI")]
     public RectTransform UITileInfoPanel;
     public Text UITileInfo;
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
+    public GameObject Cursor;
     public int LevelNumber; // Should be hidden
     [HideInInspector]
     public Tile[,] Map;
@@ -40,6 +42,12 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public Unit Selected;
     private Team currentPhase = Team.Player;
+    private float cursorMoveDelay;
+    private float enemyMoveDelayCount;
+    private Vector2Int previousPos = new Vector2Int(-1, -1);
+    private Camera main;
+    private bool checkPlayerDead;
+    private bool _interactable = true;
     private bool interactable
     {
         get => _interactable;
@@ -50,10 +58,6 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(_interactable);
         }
     }
-    private bool _interactable = true;
-    private float cursorMoveDelay;
-    private float enemyMoveDelayCount;
-    private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Vector2Int cursorPos
     {
         get
@@ -68,7 +72,6 @@ public class GameController : MonoBehaviour
             return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
     }
-    private Camera main;
     private void Awake()
     {
         /*
@@ -98,6 +101,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         ConversationController.Current.PlayRandomConversation();
+        CrossfadeMusicPlayer.Instance.Play(RoomThemes[LevelNumber - 1], false);
     }
     /// <summary>
     /// Used for player control.
@@ -110,6 +114,20 @@ public class GameController : MonoBehaviour
             UIFightPanel.gameObject.SetActive(false);
             Cursor.gameObject.SetActive(false);
             return;
+        }
+        if (checkPlayerDead)
+        {
+            if (units.FindAll(a => a.TheTeam == Team.Player).Count == 0)
+            {
+                // Lose
+                SceneManager.LoadScene("Menu");
+            }
+            else if (units.FindAll(a => a.TheTeam != Team.Player).Count == 0)
+            {
+                // Win
+                SceneManager.LoadScene("Menu");
+            }
+            checkPlayerDead = false;
         }
         // Interact/UI code
         if (interactable)
@@ -290,7 +308,13 @@ public class GameController : MonoBehaviour
         MidBattleScreen.Current = screen;
         CameraBlackScreen.SetActive(true);
     }
-    int Sign(float number)
+    public void KillUnit(Unit unit)
+    {
+        MapObjects.Remove(unit);
+        Destroy(unit.gameObject);
+        checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
+    }
+    private int Sign(float number)
     {
         return number < 0 ? -1 : (number > 0 ? 1 : 0);
     }

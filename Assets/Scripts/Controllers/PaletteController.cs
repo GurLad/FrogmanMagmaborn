@@ -37,7 +37,16 @@ public class PaletteController : MonoBehaviour
 
     private void Awake()
     {
-        current = this;
+        if (current != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        else
+        {
+            current = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 }
 

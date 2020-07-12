@@ -271,21 +271,23 @@ public class Unit : MapObject
     public bool? Attack(Unit unit)
     {
         int percent = GetHitChance(unit);
-        if (Random.Range(0, 100) < percent)
+        int a, b;
+        if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
         {
+            Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
             Debug.Log(Name + " dealt " + GetDamage(unit) + " damage to " + unit.Name);
             unit.Health -= GetDamage(unit);
             // Kill?
             if (unit.Health <= 0)
             {
-                GameController.Current.MapObjects.Remove(unit);
-                Destroy(unit.gameObject);
+                GameController.Current.KillUnit(unit);
                 return null;
             }
             return true;
         }
         else
         {
+            Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
             Debug.Log(Name + " missed " + unit.Name);
             return false;
         }
