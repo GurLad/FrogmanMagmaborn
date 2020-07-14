@@ -12,10 +12,11 @@ public class Unit : MapObject
     public Team TheTeam;
     public string Name;
     public string Class;
-    public Portrait Icon;
     [Header("Stats")]
     public int Movement;
     public Stats Stats;
+    [HideInInspector]
+    public Portrait Icon;
     [HideInInspector]
     public Weapon Weapon;
     [HideInInspector]

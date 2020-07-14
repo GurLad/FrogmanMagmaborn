@@ -9,12 +9,14 @@ public class PortraitHolder : MonoBehaviour
     public Image Foreground;
     public int BackgroundPalleteID = 3;
     private PalettedSprite foregroundPalette;
+    private PalettedSprite backgroundPalette;
     public Portrait Portrait
     {
         set
         {
-            Background.sprite = value.Background;
             PaletteController.Current.BackgroundPalettes[BackgroundPalleteID] = value.BackgroundColor;
+            Background.sprite = value.Background;
+            backgroundPalette.UpdatePalette();
             Foreground.sprite = value.Foreground;
             foregroundPalette.Palette = value.ForegroundColorID;
         }
@@ -22,5 +24,6 @@ public class PortraitHolder : MonoBehaviour
     private void Awake()
     {
         foregroundPalette = Foreground.GetComponent<PalettedSprite>();
+        backgroundPalette = Background.GetComponent<PalettedSprite>();
     }
 }

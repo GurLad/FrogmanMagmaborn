@@ -97,6 +97,7 @@ public class GameController : MonoBehaviour
                 Map[i, j] = newTile;
             }
         }
+        Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
     }
     private void Start()
     {

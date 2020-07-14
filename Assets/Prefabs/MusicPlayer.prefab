@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4431875265574107203}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tracks:
+  - Name: TheFrogman
+    AudioClip: {fileID: 8300000, guid: 4525683308800f04cb24882696dc2a1b, type: 3}
+  - Name: MagmaFlows
+    AudioClip: {fileID: 8300000, guid: a82d85ef607e83145a6b926e85b75dfa, type: 3}
+  - Name: MagmaFlowsBattle
+    AudioClip: {fileID: 8300000, guid: 99b65ff81a86b8f4e8401cbe8fe4fac2, type: 3}
   - Name: Dungeon
     AudioClip: {fileID: 8300000, guid: 53fddda547aaf6f47b395637c292f92e, type: 3}
   - Name: DungeonBattle

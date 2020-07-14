@@ -1302,6 +1302,14 @@ MonoBehaviour:
   TheTeam: 1
   Name: Enemy
   Class: Skeleton
+  Movement: 5
+  Stats:
+    Strength: 5
+    Endurance: 4
+    Pierce: 5
+    Armor: 5
+    Precision: 4
+    Evasion: 4
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -1313,14 +1321,6 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 0}
       - {r: 0, g: 0, b: 0, a: 0}
     ForegroundColorID: 0
-  Movement: 5
-  Stats:
-    Strength: 5
-    Endurance: 4
-    Pierce: 5
-    Armor: 5
-    Precision: 4
-    Evasion: 4
   Weapon:
     Hit: 0
     Damage: 0
@@ -2677,7 +2677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 5bd3188103ef63545908071590e19eb4, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: d1ee0a42535fb4247b1b3b4d95255bc4, type: 3}
     NumberOfFrames: 3
     Speed: 0
     Loop: 1
@@ -2704,8 +2704,16 @@ MonoBehaviour:
   MovementMarker: {fileID: 883054804}
   AttackMarker: {fileID: 268952389}
   TheTeam: 0
-  Name: Frogman
-  Class: Frogman
+  Name: Firbell
+  Class: Skeleton
+  Movement: 5
+  Stats:
+    Strength: 4
+    Endurance: 5
+    Pierce: 5
+    Armor: 4
+    Precision: 4
+    Evasion: 5
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -2717,14 +2725,6 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 0}
       - {r: 0, g: 0, b: 0, a: 0}
     ForegroundColorID: 0
-  Movement: 5
-  Stats:
-    Strength: 4
-    Endurance: 5
-    Pierce: 5
-    Armor: 4
-    Precision: 4
-    Evasion: 5
   Weapon:
     Hit: 0
     Damage: 0
@@ -2831,6 +2831,14 @@ MonoBehaviour:
   TheTeam: 0
   Name: Frogman
   Class: Frogman
+  Movement: 5
+  Stats:
+    Strength: 4
+    Endurance: 5
+    Pierce: 5
+    Armor: 4
+    Precision: 4
+    Evasion: 5
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -2842,14 +2850,6 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 0}
       - {r: 0, g: 0, b: 0, a: 0}
     ForegroundColorID: 0
-  Movement: 5
-  Stats:
-    Strength: 4
-    Endurance: 5
-    Pierce: 5
-    Armor: 4
-    Precision: 4
-    Evasion: 5
   Weapon:
     Hit: 0
     Damage: 0
@@ -3065,6 +3065,16 @@ MonoBehaviour:
       - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
       - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
     ForegroundColorID: 0
+  - Name: Firbell
+    Background: {fileID: 21300000, guid: 51c8042ce24e493448b1f7fb5f5e662d, type: 3}
+    Foreground: {fileID: 21300000, guid: 87c2eac70914e3e488ed2fea0a8c69ac, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+      - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+      - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
+    ForegroundColorID: 3
   ErrorPortrait:
     Name: 
     Background: {fileID: 0}
@@ -4955,6 +4965,14 @@ MonoBehaviour:
   TheTeam: 1
   Name: Enemy
   Class: Skeleton
+  Movement: 5
+  Stats:
+    Strength: 5
+    Endurance: 4
+    Pierce: 5
+    Armor: 5
+    Precision: 4
+    Evasion: 4
   Icon:
     Name: 
     Background: {fileID: 0}
@@ -4966,14 +4984,6 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 0}
       - {r: 0, g: 0, b: 0, a: 0}
     ForegroundColorID: 0
-  Movement: 5
-  Stats:
-    Strength: 5
-    Endurance: 4
-    Pierce: 5
-    Armor: 5
-    Precision: 4
-    Evasion: 4
   Weapon:
     Hit: 0
     Damage: 0

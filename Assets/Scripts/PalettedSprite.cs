@@ -43,7 +43,7 @@ public class PalettedSprite : MonoBehaviour
         UpdatePalette();
     }
 
-    private void UpdatePalette()
+    public void UpdatePalette()
     {
         if (!ui)
         {
