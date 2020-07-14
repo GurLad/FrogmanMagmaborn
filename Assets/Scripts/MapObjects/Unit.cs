@@ -39,10 +39,12 @@ public class Unit : MapObject
     {
         base.Start();
         palette = GetComponent<PalettedSprite>();
-        Health = Stats.MaxHP;
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
         Weapon = new Weapon(1);
+        Stats += Stats.GetLevelUp(); // Initial level
+        Stats += Stats.GetLevelUp(5); // Debug only
+        Health = Stats.MaxHP;
     }
     public override void Interact(InteractState interactState)
     {
@@ -253,6 +255,8 @@ public class Unit : MapObject
                 }
                 MoveTo(currentBest);
                 Fight(unit);
+                GameController.Current.FinishMove(this);
+                return;
             }
         }
         GameController.Current.FinishMove(this);
