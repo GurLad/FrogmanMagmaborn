@@ -198,7 +198,7 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier + "ARM") : "");
+                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier + "ARM") : Map[cursorPos.x, cursorPos.y].High ? "\nHigh" : "\nLow");
                 Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
                 Vector2 anchor;
                 if (cursorPos.x >= MapSize.x / 2)

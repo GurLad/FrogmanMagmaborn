@@ -859,6 +859,7 @@ MonoBehaviour:
   Name: Wall
   MovementCost: 99
   ArmorModifier: 0
+  High: 1
 --- !u!212 &330468804
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1552,6 +1553,7 @@ MonoBehaviour:
   Name: Rock
   MovementCost: 2
   ArmorModifier: 1
+  High: 0
 --- !u!212 &586422906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3565,6 +3567,7 @@ MonoBehaviour:
   Name: None
   MovementCost: 1
   ArmorModifier: 0
+  High: 0
 --- !u!114 &1291573594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4777,6 +4780,7 @@ MonoBehaviour:
   Name: Wall
   MovementCost: 99
   ArmorModifier: 0
+  High: 1
 --- !u!114 &1989712108
 MonoBehaviour:
   m_ObjectHideFlags: 0

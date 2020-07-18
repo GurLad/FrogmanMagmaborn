@@ -42,7 +42,7 @@ public class Unit : MapObject
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
         Weapon = new Weapon(1);
-        Stats += Stats.GetLevelUp(); // Initial level
+        //Stats += Stats.GetLevelUp(); // Initial level
         Stats += Stats.GetLevelUp(5); // Debug only
         Health = Stats.MaxHP;
     }
@@ -106,23 +106,23 @@ public class Unit : MapObject
     }
     private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)
     {
-        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range)
+        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range || GameController.Current.Map[x, y].High)
         {
             return;
         }
         checkedTiles[x, y] = -(range + 1);
-        for (int i = -1; i <= 1; i++)
+        if (range - 1 > 0)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int i = -1; i <= 1; i++)
             {
-                if (i == 0 || j == 0)
+                for (int j = -1; j <= 1; j++)
                 {
-                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                    if (i == 0 || j == 0)
                     {
-                        continue;
-                    }
-                    if (range - 1 > 0)
-                    {
+                        if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                        {
+                            continue;
+                        }
                         GetDangerAreaPart(x + i, y + j, range - 1, checkedTiles);
                     }
                 }
@@ -179,7 +179,7 @@ public class Unit : MapObject
             y = Pos.y;
         }
         checkedTiles = checkedTiles ?? new bool[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        if (checkedTiles[x, y])
+        if (checkedTiles[x, y] || GameController.Current.Map[x, y].High)
         {
             return;
         }
@@ -191,18 +191,18 @@ public class Unit : MapObject
             attackMarker.gameObject.SetActive(true);
         }
         checkedTiles[x, y] = true;
-        for (int i = -1; i <= 1; i++)
+        if (range - 1 > 0)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int i = -1; i <= 1; i++)
             {
-                if (i == 0 || j == 0)
+                for (int j = -1; j <= 1; j++)
                 {
-                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                    if (i == 0 || j == 0)
                     {
-                        continue;
-                    }
-                    if (range - 1 > 0)
-                    {
+                        if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                        {
+                            continue;
+                        }
                         MarkAttack(x + i, y + j, range - 1, checkedTiles);
                     }
                 }

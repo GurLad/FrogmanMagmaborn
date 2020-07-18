@@ -7,4 +7,5 @@ public class Tile : MonoBehaviour
     public string Name;
     public int MovementCost;
     public int ArmorModifier;
+    public bool High;
 }

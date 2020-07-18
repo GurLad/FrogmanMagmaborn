@@ -131,24 +131,29 @@ public class Stats
     {
         Stats result = new Stats();
         result.Growths = Growths;
+        List<float> statMods = new List<float>();
         for (int i = 0; i < 6; i++)
         {
             result[i] = 0;
+            statMods.Add((float)Growths[i] / sumGrowths);
         }
-        float currentStat = 0;
         for (int i = 0; i < 3 * numLevels; i++) // Three stats per level
         {
-            // Current approach is very problematic. Consider: 9 1 9 1 9 1 growths with 1 level.
-            currentStat += sumGrowths / (3.0f * numLevels);
-            currentStat %= sumGrowths;
-            Debug.Log("CurrentStat: " + currentStat + ", " + sumGrowths);
-            float value = currentStat;
-            int j = -1;
-            do
+            // Still favors lower-indexed (offensive) stats, maybe change to random (and remove the extra level-up) 
+            int maxMod = 0;
+            for (int j = 1; j < 6; j++)
             {
-                value -= Growths[++j];
-            } while (value > 0);
-            result[j]++;
+                if (statMods[j] > statMods[maxMod] || (statMods[j] == statMods[maxMod] && Growths[j] > Growths[maxMod]))
+                {
+                    maxMod = j;
+                }
+            }
+            statMods[maxMod] -= 1f / 3;
+            result[maxMod]++;
+            for (int j = 0; j < 6; j++)
+            {
+                statMods[j] += (float)Growths[j] / sumGrowths;
+            }
         }
         return result;
     }
