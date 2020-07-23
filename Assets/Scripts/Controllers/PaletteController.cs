@@ -48,6 +48,15 @@ public class PaletteController : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+    public PaletteTransition TransitionTo(bool background, int id, Palette target, float speed)
+    {
+        PaletteTransition transition = gameObject.AddComponent<PaletteTransition>();
+        transition.Source = background ? BackgroundPalettes[id] : SpritePalettes[id];
+        transition.Target = target;
+        transition.Speed = speed;
+        return transition;
+    }
 }
 
 [System.Serializable]
@@ -66,6 +75,39 @@ public class Palette
         for (int i = 0; i < 4; i++)
         {
             Colors[i] = Color.black;
+        }
+    }
+}
+
+public class PaletteTransition : MonoBehaviour
+{
+    public float Speed;
+    public Palette Source;
+    public Palette Target;
+    public int Current = 3;
+    private static float count = 0;
+    public void Start()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Source.Colors[i] = Color.black;
+        }
+    }
+    private void Update()
+    {
+        count += Time.deltaTime * Speed;
+        if (count >= 1)
+        {
+            if (Current <= 0)
+            {
+                Destroy(this);
+            }
+            count -= 1;
+            for (int i = 2; i > 0; i--)
+            {
+                Source.Colors[i + 1] = Source[i];
+            }
+            Source.Colors[1] = Target[Current--];
         }
     }
 }
