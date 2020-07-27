@@ -8,3 +8,20 @@ Mechanics:
 -Each weapon has an innate ability that all wielders of that weapon share.
 -Classes only affect enemies (growth rates), and have no abilities.
 -There is "perma-death", as in when a character dies, they leave you for the current run. The only thing saved between runs are weapons, which you get from TBFOT battles.
+Game types:
+When you create a new save, you choose three things:
+-Mode:
+--Roguelike: default, as described above
+--Classic: FE-like. There are 12 chapters + TBFOT endgame, which are essentially handpicked rooms and conversations. True perma-deaths, and when Frogman dies, return to save.
+--PvP: One player plays the Guards and the other monsters. Start at area 2, and whenever the Guards win move towards 1, and when the monsters win towards 3 (~2 wins for an area change). Only the surviving lord (random character) is saved between battles and levels up. The run ends when a side wins twice in their opponent's area, and a new game can then begin.
+-RNG-system:
+--RNG: default, 1.5RN for hits.
+--Hybrid: 50% of using Luck system, 50% of 1.5RN. Luck is always between 0-99.
+--Luck: Each character has a luck stat (starts at 50 each battle). Whenever they try to hit, increase it by the percent. If it's above 100, reduce it by 100 and the attack hits. Otherwise, it misses.
+-Difficulty:
+--Easy: Your units start with an extra level, enemies can't have skills (as in the innate ability that all wielders of a certain type of weapon share).
+--Normal: Default, only enemy bosses have skills.
+--Hard: Enemies start with an extra level, all enemies have skills (mainly annoying and has memory issues, so perhaps not).
+
+Alternate combat system:
+Replace Pierce with Skill, as Pierce might make defensive strategies unviable. If the attacker (check for them only) has higher skill than the target, they can't counter. Damage is just "Weapon power + user strength - target defense(/2 maybe)".
