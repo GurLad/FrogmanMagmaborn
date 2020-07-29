@@ -30,8 +30,12 @@ public class GameController : MonoBehaviour
     public GameObject StatusScreen;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
+    [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
+    public Unit BaseUnit;
+    public UnitClassData UnitClassData;
+    public Marker EnemyMarker;
     public int LevelNumber; // Should be hidden
     [HideInInspector]
     public Tile[,] Map;
@@ -64,6 +68,10 @@ public class GameController : MonoBehaviour
         {
             return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
         }
+        set
+        {
+            Cursor.transform.position = new Vector3(value.x * TileSize, -value.y * TileSize, Cursor.transform.position.z);
+        }
     }
     private List<Unit> units
     {
@@ -82,8 +90,9 @@ public class GameController : MonoBehaviour
          */
         Current = this;
         main = Camera.main;
-        string selectedRoom = Rooms[Random.Range(0, Rooms.Count)];
-        string[] lines = selectedRoom.Split(';');
+        string[] selectedRoom = Rooms[Random.Range(0, Rooms.Count)].Split('\n');
+        // Map
+        string[] lines = selectedRoom[0].Split(';');
         Map = new Tile[MapSize.x, MapSize.y];
         for (int i = 0; i < MapSize.x; i++)
         {
@@ -96,6 +105,36 @@ public class GameController : MonoBehaviour
                 newTile.gameObject.SetActive(true);
                 Map[i, j] = newTile;
             }
+        }
+        // Units
+        lines = selectedRoom[1].Split(';');
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Unit unit = Instantiate(BaseUnit.gameObject, transform.parent).GetComponent<Unit>();
+            string[] parts = lines[i].Split(',');
+            unit.TheTeam = (Team)int.Parse(parts[0]);
+            if (unit.TheTeam == Team.Player)
+            {
+                unit.Name = parts[1];
+                unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
+                unit.Stats.Growths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name).Growths;
+            }
+            else
+            {
+                unit.Name = unit.TheTeam.ToString();
+                unit.Class = parts[1];
+                unit.Stats.Growths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class).Growths;
+                unit.MovementMarker = EnemyMarker;
+                unit.AttackMarker = EnemyMarker;
+            }
+            unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
+            unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+            if (unit.Name == "Frogman")
+            {
+                cursorPos = unit.Pos; // Auto-cursor
+            }
+            Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
+            unit.gameObject.SetActive(true);
         }
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
     }

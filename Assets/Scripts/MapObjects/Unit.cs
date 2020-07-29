@@ -43,7 +43,6 @@ public class Unit : MapObject
         Moved = false;
         Weapon = new Weapon(1);
         //Stats += Stats.GetLevelUp(); // Initial level
-        Stats += Stats.GetLevelUp(5); // Debug only
         Health = Stats.MaxHP;
     }
     public override void Interact(InteractState interactState)
