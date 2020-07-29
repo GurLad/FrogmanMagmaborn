@@ -3795,6 +3795,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetPos: 200
   Speed: 5
+--- !u!1 &1567419626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567419627}
+  - component: {fileID: 1567419628}
+  m_Layer: 0
+  m_Name: Goblin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567419627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567419626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1567419628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567419626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: a55053d229b5f4340a271c44fceb6336, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!1 &1606634282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,6 +3882,7 @@ Transform:
   m_Children:
   - {fileID: 969796485}
   - {fileID: 462614125}
+  - {fileID: 1567419627}
   m_Father: {fileID: 709891506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3853,11 +3911,15 @@ MonoBehaviour:
   ClassGrowths:
   - Name: Skeleton
     Growths: 030000000300000001000000010000000200000002000000
+  - Name: Goblin
+    Growths: 020000000100000001000000030000000300000002000000
   ClassAnimations:
   - Name: Frogman
     Animation: {fileID: 969796486}
   - Name: Skeleton
     Animation: {fileID: 462614126}
+  - Name: Goblin
+    Animation: {fileID: 1567419628}
 --- !u!1 &1626109149
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4449,7 @@ MonoBehaviour:
   Rooms:
   - '2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
 
-    0,Frogman,1,5,6;0,Firbell,1,10,8;1,Skeleton,1,10,6;1,Skeleton,1,5,8'
+    0,Frogman,1,5,6;0,Firbell,1,10,8;1,Skeleton,1,10,6;1,Goblin,1,5,8'
   RoomThemes:
   - MagmaFlows
   UITileInfoPanel: {fileID: 136851799}
