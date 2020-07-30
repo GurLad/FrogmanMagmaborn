@@ -227,6 +227,7 @@ public class Unit : MapObject
         // Charge
         int[,] dangerArea = GetDangerArea();
         List<Unit> enemyEnemies = units.Where(a => a.TheTeam != TheTeam).ToList();
+        enemyEnemies.Sort((a, b) => (a.Health - GetDamage(a)).CompareTo(b.Health - GetDamage(b)));
         foreach (Unit unit in enemyEnemies)
         {
             if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
@@ -266,7 +267,7 @@ public class Unit : MapObject
     }
     private int GetDamage(Unit other)
     {
-        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor - Stats.Pierce));
+        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + GameController.Current.Map[other.Pos.x, other.Pos.y].ArmorModifier - Stats.Pierce));
     }
     public string AttackPreview(Unit other, int padding = 2)
     {

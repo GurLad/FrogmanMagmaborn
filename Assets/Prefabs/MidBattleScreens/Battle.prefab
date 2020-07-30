@@ -1871,14 +1871,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: aeea5a7bd50122e4a8586b15cb901458, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: 9cd36dae2aa8f034d96640baf0c5f3b6, type: 3}
     NumberOfFrames: 1
     Speed: 0
     Loop: 1
     Frames:
     - {fileID: 0}
   - Name: Walk
-    SpriteSheet: {fileID: 21300000, guid: 6774e90ec1a5e2247a7f71167c8e968b, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: a99214bc6413d2f48a521ac7d6133d02, type: 3}
     NumberOfFrames: 4
     Speed: 0
     Loop: 1
@@ -1888,8 +1888,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - Name: AttackStart
-    SpriteSheet: {fileID: 21300000, guid: 51be60dd98a3f074f81e3e2f9680866c, type: 3}
-    NumberOfFrames: 6
+    SpriteSheet: {fileID: 21300000, guid: fcbc7473542775d4bacec526c672a3a5, type: 3}
+    NumberOfFrames: 5
     Speed: 0
     Loop: 0
     Frames:
@@ -1898,8 +1898,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - Name: AttackEnd
-    SpriteSheet: {fileID: 21300000, guid: e793d3d8b7194c34fb2406b576bb6fcd, type: 3}
-    NumberOfFrames: 3
+    SpriteSheet: {fileID: 21300000, guid: 4f5918d5b1da4e840b3e239e712541b9, type: 3}
+    NumberOfFrames: 4
     Speed: 0
     Loop: 0
     Frames:
