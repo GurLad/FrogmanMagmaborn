@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Conversations:
   - {fileID: 4900000, guid: 784b6984d33b93446af0a73464b36705, type: 3}
+  - {fileID: 4900000, guid: cfcc8d90efe7f8045aefff38f1912e78, type: 3}
 --- !u!1 &56271733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,6 +2824,16 @@ MonoBehaviour:
       - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
     ForegroundColorID: 3
+  - Name: Xirveros
+    Background: {fileID: 21300000, guid: 0d17df2050d179546be93b004e3abb1a, type: 3}
+    Foreground: {fileID: 21300000, guid: 79d20c30b1cb5fe4b8d714e0babb0618, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.98823535, g: 0.34509805, b: 0.6117647, a: 1}
+      - {r: 0.8941177, g: 0, b: 0.37647063, a: 1}
+      - {r: 0.6745098, g: 0, b: 0.15686275, a: 1}
+    ForegroundColorID: 3
   ErrorPortrait:
     Name: 
     Background: {fileID: 0}
@@ -3903,11 +3914,15 @@ MonoBehaviour:
     Class: Frogman
   - Unit: Firbell
     Class: Skeleton
+  - Unit: Xirveros
+    Class: Goblin
   UnitGrowths:
   - Name: Frogman
     Growths: 030000000300000002000000010000000400000003000000
   - Name: Firbell
     Growths: 040000000300000002000000010000000200000003000000
+  - Name: Xirveros
+    Growths: 020000000200000001000000040000000200000003000000
   ClassGrowths:
   - Name: Skeleton
     Growths: 030000000300000001000000010000000200000002000000
@@ -4450,7 +4465,11 @@ MonoBehaviour:
   - '2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|3|0|3|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
 
     0,Frogman,1,5,6;0,Firbell,1,10,8;1,Skeleton,1,10,6;1,Goblin,1,5,8'
+  - '0|0|0|0|1|0|0|1|0|0|1|0|0|0|3;0|0|0|0|1|0|0|1|3|0|1|0|0|1|0;0|0|0|0|1|0|3|1|0|2|1|0|0|1|0;0|0|0|3|0|0|0|0|0|0|0|3|0|1|0;0|0|3|0|1|0|0|1|0|2|1|0|0|1|0;2|1|0|2|1|0|3|1|0|2|1|0|3|1|0;0|0|0|0|1|0|0|0|0|0|0|0|0|1|0;0|0|0|0|1|0|0|1|0|2|1|0|0|1|0;0|0|0|0|1|3|0|1|0|0|1|0|0|1|0;0|0|0|0|0|0|0|1|0|0|1|0|3|0|0;2|2|2|2|2|2|2|2|2|2|2|1|0|2|1;2|2|2|2|2|2|2|2|2|1|0|0|0|0|0;2|2|2|2|2|2|2|2|2|1|0|0|0|0|0;2|2|2|2|2|2|2|2|2|1|0|0|0|0|0;2|2|2|2|2|2|2|2|2|1|0|0|3|0|0;2|2|2|2|2|2|2|2|2|1|3|0|0|0|0
+
+    0,Frogman,2,1,2;0,Firbell,2,2,1;0,Xirveros,2,15,14;1,Skeleton,1,3,3;1,Skeleton,1,4,2;1,Goblin,1,8,2;1,Goblin,1,3,7;1,Skeleton,1,6,6;1,Skeleton,1,9,12;1,Goblin,1,5,12'
   RoomThemes:
+  - MagmaFlows
   - MagmaFlows
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
@@ -4471,7 +4490,7 @@ MonoBehaviour:
   BaseUnit: {fileID: 1111376493}
   UnitClassData: {fileID: 1606634284}
   EnemyMarker: {fileID: 1532390035}
-  LevelNumber: 1
+  LevelNumber: 2
   MapObjects: []
   InteractState: 0
   Selected: {fileID: 0}

@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour
          */
         Current = this;
         main = Camera.main;
-        string[] selectedRoom = Rooms[Random.Range(0, Rooms.Count)].Split('\n');
+        string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
         // Map
         string[] lines = selectedRoom[0].Split(';');
         Map = new Tile[MapSize.x, MapSize.y];
