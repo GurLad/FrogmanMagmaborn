@@ -80,7 +80,16 @@ public class Unit : MapObject
         {
             return;
         }
-        checkedTiles[x, y] = range + 1;
+        Unit atPos = GameController.Current.FindUnitAtPos(x, y);
+        if (atPos == null || atPos == this)
+        {
+            checkedTiles[x, y] = range + 1;
+        }
+        else if (atPos.TheTeam != TheTeam)
+        {
+            attackFrom.Add(new Vector2Int(x, y));
+            return;
+        }
         for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
@@ -91,11 +100,16 @@ public class Unit : MapObject
                     {
                         continue;
                     }
-                    if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0 && (GameController.Current.FindUnitAtPos(x + i, y + j) == null || GameController.Current.FindUnitAtPos(x + i, y + j).TheTeam == TheTeam))
+                    if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0)
                     {
+                        Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
+                        if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this)
+                        {
+                            continue;
+                        }
                         GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom);
                     }
-                    else
+                    else if (atPos == null)
                     {
                         attackFrom.Add(new Vector2Int(x + i, y + j));
                     }
@@ -240,7 +254,9 @@ public class Unit : MapObject
                         if (i == 0 || j == 0)
                         {
                             // Currently only works with 1 range weapons
-                            if (dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
+                            if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
+                                unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y && 
+                                dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
                             {
                                 if (currentBest.x < 0 ||
                                     GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier < GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier ||
