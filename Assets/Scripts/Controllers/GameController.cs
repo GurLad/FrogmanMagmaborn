@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public static GameController Current;
-    public List<Tile> Tiles;
+    public List<TileSet> TileSets1;
     public Vector2Int MapSize;
     public float TileSize;
     [TextArea(3,10)]
@@ -91,6 +91,9 @@ public class GameController : MonoBehaviour
         Current = this;
         main = Camera.main;
         string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
+        TileSet tileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
+        PaletteController.Current.BackgroundPalettes[0] = tileSet.Palette1;
+        PaletteController.Current.BackgroundPalettes[1] = tileSet.Palette2;
         // Map
         string[] lines = selectedRoom[0].Split(';');
         Map = new Tile[MapSize.x, MapSize.y];
@@ -100,7 +103,7 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < MapSize.y; j++)
             {
                 int tileID = int.Parse(line[j]);
-                Tile newTile = Instantiate(Tiles[tileID].gameObject, transform).GetComponent<Tile>();
+                Tile newTile = Instantiate(tileSet.Tiles[tileID].gameObject, transform).GetComponent<Tile>();
                 newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
                 newTile.gameObject.SetActive(true);
                 Map[i, j] = newTile;
@@ -213,14 +216,16 @@ public class GameController : MonoBehaviour
                 switch (InteractState)
                 {
                     case InteractState.None:
-                        RemoveMarkers();
-                        // Should move to Select button for ease of use
-                        Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
-                        if (selected != null)
+                        if (!RemoveMarkers()) // If not viewing enemy range
                         {
-                            StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
-                            TransitionToMidBattleScreen(statusScreenController);
-                            statusScreenController.Show(selected);
+                            // Should move to Select button for ease of use
+                            Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                            if (selected != null)
+                            {
+                                StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
+                                TransitionToMidBattleScreen(statusScreenController);
+                                statusScreenController.Show(selected);
+                            }
                         }
                         break;
                     case InteractState.Move:
@@ -237,7 +242,7 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier + "ARM") : Map[cursorPos.x, cursorPos.y].High ? "\nHigh" : "\nLow");
+                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier.ToString()[0] + "ARM") : Map[cursorPos.x, cursorPos.y].High ? "\nHigh" : "\nLow");
                 Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
                 Vector2 anchor;
                 if (cursorPos.x >= MapSize.x / 2)
@@ -309,11 +314,17 @@ public class GameController : MonoBehaviour
         Debug.Log(InteractState);
         MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y).ForEach(a => a.Interact(InteractState));
     }
-    public void RemoveMarkers()
+    /// <summary>
+    /// Removes all markers.
+    /// </summary>
+    /// <returns>True if there were any markers, flase otherwise.</returns>
+    public bool RemoveMarkers()
     {
+        int previousCount = MapObjects.Count;
         MapObjects.FindAll(a => a is Marker).ForEach(a => Destroy(a.gameObject));
         MapObjects.RemoveAll(a => a is Marker);
         previousPos = new Vector2Int(-1, -1);
+        return previousCount != MapObjects.Count;
     }
     public void FinishMove(Unit unit)
     {
@@ -357,5 +368,23 @@ public class GameController : MonoBehaviour
     private int Sign(float number)
     {
         return number < 0 ? -1 : (number > 0 ? 1 : 0);
+    }
+}
+
+[System.Serializable]
+public class TileSet
+{
+    public string Name;
+    public Palette Palette1 = new Palette();
+    public Palette Palette2 = new Palette();
+    public List<Tile> Tiles;
+
+    public TileSet()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Palette1.Colors[i] = Color.black;
+            Palette2.Colors[i] = Color.black;
+        }
     }
 }

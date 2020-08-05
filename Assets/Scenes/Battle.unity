@@ -1388,6 +1388,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2123345129546356856, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345129546356859, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345129546356859, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345129546356859, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345129546356859, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345129546356859, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: orthographic size
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2123345129594904246, guid: d2eceafa8fc026244beb7baca568c3b0,
         type: 3}
       propertyPath: Animations.Array.data[0].Frames.Array.data[0]
