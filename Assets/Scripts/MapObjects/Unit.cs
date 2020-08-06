@@ -41,8 +41,6 @@ public class Unit : MapObject
         palette = GetComponent<PalettedSprite>();
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
-        Weapon = new Weapon(1);
-        //Stats += Stats.GetLevelUp(); // Initial level
         Health = Stats.MaxHP;
     }
     public override void Interact(InteractState interactState)
@@ -279,7 +277,7 @@ public class Unit : MapObject
     }
     private int GetHitChance(Unit other)
     {
-        return Weapon.Hit - 5 * Mathf.Max(0, other.Stats.Evasion - Stats.Precision);
+        return Weapon.Hit - 10 * Mathf.Max(0, other.Stats.Evasion - other.Weapon.Weight - Stats.Precision);
     }
     private int GetDamage(Unit other)
     {

@@ -8,6 +8,7 @@ public class UnitClassData : MonoBehaviour
     public List<GrowthsStruct> UnitGrowths;
     public List<GrowthsStruct> ClassGrowths;
     public List<ClassAnimation> ClassAnimations;
+    public List<Weapon> ClassBaseWeapons;
 }
 
 [System.Serializable]

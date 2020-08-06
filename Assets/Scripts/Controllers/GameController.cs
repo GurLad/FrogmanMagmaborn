@@ -36,7 +36,8 @@ public class GameController : MonoBehaviour
     public Unit BaseUnit;
     public UnitClassData UnitClassData;
     public Marker EnemyMarker;
-    public int LevelNumber; // Should be hidden
+    [HideInInspector]
+    public int LevelNumber;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -50,6 +51,7 @@ public class GameController : MonoBehaviour
     private float enemyMoveDelayCount;
     private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Camera main;
+    private Transform currentLevel;
     private bool checkPlayerDead;
     private bool _interactable = true;
     private bool interactable
@@ -90,61 +92,12 @@ public class GameController : MonoBehaviour
          */
         Current = this;
         main = Camera.main;
-        string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
-        TileSet tileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
-        PaletteController.Current.BackgroundPalettes[0] = tileSet.Palette1;
-        PaletteController.Current.BackgroundPalettes[1] = tileSet.Palette2;
-        // Map
-        string[] lines = selectedRoom[0].Split(';');
-        Map = new Tile[MapSize.x, MapSize.y];
-        for (int i = 0; i < MapSize.x; i++)
-        {
-            string[] line = lines[i].Split('|');
-            for (int j = 0; j < MapSize.y; j++)
-            {
-                int tileID = int.Parse(line[j]);
-                Tile newTile = Instantiate(tileSet.Tiles[tileID].gameObject, transform).GetComponent<Tile>();
-                newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
-                newTile.gameObject.SetActive(true);
-                Map[i, j] = newTile;
-            }
-        }
-        // Units
-        lines = selectedRoom[1].Split(';');
-        for (int i = 0; i < lines.Length; i++)
-        {
-            Unit unit = Instantiate(BaseUnit.gameObject, transform.parent).GetComponent<Unit>();
-            string[] parts = lines[i].Split(',');
-            unit.TheTeam = (Team)int.Parse(parts[0]);
-            if (unit.TheTeam == Team.Player)
-            {
-                unit.Name = parts[1];
-                unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
-                unit.Stats.Growths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name).Growths;
-            }
-            else
-            {
-                unit.Name = unit.TheTeam.ToString();
-                unit.Class = parts[1];
-                unit.Stats.Growths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class).Growths;
-                unit.MovementMarker = EnemyMarker;
-                unit.AttackMarker = EnemyMarker;
-            }
-            unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
-            unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
-            if (unit.Name == "Frogman")
-            {
-                cursorPos = unit.Pos; // Auto-cursor
-            }
-            Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
-            unit.gameObject.SetActive(true);
-        }
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
     }
     private void Start()
     {
-        ConversationController.Current.PlayRandomConversation();
-        CrossfadeMusicPlayer.Instance.Play(RoomThemes[LevelNumber - 1], false);
+        LevelNumber = 1;
+        CreateLevel();
     }
     /// <summary>
     /// Used for player control.
@@ -168,7 +121,8 @@ public class GameController : MonoBehaviour
             else if (units.FindAll(a => a.TheTeam != Team.Player).Count == 0)
             {
                 // Win
-                SceneManager.LoadScene("Menu");
+                LevelNumber++;
+                CreateLevel();
             }
             checkPlayerDead = false;
         }
@@ -364,6 +318,72 @@ public class GameController : MonoBehaviour
         MapObjects.Remove(unit);
         Destroy(unit.gameObject);
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
+    }
+    private void CreateLevel()
+    {
+        // Clear previous level
+        if (currentLevel != null)
+        {
+            Destroy(currentLevel.gameObject);
+        }
+        // Select room
+        string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
+        TileSet tileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
+        PaletteController.Current.BackgroundPalettes[0] = tileSet.Palette1;
+        PaletteController.Current.BackgroundPalettes[1] = tileSet.Palette2;
+        // Map
+        currentLevel = Instantiate(new GameObject(), transform).transform;
+        string[] lines = selectedRoom[0].Split(';');
+        Map = new Tile[MapSize.x, MapSize.y];
+        for (int i = 0; i < MapSize.x; i++)
+        {
+            string[] line = lines[i].Split('|');
+            for (int j = 0; j < MapSize.y; j++)
+            {
+                int tileID = int.Parse(line[j]);
+                Tile newTile = Instantiate(tileSet.Tiles[tileID].gameObject, currentLevel).GetComponent<Tile>();
+                newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
+                newTile.gameObject.SetActive(true);
+                Map[i, j] = newTile;
+            }
+        }
+        // Units
+        lines = selectedRoom[1].Split(';');
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+            string[] parts = lines[i].Split(',');
+            unit.TheTeam = (Team)int.Parse(parts[0]);
+            if (unit.TheTeam == Team.Player)
+            {
+                unit.Name = parts[1];
+                unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
+                unit.Stats.Growths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name).Growths;
+            }
+            else
+            {
+                unit.Name = unit.TheTeam.ToString();
+                unit.Class = parts[1];
+                unit.Stats.Growths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class).Growths;
+                unit.MovementMarker = EnemyMarker;
+                unit.AttackMarker = EnemyMarker;
+            }
+            unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
+            unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
+            unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+            if (unit.Name == "Frogman")
+            {
+                cursorPos = unit.Pos; // Auto-cursor
+            }
+            Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
+            unit.gameObject.SetActive(true);
+        }
+        // Conversation
+        ConversationController.Current.PlayRandomConversation();
+        CrossfadeMusicPlayer.Instance.Play(RoomThemes[LevelNumber - 1], false);
+        // And cleanup
+        MapObjects.Clear();
+        StartPhase(Team.Player);
     }
     private int Sign(float number)
     {

@@ -139,11 +139,11 @@ public class Stats
         }
         for (int i = 0; i < 3 * numLevels; i++) // Three stats per level
         {
-            // Still favors lower-indexed (offensive) stats, maybe change to random (and remove the extra level-up) 
+            // If two stats are equal, chooses a random one, thus rendering the extra level-up useless. 
             int maxMod = 0;
             for (int j = 1; j < 6; j++)
             {
-                if (statMods[j] > statMods[maxMod] || (statMods[j] == statMods[maxMod] && Growths[j] > Growths[maxMod]))
+                if (statMods[j] > statMods[maxMod] || (statMods[j] == statMods[maxMod] && (Growths[j] > Growths[maxMod] || Random.Range(0f, 1f) >= 0.5f)))
                 {
                     maxMod = j;
                 }

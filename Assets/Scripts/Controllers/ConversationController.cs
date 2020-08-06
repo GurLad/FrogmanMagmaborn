@@ -19,9 +19,9 @@ public class ConversationController : MonoBehaviour
     }
     public void PlayRandomConversation()
     {
-        options = options.FindAll(a => a.MeetsRequirements());
-        options.Sort();
-        ConversationPlayer.Current.Play(options[0]);
+        List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
+        currentOptions.Sort();
+        ConversationPlayer.Current.Play(currentOptions[0]);
     }
 }
 

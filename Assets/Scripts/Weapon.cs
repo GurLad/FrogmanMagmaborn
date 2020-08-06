@@ -5,29 +5,40 @@ using UnityEngine;
 public class Weapon
 {
     private const int BASE_HIT = 80;
-    public int Hit;
+    public string ClassName; // For ClassBaseWeapons
+    public string Name;
+    [SerializeField]
+    private int HitStat;
     public int Damage;
-    public int Range;
+    public int Weight;
+    public int Range = 1; // Only abilities can modify
+    [HideInInspector]
+    public int Hit
+    {
+        get
+        {
+            return BASE_HIT + 10 * HitStat;
+        }
+    }
     public Weapon(int level)
     {
-        int minValue = Random.Range(-level - 1, 1);
-        int maxValue = level - minValue;
-        int[] stats = new int[3]; // Hit, damage, Range
-        for (int i = minValue; i < maxValue; i++)
+        int[] stats = new int[3]; // Hit, damage, weight
+        Weight = level;
+        if (level != 0)
         {
-            stats[Random.Range(0, stats.Length)] += (int)Mathf.Sign(i);
+            int minValue = Random.Range(-level - 1, 1);
+            int maxValue = level - minValue;
+            for (int i = minValue; i < maxValue; i++)
+            {
+                stats[Random.Range(0, stats.Length)] += (int)Mathf.Sign(i);
+            }
         }
-        int leftover = stats[2] % 3;
-        for (int i = 0; i < Mathf.Abs(leftover); i++)
-        {
-            stats[Random.Range(0, stats.Length - 1)] += (int)Mathf.Sign(leftover);
-        }
-        Hit = BASE_HIT + 5 * stats[0];
+        HitStat = stats[0];
         Damage = stats[1];
-        Range = 1 + stats[2] / 3;
+        Weight -= stats[2];
     }
     public override string ToString()
     {
-        return "Weapon name\nPOW:" + Damage.ToString().PadRight(2) + "HIT:" + Hit.ToString().PadRight(3) + "RNG:" + Range;
+        return Name + "\nPOW:" + Damage.ToString().PadRight(4) + "HIT:" + Hit.ToString().PadRight(4) + "WT: " + Weight.ToString().PadRight(4) + "RNG:" + Range;
     }
 }
