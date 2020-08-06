@@ -9,6 +9,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, WaitTime }
     [Header("Class Animations")]
     public List<ClassAnimation> ClassAnimations;
+    [Header("Battle Backgrounds")]
+    public List<BattleBackground> AttackerBattleBackgrounds;
+    public List<BattleBackground> DefenderBattleBackgrounds;
     [Header("Animation Data")]
     public float AttackerTargetPos = 3;
     public float DefenderTargetPos = 4;
@@ -52,6 +55,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         currentAttackerPos = AttackerObject.transform.position;
         attackerAnimation.Activate("Walk");
         defenderAnimation.Activate("Idle");
+        Tile attackerTile = GameController.Current.Map[Attacker.Pos.x, Attacker.Pos.y];
+        AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
+        Tile defenderTile = GameController.Current.Map[Defender.Pos.x, Defender.Pos.y];
+        DefenderBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && defenderTile.Name == a.Tile).Background.SetActive(true);
         state = State.AttackerWalking;
         UpdateDisplay();
     }
@@ -204,4 +211,12 @@ public class ClassAnimation
 {
     public string Name;
     public AdvancedSpriteSheetAnimation Animation;
+}
+
+[System.Serializable]
+public class BattleBackground
+{
+    public string TileSet;
+    public string Tile;
+    public GameObject Background;
 }

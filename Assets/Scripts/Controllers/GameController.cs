@@ -39,6 +39,8 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
+    public TileSet Set;
+    [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
     public List<MapObject> MapObjects;
@@ -328,9 +330,9 @@ public class GameController : MonoBehaviour
         }
         // Select room
         string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
-        TileSet tileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
-        PaletteController.Current.BackgroundPalettes[0] = tileSet.Palette1;
-        PaletteController.Current.BackgroundPalettes[1] = tileSet.Palette2;
+        Set = TileSets1.Find(a => a.Name == selectedRoom[2]);
+        PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
+        PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Map
         currentLevel = Instantiate(new GameObject(), transform).transform;
         string[] lines = selectedRoom[0].Split(';');
@@ -341,7 +343,7 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < MapSize.y; j++)
             {
                 int tileID = int.Parse(line[j]);
-                Tile newTile = Instantiate(tileSet.Tiles[tileID].gameObject, currentLevel).GetComponent<Tile>();
+                Tile newTile = Instantiate(Set.Tiles[tileID].gameObject, currentLevel).GetComponent<Tile>();
                 newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
                 newTile.gameObject.SetActive(true);
                 Map[i, j] = newTile;

@@ -7307,7 +7307,7 @@ MonoBehaviour:
 
     Magma'
   RoomThemes:
-  - MagmaFlows
+  - Dungeon
   - MagmaFlows
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
@@ -7329,6 +7329,21 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   EnemyMarker: {fileID: 1532390035}
   LevelNumber: 2
+  Set:
+    Name: 
+    Palette1:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+    Palette2:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+    Tiles: []
   MapObjects: []
   InteractState: 0
   Selected: {fileID: 0}
