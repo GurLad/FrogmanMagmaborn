@@ -323,7 +323,17 @@ public class GameController : MonoBehaviour
     }
     private void CreateLevel()
     {
+        // Save player characters
+        List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
+        playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
+        // TBA - custom level-up system
+        foreach (Unit character in playerCharacters)
+        {
+            character.Stats += character.Stats.GetLevelUp();
+            character.transform.parent = transform;
+        }
         // Clear previous level
+        MapObjects.Clear();
         if (currentLevel != null)
         {
             Destroy(currentLevel.gameObject);
@@ -351,6 +361,7 @@ public class GameController : MonoBehaviour
         }
         // Units
         lines = selectedRoom[1].Split(';');
+        int numPlayers = 0;
         for (int i = 0; i < lines.Length; i++)
         {
             Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
@@ -359,6 +370,25 @@ public class GameController : MonoBehaviour
             if (unit.TheTeam == Team.Player)
             {
                 unit.Name = parts[1];
+                if (unit.Name == "P" && playerCharacters.Count > numPlayers + 1)
+                {
+                    Destroy(unit);
+                    unit = playerCharacters[++numPlayers];
+                    unit.Health = unit.Stats.MaxHP;
+                    unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+                    MapObjects.Add(unit);
+                    continue;
+                }
+                else if (unit.Name == "Frogman" && playerCharacters.Count > 0)
+                {
+                    Destroy(unit);
+                    unit = playerCharacters[0];
+                    unit.Health = unit.Stats.MaxHP;
+                    unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+                    cursorPos = unit.Pos; // Auto-cursor
+                    MapObjects.Add(unit);
+                    continue;
+                }
                 unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
                 unit.Stats.Growths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name).Growths;
             }
@@ -384,7 +414,6 @@ public class GameController : MonoBehaviour
         ConversationController.Current.PlayRandomConversation();
         CrossfadeMusicPlayer.Instance.Play(RoomThemes[LevelNumber - 1], false);
         // And cleanup
-        MapObjects.Clear();
         StartPhase(Team.Player);
     }
     private int Sign(float number)
