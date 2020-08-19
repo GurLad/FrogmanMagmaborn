@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public enum Team { Player, Enemy }
+public enum AIType { Charge, Hold, Guard }
 public class Unit : MapObject
 {
     [Header("Basic info")]
@@ -12,6 +13,7 @@ public class Unit : MapObject
     public Team TheTeam;
     public string Name;
     public string Class;
+    public AIType AIType;
     [Header("Stats")]
     public int Movement;
     public Stats Stats;
@@ -236,11 +238,58 @@ public class Unit : MapObject
     }
     public void AI(List<Unit> units)
     {
-        // Charge
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam).ToList(); // Pretty much all AIs nead enemy units.
+        switch (AIType)
+        {
+            case AIType.Charge:
+                // First, try the Hold AI.
+                if (HoldAI(enemyUnits))
+                {
+                    GameController.Current.FinishMove(this);
+                    break;
+                }
+                // If that failed, find the closest enemy.
+                int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+                List<Vector2Int> attackFrom = new List<Vector2Int>();
+                int[,] fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, checkedTiles, attackFrom);
+                enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y] != 0).ToList();
+                Unit target = enemyUnits[0];
+                enemyUnits.RemoveAt(0);
+                if (enemyUnits.Count > 0)
+                {
+                    int targetDist = GetMoveRequiredToReachPos(target.Pos, 50, fullDangerArea);
+                    foreach (Unit enemy in enemyUnits)
+                    {
+                        int dist = GetMoveRequiredToReachPos(enemy.Pos, 50, fullDangerArea);
+                        if (dist < targetDist)
+                        {
+                            target = enemy;
+                            targetDist = dist;
+                        }
+                    }
+                }
+                // Now, recover a path.
+                // TBA, GTG
+                break;
+            case AIType.Hold:
+                HoldAI(enemyUnits);
+                GameController.Current.FinishMove(this);
+                break;
+            case AIType.Guard:
+                break;
+            default:
+                break;
+        }
+    }
+    /// <summary>
+    /// Does the hold AI.
+    /// </summary>
+    /// <returns>True if attacked, false otherwise.</returns>
+    private bool HoldAI(List<Unit> enemyUnits)
+    {
         int[,] dangerArea = GetDangerArea();
-        List<Unit> enemyEnemies = units.Where(a => a.TheTeam != TheTeam).ToList();
-        enemyEnemies.Sort((a, b) => (a.Health - GetDamage(a)).CompareTo(b.Health - GetDamage(b)));
-        foreach (Unit unit in enemyEnemies)
+        enemyUnits.Sort((a, b) => (a.Health - GetDamage(a)).CompareTo(b.Health - GetDamage(b)));
+        foreach (Unit unit in enemyUnits)
         {
             if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
             {
@@ -253,7 +302,7 @@ public class Unit : MapObject
                         {
                             // Currently only works with 1 range weapons
                             if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
-                                unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y && 
+                                unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y &&
                                 dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
                             {
                                 if (currentBest.x < 0 ||
@@ -269,11 +318,29 @@ public class Unit : MapObject
                 }
                 MoveTo(currentBest);
                 Fight(unit);
-                GameController.Current.FinishMove(this);
-                return;
+                return true;
             }
         }
-        GameController.Current.FinishMove(this);
+        return false;
+    }
+    private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, int[,] fullMoveRange)
+    {
+        int min = int.MaxValue;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == 0 || j == 0 && fullMoveRange[i,j] > 0 && min > movement - fullMoveRange[i,j])
+                {
+                    min = movement - fullMoveRange[i, j];
+                }
+            }
+        }
+        if (min > movement)
+        {
+            throw new System.Exception("Can't reach target position: " + pos + ", unit: " + Name + " at pos " + Pos);
+        }
+        return min;
     }
     private int GetHitChance(Unit other)
     {
@@ -294,7 +361,6 @@ public class Unit : MapObject
         if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
         {
             Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
-            Debug.Log(Name + " dealt " + GetDamage(unit) + " damage to " + unit.Name);
             unit.Health -= GetDamage(unit);
             // Kill?
             if (unit.Health <= 0)
@@ -307,7 +373,6 @@ public class Unit : MapObject
         else
         {
             Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
-            Debug.Log(Name + " missed " + unit.Name);
             return false;
         }
     }

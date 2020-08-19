@@ -25,3 +25,26 @@ When you create a new save, you choose three things:
 
 Alternate combat system:
 Replace Pierce with Skill, as Pierce might make defensive strategies unviable. If the attacker (check for them only) has higher skill than the target, they can't counter. Damage is just "Weapon power + user strength - target defense(/2 maybe)".
+
+AI:
+Overview of current and future AI types:
+Each unit has their AI written in their status page. Each AI also has a priority.
+I originally thought of some AI ideas a few weeks ago, but forgot to write it down, so I forgot most of my ideas by now.
+-Monster (basic) AI:
+--Charge:
+  If there is no enemy in range, find the closest enemy, and find the quickest way to reach them. Otherwise, use Hold AI.
+--Hold (pretty bad name):
+  Don't move unless there is an enemy in range. If there is one, find the one who this unit deals the most damage to, and attack it
+  from favorable terrain (if possible).
+--Guard:
+  Don't move. If there is an adjacent enemy, attack the one this unit deals the most damage to.
+-Guard AI:
+ Generally smarter and more team-based. Should use strategies such as flanking, baiting, holding choke points etc.
+ This may require an AI overhaul, with a team-based AI function instead of unit-based one.
+ Most AI types will be part of a group/under the same commander, who will always work together.
+ I will write more options as I think of concrete algorithms to describe them.
+--Group bait:
+  Similar to hold, but only attack the enemy if at least X units can also attack it this turn. Otherwise, retreat to just outside the enemy's range.
+--Group charge:
+  Similar to charge, but all units in the group choose the same uni to attack, even if some of them end up in unfavorable terrain because of that
+  or can't reach them in the same turn. Could also make it like Bait, where at least X units must be able to attack that unit.
