@@ -361,7 +361,7 @@ public class Unit : MapObject
         {
             for (int j = -1; j <= 1; j++)
             {
-                if (i == 0 || j == 0 && IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
+                if ((i == 0 || j == 0) && IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
                 {
                     min = movement - fullMoveRange[pos.x + i, pos.y + j];
                 }

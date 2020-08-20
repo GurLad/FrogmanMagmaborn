@@ -15,7 +15,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     [Header("Animation Data")]
     public float AttackerTargetPos = 3;
     public float DefenderTargetPos = 4;
+    public float ProjectileTargetPos;
     public float AttackerSpeed;
+    public float ProjectileSpeed;
     public float WaitTime = 0.5f;
     public SpriteRenderer AttackerObject;
     public SpriteRenderer DefenderObject;
@@ -119,8 +121,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case State.AttackerRangeAttacking:
                 break;
             case State.AttackerRangeFinishingAttack:
-                currentAttackerPos.x -= Time.deltaTime * AttackerSpeed;
-                if (currentAttackerPos.x <= AttackerTargetPos)
+                currentAttackerPos.x -= Time.deltaTime * ProjectileSpeed;
+                if (currentAttackerPos.x <= ProjectileTargetPos)
                 {
                     Destroy(currentProjectile);
                     state = State.WaitTime;
