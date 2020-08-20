@@ -11,7 +11,7 @@ public class CrossfadeMusicPlayerObject
 
 public class CrossfadeMusicPlayer : MonoBehaviour
 {
-    public static CrossfadeMusicPlayer Instance;
+    public static CrossfadeMusicPlayer Current;
     public List<CrossfadeMusicPlayerObject> Tracks;
     public float FadeSpeed;
     [Range(0,1)]
@@ -24,14 +24,14 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     private float count;
     private void Awake()
     {
-        if (Instance != null)
+        if (Current != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
         else
         {
-            Instance = this;
+            Current = this;
         }
         DontDestroyOnLoad(gameObject);
         mainAudioSource = gameObject.AddComponent<AudioSource>();

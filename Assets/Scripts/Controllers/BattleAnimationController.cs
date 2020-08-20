@@ -135,7 +135,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 count += Time.deltaTime;
                 if (count >= WaitTime)
                 {
-                    CrossfadeMusicPlayer.Instance.SwitchBattleMode(false);
+                    CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
                     Quit();
                 }
                 break;

@@ -229,7 +229,7 @@ public class Unit : MapObject
     }
     public void Fight(Unit unit)
     {
-        CrossfadeMusicPlayer.Instance.SwitchBattleMode(true);
+        CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
         BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
         GameController.Current.transform.parent.gameObject.SetActive(false);
         battleAnimationController.Attacker = this;

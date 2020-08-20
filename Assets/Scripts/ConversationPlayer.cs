@@ -58,8 +58,10 @@ public class ConversationPlayer : MidBattleScreen
                     {
                         if (++currentLine >= origin.Lines.Count)
                         {
+                            // Finish conversation
                             origin = null;
                             MidBattleScreen.Current = null;
+                            CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
                             gameObject.SetActive(false);
                             return;
                         }
@@ -84,6 +86,22 @@ public class ConversationPlayer : MidBattleScreen
     private void StartLine(int num)
     {
         currentLine = num;
+        if (origin.Lines[currentLine][0] == ':')
+        {
+            // Command
+            string[] parts = origin.Lines[currentLine].Split(':');
+            switch (parts[1])
+            {
+                case "play":
+                    Debug.Log(("RecruitmentTheme" == parts[2]) + ", " + parts[2] + " vs. RecruitmentTheme");
+                    CrossfadeMusicPlayer.Current.Play(parts[2], false);
+                    break;
+                default:
+                    break;
+            }
+            StartLine(num + 1);
+            return;
+        }
         if (origin.Lines[currentLine].IndexOf(':') != -1)
         {
             string[] parts = origin.Lines[currentLine].Split(':');

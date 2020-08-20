@@ -14,7 +14,7 @@ public class ConversationController : MonoBehaviour
         options = new List<ConversationData>();
         foreach (TextAsset conversation in Conversations)
         {
-            options.Add(new ConversationData(conversation.text));
+            options.Add(new ConversationData(conversation.text.Replace("\r", "")));
         }
     }
     public void PlayRandomConversation()

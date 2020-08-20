@@ -293,7 +293,7 @@ public class GameController : MonoBehaviour
         }
         unit = null;
         // TEMP!!
-        CrossfadeMusicPlayer.Instance.Play(CrossfadeMusicPlayer.Instance.Playing.Replace("Battle", ""));
+        CrossfadeMusicPlayer.Current.Play(CrossfadeMusicPlayer.Current.Playing.Replace("Battle", ""));
     }
     public Unit FindUnitAtPos(int x, int y)
     {
@@ -412,7 +412,6 @@ public class GameController : MonoBehaviour
         }
         // Conversation
         ConversationController.Current.PlayRandomConversation();
-        CrossfadeMusicPlayer.Instance.Play(RoomThemes[LevelNumber - 1], false);
         // And cleanup
         StartPhase(Team.Player);
     }

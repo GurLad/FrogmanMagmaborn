@@ -3635,6 +3635,7 @@ MonoBehaviour:
   TheTeam: 0
   Name: Frogman
   Class: Frogman
+  AIType: 0
   Movement: 5
   Stats:
     Growths: 010000000100000001000000010000000100000001000000
@@ -6097,10 +6098,13 @@ MonoBehaviour:
   ClassAnimations:
   - Name: Frogman
     Animation: {fileID: 969796486}
+    Projectile: {fileID: 0}
   - Name: Skeleton
     Animation: {fileID: 462614126}
+    Projectile: {fileID: 0}
   - Name: Goblin
     Animation: {fileID: 1567419628}
+    Projectile: {fileID: 0}
   ClassBaseWeapons:
   - ClassName: Frogman
     Name: Bow
@@ -7307,7 +7311,7 @@ MonoBehaviour:
 
     Magma'
   RoomThemes:
-  - Dungeon
+  - MagmaFlows
   - MagmaFlows
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
