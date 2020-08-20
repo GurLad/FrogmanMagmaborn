@@ -74,14 +74,14 @@ public class Unit : MapObject
                 break;
         }
     }
-    private void GetMovement(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    private void GetMovement(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
     {
         if (checkedTiles[x, y] > range)
         {
             return;
         }
         Unit atPos = GameController.Current.FindUnitAtPos(x, y);
-        if (atPos == null || atPos == this)
+        if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
         {
             checkedTiles[x, y] = range + 1;
         }
@@ -103,13 +103,13 @@ public class Unit : MapObject
                     if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0)
                     {
                         Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
-                        if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this)
+                        if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
                         {
                             continue;
                         }
-                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom);
+                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom, ignoreAllies);
                     }
-                    else if (atPos == null)
+                    else if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
                     {
                         attackFrom.Add(new Vector2Int(x + i, y + j));
                     }
@@ -142,9 +142,9 @@ public class Unit : MapObject
             }
         }
     }
-    private int[,] GetDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    private int[,] GetDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
     {
-        GetMovement(x, y, range, checkedTiles, attackFrom);
+        GetMovement(x, y, range, checkedTiles, attackFrom, ignoreAllies);
         attackFrom = attackFrom.Distinct().ToList();
         foreach (Vector2Int pos in attackFrom)
         {
@@ -212,7 +212,7 @@ public class Unit : MapObject
                 {
                     if (i == 0 || j == 0)
                     {
-                        if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
+                        if (!IsValidPos(x + i,y + j))
                         {
                             continue;
                         }
@@ -251,7 +251,7 @@ public class Unit : MapObject
                 // If that failed, find the closest enemy.
                 int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                 List<Vector2Int> attackFrom = new List<Vector2Int>();
-                int[,] fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, checkedTiles, attackFrom);
+                int[,] fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, checkedTiles, attackFrom, true);
                 enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y] != 0).ToList();
                 Unit target = enemyUnits[0];
                 enemyUnits.RemoveAt(0);
@@ -269,7 +269,38 @@ public class Unit : MapObject
                     }
                 }
                 // Now, recover a path.
-                // TBA, GTG
+                attackFrom.Clear();
+                int[,] trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement, trueDangerArea = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], attackFrom);
+                Vector2Int currentMoveTarget = new Vector2Int(target.Pos.x, target.Pos.y);
+                GameController.Current.RemoveMarkers();
+                while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y] <= 0)
+                {
+                    Vector2Int min = currentMoveTarget;
+                    for (int i = -1; i <= 1; i++)
+                    {
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            if ((i == 0 || j == 0) && IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
+                                fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
+                                fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
+                            {
+                                min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
+                            }
+                        }
+                    }
+                    if (min == currentMoveTarget)
+                    {
+                        throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget);
+                    }
+                    currentMoveTarget = min;
+                    Marker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<Marker>();
+                    movementMarker.Pos = currentMoveTarget;
+                    movementMarker.Origin = this;
+                    movementMarker.gameObject.SetActive(true);
+                }
+                // Finally, move to the target location.
+                MoveTo(currentMoveTarget);
+                GameController.Current.FinishMove(this);
                 break;
             case AIType.Hold:
                 HoldAI(enemyUnits);
@@ -330,9 +361,9 @@ public class Unit : MapObject
         {
             for (int j = -1; j <= 1; j++)
             {
-                if (i == 0 || j == 0 && fullMoveRange[i,j] > 0 && min > movement - fullMoveRange[i,j])
+                if (i == 0 || j == 0 && IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
                 {
-                    min = movement - fullMoveRange[i, j];
+                    min = movement - fullMoveRange[pos.x + i, pos.y + j];
                 }
             }
         }
@@ -341,6 +372,14 @@ public class Unit : MapObject
             throw new System.Exception("Can't reach target position: " + pos + ", unit: " + Name + " at pos " + Pos);
         }
         return min;
+    }
+    private bool IsValidPos(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < GameController.Current.MapSize.x && y < GameController.Current.MapSize.y;
+    }
+    private bool IsValidPos(Vector2Int pos)
+    {
+        return IsValidPos(pos.x, pos.y);
     }
     private int GetHitChance(Unit other)
     {
