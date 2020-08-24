@@ -39,6 +39,6 @@ public class Weapon
     }
     public override string ToString()
     {
-        return Name + "\nPOW:" + Damage.ToString().PadRight(4) + "HIT:" + Hit.ToString().PadRight(4) + "WT: " + Weight.ToString().PadRight(4) + "RNG:" + Range;
+        return Name + "\nPOW:" + Damage.ToString().PadRight(4) + "ACC:" + Hit.ToString().PadRight(4) + "WT: " + Weight.ToString().PadRight(4) + "RNG:" + Range;
     }
 }

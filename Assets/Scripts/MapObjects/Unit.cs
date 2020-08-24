@@ -23,6 +23,10 @@ public class Unit : MapObject
     public Weapon Weapon;
     [HideInInspector]
     public int Health;
+    [HideInInspector]
+    public int Level;
+    [HideInInspector]
+    public Vector2Int PreviousPos;
     public bool Moved
     {
         get
@@ -63,7 +67,7 @@ public class Unit : MapObject
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
-                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
+                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
                 }
                 break;
             case InteractState.Move:
@@ -159,9 +163,9 @@ public class Unit : MapObject
         return GetDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
     }
 
-    private void MarkDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom)
+    private void MarkDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
     {
-        GetDangerArea(x, y, range, checkedTiles, attackFrom);
+        GetDangerArea(x, y, range, checkedTiles, attackFrom, ignoreAllies);
         for (int i = 0; i < checkedTiles.GetLength(0); i++)
         {
             for (int j = 0; j < checkedTiles.GetLength(1); j++)
@@ -225,6 +229,7 @@ public class Unit : MapObject
     public void MoveTo(Vector2Int pos)
     {
         // Add animation etc.
+        PreviousPos = Pos;
         Pos = pos;
     }
     public void Fight(Unit unit)
@@ -293,10 +298,6 @@ public class Unit : MapObject
                         throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget);
                     }
                     currentMoveTarget = min;
-                    Marker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<Marker>();
-                    movementMarker.Pos = currentMoveTarget;
-                    movementMarker.Origin = this;
-                    movementMarker.gameObject.SetActive(true);
                 }
                 // Finally, move to the target location.
                 MoveTo(currentMoveTarget);
@@ -392,6 +393,10 @@ public class Unit : MapObject
     public string AttackPreview(Unit other, int padding = 2)
     {
         return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + GetDamage(other).ToString().PadRight(padding) + "\nHIT:" + GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
+    }
+    public string BattleStats()
+    {
+        return "ATK:" + (Weapon.Damage + Stats.Strength).ToString().PadRight(3) + "\nHIT:" + (Weapon.Hit + 10 * Stats.Precision - 40).ToString().PadRight(3) + "\nAVD:" + (10 * (Stats.Evasion - Weapon.Weight) - 40).ToString().PadRight(3);
     }
     public bool? Attack(Unit unit)
     {

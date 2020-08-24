@@ -190,7 +190,8 @@ public class GameController : MonoBehaviour
                         InteractState = InteractState.None;
                         break;
                     case InteractState.Attack:
-                        // TBA
+                        Selected.MoveTo(Selected.PreviousPos);
+                        Selected.Interact(InteractState = InteractState.None);
                         break;
                     default:
                         break;
@@ -330,6 +331,7 @@ public class GameController : MonoBehaviour
         foreach (Unit character in playerCharacters)
         {
             character.Stats += character.Stats.GetLevelUp();
+            character.Level++;
             character.transform.parent = transform;
         }
         // Clear previous level
@@ -398,9 +400,9 @@ public class GameController : MonoBehaviour
                 unit.Class = parts[1];
                 unit.Stats.Growths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class).Growths;
                 unit.MovementMarker = EnemyMarker;
-                unit.AttackMarker = EnemyMarker;
             }
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
+            unit.Level = int.Parse(parts[2]);
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
             unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
             if (unit.Name == "Frogman")
