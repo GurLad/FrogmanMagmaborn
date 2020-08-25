@@ -7,7 +7,9 @@ public static class Control
 {
     public enum CB { A, B }
     public enum CM { Keyboard, Controller }
+    public enum Axis { X, Y }
     public static CM ControlMode = CM.Keyboard;
+    public static float DeadZone = 0.3f;
 
     public static bool GetButton(CB button)
     {
@@ -24,11 +26,39 @@ public static class Control
         return Input.GetKeyDown(GetKeyCode(button.ToString()));
     }
 
-    public static float GetAxis(SnapAxis axis)
+    public static float GetAxis(Axis axis)
     {
         if (ControlMode == CM.Controller)
         {
-            return Input.GetAxis("Horizontal");
+            float input = Input.GetAxis(axis == Axis.X ? "Horizontal" : "Vertical");
+            if (Mathf.Abs(input) > DeadZone)
+            {
+                return input;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return Input.GetKey(GetKeyCode(axis + "+")) ? 1 : (Input.GetKey(GetKeyCode(axis + "-")) ? -1 : 0);
+        }
+    }
+
+    public static int GetAxisInt(Axis axis)
+    {
+        if (ControlMode == CM.Controller)
+        {
+            float input = Input.GetAxis(axis == Axis.X ? "Horizontal" : "Vertical");
+            if (Mathf.Abs(input) > DeadZone)
+            {
+                return (int)Mathf.Sign(input);
+            }
+            else
+            {
+                return 0;
+            }
         }
         else
         {
@@ -41,18 +71,18 @@ public static class Control
         Save(button + SaveNameModifier(), (int)value, SaveMode.Global);
     }
 
-    public static void SetAxis(SnapAxis axis, KeyCode positiveValue, KeyCode negativeValue)
+    public static void SetAxis(Axis axis, KeyCode positiveValue, KeyCode negativeValue)
     {
         SetAxisPositive(axis, positiveValue);
         SetAxisNegative(axis, negativeValue);
     }
 
-    public static void SetAxisPositive(SnapAxis axis, KeyCode positiveValue)
+    public static void SetAxisPositive(Axis axis, KeyCode positiveValue)
     {
         Save(axis + "+" + SaveNameModifier(), (int)positiveValue, SaveMode.Global);
     }
 
-    public static void SetAxisNegative(SnapAxis axis, KeyCode negativeValue)
+    public static void SetAxisNegative(Axis axis, KeyCode negativeValue)
     {
         Save(axis + "-" + SaveNameModifier(), (int)negativeValue, SaveMode.Global);
     }

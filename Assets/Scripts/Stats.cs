@@ -183,8 +183,8 @@ public class Stats
     }
     public override string ToString()
     {
-        return "Str:" + Strength.ToString().PadRight(2) + "Pir:" + Pierce.ToString().PadRight(2) + "Pre:" + Precision.ToString().PadRight(2) +
-            "\nEnd:" + Endurance.ToString().PadRight(2) + "Arm:" + Armor.ToString().PadRight(2) + "Eva:" + Evasion.ToString().PadRight(2);
+        return "Str:" + Strength.ToString().PadRight(3) + "Pir:" + Pierce.ToString().PadRight(3) + "Pre:" + Precision.ToString().PadRight(3) +
+            "\nEnd:" + Endurance.ToString().PadRight(3) + "Arm:" + Armor.ToString().PadRight(3) + "Eva:" + Evasion.ToString().PadRight(3);
     }
     /*
      * Calculations:

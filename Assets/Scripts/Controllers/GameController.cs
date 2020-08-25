@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     [Header("Mid-battle screens")]
     public GameObject Battle;
     public GameObject StatusScreen;
+    public GameObject LevelUpScreen;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     [Header("Objects")]
@@ -99,7 +100,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         LevelNumber = 1;
-        CreateLevel();
+        CreateLevel(new List<Unit>());
     }
     /// <summary>
     /// Used for player control.
@@ -124,7 +125,7 @@ public class GameController : MonoBehaviour
             {
                 // Win
                 LevelNumber++;
-                CreateLevel();
+                PlayersLevelUp();
             }
             checkPlayerDead = false;
         }
@@ -134,11 +135,11 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(true);
             if (cursorMoveDelay <= 0)
             {
-                if (Mathf.Abs(Control.GetAxis(SnapAxis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(SnapAxis.Y)) >= 0.5f)
+                if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(Control.Axis.Y)) >= 0.5f)
                 {
                     Cursor.transform.position += new Vector3(
-                        Sign(Control.GetAxis(SnapAxis.X)),
-                        Sign(Control.GetAxis(SnapAxis.Y))) * TileSize;
+                        Sign(Control.GetAxis(Control.Axis.X)),
+                        Sign(Control.GetAxis(Control.Axis.Y))) * TileSize;
                     Cursor.transform.position = new Vector3(
                         Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
                         -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
@@ -158,7 +159,7 @@ public class GameController : MonoBehaviour
             {
                 cursorMoveDelay -= Time.deltaTime;
             }
-            if (Mathf.Abs(Control.GetAxis(SnapAxis.X)) < 0.5f && Mathf.Abs(Control.GetAxis(SnapAxis.Y)) < 0.5f)
+            if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) < 0.5f && Mathf.Abs(Control.GetAxis(Control.Axis.Y)) < 0.5f)
             {
                 cursorMoveDelay = 0;
             }
@@ -322,18 +323,24 @@ public class GameController : MonoBehaviour
         Destroy(unit.gameObject);
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
     }
-    private void CreateLevel()
+    private void PlayersLevelUp()
     {
         // Save player characters
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
         playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
-        // TBA - custom level-up system
+        // Custom level-up system
         foreach (Unit character in playerCharacters)
         {
-            character.Stats += character.Stats.GetLevelUp();
             character.Level++;
             character.transform.parent = transform;
         }
+        LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
+        levelUpController.Players = playerCharacters;
+        TransitionToMidBattleScreen(levelUpController);
+
+    }
+    public void CreateLevel(List<Unit> playerCharacters)
+    {
         // Clear previous level
         MapObjects.Clear();
         if (currentLevel != null)

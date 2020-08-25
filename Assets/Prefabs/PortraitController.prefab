@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7267162193386645212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7267162193386645214}
+  - component: {fileID: 7267162193386645213}
+  m_Layer: 0
+  m_Name: PortraitController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7267162193386645214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267162193386645212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7267162193386645213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267162193386645212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c818f50eaeeb62478086189c7bc7e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Portraits:
+  - Name: Frogman
+    Background: {fileID: 21300000, guid: 7275e5ebc10300d43b71b12f827ab4d5, type: 3}
+    Foreground: {fileID: 21300000, guid: 65822cec2c84afd4795bc4be04256037, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
+      - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
+    ForegroundColorID: 0
+  - Name: Firbell
+    Background: {fileID: 21300000, guid: 51c8042ce24e493448b1f7fb5f5e662d, type: 3}
+    Foreground: {fileID: 21300000, guid: 87c2eac70914e3e488ed2fea0a8c69ac, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+      - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+      - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
+    ForegroundColorID: 3
+  - Name: Xirveros
+    Background: {fileID: 21300000, guid: 0d17df2050d179546be93b004e3abb1a, type: 3}
+    Foreground: {fileID: 21300000, guid: 79d20c30b1cb5fe4b8d714e0babb0618, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.98823535, g: 0.34509805, b: 0.6117647, a: 1}
+      - {r: 0.8941177, g: 0, b: 0.37647063, a: 1}
+      - {r: 0.6745098, g: 0, b: 0.15686275, a: 1}
+    ForegroundColorID: 3
+  ErrorPortrait:
+    Name: 
+    Background: {fileID: 0}
+    Foreground: {fileID: 0}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+    ForegroundColorID: 0
