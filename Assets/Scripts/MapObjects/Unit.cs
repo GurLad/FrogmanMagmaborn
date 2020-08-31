@@ -16,6 +16,7 @@ public class Unit : MapObject
     public AIType AIType;
     [Header("Stats")]
     public int Movement;
+    public bool Flies;
     public Stats Stats;
     [HideInInspector]
     public Portrait Icon;
@@ -104,14 +105,14 @@ public class Unit : MapObject
                     {
                         continue;
                     }
-                    if (range - GameController.Current.Map[x + i, y + j].MovementCost >= 0)
+                    if (range - GetMovementCost(GameController.Current.Map[x + i, y + j]) >= 0)
                     {
                         Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
                         if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
                         {
                             continue;
                         }
-                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].MovementCost, checkedTiles, attackFrom, ignoreAllies);
+                        GetMovement(x + i, y + j, range - GetMovementCost(GameController.Current.Map[x + i, y + j]), checkedTiles, attackFrom, ignoreAllies);
                     }
                     else if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
                     {
@@ -119,6 +120,17 @@ public class Unit : MapObject
                     }
                 }
             }
+        }
+    }
+    private int GetMovementCost(Tile tile)
+    {
+        if (Flies)
+        {
+            return tile.High ? 99 : 1;
+        }
+        else
+        {
+            return tile.MovementCost;
         }
     }
     private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)

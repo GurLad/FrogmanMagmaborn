@@ -17,6 +17,7 @@ public class GrowthsStruct
     public string Name;
     [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
     public int[] Growths = new int[6];
+    public bool Flies;
 }
 
 [System.Serializable]

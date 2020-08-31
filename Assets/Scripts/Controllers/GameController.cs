@@ -376,6 +376,7 @@ public class GameController : MonoBehaviour
             Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
             string[] parts = lines[i].Split(',');
             unit.TheTeam = (Team)int.Parse(parts[0]);
+            GrowthsStruct unitGrowths;
             if (unit.TheTeam == Team.Player)
             {
                 unit.Name = parts[1];
@@ -399,15 +400,16 @@ public class GameController : MonoBehaviour
                     continue;
                 }
                 unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
-                unit.Stats.Growths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name).Growths;
+                unit.Stats.Growths = (unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name)).Growths;
             }
             else
             {
                 unit.Name = unit.TheTeam.ToString();
                 unit.Class = parts[1];
-                unit.Stats.Growths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class).Growths;
+                unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
                 unit.MovementMarker = EnemyMarker;
             }
+            unit.Flies = unitGrowths.Flies;
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
             unit.Level = int.Parse(parts[2]);
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);

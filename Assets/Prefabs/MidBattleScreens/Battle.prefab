@@ -1529,6 +1529,7 @@ Transform:
   - {fileID: 3900944593873646701}
   - {fileID: 2792545218537385768}
   - {fileID: 369955333333469091}
+  - {fileID: 5761318736058665040}
   m_Father: {fileID: 2123345130763740282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1554,6 +1555,9 @@ MonoBehaviour:
   - Name: Goblin
     Animation: {fileID: 672433027380922299}
     Projectile: {fileID: 0}
+  - Name: Gargoyle
+    Animation: {fileID: 8377419414222343562}
+    Projectile: {fileID: 0}
   AttackerBattleBackgrounds:
   - TileSet: Dungeon
     Tile: None
@@ -1570,6 +1574,9 @@ MonoBehaviour:
   - TileSet: Magma
     Tile: Path
     Background: {fileID: 1073820808}
+  - TileSet: Magma
+    Tile: Mgma
+    Background: {fileID: 1073820808}
   DefenderBattleBackgrounds:
   - TileSet: Dungeon
     Tile: None
@@ -1585,6 +1592,9 @@ MonoBehaviour:
     Background: {fileID: 843195631}
   - TileSet: Magma
     Tile: Path
+    Background: {fileID: 1719174645}
+  - TileSet: Magma
+    Tile: Mgma
     Background: {fileID: 1719174645}
   AttackerTargetPos: 5
   DefenderTargetPos: 4
@@ -3269,6 +3279,91 @@ MonoBehaviour:
   BaseSpeed: 5
   ActivateOnStart: 0
   Renderer: {fileID: 0}
+--- !u!1 &5964823262213504983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5761318736058665040}
+  - component: {fileID: 8377419414222343562}
+  m_Layer: 0
+  m_Name: Gargoyle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5761318736058665040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964823262213504983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2123345128646521724}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8377419414222343562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964823262213504983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 1231f00a4abf4f34aac3d4d6be5d8b46, type: 3}
+    NumberOfFrames: 1
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+  - Name: Walk
+    SpriteSheet: {fileID: 21300000, guid: a99214bc6413d2f48a521ac7d6133d02, type: 3}
+    NumberOfFrames: 4
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackStart
+    SpriteSheet: {fileID: 21300000, guid: fcbc7473542775d4bacec526c672a3a5, type: 3}
+    NumberOfFrames: 5
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackEnd
+    SpriteSheet: {fileID: 21300000, guid: 4f5918d5b1da4e840b3e239e712541b9, type: 3}
+    NumberOfFrames: 5
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  FixedSpeed: 0
+  BaseSpeed: 5
+  ActivateOnStart: 0
+  Renderer: {fileID: 0}
 --- !u!1 &8691815783155171343
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3588,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b, type: 3}
+--- !u!224 &2123345129207239306 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398707273134412469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2123345129207239307 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3629058407484522558, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -3505,12 +3606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2123345129207239306 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3398707273134412469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1570050897418362801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4243326228390546692, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -3652,6 +3747,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b, type: 3}
+--- !u!224 &7331938576455056242 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6313279412331920205}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7889766231115675209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4243326228390546692, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -3676,9 +3777,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7331938576455056242 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6313279412331920205}
-  m_PrefabAsset: {fileID: 0}
