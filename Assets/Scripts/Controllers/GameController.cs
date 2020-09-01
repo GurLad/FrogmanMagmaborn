@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
     public InteractState InteractState = InteractState.None;
     [HideInInspector]
     public Unit Selected;
+    private List<Room> rooms;
     private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
     private float enemyMoveDelayCount;
@@ -96,6 +97,31 @@ public class GameController : MonoBehaviour
         Current = this;
         main = Camera.main;
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
+        // Load rooms
+        rooms = new List<Room>();
+        for (int i = 0; i < Rooms.Count; i++)
+        {
+            Room room = new Room();
+            string[] selectedRoom = Rooms[i].Split('\n');
+            // Level numer
+            room.RoomNumber = int.Parse(selectedRoom[3]);
+            // Tile set
+            room.TileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
+            // Map
+            string[] lines = selectedRoom[0].Split(';');
+            room.Map = new int[MapSize.x, MapSize.y];
+            for (int k = 0; k < MapSize.x; k++)
+            {
+                string[] line = lines[k].Split('|');
+                for (int j = 0; j < MapSize.y; j++)
+                {
+                    room.Map[k, j] = int.Parse(line[j]);
+                }
+            }
+            // Units
+            room.Units = selectedRoom[1].Split(';').ToList();
+            rooms.Add(room);
+        }
     }
     private void Start()
     {
@@ -347,21 +373,23 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentLevel.gameObject);
         }
+        // Select conversation
+        ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
-        string[] selectedRoom = Rooms[LevelNumber - 1].Split('\n'); // In the future, each level should have a selection of rooms instead of just 1
-        Set = TileSets1.Find(a => a.Name == selectedRoom[2]);
+        List<Room> options = rooms.FindAll(a => a.RoomNumber == LevelNumber); // TBA - add room demands for conversations
+        Room selectedRoom = options[Random.Range(0, options.Count)];
+        // Load room
+        Set = selectedRoom.TileSet;
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Map
         currentLevel = Instantiate(new GameObject(), transform).transform;
-        string[] lines = selectedRoom[0].Split(';');
         Map = new Tile[MapSize.x, MapSize.y];
         for (int i = 0; i < MapSize.x; i++)
         {
-            string[] line = lines[i].Split('|');
             for (int j = 0; j < MapSize.y; j++)
             {
-                int tileID = int.Parse(line[j]);
+                int tileID = selectedRoom.Map[i, j];
                 Tile newTile = Instantiate(Set.Tiles[tileID].gameObject, currentLevel).GetComponent<Tile>();
                 newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
                 newTile.gameObject.SetActive(true);
@@ -369,12 +397,12 @@ public class GameController : MonoBehaviour
             }
         }
         // Units
-        lines = selectedRoom[1].Split(';');
+        List<string> unitDatas = selectedRoom.Units;
         int numPlayers = 0;
-        for (int i = 0; i < lines.Length; i++)
+        for (int i = 0; i < unitDatas.Count; i++)
         {
             Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
-            string[] parts = lines[i].Split(',');
+            string[] parts = unitDatas[i].Split(',');
             unit.TheTeam = (Team)int.Parse(parts[0]);
             GrowthsStruct unitGrowths;
             if (unit.TheTeam == Team.Player)
@@ -421,14 +449,27 @@ public class GameController : MonoBehaviour
             Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
             unit.gameObject.SetActive(true);
         }
-        // Conversation
-        ConversationController.Current.PlayRandomConversation();
+        // Play conversation
+        ConversationPlayer.Current.Play(conversation);
         // And cleanup
-        StartPhase(Team.Player);
+        currentPhase = Team.Player;
+        foreach (var item in units)
+        {
+            item.Moved = false;
+        }
+        interactable = true;
     }
     private int Sign(float number)
     {
         return number < 0 ? -1 : (number > 0 ? 1 : 0);
+    }
+
+    private class Room
+    {
+        public int RoomNumber;
+        public int[,] Map;
+        public List<string> Units;
+        public TileSet TileSet;
     }
 }
 

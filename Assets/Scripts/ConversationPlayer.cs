@@ -93,7 +93,6 @@ public class ConversationPlayer : MidBattleScreen
             switch (parts[1])
             {
                 case "play":
-                    Debug.Log(("RecruitmentTheme" == parts[2]) + ", " + parts[2] + " vs. RecruitmentTheme");
                     CrossfadeMusicPlayer.Current.Play(parts[2], false);
                     break;
                 default:

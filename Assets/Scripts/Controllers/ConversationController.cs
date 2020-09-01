@@ -17,11 +17,11 @@ public class ConversationController : MonoBehaviour
             options.Add(new ConversationData(conversation.text.Replace("\r", "")));
         }
     }
-    public void PlayRandomConversation()
+    public ConversationData SelectConversation()
     {
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
-        ConversationPlayer.Current.Play(currentOptions[0]);
+        return currentOptions[0];
     }
 }
 
@@ -31,6 +31,7 @@ public class ConversationData : IComparable<ConversationData>
     public bool Unique { get; private set; } // Technically, it's probably a better idea to give them ID's and just destry/ignore ones if unique and ID matches saved data.
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
     public List<string> Lines { get; private set; } // See above.
+
     public ConversationData(string source)
     {
         // I know that using JSON is techincally better, but I want to be able to create events using a simple text editor, so splits are simple.
@@ -54,6 +55,7 @@ public class ConversationData : IComparable<ConversationData>
         // Current approach, Requirments is a list of strings
         Requirements = new List<string>(parts[1].Split('\n'));
         Requirements.RemoveAt(0);
+        Requirements.RemoveAt(Requirements.Count - 1);
         Lines = new List<string>(parts[2].Split('\n'));
         Lines.RemoveAt(0);
         // Alternate approach with custom classes. Currently theoretical.
@@ -64,26 +66,46 @@ public class ConversationData : IComparable<ConversationData>
         //    Requirements.Add(new RequirementClass(lineParts[0], lineParts[1]));
         //}
     }
+
     public bool MeetsRequirements()
     {
         foreach (var requirement in Requirements)
         {
-            string[] parts = requirement.Split(':');
-            switch (parts[0])
+            if (requirement[0] == '!')
             {
-                case "hasCharacter":
-                    // Check, return false if false.
-                    break;
-                case "roomNumber":
-                    // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
-                    if (int.Parse(parts[1]) != GameController.Current.LevelNumber)
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
+                if (MeetsRequirement(requirement.Substring(1)))
+                {
+                    return false;
+                }
             }
+            else
+            {
+                if (!MeetsRequirement(requirement))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private bool MeetsRequirement(string requirement)
+    {
+        string[] parts = requirement.Split(':');
+        switch (parts[0])
+        {
+            case "hasCharacter":
+                // Check, return false if false.
+                break;
+            case "roomNumber":
+                // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
+                if (int.Parse(parts[1]) != GameController.Current.LevelNumber)
+                {
+                    return false;
+                }
+                break;
+            default:
+                break;
         }
         return true;
     }

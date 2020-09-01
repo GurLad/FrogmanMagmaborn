@@ -11,7 +11,7 @@ public class TurnAnimation : MonoBehaviour
     private PalettedSprite palette;
     private RectTransform rectTransform;
     private float pos;
-    private void Start()
+    private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         text = GetComponentInChildren<Text>();
