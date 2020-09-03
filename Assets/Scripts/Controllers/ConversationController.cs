@@ -17,9 +17,9 @@ public class ConversationController : MonoBehaviour
             options.Add(new ConversationData(conversation.text.Replace("\r", "")));
         }
     }
-    public ConversationData SelectConversation()
+    public ConversationData SelectConversation(List<Unit> playerCharacters)
     {
-        List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
+        List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements(playerCharacters));
         currentOptions.Sort();
         return currentOptions[0];
     }
@@ -30,6 +30,7 @@ public class ConversationData : IComparable<ConversationData>
     public int Priority { get; private set; }
     public bool Unique { get; private set; } // Technically, it's probably a better idea to give them ID's and just destry/ignore ones if unique and ID matches saved data.
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
+    public List<string> Demands { get; private set; } // See above.
     public List<string> Lines { get; private set; } // See above.
 
     public ConversationData(string source)
@@ -56,7 +57,10 @@ public class ConversationData : IComparable<ConversationData>
         Requirements = new List<string>(parts[1].Split('\n'));
         Requirements.RemoveAt(0);
         Requirements.RemoveAt(Requirements.Count - 1);
-        Lines = new List<string>(parts[2].Split('\n'));
+        Demands = new List<string>(parts[2].Split('\n'));
+        Demands.RemoveAt(0);
+        Demands.RemoveAt(Demands.Count - 1);
+        Lines = new List<string>(parts[3].Split('\n'));
         Lines.RemoveAt(0);
         // Alternate approach with custom classes. Currently theoretical.
         //lines = parts[1].Split('\n');
@@ -66,21 +70,21 @@ public class ConversationData : IComparable<ConversationData>
         //    Requirements.Add(new RequirementClass(lineParts[0], lineParts[1]));
         //}
     }
-
-    public bool MeetsRequirements()
+    // When I originally wrote this class, I commented on everything. Too bad future me isn't as patient.
+    public bool MeetsRequirements(List<Unit> playerCharacters)
     {
         foreach (var requirement in Requirements)
         {
             if (requirement[0] == '!')
             {
-                if (MeetsRequirement(requirement.Substring(1)))
+                if (MeetsRequirement(requirement.Substring(1), playerCharacters))
                 {
                     return false;
                 }
             }
             else
             {
-                if (!MeetsRequirement(requirement))
+                if (!MeetsRequirement(requirement, playerCharacters))
                 {
                     return false;
                 }
@@ -89,21 +93,17 @@ public class ConversationData : IComparable<ConversationData>
         return true;
     }
 
-    private bool MeetsRequirement(string requirement)
+    private bool MeetsRequirement(string requirement, List<Unit> playerCharacters)
     {
         string[] parts = requirement.Split(':');
         switch (parts[0])
         {
             case "hasCharacter":
                 // Check, return false if false.
-                break;
+                return playerCharacters.Find(a => a.Name == parts[1]) != null;
             case "roomNumber":
                 // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
-                if (int.Parse(parts[1]) != GameController.Current.LevelNumber)
-                {
-                    return false;
-                }
-                break;
+                return int.Parse(parts[1]) == GameController.Current.LevelNumber;
             default:
                 break;
         }
@@ -153,6 +153,17 @@ public class ConversationData : IComparable<ConversationData>
  *      requirement:info
  *      ~
  *  "
+ * Demands (new!):
+ *  Some events only make sense in a specific type of maps. The demands is a list of requirments for the sort of maps this event can appear in.
+ *  Most demands will be about the number of characters alive (ex. the third level of each area may allow you to recruit another character if you have less than X).
+ *  Format (temporary?):
+ *  "
+ *      demand:info
+ *      demand:info
+ *      ...
+ *      demand:info
+ *      ~
+ *  "
  * Event:
  *  Read line-by-line.
  *  When a character name appears ("name: text"), load its image until another name appears.
@@ -171,6 +182,8 @@ public class ConversationData : IComparable<ConversationData>
  *  unique:T
  *  ~
  *  hasCharacter:Frogman
+ *  ~
+ *  charactersAlive:=0
  *  ~
  *  Frogman: Hello world!
  *  This is text!

@@ -11,8 +11,7 @@ public class GameController : MonoBehaviour
     public List<TileSet> TileSets1;
     public Vector2Int MapSize;
     public float TileSize;
-    [TextArea(3,10)]
-    public List<string> Rooms;
+    public List<TextAsset> Rooms;
     public List<string> RoomThemes;
     [Header("UI")]
     public RectTransform UITileInfoPanel;
@@ -102,7 +101,8 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < Rooms.Count; i++)
         {
             Room room = new Room();
-            string[] selectedRoom = Rooms[i].Split('\n');
+            room.Name = Rooms[i].name;
+            string[] selectedRoom = Rooms[i].text.Split('\n');
             // Level numer
             room.RoomNumber = int.Parse(selectedRoom[3]);
             // Tile set
@@ -374,10 +374,11 @@ public class GameController : MonoBehaviour
             Destroy(currentLevel.gameObject);
         }
         // Select conversation
-        ConversationData conversation = ConversationController.Current.SelectConversation();
+        ConversationData conversation = ConversationController.Current.SelectConversation(playerCharacters);
         // Select room
-        List<Room> options = rooms.FindAll(a => a.RoomNumber == LevelNumber); // TBA - add room demands for conversations
+        List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
         Room selectedRoom = options[Random.Range(0, options.Count)];
+        Debug.Log("Selected room: " + selectedRoom.Name);
         // Load room
         Set = selectedRoom.TileSet;
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
@@ -466,10 +467,73 @@ public class GameController : MonoBehaviour
 
     private class Room
     {
+        public string Name;
         public int RoomNumber;
         public int[,] Map;
         public List<string> Units;
         public TileSet TileSet;
+        public bool MatchesDemands(ConversationData conversation)
+        {
+            if (RoomNumber != Current.LevelNumber)
+            {
+                return false;
+            }
+            foreach (var demand in conversation.Demands)
+            {
+                if (demand[0] == '!')
+                {
+                    if (MeetsDemand(demand.Substring(1)))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (!MeetsDemand(demand))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private bool MeetsDemand(string demand)
+        {
+            string[] parts = demand.Split(':');
+            switch (parts[0])
+            {
+                case "hasCharacter":
+                    return Units.Contains(parts[1]);
+                case "charactersAlive":
+                    // Find number of returning playable characters in map (excluding Frogman and recruitments)
+                    int count = 0;
+                    foreach (string unit in Units)
+                    {
+                        if (unit.Split(',')[1] == "P")
+                        {
+                            // Is player
+                            count++;
+                        }
+                    }
+                    int targetNumber = int.Parse(parts[1].Substring(1));
+                    // Format: charactersAlive:?X, ex. charactersAlive:>2
+                    switch (parts[1][0])
+                    {
+                        case '>':
+                            return count > targetNumber;
+                        case '<':
+                            return count < targetNumber;
+                        case '=':
+                            return count == targetNumber;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
     }
 }
 

@@ -396,7 +396,7 @@ public class Unit : MapObject
     }
     private int GetHitChance(Unit other)
     {
-        return Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision);
+        return Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
     }
     private int GetDamage(Unit other)
     {
