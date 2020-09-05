@@ -74,6 +74,16 @@ MonoBehaviour:
       - {r: 0.8941177, g: 0, b: 0.37647063, a: 1}
       - {r: 0.6745098, g: 0, b: 0.15686275, a: 1}
     ForegroundColorID: 3
+  - Name: Kresla
+    Background: {fileID: 21300000, guid: 26dc33e5d5154fd4b89cfe8c3804b120, type: 3}
+    Foreground: {fileID: 21300000, guid: 4c0ca9fbfdb929d429f4f944a8a18d1c, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
+      - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+    ForegroundColorID: 3
   ErrorPortrait:
     Name: 
     Background: {fileID: 0}

@@ -6003,6 +6003,8 @@ MonoBehaviour:
     Class: Skeleton
   - Unit: Xirveros
     Class: Goblin
+  - Unit: Kresla
+    Class: Gargoyle
   UnitGrowths:
   - Name: Frogman
     Growths: 020000000300000002000000010000000400000003000000
@@ -6010,6 +6012,9 @@ MonoBehaviour:
   - Name: Firbell
     Growths: 040000000300000002000000010000000200000002000000
     Flies: 0
+  - Name: Kresla
+    Growths: 010000000200000004000000030000000300000000000000
+    Flies: 1
   - Name: Xirveros
     Growths: 020000000200000003000000040000000100000002000000
     Flies: 0
@@ -6021,7 +6026,7 @@ MonoBehaviour:
     Growths: 020000000100000002000000030000000100000003000000
     Flies: 0
   - Name: Gargoyle
-    Growths: 010000000100000002000000040000000300000000000000
+    Growths: 010000000100000003000000030000000300000000000000
     Flies: 1
   ClassAnimations:
   - Name: Frogman

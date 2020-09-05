@@ -400,7 +400,8 @@ public class Unit : MapObject
     }
     private int GetDamage(Unit other)
     {
-        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + GameController.Current.Map[other.Pos.x, other.Pos.y].ArmorModifier - Stats.Pierce));
+        int ArmorModifier = other.Flies ? 0 : GameController.Current.Map[other.Pos.x, other.Pos.y].ArmorModifier;
+        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
     }
     public string AttackPreview(Unit other, int padding = 2)
     {
