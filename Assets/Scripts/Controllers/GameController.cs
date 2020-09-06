@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour
         }
         if (checkPlayerDead)
         {
-            if (units.FindAll(a => a.TheTeam == Team.Player).Count == 0)
+            if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
                 SceneManager.LoadScene("Menu");

@@ -101,6 +101,21 @@ public class ConversationData : IComparable<ConversationData>
             case "hasCharacter":
                 // Check, return false if false.
                 return playerCharacters.Find(a => a.Name == parts[1]) != null;
+            case "charactersAlive":
+                // Format: charactersAlive:?X, ex. charactersAlive:>2
+                int targetNumber = int.Parse(parts[1].Substring(1));
+                switch (parts[1][0])
+                {
+                    case '>':
+                        return playerCharacters.Count > targetNumber;
+                    case '<':
+                        return playerCharacters.Count < targetNumber;
+                    case '=':
+                        return playerCharacters.Count == targetNumber;
+                    default:
+                        break;
+                }
+                break;
             case "roomNumber":
                 // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
                 return int.Parse(parts[1]) == GameController.Current.LevelNumber;
