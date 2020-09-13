@@ -122,6 +122,8 @@ public class GameController : MonoBehaviour
             room.Units = selectedRoom[1].Split(';').ToList();
             rooms.Add(room);
         }
+        // Awake enemy marker
+        EnemyMarker.GetComponent<PalettedSprite>().Awake();
     }
     private void Start()
     {
@@ -280,13 +282,13 @@ public class GameController : MonoBehaviour
             UIFightPanel.gameObject.SetActive(false);
             Cursor.gameObject.SetActive(false);
         }
-        if (currentPhase == Team.Enemy)
+        if (currentPhase == Team.Monster)
         {
             enemyMoveDelayCount += Time.deltaTime;
             if (enemyMoveDelayCount > EnemyAIMoveDelay)
             {
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
-                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Enemy && !a.Moved);
+                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
                 // AI
                 currentEnemy.AI(units);
             }
@@ -414,7 +416,7 @@ public class GameController : MonoBehaviour
                     Destroy(unit);
                     unit = playerCharacters[++numPlayers];
                     unit.Health = unit.Stats.MaxHP;
-                    unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     MapObjects.Add(unit);
                     continue;
                 }
@@ -423,7 +425,7 @@ public class GameController : MonoBehaviour
                     Destroy(unit);
                     unit = playerCharacters[0];
                     unit.Health = unit.Stats.MaxHP;
-                    unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     cursorPos = unit.Pos; // Auto-cursor
                     MapObjects.Add(unit);
                     continue;
@@ -442,7 +444,8 @@ public class GameController : MonoBehaviour
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
             unit.Level = int.Parse(parts[2]);
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
-            unit.Pos = new Vector2Int(int.Parse(parts[3]), int.Parse(parts[4]));
+            unit.AIType = (AIType)int.Parse(parts[3]);
+            unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
             if (unit.Name == "Frogman")
             {
                 cursorPos = unit.Pos; // Auto-cursor

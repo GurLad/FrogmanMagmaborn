@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum Team { Player, Enemy }
+public enum Team { Player, Monster, Guard }
 public enum AIType { Charge, Hold, Guard }
 public class Unit : MapObject
 {
@@ -49,6 +49,10 @@ public class Unit : MapObject
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
         Health = Stats.MaxHP;
+        if (AIType == AIType.Guard)
+        {
+            Movement = 0;
+        }
     }
     public override void Interact(InteractState interactState)
     {
@@ -68,6 +72,7 @@ public class Unit : MapObject
                 {
                     int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
+                    MovementMarker.GetComponent<PalettedSprite>().Palette = (int)TheTeam;
                     MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
                 }
                 break;
@@ -320,6 +325,9 @@ public class Unit : MapObject
                 GameController.Current.FinishMove(this);
                 break;
             case AIType.Guard:
+                // Not very efficient - replace with a simple "check attack range" function.
+                HoldAI(enemyUnits);
+                GameController.Current.FinishMove(this);
                 break;
             default:
                 break;

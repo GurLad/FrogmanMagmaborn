@@ -25,7 +25,7 @@ public class PalettedSprite : MonoBehaviour
     private SpriteRenderer renderer;
     private Image image;
 
-    private void Awake()
+    public void Awake()
     {
         ui = (renderer = GetComponent<SpriteRenderer>()) == null;
         if (!ui)
