@@ -42,10 +42,15 @@ public class Unit : MapObject
     }
     private bool moved;
     private PalettedSprite palette;
+    public void Init()
+    {
+        palette = GetComponent<PalettedSprite>();
+        palette.Awake();
+    }
     protected override void Start()
     {
         base.Start();
-        palette = GetComponent<PalettedSprite>();
+        palette = palette ?? GetComponent<PalettedSprite>();
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
         Moved = false;
         Health = Stats.MaxHP;
@@ -443,7 +448,6 @@ public class Unit : MapObject
     }
     public string Save()
     {
-        Debug.Log(JsonUtility.ToJson(this, true));
         return JsonUtility.ToJson(this);
     }
     public void Load(string json)
@@ -455,5 +459,6 @@ public class Unit : MapObject
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
         Icon = icon;
+        moved = false;
     }
 }

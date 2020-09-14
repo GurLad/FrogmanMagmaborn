@@ -90,6 +90,8 @@ public class Stats
             statValues[index] = value;
         }
     }
+    [SerializeField]
+    [HideInInspector]
     private int[] statValues = new int[6] { 4, 4, 4, 4, 4, 4 }; // Default stats
     private int _sumGrowths = -1;
     private int sumGrowths

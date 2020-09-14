@@ -81,6 +81,10 @@ public class ConversationPlayer : MidBattleScreen
         gameObject.SetActive(true);
         MidBattleScreen.Current = this;
         origin = conversation;
+        if (!origin.Lines.Contains(":loadUnits:") && !origin.Lines.Contains(":loadUnits"))
+        {
+            GameController.Current.LoadLevelUnits();
+        }
         StartLine(0);
     }
     private void StartLine(int num)
@@ -94,6 +98,12 @@ public class ConversationPlayer : MidBattleScreen
             {
                 case "play":
                     CrossfadeMusicPlayer.Current.Play(parts[2], false);
+                    break;
+                case "addUnit":
+                    GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
+                    break;
+                case "loadUnits":
+                    GameController.Current.LoadLevelUnits();
                     break;
                 default:
                     break;

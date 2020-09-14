@@ -56,6 +56,28 @@ public class GameController : MonoBehaviour
     private Camera main;
     private Transform currentLevel;
     private bool checkPlayerDead;
+    private Room selectedRoom;
+    private List<Unit> playerUnitsCache;
+    public List<Unit> PlayerUnits
+    {
+        get
+        {
+            if (playerUnitsCache == null)
+            {
+                playerUnitsCache = new List<Unit>();
+                string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
+                for (int i = 0; i < playerUnits.Length - 1; i++)
+                {
+                    Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+                    unit.Load(playerUnits[i]);
+                    AssignUnitMapAnimation(unit);
+                    unit.gameObject.SetActive(true);
+                    playerUnitsCache.Add(unit);
+                }
+            }
+            return playerUnitsCache;
+        }
+    }
     private bool _interactable = true;
     private bool interactable
     {
@@ -127,8 +149,10 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        Time.timeScale = 3;
         LevelNumber = 1;
-        CreateLevel(new List<Unit>());
+        playerUnitsCache = new List<Unit>();
+        CreateLevel();
     }
     /// <summary>
     /// Used for player control.
@@ -297,7 +321,6 @@ public class GameController : MonoBehaviour
     }
     public void InteractWithTile(int x, int y)
     {
-        Debug.Log(InteractState);
         MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y).ForEach(a => a.Interact(InteractState));
     }
     /// <summary>
@@ -356,6 +379,17 @@ public class GameController : MonoBehaviour
         // Save player characters
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
         playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
+        playerCharacters = playerCharacters.Distinct().ToList(); // A very bad workaround - I need to find the true cause of the problem
+        string saveData = "";
+        playerCharacters.ForEach(a => saveData += a.Save() + "\n");
+        SavedData.Save("PlayerDatas", saveData);
+        for (int i = 0; i < playerCharacters.Count; i++)
+        {
+            Debug.Log(playerCharacters[i].Save());
+            Destroy(playerCharacters[i].gameObject);
+        }
+        playerUnitsCache = null;
+        playerCharacters = PlayerUnits;
         // Custom level-up system
         foreach (Unit character in playerCharacters)
         {
@@ -367,8 +401,9 @@ public class GameController : MonoBehaviour
         TransitionToMidBattleScreen(levelUpController);
 
     }
-    public void CreateLevel(List<Unit> playerCharacters)
+    public void CreateLevel()
     {
+        List<Unit> playerCharacters = PlayerUnits;
         // Clear previous level
         MapObjects.Clear();
         if (currentLevel != null)
@@ -376,10 +411,10 @@ public class GameController : MonoBehaviour
             Destroy(currentLevel.gameObject);
         }
         // Select conversation
-        ConversationData conversation = ConversationController.Current.SelectConversation(playerCharacters);
+        ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
         List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
-        Room selectedRoom = options[Random.Range(0, options.Count)];
+        selectedRoom = options[Random.Range(0, options.Count)];
         Debug.Log("Selected room: " + selectedRoom.Name);
         // Load room
         Set = selectedRoom.TileSet;
@@ -399,6 +434,33 @@ public class GameController : MonoBehaviour
                 Map[i, j] = newTile;
             }
         }
+        // Play conversation
+        ConversationPlayer.Current.Play(conversation);
+    }
+    public Unit CreatePlayerUnit(string name)
+    {
+        Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+        unit.Name = name;
+        unit.Level = LevelNumber;
+        unit.TheTeam = Team.Player;
+        unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
+        GrowthsStruct unitGrowths;
+        unit.Stats = new Stats();
+        unit.Stats.Growths = (unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name)).Growths;
+        unit.Flies = unitGrowths.Flies;
+        unit.Stats += unit.Stats.GetLevelUp(LevelNumber);
+        unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
+        AssignUnitMapAnimation(unit);
+        unit.gameObject.SetActive(true);
+        return unit;
+    }
+    private void AssignUnitMapAnimation(Unit unit)
+    {
+        Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
+    }
+    public void LoadLevelUnits()
+    {
+        List<Unit> playerCharacters = PlayerUnits;
         // Units
         List<string> unitDatas = selectedRoom.Units;
         int numPlayers = 0;
@@ -450,17 +512,11 @@ public class GameController : MonoBehaviour
             {
                 cursorPos = unit.Pos; // Auto-cursor
             }
-            Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
+            AssignUnitMapAnimation(unit);
             unit.gameObject.SetActive(true);
         }
-        // Play conversation
-        ConversationPlayer.Current.Play(conversation);
         // And cleanup
         currentPhase = Team.Player;
-        foreach (var item in units)
-        {
-            item.Moved = false;
-        }
         interactable = true;
     }
     private int Sign(float number)

@@ -17,9 +17,9 @@ public class ConversationController : MonoBehaviour
             options.Add(new ConversationData(conversation.text.Replace("\r", "")));
         }
     }
-    public ConversationData SelectConversation(List<Unit> playerCharacters)
+    public ConversationData SelectConversation()
     {
-        List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements(playerCharacters));
+        List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
         return currentOptions[0];
     }
@@ -71,20 +71,20 @@ public class ConversationData : IComparable<ConversationData>
         //}
     }
     // When I originally wrote this class, I commented on everything. Too bad future me isn't as patient.
-    public bool MeetsRequirements(List<Unit> playerCharacters)
+    public bool MeetsRequirements()
     {
         foreach (var requirement in Requirements)
         {
             if (requirement[0] == '!')
             {
-                if (MeetsRequirement(requirement.Substring(1), playerCharacters))
+                if (MeetsRequirement(requirement.Substring(1)))
                 {
                     return false;
                 }
             }
             else
             {
-                if (!MeetsRequirement(requirement, playerCharacters))
+                if (!MeetsRequirement(requirement))
                 {
                     return false;
                 }
@@ -93,25 +93,25 @@ public class ConversationData : IComparable<ConversationData>
         return true;
     }
 
-    private bool MeetsRequirement(string requirement, List<Unit> playerCharacters)
+    private bool MeetsRequirement(string requirement)
     {
         string[] parts = requirement.Split(':');
         switch (parts[0])
         {
             case "hasCharacter":
                 // Check, return false if false.
-                return playerCharacters.Find(a => a.Name == parts[1]) != null;
+                return GameController.Current.PlayerUnits.Find(a => a.Name == parts[1]) != null;
             case "charactersAlive":
                 // Format: charactersAlive:?X, ex. charactersAlive:>2
                 int targetNumber = int.Parse(parts[1].Substring(1));
                 switch (parts[1][0])
                 {
                     case '>':
-                        return playerCharacters.Count > targetNumber;
+                        return GameController.Current.PlayerUnits.Count > targetNumber;
                     case '<':
-                        return playerCharacters.Count < targetNumber;
+                        return GameController.Current.PlayerUnits.Count < targetNumber;
                     case '=':
-                        return playerCharacters.Count == targetNumber;
+                        return GameController.Current.PlayerUnits.Count == targetNumber;
                     default:
                         break;
                 }
