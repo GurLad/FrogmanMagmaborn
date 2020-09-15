@@ -171,7 +171,14 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                         return;
                     }
                     DefenderObject.transform.position = new Vector3(DefenderTargetPos, DefenderObject.transform.position.y, DefenderObject.transform.position.z);
-                    defenderAnimation.Activate("AttackStart");
+                    if (defenderAnimation.HasAnimation("CounterStart"))
+                    {
+                        defenderAnimation.Activate("CounterStart");
+                    }
+                    else
+                    {
+                        defenderAnimation.Activate("AttackStart");
+                    }
                     attackerAnimation.Activate("Idle");
                     float temp = AttackerObject.transform.position.z;
                     AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
@@ -201,6 +208,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 currentAttackerPos = currentProjectile.transform.position;
                 attackerAnimation.Activate("AttackRangeEnd");
                 state = State.AttackerRangeFinishingAttack;
+                break;
+            case "CounterStart":
+                defenderAnimation.Activate("AttackStart");
                 break;
             default:
                 break;
