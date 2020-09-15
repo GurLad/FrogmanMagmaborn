@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
-        Time.timeScale = 3;
+        //Time.timeScale = 3; // For debugging
         LevelNumber = 1;
         playerUnitsCache = new List<Unit>();
         CreateLevel();
