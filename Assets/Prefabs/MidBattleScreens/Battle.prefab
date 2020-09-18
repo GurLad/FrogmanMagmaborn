@@ -1498,6 +1498,111 @@ Transform:
   m_Father: {fileID: 2123345130763740282}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1297778644453479264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8860656122022248006}
+  - component: {fileID: 1267027178182116352}
+  m_Layer: 0
+  m_Name: Lich
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8860656122022248006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297778644453479264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2123345128646521724}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267027178182116352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297778644453479264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 29af61a099c60584888f6d849cbbdac0, type: 3}
+    NumberOfFrames: 1
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+  - Name: Walk
+    SpriteSheet: {fileID: 21300000, guid: 5489466cd88e8204589357d43fa6d0e2, type: 3}
+    NumberOfFrames: 4
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackStart
+    SpriteSheet: {fileID: 21300000, guid: ad2744a6bf3653447b6a57d6b4a9ed3c, type: 3}
+    NumberOfFrames: 6
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackEnd
+    SpriteSheet: {fileID: 21300000, guid: e9dbd888e2cc57d44b2d156aeb9661be, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackRangeStart
+    SpriteSheet: {fileID: 21300000, guid: 2c36775ca5c8ea24f870a1e435fa1e48, type: 3}
+    NumberOfFrames: 5
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Name: AttackRangeEnd
+    SpriteSheet: {fileID: 21300000, guid: 2ed20ab7886c9fa4c80c5cd8778c5ad3, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 0
+    Frames:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  FixedSpeed: 0
+  BaseSpeed: 5
+  ActivateOnStart: 0
+  Renderer: {fileID: 0}
 --- !u!1 &2123345128646521714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1635,7 @@ Transform:
   - {fileID: 2792545218537385768}
   - {fileID: 369955333333469091}
   - {fileID: 5761318736058665040}
+  - {fileID: 8860656122022248006}
   m_Father: {fileID: 2123345130763740282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1558,6 +1664,9 @@ MonoBehaviour:
   - Name: Gargoyle
     Animation: {fileID: 8377419414222343562}
     Projectile: {fileID: 0}
+  - Name: Lich
+    Animation: {fileID: 1267027178182116352}
+    Projectile: {fileID: 874734626}
   AttackerBattleBackgrounds:
   - TileSet: Dungeon
     Tile: None
@@ -3598,24 +3707,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b, type: 3}
---- !u!224 &2123345129207239306 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3398707273134412469}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2123345129207239307 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522558, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3398707273134412469}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1570050897418362801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4243326228390546692, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -3628,6 +3719,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9add50eb262736c4fa16a8350b73208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2123345129207239307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522558, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398707273134412469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &2123345129207239306 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398707273134412469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6313279412331920205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3757,12 +3866,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b, type: 3}
---- !u!224 &7331938576455056242 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6313279412331920205}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7889766231115675209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4243326228390546692, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -3787,3 +3890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7331938576455056242 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6313279412331920205}
+  m_PrefabAsset: {fileID: 0}
