@@ -209,6 +209,15 @@ public class Unit : MapObject
             }
         }
     }
+
+    public void MarkDangerArea()
+    {
+        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+        List<Vector2Int> attackFrom = new List<Vector2Int>();
+        MovementMarker.GetComponent<PalettedSprite>().Palette = (int)TheTeam;
+        MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
+    }
+
     public void MarkAttack(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
     {
         if (range == -1)

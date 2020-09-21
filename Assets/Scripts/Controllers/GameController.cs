@@ -235,6 +235,11 @@ public class GameController : MonoBehaviour
                                 TransitionToMidBattleScreen(statusScreenController);
                                 statusScreenController.Show(selected);
                             }
+                            else
+                            {
+                                // Show danger area
+                                units.FindAll(a => a.TheTeam != Team.Player).ForEach(a => a.MarkDangerArea());
+                            }
                         }
                         break;
                     case InteractState.Move:
@@ -245,6 +250,63 @@ public class GameController : MonoBehaviour
                     case InteractState.Attack:
                         Selected.MoveTo(Selected.PreviousPos);
                         Selected.Interact(InteractState = InteractState.None);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (Control.GetButtonDown(Control.CB.Select))
+            {
+                // Only works in None
+                switch (InteractState)
+                {
+                    case InteractState.None:
+                        Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                        if (selected != null)
+                        {
+                            bool foundSelected = false;
+                            List<Unit> trueUnits = units;
+                            for (int i = 0; i < trueUnits.Count; i++)
+                            {
+                                if (foundSelected && trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                                {
+                                    cursorPos = trueUnits[i].Pos;
+                                    foundSelected = false;
+                                    break;
+                                }
+                                if (trueUnits[i] == selected)
+                                {
+                                    foundSelected = true;
+                                }
+                            }
+                            if (foundSelected)
+                            {
+                                for (int i = 0; i < trueUnits.Count; i++)
+                                {
+                                    if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                                    {
+                                        cursorPos = trueUnits[i].Pos;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            List<Unit> trueUnits = units;
+                            for (int i = 0; i < trueUnits.Count; i++)
+                            {
+                                if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                                {
+                                    cursorPos = trueUnits[i].Pos;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case InteractState.Move:
+                        break;
+                    case InteractState.Attack:
                         break;
                     default:
                         break;

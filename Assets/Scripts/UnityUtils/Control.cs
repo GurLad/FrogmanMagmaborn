@@ -5,7 +5,7 @@ using static SavedData;
 
 public static class Control
 {
-    public enum CB { A, B }
+    public enum CB { A, B, Select, Start }
     public enum CM { Keyboard, Controller }
     public enum Axis { X, Y }
     public static CM ControlMode = CM.Keyboard;
