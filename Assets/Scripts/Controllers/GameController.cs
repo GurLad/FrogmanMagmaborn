@@ -176,8 +176,7 @@ public class GameController : MonoBehaviour
             else if (units.FindAll(a => a.TheTeam != Team.Player).Count == 0)
             {
                 // Win
-                LevelNumber++;
-                PlayersLevelUp();
+                ConversationPlayer.Current.PlayPostBattle();
             }
             checkPlayerDead = false;
         }
@@ -435,6 +434,11 @@ public class GameController : MonoBehaviour
         MapObjects.Remove(unit);
         Destroy(unit.gameObject);
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
+    }
+    public void Win()
+    {
+        LevelNumber++;
+        PlayersLevelUp();
     }
     private void PlayersLevelUp()
     {

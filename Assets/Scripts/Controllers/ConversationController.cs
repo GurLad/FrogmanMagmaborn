@@ -32,11 +32,13 @@ public class ConversationData : IComparable<ConversationData>
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
     public List<string> Demands { get; private set; } // See above.
     public List<string> Lines { get; private set; } // See above.
+    public List<string> PostBattleLines { get; private set; }
 
     public ConversationData(string source)
     {
         // I know that using JSON is techincally better, but I want to be able to create events using a simple text editor, so splits are simple.
-        string[] parts = source.Split('~');
+        source = source.Replace('~', '\a').Replace(@"\w", "~");
+        string[] parts = source.Split('\a');
         string[] lines = parts[0].Split('\n');
         for (int i = 0; i < lines.Length; i++)
         {
@@ -62,6 +64,16 @@ public class ConversationData : IComparable<ConversationData>
         Demands.RemoveAt(Demands.Count - 1);
         Lines = new List<string>(parts[3].Split('\n'));
         Lines.RemoveAt(0);
+        if (parts.Length > 4)
+        {
+            Lines.RemoveAt(Lines.Count - 1);
+            PostBattleLines = new List<string>(parts[4].Split('\n'));
+            PostBattleLines.RemoveAt(0);
+        }
+        else
+        {
+            PostBattleLines = new List<string>();
+        }
         // Alternate approach with custom classes. Currently theoretical.
         //lines = parts[1].Split('\n');
         //for (int i = 0; i < lines.Length; i++)

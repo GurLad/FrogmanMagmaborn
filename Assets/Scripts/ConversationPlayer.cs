@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ConversationPlayer : MidBattleScreen
 {
-    public enum CurrentState { Writing, Waiting }
+    public enum CurrentState { Writing, Waiting, Sleep }
     public new static ConversationPlayer Current;
     public float LettersPerSecond;
     public Text Name;
@@ -17,6 +17,7 @@ public class ConversationPlayer : MidBattleScreen
     private int currentLine;
     private int currentChar;
     private float count;
+    private bool postBattle = false;
     private void Awake()
     {
         Current = this;
@@ -28,10 +29,11 @@ public class ConversationPlayer : MidBattleScreen
             switch (state)
             {
                 case CurrentState.Writing:
+                    string line = postBattle ? origin.PostBattleLines[currentLine] : origin.Lines[currentLine];
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        int index = origin.Lines[currentLine].IndexOf(':');
-                        Text.text = origin.Lines[currentLine].Substring(index >= 0 ? index + 2 : 0);
+                        int index = line.IndexOf(':');
+                        Text.text = line.Substring(index >= 0 ? index + 2 : 0);
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
                     }
@@ -40,10 +42,10 @@ public class ConversationPlayer : MidBattleScreen
                         count += Time.deltaTime * LettersPerSecond;
                         if (count >= 1)
                         {
-                            if (++currentChar < origin.Lines[currentLine].Length)
+                            if (++currentChar < line.Length)
                             {
                                 count -= 1;
-                                Text.text += origin.Lines[currentLine][currentChar];
+                                Text.text += line[currentChar];
                             }
                             else
                             {
@@ -56,13 +58,21 @@ public class ConversationPlayer : MidBattleScreen
                 case CurrentState.Waiting:
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        if (++currentLine >= origin.Lines.Count)
+                        if (++currentLine >= (postBattle ? origin.PostBattleLines.Count : origin.Lines.Count))
                         {
                             // Finish conversation
-                            origin = null;
                             MidBattleScreen.Current = null;
-                            CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
                             gameObject.SetActive(false);
+                            state = CurrentState.Sleep;
+                            if (postBattle)
+                            {
+                                origin = null;
+                                GameController.Current.Win();
+                            }
+                            else
+                            {
+                                CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
+                            }
                             return;
                         }
                         else
@@ -78,6 +88,7 @@ public class ConversationPlayer : MidBattleScreen
     }
     public void Play(ConversationData conversation)
     {
+        postBattle = false;
         gameObject.SetActive(true);
         MidBattleScreen.Current = this;
         origin = conversation;
@@ -87,13 +98,26 @@ public class ConversationPlayer : MidBattleScreen
         }
         StartLine(0);
     }
+    public void PlayPostBattle()
+    {
+        if (origin.PostBattleLines.Count <= 0)
+        {
+            GameController.Current.Win();
+            return;
+        }
+        postBattle = true;
+        gameObject.SetActive(true);
+        MidBattleScreen.Current = this;
+        StartLine(0);
+    }
     private void StartLine(int num)
     {
         currentLine = num;
-        if (origin.Lines[currentLine][0] == ':')
+        string line = postBattle ? origin.PostBattleLines[currentLine] : origin.Lines[currentLine];
+        if (line[0] == ':')
         {
             // Command
-            string[] parts = origin.Lines[currentLine].Split(':');
+            string[] parts = line.Split(':');
             switch (parts[1])
             {
                 case "play":
@@ -111,12 +135,12 @@ public class ConversationPlayer : MidBattleScreen
             StartLine(num + 1);
             return;
         }
-        if (origin.Lines[currentLine].IndexOf(':') != -1)
+        if (line.IndexOf(':') != -1)
         {
-            string[] parts = origin.Lines[currentLine].Split(':');
+            string[] parts = line.Split(':');
             Name.text = parts[0]; // Also change image
             Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
-            currentChar = origin.Lines[currentLine].IndexOf(':') + 2;
+            currentChar = line.IndexOf(':') + 2;
         }
         else
         {
@@ -124,7 +148,7 @@ public class ConversationPlayer : MidBattleScreen
         }
         count = 0;
         state = CurrentState.Writing;
-        Text.text = origin.Lines[currentLine][currentChar].ToString();
+        Text.text = line[currentChar].ToString();
         Arrow.SetActive(false);
     }
 }
