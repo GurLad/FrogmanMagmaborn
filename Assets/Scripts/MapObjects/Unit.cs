@@ -28,6 +28,10 @@ public class Unit : MapObject
     public int Level;
     [HideInInspector]
     public Vector2Int PreviousPos;
+    [HideInInspector]
+    public int ReinforcementTurn;
+    [HideInInspector]
+    public bool Statue;
     public bool Moved
     {
         get

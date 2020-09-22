@@ -237,7 +237,7 @@ public class GameController : MonoBehaviour
                             else
                             {
                                 // Show danger area
-                                units.FindAll(a => a.TheTeam != Team.Player).ForEach(a => a.MarkDangerArea());
+                                units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
                             }
                         }
                         break;
@@ -420,6 +420,29 @@ public class GameController : MonoBehaviour
         foreach (var item in units)
         {
             item.Moved = false;
+            if (item.TheTeam != Team.Player && item.ReinforcementTurn > 0)
+            {
+                if (team == Team.Player)
+                {
+                    item.ReinforcementTurn--;
+                }
+                if (item.ReinforcementTurn > 0)
+                {
+                    item.Moved = true;
+                    if (!item.Statue)
+                    {
+                        if (item.Pos != Vector2Int.one * -1)
+                        {
+                            item.PreviousPos = item.Pos;
+                        }
+                        item.Pos = Vector2Int.one * -1;
+                    }
+                }
+                else if (!item.Statue && FindUnitAtPos(item.PreviousPos.x, item.PreviousPos.y) == null)
+                {
+                    item.Pos = item.PreviousPos;
+                }
+            }
         }
         interactable = team == Team.Player;
     }
@@ -567,6 +590,11 @@ public class GameController : MonoBehaviour
                 unit.Class = parts[1];
                 unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
                 unit.MovementMarker = EnemyMarker;
+                if (parts.Length > 6)
+                {
+                    unit.ReinforcementTurn = int.Parse(parts[6]);
+                    unit.Statue = parts[7] == "T";
+                }
             }
             unit.Flies = unitGrowths.Flies;
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
@@ -581,9 +609,6 @@ public class GameController : MonoBehaviour
             AssignUnitMapAnimation(unit);
             unit.gameObject.SetActive(true);
         }
-        // And cleanup
-        currentPhase = Team.Player;
-        interactable = true;
     }
     private int Sign(float number)
     {

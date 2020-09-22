@@ -71,6 +71,7 @@ public class ConversationPlayer : MidBattleScreen
                             }
                             else
                             {
+                                GameController.Current.StartPhase(Team.Player);
                                 CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
                             }
                             return;
