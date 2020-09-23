@@ -11,7 +11,7 @@ public class LevelUpController : MidBattleScreen
     [Header("Objects")]
     public PortraitHolder PortraitHolder;
     public Text UnitInfo;
-    public Text StatInfo;
+    public BattleStatsPanel StatInfo;
     public LevelUpObject BaseLevelUpObject;
     [HideInInspector]
     public List<Unit> Players;
@@ -43,7 +43,6 @@ public class LevelUpController : MidBattleScreen
         Unit unit = Players[currentUnitID];
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(unit.Name);
         UnitInfo.text = "\n" + unit.Name + "\n\n\nLevel:" + unit.Level + "\n\n";
-        StatInfo.text = unit.Stats.ToString().Replace("\n", "\n\n");
         for (int i = 0; i < NumOptions; i++)
         {
             levelUpObjects[i].Stats = unit.Stats.GetLevelUp();
@@ -52,6 +51,7 @@ public class LevelUpController : MidBattleScreen
         levelUpObjects[selected].PalettedSprite.Palette = 3;
         selected = 0;
         levelUpObjects[0].PalettedSprite.Palette = 0;
+        StatInfo.Display(unit, levelUpObjects[0].Stats);
     }
     private void Update()
     {
@@ -66,6 +66,7 @@ public class LevelUpController : MidBattleScreen
             selected += -Control.GetAxisInt(Control.Axis.Y) + NumOptions;
             selected %= NumOptions;
             levelUpObjects[selected].PalettedSprite.Palette = 0;
+            StatInfo.Display(Players[currentUnitID], levelUpObjects[selected].Stats);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }

@@ -442,6 +442,10 @@ public class GameController : MonoBehaviour
                 {
                     item.Pos = item.PreviousPos;
                 }
+                else if (item.Statue)
+                {
+                    item.Statue = false;
+                }
             }
         }
         interactable = team == Team.Player;

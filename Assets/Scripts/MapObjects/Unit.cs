@@ -44,6 +44,12 @@ public class Unit : MapObject
             palette.Palette = moved ? 3 : (int)TheTeam;
         }
     }
+    public int BattleStatsStr { get { return Stats.Strength + Weapon.Damage; } }
+    public int BattleStatsEnd { get { return Stats.MaxHP; } }
+    public int BattleStatsPir { get { return Stats.Pierce; } }
+    public int BattleStatsArm { get { return Stats.Armor; } }
+    public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
+    public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
     private bool moved;
     private PalettedSprite palette;
     public void Init()
@@ -436,6 +442,10 @@ public class Unit : MapObject
     public string BattleStats()
     {
         return "ATK:" + (Weapon.Damage + Stats.Strength).ToString().PadRight(3) + "\nHIT:" + (Weapon.Hit + 10 * Stats.Precision - 40).ToString().PadRight(3) + "\nAVD:" + (10 * (Stats.Evasion - Weapon.Weight) - 40).ToString().PadRight(3);
+    }
+    public string State()
+    {
+        return Statue ? "Statue" : (Moved ? "Moved" : "Normal");
     }
     public bool? Attack(Unit unit)
     {
