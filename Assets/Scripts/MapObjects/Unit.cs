@@ -450,6 +450,14 @@ public class Unit : MapObject
     public bool? Attack(Unit unit)
     {
         int percent = GetHitChance(unit);
+        if (percent >= 80)
+        {
+            percent += 10;
+        }
+        else if (percent <= 20)
+        {
+            percent -= 10;
+        }
         int a, b;
         if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
         {

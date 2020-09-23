@@ -3665,6 +3665,8 @@ MonoBehaviour:
   Health: 10
   Level: 0
   PreviousPos: {x: 0, y: 0}
+  ReinforcementTurn: 0
+  Statue: 0
 --- !u!212 &1111376494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4371,12 +4373,12 @@ MonoBehaviour:
     SpriteSheet: {fileID: 21300000, guid: 7b49e472431790e4e9cadb598f3a2c27, type: 3}
     NumberOfFrames: 3
     Speed: 0
-    Loop: 0
+    Loop: 1
     Frames:
     - {fileID: 436410375}
     - {fileID: 1262703197}
     - {fileID: 1636587617}
-  FixedSpeed: 0
+  FixedSpeed: 1
   BaseSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}

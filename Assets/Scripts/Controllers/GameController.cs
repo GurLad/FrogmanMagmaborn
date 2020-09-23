@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public enum Objective { Rout, Boss }
     public static GameController Current;
     public List<TileSet> TileSets1;
     public Vector2Int MapSize;
@@ -129,6 +130,10 @@ public class GameController : MonoBehaviour
             room.RoomNumber = int.Parse(selectedRoom[3]);
             // Tile set
             room.TileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
+            // Objective
+            string[] objectiveParts = selectedRoom[4].Split(':');
+            room.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
+            room.ObjectiveData = selectedRoom[4].Substring(selectedRoom[4].IndexOf(':') + 1);
             // Map
             string[] lines = selectedRoom[0].Split(';');
             room.Map = new int[MapSize.x, MapSize.y];
@@ -173,7 +178,7 @@ public class GameController : MonoBehaviour
                 // Lose
                 SceneManager.LoadScene("Menu");
             }
-            else if (units.FindAll(a => a.TheTeam != Team.Player).Count == 0)
+            else if (CheckPlayerWin())
             {
                 // Win
                 ConversationPlayer.Current.PlayPostBattle();
@@ -614,6 +619,19 @@ public class GameController : MonoBehaviour
             unit.gameObject.SetActive(true);
         }
     }
+    private bool CheckPlayerWin()
+    {
+        switch (selectedRoom.Objective)
+        {
+            case Objective.Rout:
+                return units.FindAll(a => a.TheTeam != Team.Player).Count == 0;
+            case Objective.Boss:
+                Debug.Log(selectedRoom.ObjectiveData);
+                return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
+            default:
+                throw new System.Exception("No objective!");
+        }
+    }
     private int Sign(float number)
     {
         return number < 0 ? -1 : (number > 0 ? 1 : 0);
@@ -626,6 +644,8 @@ public class GameController : MonoBehaviour
         public int[,] Map;
         public List<string> Units;
         public TileSet TileSet;
+        public Objective Objective;
+        public string ObjectiveData;
         public bool MatchesDemands(ConversationData conversation)
         {
             if (RoomNumber != Current.LevelNumber)
