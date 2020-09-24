@@ -122,7 +122,10 @@ public class ConversationPlayer : MidBattleScreen
             switch (parts[1])
             {
                 case "play":
-                    CrossfadeMusicPlayer.Current.Play(parts[2], false);
+                    CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
+                    break;
+                case "playIntro":
+                    CrossfadeMusicPlayer.Current.PlayIntro(parts[2], false);
                     break;
                 case "addUnit":
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
