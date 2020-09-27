@@ -55,7 +55,8 @@ public class GameController : MonoBehaviour
     private float enemyMoveDelayCount;
     private Vector2Int previousPos = new Vector2Int(-1, -1);
     private Camera main;
-    private Transform currentLevel;
+    private Transform currentMapObject;
+    private Transform currentUnitsObject;
     private bool checkPlayerDead;
     private Room selectedRoom;
     private List<Unit> playerUnitsCache;
@@ -69,7 +70,7 @@ public class GameController : MonoBehaviour
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
                 {
-                    Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+                    Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
                     unit.Load(playerUnits[i]);
                     AssignUnitMapAnimation(unit);
                     unit.gameObject.SetActive(true);
@@ -504,40 +505,27 @@ public class GameController : MonoBehaviour
         List<Unit> playerCharacters = PlayerUnits;
         // Clear previous level
         MapObjects.Clear();
-        if (currentLevel != null)
+        if (currentMapObject != null)
         {
-            Destroy(currentLevel.gameObject);
+            Destroy(currentMapObject.gameObject);
         }
+        if (currentUnitsObject != null)
+        {
+            Destroy(currentUnitsObject.gameObject);
+        }
+        currentUnitsObject = Instantiate(new GameObject(), transform).transform;
         // Select conversation
         ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
         List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
         selectedRoom = options[Random.Range(0, options.Count)];
         Debug.Log("Selected room: " + selectedRoom.Name);
-        // Load room
-        Set = selectedRoom.TileSet;
-        PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
-        PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
-        // Map
-        currentLevel = Instantiate(new GameObject(), transform).transform;
-        Map = new Tile[MapSize.x, MapSize.y];
-        for (int i = 0; i < MapSize.x; i++)
-        {
-            for (int j = 0; j < MapSize.y; j++)
-            {
-                int tileID = selectedRoom.Map[i, j];
-                Tile newTile = Instantiate(Set.Tiles[tileID].gameObject, currentLevel).GetComponent<Tile>();
-                newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
-                newTile.gameObject.SetActive(true);
-                Map[i, j] = newTile;
-            }
-        }
         // Play conversation
         ConversationPlayer.Current.Play(conversation);
     }
     public Unit CreatePlayerUnit(string name)
     {
-        Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+        Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
         unit.Name = name;
         unit.Level = LevelNumber;
         unit.TheTeam = Team.Player;
@@ -556,6 +544,45 @@ public class GameController : MonoBehaviour
     {
         Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
     }
+    public void LoadMap(string roomName = "")
+    {
+        Room room;
+        if (roomName == "")
+        {
+            room = selectedRoom;
+        }
+        else
+        {
+            room = rooms.Find(a => a.Name == roomName);
+            if (room == null)
+            {
+                throw new System.Exception("No matching room! (" + roomName + ")");
+            }
+        }
+        // Clear previous level
+        if (currentMapObject != null)
+        {
+            Destroy(currentMapObject.gameObject);
+        }
+        // Load room
+        Set = room.TileSet;
+        PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
+        PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
+        // Map
+        currentMapObject = Instantiate(new GameObject(), transform).transform;
+        Map = new Tile[MapSize.x, MapSize.y];
+        for (int i = 0; i < MapSize.x; i++)
+        {
+            for (int j = 0; j < MapSize.y; j++)
+            {
+                int tileID = room.Map[i, j];
+                Tile newTile = Instantiate(Set.Tiles[tileID].gameObject, currentMapObject).GetComponent<Tile>();
+                newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
+                newTile.gameObject.SetActive(true);
+                Map[i, j] = newTile;
+            }
+        }
+    }
     public void LoadLevelUnits()
     {
         List<Unit> playerCharacters = PlayerUnits;
@@ -564,9 +591,10 @@ public class GameController : MonoBehaviour
         int numPlayers = 0;
         for (int i = 0; i < unitDatas.Count; i++)
         {
-            Unit unit = Instantiate(BaseUnit.gameObject, currentLevel).GetComponent<Unit>();
+            Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
             string[] parts = unitDatas[i].Split(',');
             unit.TheTeam = (Team)int.Parse(parts[0]);
+            unit.name = "Unit" + parts[1];
             GrowthsStruct unitGrowths;
             if (unit.TheTeam == Team.Player)
             {

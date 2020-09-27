@@ -1,0 +1,27 @@
+priority:1
+unique:F
+~
+roomNumber:1
+~
+# No demands (I can do this since a non-existent demand defaults to true :))
+~
+:play:BeforeBattle
+:loadUnits:
+:loadMap:InitTormentRoom
+Frogman: Hello!
+Torment: Hello!
+:play:Trustworthy
+Frogman: Oh no!
+:play:Trickster:T
+Frogman: Oh no!!!
+Torment: Heh heh heh!
+:playIntro:Tormentor
+:loadMap:
+Torment: HA HA HA!!!
+Frogman: Oh no!!!!!1
+~
+:play:AfterBattle
+Frogman: We won!
+Torment: NO!!!!1
+:loadMap:InitTormentRoom
+Frogman: Back to normal!

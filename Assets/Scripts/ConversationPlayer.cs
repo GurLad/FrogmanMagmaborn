@@ -97,6 +97,10 @@ public class ConversationPlayer : MidBattleScreen
         {
             GameController.Current.LoadLevelUnits();
         }
+        if (!origin.Lines.Contains(":loadMap:") && !origin.Lines.Contains(":loadMap"))
+        {
+            GameController.Current.LoadMap();
+        }
         StartLine(0);
     }
     public void PlayPostBattle()
@@ -132,6 +136,9 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "loadUnits":
                     GameController.Current.LoadLevelUnits();
+                    break;
+                case "loadMap":
+                    GameController.Current.LoadMap(parts[2]);
                     break;
                 default:
                     break;
