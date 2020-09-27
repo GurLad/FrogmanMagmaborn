@@ -62,7 +62,7 @@ public class Unit : MapObject
         base.Start();
         palette = palette ?? GetComponent<PalettedSprite>();
         Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
-        Moved = false;
+        Moved = Statue;
         Health = Stats.MaxHP;
         if (AIType == AIType.Guard)
         {

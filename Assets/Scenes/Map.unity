@@ -170,7 +170,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 63f37b40b5783ca45a15fe15a2438eb1, type: 3}
   - {fileID: 4900000, guid: 3f68bbc73ba32f847b3aa924e7708ed3, type: 3}
   - {fileID: 4900000, guid: 39d71d03ba2ff2343b0220cb8374c724, type: 3}
-  - {fileID: 4900000, guid: 39d71d03ba2ff2343b0220cb8374c724, type: 3}
+  - {fileID: 4900000, guid: db8fa9aafc6c0e64baaad121c193cef6, type: 3}
 --- !u!1 &56271733
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,6 +6094,9 @@ MonoBehaviour:
     Flies: 1
   - Name: Lich
     Growths: 020000000100000003000000010000000200000003000000
+    Flies: 0
+  - Name: Frogman
+    Growths: 000000000000000000000000090000000000000009000000
     Flies: 0
   ClassAnimations:
   - Name: Frogman

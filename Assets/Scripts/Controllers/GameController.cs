@@ -601,7 +601,7 @@ public class GameController : MonoBehaviour
                 unit.Name = parts[1];
                 if (unit.Name == "P" && playerCharacters.Count > numPlayers + 1)
                 {
-                    Destroy(unit);
+                    Destroy(unit.gameObject);
                     unit = playerCharacters[++numPlayers];
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
@@ -610,7 +610,7 @@ public class GameController : MonoBehaviour
                 }
                 else if (unit.Name == "Frogman" && playerCharacters.Count > 0)
                 {
-                    Destroy(unit);
+                    Destroy(unit.gameObject);
                     unit = playerCharacters[0];
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
@@ -646,6 +646,8 @@ public class GameController : MonoBehaviour
             AssignUnitMapAnimation(unit);
             unit.gameObject.SetActive(true);
         }
+        currentPhase = Team.Player;
+        interactable = true;
     }
     private bool CheckPlayerWin()
     {
