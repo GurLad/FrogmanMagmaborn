@@ -156,8 +156,11 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         //Time.timeScale = 3; // For debugging
-        LevelNumber = 1;
+        LevelNumber = 4;
         playerUnitsCache = new List<Unit>();
+        PlayerUnits.Add(CreatePlayerUnit("Frogman"));
+        PlayerUnits.Add(CreatePlayerUnit("Firbell"));
+        PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
         CreateLevel();
     }
     /// <summary>
