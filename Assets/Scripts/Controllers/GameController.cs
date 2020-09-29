@@ -438,14 +438,6 @@ public class GameController : MonoBehaviour
                 if (item.ReinforcementTurn > 0)
                 {
                     item.Moved = true;
-                    if (!item.Statue)
-                    {
-                        if (item.Pos != Vector2Int.one * -1)
-                        {
-                            item.PreviousPos = item.Pos;
-                        }
-                        item.Pos = Vector2Int.one * -1;
-                    }
                 }
                 else if (!item.Statue && FindUnitAtPos(item.PreviousPos.x, item.PreviousPos.y) == null)
                 {
@@ -606,6 +598,7 @@ public class GameController : MonoBehaviour
                 {
                     Destroy(unit.gameObject);
                     unit = playerCharacters[++numPlayers];
+                    unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     MapObjects.Add(unit);
@@ -615,6 +608,7 @@ public class GameController : MonoBehaviour
                 {
                     Destroy(unit.gameObject);
                     unit = playerCharacters[0];
+                    unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     cursorPos = unit.Pos; // Auto-cursor
@@ -642,6 +636,11 @@ public class GameController : MonoBehaviour
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
             unit.AIType = (AIType)int.Parse(parts[3]);
             unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+            if (unit.ReinforcementTurn > 0 && !unit.Statue)
+            {
+                unit.PreviousPos = unit.Pos;
+                unit.Pos = Vector2Int.one * -1;
+            }
             if (unit.Name == "Frogman")
             {
                 cursorPos = unit.Pos; // Auto-cursor
@@ -657,7 +656,7 @@ public class GameController : MonoBehaviour
         switch (selectedRoom.Objective)
         {
             case Objective.Rout:
-                return units.FindAll(a => a.TheTeam != Team.Player).Count == 0;
+                return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
                 Debug.Log(selectedRoom.ObjectiveData);
                 return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
