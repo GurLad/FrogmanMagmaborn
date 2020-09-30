@@ -29,11 +29,13 @@ public class GameController : MonoBehaviour
     public GameObject Battle;
     public GameObject StatusScreen;
     public GameObject LevelUpScreen;
+    public GameObject PauseMenu;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
+    public GameObject Canvas;
     public Unit BaseUnit;
     public UnitClassData UnitClassData;
     public Marker EnemyMarker;
@@ -246,7 +248,7 @@ public class GameController : MonoBehaviour
                             else
                             {
                                 // Show danger area
-                                units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
+                                ShowDangerArea();
                             }
                         }
                         break;
@@ -311,6 +313,23 @@ public class GameController : MonoBehaviour
                                 }
                             }
                         }
+                        break;
+                    case InteractState.Move:
+                        break;
+                    case InteractState.Attack:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (Control.GetButtonDown(Control.CB.Start))
+            {
+                // Only works in None
+                switch (InteractState)
+                {
+                    case InteractState.None:
+                        MenuController pauseMenu = Instantiate(PauseMenu, Canvas.transform).GetComponentInChildren<MenuController>();
+                        MidBattleScreen.Current = pauseMenu;
                         break;
                     case InteractState.Move:
                         break;
@@ -650,6 +669,10 @@ public class GameController : MonoBehaviour
         }
         currentPhase = Team.Player;
         interactable = true;
+    }
+    public void ShowDangerArea()
+    {
+        units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
     }
     private bool CheckPlayerWin()
     {
