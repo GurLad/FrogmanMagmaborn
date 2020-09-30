@@ -18,6 +18,8 @@ public class Unit : MapObject
     public int Movement;
     public bool Flies;
     public Stats Stats;
+    [Header("AI Values")]
+    public int MaxAcceptableHitRisk = 50;
     [HideInInspector]
     public Portrait Icon;
     [HideInInspector]
@@ -364,7 +366,7 @@ public class Unit : MapObject
     private bool HoldAI(List<Unit> enemyUnits)
     {
         int[,] dangerArea = GetDangerArea();
-        enemyUnits.Sort((a, b) => (a.Health - GetDamage(a)).CompareTo(b.Health - GetDamage(b)));
+        enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
         foreach (Unit unit in enemyUnits)
         {
             if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
@@ -398,6 +400,37 @@ public class Unit : MapObject
             }
         }
         return false;
+    }
+    private int HoldAITargetValue(Unit unit)
+    {
+        int trueDamage = GetDamage(unit);
+        int hit = GetHitChance(unit);
+        int damage = Mathf.RoundToInt(trueDamage * hit / 100.0f + 0.01f); // Round 0.5 up
+        Debug.Log(Class + " damage against " + unit.Name + " is " + damage + " (" + trueDamage + " * " + (hit / 100.0f) + ")");
+        // If can kill, value is -(unit health), so AI will always prioritize killing
+        if (unit.Health - damage <= 0)
+        {
+            return -unit.Health;
+        }
+        // If can kill with a risky move, return 0, so enemy will be more chaotic (but still prefer a more consistent kill)
+        if (unit.Health - trueDamage <= 0 && hit >= MaxAcceptableHitRisk)
+        {
+            return 0;
+        }
+        // If can't damage, return 100, so enemy will never choose to deal no damage over actually dealing damage
+        if (damage <= 0)
+        {
+            if (trueDamage > 0)
+            {
+                return 100 - hit;
+            }
+            else
+            {
+                return 100;
+            }
+        }
+        // Otherwise, return the approx. health left to the enemy
+        return unit.Health - damage;
     }
     private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, int[,] fullMoveRange)
     {

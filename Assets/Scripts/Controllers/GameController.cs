@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     public GameObject PauseMenu;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
+    public bool DebugCheats;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
@@ -158,11 +159,19 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         //Time.timeScale = 3; // For debugging
-        LevelNumber = 4;
-        playerUnitsCache = new List<Unit>();
-        PlayerUnits.Add(CreatePlayerUnit("Frogman"));
-        PlayerUnits.Add(CreatePlayerUnit("Firbell"));
-        PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
+        if (DebugCheats)
+        {
+            LevelNumber = 4;
+            playerUnitsCache = new List<Unit>();
+            PlayerUnits.Add(CreatePlayerUnit("Frogman"));
+            PlayerUnits.Add(CreatePlayerUnit("Firbell"));
+            PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
+        }
+        else
+        {
+            LevelNumber = 1;
+            playerUnitsCache = new List<Unit>();
+        }
         CreateLevel();
     }
     /// <summary>
