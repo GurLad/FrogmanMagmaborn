@@ -510,6 +510,10 @@ public class Unit : MapObject
             return false;
         }
     }
+    public override string ToString()
+    {
+        return TheTeam == Team.Player ? Name : Class;
+    }
     public string Save()
     {
         return JsonUtility.ToJson(this);

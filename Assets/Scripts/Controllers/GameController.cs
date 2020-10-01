@@ -502,7 +502,7 @@ public class GameController : MonoBehaviour
         // Save player characters
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
         playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
-        playerCharacters = playerCharacters.Distinct().ToList(); // A very bad workaround - I need to find the true cause of the problem
+        playerCharacters = playerCharacters.ToList();
         string saveData = "";
         playerCharacters.ForEach(a => saveData += a.Save() + "\n");
         SavedData.Save("PlayerDatas", saveData);
@@ -624,14 +624,16 @@ public class GameController : MonoBehaviour
             if (unit.TheTeam == Team.Player)
             {
                 unit.Name = parts[1];
-                if (unit.Name == "P" && playerCharacters.Count > numPlayers + 1)
+                if (unit.Name == "P")
                 {
                     Destroy(unit.gameObject);
-                    unit = playerCharacters[++numPlayers];
-                    unit.transform.parent = currentUnitsObject;
-                    unit.Health = unit.Stats.MaxHP;
-                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-                    MapObjects.Add(unit);
+                    if (playerCharacters.Count > numPlayers + 1) // I can't make multiple rooms for evey combination of living characters...
+                    {
+                        unit = playerCharacters[++numPlayers];
+                        unit.transform.parent = currentUnitsObject;
+                        unit.Health = unit.Stats.MaxHP;
+                        unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    }
                     continue;
                 }
                 else if (unit.Name == "Frogman" && playerCharacters.Count > 0)
@@ -642,7 +644,6 @@ public class GameController : MonoBehaviour
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     cursorPos = unit.Pos; // Auto-cursor
-                    MapObjects.Add(unit);
                     continue;
                 }
                 unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
@@ -693,7 +694,6 @@ public class GameController : MonoBehaviour
             case Objective.Rout:
                 return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
-                Debug.Log(selectedRoom.ObjectiveData);
                 return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
             default:
                 throw new System.Exception("No objective!");

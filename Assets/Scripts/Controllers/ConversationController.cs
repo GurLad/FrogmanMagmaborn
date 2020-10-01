@@ -119,11 +119,11 @@ public class ConversationData : IComparable<ConversationData>
                 switch (parts[1][0])
                 {
                     case '>':
-                        return GameController.Current.PlayerUnits.Count > targetNumber;
+                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count > targetNumber;
                     case '<':
-                        return GameController.Current.PlayerUnits.Count < targetNumber;
+                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count < targetNumber;
                     case '=':
-                        return GameController.Current.PlayerUnits.Count == targetNumber;
+                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count == targetNumber;
                     default:
                         break;
                 }
