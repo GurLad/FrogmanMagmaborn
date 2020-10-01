@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     public Unit BaseUnit;
     public UnitClassData UnitClassData;
     public Marker EnemyMarker;
+    public Marker EnemyAttackMarker;
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
@@ -550,6 +551,7 @@ public class GameController : MonoBehaviour
     {
         Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
         unit.Name = name;
+        unit.name = "Unit" + name;
         unit.Level = LevelNumber;
         unit.TheTeam = Team.Player;
         unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
@@ -652,6 +654,7 @@ public class GameController : MonoBehaviour
                 unit.Class = parts[1];
                 unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
                 unit.MovementMarker = EnemyMarker;
+                unit.AttackMarker = EnemyAttackMarker;
                 if (parts.Length > 6)
                 {
                     unit.ReinforcementTurn = int.Parse(parts[6]);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MidBattleScreen : MonoBehaviour
 {
     public static MidBattleScreen Current;
-    protected void Quit()
+    public void Quit()
     {
         GameController.Current.transform.parent.gameObject.SetActive(true);
         Destroy(transform.parent.gameObject);
