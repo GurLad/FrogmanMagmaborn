@@ -134,7 +134,7 @@ public class ConversationPlayer : MidBattleScreen
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
                     break;
                 case "loadUnits":
-                    GameController.Current.LoadLevelUnits();
+                    GameController.Current.LoadLevelUnits(parts[2]);
                     break;
                 case "loadMap":
                     GameController.Current.LoadMap(parts[2]);

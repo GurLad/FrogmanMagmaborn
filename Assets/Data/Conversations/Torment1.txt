@@ -6,8 +6,8 @@ roomNumber:4
 # No demands (I can do this since a non-existent demand defaults to true :))
 ~
 :play:BeforeBattle
-:loadUnits:
 :loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
 Frogman: Hello!
 Torment: Hello!
 :play:Trustworthy
@@ -17,6 +17,7 @@ Frogman: Oh no!!!
 Torment: Heh heh heh!
 :playIntro:Tormentor
 :loadMap:
+:loadUnits:
 Torment: HA HA HA!!!
 Frogman: Oh no!!!!!1
 ~

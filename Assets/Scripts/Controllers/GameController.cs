@@ -608,11 +608,31 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    public void LoadLevelUnits()
+    public void LoadLevelUnits(string roomName = "")
     {
+        Room room;
+        if (roomName == "")
+        {
+            room = selectedRoom;
+        }
+        else
+        {
+            room = rooms.Find(a => a.Name == roomName);
+            if (room == null)
+            {
+                throw new System.Exception("No matching room! (" + roomName + ")");
+            }
+        }
+        // Clear previous level
+        MapObjects.Clear();
+        if (currentUnitsObject != null)
+        {
+            Destroy(currentUnitsObject.gameObject);
+        }
+        currentUnitsObject = Instantiate(new GameObject(), transform).transform;
         List<Unit> playerCharacters = PlayerUnits;
         // Units
-        List<string> unitDatas = selectedRoom.Units;
+        List<string> unitDatas = room.Units;
         int numPlayers = 0;
         for (int i = 0; i < unitDatas.Count; i++)
         {
@@ -633,6 +653,10 @@ public class GameController : MonoBehaviour
                         unit.transform.parent = currentUnitsObject;
                         unit.Health = unit.Stats.MaxHP;
                         unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                        if (!MapObjects.Contains(unit))
+                        {
+                            MapObjects.Add(unit);
+                        }
                     }
                     continue;
                 }
@@ -643,6 +667,10 @@ public class GameController : MonoBehaviour
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    if (!MapObjects.Contains(unit))
+                    {
+                        MapObjects.Add(unit);
+                    }
                     cursorPos = unit.Pos; // Auto-cursor
                     continue;
                 }
