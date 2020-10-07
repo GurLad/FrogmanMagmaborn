@@ -3342,6 +3342,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &675860570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 675860571}
+  - component: {fileID: 675860572}
+  m_Layer: 0
+  m_Name: Fear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &675860571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675860570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &675860572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675860570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 96df68ccf158c994db7812c3ca6555d1, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!1 &687534587
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,6 +3743,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &751536211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751536212}
+  - component: {fileID: 751536213}
+  m_Layer: 0
+  m_Name: Despair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751536212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751536211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &751536213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751536211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 5d0e63d0bb21ea241ae08c3083da6ef3, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!213 &810865232
 Sprite:
   m_ObjectHideFlags: 0
@@ -8261,6 +8375,9 @@ Transform:
   - {fileID: 1567419627}
   - {fileID: 1778818848}
   - {fileID: 1259153107}
+  - {fileID: 751536212}
+  - {fileID: 675860571}
+  - {fileID: 1928878172}
   m_Father: {fileID: 709891506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8311,6 +8428,15 @@ MonoBehaviour:
   - Name: Lich
     Growths: 020000000100000003000000010000000200000003000000
     Flies: 0
+  - Name: Despair
+    Growths: 000000000000000000000000030000000300000000000000
+    Flies: 1
+  - Name: Fear
+    Growths: 000000000300000003000000000000000000000000000000
+    Flies: 1
+  - Name: Pain
+    Growths: 030000000000000000000000000000000000000003000000
+    Flies: 0
   - Name: Frogman
     Growths: 000000000000000000000000090000000000000009000000
     Flies: 0
@@ -8329,6 +8455,15 @@ MonoBehaviour:
     Projectile: {fileID: 0}
   - Name: Lich
     Animation: {fileID: 1259153108}
+    Projectile: {fileID: 0}
+  - Name: Despair
+    Animation: {fileID: 751536213}
+    Projectile: {fileID: 0}
+  - Name: Fear
+    Animation: {fileID: 675860572}
+    Projectile: {fileID: 0}
+  - Name: Pain
+    Animation: {fileID: 1928878173}
     Projectile: {fileID: 0}
   ClassBaseWeapons:
   - ClassName: Frogman
@@ -8361,6 +8496,24 @@ MonoBehaviour:
     Damage: 0
     Weight: 0
     Range: 2
+  - ClassName: Despair
+    Name: '? ? ?'
+    HitStat: 1
+    Damage: 1
+    Weight: 0
+    Range: 1
+  - ClassName: Fear
+    Name: '? ? ?'
+    HitStat: 1
+    Damage: 1
+    Weight: 0
+    Range: 1
+  - ClassName: Pain
+    Name: '? ? ?'
+    HitStat: 1
+    Damage: 1
+    Weight: 0
+    Range: 1
 --- !u!1 &1626109149
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,6 +10479,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1928878171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928878172}
+  - component: {fileID: 1928878173}
+  m_Layer: 0
+  m_Name: Pain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928878172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928878171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1928878173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928878171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: f0709926096b75344bd632f57eda691a, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!1 &1939318499
 GameObject:
   m_ObjectHideFlags: 0

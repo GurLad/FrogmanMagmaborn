@@ -22,7 +22,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     private float speed;
     private bool loop;
     private float count = 0;
-    private int currentAnimation = 0;
+    private int currentAnimation = -1;
     private int currentFrame = 0;
     private void Reset()
     {
