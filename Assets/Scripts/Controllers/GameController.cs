@@ -351,7 +351,7 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UITileInfo.text = Map[cursorPos.x, cursorPos.y].Name + '\n' + (Map[cursorPos.x, cursorPos.y].MovementCost <= 9 ? (Map[cursorPos.x, cursorPos.y].MovementCost + "MOV\n" + Map[cursorPos.x, cursorPos.y].ArmorModifier.ToString()[0] + "ARM") : Map[cursorPos.x, cursorPos.y].High ? "\nHigh" : "\nLow");
+                UITileInfo.text = Map[cursorPos.x, cursorPos.y].ToString();
                 Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
                 Vector2 anchor;
                 if (cursorPos.x >= MapSize.x / 2)
@@ -365,7 +365,7 @@ public class GameController : MonoBehaviour
                 if (unit != null)
                 {
                     UIUnitInfoPanel.gameObject.SetActive(true);
-                    UIUnitInfo.text = unit.Name + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
+                    UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
                     UIUnitInfoPanel.anchorMin = anchor;
                     UIUnitInfoPanel.anchorMax = anchor;
                     UIUnitInfoPanel.pivot = anchor;

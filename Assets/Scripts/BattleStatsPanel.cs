@@ -29,7 +29,7 @@ public class BattleStatsPanel : MonoBehaviour
             Pre.text += "+" + mod.Precision * 10;
             Eva.text += "+" + mod.Evasion * 10;
         }
-        else if (!origin.Flies && (armMod = GameController.Current.Map[origin.Pos.x, origin.Pos.y].ArmorModifier) != 0)
+        else if ((armMod = GameController.Current.Map[origin.Pos.x, origin.Pos.y].GetArmorModifier(origin)) != 0)
         {
             Arm.text += (armMod > 0 ? "+" : "") + armMod;
         }

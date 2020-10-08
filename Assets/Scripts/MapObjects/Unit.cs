@@ -148,7 +148,7 @@ public class Unit : MapObject
     {
         if (Flies)
         {
-            return tile.High ? 99 : 1;
+            return tile.High ? tile.MovementCost : 1;
         }
         else
         {
@@ -157,7 +157,7 @@ public class Unit : MapObject
     }
     private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)
     {
-        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range || GameController.Current.Map[x, y].High)
+        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range || !GameController.Current.Map[x, y].Passable)
         {
             return;
         }
@@ -239,7 +239,7 @@ public class Unit : MapObject
             y = Pos.y;
         }
         checkedTiles = checkedTiles ?? new bool[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        if (checkedTiles[x, y] || GameController.Current.Map[x, y].High)
+        if (checkedTiles[x, y] || !GameController.Current.Map[x, y].Passable)
         {
             return;
         }
@@ -465,7 +465,7 @@ public class Unit : MapObject
     }
     private int GetDamage(Unit other)
     {
-        int ArmorModifier = other.Flies ? 0 : GameController.Current.Map[other.Pos.x, other.Pos.y].ArmorModifier;
+        int ArmorModifier = GameController.Current.Map[other.Pos.x, other.Pos.y].GetArmorModifier(other);
         return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
     }
     public string AttackPreview(Unit other, int padding = 2)
