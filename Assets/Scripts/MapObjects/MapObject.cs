@@ -21,6 +21,11 @@ public abstract class MapObject : MonoBehaviour
     protected virtual void Start()
     {
         Pos = new Vector2Int((int)transform.position.x, -(int)transform.position.y);
+        if (GameController.Current.MapObjects.Contains(this)) // This shouldn't happen - it's becaus of the weird "no Start" bug on units created with CreatePlayerUnit.
+        {
+            Debug.LogWarning("MapObjects already contains " + name + "!");
+            return;
+        }
         GameController.Current.MapObjects.Add(this);
     }
 }

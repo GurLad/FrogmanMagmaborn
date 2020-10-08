@@ -30,6 +30,10 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     }
     private void Start()
     {
+        if (Active)
+        {
+            return;
+        }
         Renderer = Renderer != null ? Renderer : GetComponent<SpriteRenderer>();
         Animations.ForEach(a => a.Split());
         if (FixedSpeed)

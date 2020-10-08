@@ -32,7 +32,9 @@ public class GameController : MonoBehaviour
     public GameObject PauseMenu;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
-    public bool DebugCheats;
+    [Header("Debug")]
+    public bool StartAtEndgame;
+    public int SpeedMultiplier;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
@@ -74,8 +76,9 @@ public class GameController : MonoBehaviour
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
                 {
-                    Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
+                    Unit unit = CreateUnit();
                     unit.Load(playerUnits[i]);
+                    unit.name = "Unit" + unit.Name;
                     AssignUnitMapAnimation(unit);
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
@@ -159,8 +162,8 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
-        //Time.timeScale = 3; // For debugging
-        if (DebugCheats)
+        Time.timeScale = SpeedMultiplier; // For debugging
+        if (StartAtEndgame)
         {
             LevelNumber = 4;
             playerUnitsCache = new List<Unit>();
@@ -537,7 +540,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentUnitsObject.gameObject);
         }
-        currentUnitsObject = Instantiate(new GameObject(), transform).transform;
         // Select conversation
         ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
@@ -547,9 +549,17 @@ public class GameController : MonoBehaviour
         // Play conversation
         ConversationPlayer.Current.Play(conversation);
     }
-    public Unit CreatePlayerUnit(string name)
+    private Unit CreateUnit()
     {
         Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
+        unit.Name = "TEMP";
+        unit.name = "UnitTEMP";
+        unit.gameObject.SetActive(true);
+        return unit;
+    }
+    public Unit CreatePlayerUnit(string name)
+    {
+        Unit unit = CreateUnit();
         unit.Name = name;
         unit.name = "Unit" + name;
         unit.Level = LevelNumber;
@@ -562,7 +572,7 @@ public class GameController : MonoBehaviour
         unit.Stats += unit.Stats.GetLevelUp(LevelNumber);
         unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
         AssignUnitMapAnimation(unit);
-        unit.gameObject.SetActive(true);
+        unit.Init();
         return unit;
     }
     private void AssignUnitMapAnimation(Unit unit)
@@ -594,7 +604,8 @@ public class GameController : MonoBehaviour
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Map
-        currentMapObject = Instantiate(new GameObject(), transform).transform;
+        currentMapObject = new GameObject("MapObject").transform;
+        currentMapObject.parent = transform;
         Map = new Tile[MapSize.x, MapSize.y];
         for (int i = 0; i < MapSize.x; i++)
         {
@@ -629,7 +640,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentUnitsObject.gameObject);
         }
-        currentUnitsObject = Instantiate(new GameObject(), transform).transform;
+        currentUnitsObject = new GameObject("UnitsObject").transform;
+        currentUnitsObject.parent = transform;
         List<Unit> playerCharacters = PlayerUnits;
         // Units
         List<string> unitDatas = room.Units;
@@ -653,8 +665,9 @@ public class GameController : MonoBehaviour
                         unit.transform.parent = currentUnitsObject;
                         unit.Health = unit.Stats.MaxHP;
                         unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-                        if (!MapObjects.Contains(unit))
+                        if (!MapObjects.Contains(unit)) // This shouldn't exist - it's because of the weird "no Start" bug on units created with CreatePlayerUnit.
                         {
+                            Debug.Log("Why isn't " + unit.Name + " part of MapObjects?");
                             MapObjects.Add(unit);
                         }
                     }
@@ -667,8 +680,9 @@ public class GameController : MonoBehaviour
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-                    if (!MapObjects.Contains(unit))
+                    if (!MapObjects.Contains(unit)) // This shouldn't exist - it's because of the weird "no Start" bug on units created with CreatePlayerUnit.
                     {
+                        Debug.Log("Why isn't " + unit.Name + " part of MapObjects?");
                         MapObjects.Add(unit);
                     }
                     cursorPos = unit.Pos; // Auto-cursor
@@ -708,6 +722,7 @@ public class GameController : MonoBehaviour
             AssignUnitMapAnimation(unit);
             unit.gameObject.SetActive(true);
         }
+        Debug.Log("Units: " + string.Join(", ", units));
         currentPhase = Team.Player;
         interactable = true;
     }

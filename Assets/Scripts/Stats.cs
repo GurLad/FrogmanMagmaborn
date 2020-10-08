@@ -173,12 +173,16 @@ public class Stats
         }
         for (int i = 0; i < 3; i++) // Three stats per level
         {
-            int value = Random.Range(0, sumGrowths);
-            int j = -1;
+            int j;
             do
             {
-                value -= Growths[++j];
-            } while (value > 0);
+                int value = Random.Range(0, sumGrowths);
+                j = -1;
+                do
+                {
+                    value -= Growths[++j];
+                } while (value > 0);
+            } while (result[j] >= Growths[j]);
             result[j]++;
         }
         return result;

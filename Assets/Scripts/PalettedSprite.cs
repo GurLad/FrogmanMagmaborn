@@ -27,6 +27,11 @@ public class PalettedSprite : MonoBehaviour
 
     public void Awake()
     {
+        if (!enabled)
+        {
+            // This is so weird. Probably related to the "no Start" bug on units created with CreatePlayerUnit?
+            enabled = true;
+        }
         ui = (renderer = GetComponent<SpriteRenderer>()) == null;
         if (!ui)
         {

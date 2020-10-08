@@ -48,8 +48,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     {
         attackerAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Attacker.Class).Animation, AttackerObject.transform);
         attackerAnimation.Renderer = AttackerObject;
+        attackerAnimation.Animations.ForEach(a => a.Split());
         defenderAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Defender.Class).Animation, DefenderObject.transform);
         defenderAnimation.Renderer = DefenderObject;
+        defenderAnimation.Animations.ForEach(a => a.Split());
         attackerAnimation.EditorPreview();
         defenderAnimation.EditorPreview();
         attackerAnimation.Listeners.Add(this);

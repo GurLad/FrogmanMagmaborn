@@ -57,19 +57,32 @@ public class Unit : MapObject
     public void Init()
     {
         palette = GetComponent<PalettedSprite>();
+        if (palette == null)
+        {
+            throw new System.Exception("No palette (Init)!");
+        }
         palette.Awake();
+        Start(); // There is a very weird bug - units created with CreatePlayerUnit don't activate their Start function. This is a bad workaround.
     }
     protected override void Start()
     {
         base.Start();
         palette = palette ?? GetComponent<PalettedSprite>();
-        Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
+        if (palette == null)
+        {
+            throw new System.Exception("No palette (Start)!");
+        }
+        LoadIcon();
         Moved = Statue;
         Health = Stats.MaxHP;
         if (AIType == AIType.Guard)
         {
             Movement = 0;
         }
+    }
+    private void LoadIcon()
+    {
+        Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
     }
     public override void Interact(InteractState interactState)
     {
@@ -279,7 +292,7 @@ public class Unit : MapObject
     {
         CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
         BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
-        GameController.Current.transform.parent.gameObject.SetActive(false);
+        GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
         battleAnimationController.Attacker = this;
         battleAnimationController.Defender = unit;
         battleAnimationController.StartBattle();
@@ -522,11 +535,10 @@ public class Unit : MapObject
     {
         Marker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
         Marker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
-        Portrait icon = Icon; // Move the find portrait code to a function
         JsonUtility.FromJsonOverwrite(json, this);
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
-        Icon = icon;
+        LoadIcon();
         moved = false;
     }
 }

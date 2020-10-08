@@ -8410,7 +8410,7 @@ MonoBehaviour:
     Growths: 040000000300000002000000010000000200000002000000
     Flies: 0
   - Name: Kresla
-    Growths: 020000000100000003000000030000000400000000000000
+    Growths: 010000000100000003000000030000000400000000000000
     Flies: 1
   - Name: Xirveros
     Growths: 030000000200000002000000030000000100000003000000
@@ -10316,7 +10316,8 @@ MonoBehaviour:
   PauseMenu: {fileID: 8395741752350760390, guid: abe1a1ceaf11fda47a5e3aa7473c26ea,
     type: 3}
   EnemyAIMoveDelay: 1
-  DebugCheats: 1
+  StartAtEndgame: 0
+  SpeedMultiplier: 2
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
