@@ -31,6 +31,26 @@ public class OpeningCutscene : MonoBehaviour
     }
     private void Update()
     {
+        if (Control.GetButtonDown(Control.CB.Start))
+        {
+            if (transition != null)
+            {
+                Destroy(transition);
+            }
+            for (int i = 0; i < ImageParts.Count; i++)
+            {
+                PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i];
+                ImageParts[i].gameObject.SetActive(true);
+                ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
+            }
+            Menu.SetActive(true);
+            Destroy(this);
+            if (CreditsObject != null)
+            {
+                Destroy(CreditsObject.gameObject);
+            }
+            return;
+        }
         if (transition == null)
         {
             currentPart++;
