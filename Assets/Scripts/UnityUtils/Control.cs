@@ -87,12 +87,17 @@ public static class Control
         Save(axis + "-" + SaveNameModifier(), (int)negativeValue, SaveMode.Global);
     }
 
+    public static void SetKey(string keySaveName, KeyCode value)
+    {
+        Save(keySaveName + SaveNameModifier(), (int)value, SaveMode.Global);
+    }
+
     public static string DisplayButtonName(string keySaveName)
     {
         return GetKeyCode(keySaveName).ToString();
     }
 
-    private static KeyCode GetKeyCode(string keySaveName)
+    public static KeyCode GetKeyCode(string keySaveName)
     {
         return (KeyCode)Load(keySaveName + SaveNameModifier(), 0, SaveMode.Global);
     }
