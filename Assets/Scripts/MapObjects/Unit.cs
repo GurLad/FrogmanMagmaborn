@@ -364,8 +364,16 @@ public class Unit : MapObject
                 GameController.Current.FinishMove(this);
                 break;
             case AIType.Guard:
-                // Not very efficient - replace with a simple "check attack range" function.
-                HoldAI(enemyUnits);
+                // This is the only AI that can used ranged attacks (because I have no plans for ranged mobile enemies before the Guards)
+                int[,] dangerArea = GetDangerArea();
+                enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
+                foreach (Unit unit in enemyUnits)
+                {
+                    if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
+                    {
+                        Fight(unit);
+                    }
+                }
                 GameController.Current.FinishMove(this);
                 break;
             default:
