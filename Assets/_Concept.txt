@@ -48,3 +48,35 @@ I originally thought of some AI ideas a few weeks ago, but forgot to write it do
 --Group charge:
   Similar to charge, but all units in the group choose the same uni to attack, even if some of them end up in unfavorable terrain because of that
   or can't reach them in the same turn. Could also make it like Bait, where at least X units must be able to attack that unit.
+
+Alternate Torment levels palette:
+Torment, as a character, is mostly cyan-bright cyan. Since no team uses these colors, and with the, being th final boss, it's weird that they're red in-game.
+In addition, the Guards boss and Torment should be able to appear at the same time, so using the Guard's palette is problematic.
+Here are a couple of solutions, each with their own problems, sorted from easiest to implement to hardest.
+1.  Use the Guard's palette:
+    This technically has zero problems now, as the only Torment level contains zero guards, but will become very problematic in the future.
+    Pros:
+    -Zero coding or changes - simply change their team and the name during Torment levels (already done).
+    -Most mechanics just work - all palette changing works as expected, and so will future mechanics.
+    -No undesired changes - the game already assumes that the Guard palette exists, so it doesn't affect other graphics.
+    Cons:
+    -Can't have Torment and Guards in the same room - which is very problematic for the future.
+    -No current Guard support - while I could hardcode a simple solution, it kind of removes the main advantage of this method - works immediately in the short term.
+2.  Change the monsters palette color (current):
+    Simply change the red colors in the PaletteController to cyan ones.
+    Pros:
+    -Minimal coding - only a few lines. Besides being quick & lazy, it keeps the code simple & clean with few hardcoded 'if's and such.
+    -Most mechanics just work - all palette changing works as expected, and so will future mechanics.
+    -Immediate guard support - as it doesn't affect them at all.
+    Cons:
+    -Lots of undesired changes - from changing stat colors to completely wrecking portraits, it ruins many details, without the charm of, say, Kirby's Adventure's palette swapping.
+2a. Also change Torment's color:
+    It has the same pros and cons from before, but changing red to yellow or pink for example will not be as bad.
+3.  Create a complicated system that constantly shifts palettes:
+    I rarely use all four palettes outside of the map, so constantly switching palettes depending on the needs of the moment will probably work.
+    The only problematic place I can think of is having Player, Torment and Guard characters in the same room and a speaking character that uses the gray palette.
+    Pros:
+    -If done correctly, will solve all problems - no undesired changes and supports Guards.
+    Cons:
+    -Hard and complicated to implement - the only I can think of right now to do that is simply add tons of 'if's to lots of scripts.
+    -Messes up the code - the above method will make the code unreadable, hard to maintain and easily breakable.

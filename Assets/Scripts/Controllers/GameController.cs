@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
     public GameObject PauseMenu;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
+    [Header("Torment palette")]
+    public Palette TormentPalette;
     [Header("Debug")]
     public bool StartAtEndgame;
     public int SpeedMultiplier;
@@ -55,6 +57,7 @@ public class GameController : MonoBehaviour
     public InteractState InteractState = InteractState.None;
     [HideInInspector]
     public Unit Selected;
+    private Palette basePalette;
     private List<Room> rooms;
     private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
@@ -116,6 +119,14 @@ public class GameController : MonoBehaviour
             return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
     }
+    public static string TeamToString(Team team)
+    {
+        if (Current.LevelNumber % 4 == 0 && team == Team.Monster)
+        {
+            return "Torment";
+        }
+        return team.ToString();
+    }
     private void Awake()
     {
         /*
@@ -159,6 +170,8 @@ public class GameController : MonoBehaviour
         }
         // Awake enemy marker
         EnemyMarker.GetComponent<PalettedSprite>().Awake();
+        // Set base palette
+        basePalette = new Palette(PaletteController.Current.SpritePalettes[1]);
     }
     private void Start()
     {
@@ -539,6 +552,15 @@ public class GameController : MonoBehaviour
         if (currentUnitsObject != null)
         {
             Destroy(currentUnitsObject.gameObject);
+        }
+        // Set palette for Torment levels
+        if (LevelNumber % 4 == 0)
+        {
+            PaletteController.Current.SpritePalettes[1] = TormentPalette;
+        }
+        else
+        {
+            PaletteController.Current.SpritePalettes[1] = basePalette;
         }
         // Select conversation
         ConversationData conversation = ConversationController.Current.SelectConversation();

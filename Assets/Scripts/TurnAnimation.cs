@@ -20,7 +20,7 @@ public class TurnAnimation : MonoBehaviour
     }
     public void ShowTurn(Team team)
     {
-        text.text = team + " turn";
+        text.text = GameController.TeamToString(team) + " turn";
         palette.Palette = (int)team;
         pos = -TargetPos;
     }

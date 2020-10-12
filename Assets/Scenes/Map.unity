@@ -10209,6 +10209,12 @@ MonoBehaviour:
   PauseMenu: {fileID: 8395741752350760390, guid: abe1a1ceaf11fda47a5e3aa7473c26ea,
     type: 3}
   EnemyAIMoveDelay: 1
+  TormentPalette:
+    Colors:
+    - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+    - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+    - {r: 1, g: 0, b: 1, a: 0}
   StartAtEndgame: 1
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}

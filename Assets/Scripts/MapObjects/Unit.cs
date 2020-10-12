@@ -82,7 +82,14 @@ public class Unit : MapObject
     }
     private void LoadIcon()
     {
-        Icon = PortraitController.Current.FindPortrait(Name); // Change to load one depending on class (if enemy) or name (if player)
+        if (TheTeam == Team.Player)
+        {
+            Icon = PortraitController.Current.FindPortrait(Name);
+        }
+        else
+        {
+            Icon = PortraitController.Current.FindPortrait(GameController.TeamToString(TheTeam));
+        }
     }
     public override void Interact(InteractState interactState)
     {

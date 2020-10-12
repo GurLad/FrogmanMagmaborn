@@ -77,6 +77,13 @@ public class Palette
             Colors[i] = Color.black;
         }
     }
+    public Palette(Palette copyFrom)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Colors[i] = copyFrom[i];
+        }
+    }
 }
 
 public class PaletteTransition : MonoBehaviour
