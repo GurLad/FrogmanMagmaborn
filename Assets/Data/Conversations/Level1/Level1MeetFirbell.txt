@@ -1,0 +1,14 @@
+priority:5
+unique:T
+id:MeetFirbell
+~
+roomNumber:1
+~
+hasCharacter:Firbell
+~
+:play:BeforeBattle
+Firbell: My name is Firbell.
+# Currently, the Firbell/Kresla maps are character specific. I need to change that.
+~
+:play:AfterBattle
+Frogman: We won!

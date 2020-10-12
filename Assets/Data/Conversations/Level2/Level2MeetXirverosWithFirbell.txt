@@ -1,14 +1,15 @@
-priority:1
-unique:F
+priority:5
+unique:T
+id:MeetXirveros
 ~
 roomNumber:2
-charactersAlive:<1
+hasCharacter:Firbell
 ~
-charactersAlive:=1
+charactersAlive:=2
 ~
 :play:BeforeBattle
 :addUnit:Xirveros
 :loadUnits:
 Frogman: Hello there!
 Xirveros: Me named Xirveros.
-Frogman: Oh no! Someone is dead!
+Firbell: He's a wizard gone mad.

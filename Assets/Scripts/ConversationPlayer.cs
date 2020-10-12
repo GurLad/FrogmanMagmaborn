@@ -18,6 +18,13 @@ public class ConversationPlayer : MidBattleScreen
     private int currentChar;
     private float count;
     private bool postBattle = false;
+    private List<string> lines
+    {
+        get
+        {
+            return postBattle ? origin.PostBattleLines : origin.Lines;
+        }
+    }
     private void Awake()
     {
         Current = this;
@@ -29,7 +36,7 @@ public class ConversationPlayer : MidBattleScreen
             switch (state)
             {
                 case CurrentState.Writing:
-                    string line = postBattle ? origin.PostBattleLines[currentLine] : origin.Lines[currentLine];
+                    string line = lines[currentLine];
                     if (Control.GetButtonDown(Control.CB.A))
                     {
                         int index = line.IndexOf(':');
@@ -58,22 +65,9 @@ public class ConversationPlayer : MidBattleScreen
                 case CurrentState.Waiting:
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        if (++currentLine >= (postBattle ? origin.PostBattleLines.Count : origin.Lines.Count))
+                        if (++currentLine >= lines.Count)
                         {
-                            // Finish conversation
-                            MidBattleScreen.Current = null;
-                            gameObject.SetActive(false);
-                            state = CurrentState.Sleep;
-                            if (postBattle)
-                            {
-                                origin = null;
-                                GameController.Current.Win();
-                            }
-                            else
-                            {
-                                CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
-                            }
-                            return;
+                            FinishConversation();
                         }
                         else
                         {
@@ -117,10 +111,9 @@ public class ConversationPlayer : MidBattleScreen
     private void StartLine(int num)
     {
         currentLine = num;
-        string line = postBattle ? origin.PostBattleLines[currentLine] : origin.Lines[currentLine];
-        if (line[0] == ':')
+        string line = lines[currentLine];
+        if (line[0] == ':') // Command
         {
-            // Command
             string[] parts = line.Split(':');
             switch (parts[1])
             {
@@ -142,7 +135,26 @@ public class ConversationPlayer : MidBattleScreen
                 default:
                     break;
             }
-            StartLine(num + 1);
+            if (num + 1 < lines.Count)
+            {
+                StartLine(num + 1);
+            }
+            else
+            {
+                FinishConversation();
+            }
+            return;
+        }
+        else if (line[0] == '#') // Comment, like this one :)
+        {
+            if (num + 1 < lines.Count)
+            {
+                StartLine(num + 1);
+            }
+            else
+            {
+                FinishConversation();
+            }
             return;
         }
         if (line.IndexOf(':') != -1)
@@ -160,5 +172,22 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Writing;
         Text.text = line[currentChar].ToString();
         Arrow.SetActive(false);
+    }
+    private void FinishConversation()
+    {
+        // Finish conversation
+        MidBattleScreen.Current = null;
+        gameObject.SetActive(false);
+        state = CurrentState.Sleep;
+        if (postBattle)
+        {
+            origin = null;
+            GameController.Current.Win();
+        }
+        else
+        {
+            CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
+        }
+        return;
     }
 }

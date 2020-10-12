@@ -1,14 +1,15 @@
-priority:1
-unique:F
+priority:5
+unique:T
+id:MeetXirveros
 ~
 roomNumber:2
-hasCharacter:Kresla
+charactersAlive:<1
 ~
-charactersAlive:=2
+charactersAlive:=1
 ~
 :play:BeforeBattle
 :addUnit:Xirveros
 :loadUnits:
 Frogman: Hello there!
 Xirveros: Me named Xirveros.
-Kresla: This is Xirveros, a mad wizard.
+Frogman: Nice to meet you!

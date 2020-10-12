@@ -144,7 +144,7 @@ public class GameController : MonoBehaviour
         {
             Room room = new Room();
             room.Name = Rooms[i].name;
-            string[] selectedRoom = Rooms[i].text.Split('\n');
+            string[] selectedRoom = Rooms[i].text.Replace("\r", "").Split('\n');
             // Level numer
             room.RoomNumber = int.Parse(selectedRoom[3]);
             // Tile set
@@ -623,6 +623,7 @@ public class GameController : MonoBehaviour
         }
         // Load room
         Set = room.TileSet;
+        Debug.Log(Set);
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Map
@@ -809,7 +810,7 @@ public class GameController : MonoBehaviour
             switch (parts[0])
             {
                 case "hasCharacter":
-                    return Units.Contains(parts[1]);
+                    return string.Join("|", Units).Contains(parts[1]);
                 case "charactersAlive":
                     // Find number of returning playable characters in map (excluding Frogman and recruitments)
                     int count = 0;

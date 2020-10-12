@@ -1,4 +1,4 @@
-priority:1
+priority:-1
 unique:F
 ~
 roomNumber:4
@@ -8,12 +8,12 @@ roomNumber:4
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
-Frogman: Hello!
-Torment: Hello!
+Frogman: Not again!
 :play:Trustworthy
+Torment: Yes again!
 Frogman: Oh no!
 :play:Trickster:T
-Frogman: Oh no!!!
+Torment: Oh yes!
 Torment: Heh heh heh!
 :playIntro:Tormentor
 :loadMap:

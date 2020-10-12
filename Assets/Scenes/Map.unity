@@ -165,12 +165,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Conversations:
-  - {fileID: 4900000, guid: 784b6984d33b93446af0a73464b36705, type: 3}
-  - {fileID: 4900000, guid: cfcc8d90efe7f8045aefff38f1912e78, type: 3}
-  - {fileID: 4900000, guid: 63f37b40b5783ca45a15fe15a2438eb1, type: 3}
-  - {fileID: 4900000, guid: 3f68bbc73ba32f847b3aa924e7708ed3, type: 3}
-  - {fileID: 4900000, guid: 39d71d03ba2ff2343b0220cb8374c724, type: 3}
-  - {fileID: 4900000, guid: db8fa9aafc6c0e64baaad121c193cef6, type: 3}
+  - {fileID: 4900000, guid: 660f5cf41b104c34a903abc706da5d98, type: 3}
+  - {fileID: 4900000, guid: 1560be847fa347745aa869229509efd8, type: 3}
+  - {fileID: 4900000, guid: 1336866809ebdf14399e3d60631f4339, type: 3}
+  - {fileID: 4900000, guid: 4a21332be738a024489f16d300a1c4ab, type: 3}
+  - {fileID: 4900000, guid: f02ad7b8227dbfb41857a8464f596c47, type: 3}
+  - {fileID: 4900000, guid: 18ebf6103dc513844806ffb47c062bec, type: 3}
+  - {fileID: 4900000, guid: c17cc2b4c07547642825eb51dceadf15, type: 3}
+  - {fileID: 4900000, guid: 9294e01bc19e4a2428484513845d1dcb, type: 3}
+  - {fileID: 4900000, guid: 26da942a4d32d0348be064c799395ad8, type: 3}
+  - {fileID: 4900000, guid: dc5ea34fc8492ca45b735594efd9d805, type: 3}
+  - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
+  - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
 --- !u!1 &56271733
 GameObject:
   m_ObjectHideFlags: 0
@@ -10216,7 +10222,7 @@ MonoBehaviour:
     - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   StartAtEndgame: 1
-  SpeedMultiplier: 1
+  SpeedMultiplier: 2
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}

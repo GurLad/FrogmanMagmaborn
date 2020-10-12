@@ -14,30 +14,39 @@ public class ConversationController : MonoBehaviour
         options = new List<ConversationData>();
         foreach (TextAsset conversation in Conversations)
         {
-            options.Add(new ConversationData(conversation.text.Replace("\r", "")));
+            options.Add(new ConversationData(conversation));
         }
+        options = options.FindAll(a => !a.Done);
     }
     public ConversationData SelectConversation()
     {
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
-        return currentOptions[0];
+        Debug.Log("Options: " + string.Join(", ", currentOptions));
+        ConversationData chosen = currentOptions[0];
+        if (chosen.Choose())
+        {
+            options.Remove(chosen);
+        }
+        return chosen;
     }
 }
 
 public class ConversationData : IComparable<ConversationData>
 {
-    public int Priority { get; private set; }
-    public bool Unique { get; private set; } // Technically, it's probably a better idea to give them ID's and just destry/ignore ones if unique and ID matches saved data.
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
     public List<string> Demands { get; private set; } // See above.
     public List<string> Lines { get; private set; } // See above.
     public List<string> PostBattleLines { get; private set; }
+    public bool Done { get; private set; }
+    private int priority;
+    private bool unique;
+    private string id = null;
 
-    public ConversationData(string source)
+    public ConversationData(TextAsset sourceFile)
     {
         // I know that using JSON is techincally better, but I want to be able to create events using a simple text editor, so splits are simple.
-        source = source.Replace('~', '\a').Replace(@"\w", "~");
+        string source = sourceFile.text.Replace("\r", "").Replace('~', '\a').Replace(@"\w", "~");
         string[] parts = source.Split('\a');
         string[] lines = parts[0].Split('\n');
         for (int i = 0; i < lines.Length; i++)
@@ -46,14 +55,23 @@ public class ConversationData : IComparable<ConversationData>
             switch (lineParts[0])
             {
                 case "priority":
-                    Priority = int.Parse(lineParts[1]);
+                    priority = int.Parse(lineParts[1]);
                     break;
                 case "unique":
-                    Unique = lineParts[1] == "T";
+                    unique = lineParts[1] == "T";
+                    break;
+                case "id":
+                    id = lineParts[1];
                     break;
                 default:
                     break;
             }
+        }
+        // Check unique & id
+        id = id ?? sourceFile.name;
+        if (unique && SavedData.Load<int>(id) == 1)
+        {
+            Done = true;
         }
         // Current approach, Requirments is a list of strings
         Requirements = new List<string>(parts[1].Split('\n'));
@@ -85,6 +103,11 @@ public class ConversationData : IComparable<ConversationData>
     // When I originally wrote this class, I commented on everything. Too bad future me isn't as patient.
     public bool MeetsRequirements()
     {
+        if (Done) // Failsafe
+        {
+            Debug.LogWarning("Checking requirements of a done conversation? (" + id + ")");
+            return false;
+        }
         foreach (var requirement in Requirements)
         {
             if (requirement[0] == '!')
@@ -139,14 +162,29 @@ public class ConversationData : IComparable<ConversationData>
 
     public int CompareTo(ConversationData other)
     {
-        if (Priority.CompareTo(other.Priority) != 0)
+        if (priority.CompareTo(other.priority) != 0)
         {
-            return Priority.CompareTo(other.Priority);
+            return -priority.CompareTo(other.priority);
         }
         else
         {
             return UnityEngine.Random.Range(-1, 2);
         }
+    }
+
+    public bool Choose()
+    {
+        if (unique)
+        {
+            SavedData.Save(id, 1);
+            return true;
+        }
+        return false;
+    }
+
+    public override string ToString()
+    {
+        return id;
     }
 }
 
