@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ConversationPlayer : MidBattleScreen
 {
@@ -12,6 +13,8 @@ public class ConversationPlayer : MidBattleScreen
     public Text Text;
     public PortraitHolder Portrait;
     public GameObject Arrow;
+    [SerializeField]
+    private bool startActive = true;
     private CurrentState state;
     private ConversationData origin;
     private int currentLine;
@@ -28,6 +31,7 @@ public class ConversationPlayer : MidBattleScreen
     private void Awake()
     {
         Current = this;
+        gameObject.SetActive(startActive);
     }
     private void Update()
     {
@@ -86,13 +90,16 @@ public class ConversationPlayer : MidBattleScreen
         gameObject.SetActive(true);
         MidBattleScreen.Current = this;
         origin = conversation;
-        if (!origin.Lines.Contains(":loadUnits:") && !origin.Lines.Contains(":loadUnits"))
+        if (GameController.Current != null)
         {
-            GameController.Current.LoadLevelUnits();
-        }
-        if (!origin.Lines.Contains(":loadMap:") && !origin.Lines.Contains(":loadMap"))
-        {
-            GameController.Current.LoadMap();
+            if (!origin.Lines.Contains(":loadUnits:") && !origin.Lines.Contains(":loadUnits"))
+            {
+                GameController.Current.LoadLevelUnits();
+            }
+            if (!origin.Lines.Contains(":loadMap:") && !origin.Lines.Contains(":loadMap"))
+            {
+                GameController.Current.LoadMap();
+            }
         }
         StartLine(0);
     }
@@ -179,6 +186,10 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Current = null;
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
+        if (GameController.Current == null)
+        {
+            SceneManager.LoadScene("Map");
+        }
         if (postBattle)
         {
             origin = null;

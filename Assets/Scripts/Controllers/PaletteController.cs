@@ -55,6 +55,7 @@ public class PaletteController : MonoBehaviour
         transition.Source = background ? BackgroundPalettes[id] : SpritePalettes[id];
         transition.Target = target;
         transition.Speed = speed;
+        transition.Background = background;
         return transition;
     }
 }
@@ -92,12 +93,17 @@ public class PaletteTransition : MonoBehaviour
     public Palette Source;
     public Palette Target;
     public int Current = 3;
+    public bool Background;
     private static float count = 0;
     public void Start()
     {
         for (int i = 0; i < 4; i++)
         {
             Source.Colors[i] = Color.black;
+        }
+        if (!Background)
+        {
+            Source.Colors[3].a = 0;
         }
     }
     private void Update()
@@ -108,6 +114,7 @@ public class PaletteTransition : MonoBehaviour
             if (Current <= 0)
             {
                 Destroy(this);
+                return;
             }
             count -= 1;
             for (int i = 2; i > 0; i--)
@@ -115,6 +122,10 @@ public class PaletteTransition : MonoBehaviour
                 Source.Colors[i + 1] = Source[i];
             }
             Source.Colors[1] = Target[Current--];
+            if (!Background)
+            {
+                Source.Colors[3].a = 0;
+            }
         }
     }
 }
