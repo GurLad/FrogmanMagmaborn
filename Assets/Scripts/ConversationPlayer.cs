@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class ConversationPlayer : MidBattleScreen
 {
@@ -188,7 +187,8 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Sleep;
         if (GameController.Current == null)
         {
-            SceneManager.LoadScene("Map");
+            SceneController.LoadScene("Map");
+            return;
         }
         if (postBattle)
         {

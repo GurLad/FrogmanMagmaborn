@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -57,6 +56,8 @@ public class GameController : MonoBehaviour
     public InteractState InteractState = InteractState.None;
     [HideInInspector]
     public Unit Selected;
+    [HideInInspector]
+    public int Turn;
     private Palette basePalette;
     private List<Room> rooms;
     private Team currentPhase = Team.Player;
@@ -208,7 +209,7 @@ public class GameController : MonoBehaviour
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
-                SceneManager.LoadScene("Menu");
+                SceneController.LoadScene("Menu");
             }
             else if (CheckPlayerWin())
             {
@@ -495,6 +496,10 @@ public class GameController : MonoBehaviour
             }
         }
         interactable = team == Team.Player;
+        if (team == Team.Player)
+        {
+            Turn++;
+        }
     }
     public void TransitionToMidBattleScreen(MidBattleScreen screen)
     {
@@ -553,6 +558,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentUnitsObject.gameObject);
         }
+        Turn = 1;
         // Set palette for Torment levels
         if (LevelNumber % 4 == 0)
         {
@@ -752,6 +758,19 @@ public class GameController : MonoBehaviour
     public void ShowDangerArea()
     {
         units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
+    }
+    public string ObjectiveData()
+    {
+        switch (selectedRoom.Objective)
+        {
+            case Objective.Rout:
+                return "Rout the enemy";
+            case Objective.Boss:
+                return "Defeat " + selectedRoom.ObjectiveData;
+            default:
+                break;
+        }
+        return "";
     }
     private bool CheckPlayerWin()
     {

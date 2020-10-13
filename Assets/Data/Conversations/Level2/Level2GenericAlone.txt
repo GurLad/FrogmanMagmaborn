@@ -2,9 +2,9 @@ priority:-1
 unique:F
 ~
 roomNumber:2
-charactersAlive:>0
+charactersAlive:<1
 ~
-charactersAlive:=2
+charactersAlive:=1
 ~
 :play:BeforeBattle
 :addUnit:Xirveros
