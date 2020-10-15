@@ -5,10 +5,46 @@ id:MeetKresla
 roomNumber:1
 ~
 hasCharacter:Kresla
-~
-:play:BeforeBattle
-Kresla: My name is Kresla.
 # Currently, the Firbell/Kresla maps are character specific. I need to change that.
 ~
+:play:BeforeBattle
+Kresla|???: I've never seen you before!
+More than that, I've never seen
+your KIND before! You must be new here!
+Frogman: Who are you? Where's Firbell?
+Kresla|???: Right, of course, where are my manners?
+Kresla: My name is Kresla, a fearless scholar.
+Firbell is very inter- eseting, isn't she?
+Did you know that you can tell her title
+and place of birth just from her name?
+But I'm getting ahead of myself. What did
+you ask again?
+Frogman: Where is she. But we are surrounded
+by monsters, let's deal with them first.
+Kresla: Yes, yes, the boring monsters first.
+~
 :play:AfterBattle
-Frogman: We won!
+Kresla: Now that's taken care of, where were we?
+What are you? Where are you from?
+Frogman: I, uh, don't remember.
+Kresla: THAT new, huh? Interesting!
+This is quite the discovery!
+If only I could tell my fellow scholars!
+But THOSE cowards would never come here
+Anyway, did you say something?
+Frogman: No, but-
+Kresla: Ah, right! You wanted to know where
+Firbell is!
+Well, each time we return, is from a
+different place, and always from Magma.
+This time, you returned near me.
+Last time, near Firbell.
+If only I could map this place...
+It's huge!
+Frogman: Ah, that makes sense. Shall we leave now?
+Kresla: Did I tell you about Firbell's name?
+That was my first discovery here!
+You see, where she comes from...
+Frogman: Right. I'm leaving.
+Kresla:...F means she's an heir, Ir means...
+Wait, where are you going? Wait for me!

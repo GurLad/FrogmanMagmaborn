@@ -8,6 +8,7 @@ public class ConversationPlayer : MidBattleScreen
     public enum CurrentState { Writing, Waiting, Sleep }
     public new static ConversationPlayer Current;
     public float LettersPerSecond;
+    public int LineWidth = 22;
     public Text Name;
     public Text Text;
     public PortraitHolder Portrait;
@@ -20,6 +21,7 @@ public class ConversationPlayer : MidBattleScreen
     private int currentChar;
     private float count;
     private bool postBattle = false;
+    private string targetLine;
     private List<string> lines
     {
         get
@@ -39,11 +41,9 @@ public class ConversationPlayer : MidBattleScreen
             switch (state)
             {
                 case CurrentState.Writing:
-                    string line = lines[currentLine];
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        int index = line.IndexOf(':');
-                        Text.text = line.Substring(index >= 0 ? index + 2 : 0);
+                        Text.text = targetLine;
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
                     }
@@ -52,10 +52,10 @@ public class ConversationPlayer : MidBattleScreen
                         count += Time.deltaTime * LettersPerSecond;
                         if (count >= 1)
                         {
-                            if (++currentChar < line.Length)
+                            if (++currentChar < targetLine.Length)
                             {
                                 count -= 1;
-                                Text.text += line[currentChar];
+                                Text.text += targetLine[currentChar];
                             }
                             else
                             {
@@ -168,15 +168,25 @@ public class ConversationPlayer : MidBattleScreen
             string[] parts = line.Split(':')[0].Split('|');
             Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
             Name.text = parts[parts.Length - 1];
-            currentChar = line.IndexOf(':') + 2;
+        }
+        // Find the line break
+        string trueLine = FindLineBreack(TrueLine(lines[currentLine]));
+        // Check if it's short (aka no line break) and had previous
+        if (line.IndexOf(':') < 0 && LineAddition(trueLine))
+        {
+            string[] previousLineParts = targetLine.Split('\n');
+            targetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
+            currentChar = previousLineParts[previousLineParts.Length - 1].Length;
+            Text.text = previousLineParts[previousLineParts.Length - 1] + targetLine[currentChar].ToString();
         }
         else
         {
+            targetLine = trueLine;
             currentChar = 0;
+            Text.text = targetLine[currentChar].ToString();
         }
         count = 0;
         state = CurrentState.Writing;
-        Text.text = line[currentChar].ToString();
         Arrow.SetActive(false);
     }
     private void FinishConversation()
@@ -205,5 +215,29 @@ public class ConversationPlayer : MidBattleScreen
             }
         }
         return;
+    }
+    private string TrueLine(string line)
+    {
+        int index = line.IndexOf(':');
+        line = line.Substring(index >= 0 ? index + 2 : 0);
+        return line;
+    }
+    private string FindLineBreack(string line)
+    {
+        for (int i = line.IndexOf(' '); i > -1; i = line.IndexOf(' ', i + 1))
+        {
+            int length = line.Substring(0, i + 1).Length + line.Substring(i + 1).Split(' ')[0].Length;
+            Debug.Log(length + ": " + line.Substring(0, i + 1) + line.Substring(i + 1).Split(' ')[0]);
+            if (length > LineWidth)
+            {
+                line = line.Substring(0, i) + '\n' + line.Substring(i + 1);
+                break;
+            }
+        }
+        return line;
+    }
+    private bool LineAddition(string trueLine)
+    {
+        return trueLine.IndexOf('\n') < 0 && currentLine >= 1;
     }
 }
