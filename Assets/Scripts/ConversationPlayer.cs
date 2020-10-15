@@ -165,9 +165,9 @@ public class ConversationPlayer : MidBattleScreen
         }
         if (line.IndexOf(':') != -1)
         {
-            string[] parts = line.Split(':');
-            Name.text = parts[0]; // Also change image
+            string[] parts = line.Split(':')[0].Split('|');
             Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
+            Name.text = parts[parts.Length - 1];
             currentChar = line.IndexOf(':') + 2;
         }
         else
@@ -192,12 +192,17 @@ public class ConversationPlayer : MidBattleScreen
         }
         if (postBattle)
         {
+            origin.Choose();
             origin = null;
             GameController.Current.Win();
         }
         else
         {
             CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
+            if (origin.PostBattleLines.Count <= 0)
+            {
+                origin.Choose();
+            }
         }
         return;
     }

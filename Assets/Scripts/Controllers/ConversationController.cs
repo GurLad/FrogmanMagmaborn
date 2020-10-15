@@ -24,10 +24,10 @@ public class ConversationController : MonoBehaviour
         currentOptions.Sort();
         Debug.Log("Options: " + string.Join(", ", currentOptions));
         ConversationData chosen = currentOptions[0];
-        if (chosen.Choose())
-        {
-            options.Remove(chosen);
-        }
+        //if (chosen.Choose())
+        //{
+        //    options.Remove(chosen);
+        //}
         return chosen;
     }
 }
