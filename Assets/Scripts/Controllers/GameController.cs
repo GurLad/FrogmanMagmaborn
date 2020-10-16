@@ -182,7 +182,7 @@ public class GameController : MonoBehaviour
             LevelNumber = 2;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
-            PlayerUnits.Add(CreatePlayerUnit("Firbell"));
+            PlayerUnits.Add(CreatePlayerUnit("Kresla"));
             //PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
         }
         else
