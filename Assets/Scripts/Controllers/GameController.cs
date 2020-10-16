@@ -179,11 +179,11 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 4;
+            LevelNumber = 2;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));
-            PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
+            //PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
         }
         else
         {
