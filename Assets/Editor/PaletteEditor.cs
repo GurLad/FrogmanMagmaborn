@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(Palette))]
-public class ModularJointDrawer : PropertyDrawer
+public class PaletteDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {

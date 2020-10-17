@@ -9,6 +9,8 @@ public class ConversationPlayer : MidBattleScreen
     public new static ConversationPlayer Current;
     public float LettersPerSecond;
     public int LineWidth = 22;
+    public List<AudioClip> VoiceTypes;
+    public float VoiceMod;
     public Text Name;
     public Text Text;
     public PortraitHolder Portrait;
@@ -17,6 +19,8 @@ public class ConversationPlayer : MidBattleScreen
     private bool startActive = true;
     private CurrentState state;
     private ConversationData origin;
+    private CharacterVoice voice;
+    private bool playingVoice;
     private int currentLine;
     private int currentChar;
     private float count;
@@ -43,6 +47,7 @@ public class ConversationPlayer : MidBattleScreen
                 case CurrentState.Writing:
                     if (Control.GetButtonDown(Control.CB.A))
                     {
+                        PlayLetter('m');
                         Text.text = targetLine;
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
@@ -56,6 +61,7 @@ public class ConversationPlayer : MidBattleScreen
                             {
                                 count -= 1;
                                 Text.text += targetLine[currentChar];
+                                PlayLetter(targetLine[currentChar]);
                             }
                             else
                             {
@@ -167,6 +173,7 @@ public class ConversationPlayer : MidBattleScreen
         {
             string[] parts = line.Split(':')[0].Split('|');
             Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
+            voice = PortraitController.Current.FindVoice(parts[0]);
             Name.text = parts[parts.Length - 1];
         }
         // Find the line break
@@ -185,6 +192,7 @@ public class ConversationPlayer : MidBattleScreen
             currentChar = 0;
             Text.text = targetLine[currentChar].ToString();
         }
+        PlayLetter(targetLine[currentChar]);
         count = 0;
         state = CurrentState.Writing;
         Arrow.SetActive(false);
@@ -239,5 +247,26 @@ public class ConversationPlayer : MidBattleScreen
     private bool LineAddition(string trueLine)
     {
         return trueLine.IndexOf('\n') < 0 && currentLine >= 1;
+    }
+    private void PlayLetter(char letter)
+    {
+        letter = letter.ToString().ToLower()[0];
+        if (letter < 'a' || letter > 'z' || playingVoice)
+        {
+            playingVoice = false;
+            return;
+        }
+        if (letter >= 'y')
+        {
+            letter = 'x';
+        }
+        if (letter <= 'b')
+        {
+            letter = 'c';
+        }
+        //playingVoice = true;
+        float voiceMod = ((letter - 'm') / 13) * VoiceMod;
+        Debug.Log(VoiceTypes[(int)voice.VoiceType].name + ", " + (voice.Pitch + voiceMod));
+        SoundController.PlaySound(VoiceTypes[(int)voice.VoiceType], voice.Pitch + voiceMod);
     }
 }

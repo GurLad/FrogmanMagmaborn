@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(PaletteController))]
-public class LookAtPointEditor : Editor
+public class PaletteControllerEditor : Editor
 {
     SerializedProperty BackgroundPalettes;
     SerializedProperty SpritePalettes;

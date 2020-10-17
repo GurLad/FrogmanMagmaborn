@@ -77,9 +77,9 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     }
     public void PlayIntro(string name, bool? keepTimestamp = null)
     {
-        seconderyAudioSource.loop = false;
-        playingIntro = true;
         Play(name + "Intro", keepTimestamp);
+        playingIntro = true;
+        seconderyAudioSource.loop = false;
     }
     public void SwitchBattleMode(bool on)
     {
