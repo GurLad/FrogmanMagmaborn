@@ -100,6 +100,15 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 
     private void Update()
     {
+        if (Control.GetButton(Control.CB.B))
+        {
+            // Speed up
+            Time.timeScale = 2;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
         switch (state)
         {
             case State.AttackerWalking:
@@ -138,6 +147,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 if (count >= WaitTime)
                 {
                     CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
+                    Time.timeScale = 1;
                     Quit();
                 }
                 break;

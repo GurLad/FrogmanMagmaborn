@@ -179,10 +179,10 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 4;
+            LevelNumber = 3;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
-            PlayerUnits.Add(CreatePlayerUnit("Kresla"));
+            PlayerUnits.Add(CreatePlayerUnit("Firbell"));
             PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
         }
         else
@@ -425,6 +425,11 @@ public class GameController : MonoBehaviour
         if (currentPhase == Team.Monster)
         {
             enemyMoveDelayCount += Time.deltaTime;
+            if (Control.GetButton(Control.CB.B))
+            {
+                // Speed up
+                enemyMoveDelayCount += Time.deltaTime;
+            }
             if (enemyMoveDelayCount > EnemyAIMoveDelay)
             {
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
