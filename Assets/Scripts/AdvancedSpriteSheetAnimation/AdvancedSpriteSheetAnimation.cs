@@ -28,7 +28,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     {
         Renderer = GetComponent<SpriteRenderer>();
     }
-    private void Start()
+    public void Start()
     {
         if (Active)
         {
@@ -98,7 +98,6 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentAnimation = animation;
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
-        currentFrame = 0;
         count = FixedSpeed ? fixedCount : 0;
         currentFrame = FixedSpeed ? fixedFrame : 0;
         Active = true;
@@ -124,8 +123,8 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentAnimation = newID;
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
-        currentFrame = 0;
-        count = FixedSpeed ? Time.time % speed : 0;
+        count = FixedSpeed ? fixedCount : 0;
+        currentFrame = FixedSpeed ? fixedFrame : 0;
         Active = true;
         Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
