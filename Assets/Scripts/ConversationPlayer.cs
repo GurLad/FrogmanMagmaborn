@@ -205,6 +205,7 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Sleep;
         if (GameController.Current == null)
         {
+            origin.Choose();
             SceneController.LoadScene("Map");
             return;
         }

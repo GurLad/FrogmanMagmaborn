@@ -123,6 +123,23 @@ public class Stats
         stats.Growths = a.Growths;
         return stats;
     }
+    public static bool operator ==(Stats a, Stats b)
+    {
+        if ((object)a == null) return (object)b == null;
+        if ((object)b == null) return (object)a == null;
+        for (int i = 0; i < 6; i++)
+        {
+            if (a[i] != b[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static bool operator !=(Stats a, Stats b)
+    {
+        return !(a == b);
+    }
     /// <summary>
     /// Returns the stats increased after numLevels level ups.
     /// Uses fixed values (no random level ups).

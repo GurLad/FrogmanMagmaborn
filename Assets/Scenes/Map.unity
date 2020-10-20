@@ -178,6 +178,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
   - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
   - {fileID: 4900000, guid: bcea855e145675e4ca99739c5fb7603b, type: 3}
+  - {fileID: 4900000, guid: f1b0640b57ad90e4b9d5659fd63d53e4, type: 3}
+  - {fileID: 4900000, guid: 8923f1b0151dc6648994ce9c71cbdc81, type: 3}
 --- !u!1 &56271733
 GameObject:
   m_ObjectHideFlags: 0
@@ -9653,7 +9655,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 1
+  StartAtEndgame: 0
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
