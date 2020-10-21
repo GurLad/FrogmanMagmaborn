@@ -9,7 +9,7 @@ public abstract class Marker : MapObject
     {
         base.Start();
         Tile tile = GameController.Current.Map[Pos.x, Pos.y];
-        if (tile.ArmorModifier != 0)
+        if (Origin.TheTeam == Team.Player && tile.GetArmorModifier(Origin) != 0)
         {
             AdvancedSpriteSheetAnimation advancedSpriteSheetAnimation = GetComponent<AdvancedSpriteSheetAnimation>();
             advancedSpriteSheetAnimation.Start();
