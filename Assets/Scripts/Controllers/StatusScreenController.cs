@@ -10,6 +10,7 @@ public class StatusScreenController : MidBattleScreen
     public Text Weapon;
     public Text Status;
     public BattleStatsPanel BattleStats;
+    public InclinationPanel Inclination;
     public PortraitHolder Icon;
     public RectTransform HealthbarFull;
     public RectTransform HealthbarEmpty;
@@ -21,6 +22,7 @@ public class StatusScreenController : MidBattleScreen
         Weapon.text = unit.Weapon.ToString();
         Status.text = "Team:" + unit.TheTeam.ToString().PadRight(7) + (unit.TheTeam != Team.Player ? ("\nA.I.:" + unit.AIType.ToString().PadRight(7)) : "\n") + "\nCond:" + unit.State().PadRight(7);
         BattleStats.Display(unit);
+        Inclination.Display(unit);
         Icon.Portrait = unit.Icon;
         HealthbarFull.sizeDelta = new Vector2(unit.Health * 4, 8);
         HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.MaxHP * 4, 8);

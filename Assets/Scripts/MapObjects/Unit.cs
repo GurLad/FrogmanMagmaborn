@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public enum Team { Player, Monster, Guard }
 public enum AIType { Charge, Hold, Guard }
+public enum Inclination { Physical, Technical, Skillful } // Bad names
 public class Unit : MapObject
 {
     [Header("Basic info")]
@@ -18,6 +19,7 @@ public class Unit : MapObject
     public int Movement;
     public bool Flies;
     public Stats Stats;
+    public Inclination Inclination;
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
     [HideInInspector]
@@ -489,11 +491,25 @@ public class Unit : MapObject
     }
     private int GetHitChance(Unit other)
     {
+        if (TheTeam == Team.Player && Inclination == other.Inclination)
+        {
+            Stats[(int)Inclination * 2] += 2;
+            int hit = Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
+            Stats[(int)Inclination * 2] -= 2;
+            return hit;
+        }
         return Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
     }
     private int GetDamage(Unit other)
     {
         int ArmorModifier = GameController.Current.Map[other.Pos.x, other.Pos.y].GetArmorModifier(other);
+        if (TheTeam == Team.Player && Inclination == other.Inclination)
+        {
+            Stats[(int)Inclination * 2] += 2;
+            int damage = Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
+            Stats[(int)Inclination * 2] -= 2;
+            return damage;
+        }
         return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
     }
     public string AttackPreview(Unit other, int padding = 2)
@@ -541,6 +557,18 @@ public class Unit : MapObject
     public override string ToString()
     {
         return TheTeam == Team.Player ? Name : Class;
+    }
+    public void ChangeInclination(Inclination target)
+    {
+        for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
+        {
+            Stats.Growths[i]--;
+        }
+        Inclination = target;
+        for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
+        {
+            Stats.Growths[i]++;
+        }
     }
     public string Save()
     {

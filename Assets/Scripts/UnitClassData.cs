@@ -18,6 +18,7 @@ public class GrowthsStruct
     [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
     public int[] Growths = new int[6];
     public bool Flies;
+    public Inclination Inclination;
 }
 
 [System.Serializable]

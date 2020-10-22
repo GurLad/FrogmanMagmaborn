@@ -182,7 +182,7 @@ public class GameController : MonoBehaviour
             LevelNumber = 4;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
-            PlayerUnits.Add(CreatePlayerUnit("Kresla"));
+            PlayerUnits.Add(CreatePlayerUnit("Firbell"));
             PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
         }
         else
@@ -604,6 +604,7 @@ public class GameController : MonoBehaviour
         unit.Flies = unitGrowths.Flies;
         unit.Stats += unit.Stats.GetLevelUp(LevelNumber);
         unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
+        unit.Inclination = unitGrowths.Inclination;
         AssignUnitMapAnimation(unit);
         unit.Init();
         return unit;
@@ -739,6 +740,7 @@ public class GameController : MonoBehaviour
                 }
             }
             unit.Flies = unitGrowths.Flies;
+            unit.Inclination = unitGrowths.Inclination;
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
             unit.Level = int.Parse(parts[2]);
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);

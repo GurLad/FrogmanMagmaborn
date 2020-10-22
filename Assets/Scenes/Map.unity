@@ -5001,6 +5001,7 @@ MonoBehaviour:
   Stats:
     Growths: 010000000100000001000000010000000100000001000000
     statValues: 040000000400000004000000040000000400000004000000
+  Inclination: 0
   MaxAcceptableHitRisk: 50
   Icon:
     Name: 
@@ -7853,40 +7854,52 @@ MonoBehaviour:
   - Name: Frogman
     Growths: 020000000300000002000000010000000400000003000000
     Flies: 0
+    Inclination: 2
   - Name: Firbell
     Growths: 040000000300000002000000010000000200000002000000
     Flies: 0
+    Inclination: 0
   - Name: Kresla
     Growths: 010000000100000003000000030000000400000000000000
     Flies: 1
+    Inclination: 1
   - Name: Xirveros
     Growths: 030000000200000002000000030000000100000003000000
     Flies: 0
+    Inclination: 1
   ClassGrowths:
   - Name: Skeleton
     Growths: 030000000300000002000000010000000200000001000000
     Flies: 0
+    Inclination: 0
   - Name: Goblin
     Growths: 020000000100000002000000030000000100000003000000
     Flies: 0
+    Inclination: 1
   - Name: Gargoyle
     Growths: 010000000100000003000000030000000300000000000000
     Flies: 1
+    Inclination: 1
   - Name: Lich
     Growths: 020000000100000003000000010000000200000003000000
     Flies: 0
+    Inclination: 2
   - Name: Despair
     Growths: 000000000000000000000000030000000300000000000000
     Flies: 1
+    Inclination: 1
   - Name: Fear
     Growths: 000000000300000003000000000000000000000000000000
     Flies: 1
+    Inclination: 0
   - Name: Pain
     Growths: 030000000000000000000000000000000000000003000000
     Flies: 0
+    Inclination: 2
   - Name: Torment
     Growths: 000000000000000000000000090000000000000009000000
     Flies: 0
+    Inclination: 0
   ClassAnimations:
   - Name: Frogman
     Animation: {fileID: 969796486}
@@ -9703,7 +9716,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 0
+  StartAtEndgame: 1
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
