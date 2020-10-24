@@ -236,7 +236,6 @@ public class ConversationPlayer : MidBattleScreen
         for (int i = line.IndexOf(' '); i > -1; i = line.IndexOf(' ', i + 1))
         {
             int length = line.Substring(0, i + 1).Length + line.Substring(i + 1).Split(' ')[0].Length;
-            Debug.Log(length + ": " + line.Substring(0, i + 1) + line.Substring(i + 1).Split(' ')[0]);
             if (length > LineWidth)
             {
                 line = line.Substring(0, i) + '\n' + line.Substring(i + 1);
@@ -267,7 +266,6 @@ public class ConversationPlayer : MidBattleScreen
         }
         //playingVoice = true;
         float voiceMod = ((letter - 'm') / 13) * VoiceMod;
-        Debug.Log(VoiceTypes[(int)voice.VoiceType].name + ", " + (voice.Pitch + voiceMod));
         SoundController.PlaySound(VoiceTypes[(int)voice.VoiceType], voice.Pitch + voiceMod);
     }
 }

@@ -11,6 +11,7 @@ public class MoveMarker : Marker
             Origin.MoveTo(Pos);
             GameController.Current.RemoveMarkers();
             Origin.MarkAttack();
+            GameController.Current.ShowPointerMarker(Origin, 3);
             GameController.Current.InteractState = InteractState.Attack;
         }
     }

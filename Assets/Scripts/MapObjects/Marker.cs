@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Marker : MapObject
 {
+    [HideInInspector]
     public Unit Origin;
-    protected override void Start()
+    public void ShowArmorIcon()
     {
-        base.Start();
         Tile tile = GameController.Current.Map[Pos.x, Pos.y];
-        if (Origin.TheTeam == Team.Player && tile.GetArmorModifier(Origin) != 0)
+        if (tile.GetArmorModifier(Origin) != 0)
         {
             AdvancedSpriteSheetAnimation advancedSpriteSheetAnimation = GetComponent<AdvancedSpriteSheetAnimation>();
             advancedSpriteSheetAnimation.Start();

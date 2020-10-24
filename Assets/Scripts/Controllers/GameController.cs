@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
     public UnitClassData UnitClassData;
     public Marker EnemyMarker;
     public Marker EnemyAttackMarker;
+    public PointerMarker PointerMarker;
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
@@ -778,6 +779,15 @@ public class GameController : MonoBehaviour
                 break;
         }
         return "";
+    }
+    public void ShowPointerMarker(Unit origin, int paletteID)
+    {
+        PointerMarker pointerMarker = Instantiate(PointerMarker.gameObject).GetComponent<PointerMarker>();
+        pointerMarker.Pos = origin.Pos;
+        pointerMarker.Origin = origin;
+        pointerMarker.PalettedSprite.Awake();
+        pointerMarker.PalettedSprite.Palette = paletteID;
+        pointerMarker.gameObject.SetActive(true);
     }
     private bool CheckPlayerWin()
     {

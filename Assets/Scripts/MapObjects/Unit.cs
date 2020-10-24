@@ -105,6 +105,7 @@ public class Unit : MapObject
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
                     MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
                     GameController.Current.InteractState = InteractState.Move;
+                    GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                     GameController.Current.Selected = this;
                 }
                 else if (TheTeam != Team.Player)
@@ -113,6 +114,7 @@ public class Unit : MapObject
                     List<Vector2Int> attackFrom = new List<Vector2Int>();
                     MovementMarker.GetComponent<PalettedSprite>().Palette = (int)TheTeam;
                     MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
+                    GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                 }
                 break;
             case InteractState.Move:
@@ -231,6 +233,7 @@ public class Unit : MapObject
                     Marker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<Marker>();
                     movementMarker.Pos = new Vector2Int(i, j);
                     movementMarker.Origin = this;
+                    movementMarker.ShowArmorIcon();
                     movementMarker.gameObject.SetActive(true);
                 }
                 else if (checkedTiles[i, j] < 0)
