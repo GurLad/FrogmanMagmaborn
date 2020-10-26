@@ -494,7 +494,7 @@ public class Unit : MapObject
     }
     private int GetHitChance(Unit other)
     {
-        if (TheTeam == Team.Player && Inclination == other.Inclination)
+        if (TheTeam == Team.Player && EffectiveAgainst(other))
         {
             Stats[(int)Inclination * 2] += 2;
             int hit = Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
@@ -506,7 +506,7 @@ public class Unit : MapObject
     private int GetDamage(Unit other)
     {
         int ArmorModifier = GameController.Current.Map[other.Pos.x, other.Pos.y].GetArmorModifier(other);
-        if (TheTeam == Team.Player && Inclination == other.Inclination)
+        if (TheTeam == Team.Player && EffectiveAgainst(other))
         {
             Stats[(int)Inclination * 2] += 2;
             int damage = Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
@@ -572,6 +572,10 @@ public class Unit : MapObject
         {
             Stats.Growths[i]++;
         }
+    }
+    public bool EffectiveAgainst(Unit target) // Might change effectiveness to triangle
+    {
+        return Inclination == target.Inclination;
     }
     public string Save()
     {

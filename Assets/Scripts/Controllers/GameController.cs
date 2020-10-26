@@ -21,8 +21,10 @@ public class GameController : MonoBehaviour
     public RectTransform UIFightPanel;
     public PalettedSprite UIAttackerPanel;
     public Text UIAttackerInfo;
+    public InclinationIndicator UIAttackerInclination;
     public PalettedSprite UIDefenderPanel;
     public Text UIDefenderInfo;
+    public InclinationIndicator UIDefenderInclination;
     public TurnAnimation TurnAnimation;
     [Header("Mid-battle screens")]
     public GameObject Battle;
@@ -399,6 +401,8 @@ public class GameController : MonoBehaviour
                         UIDefenderPanel.Palette = (int)unit.TheTeam;
                         UIAttackerInfo.text = Selected.AttackPreview(unit);
                         UIDefenderInfo.text = unit.AttackPreview(Selected);
+                        UIAttackerInclination.Display(Selected, unit);
+                        UIDefenderInclination.Display(unit, Selected);
                     }
                     else
                     {

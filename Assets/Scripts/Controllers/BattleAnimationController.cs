@@ -23,19 +23,21 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public SpriteRenderer DefenderObject;
     [Header("Attacker UI")]
     public Text AttackerInfo;
+    public InclinationIndicator AttackerInclination;
     public PortraitHolder AttackerIcon;
     public RectTransform AttackerHealthbarFull;
     public RectTransform AttackerHealthbarEmpty;
     public List<PalettedSprite> AttackerSprites;
     [Header("Defender UI")]
     public Text DefenderInfo;
+    public InclinationIndicator DefenderInclination;
     public PortraitHolder DefenderIcon;
     public RectTransform DefenderHealthbarFull;
     public RectTransform DefenderHealthbarEmpty;
     public List<PalettedSprite> DefenderSprites;
-    //[HideInInspector]
+    [HideInInspector]
     public Unit Attacker;
-    //[HideInInspector]
+    [HideInInspector]
     public Unit Defender;
     private AdvancedSpriteSheetAnimation attackerAnimation;
     private AdvancedSpriteSheetAnimation defenderAnimation;
@@ -81,6 +83,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private void UpdateDisplay()
     {
         AttackerInfo.text = Attacker.ToString().PadRight(7) + '\n' + Attacker.AttackPreview(Defender, 3);
+        AttackerInclination.Display(Attacker, Defender);
         AttackerIcon.Portrait = Attacker.Icon;
         AttackerHealthbarFull.sizeDelta = new Vector2(Attacker.Health * 4, 8);
         AttackerHealthbarEmpty.sizeDelta = new Vector2(Attacker.Stats.MaxHP * 4, 8);
@@ -89,6 +92,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             item.Palette = (int)Attacker.TheTeam;
         }
         DefenderInfo.text = Defender.ToString().PadRight(7) + '\n' + Defender.AttackPreview(Attacker, 3);
+        DefenderInclination.Display(Defender, Attacker);
         DefenderIcon.Portrait = Defender.Icon;
         DefenderHealthbarFull.sizeDelta = new Vector2(Defender.Health * 4, 8);
         DefenderHealthbarEmpty.sizeDelta = new Vector2(Defender.Stats.MaxHP * 4, 8);
