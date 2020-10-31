@@ -25,7 +25,7 @@ public class InclinationIndicator : MonoBehaviour
         PalettedSprite[] palettedSprites = image.transform.parent.GetComponentsInChildren<PalettedSprite>();
         foreach (var item in palettedSprites)
         {
-            if (mod == 1 && item.gameObject != image.gameObject) // Grayscale indicators when no offensive buff
+            if (mod == 1) // Grayscale indicators when no offensive buff
             {
                 item.Palette = 3;
             }
