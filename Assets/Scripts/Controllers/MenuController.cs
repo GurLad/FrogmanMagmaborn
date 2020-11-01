@@ -7,6 +7,7 @@ public class MenuController : MidBattleScreen
     public List<MenuItem> MenuItems;
     public int Selected;
     public bool Cancelable; // For things like the main menu vs. pause menu
+    public bool FinishOnSelect = true;
     public Trigger CancelTrigger;
     private int count;
     private int previousSign;
@@ -43,7 +44,10 @@ public class MenuController : MidBattleScreen
     }
     private void MenuDone()
     {
-        // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
-        gameObject.SetActive(false);
+        if (FinishOnSelect)
+        {
+            // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
+            gameObject.SetActive(false);
+        }
     }
 }

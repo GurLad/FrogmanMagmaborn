@@ -14,17 +14,17 @@ public class MenuItem : MonoBehaviour
         triggers = new List<Trigger>(GetComponents<Trigger>());
         Unselect();
     }
-    public void Select()
+    public virtual void Select()
     {
         Indicators.ForEach(a => a.SetActive(true));
         text.color = PaletteController.Current.SpritePalettes[0][1];
     }
-    public void Unselect()
+    public virtual void Unselect()
     {
         Indicators.ForEach(a => a.SetActive(false));
         text.color = PaletteController.Current.SpritePalettes[3][1];
     }
-    public void Activate()
+    public virtual void Activate()
     {
         triggers.ForEach(a => a.Activate());
     }

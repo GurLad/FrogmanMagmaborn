@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour
     private Transform currentUnitsObject;
     private bool checkPlayerDead;
     private Room selectedRoom;
+    private int currentKnowledge;
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
     {
@@ -212,6 +213,7 @@ public class GameController : MonoBehaviour
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
+                SavedData.Save("Knowledge", SavedData.Load<int>("Knowledge") + currentKnowledge);
                 SceneController.LoadScene("Menu");
             }
             else if (CheckPlayerWin())
@@ -526,6 +528,7 @@ public class GameController : MonoBehaviour
     public void Win()
     {
         LevelNumber++;
+        currentKnowledge++;
         PlayersLevelUp();
     }
     private void PlayersLevelUp()
