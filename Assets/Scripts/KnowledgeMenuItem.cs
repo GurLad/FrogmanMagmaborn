@@ -10,13 +10,12 @@ public class KnowledgeMenuItem : MenuItem
     public KnowledgeUpgrade Upgrade;
     [HideInInspector]
     public KnowledgeController Controller;
-    private bool bought;
     private void Start()
     {
-        if (bought = Controller.HasUpgrade(Upgrade))
+        if (Upgrade.Bought)
         {
             BoughtIndicator.gameObject.SetActive(true);
-            BoughtIndicator.sprite = Controller.SetActive(Upgrade, Upgrade.Active);
+            BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, Upgrade.Active);
         }
     }
     public override void Select()
@@ -26,18 +25,18 @@ public class KnowledgeMenuItem : MenuItem
     }
     public override void Activate()
     {
-        if (bought)
+        if (Upgrade.State != KnowledgeUpgrade.UpgradeState.Available)
         {
             if (Upgrade.Type == KnowledgeUpgradeType.Toggle)
             {
-                 BoughtIndicator.sprite = Controller.SetActive(Upgrade, !Upgrade.Active);
+                 BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, !Upgrade.Active);
             }
         }
         else
         {
             if (Controller.Knowledge >= Upgrade.Cost)
             {
-                Controller.Buy(Upgrade);
+                BoughtIndicator.sprite = Controller.BuyUpgrade(Upgrade);
                 BoughtIndicator.gameObject.SetActive(true);
             }
         }

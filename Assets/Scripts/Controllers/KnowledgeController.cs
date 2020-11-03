@@ -17,6 +17,7 @@ public class KnowledgeController : MonoBehaviour
     public int Knowledge;
     private void Awake()
     {
+        Knowledge = SavedData.Load<int>("Knowledge");
         for (int i = 0; i < Upgrades.Count; i++)
         {
             Upgrades[i].Load((int)Upgrades[i].DefaultState);
@@ -35,18 +36,14 @@ public class KnowledgeController : MonoBehaviour
             UpgradeMenu.MenuItems.Add(item);
         }
     }
-    public bool HasUpgrade(KnowledgeUpgrade upgrade)
-    {
-        return upgrade.State != KnowledgeUpgrade.UpgradeState.Available && upgrade.State != KnowledgeUpgrade.UpgradeState.Locked;
-    }
-    public void Buy(KnowledgeUpgrade upgrade)
+    public Sprite BuyUpgrade(KnowledgeUpgrade upgrade)
     {
         Knowledge -= upgrade.Cost;
         SavedData.Save("Knowledge", Knowledge);
         upgrade.State = KnowledgeUpgrade.UpgradeState.Active;
-        upgrade.Save();
+        return SetUpgradeActive(upgrade, true);
     }
-    public Sprite SetActive(KnowledgeUpgrade upgrade, bool active)
+    public Sprite SetUpgradeActive(KnowledgeUpgrade upgrade, bool active)
     {
         upgrade.Active = active;
         upgrade.Save();
@@ -78,6 +75,13 @@ public class KnowledgeUpgrade
         set
         {
             State = value ? UpgradeState.Active : UpgradeState.Inactive;
+        }
+    }
+    public bool Bought
+    {
+        get
+        {
+            return State != UpgradeState.Available && State != KnowledgeUpgrade.UpgradeState.Locked;
         }
     }
     public UpgradeState DefaultState;
