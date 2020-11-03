@@ -12,6 +12,10 @@ public class InclinationPanel : MonoBehaviour
     public Text Text;
     public void Display(Unit unit)
     {
+        if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff))
+        {
+            Destroy(gameObject);
+        }
         Text.text = unit.Inclination + " inclination.\n" +
             "Increases     and     growths.\n";
         SetIcon(Growth1, (int)unit.Inclination, 0);

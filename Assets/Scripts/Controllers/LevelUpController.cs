@@ -22,6 +22,10 @@ public class LevelUpController : MidBattleScreen
     private void Start()
     {
         levelUpObjects = new List<LevelUpObject>();
+        if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.LevelUpChoice))
+        {
+            NumOptions--;
+        }
         for (int i = 0; i < NumOptions; i++)
         {
             LevelUpObject levelUpObject = Instantiate(BaseLevelUpObject, BaseLevelUpObject.transform.parent);

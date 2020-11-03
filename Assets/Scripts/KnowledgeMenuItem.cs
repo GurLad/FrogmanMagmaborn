@@ -22,6 +22,8 @@ public class KnowledgeMenuItem : MenuItem
     {
         base.Select();
         Controller.Description.text = Upgrade.Description;
+        Controller.Cost.text = "Cost:" + Upgrade.Cost.ToString().PadLeft(7);
+        Controller.Cost.gameObject.SetActive(!Upgrade.Bought);
     }
     public override void Activate()
     {

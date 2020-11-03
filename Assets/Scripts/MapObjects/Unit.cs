@@ -575,7 +575,7 @@ public class Unit : MapObject
     }
     public bool EffectiveAgainst(Unit target) // Might change effectiveness to triangle
     {
-        return Inclination == target.Inclination;
+        return Inclination == target.Inclination && KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff);
     }
     public string Save()
     {
