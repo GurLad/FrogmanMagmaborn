@@ -10,12 +10,24 @@ public class KnowledgeMenuItem : MenuItem
     public KnowledgeUpgrade Upgrade;
     [HideInInspector]
     public KnowledgeController Controller;
+    private PalettedSprite IndicatorPalette;
     private void Start()
     {
+        if (Upgrade.Type != KnowledgeUpgradeType.Toggle)
+        {
+            IndicatorPalette = BoughtIndicator.gameObject.GetComponent<PalettedSprite>();
+        }
         if (Upgrade.Bought)
         {
             BoughtIndicator.gameObject.SetActive(true);
-            BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, Upgrade.Active);
+            if (Upgrade.Type == KnowledgeUpgradeType.Toggle)
+            {
+                BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, Upgrade.Active);
+            }
+            else
+            {
+                IndicatorPalette.Palette = Controller.SetUpgradeChoiceValue(Upgrade, Upgrade.ChoiceValue);
+            }
         }
     }
     public override void Select()
@@ -31,15 +43,28 @@ public class KnowledgeMenuItem : MenuItem
         {
             if (Upgrade.Type == KnowledgeUpgradeType.Toggle)
             {
-                 BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, !Upgrade.Active);
+                BoughtIndicator.sprite = Controller.SetUpgradeActive(Upgrade, !Upgrade.Active);
+            }
+            else
+            {
+                IndicatorPalette.Palette = Controller.SetUpgradeChoiceValue(Upgrade, Mathf.Max(1, (Upgrade.ChoiceValue + 1) % (Upgrade.NumChoices + 1)));
             }
         }
         else
         {
             if (Controller.Knowledge >= Upgrade.Cost)
             {
-                BoughtIndicator.sprite = Controller.BuyUpgrade(Upgrade);
-                BoughtIndicator.gameObject.SetActive(true);
+                if (Upgrade.Type == KnowledgeUpgradeType.Toggle)
+                {
+                    BoughtIndicator.sprite = Controller.BuyUpgrade(Upgrade);
+                    BoughtIndicator.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Controller.BuyUpgrade(Upgrade);
+                    BoughtIndicator.gameObject.SetActive(true);
+                    IndicatorPalette.Palette = Controller.SetUpgradeChoiceValue(Upgrade, Upgrade.ChoiceValue);
+                }
             }
         }
     }

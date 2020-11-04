@@ -21,6 +21,14 @@ public class KnowledgeController : MonoBehaviour
     {
         return SavedData.Load<int>("KnowledgeUpgrade" + name) == 1;
     }
+    public static int GetInclination(string characterName)
+    {
+        return SavedData.Load<int>("KnowledgeUpgradeInclination" + characterName);
+    }
+    public static void UnlockKnowledge(string name)
+    {
+        SavedData.Save("KnowledgeUpgrade" + name, 0);
+    }
     public int Knowledge
     {
         get
@@ -74,12 +82,22 @@ public class KnowledgeController : MonoBehaviour
             return InactiveSprite;
         }
     }
+    public int SetUpgradeChoiceValue(KnowledgeUpgrade upgrade, int value)
+    {
+        if (value <= 0)
+        {
+            Debug.LogWarning("Using SetUpgradeChoiceValue to set availability is a bad idea");
+        }
+        upgrade.ChoiceValue = value;
+        upgrade.Save();
+        return value % 3; // So 1 is physical (red), 2 is technical (blue), 3 = 0 is skillful (green)
+    }
 }
 
 [System.Serializable]
 public class KnowledgeUpgrade
 {
-    public enum UpgradeState { Available, Active, Inactive, Locked }
+    public enum UpgradeState { Available, Active, Inactive, Locked = -1 }
     public string Name;
     public string InternalName;
     public KnowledgeUpgradeType Type;
@@ -104,14 +122,36 @@ public class KnowledgeUpgrade
         }
     }
     public UpgradeState DefaultState;
+    public int NumChoices;
     [HideInInspector]
-    public UpgradeState State;
+    public int ChoiceValue;
+    private UpgradeState state;
+    public UpgradeState State
+    {
+        get
+        {
+            return state;
+        }
+        set
+        {
+            state = value;
+            ChoiceValue = (int)state;
+        }
+    }
     public void Save()
     {
-        SavedData.Save("KnowledgeUpgrade" + InternalName, (int)State);
+        SavedData.Save("KnowledgeUpgrade" + InternalName, Type == KnowledgeUpgradeType.Toggle ? (int)State : ChoiceValue);
     }
     public void Load(int defaultValue)
     {
-        State = (UpgradeState)SavedData.Load("KnowledgeUpgrade" + InternalName, defaultValue);
+        if (Type == KnowledgeUpgradeType.Toggle)
+        {
+            State = (UpgradeState)SavedData.Load("KnowledgeUpgrade" + InternalName, defaultValue);
+        }
+        else
+        {
+            ChoiceValue = SavedData.Load("KnowledgeUpgrade" + InternalName, defaultValue);
+            state = (UpgradeState)Mathf.Min(1, ChoiceValue);
+        }
     }
 }

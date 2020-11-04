@@ -213,7 +213,7 @@ public class GameController : MonoBehaviour
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
-                SavedData.Save("Knowledge", SavedData.Load<int>("Knowledge") + currentKnowledge);
+                SavedData.Appeand("Knowledge", currentKnowledge);
                 SceneController.LoadScene("Menu");
             }
             else if (CheckPlayerWin())
@@ -613,6 +613,12 @@ public class GameController : MonoBehaviour
         unit.Stats += unit.Stats.GetLevelUp(LevelNumber);
         unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
         unit.Inclination = unitGrowths.Inclination;
+        int inclination = KnowledgeController.GetInclination(unit.Name);
+        if (inclination > 0)
+        {
+            Debug.Log("Changing inclination!");
+            unit.ChangeInclination((Inclination)(inclination - 1));
+        }
         AssignUnitMapAnimation(unit);
         unit.Init();
         return unit;
@@ -749,6 +755,15 @@ public class GameController : MonoBehaviour
             }
             unit.Flies = unitGrowths.Flies;
             unit.Inclination = unitGrowths.Inclination;
+            if (unit.TheTeam == Team.Player)
+            {
+                int inclination = KnowledgeController.GetInclination(unit.Name);
+                if (inclination > 0)
+                {
+                    Debug.Log("Changing inclination!");
+                    unit.ChangeInclination((Inclination)(inclination - 1));
+                }
+            }
             unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
             unit.Level = int.Parse(parts[2]);
             unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);

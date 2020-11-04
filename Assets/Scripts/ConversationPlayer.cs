@@ -146,6 +146,9 @@ public class ConversationPlayer : MidBattleScreen
                 case "loadMap":
                     GameController.Current.LoadMap(parts[2]);
                     break;
+                case "unlockKnowledge":
+                    KnowledgeController.UnlockKnowledge(parts[2]);
+                    break;
                 default:
                     break;
             }

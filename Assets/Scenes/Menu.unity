@@ -458,6 +458,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 7ae65f9fd86cc9b40a2c2827ddecb24a, type: 3}
   - {fileID: 4900000, guid: 9afb5fbbdc9d58d4dbbcea98a5a2ca74, type: 3}
   - {fileID: 4900000, guid: ec8a7aa00001cdd4a99a333761e5a2c8, type: 3}
+  - {fileID: 4900000, guid: 5d3f32d2ef5169845b1c0e30b577ca55, type: 3}
 --- !u!224 &182878992 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 832186918215127002, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
@@ -1527,7 +1528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 355d4225e9acb2d479c49cc552b977d7,
+      objectReference: {fileID: 21300000, guid: b444fa6646a0a204699742230cafa652,
         type: 3}
     - target: {fileID: 2705535912749119306, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
         type: 3}
@@ -1587,7 +1588,8 @@ MonoBehaviour:
     Description: 
     Cost: 0
     DefaultState: 0
-    State: 0
+    NumChoices: 0
+    ChoiceValue: 0
   Controller: {fileID: 0}
 --- !u!114 &614624184 stripped
 MonoBehaviour:
@@ -4635,14 +4637,24 @@ MonoBehaviour:
     Description: Increase amount of options when leveling up.
     Cost: 1
     DefaultState: 0
-    State: 0
+    NumChoices: 0
+    ChoiceValue: 0
   - Name: Inclin. Buff
     InternalName: InclinationBuff
     Type: 0
     Description: Increase offensive stats against enemies of the same inclination.
     Cost: 3
     DefaultState: 0
-    State: 0
+    NumChoices: 0
+    ChoiceValue: 0
+  - Name: Frogman Inc
+    InternalName: InclinationFrogman
+    Type: 1
+    Description: Change Frogman's inclination.
+    Cost: 3
+    DefaultState: -1
+    NumChoices: 3
+    ChoiceValue: 0
   ActiveSprite: {fileID: 21300000, guid: efc9e1002975f4f48affddb1d58ec88a, type: 3}
   InactiveSprite: {fileID: 21300000, guid: a9914cf431e51984599f5908d4346f8a, type: 3}
   UpgradeMenu: {fileID: 1190998948}
