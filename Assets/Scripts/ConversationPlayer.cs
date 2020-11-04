@@ -17,6 +17,8 @@ public class ConversationPlayer : MidBattleScreen
     public GameObject Arrow;
     [SerializeField]
     private bool startActive = true;
+    [Header("Menu only")]
+    public GameObject Knowledge;
     private CurrentState state;
     private ConversationData origin;
     private CharacterVoice voice;
@@ -205,8 +207,15 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Sleep;
         if (GameController.Current == null)
         {
-            origin.Choose();
-            SceneController.LoadScene("Map");
+            if (postBattle || origin.PostBattleLines.Count <= 0)
+            {
+                origin.Choose();
+                SceneController.LoadScene("Map");
+            }
+            else
+            {
+                Knowledge.SetActive(true);
+            }
             return;
         }
         if (postBattle)
