@@ -154,6 +154,9 @@ public class ConversationData : IComparable<ConversationData>
             case "roomNumber":
                 // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
                 return int.Parse(parts[1]) == GameController.Current.LevelNumber;
+            case "hasKnowledge":
+                // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
+                return KnowledgeController.HasKnowledge(parts[1]);
             default:
                 break;
         }

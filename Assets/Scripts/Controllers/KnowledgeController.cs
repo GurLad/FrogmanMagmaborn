@@ -21,6 +21,10 @@ public class KnowledgeController : MonoBehaviour
     {
         return SavedData.Load<int>("KnowledgeUpgrade" + name) == 1;
     }
+    public static bool HasKnowledge(string name)
+    {
+        return SavedData.Load<int>("KnowledgeUpgrade" + name) == 1;
+    }
     public static int GetInclination(string characterName)
     {
         return SavedData.Load<int>("KnowledgeUpgradeInclination" + characterName);
@@ -45,6 +49,7 @@ public class KnowledgeController : MonoBehaviour
     private void Awake()
     {
         Knowledge = SavedData.Load<int>("Knowledge");
+        int pos = 0;
         for (int i = 0; i < Upgrades.Count; i++)
         {
             Upgrades[i].Load((int)Upgrades[i].DefaultState);
@@ -55,7 +60,7 @@ public class KnowledgeController : MonoBehaviour
             KnowledgeMenuItem item = Instantiate(BaseMenuItem.gameObject, UpgradeMenu.transform).GetComponent<KnowledgeMenuItem>();
             RectTransform rectTransform = item.GetComponent<RectTransform>();
             rectTransform.SetParent(UpgradeMenu.GetComponent<RectTransform>(), true);
-            rectTransform.anchoredPosition += new Vector2(0, -16 * i);
+            rectTransform.anchoredPosition += new Vector2(0, -16 * pos++);
             item.Controller = this;
             item.Upgrade = Upgrades[i];
             item.GetComponent<Text>().text = item.Upgrade.Name.PadRight(12);
