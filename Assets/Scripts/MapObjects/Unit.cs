@@ -384,6 +384,8 @@ public class Unit : MapObject
                     if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
                     {
                         Fight(unit);
+                        GameController.Current.FinishMove(this);
+                        break;
                     }
                 }
                 GameController.Current.FinishMove(this);

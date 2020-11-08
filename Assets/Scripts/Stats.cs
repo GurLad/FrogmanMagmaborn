@@ -209,6 +209,44 @@ public class Stats
         return "Str:" + Strength.ToString().PadRight(3) + "Pir:" + Pierce.ToString().PadRight(3) + "Pre:" + Precision.ToString().PadRight(3) +
             "\nEnd:" + Endurance.ToString().PadRight(3) + "Arm:" + Armor.ToString().PadRight(3) + "Eva:" + Evasion.ToString().PadRight(3);
     }
+    public string ToColoredString()
+    {
+        string result = "";
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                result += ColorText(j * 2 + i);
+            }
+            result += "\n";
+        }
+        return result;
+    }
+    private string ColorText(int id)
+    {
+        return (statValues[id] > 0 ? "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[(id / 2 + 1) % 3][1]) + ">" + StatName(id) + ":</color>" : StatName(id) + ":") + statValues[id].ToString().PadRight(3);
+    }
+    private string StatName(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                return "Str";
+            case 1:
+                return "End";
+            case 2:
+                return "Pir";
+            case 3:
+                return "Arm";
+            case 4:
+                return "Pre";
+            case 5:
+                return "Eva";
+            default:
+                break;
+        }
+        throw new System.Exception("ID of a nonexistent stat!");
+    }
     /*
      * Calculations:
      * HP = 2 * Endurance

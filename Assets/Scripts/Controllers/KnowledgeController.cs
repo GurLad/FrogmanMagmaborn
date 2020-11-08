@@ -10,6 +10,7 @@ public class KnowledgeController : MonoBehaviour
     public List<KnowledgeUpgrade> Upgrades;
     public Sprite ActiveSprite;
     public Sprite InactiveSprite;
+    public Sprite[] ChoiceSprites;
     [Header("Objects")]
     public MenuController UpgradeMenu;
     public Text Description;

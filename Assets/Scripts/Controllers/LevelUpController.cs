@@ -55,7 +55,7 @@ public class LevelUpController : MidBattleScreen
                 current = unit.Stats.GetLevelUp();
             } while (levelUpObjects.Find(a => a.Stats == current) != null);
             levelUpObjects[i].Stats = current;
-            levelUpObjects[i].Text.text = levelUpObjects[i].Stats.ToString().Replace("\n", "\n\n");
+            levelUpObjects[i].Text.text = levelUpObjects[i].Stats.ToColoredString().Replace("\n", "\n\n");
         }
         levelUpObjects[selected].PalettedSprite.Palette = 3;
         selected = 0;
