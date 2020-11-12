@@ -43,6 +43,10 @@ Torment: Why?! I feed on pain! Need it!
 It doesn't matter who! Only PAIN!
 Enough talk! FIGHT!
 :loadUnits:
+# Set Torment Firbell flag
+:if:hasCharacter:Firbell{
+:setFlag:MetTormentFirbell
+}
 ~
 :play:Trickster
 :loadUnits:InitTormentRoom

@@ -128,7 +128,7 @@ public class ConversationData : IComparable<ConversationData>
         return true;
     }
 
-    private bool MeetsRequirement(string requirement)
+    public bool MeetsRequirement(string requirement)
     {
         string[] parts = requirement.Split(':');
         switch (parts[0])
@@ -157,6 +157,9 @@ public class ConversationData : IComparable<ConversationData>
             case "hasKnowledge":
                 // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
                 return KnowledgeController.HasKnowledge(parts[1]);
+            case "hasFlag":
+                // Return whether a conversation flag is turned on
+                return SavedData.Load("Flag" + parts[1], 0) == 1;
             default:
                 break;
         }

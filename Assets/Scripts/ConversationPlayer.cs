@@ -149,6 +149,24 @@ public class ConversationPlayer : MidBattleScreen
                 case "unlockKnowledge":
                     KnowledgeController.UnlockKnowledge(parts[2]);
                     break;
+                case "setFlag":
+                    SavedData.Save("Flag" + parts[2], 1);
+                    break;
+                case "if":
+                    /* That's rather complicated and I don't have time to test, expect bugs
+                     * Syntax:
+                     * if:hasFlag:bla{
+                     * Firbell: Bla
+                     * }
+                     * Firbell: Will anyway happen
+                     */
+                    string requirement = line.Substring(line.IndexOf(':', 1) + 1);
+                    requirement = requirement.Substring(0, requirement.IndexOf('{'));
+                    if (!origin.MeetsRequirement(requirement))
+                    {
+                        while (lines[++num] != "}") { }
+                    }
+                    break;
                 default:
                     break;
             }
@@ -162,7 +180,7 @@ public class ConversationPlayer : MidBattleScreen
             }
             return;
         }
-        else if (line[0] == '#') // Comment, like this one :)
+        else if (line[0] == '#' || line[0] == '}') // Comment, like this one :) Or end of if block
         {
             if (num + 1 < lines.Count)
             {
