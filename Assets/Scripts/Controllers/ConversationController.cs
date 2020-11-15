@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ConversationController : MonoBehaviour
 {
     public static ConversationController Current;
     public List<TextAsset> Conversations;
+    [Header("Editor loader")]
+    public string Path = "Conversations";
     private List<ConversationData> options;
     private void Awake()
     {
@@ -29,6 +32,17 @@ public class ConversationController : MonoBehaviour
         //    options.Remove(chosen);
         //}
         return chosen;
+    }
+    public void AutoLoad()
+    {
+        Conversations.Clear();
+        string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + Path });
+        foreach (string fileName in fileNames)
+        {
+            TextAsset file = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
+            Debug.Log(fileName + ", " + file.name);
+            Conversations.Add(file);
+        }
     }
 }
 
