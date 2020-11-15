@@ -1,0 +1,25 @@
+priority:-1
+unique:F
+~
+roomNumber:2
+charactersAlive:>0
+!hasCharacter:Kresla
+~
+charactersAlive:=2
+~
+:play:BeforeBattle
+:addUnit:Kresla
+:loadUnits:
+Kresla: Hello Frogman! Care to be my test subject?
+Frogman: No, thank you.
+:if:hasCharacter:Firbell{
+Kresla: What about you, Firbell?
+Firbell: I appreciate the thou- ght, but I'll decline
+Kresla: Oh well, maybe next time.
+}
+:if:hasCharacter:Xirveros{
+Kresla: Oh, Xirveros is here?
+Xirveros: Me here! Me sing?
+Kresla: Maybe next time.
+}
+For now, killing some monsters will do.

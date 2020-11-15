@@ -1,0 +1,25 @@
+priority:-1
+unique:F
+~
+roomNumber:2
+charactersAlive:>0
+!hasCharacter:Firbell
+~
+charactersAlive:=2
+~
+:play:BeforeBattle
+:addUnit:Firbell
+:loadUnits:
+Firbell: Well met, Frogman.
+:if:hasCharacter:Kresla{
+Kresla.
+Kresla: Hello Firbell!
+}
+:if:hasCharacter:Xirveros{
+Nice to see you as well, Xirveros.
+Feeling well?
+Xirveros: Me feel like rock! Lucky rock!
+}
+Frogman: Hello.
+Firbell: Time to smash a few monsters.
+Frogman: Indeed.

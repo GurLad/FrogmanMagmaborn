@@ -16,12 +16,14 @@ Torment|???: Ha. Ha ha. HA HA HA!!!
 Frogman: What's so funny?
 Torment|???: Do I... have a Magma Emblem? Heh heh!
 Do you not know who I am, Frogman?
+:if:charactersAlive:>0{
 Frogman: No. Does anybody know this... thing?
 ...
 Huh?
 Torment|???: Did you not notice I froze your companions?
 HA HA HA!!
 You are so foolish! Please, do go on!
+}
 Frogman: Who are you?! What is going on?!
 :play:Trickster:T
 Torment|???: Why, I suppose I haven't introduced
