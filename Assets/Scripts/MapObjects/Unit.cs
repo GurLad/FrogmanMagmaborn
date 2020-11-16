@@ -40,7 +40,7 @@ public class Unit : MapObject
     {
         get
         {
-            return moved;
+            return Statue || moved;
         }
         set
         {
@@ -311,7 +311,7 @@ public class Unit : MapObject
     }
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam).ToList(); // Pretty much all AIs nead enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam && !a.Statue).ToList(); // Pretty much all AIs nead enemy units.
         switch (AIType)
         {
             case AIType.Charge:

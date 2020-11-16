@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum Difficulty { NotSet, Easy, Medium, Hard }
 public class GameController : MonoBehaviour
 {
     public enum Objective { Rout, Boss }
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     public GameObject StatusScreen;
     public GameObject LevelUpScreen;
     public GameObject PauseMenu;
+    public GameObject DifficultyMenu;
     [Header("Misc")]
     public float EnemyAIMoveDelay = 2;
     [Header("Torment palette")]
@@ -73,6 +74,7 @@ public class GameController : MonoBehaviour
     private bool checkPlayerDead;
     private Room selectedRoom;
     private int currentKnowledge;
+    private Difficulty difficulty;
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
     {
@@ -194,6 +196,7 @@ public class GameController : MonoBehaviour
             LevelNumber = 1;
             playerUnitsCache = new List<Unit>();
         }
+        difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
         CreateLevel();
     }
     /// <summary>
@@ -208,6 +211,30 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(false);
             return;
         }
+        if (difficulty == Difficulty.NotSet) // Set during the first level, so the player will have played/skipped the tutorial before selecting difficulty
+        {
+            if (DifficultyMenu != null) // Get difficulty
+            {
+                DifficultyMenu.SetActive(true);
+                MidBattleScreen.Current = DifficultyMenu.GetComponentInChildren<MenuController>();
+                return;
+            }
+            else // Update difficulty
+            {
+                difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
+                if (difficulty != Difficulty.Hard) // Level up player units
+                {
+                    foreach (Unit unit in units)
+                    {
+                        if (unit.TheTeam == Team.Player)
+                        {
+                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.Stats.GetLevelUp(++unit.Level);
+                            unit.Health = unit.Stats.MaxHP;
+                        }
+                    }
+                }
+            }
+        }
         if (checkPlayerDead)
         {
             if (units.Find(a => a.Name == "Frogman") == null)
@@ -220,6 +247,11 @@ public class GameController : MonoBehaviour
             {
                 // Win
                 ConversationPlayer.Current.PlayPostBattle();
+            }
+            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
+            {
+                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
+                playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
             }
             checkPlayerDead = false;
         }
@@ -521,8 +553,17 @@ public class GameController : MonoBehaviour
     }
     public void KillUnit(Unit unit)
     {
-        MapObjects.Remove(unit);
-        Destroy(unit.gameObject);
+        if (difficulty == Difficulty.Easy && unit.TheTeam == Team.Player && unit.Name != "Frogman") // No perma-death
+        {
+            Debug.Log("Pseudo-killed " + unit.Name);
+            unit.Statue = true;
+            unit.ReinforcementTurn = int.MaxValue;
+        }
+        else // Perma-death
+        {
+            MapObjects.Remove(unit);
+            Destroy(unit.gameObject);
+        }
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
     }
     public void Win()
@@ -535,6 +576,7 @@ public class GameController : MonoBehaviour
     {
         // Save player characters
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
+        playerCharacters.ForEach(a => a.Statue = false); // Revive "dead" units on Easy
         playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
         playerCharacters = playerCharacters.ToList();
         string saveData = "";
@@ -598,19 +640,23 @@ public class GameController : MonoBehaviour
         unit.gameObject.SetActive(true);
         return unit;
     }
-    public Unit CreatePlayerUnit(string name)
+    public Unit CreatePlayerUnit(string name, int level = -1)
     {
+        level = level >= 0 ? level : LevelNumber;
+        if (difficulty != Difficulty.Hard && difficulty != Difficulty.NotSet)
+        {
+            level++;
+        }
         Unit unit = CreateUnit();
         unit.Name = name;
         unit.name = "Unit" + name;
-        unit.Level = LevelNumber;
+        unit.Level = level;
         unit.TheTeam = Team.Player;
         unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
         GrowthsStruct unitGrowths;
         unit.Stats = new Stats();
         unit.Stats.Growths = (unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name)).Growths;
         unit.Flies = unitGrowths.Flies;
-        unit.Stats += unit.Stats.GetLevelUp(LevelNumber);
         unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
         unit.Inclination = unitGrowths.Inclination;
         int inclination = KnowledgeController.GetInclination(unit.Name);
@@ -620,6 +666,7 @@ public class GameController : MonoBehaviour
             unit.ChangeInclination((Inclination)(inclination - 1));
         }
         AssignUnitMapAnimation(unit);
+        unit.Stats += unit.Stats.GetLevelUp(level);
         unit.Init();
         return unit;
     }
@@ -697,17 +744,14 @@ public class GameController : MonoBehaviour
         int numPlayers = 0;
         for (int i = 0; i < unitDatas.Count; i++)
         {
-            Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
             string[] parts = unitDatas[i].Split(',');
-            unit.TheTeam = (Team)int.Parse(parts[0]);
-            unit.name = "Unit" + parts[1];
-            GrowthsStruct unitGrowths;
-            if (unit.TheTeam == Team.Player)
+            Team team = (Team)int.Parse(parts[0]);
+            string name = parts[1];
+            if (team == Team.Player)
             {
-                unit.Name = parts[1];
-                if (unit.Name == "P")
+                Unit unit;
+                if (name == "P")
                 {
-                    Destroy(unit.gameObject);
                     if (playerCharacters.Count > numPlayers + 1) // I can't make multiple rooms for evey combination of living characters...
                     {
                         unit = playerCharacters[++numPlayers];
@@ -722,9 +766,8 @@ public class GameController : MonoBehaviour
                     }
                     continue;
                 }
-                else if (unit.Name == "Frogman" && playerCharacters.Count > 0)
+                else if (name == "Frogman" && playerCharacters.Count > 0)
                 {
-                    Destroy(unit.gameObject);
                     unit = playerCharacters[0];
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
@@ -737,12 +780,28 @@ public class GameController : MonoBehaviour
                     cursorPos = unit.Pos; // Auto-cursor
                     continue;
                 }
-                unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
-                unit.Stats.Growths = (unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name)).Growths;
+                else
+                {
+                    unit = CreatePlayerUnit(name, int.Parse(parts[2]));
+                    unit.Health = unit.Stats.MaxHP;
+                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    if (name != "Frogman")
+                    {
+                        Debug.LogWarning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");
+                    }
+                    else
+                    {
+                        cursorPos = unit.Pos; // Auto-cursor
+                    }
+                }
             }
-            else
+            else // Enemy units
             {
-                unit.Name = unit.TheTeam.ToString();
+                Unit unit = CreateUnit();
+                unit.TheTeam = team;
+                unit.name = "Unit" + name;
+                GrowthsStruct unitGrowths;
+                unit.Name = TeamToString(team);
                 unit.Class = parts[1];
                 unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
                 unit.MovementMarker = EnemyMarker;
@@ -752,34 +811,21 @@ public class GameController : MonoBehaviour
                     unit.ReinforcementTurn = int.Parse(parts[6]);
                     unit.Statue = parts[7] == "T";
                 }
-            }
-            unit.Flies = unitGrowths.Flies;
-            unit.Inclination = unitGrowths.Inclination;
-            if (unit.TheTeam == Team.Player)
-            {
-                int inclination = KnowledgeController.GetInclination(unit.Name);
-                if (inclination > 0)
+                unit.Flies = unitGrowths.Flies;
+                unit.Inclination = unitGrowths.Inclination;
+                unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
+                unit.Level = int.Parse(parts[2]);
+                unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
+                unit.AIType = (AIType)int.Parse(parts[3]);
+                unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                if (unit.ReinforcementTurn > 0 && !unit.Statue)
                 {
-                    Debug.Log("Changing inclination!");
-                    unit.ChangeInclination((Inclination)(inclination - 1));
+                    unit.PreviousPos = unit.Pos;
+                    unit.Pos = Vector2Int.one * -1;
                 }
+                AssignUnitMapAnimation(unit);
+                unit.gameObject.SetActive(true);
             }
-            unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
-            unit.Level = int.Parse(parts[2]);
-            unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
-            unit.AIType = (AIType)int.Parse(parts[3]);
-            unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-            if (unit.ReinforcementTurn > 0 && !unit.Statue)
-            {
-                unit.PreviousPos = unit.Pos;
-                unit.Pos = Vector2Int.one * -1;
-            }
-            if (unit.Name == "Frogman")
-            {
-                cursorPos = unit.Pos; // Auto-cursor
-            }
-            AssignUnitMapAnimation(unit);
-            unit.gameObject.SetActive(true);
         }
         Debug.Log("Units: " + string.Join(", ", units));
         currentPhase = Team.Player;

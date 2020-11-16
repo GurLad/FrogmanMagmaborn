@@ -222,6 +222,12 @@ public class Stats
         }
         return result;
     }
+    public Stats GetLevel0Stat()
+    {
+        Stats stats = new Stats();
+        stats.Growths = Growths;
+        return stats;
+    }
     private string ColorText(int id)
     {
         return (statValues[id] > 0 ? "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[(id / 2 + 1) % 3][1]) + ">" + StatName(id) + ":</color>" : StatName(id) + ":") + statValues[id].ToString().PadRight(3);

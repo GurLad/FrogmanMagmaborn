@@ -181,7 +181,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case "AttackEnd":
                 if (state == State.AttackerFinishingAttack)
                 {
-                    if (Defender == null)
+                    if (Defender == null || Defender.Statue)
                     {
                         state = State.WaitTime;
                         return;
