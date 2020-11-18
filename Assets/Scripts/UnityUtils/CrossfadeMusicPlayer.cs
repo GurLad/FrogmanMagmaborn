@@ -23,6 +23,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     private AudioSource seconderyAudioSource;
     private float count;
     private bool playingIntro;
+    private bool playingBattle;
     private void Awake()
     {
         if (Current != null)
@@ -60,6 +61,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         }
         seconderyAudioSource.loop = true;
         playingIntro = false;
+        playingBattle = false;
         seconderyAudioSource.clip = target.AudioClip;
         Playing = name;
         mainAudioSource.volume = Volume;
@@ -91,12 +93,13 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         {
             Play(Playing.Replace("Battle", ""));
         }
+        playingBattle = true;
     }
     private void Update()
     {
         if (seconderyAudioSource.clip != null)
         {
-            count += Time.unscaledDeltaTime * FadeSpeed;
+            count += Time.unscaledDeltaTime * FadeSpeed * (playingBattle ? 2 : 1);
             if (count >= 1)
             {
                 AudioSource temp = mainAudioSource;

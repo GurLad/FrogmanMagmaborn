@@ -264,11 +264,11 @@ public class GameController : MonoBehaviour
                 if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(Control.Axis.Y)) >= 0.5f)
                 {
                     Cursor.transform.position += new Vector3(
-                        Sign(Control.GetAxis(Control.Axis.X)),
-                        Sign(Control.GetAxis(Control.Axis.Y))) * TileSize;
+                        Control.GetAxisInt(Control.Axis.X),
+                        Control.GetAxisInt(Control.Axis.Y)) * TileSize;
                     Cursor.transform.position = new Vector3(
-                        Mathf.Max(0, Mathf.Min(MapSize.x - 1, cursorPos.x)) * TileSize,
-                        -Mathf.Max(0, Mathf.Min(MapSize.y - 1, cursorPos.y)) * TileSize,
+                        Mathf.Clamp(cursorPos.x, 0, MapSize.x - 1) * TileSize,
+                        -Mathf.Clamp(cursorPos.y, 0, MapSize.y - 1) * TileSize,
                         Cursor.transform.position.z);
                     cursorMoveDelay = 0.15f;
                     if (cursorPos != previousPos)
@@ -291,117 +291,19 @@ public class GameController : MonoBehaviour
             }
             if (Control.GetButtonDown(Control.CB.A))
             {
-                InteractWithTile(cursorPos.x, cursorPos.y);
+                HandleAButton();
             }
             else if (Control.GetButtonDown(Control.CB.B))
             {
-                // Undo turn in move/attack
-                switch (InteractState)
-                {
-                    case InteractState.None:
-                        if (!RemoveMarkers()) // If not viewing enemy range
-                        {
-                            // Should move to Select button for ease of use
-                            Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
-                            if (selected != null)
-                            {
-                                StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
-                                TransitionToMidBattleScreen(statusScreenController);
-                                statusScreenController.Show(selected);
-                            }
-                            else
-                            {
-                                // Show danger area
-                                ShowDangerArea();
-                            }
-                        }
-                        break;
-                    case InteractState.Move:
-                        Selected = null;
-                        RemoveMarkers();
-                        InteractState = InteractState.None;
-                        break;
-                    case InteractState.Attack:
-                        Selected.MoveTo(Selected.PreviousPos);
-                        Selected.Interact(InteractState = InteractState.None);
-                        break;
-                    default:
-                        break;
-                }
+                HandleBButton();
             }
             else if (Control.GetButtonDown(Control.CB.Select))
             {
-                // Only works in None
-                switch (InteractState)
-                {
-                    case InteractState.None:
-                        Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
-                        if (selected != null)
-                        {
-                            bool foundSelected = false;
-                            List<Unit> trueUnits = units;
-                            for (int i = 0; i < trueUnits.Count; i++)
-                            {
-                                if (foundSelected && trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
-                                {
-                                    cursorPos = trueUnits[i].Pos;
-                                    foundSelected = false;
-                                    break;
-                                }
-                                if (trueUnits[i] == selected)
-                                {
-                                    foundSelected = true;
-                                }
-                            }
-                            if (foundSelected)
-                            {
-                                for (int i = 0; i < trueUnits.Count; i++)
-                                {
-                                    if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
-                                    {
-                                        cursorPos = trueUnits[i].Pos;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            List<Unit> trueUnits = units;
-                            for (int i = 0; i < trueUnits.Count; i++)
-                            {
-                                if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
-                                {
-                                    cursorPos = trueUnits[i].Pos;
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    case InteractState.Move:
-                        break;
-                    case InteractState.Attack:
-                        break;
-                    default:
-                        break;
-                }
+                HandleSelectButton();
             }
             else if (Control.GetButtonDown(Control.CB.Start))
             {
-                // Only works in None
-                switch (InteractState)
-                {
-                    case InteractState.None:
-                        MenuController pauseMenu = Instantiate(PauseMenu, Canvas.transform).GetComponentInChildren<MenuController>();
-                        MidBattleScreen.Current = pauseMenu;
-                        break;
-                    case InteractState.Move:
-                        break;
-                    case InteractState.Attack:
-                        break;
-                    default:
-                        break;
-                }
+                HandleStartButton();
             }
             if (previousPos != cursorPos)
             {
@@ -478,6 +380,118 @@ public class GameController : MonoBehaviour
             }
         }
         // End Interact/UI code
+    }
+    protected virtual void HandleAButton()
+    {
+        InteractWithTile(cursorPos.x, cursorPos.y);
+    }
+    protected virtual void HandleBButton()
+    {
+        switch (InteractState)
+        {
+            case InteractState.None: // View chosen character's stats
+                if (!RemoveMarkers()) // If not viewing enemy range
+                {
+                    Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                    if (selected != null)
+                    {
+                        StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
+                        TransitionToMidBattleScreen(statusScreenController);
+                        statusScreenController.Show(selected);
+                    }
+                    else
+                    {
+                        // Show danger area
+                        ShowDangerArea();
+                    }
+                }
+                break;
+            case InteractState.Move:// Undo turn in move/attack
+                Selected = null;
+                RemoveMarkers();
+                InteractState = InteractState.None;
+                break;
+            case InteractState.Attack:
+                Selected.MoveTo(Selected.PreviousPos);
+                Selected.Interact(InteractState = InteractState.None);
+                break;
+            default:
+                break;
+        }
+    }
+    protected virtual void HandleSelectButton()
+    {
+        // Only works in None
+        switch (InteractState)
+        {
+            case InteractState.None:
+                Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                if (selected != null)
+                {
+                    bool foundSelected = false;
+                    List<Unit> trueUnits = units;
+                    for (int i = 0; i < trueUnits.Count; i++)
+                    {
+                        if (foundSelected && trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                        {
+                            cursorPos = trueUnits[i].Pos;
+                            foundSelected = false;
+                            break;
+                        }
+                        if (trueUnits[i] == selected)
+                        {
+                            foundSelected = true;
+                        }
+                    }
+                    if (foundSelected)
+                    {
+                        for (int i = 0; i < trueUnits.Count; i++)
+                        {
+                            if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                            {
+                                cursorPos = trueUnits[i].Pos;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    List<Unit> trueUnits = units;
+                    for (int i = 0; i < trueUnits.Count; i++)
+                    {
+                        if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                        {
+                            cursorPos = trueUnits[i].Pos;
+                            break;
+                        }
+                    }
+                }
+                break;
+            case InteractState.Move:
+                break;
+            case InteractState.Attack:
+                break;
+            default:
+                break;
+        }
+    }
+    protected virtual void HandleStartButton()
+    {
+        // Only works in None
+        switch (InteractState)
+        {
+            case InteractState.None:
+                MenuController pauseMenu = Instantiate(PauseMenu, Canvas.transform).GetComponentInChildren<MenuController>();
+                MidBattleScreen.Current = pauseMenu;
+                break;
+            case InteractState.Move:
+                break;
+            case InteractState.Attack:
+                break;
+            default:
+                break;
+        }
     }
     public void InteractWithTile(int x, int y)
     {
@@ -868,10 +882,6 @@ public class GameController : MonoBehaviour
             default:
                 throw new System.Exception("No objective!");
         }
-    }
-    private int Sign(float number)
-    {
-        return number < 0 ? -1 : (number > 0 ? 1 : 0);
     }
 
     private class Room
