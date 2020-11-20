@@ -62,6 +62,7 @@ public class GameController : MonoBehaviour
     public Unit Selected;
     [HideInInspector]
     public int Turn;
+    protected Difficulty difficulty;
     private Palette basePalette;
     private List<Room> rooms;
     private Team currentPhase = Team.Player;
@@ -74,7 +75,6 @@ public class GameController : MonoBehaviour
     private bool checkPlayerDead;
     private Room selectedRoom;
     private int currentKnowledge;
-    private Difficulty difficulty;
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
     {
@@ -97,6 +97,17 @@ public class GameController : MonoBehaviour
             return playerUnitsCache;
         }
     }
+    protected Vector2Int cursorPos
+    {
+        get
+        {
+            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
+        }
+        set
+        {
+            Cursor.transform.position = new Vector3(value.x * TileSize, -value.y * TileSize, Cursor.transform.position.z);
+        }
+    }
     private bool _interactable = true;
     private bool interactable
     {
@@ -106,17 +117,6 @@ public class GameController : MonoBehaviour
             _interactable = value;
             UITileInfoPanel.gameObject.SetActive(_interactable);
             Cursor.gameObject.SetActive(_interactable);
-        }
-    }
-    private Vector2Int cursorPos
-    {
-        get
-        {
-            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
-        }
-        set
-        {
-            Cursor.transform.position = new Vector3(value.x * TileSize, -value.y * TileSize, Cursor.transform.position.z);
         }
     }
     private List<Unit> units
@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour
         }
         return team.ToString();
     }
-    private void Awake()
+    protected virtual void Awake()
     {
         /*
          * I had a few different ideas:
@@ -202,7 +202,7 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Used for player control.
     /// </summary>
-    private void Update()
+    protected virtual void Update()
     {
         if (MidBattleScreen.Current != null) // For ConversationPlayer
         {
@@ -211,30 +211,7 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(false);
             return;
         }
-        if (difficulty == Difficulty.NotSet) // Set during the first level, so the player will have played/skipped the tutorial before selecting difficulty
-        {
-            if (DifficultyMenu != null) // Get difficulty
-            {
-                DifficultyMenu.SetActive(true);
-                MidBattleScreen.Current = DifficultyMenu.GetComponentInChildren<MenuController>();
-                return;
-            }
-            else // Update difficulty
-            {
-                difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
-                if (difficulty != Difficulty.Hard) // Level up player units
-                {
-                    foreach (Unit unit in units)
-                    {
-                        if (unit.TheTeam == Team.Player)
-                        {
-                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.Stats.GetLevelUp(++unit.Level);
-                            unit.Health = unit.Stats.MaxHP;
-                        }
-                    }
-                }
-            }
-        }
+        CheckDifficulty();
         if (checkPlayerDead)
         {
             if (units.Find(a => a.Name == "Frogman") == null)
@@ -491,6 +468,33 @@ public class GameController : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    protected virtual void CheckDifficulty()
+    {
+        if (difficulty == Difficulty.NotSet) // Set during the first level, so the player will have played/skipped the tutorial before selecting difficulty
+        {
+            if (DifficultyMenu != null) // Get difficulty
+            {
+                DifficultyMenu.SetActive(true);
+                MidBattleScreen.Current = DifficultyMenu.GetComponentInChildren<MenuController>();
+                return;
+            }
+            else // Update difficulty
+            {
+                difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
+                if (difficulty != Difficulty.Hard) // Level up player units
+                {
+                    foreach (Unit unit in units)
+                    {
+                        if (unit.TheTeam == Team.Player)
+                        {
+                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.Stats.GetLevelUp(++unit.Level);
+                            unit.Health = unit.Stats.MaxHP;
+                        }
+                    }
+                }
+            }
         }
     }
     public void InteractWithTile(int x, int y)

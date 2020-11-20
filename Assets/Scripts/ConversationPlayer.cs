@@ -122,6 +122,17 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Current = this;
         StartLine(0);
     }
+    public void Pause()
+    {
+        gameObject.SetActive(false);
+        MidBattleScreen.Current = null;
+    }
+    public void Resume(int mod = 1)
+    {
+        gameObject.SetActive(true);
+        MidBattleScreen.Current = this;
+        StartLine(currentLine + mod);
+    }
     private void StartLine(int num)
     {
         currentLine = num;
@@ -153,10 +164,9 @@ public class ConversationPlayer : MidBattleScreen
                     SavedData.Save("Flag" + parts[2], 1);
                     break;
                 case "if":
-                    /* That's rather complicated and I don't have time to test, expect bugs
-                     * Syntax:
+                    /* Syntax:
                      * if:hasFlag:bla{
-                     * Firbell: Bla
+                     * Firbell: Will happen if hasFlag (requirement)
                      * }
                      * Firbell: Will anyway happen
                      */
@@ -167,6 +177,15 @@ public class ConversationPlayer : MidBattleScreen
                         while (lines[++num] != "}") { }
                     }
                     break;
+                case "tutorialForceButton":
+                    // Tutorial only (obviously)
+                    TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
+                    forceButton.Move = System.Enum.TryParse(parts[2], out forceButton.Button);
+                    string[] pos = parts[3].Split(',');
+                    forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
+                    TutorialGameController.Current.CurrentForceButton = forceButton;
+                    Pause();
+                    return;
                 default:
                     break;
             }
