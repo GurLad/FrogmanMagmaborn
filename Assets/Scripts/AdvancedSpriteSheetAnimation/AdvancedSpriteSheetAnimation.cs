@@ -142,8 +142,8 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-        currentFrame = 0;
-        count = 0;
+        count = FixedSpeed ? fixedCount : 0;
+        currentFrame = FixedSpeed ? fixedFrame : 0;
         Active = true;
         Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }

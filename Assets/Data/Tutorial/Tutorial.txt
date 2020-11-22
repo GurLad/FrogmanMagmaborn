@@ -17,5 +17,15 @@ Frogman: What?!
 Torment|Tori: Oh, shut up already! Anyway, you play as
 Frogman here.
 Try selecting him with your cursor.
+:tutorialShowMarker:5,4
 :tutorialForceButton:A:5,4
-Excellent!
+Excellent! Now move him near the Goblin.
+:tutorialShowMarker:8,6
+:tutorialForceButton:A:8,6
+And attack!
+:tutorialShowMarker:8,8
+:tutorialForceButton:A:8,8
+Now wait for the Goblin to attack...
+:wait:turn:>1
+And finished!
+(Obviously placeholder from "Excellent" line)

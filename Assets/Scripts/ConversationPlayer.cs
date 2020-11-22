@@ -28,6 +28,7 @@ public class ConversationPlayer : MidBattleScreen
     private float count;
     private bool postBattle = false;
     private string targetLine;
+    private string waitRequirement = "";
     private List<string> lines
     {
         get
@@ -133,6 +134,14 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Current = this;
         StartLine(currentLine + mod);
     }
+    public void CheckWait()
+    {
+        if (!string.IsNullOrEmpty(waitRequirement) && origin.MeetsRequirement(waitRequirement))
+        {
+            waitRequirement = "";
+            Resume();
+        }
+    }
     private void StartLine(int num)
     {
         currentLine = num;
@@ -184,6 +193,15 @@ public class ConversationPlayer : MidBattleScreen
                     string[] pos = parts[3].Split(',');
                     forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
                     TutorialGameController.Current.CurrentForceButton = forceButton;
+                    TutorialGameController.Current.WaitingForForceButton = true;
+                    Pause();
+                    return;
+                case "tutorialShowMarker":
+                    string[] markerPos = parts[2].Split(',');
+                    TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
+                    break;
+                case "wait":
+                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
                     return;
                 default:

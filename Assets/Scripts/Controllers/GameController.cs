@@ -214,6 +214,7 @@ public class GameController : MonoBehaviour
         CheckDifficulty();
         if (checkPlayerDead)
         {
+            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
@@ -562,6 +563,7 @@ public class GameController : MonoBehaviour
         {
             Turn++;
         }
+        CheckConveresationWait(); // Wait for turn events
     }
     public void TransitionToMidBattleScreen(MidBattleScreen screen)
     {
@@ -885,6 +887,14 @@ public class GameController : MonoBehaviour
                 return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
             default:
                 throw new System.Exception("No objective!");
+        }
+    }
+    private void CheckConveresationWait()
+    {
+        // For now, always check it (change to until it's done, as 99% of the time conversations won't have wait commands)
+        if (ConversationPlayer.Current != null)
+        {
+            ConversationPlayer.Current.CheckWait();
         }
     }
 

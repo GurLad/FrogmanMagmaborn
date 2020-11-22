@@ -6,6 +6,20 @@ public class TutorialGameController : GameController
 {
     public new static TutorialGameController Current;
     public ForceButton CurrentForceButton;
+    [Header("Tutorial Only")]
+    [SerializeField]
+    private AdvancedSpriteSheetAnimation MarkerCursor;
+    [HideInInspector]
+    public bool WaitingForForceButton;
+    public void ShowMarkerCursor(Vector2Int pos)
+    {
+        MarkerCursor.transform.position = new Vector3(pos.x * TileSize, -pos.y * TileSize, MarkerCursor.transform.position.z);
+        MarkerCursor.gameObject.SetActive(true);
+        if (MarkerCursor.Active)
+        {
+            MarkerCursor.Restart();
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -14,8 +28,9 @@ public class TutorialGameController : GameController
     protected override void Update()
     {
         base.Update();
-        if (MidBattleScreen.Current == null && CurrentForceButton == null)
+        if (WaitingForForceButton && MidBattleScreen.Current == null && CurrentForceButton == null)
         {
+            WaitingForForceButton = false;
             ConversationPlayer.Current.Resume();
         }
     }
@@ -25,6 +40,7 @@ public class TutorialGameController : GameController
         {
             base.HandleAButton();
             CurrentForceButton = null;
+            MarkerCursor.gameObject.SetActive(false);
         }
         else
         {
@@ -37,6 +53,7 @@ public class TutorialGameController : GameController
         {
             base.HandleBButton();
             CurrentForceButton = null;
+            MarkerCursor.gameObject.SetActive(false);
         }
         else
         {
@@ -45,27 +62,11 @@ public class TutorialGameController : GameController
     }
     protected override void HandleSelectButton()
     {
-        if (CurrentForceButton.Button == Control.CB.Select && cursorPos == CurrentForceButton.Pos)
-        {
-            base.HandleSelectButton();
-            CurrentForceButton = null;
-        }
-        else
-        {
-            WrongInput();
-        }
+        base.HandleSelectButton();
     }
     protected override void HandleStartButton()
     {
-        if (CurrentForceButton.Button == Control.CB.Start && cursorPos == CurrentForceButton.Pos)
-        {
-            base.HandleStartButton();
-            CurrentForceButton = null;
-        }
-        else
-        {
-            WrongInput();
-        }
+        // No menu in tutorial (?)
     }
     protected override void CheckDifficulty()
     {

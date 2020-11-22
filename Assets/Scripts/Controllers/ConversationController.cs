@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -46,7 +45,7 @@ public class ConversationController : MonoBehaviour
     }
 }
 
-public class ConversationData : IComparable<ConversationData>
+public class ConversationData : System.IComparable<ConversationData>
 {
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
     public List<string> Demands { get; private set; } // See above.
@@ -152,18 +151,7 @@ public class ConversationData : IComparable<ConversationData>
                 return GameController.Current.PlayerUnits.Find(a => a.Name == parts[1]) != null;
             case "charactersAlive":
                 // Format: charactersAlive:?X, ex. charactersAlive:>2
-                int targetNumber = int.Parse(parts[1].Substring(1));
-                switch (parts[1][0])
-                {
-                    case '>':
-                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count > targetNumber;
-                    case '<':
-                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count < targetNumber;
-                    case '=':
-                        return GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count == targetNumber;
-                    default:
-                        break;
-                }
+                MeetsComparisonRequirement(parts[1][0], GameController.Current.PlayerUnits.FindAll(a => a.Name != "Frogman").Count, int.Parse(parts[1].Substring(1)));
                 break;
             case "roomNumber":
                 // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
@@ -174,10 +162,29 @@ public class ConversationData : IComparable<ConversationData>
             case "hasFlag":
                 // Return whether a conversation flag is turned on
                 return SavedData.Load("Flag" + parts[1], 0) == 1;
+            case "turn":
+                // Return whether a certain turn has passed. Obviouslt only works in "wait" commands.
+                return MeetsComparisonRequirement(parts[1][0], GameController.Current.Turn, int.Parse(parts[1].Substring(1)));
             default:
                 break;
         }
         return true;
+    }
+
+    private bool MeetsComparisonRequirement(char comparisonType, int valueL, int valueR)
+    {
+        switch (comparisonType)
+        {
+            case '>':
+                return valueL > valueR;
+            case '<':
+                return valueL < valueR;
+            case '=':
+                return valueL == valueR;
+            default:
+                break;
+        }
+        throw new System.Exception("No/wrong sign!");
     }
 
     public int CompareTo(ConversationData other)
@@ -201,7 +208,7 @@ public class ConversationData : IComparable<ConversationData>
         }
         return false;
     }
-
+    
     public override string ToString()
     {
         return id;
