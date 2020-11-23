@@ -192,6 +192,10 @@ public class ConversationPlayer : MidBattleScreen
                     forceButton.Move = System.Enum.TryParse(parts[2], out forceButton.Button);
                     string[] pos = parts[3].Split(',');
                     forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
+                    if (parts.Length > 4)
+                    {
+                        forceButton.WrongLine = int.Parse(parts[4]);
+                    }
                     TutorialGameController.Current.CurrentForceButton = forceButton;
                     TutorialGameController.Current.WaitingForForceButton = true;
                     Pause();
@@ -229,6 +233,13 @@ public class ConversationPlayer : MidBattleScreen
             }
             return;
         }
+        if (line.Contains("[")) // Variable name (like button name)
+        {
+            Debug.Log(line);
+            line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
+            line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
+            Debug.Log(line);
+        }
         if (line.IndexOf(':') != -1)
         {
             string[] parts = line.Split(':')[0].Split('|');
@@ -237,7 +248,7 @@ public class ConversationPlayer : MidBattleScreen
             Name.text = parts[parts.Length - 1];
         }
         // Find the line break
-        string trueLine = FindLineBreack(TrueLine(lines[currentLine]));
+        string trueLine = FindLineBreack(TrueLine(line));
         // Check if it's short (aka no line break) and had previous
         if (line.IndexOf(':') < 0 && LineAddition(trueLine))
         {

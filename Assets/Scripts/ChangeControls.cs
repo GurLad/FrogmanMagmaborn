@@ -52,7 +52,7 @@ public class ChangeControls : MonoBehaviour
     private void UpdateDisplay()
     {
         //Debug.Log("Key: " + ((Keys)currentKey) + ", save name: " + GetKeySaveName() + ", display button: " + Control.DisplayButtonName(GetKeySaveName()));
-        Text.text = "Press " + ((Keys)currentKey).ToString() + "\n" + Descriptions[currentKey] + "\nCurrent: " + ShortenKeycode(Control.GetKeyCode(GetKeySaveName()));
+        Text.text = "Press " + ((Keys)currentKey).ToString() + "\n" + Descriptions[currentKey] + "\nCurrent: " + Control.DisplayShortButtonName(GetKeySaveName());
     }
     private string GetKeySaveName()
     {
@@ -69,9 +69,5 @@ public class ChangeControls : MonoBehaviour
             default:
                 return ((Keys)currentKey).ToString();
         }
-    }
-    private string ShortenKeycode(KeyCode keyCode)
-    {
-        return keyCode.ToString().Replace("Arrow", "").Replace("Keypad", "Num").Replace("Alpha", "");
     }
 }

@@ -97,6 +97,11 @@ public static class Control
         return GetKeyCode(keySaveName).ToString();
     }
 
+    public static string DisplayShortButtonName(string keySaveName)
+    {
+        return DisplayButtonName(keySaveName).Replace("Arrow", "").Replace("Keypad", "Num").Replace("Alpha", "");
+    }
+
     public static KeyCode GetKeyCode(string keySaveName)
     {
         return (KeyCode)Load(keySaveName + SaveNameModifier(), 0, SaveMode.Global);

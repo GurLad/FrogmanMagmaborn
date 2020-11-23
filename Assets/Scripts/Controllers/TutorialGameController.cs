@@ -74,7 +74,7 @@ public class TutorialGameController : GameController
     }
     private void WrongInput()
     {
-        ConversationPlayer.Current.Resume(-1); // Repeat last line
+        ConversationPlayer.Current.Resume(CurrentForceButton.WrongLine); // Repeat last line
     }
 
     public class ForceButton
@@ -82,5 +82,6 @@ public class TutorialGameController : GameController
         public Control.CB Button;
         public Vector2Int Pos;
         public bool Move;
+        public int WrongLine = -1;
     }
 }
