@@ -304,28 +304,23 @@ public class GameController : MonoBehaviour
                     UIUnitInfoPanel.anchorMax = anchor;
                     UIUnitInfoPanel.pivot = anchor;
                     UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
-                    if (InteractState != InteractState.None && unit.TheTeam != Selected.TheTeam)
-                    {
-                        UIFightPanel.gameObject.SetActive(true);
-                        anchor.y = 0.5f;
-                        UIFightPanel.anchorMin = anchor;
-                        UIFightPanel.anchorMax = anchor;
-                        UIFightPanel.pivot = anchor;
-                        UIAttackerPanel.Palette = (int)Selected.TheTeam;
-                        UIDefenderPanel.Palette = (int)unit.TheTeam;
-                        UIAttackerInfo.text = Selected.AttackPreview(unit);
-                        UIDefenderInfo.text = unit.AttackPreview(Selected);
-                        UIAttackerInclination.Display(Selected, unit);
-                        UIDefenderInclination.Display(unit, Selected);
-                    }
-                    else
-                    {
-                        UIFightPanel.gameObject.SetActive(false);
-                    }
                 }
                 else
                 {
                     UIUnitInfoPanel.gameObject.SetActive(false);
+                }
+                if (InteractState != InteractState.None)
+                {
+                    UIFightPanel.gameObject.SetActive(true);
+                    anchor.y = 0.5f;
+                    UIFightPanel.anchorMin = anchor;
+                    UIFightPanel.anchorMax = anchor;
+                    UIFightPanel.pivot = anchor;
+                    DisplayBattleForecast(Selected, unit);
+                    DisplayBattleForecast(unit, Selected, true);
+                }
+                else
+                {
                     UIFightPanel.gameObject.SetActive(false);
                 }
                 anchor.y = 0;
@@ -496,6 +491,62 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
+    {
+        // Get the relevant parts
+        PalettedSprite panel = reverse ? UIDefenderPanel : UIAttackerPanel;
+        Text info = reverse ? UIDefenderInfo : UIAttackerInfo;
+        InclinationIndicator inclination = reverse ? UIDefenderInclination : UIAttackerInclination;
+        // Check if selecting the same unit...
+        if (origin == target)
+        {
+            if (InteractState == InteractState.Attack && reverse)
+            {
+                // ...to wait
+                panel.Palette = 3;
+                info.text = "\n Wait";
+                panel.gameObject.SetActive(true);
+                inclination.gameObject.SetActive(false);
+                return;
+            }
+            else
+            {
+                // ...while moving (same as selecting nothing)
+                if (reverse)
+                {
+                    origin = null;
+                }
+                else if (InteractState == InteractState.Move)
+                {
+                    target = null;
+                }
+            }
+        }
+        // Check if selecting nothing
+        if (origin == null)
+        {
+            panel.gameObject.SetActive(false);
+            return;
+        }
+        // Show info
+        panel.gameObject.SetActive(true);
+        inclination.gameObject.SetActive(true);
+        panel.Palette = (int)origin.TheTeam;
+        if (reverse || (origin != target && target != null)) // Show battle preview
+        {
+            info.text = origin.AttackPreview(target, 2, target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target)));
+        }
+        else // Show unit name & inclination
+        {
+            info.text = origin.Name.Substring(0, 6) + "\n\nHP :" + origin.Health;
+        }
+        inclination.Display(origin, target);
+        // Move to center if there is only one panel
+        if (!reverse)
+        {
+            panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, target == null ? -20 : 0);
         }
     }
     public void InteractWithTile(int x, int y)

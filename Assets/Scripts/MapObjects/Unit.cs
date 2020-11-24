@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
+
 public enum Team { Player, Monster, Guard }
 public enum AIType { Charge, Hold, Guard }
 public enum Inclination { Physical, Technical, Skillful } // Bad names
@@ -517,9 +519,15 @@ public class Unit : MapObject
         }
         return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
     }
-    public string AttackPreview(Unit other, int padding = 2)
+    public bool CanAttack(Unit other)
     {
-        return "HP :" + Health.ToString().PadRight(padding) + "\nDMG:" + GetDamage(other).ToString().PadRight(padding) + "\nHIT:" + GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100").PadRight(padding);
+        return other != null && !Statue && Weapon.Range >= Vector2Int.Distance(Pos, other.Pos);
+    }
+    public string AttackPreview(Unit other, int padding = 2, bool canAttack = true)
+    {
+        return "HP :" + Health.ToString().PadRight(padding) + 
+            "\nDMG:" + (canAttack ? GetDamage(other).ToString() : "--").PadRight(padding) + 
+            "\nHIT:" + (canAttack ? GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100") : "--").PadRight(padding);
     }
     public string BattleStats()
     {
@@ -577,7 +585,7 @@ public class Unit : MapObject
     }
     public bool EffectiveAgainst(Unit target) // Might change effectiveness to triangle
     {
-        return Inclination == target.Inclination && KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff);
+        return target != null && Inclination == target.Inclination && KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff);
     }
     public string Save()
     {
