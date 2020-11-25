@@ -16,7 +16,7 @@ Yes, you! In front of the screen!
 Frogman: What?!
 Torment|Tori: Oh, shut up already! Anyway, you play as
 Frogman here.
-Try selecting him with by pressing [AButton].
+Try selecting him by pressing [AButton].
 :tutorialShowMarker:5,4
 :tutorialForceButton:A:5,4:-2
 Excellent! You see those green squaers?
@@ -25,11 +25,23 @@ Frogman: Do I have a say in this?
 Torment|Tori: Of course not! Ha ha!
 Frogman: Well, I refuse to move for you!
 Torment|Tori: Oh, really? Let's see you try that!
-Move near the goblin.
-:tutorialShowMarker:8,6
-:tutorialForceButton:A:8,6:-3
+Move away from the goblin.
+:tutorialShowMarker:4,6
+:tutorialForceButton:A:4,6:-2
 Frogman: Ahhh!
 Torment|Tori: Ha ha ha! What a fool! As if you are free...
+But running away is no solution! You must
+fight your enemies!
+Frogman: Why are they my enemies?
+Torment|Tori: I'm not going to spoil the story here...
+But it's not like you have a choice! Heh!
+Start by undoing your last move with [BButton].
+:tutorialForceButton:B
+Excellent! Now move near the goblin!
+:tutorialShowMarker:8,6
+:tutorialForceButton:A:8,6:-3
+Frogman: But I like goblins!
+Torment|Tori: Then you're a fool! Heh heh!
 Anyway, where were we? Ah, right. Do you see
 those gray squares?
 They are places you can attack!

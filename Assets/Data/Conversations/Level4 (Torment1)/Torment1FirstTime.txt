@@ -49,6 +49,9 @@ Enough talk! FIGHT!
 :if:hasCharacter:Firbell{
 :setFlag:MetTormentFirbell
 }
+:if:hasCharacter:Kresla{
+:setFlag:MetTormentKresla
+}
 ~
 :play:Trickster
 :loadUnits:InitTormentRoom

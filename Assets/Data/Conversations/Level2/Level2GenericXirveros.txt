@@ -9,10 +9,19 @@ charactersAlive:=2
 :play:BeforeBattle
 :addUnit:Xirveros
 :loadUnits:
-Frogman: Oh. Hello again, Xirveros.
-Xirveros: Frog! I have more song!
-Frogman: Please don't-
-Xirveros: Rivers flow to the sea \w@
-Magma tastes like tea \w@
-Under the sun you will-
-Frogman: That's enough. Let's go.
+Frogman: Not again... Xirveros.
+Xirveros: Frog again! Like frog! Frog want battle?
+Frogman: Yes. With monsters, please.
+if:hasCharacter:Firbell{
+Xirveros: Firbell fight too?
+Firbell: Yes, Xirveros. Let us make Irenhold proud!
+Xirveros: For Irenhold!
+}
+if:haseCharacter:Kresla{
+Xirveros: Kresla fight too?
+Kresla: What? Not refering to me as queen today?
+Xirveros: No, no! Your place, K is eyeless!
+Kresla: Your memory is so erratic... What is
+your true story?
+I WILL find that out, one day.
+}
