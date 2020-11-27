@@ -39,7 +39,7 @@ Start by undoing your last move with [BButton].
 :tutorialForceButton:B
 Excellent! Now move near the goblin!
 :tutorialShowMarker:8,6
-:tutorialForceButton:A:8,6:-3
+:tutorialForceButton:A:8,6:-2
 Frogman: But I like goblins!
 Torment|Tori: Then you're a fool! Heh heh!
 Anyway, where were we? Ah, right. Do you see
@@ -78,3 +78,5 @@ Frogman: Stop ignoring me!
 Torment|Tori: And... Done!
 Frogman: Where am I? Who are you?
 Torment|???: Ha ha ha! Goodbye, and good luck! Have fun!
+:setFlag:TutorialFinish
+:tutorialFinish:

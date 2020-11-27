@@ -8,7 +8,7 @@ public class InclinationIndicator : MonoBehaviour
     public List<Sprite> Icons;
     public Image Icon;
     public bool BattlePreview;
-    public void Display(Unit unit, Unit target)
+    private void Start()
     {
         if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff))
         {
@@ -16,8 +16,11 @@ public class InclinationIndicator : MonoBehaviour
             {
                 transform.parent.parent.gameObject.GetComponent<RectTransform>().sizeDelta -= new Vector2(4, 0);
             }
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
+    }
+    public void Display(Unit unit, Unit target)
+    {
         if (unit.TheTeam == Team.Player && unit.EffectiveAgainst(target))
         {
             SetIcon(Icon, (int)unit.Inclination, 0);

@@ -17,8 +17,9 @@ public class ConversationPlayer : MidBattleScreen
     public GameObject Arrow;
     [SerializeField]
     private bool startActive = true;
-    [Header("Menu only")]
+    [Header("Main menu only")]
     public GameObject Knowledge;
+    public GameObject Tutorial;
     private CurrentState state;
     private ConversationData origin;
     private CharacterVoice voice;
@@ -186,15 +187,24 @@ public class ConversationPlayer : MidBattleScreen
                         while (lines[++num] != "}") { }
                     }
                     break;
+                case "wait":
+                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
+                    Pause();
+                    return;
+
+                // Tutorial commands
+
                 case "tutorialForceButton":
-                    // Tutorial only (obviously)
                     TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
                     forceButton.Move = System.Enum.TryParse(parts[2], out forceButton.Button);
-                    string[] pos = parts[3].Split(',');
-                    forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
-                    if (parts.Length > 4)
+                    if (parts.Length > 3)
                     {
-                        forceButton.WrongLine = int.Parse(parts[4]);
+                        string[] pos = parts[3].Split(',');
+                        forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
+                        if (parts.Length > 4)
+                        {
+                            forceButton.WrongLine = int.Parse(parts[4]);
+                        }
                     }
                     TutorialGameController.Current.CurrentForceButton = forceButton;
                     TutorialGameController.Current.WaitingForForceButton = true;
@@ -204,9 +214,8 @@ public class ConversationPlayer : MidBattleScreen
                     string[] markerPos = parts[2].Split(',');
                     TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
                     break;
-                case "wait":
-                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
-                    Pause();
+                case "tutorialFinish":
+                    SceneController.LoadScene("Map");
                     return;
                 default:
                     break;
@@ -276,10 +285,18 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Sleep;
         if (GameController.Current == null)
         {
+            // Intro conversations
             if (postBattle || origin.PostBattleLines.Count <= 0)
             {
                 origin.Choose();
-                SceneController.LoadScene("Map");
+                if (SavedData.Load("FlagTutorialFinish", 0) == 0)
+                {
+                    Tutorial.SetActive(true);
+                }
+                else
+                {
+                    SceneController.LoadScene("Map");
+                }
             }
             else
             {
@@ -287,21 +304,24 @@ public class ConversationPlayer : MidBattleScreen
             }
             return;
         }
-        if (postBattle)
-        {
-            origin.Choose();
-            origin = null;
-            GameController.Current.Win();
-        }
         else
         {
-            CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
-            if (origin.PostBattleLines.Count <= 0)
+            // Battle conversations
+            if (postBattle)
             {
                 origin.Choose();
+                origin = null;
+                GameController.Current.Win();
+            }
+            else
+            {
+                CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
+                if (origin.PostBattleLines.Count <= 0)
+                {
+                    origin.Choose();
+                }
             }
         }
-        return;
     }
     private string TrueLine(string line)
     {

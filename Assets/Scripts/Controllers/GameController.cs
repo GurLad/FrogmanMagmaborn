@@ -394,10 +394,10 @@ public class GameController : MonoBehaviour
     }
     protected virtual void HandleSelectButton()
     {
-        // Only works in None
         switch (InteractState)
         {
             case InteractState.None:
+                // Select next unit
                 Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
                 if (selected != null)
                 {
@@ -442,8 +442,9 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case InteractState.Move:
-                break;
             case InteractState.Attack:
+                // Select selected unit
+                cursorPos = Selected.Pos;
                 break;
             default:
                 break;
@@ -508,7 +509,10 @@ public class GameController : MonoBehaviour
                 panel.Palette = 3;
                 info.text = "\n Wait";
                 panel.gameObject.SetActive(true);
-                inclination.gameObject.SetActive(false);
+                if (inclination != null)
+                {
+                    inclination.gameObject.SetActive(false);
+                }
                 return;
             }
             else
@@ -532,17 +536,20 @@ public class GameController : MonoBehaviour
         }
         // Show info
         panel.gameObject.SetActive(true);
-        inclination.gameObject.SetActive(true);
         panel.Palette = (int)origin.TheTeam;
         if (reverse || (origin != target && target != null)) // Show battle preview
         {
-            info.text = origin.AttackPreview(target, 2, target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target)));
+            info.text = origin.AttackPreview(target, 2, target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target) || MapObjectsAtPos(origin.Pos).Find(a => a is AttackMarker) == null));
         }
         else // Show unit name & inclination
         {
             info.text = origin.Name.Substring(0, 6) + "\n\nHP :" + origin.Health;
         }
-        inclination.Display(origin, target);
+        if (inclination != null)
+        {
+            inclination.gameObject.SetActive(true);
+            inclination.Display(origin, target);
+        }
         // Move to center if there is only one panel
         if (!reverse)
         {
@@ -551,7 +558,15 @@ public class GameController : MonoBehaviour
     }
     public void InteractWithTile(int x, int y)
     {
-        MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y).ForEach(a => a.Interact(InteractState));
+        MapObjectsAtPos(x, y).ForEach(a => a.Interact(InteractState));
+    }
+    private List<MapObject> MapObjectsAtPos(int x, int y)
+    {
+        return MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y);
+    }
+    private List<MapObject> MapObjectsAtPos(Vector2Int pos)
+    {
+        return MapObjectsAtPos(pos.x, pos.y);
     }
     /// <summary>
     /// Removes all markers.

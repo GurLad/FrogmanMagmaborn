@@ -12,16 +12,16 @@ charactersAlive:=2
 Frogman: Not again... Xirveros.
 Xirveros: Frog again! Like frog! Frog want battle?
 Frogman: Yes. With monsters, please.
-if:hasCharacter:Firbell{
+:if:hasCharacter:Firbell{
 Xirveros: Firbell fight too?
 Firbell: Yes, Xirveros. Let us make Irenhold proud!
 Xirveros: For Irenhold!
 }
-if:haseCharacter:Kresla{
+:if:hasCharacter:Kresla{
 Xirveros: Kresla fight too?
 Kresla: What? Not refering to me as queen today?
-Xirveros: No, no! Your place, K is eyeless!
+Xirveros: No, no! In your place, K is eyeless!
 Kresla: Your memory is so erratic... What is
 your true story?
-I WILL find that out, one day.
+I WILL find that out. One day.
 }

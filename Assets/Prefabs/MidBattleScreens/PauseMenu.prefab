@@ -353,6 +353,7 @@ MonoBehaviour:
   - {fileID: 6341113170117951226}
   Selected: 0
   Cancelable: 1
+  FinishOnSelect: 1
   CancelTrigger: {fileID: 37419709093473661}
 --- !u!222 &107170701256062623
 CanvasRenderer:
@@ -672,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 832186918215127001, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
         type: 3}
       propertyPath: m_Text
-      value: Save & Quit
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 832186918215127002, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
         type: 3}

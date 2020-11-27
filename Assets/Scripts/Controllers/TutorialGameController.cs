@@ -36,7 +36,7 @@ public class TutorialGameController : GameController
     }
     protected override void HandleAButton()
     {
-        if (CurrentForceButton.Button == Control.CB.A && cursorPos == CurrentForceButton.Pos)
+        if (CurrentForceButton.Button == Control.CB.A && (CurrentForceButton.Pos == cursorPos || CurrentForceButton.Pos == Vector2Int.one * -1))
         {
             base.HandleAButton();
             CurrentForceButton = null;
@@ -49,7 +49,7 @@ public class TutorialGameController : GameController
     }
     protected override void HandleBButton()
     {
-        if (CurrentForceButton.Button == Control.CB.B && cursorPos == CurrentForceButton.Pos)
+        if (CurrentForceButton.Button == Control.CB.B && (CurrentForceButton.Pos == cursorPos || CurrentForceButton.Pos == Vector2Int.one * -1))
         {
             base.HandleBButton();
             CurrentForceButton = null;
@@ -80,7 +80,7 @@ public class TutorialGameController : GameController
     public class ForceButton
     {
         public Control.CB Button;
-        public Vector2Int Pos;
+        public Vector2Int Pos = Vector2Int.one * -1;
         public bool Move;
         public int WrongLine = -1;
     }
