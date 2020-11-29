@@ -32,6 +32,7 @@ public class ConversationController : MonoBehaviour
         //}
         return chosen;
     }
+    #if UNITY_EDITOR 
     public void AutoLoad()
     {
         Conversations.Clear();
@@ -43,6 +44,7 @@ public class ConversationController : MonoBehaviour
             Conversations.Add(file);
         }
     }
+    #endif
 }
 
 public class ConversationData : System.IComparable<ConversationData>

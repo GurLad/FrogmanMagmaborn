@@ -8827,7 +8827,7 @@ MonoBehaviour:
   - ClassName: Frogman
     Name: Bow
     HitStat: 0
-    Damage: -1
+    Damage: 0
     Weight: 0
     Range: 2
   - ClassName: Skeleton
@@ -10636,6 +10636,7 @@ MonoBehaviour:
   Selected: {fileID: 0}
   Turn: 0
   MarkerCursor: {fileID: 2004507419}
+  WaitingForForceButton: 0
 --- !u!4 &1902908236
 Transform:
   m_ObjectHideFlags: 0

@@ -144,7 +144,6 @@ public class GameController : MonoBehaviour
          */
         Current = this;
         main = Camera.main;
-        Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
         // Load rooms
         rooms = new List<Room>();
         for (int i = 0; i < Rooms.Count; i++)

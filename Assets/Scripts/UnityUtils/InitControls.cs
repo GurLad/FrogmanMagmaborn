@@ -10,6 +10,7 @@ public class InitControls : MonoBehaviour
     public Text InitStart;
     private void Awake()
     {
+        Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
         if (!SavedData.HasKey("InitControls", SaveMode.Global))
         {
             SavedData.Save("InitControls", 1, SaveMode.Global);
