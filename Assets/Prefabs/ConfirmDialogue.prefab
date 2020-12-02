@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 8787433540391826391}
   - component: {fileID: 8787433540391826384}
   m_Layer: 5
-  m_Name: ConfirmDialog
+  m_Name: ConfirmDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   - {fileID: 6156629940278413812}
   Selected: 1
   Cancelable: 1
+  FinishOnSelect: 1
   CancelTrigger: {fileID: 8787433539657881122}
 --- !u!1 &8787433540952855269
 GameObject:

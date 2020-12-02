@@ -528,17 +528,22 @@ public class GameController : MonoBehaviour
             }
         }
         // Check if selecting nothing
-        if (origin == null)
+        bool display = !reverse || (origin != null && origin.TheTeam != target.TheTeam);
+        if (!display)
         {
             panel.gameObject.SetActive(false);
             return;
         }
+        // Find many bools
+        bool displayAttack = reverse || (origin != target && target != null && target.TheTeam != origin.TheTeam);
+        bool canAttack = target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target) || MapObjectsAtPos(origin.Pos).Find(a => a is AttackMarker) == null);
+        bool moveToCenter = !reverse && (target == null || (target.TheTeam == origin.TheTeam && target != origin));
         // Show info
         panel.gameObject.SetActive(true);
         panel.Palette = (int)origin.TheTeam;
-        if (reverse || (origin != target && target != null)) // Show battle preview
+        if (displayAttack) // Show battle preview
         {
-            info.text = origin.AttackPreview(target, 2, target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target) || MapObjectsAtPos(origin.Pos).Find(a => a is AttackMarker) == null));
+            info.text = origin.AttackPreview(target, 2, canAttack);
         }
         else // Show unit name & inclination
         {
@@ -552,7 +557,7 @@ public class GameController : MonoBehaviour
         // Move to center if there is only one panel
         if (!reverse)
         {
-            panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, target == null ? -20 : 0);
+            panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, moveToCenter ? -20 : 0);
         }
     }
     public void InteractWithTile(int x, int y)

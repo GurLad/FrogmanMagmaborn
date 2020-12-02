@@ -7,19 +7,22 @@ public class ConversationPlayer : MidBattleScreen
 {
     public enum CurrentState { Writing, Waiting, Sleep }
     public new static ConversationPlayer Current;
+    [Header("Stats")]
     public float LettersPerSecond;
     public int LineWidth = 22;
     public List<AudioClip> VoiceTypes;
     public float VoiceMod;
+    [Header("Objects")]
     public Text Name;
     public Text Text;
     public PortraitHolder Portrait;
     public GameObject Arrow;
-    [SerializeField]
-    private bool startActive = true;
+    public MenuController InfoDialogue;
     [Header("Main menu only")]
     public GameObject Knowledge;
     public GameObject Tutorial;
+    [SerializeField]
+    private bool startActive = true;
     private CurrentState state;
     private ConversationData origin;
     private CharacterVoice voice;
@@ -131,6 +134,11 @@ public class ConversationPlayer : MidBattleScreen
     }
     public void Resume(int mod = 1)
     {
+        if (currentLine + mod >= lines.Count)
+        {
+            FinishConversation();
+            return;
+        }
         gameObject.SetActive(true);
         MidBattleScreen.Current = this;
         StartLine(currentLine + mod);
@@ -189,6 +197,12 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "wait":
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
+                    Pause();
+                    return;
+                case "showInfoDialogue":
+                    // Args: title
+                    InfoDialogue.Text.text = parts[2];
+                    InfoDialogue.gameObject.SetActive(true);
                     Pause();
                     return;
 

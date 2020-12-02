@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MidBattleScreen
 {
@@ -9,6 +10,19 @@ public class MenuController : MidBattleScreen
     public bool Cancelable; // For things like the main menu vs. pause menu
     public bool FinishOnSelect = true;
     public Trigger CancelTrigger;
+    private Text text;
+    [HideInInspector]
+    public Text Text
+    {
+        get
+        {
+            if (text == null)
+            {
+                text = GetComponentInChildren<Text>(true);
+            }
+            return text;
+        }
+    }
     private int count;
     private int previousSign;
     public void Start()
