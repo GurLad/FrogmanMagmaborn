@@ -209,8 +209,9 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 }
                 else if (state == State.DefenderFinishingAttack)
                 {
-                    if (Attacker == null)
+                    if (Attacker == null || AttackerObject == null)
                     {
+                        defenderAnimation.Activate("Idle");
                         state = State.WaitTime;
                         return;
                     }
