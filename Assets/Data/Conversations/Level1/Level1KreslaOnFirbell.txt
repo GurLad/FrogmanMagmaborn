@@ -1,0 +1,35 @@
+priority:1
+unique:T
+~
+roomNumber:1
+~
+hasCharacter:Kresla
+numRuns:>4
+~
+:play:BeforeBattle
+Kresla: Hello Frogman! Care to be my test subject?
+Frogman: No, thank you. Do you have to ask this
+every single time?
+Kresla: Ha! No, but it's fun!
+Frogman: *sigh* I've been meaning to ask.
+Why is it that I never see you with Firbell?
+Kresla: I have no idea, actually. I never
+thought about it.
+But now that you mention it, it IS
+wierd. Interesting!
+Frogman: My thoughts too. But we should defeat the
+monsters first.
+Kresla: Right, right.
+~
+:play:AfterBattle
+Kresla: So, what do you propose we do?
+Frogman: How about asking her?
+Kresla: Nah, too boring. I say we ambush her!
+Ohh! Maybe pretend to be monsters, and then
+reveal our true identities before she
+kills us! Or after!
+Frogman: ...Remind me to never follow your advice.
+Kresla: What?! Why? They're excellent!
+All right, here this - Maybe we borrow...
+Where are you going? Wait for me!
+:setFlag:KreslaOnFirbell
