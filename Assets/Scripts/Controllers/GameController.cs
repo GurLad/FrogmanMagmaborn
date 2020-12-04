@@ -97,6 +97,17 @@ public class GameController : MonoBehaviour
             return playerUnitsCache;
         }
     }
+    public int NumRuns
+    {
+        get
+        {
+            return SavedData.Load<int>("NumRuns");
+        }
+        set
+        {
+            SavedData.Save<int>("NumRuns", value);
+        }
+    }
     protected Vector2Int cursorPos
     {
         get
@@ -184,7 +195,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 4;
+            LevelNumber = 3;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));
@@ -196,6 +207,7 @@ public class GameController : MonoBehaviour
             playerUnitsCache = new List<Unit>();
         }
         difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
+        NumRuns++; // Very abusable - maybe only if finishing the first level?
         CreateLevel();
     }
     /// <summary>

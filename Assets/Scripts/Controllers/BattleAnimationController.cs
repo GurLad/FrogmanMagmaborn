@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAnimationListener
 {
-    private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, AttackerRangeAttacking, AttackerRangeFinishingAttack, WaitTime}
+    private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, AttackerRangeAttacking, AttackerRangeFinishingAttack, DefenderRangeAttacking, DefenderRangeFinishingAttack, WaitTime}
     [Header("Class Animations")]
     public List<ClassAnimation> ClassAnimations;
     [Header("Battle Backgrounds")]
@@ -15,7 +15,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     [Header("Animation Data")]
     public float AttackerTargetPos = 3;
     public float DefenderTargetPos = 4;
-    public float ProjectileTargetPos;
+    public float AttackerProjectileTargetPos;
+    public float DefenderProjectileTargetPos;
     public float AttackerSpeed;
     public float ProjectileSpeed;
     public float WaitTime = 0.5f;
@@ -143,11 +144,34 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 break;
             case State.AttackerRangeFinishingAttack:
                 currentAttackerPos.x -= Time.deltaTime * ProjectileSpeed;
-                if (currentAttackerPos.x <= ProjectileTargetPos)
+                if (currentAttackerPos.x <= AttackerProjectileTargetPos)
                 {
                     Destroy(currentProjectile);
+                    if (HandleDamage(Attacker, Defender, true) != null && Defender.CanAttack(Attacker))
+                    {
+                        state = State.DefenderRangeAttacking;
+                        defenderAnimation.Activate("AttackRangeStart");
+                        float temp = AttackerObject.transform.position.z;
+                        AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
+                        DefenderObject.transform.position -= new Vector3(0, 0, DefenderObject.transform.position.z - temp);
+                    }
+                    else
+                    {
+                        state = State.WaitTime;
+                    }
+                    break;
+                }
+                currentProjectile.transform.position = currentAttackerPos;
+                break;
+            case State.DefenderRangeAttacking:
+                break;
+            case State.DefenderRangeFinishingAttack:
+                currentAttackerPos.x += Time.deltaTime * ProjectileSpeed;
+                if (currentAttackerPos.x >= DefenderProjectileTargetPos)
+                {
+                    Destroy(currentProjectile);
+                    HandleDamage(Defender, Attacker, false);
                     state = State.WaitTime;
-                    HandleDamage(Attacker, Defender, true);
                     break;
                 }
                 currentProjectile.transform.position = currentAttackerPos;
@@ -168,6 +192,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 
     public void FinishedAnimation(int id, string name)
     {
+        // This code has a ton of copy-past: should replace with AttackerAnimation and DefenderAnimation classes and functions
         switch (name)
         {
             case "AttackStart":
@@ -222,15 +247,41 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 }
                 break;
             case "AttackRangeStart":
-                // For defender range attack (which will be impossible in-game for the foreseeable future), add flipX and etc.
-                GameObject projectileSource = ClassAnimations.Find(a => a.Name == Attacker.Class).Projectile;
-                currentProjectile = Instantiate(projectileSource, AttackerObject.transform);
-                currentProjectile.SetActive(true);
-                currentProjectile.transform.localPosition = projectileSource.transform.localPosition;
-                currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Attacker.TheTeam;
-                currentAttackerPos = currentProjectile.transform.position;
-                attackerAnimation.Activate("AttackRangeEnd");
-                state = State.AttackerRangeFinishingAttack;
+                if (state == State.AttackerRangeAttacking)
+                {
+                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Attacker.Class).Projectile;
+                    currentProjectile = Instantiate(projectileSource, AttackerObject.transform);
+                    currentProjectile.SetActive(true);
+                    currentProjectile.transform.localPosition = projectileSource.transform.localPosition;
+                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Attacker.TheTeam;
+                    currentAttackerPos = currentProjectile.transform.position;
+                    attackerAnimation.Activate("AttackRangeEnd");
+                    state = State.AttackerRangeFinishingAttack;
+                }
+                else
+                {
+                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Defender.Class).Projectile;
+                    currentProjectile = Instantiate(projectileSource, DefenderObject.transform);
+                    currentProjectile.SetActive(true);
+                    Vector3 pos = projectileSource.transform.localPosition;
+                    pos.x *= -1;
+                    currentProjectile.transform.localPosition = pos;
+                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Defender.TheTeam;
+                    currentAttackerPos = currentProjectile.transform.position;
+                    currentProjectile.GetComponent<SpriteRenderer>().flipX = true;
+                    defenderAnimation.Activate("AttackRangeEnd");
+                    state = State.DefenderRangeFinishingAttack;
+                }
+                break;
+            case "AttackRangeEnd":
+                if (state == State.AttackerRangeFinishingAttack)
+                {
+                    attackerAnimation.Activate("Idle");
+                }
+                else
+                {
+                    defenderAnimation.Activate("Idle");
+                }
                 break;
             case "CounterStart":
                 defenderAnimation.Activate("AttackStart");
@@ -245,7 +296,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         // Do nothing
     }
 
-    private void HandleDamage(Unit attacker, Unit defender, bool attackerAttack)
+    private bool? HandleDamage(Unit attacker, Unit defender, bool attackerAttack)
     {
         bool? result = attacker.Attack(defender);
         switch (result)
@@ -277,6 +328,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 break;
         }
         UpdateDisplay();
+        return result;
     }
 }
 

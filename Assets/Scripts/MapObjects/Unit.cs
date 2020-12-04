@@ -387,7 +387,7 @@ public class Unit : MapObject
                     {
                         Fight(unit);
                         GameController.Current.FinishMove(this);
-                        break;
+                        return;
                     }
                 }
                 GameController.Current.FinishMove(this);
