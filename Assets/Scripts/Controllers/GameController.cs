@@ -195,7 +195,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 3;
+            LevelNumber = 4;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));
@@ -229,8 +229,7 @@ public class GameController : MonoBehaviour
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
-                SavedData.Appeand("Knowledge", currentKnowledge);
-                SceneController.LoadScene("Menu");
+                Lose();
             }
             else if (CheckPlayerWin())
             {
@@ -958,6 +957,11 @@ public class GameController : MonoBehaviour
         pointerMarker.PalettedSprite.Awake();
         pointerMarker.PalettedSprite.Palette = paletteID;
         pointerMarker.gameObject.SetActive(true);
+    }
+    public void Lose()
+    {
+        SavedData.Appeand("Knowledge", currentKnowledge);
+        SceneController.LoadScene("Menu");
     }
     private bool CheckPlayerWin()
     {

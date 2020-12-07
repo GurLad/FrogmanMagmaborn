@@ -205,6 +205,12 @@ public class ConversationPlayer : MidBattleScreen
                     InfoDialogue.gameObject.SetActive(true);
                     Pause();
                     return;
+                case "lose":
+                    GameController.Current.Lose();
+                    return;
+                case "win":
+                    GameController.Current.Win();
+                    return;
 
                 // Tutorial commands
 
