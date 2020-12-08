@@ -299,6 +299,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3a496a95f805c3248a9238155045b575, type: 3}
   - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
   - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
+  - {fileID: 4900000, guid: bf0c1e5f8c239104681416220c4fd044, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -10781,6 +10782,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 60f144b8f5c20a84a9c8c749eac1ef7a, type: 3}
   - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
   - {fileID: 4900000, guid: f3680b26a1805eb42b6162681826e933, type: 3}
+  - {fileID: 4900000, guid: c3512488bcb852d4f85c1ee254c225d6, type: 3}
   RoomThemes:
   - MagmaFlows
   - Dungeon
@@ -10813,7 +10815,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 0
+  StartAtEndgame: 1
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}

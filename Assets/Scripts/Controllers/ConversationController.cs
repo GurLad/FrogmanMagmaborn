@@ -43,6 +43,7 @@ public class ConversationController : MonoBehaviour
             Debug.Log(fileName + ", " + file.name);
             Conversations.Add(file);
         }
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
     #endif
 }

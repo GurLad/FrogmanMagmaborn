@@ -211,6 +211,14 @@ public class ConversationPlayer : MidBattleScreen
                 case "win":
                     GameController.Current.Win();
                     return;
+                case "addGenericCharacter":
+                    // Find portraits with matching tags
+                    List<GenericPortrait> genericPortraits = PortraitController.Current.GenericPortraits.FindAll(a => a.Tags.Contains(parts[3]));
+                    // Select portrait
+                    Portrait selectedPortrait = genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
+                    // Add to TempPortraits with parts[2] internal name
+                    PortraitController.Current.TempPortraits.Add(parts[2], selectedPortrait);
+                    break;
 
                 // Tutorial commands
 
@@ -272,9 +280,17 @@ public class ConversationPlayer : MidBattleScreen
         if (line.IndexOf(':') != -1)
         {
             string[] parts = line.Split(':')[0].Split('|');
-            Portrait.Portrait = PortraitController.Current.FindPortrait(parts[0]);
+            Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
+            Portrait.Portrait = portrait;
             voice = PortraitController.Current.FindVoice(parts[0]);
-            Name.text = parts[parts.Length - 1];
+            if (parts.Length > 1)
+            {
+                Name.text = parts[parts.Length - 1];
+            }
+            else
+            {
+                Name.text = portrait.Name;
+            }
         }
         // Find the line break
         string trueLine = FindLineBreack(TrueLine(line));
