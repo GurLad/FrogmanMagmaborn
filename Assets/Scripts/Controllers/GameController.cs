@@ -963,6 +963,10 @@ public class GameController : MonoBehaviour
         SavedData.Appeand("Knowledge", currentKnowledge);
         SceneController.LoadScene("Menu");
     }
+    public int LeftToMove()
+    {
+        return units.FindAll(a => a.TheTeam == Team.Player && !a.Moved).Count;
+    }
     private bool CheckPlayerWin()
     {
         switch (selectedRoom.Objective)
