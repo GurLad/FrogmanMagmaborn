@@ -74,6 +74,10 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 7b6dde437cd1b504e9be121cdd7acb7f, type: 3}
   - Name: ToriThemeBattle
     AudioClip: {fileID: 8300000, guid: 7b6e04bf93ac26747b162ef8225c7f9c, type: 3}
+  - Name: Level5TBA
+    AudioClip: {fileID: 8300000, guid: 7f90cced1a22fd443b2948c08eaad635, type: 3}
+  - Name: Level5TBABattle
+    AudioClip: {fileID: 8300000, guid: 7f90cced1a22fd443b2948c08eaad635, type: 3}
   - Name: BeforeBattle
     AudioClip: {fileID: 8300000, guid: 14ed95e411fa3c44c895c1ab1b6adba8, type: 3}
   - Name: AfterBattle
@@ -95,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa729effd9d041448ad43c6fd223141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitA: {fileID: 0}
+  InitB: {fileID: 0}
+  InitStart: {fileID: 0}
 --- !u!114 &6239217429005851178
 MonoBehaviour:
   m_ObjectHideFlags: 0
