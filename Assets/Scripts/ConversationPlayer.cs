@@ -319,6 +319,8 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Current = null;
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
+        // Clear TempPortraits
+        PortraitController.Current.TempPortraits.Clear();
         if (GameController.Current == null)
         {
             // Intro conversations

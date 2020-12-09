@@ -3649,6 +3649,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600656163}
   m_CullTransparentMesh: 0
+--- !u!1 &643128390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 643128391}
+  - component: {fileID: 643128392}
+  m_Layer: 0
+  m_Name: Lancer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &643128391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643128390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643128392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643128390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 8b0da1962321df843a2c6ff789461e99, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!1 &666486847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8918,6 +8975,7 @@ Transform:
   - {fileID: 675860571}
   - {fileID: 1928878172}
   - {fileID: 1450278648}
+  - {fileID: 643128391}
   m_Father: {fileID: 709891506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8992,6 +9050,18 @@ MonoBehaviour:
     Growths: 000000000000000000000000090000000000000009000000
     Flies: 0
     Inclination: 0
+  - Name: Lancer
+    Growths: 020000000200000001000000010000000300000003000000
+    Flies: 0
+    Inclination: 2
+  - Name: Archer
+    Growths: 020000000100000003000000020000000300000001000000
+    Flies: 0
+    Inclination: 1
+  - Name: Knight
+    Growths: 030000000200000002000000030000000200000001000000
+    Flies: 0
+    Inclination: 0
   ClassAnimations:
   - Name: Frogman
     Animation: {fileID: 969796486}
@@ -9019,6 +9089,9 @@ MonoBehaviour:
     Projectile: {fileID: 0}
   - Name: Torment
     Animation: {fileID: 1450278649}
+    Projectile: {fileID: 0}
+  - Name: Lancer
+    Animation: {fileID: 643128392}
     Projectile: {fileID: 0}
   ClassBaseWeapons:
   - ClassName: Frogman
@@ -9075,6 +9148,24 @@ MonoBehaviour:
     Damage: 10
     Weight: 0
     Range: 10
+  - ClassName: Lancer
+    Name: Lance
+    HitStat: 0
+    Damage: 1
+    Weight: 0
+    Range: 1
+  - ClassName: Archer
+    Name: Crossbow
+    HitStat: 1
+    Damage: 1
+    Weight: 2
+    Range: 2
+  - ClassName: Knight
+    Name: Sword
+    HitStat: 1
+    Damage: 0
+    Weight: 0
+    Range: 1
 --- !u!1 &1626109149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8617805530085685082, guid: b3917e3aa982594419baa4f8a1789a3a,

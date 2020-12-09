@@ -44,7 +44,7 @@ public class PortraitController : MonoBehaviour
     }
     public Portrait FindPortrait(string name)
     {
-        return Portraits.Find(a => a.Name == name) ?? TempPortraits[name] ??  ErrorPortrait;
+        return Portraits.Find(a => a.Name == name) ?? (TempPortraits.ContainsKey(name) ? TempPortraits[name] :  ErrorPortrait);
     }
     public CharacterVoice FindVoice(string name)
     {

@@ -346,6 +346,7 @@ public class GameController : MonoBehaviour
             UIFightPanel.gameObject.SetActive(false);
             Cursor.gameObject.SetActive(false);
         }
+        //  Monster AI (individual AIs)
         if (currentPhase == Team.Monster)
         {
             enemyMoveDelayCount += Time.deltaTime;
@@ -358,6 +359,23 @@ public class GameController : MonoBehaviour
             {
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
                 Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
+                // AI
+                currentEnemy.AI(units);
+            }
+        }
+        // Guard AI (group AI, TBA. Currently monster AI code)
+        if (currentPhase == Team.Guard)
+        {
+            enemyMoveDelayCount += Time.deltaTime;
+            if (Control.GetButton(Control.CB.B))
+            {
+                // Speed up
+                enemyMoveDelayCount += Time.deltaTime;
+            }
+            if (enemyMoveDelayCount > EnemyAIMoveDelay)
+            {
+                enemyMoveDelayCount -= EnemyAIMoveDelay;
+                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
                 // AI
                 currentEnemy.AI(units);
             }
@@ -602,11 +620,27 @@ public class GameController : MonoBehaviour
         unit.Moved = true;
         if (units.Find(a => a.TheTeam == unit.TheTeam && !a.Moved) == null)
         {
-            StartPhase((Team)(((int)unit.TheTeam + 1) % 2));
+            EndTurn(unit.TheTeam);
         }
         unit = null;
         // TEMP!!
         CrossfadeMusicPlayer.Current.Play(CrossfadeMusicPlayer.Current.Playing.Replace("Battle", ""));
+    }
+    public void EndTurn(Team currentTeam)
+    {
+        RemoveMarkers();
+        Team current = currentTeam;
+        do
+        {
+            current = (Team)(((int)current + 1) % 3);
+            if (current == currentTeam)
+            {
+                throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
+            }
+            Debug.Log(current + ", " + units.Find(a => a.TheTeam == current));
+        } while (units.Find(a => a.TheTeam == current) == null);
+        Debug.Log("Begin " + current + " phase, units: " + units.Find(a => a.TheTeam == current).ToString());
+        StartPhase(current);
     }
     public Unit FindUnitAtPos(int x, int y)
     {
