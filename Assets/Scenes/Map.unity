@@ -10174,7 +10174,7 @@ GameObject:
   - component: {fileID: 1285666671}
   - component: {fileID: 1285666672}
   m_Layer: 0
-  m_Name: Lancer (2)
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10208,7 +10208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 8b0da1962321df843a2c6ff789461e99, type: 3}
+    SpriteSheet: {fileID: 21300000, guid: 12b8b012ce0d2aa46a4c1fba3f29c8f4, type: 3}
     NumberOfFrames: 3
     Speed: 0
     Loop: 1
@@ -12583,10 +12583,10 @@ MonoBehaviour:
     Weight: 2
     Range: 2
   - ClassName: Knight
-    Name: Sword
-    HitStat: 1
-    Damage: 0
-    Weight: 0
+    Name: Greatsword
+    HitStat: -1
+    Damage: 3
+    Weight: 1
     Range: 1
 --- !u!1 &1626109149 stripped
 GameObject:

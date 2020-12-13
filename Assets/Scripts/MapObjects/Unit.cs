@@ -409,13 +409,13 @@ public class Unit : MapObject
             if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
             {
                 Vector2Int currentBest = new Vector2Int(-1, -1);
-                for (int i = -1; i <= 1; i++)
+                for (int i = -Weapon.Range; i <= Weapon.Range; i++)
                 {
-                    for (int j = -1; j <= 1; j++)
+                    for (int j = -Weapon.Range; j <= Weapon.Range; j++)
                     {
-                        if (i == 0 || j == 0)
+                        if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range)
                         {
-                            // Currently only works with 1 range weapons
+                            // Works with any range weapons, but this is a quick & dirty fix
                             if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
                                 unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y &&
                                 dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
@@ -431,6 +431,7 @@ public class Unit : MapObject
                         }
                     }
                 }
+                Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit);
                 MoveTo(currentBest);
                 Fight(unit);
                 return true;
@@ -443,7 +444,7 @@ public class Unit : MapObject
         int trueDamage = GetDamage(unit);
         int hit = GetHitChance(unit);
         int damage = Mathf.RoundToInt(trueDamage * hit / 100.0f + 0.01f); // Round 0.5 up
-        Debug.Log(Class + " damage against " + unit.Name + " is " + damage + " (" + trueDamage + " * " + (hit / 100.0f) + ")");
+        //Debug.Log(Class + " damage against " + unit.Name + " is " + damage + " (" + trueDamage + " * " + (hit / 100.0f) + ")");
         // If can kill, value is -(unit health), so AI will always prioritize killing
         if (unit.Health - damage <= 0)
         {
@@ -484,7 +485,7 @@ public class Unit : MapObject
         }
         if (min > movement)
         {
-            throw new System.Exception("Can't reach target position: " + pos + ", unit: " + Name + " at pos " + Pos);
+            Debug.LogWarning("Can't reach target position: " + pos + ", unit: " + ToString() + " at pos " + Pos);
         }
         return min;
     }

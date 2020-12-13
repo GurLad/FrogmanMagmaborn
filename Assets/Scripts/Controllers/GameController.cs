@@ -637,9 +637,8 @@ public class GameController : MonoBehaviour
             {
                 throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
             }
-            Debug.Log(current + ", " + units.Find(a => a.TheTeam == current));
         } while (units.Find(a => a.TheTeam == current) == null);
-        Debug.Log("Begin " + current + " phase, units: " + units.Find(a => a.TheTeam == current).ToString());
+        Debug.Log("Begin " + current + " phase, units: " + units.FindAll(a => a.TheTeam == current).ToString());
         StartPhase(current);
     }
     public Unit FindUnitAtPos(int x, int y)
