@@ -8,11 +8,14 @@ public class MoveMarker : Marker
     {
         if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
         {
-            Origin.MoveTo(Pos);
             GameController.Current.RemoveMarkers();
-            Origin.MarkAttack();
-            GameController.Current.ShowPointerMarker(Origin, 3);
-            GameController.Current.InteractState = InteractState.Attack;
+            MapAnimationsController.Current.OnFinishAnimation = () =>
+            {
+                Origin.MarkAttack();
+                GameController.Current.ShowPointerMarker(Origin, 3);
+                GameController.Current.InteractState = InteractState.Attack;
+            };
+            Origin.MoveTo(Pos);
         }
     }
 }

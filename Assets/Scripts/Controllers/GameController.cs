@@ -349,12 +349,7 @@ public class GameController : MonoBehaviour
         //  Monster AI (individual AIs)
         if (currentPhase == Team.Monster)
         {
-            enemyMoveDelayCount += Time.deltaTime;
-            if (Control.GetButton(Control.CB.B))
-            {
-                // Speed up
-                enemyMoveDelayCount += Time.deltaTime;
-            }
+            enemyMoveDelayCount += Time.deltaTime; // Might remove this, and instead add Wait map animation
             if (enemyMoveDelayCount > EnemyAIMoveDelay)
             {
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
@@ -367,11 +362,6 @@ public class GameController : MonoBehaviour
         if (currentPhase == Team.Guard)
         {
             enemyMoveDelayCount += Time.deltaTime;
-            if (Control.GetButton(Control.CB.B))
-            {
-                // Speed up
-                enemyMoveDelayCount += Time.deltaTime;
-            }
             if (enemyMoveDelayCount > EnemyAIMoveDelay)
             {
                 enemyMoveDelayCount -= EnemyAIMoveDelay;
@@ -413,7 +403,7 @@ public class GameController : MonoBehaviour
                 InteractState = InteractState.None;
                 break;
             case InteractState.Attack:
-                Selected.MoveTo(Selected.PreviousPos);
+                Selected.MoveTo(Selected.PreviousPos, true);
                 Selected.Interact(InteractState = InteractState.None);
                 break;
             default:
@@ -638,7 +628,7 @@ public class GameController : MonoBehaviour
                 throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
             }
         } while (units.Find(a => a.TheTeam == current) == null);
-        Debug.Log("Begin " + current + " phase, units: " + units.FindAll(a => a.TheTeam == current).ToString());
+        Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
         StartPhase(current);
     }
     public Unit FindUnitAtPos(int x, int y)
@@ -999,6 +989,14 @@ public class GameController : MonoBehaviour
     public int LeftToMove()
     {
         return units.FindAll(a => a.TheTeam == Team.Player && !a.Moved).Count;
+    }
+    public bool IsValidPos(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < MapSize.x && y < MapSize.y;
+    }
+    public bool IsValidPos(Vector2Int pos)
+    {
+        return IsValidPos(pos.x, pos.y);
     }
     private bool CheckPlayerWin()
     {

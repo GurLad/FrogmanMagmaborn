@@ -222,6 +222,13 @@ public class Unit : MapObject
         List<Vector2Int> attackFrom = new List<Vector2Int>();
         return GetDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
     }
+    public int[,] GetMovement(bool ignoreAllies = false)
+    {
+        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+        List<Vector2Int> attackFrom = new List<Vector2Int>();
+        GetMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, ignoreAllies);
+        return checkedTiles;
+    }
 
     private void MarkDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
     {
@@ -286,7 +293,7 @@ public class Unit : MapObject
                 {
                     if (i == 0 || j == 0)
                     {
-                        if (!IsValidPos(x + i,y + j))
+                        if (!GameController.Current.IsValidPos(x + i,y + j))
                         {
                             continue;
                         }
@@ -296,11 +303,18 @@ public class Unit : MapObject
             }
         }
     }
-    public void MoveTo(Vector2Int pos)
+    public void MoveTo(Vector2Int pos, bool immediate = false)
     {
         // Add animation etc.
         PreviousPos = Pos;
-        Pos = pos;
+        if (!immediate)
+        {
+            MapAnimationsController.Current.AnimateMovement(this, pos);
+        }
+        else
+        {
+            Pos = pos;
+        }
     }
     public void Fight(Unit unit)
     {
@@ -318,9 +332,8 @@ public class Unit : MapObject
         {
             case AIType.Charge:
                 // First, try the Hold AI.
-                if (HoldAI(enemyUnits))
+                if (TryHoldAI(enemyUnits))
                 {
-                    GameController.Current.FinishMove(this);
                     break;
                 }
                 // If that failed, find the closest enemy.
@@ -355,7 +368,7 @@ public class Unit : MapObject
                     {
                         for (int j = -1; j <= 1; j++)
                         {
-                            if ((i == 0 || j == 0) && IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
+                            if ((i == 0 || j == 0) && GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
                                 fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
                                 fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
                             {
@@ -370,12 +383,14 @@ public class Unit : MapObject
                     currentMoveTarget = min;
                 }
                 // Finally, move to the target location.
+                MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
                 MoveTo(currentMoveTarget);
-                GameController.Current.FinishMove(this);
                 break;
             case AIType.Hold:
-                HoldAI(enemyUnits);
-                GameController.Current.FinishMove(this);
+                if (!TryHoldAI(enemyUnits))
+                {
+                    GameController.Current.FinishMove(this);
+                }
                 break;
             case AIType.Guard:
                 // This is the only AI that can used ranged attacks (because I have no plans for ranged mobile enemies before the Guards)
@@ -397,10 +412,11 @@ public class Unit : MapObject
         }
     }
     /// <summary>
-    /// Does the hold AI.
+    /// Tries the Hold AI. If successful (returns true), starts the animations and ends the turn - the caller MUSTN'T activate another AI.
+    /// Otherwise, does nothing - the caller MUST activate a fallback AI (or end the turn).
     /// </summary>
-    /// <returns>True if attacked, false otherwise.</returns>
-    private bool HoldAI(List<Unit> enemyUnits)
+    /// <returns>True if found and attacked a unit, false if did nothing.</returns>
+    private bool TryHoldAI(List<Unit> enemyUnits)
     {
         int[,] dangerArea = GetDangerArea();
         enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
@@ -432,8 +448,13 @@ public class Unit : MapObject
                     }
                 }
                 Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit);
+                MapAnimationsController.Current.OnFinishAnimation = () =>
+                {
+                    Fight(unit);
+                    //MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+                    GameController.Current.FinishMove(this);
+                };
                 MoveTo(currentBest);
-                Fight(unit);
                 return true;
             }
         }
@@ -477,7 +498,7 @@ public class Unit : MapObject
         {
             for (int j = -1; j <= 1; j++)
             {
-                if ((i == 0 || j == 0) && IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
+                if ((i == 0 || j == 0) && GameController.Current.IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
                 {
                     min = movement - fullMoveRange[pos.x + i, pos.y + j];
                 }
@@ -488,14 +509,6 @@ public class Unit : MapObject
             Debug.LogWarning("Can't reach target position: " + pos + ", unit: " + ToString() + " at pos " + Pos);
         }
         return min;
-    }
-    private bool IsValidPos(int x, int y)
-    {
-        return x >= 0 && y >= 0 && x < GameController.Current.MapSize.x && y < GameController.Current.MapSize.y;
-    }
-    private bool IsValidPos(Vector2Int pos)
-    {
-        return IsValidPos(pos.x, pos.y);
     }
     private int GetHitChance(Unit other)
     {
