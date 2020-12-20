@@ -309,7 +309,14 @@ public class Unit : MapObject
         PreviousPos = Pos;
         if (!immediate)
         {
-            MapAnimationsController.Current.AnimateMovement(this, pos);
+            if (TheTeam != Team.Player && pos == Pos) // Only delay when enemies stay in place
+            {
+                MapAnimationsController.Current.AnimateDelay();
+            }
+            else
+            {
+                MapAnimationsController.Current.AnimateMovement(this, pos);
+            }
         }
         else
         {
@@ -318,12 +325,25 @@ public class Unit : MapObject
     }
     public void Fight(Unit unit)
     {
-        CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
-        BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
-        GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
-        battleAnimationController.Attacker = this;
-        battleAnimationController.Defender = unit;
-        battleAnimationController.StartBattle();
+        void ActualFight(Unit target)
+        {
+            CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
+            BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
+            GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
+            battleAnimationController.Attacker = this;
+            battleAnimationController.Defender = target;
+            battleAnimationController.StartBattle();
+            GameController.Current.FinishMove(this);
+        }
+        if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
+        {
+            ActualFight(unit);
+        }
+        else // If an enemy attacks, however, a delay is needed in order to show the target.
+        {
+            MapAnimationsController.Current.OnFinishAnimation = () => ActualFight(unit);
+            MapAnimationsController.Current.AnimateDelay();
+        }
     }
     public void AI(List<Unit> units)
     {
@@ -389,7 +409,8 @@ public class Unit : MapObject
             case AIType.Hold:
                 if (!TryHoldAI(enemyUnits))
                 {
-                    GameController.Current.FinishMove(this);
+                    MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+                    MapAnimationsController.Current.AnimateDelay();
                 }
                 break;
             case AIType.Guard:
@@ -401,11 +422,11 @@ public class Unit : MapObject
                     if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
                     {
                         Fight(unit);
-                        GameController.Current.FinishMove(this);
                         return;
                     }
                 }
-                GameController.Current.FinishMove(this);
+                MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+                MapAnimationsController.Current.AnimateDelay();
                 break;
             default:
                 break;
@@ -448,12 +469,7 @@ public class Unit : MapObject
                     }
                 }
                 Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit);
-                MapAnimationsController.Current.OnFinishAnimation = () =>
-                {
-                    Fight(unit);
-                    //MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
-                    GameController.Current.FinishMove(this);
-                };
+                MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
                 return true;
             }

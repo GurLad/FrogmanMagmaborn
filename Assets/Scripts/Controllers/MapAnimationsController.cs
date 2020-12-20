@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MapAnimationsController : MidBattleScreen
 {
-    public enum AnimationType { None, Movement, Battle }
+    public enum AnimationType { None, Movement, Battle, Delay }
     public new static MapAnimationsController Current;
     [Header("Movement animation")]
     public float WalkSpeed;
     public AudioClip WalkSound;
+    [Header("Delay animation")]
+    public float DelayTime;
     [HideInInspector]
     public AnimationType CurrentAnimation;
     [HideInInspector]
@@ -36,37 +38,55 @@ public class MapAnimationsController : MidBattleScreen
                     path.RemoveAt(0);
                     if (path.Count <= 0)
                     {
-                        CurrentAnimation = AnimationType.None;
-                        if (MidBattleScreen.Current == this)
-                        {
-                            // Support for chaining animations & actions.
-                            System.Action tempAction = OnFinishAnimation;
-                            OnFinishAnimation = null;
-                            tempAction();
-                            MidBattleScreen.Current = null;
-                        }
-                        else
-                        {
-                            throw new System.Exception("Mid-battle screen in the middle of a movement animation?!");
-                        }
+                        EndAnimation();
                     }
                 }
                 break;
             case AnimationType.Battle:
                 break;
+            case AnimationType.Delay:
+                count += Time.deltaTime;
+                Debug.Log("Count: " + count + ", DelayTime: " + DelayTime);
+                if (count >= DelayTime)
+                {
+                    EndAnimation();
+                }
+                break;
             default:
                 break;
+        }
+    }
+    private void StartAnimation(AnimationType type)
+    {
+        CurrentAnimation = type;
+        MidBattleScreen.Current = this;
+    }
+    private void EndAnimation()
+    {
+        CurrentAnimation = AnimationType.None;
+        if (MidBattleScreen.Current == this)
+        {
+            // Support for chaining animations & actions.
+            count = 0;
+            MidBattleScreen.Current = null;
+            System.Action tempAction = OnFinishAnimation;
+            OnFinishAnimation = null;
+            tempAction();
+        }
+        else
+        {
+            throw new System.Exception("Mid-battle screen in the middle of an animation?!");
         }
     }
     public void AnimateMovement(Unit unit, Vector2Int targetPos)
     {
         // Check if an animation is even needed
+        if (OnFinishAnimation == null)
+        {
+            throw new System.Exception("No OnFinishAnimation command - probably animated before assigning it.");
+        }
         if (unit.Pos == targetPos)
         {
-            if (OnFinishAnimation == null)
-            {
-                Debug.LogWarning("Didn't move, and no OnFinishAnimation command - probably moved before assigning it.");
-            }
             OnFinishAnimation();
             return;
         }
@@ -105,7 +125,14 @@ public class MapAnimationsController : MidBattleScreen
         } while (targetPos != unit.Pos);
         path.Reverse();
         // Start animation
-        CurrentAnimation = AnimationType.Movement;
-        MidBattleScreen.Current = this;
+        StartAnimation(AnimationType.Movement);
+    }
+    public void AnimateDelay()
+    {
+        if (count != 0)
+        {
+            Debug.LogWarning("Count isn't zero - it's " + count);
+        }
+        StartAnimation(AnimationType.Delay);
     }
 }

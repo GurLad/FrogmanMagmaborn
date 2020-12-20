@@ -15,7 +15,6 @@ public class AttackMarker : Marker
                 {
                     // Fight!
                     Origin.Fight(unit);
-                    GameController.Current.FinishMove(Origin);
                 }
                 else if (unit == Origin)
                 {

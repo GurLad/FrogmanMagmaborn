@@ -32,8 +32,6 @@ public class GameController : MonoBehaviour
     public GameObject LevelUpScreen;
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
-    [Header("Misc")]
-    public float EnemyAIMoveDelay = 2;
     [Header("Torment palette")]
     public Palette TormentPalette;
     [Header("Debug")]
@@ -349,26 +347,16 @@ public class GameController : MonoBehaviour
         //  Monster AI (individual AIs)
         if (currentPhase == Team.Monster)
         {
-            enemyMoveDelayCount += Time.deltaTime; // Might remove this, and instead add Wait map animation
-            if (enemyMoveDelayCount > EnemyAIMoveDelay)
-            {
-                enemyMoveDelayCount -= EnemyAIMoveDelay;
-                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
-                // AI
-                currentEnemy.AI(units);
-            }
+            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
+            // AI
+            currentEnemy.AI(units);
         }
         // Guard AI (group AI, TBA. Currently monster AI code)
         if (currentPhase == Team.Guard)
         {
-            enemyMoveDelayCount += Time.deltaTime;
-            if (enemyMoveDelayCount > EnemyAIMoveDelay)
-            {
-                enemyMoveDelayCount -= EnemyAIMoveDelay;
-                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
-                // AI
-                currentEnemy.AI(units);
-            }
+            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
+            // AI
+            currentEnemy.AI(units);
         }
         // End Interact/UI code
     }
