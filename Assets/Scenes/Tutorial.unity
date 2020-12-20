@@ -10599,6 +10599,7 @@ MonoBehaviour:
   PauseMenu: {fileID: 8395741752350760390, guid: abe1a1ceaf11fda47a5e3aa7473c26ea,
     type: 3}
   DifficultyMenu: {fileID: 505687530}
+  EnemyAIMoveDelay: 0.5
   TormentPalette:
     Colors:
     - {r: 0, g: 0, b: 0, a: 1}
@@ -10673,7 +10674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 5
   WalkSound: {fileID: 0}
-  DelayTime: 0.7
+  DelayTime: 0.5
   CurrentAnimation: 0
 --- !u!1 &1912965044
 GameObject:

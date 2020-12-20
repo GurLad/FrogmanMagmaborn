@@ -15128,13 +15128,14 @@ MonoBehaviour:
   PauseMenu: {fileID: 8395741752350760390, guid: abe1a1ceaf11fda47a5e3aa7473c26ea,
     type: 3}
   DifficultyMenu: {fileID: 505687530}
+  EnemyAIMoveDelay: 0.5
   TormentPalette:
     Colors:
     - {r: 0, g: 0, b: 0, a: 1}
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 1
+  StartAtEndgame: 0
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
@@ -15201,7 +15202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 5
   WalkSound: {fileID: 8300000, guid: ec564a2b09bb371438f8b8668840bd52, type: 3}
-  DelayTime: 0.7
+  DelayTime: 0.5
   CurrentAnimation: 0
 --- !u!1 &1912965044
 GameObject:

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -32,6 +33,8 @@ public class GameController : MonoBehaviour
     public GameObject LevelUpScreen;
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
+    [Header("Misc")]
+    public float EnemyAIMoveDelay;
     [Header("Torment palette")]
     public Palette TormentPalette;
     [Header("Debug")]
@@ -220,27 +223,7 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(false);
             return;
         }
-        CheckDifficulty();
-        if (checkPlayerDead)
-        {
-            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
-            if (units.Find(a => a.Name == "Frogman") == null)
-            {
-                // Lose
-                Lose();
-            }
-            else if (CheckPlayerWin())
-            {
-                // Win
-                ConversationPlayer.Current.PlayPostBattle();
-            }
-            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
-            {
-                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
-                playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
-            }
-            checkPlayerDead = false;
-        }
+        CheckGameState();
         // Interact/UI code
         if (interactable)
         {
@@ -346,6 +329,35 @@ public class GameController : MonoBehaviour
         }
         // End Interact/UI code
         EnemyAI();
+    }
+    /// <summary>
+    /// Does all every-frame checks (mostly win/lose and handling unit death). Returns true if a side won.
+    /// </summary>
+    /// <returns>True if the level ended (aka don't activate OnFinishAnimation), false otherwise.</returns>
+    public bool CheckGameState()
+    {
+        CheckDifficulty();
+        if (checkPlayerDead)
+        {
+            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
+            if (units.Find(a => a.Name == "Frogman") == null)
+            {
+                // Lose
+                Lose();
+            }
+            else if (CheckPlayerWin())
+            {
+                // Win
+                ConversationPlayer.Current.PlayPostBattle();
+            }
+            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
+            {
+                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
+                playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
+            }
+            checkPlayerDead = false;
+        }
+        return false;
     }
     protected virtual void HandleAButton()
     {
@@ -487,21 +499,35 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    protected virtual void EnemyAI()
+    private void EnemyAI()
     {
         // Monster AI (individual AIs)
         if (currentPhase == Team.Monster)
         {
-            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
-            // AI
-            currentEnemy.AI(units);
+            if (enemyMoveDelayCount > EnemyAIMoveDelay) // All sorts of wierd things happen without an inital delay (can be one frame technically, but this way looks better).
+            {
+                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
+                // AI
+                currentEnemy.AI(units);
+            }
+            else
+            {
+                enemyMoveDelayCount += Time.deltaTime;
+            }
         }
         // Guard AI (group AI, TBA. Currently monster AI code)
         if (currentPhase == Team.Guard)
         {
-            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
-            // AI
-            currentEnemy.AI(units);
+            if (enemyMoveDelayCount > EnemyAIMoveDelay) // All sorts of wierd things happen without an inital delay (can be one frame technically, but this way looks better).
+            {
+                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
+                // AI
+                currentEnemy.AI(units);
+            }
+            else
+            {
+                enemyMoveDelayCount += Time.deltaTime;
+            }
         }
     }
     private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
@@ -630,6 +656,7 @@ public class GameController : MonoBehaviour
     public void StartPhase(Team team)
     {
         currentPhase = team;
+        enemyMoveDelayCount  = 0;
         TurnAnimation.ShowTurn(team);
         foreach (var item in units)
         {
@@ -743,7 +770,7 @@ public class GameController : MonoBehaviour
         ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
         List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
-        selectedRoom = options[Random.Range(0, options.Count)];
+        selectedRoom = options[UnityEngine.Random.Range(0, options.Count)];
         Debug.Log("Selected room: " + selectedRoom.Name);
         // Play conversation
         ConversationPlayer.Current.Play(conversation);

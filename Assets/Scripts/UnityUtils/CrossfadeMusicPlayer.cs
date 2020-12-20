@@ -99,7 +99,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     {
         if (seconderyAudioSource.clip != null)
         {
-            count += Time.unscaledDeltaTime * FadeSpeed * (playingBattle ? 2 : 1);
+            count += Time.unscaledDeltaTime * FadeSpeed * (playingBattle ? 1 : 1);
             if (count >= 1)
             {
                 AudioSource temp = mainAudioSource;

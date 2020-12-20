@@ -72,13 +72,6 @@ public class TutorialGameController : GameController
     {
         difficulty = Difficulty.Hard;
     }
-    protected override void EnemyAI()
-    {
-        if (!WaitingForForceButton)
-        {
-            base.EnemyAI();
-        }
-    }
     private void WrongInput()
     {
         ConversationPlayer.Current.Resume(CurrentForceButton.WrongLine); // Repeat last line

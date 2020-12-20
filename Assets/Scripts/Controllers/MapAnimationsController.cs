@@ -69,9 +69,13 @@ public class MapAnimationsController : MidBattleScreen
             // Support for chaining animations & actions.
             count = 0;
             MidBattleScreen.Current = null;
-            System.Action tempAction = OnFinishAnimation;
-            OnFinishAnimation = null;
-            tempAction();
+            // Do a game-state check once before moving on to the next animation.
+            if (!GameController.Current.CheckGameState())
+            {
+                System.Action tempAction = OnFinishAnimation;
+                OnFinishAnimation = null;
+                tempAction();
+            }
         }
         else
         {
