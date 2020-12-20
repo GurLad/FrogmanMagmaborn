@@ -344,21 +344,8 @@ public class GameController : MonoBehaviour
             UIFightPanel.gameObject.SetActive(false);
             Cursor.gameObject.SetActive(false);
         }
-        //  Monster AI (individual AIs)
-        if (currentPhase == Team.Monster)
-        {
-            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
-            // AI
-            currentEnemy.AI(units);
-        }
-        // Guard AI (group AI, TBA. Currently monster AI code)
-        if (currentPhase == Team.Guard)
-        {
-            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
-            // AI
-            currentEnemy.AI(units);
-        }
         // End Interact/UI code
+        EnemyAI();
     }
     protected virtual void HandleAButton()
     {
@@ -498,6 +485,23 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    protected virtual void EnemyAI()
+    {
+        // Monster AI (individual AIs)
+        if (currentPhase == Team.Monster)
+        {
+            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
+            // AI
+            currentEnemy.AI(units);
+        }
+        // Guard AI (group AI, TBA. Currently monster AI code)
+        if (currentPhase == Team.Guard)
+        {
+            Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
+            // AI
+            currentEnemy.AI(units);
         }
     }
     private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)

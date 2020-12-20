@@ -34,6 +34,7 @@ public class MapAnimationsController : MidBattleScreen
                 if (count >= 1 / WalkSpeed)
                 {
                     count -= 1 / WalkSpeed;
+                    SoundController.PlaySound(WalkSound);
                     currentUnit.Pos = path[0];
                     path.RemoveAt(0);
                     if (path.Count <= 0)
@@ -46,7 +47,6 @@ public class MapAnimationsController : MidBattleScreen
                 break;
             case AnimationType.Delay:
                 count += Time.deltaTime;
-                Debug.Log("Count: " + count + ", DelayTime: " + DelayTime);
                 if (count >= DelayTime)
                 {
                     EndAnimation();
