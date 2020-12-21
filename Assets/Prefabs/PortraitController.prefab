@@ -106,8 +106,8 @@ MonoBehaviour:
       - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
     ForegroundColorID: 3
   GenericPortraits:
-  - Tags: male
-    NameValuesID: 0
+  - tags: female,young
+    NameValuesID: 1
     Background: {fileID: 21300000, guid: 0ff7dfb636513a846887d235086a3eb5, type: 3}
     Foreground: {fileID: 21300000, guid: 8ceecbbc1dbdf224da0f01587df7d740, type: 3}
     PossibleBackgroundColors:
@@ -126,7 +126,8 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.87843144, b: 0.7058824, a: 1}
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
-  - Tags: male
+    Tags: []
+  - tags: male,old
     NameValuesID: 0
     Background: {fileID: 21300000, guid: d12c0a485cda89846a136f514918efb3, type: 3}
     Foreground: {fileID: 21300000, guid: 5056e9ae53324e142899e13a0e8150af, type: 3}
@@ -146,8 +147,9 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.87843144, b: 0.7058824, a: 1}
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
-  - Tags: female
-    NameValuesID: 0
+    Tags: []
+  - tags: female,young
+    NameValuesID: 1
     Background: {fileID: 21300000, guid: 9d8146397be8010428f27b2ef0ddb606, type: 3}
     Foreground: {fileID: 21300000, guid: 244c78a9bf83af84bb53da666205e5aa, type: 3}
     PossibleBackgroundColors:
@@ -166,7 +168,8 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.87843144, b: 0.7058824, a: 1}
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
-  - Tags: male
+    Tags: []
+  - tags: male,old
     NameValuesID: 0
     Background: {fileID: 21300000, guid: 61e104345b9c69f4da4e02a7cccc8106, type: 3}
     Foreground: {fileID: 21300000, guid: 0c90bdaf7c5bbd649abbedb08a041539, type: 3}
@@ -186,7 +189,8 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.87843144, b: 0.7058824, a: 1}
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
-  - Tags: male
+    Tags: []
+  - tags: male,young
     NameValuesID: 0
     Background: {fileID: 21300000, guid: e38b09d77cb23fd42817b155d08a4e8b, type: 3}
     Foreground: {fileID: 21300000, guid: 38939569696238d4cbbf0c67033480f5, type: 3}
@@ -206,8 +210,10 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.87843144, b: 0.7058824, a: 1}
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
+    Tags: []
   genericNames:
   - Alph,Bob,Cloud,Devdan
+  - Astrid,Bobbie,Cithrin,Davned
   ErrorPortrait:
     Name: 
     Background: {fileID: 0}

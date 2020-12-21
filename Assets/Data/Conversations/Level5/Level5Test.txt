@@ -5,6 +5,18 @@ roomNumber:5
 ~
 ~
 :play:BeforeBattle
+:addGenericCharacter:Young:young
+:addGenericCharacter:Old:old
+:addGenericCharacter:Male:male
+:addGenericCharacter:Female:female
+:addGenericCharacter:Om:old,male
+:addGenericCharacter:Yf:female,young
+Young: I'm young!
+Old: I'm old!
+Male: I'm male!
+Female: I'm female!
+Om: I'm an old male!
+Yf: I'm a young female!
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
 Guard1: Yay!

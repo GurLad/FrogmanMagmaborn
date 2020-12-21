@@ -12227,7 +12227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556140459
@@ -12293,8 +12293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d0a23b09f411742a0a47dff81a8b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPos: 200
-  Speed: 5
+  OpenCloseTime: 0.1
+  DisplayTime: 0.8
 --- !u!1 &1567419626
 GameObject:
   m_ObjectHideFlags: 0
@@ -15128,7 +15128,6 @@ MonoBehaviour:
   PauseMenu: {fileID: 8395741752350760390, guid: abe1a1ceaf11fda47a5e3aa7473c26ea,
     type: 3}
   DifficultyMenu: {fileID: 505687530}
-  EnemyAIMoveDelay: 0.5
   TormentPalette:
     Colors:
     - {r: 0, g: 0, b: 0, a: 1}

@@ -6,6 +6,6 @@ public class TEndTurn : Trigger
 {
     public override void Activate()
     {
-        GameController.Current.EndTurn(Team.Player);
+        GameController.Current.ManuallyEndTurn();
     }
 }

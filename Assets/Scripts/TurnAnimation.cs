@@ -3,37 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnAnimation : MonoBehaviour
+public class TurnAnimation : MidBattleScreen
 {
-    public float TargetPos = 200;
-    public float Speed;
+    private enum Step { Open, Display, Close, Sleep }
+    public float OpenCloseTime;
+    public float DisplayTime;
     private Text text;
     private PalettedSprite palette;
     private RectTransform rectTransform;
-    private float pos;
+    private float initSize;
+    private Step currentStep = Step.Sleep;
+    private float count;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         text = GetComponentInChildren<Text>();
         palette = GetComponent<PalettedSprite>();
-        pos = TargetPos;
+        initSize = rectTransform.sizeDelta.y;
+        gameObject.SetActive(false);
     }
     public void ShowTurn(Team team)
     {
+        ShowHideText(false);
         text.text = GameController.TeamToString(team) + " turn";
         palette.Palette = (int)team;
-        pos = -TargetPos;
+        currentStep = Step.Open;
+        count = 0;
+        gameObject.SetActive(true);
+        MidBattleScreen.Current = this;
     }
     private void Update()
     {
-        if (pos < TargetPos)
+        if (currentStep != Step.Sleep)
         {
-            pos += Time.deltaTime * 60 * Speed;
-            if (pos >= TargetPos)
+            count += Time.deltaTime;
+            if (count >= (currentStep == Step.Display ? DisplayTime : OpenCloseTime))
             {
-                pos = TargetPos;
+                count -= currentStep == Step.Display ? DisplayTime : OpenCloseTime;
+                currentStep++;
+                switch (currentStep)
+                {
+                    case Step.Display:
+                        ShowHideText(true);
+                        break;
+                    case Step.Close:
+                        ShowHideText(false);
+                        break;
+                    case Step.Sleep:
+                        gameObject.SetActive(false);
+                        MidBattleScreen.Current = null;
+                        break;
+                    default:
+                        break;
+                }
             }
-            rectTransform.anchoredPosition = new Vector2(pos, rectTransform.anchoredPosition.y);
+        }
+    }
+    private void ShowHideText(bool show)
+    {
+        if (show)
+        {
+            text.gameObject.SetActive(true);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, initSize);
+        }
+        else
+        {
+            text.gameObject.SetActive(false);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, initSize / 2);
         }
     }
 }

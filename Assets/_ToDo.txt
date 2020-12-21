@@ -1,13 +1,14 @@
  -Fix AI for 2 range units:
   -Fix find closest unit
   -Fix find which unit to attack
+  -Fix find where to attack from
 
  -Show range on hover
  -Mouse controls
  -Add show more info on stat screen (like FEGBA R button)
  -Improve tutorial (add another unit, how to view stats and show danger area)
  -Add Inclination tutorial/explaination.
- -Add movement animations (I've been delaying this for so long, I completely forgot about it)
+V-Add movement animations (I've been delaying this for so long, I completely forgot about it)
  -Add undo last move (if didn't attack)
 ~-Show how many units are left to move in the end turn message (currently a very lazy implementation)
  -Add game over screen
@@ -19,6 +20,6 @@
  -Find a way to make early levels less boring (probably simply add more maps)
  -First Kresla level is too hard
  -Still a bit too hard apperantly
- -Fix turn phase animation
+V-Fix turn phase animation
  -Fix too long text being hidden by the arrow
- -Improve/replace music
+~-Improve/replace music

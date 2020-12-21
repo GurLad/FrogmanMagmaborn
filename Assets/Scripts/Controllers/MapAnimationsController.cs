@@ -131,6 +131,10 @@ public class MapAnimationsController : MidBattleScreen
         // Start animation
         StartAnimation(AnimationType.Movement);
     }
+    public void AnimateBattle()
+    {
+
+    }
     public void AnimateDelay()
     {
         if (count != 0)

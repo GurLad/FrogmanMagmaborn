@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum VoiceType { Square50, Square25, Square12, Triangle }
@@ -40,10 +41,32 @@ public class PortraitController : MonoBehaviour
         {
             GenericNames.Add(i, genericNames[i].Split(','));
         }
+        // Process portraits
+        for (int i = 0; i < GenericPortraits.Count; i++)
+        {
+            GenericPortraits[i].Init();
+        }
     }
     public Portrait FindPortrait(string name)
     {
         return Portraits.Find(a => a.Name == name) ?? (TempPortraits.ContainsKey(name) ? TempPortraits[name] :  ErrorPortrait);
+    }
+    public Portrait FindGenericPortrait(string tags = "")
+    {
+        // Find portraits with matching tags
+        List<GenericPortrait> genericPortraits;
+        if (tags != "")
+        {
+            List<string> splitTags = new List<string>(tags.Split(','));
+            genericPortraits = GenericPortraits.FindAll(a => splitTags.All(b => a.Tags.Contains(b)));
+            Debug.Log("Tags are " + tags + ", found " + string.Join(", ", genericPortraits));
+        }
+        else
+        {
+            genericPortraits = GenericPortraits;
+        }
+        // Select portrait
+        return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
     }
     public CharacterVoice FindVoice(string name)
     {
@@ -73,11 +96,14 @@ public class Portrait
 [System.Serializable]
 public class GenericPortrait
 {
-    public string Tags;
+    [SerializeField]
+    private string tags;
     public int NameValuesID;
     public Sprite Background;
     public Sprite Foreground;
     public List<Palette> PossibleBackgroundColors = new List<Palette>();
+    [HideInInspector]
+    public List<string> Tags;
     // Currently, can always use every foreground palette. Replace when adding Tormen
     public GenericPortrait()
     {
@@ -87,6 +113,11 @@ public class GenericPortrait
         {
             first.Colors[i] = Color.black;
         }
+    }
+
+    public void Init()
+    {
+        Tags = new List<string>(tags.Split(','));
     }
 
     public Portrait ToPortrait()
@@ -99,6 +130,11 @@ public class GenericPortrait
         portrait.BackgroundColor = PossibleBackgroundColors[Random.Range(0, PossibleBackgroundColors.Count)];
         portrait.ForegroundColorID = Random.Range(0, 4);
         return portrait;
+    }
+
+    public override string ToString()
+    {
+        return tags + ": " + Background.name;
     }
 }
 

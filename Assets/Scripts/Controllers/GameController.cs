@@ -33,8 +33,6 @@ public class GameController : MonoBehaviour
     public GameObject LevelUpScreen;
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
-    [Header("Misc")]
-    public float EnemyAIMoveDelay;
     [Header("Torment palette")]
     public Palette TormentPalette;
     [Header("Debug")]
@@ -74,6 +72,7 @@ public class GameController : MonoBehaviour
     private Transform currentMapObject;
     private Transform currentUnitsObject;
     private bool checkPlayerDead;
+    private bool checkEndTurn;
     private Room selectedRoom;
     private int currentKnowledge;
     private List<Unit> playerUnitsCache;
@@ -337,6 +336,24 @@ public class GameController : MonoBehaviour
     public bool CheckGameState()
     {
         CheckDifficulty();
+        if (checkEndTurn)
+        {
+            if (units.Find(a => a.TheTeam == currentPhase && !a.Moved) == null)
+            {
+                RemoveMarkers();
+                Team current = currentPhase;
+                do
+                {
+                    current = (Team)(((int)current + 1) % 3);
+                    if (current == currentPhase)
+                    {
+                        throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
+                    }
+                } while (units.Find(a => a.TheTeam == current) == null);
+                Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
+                StartPhase(current);
+            }
+        }
         if (checkPlayerDead)
         {
             CheckConveresationWait(); // Most characterNumber/alive/whatever commands
@@ -358,6 +375,14 @@ public class GameController : MonoBehaviour
             checkPlayerDead = false;
         }
         return false;
+    }
+    public void ManuallyEndTurn()
+    {
+        units.FindAll(a => a.TheTeam == currentPhase && !a.Moved).ForEach(a => a.Moved = true);
+        checkEndTurn = true;
+    }
+    private void EndTurn(Team currentTeam)
+    {
     }
     protected virtual void HandleAButton()
     {
@@ -504,7 +529,7 @@ public class GameController : MonoBehaviour
         // Monster AI (individual AIs)
         if (currentPhase == Team.Monster)
         {
-            if (enemyMoveDelayCount > EnemyAIMoveDelay) // All sorts of wierd things happen without an inital delay (can be one frame technically, but this way looks better).
+            if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
             {
                 Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
                 // AI
@@ -518,7 +543,7 @@ public class GameController : MonoBehaviour
         // Guard AI (group AI, TBA. Currently monster AI code)
         if (currentPhase == Team.Guard)
         {
-            if (enemyMoveDelayCount > EnemyAIMoveDelay) // All sorts of wierd things happen without an inital delay (can be one frame technically, but this way looks better).
+            if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
             {
                 Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
                 // AI
@@ -626,28 +651,10 @@ public class GameController : MonoBehaviour
         RemoveMarkers();
         InteractState = InteractState.None;
         unit.Moved = true;
-        if (units.Find(a => a.TheTeam == unit.TheTeam && !a.Moved) == null)
-        {
-            EndTurn(unit.TheTeam);
-        }
+        checkEndTurn = true;
         unit = null;
         // TEMP!!
         CrossfadeMusicPlayer.Current.Play(CrossfadeMusicPlayer.Current.Playing.Replace("Battle", ""));
-    }
-    public void EndTurn(Team currentTeam)
-    {
-        RemoveMarkers();
-        Team current = currentTeam;
-        do
-        {
-            current = (Team)(((int)current + 1) % 3);
-            if (current == currentTeam)
-            {
-                throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
-            }
-        } while (units.Find(a => a.TheTeam == current) == null);
-        Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
-        StartPhase(current);
     }
     public Unit FindUnitAtPos(int x, int y)
     {

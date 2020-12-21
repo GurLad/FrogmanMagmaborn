@@ -86,13 +86,19 @@ public class Unit : MapObject
     }
     private void LoadIcon()
     {
-        if (TheTeam == Team.Player)
+        switch (TheTeam)
         {
-            Icon = PortraitController.Current.FindPortrait(Name);
-        }
-        else
-        {
-            Icon = PortraitController.Current.FindPortrait(GameController.TeamToString(TheTeam));
+            case Team.Player:
+                Icon = PortraitController.Current.FindPortrait(Name);
+                break;
+            case Team.Monster:
+                Icon = PortraitController.Current.FindPortrait(GameController.TeamToString(TheTeam));
+                break;
+            case Team.Guard:
+                Icon = PortraitController.Current.FindGenericPortrait();
+                break;
+            default:
+                break;
         }
     }
     public override void Interact(InteractState interactState)
