@@ -22,13 +22,14 @@ public class PaletteDrawer : PropertyDrawer
 
         EditorGUI.BeginProperty(rect, label, property);
         SerializedProperty list = property.FindPropertyRelative("Colors");
-        rect.width = 140;
-        rect.height = 20;
+        Rect posRect = new Rect(rect);
+        posRect.width = rect.width / 4;
+        posRect.height = 20;
 
         for (int i = 0; i < 4; i++)
         {
-            list.GetArrayElementAtIndex(i).colorValue = EditorGUI.ColorField(rect, list.GetArrayElementAtIndex(i).colorValue);
-            rect.x += 140;
+            list.GetArrayElementAtIndex(i).colorValue = EditorGUI.ColorField(posRect, list.GetArrayElementAtIndex(i).colorValue);
+            posRect.x += posRect.width;
         }
 
         EditorGUI.EndProperty();

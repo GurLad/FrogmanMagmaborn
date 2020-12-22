@@ -21,7 +21,7 @@ public class CharacterVoiceDrawer : PropertyDrawer
 
 
         EditorGUI.BeginProperty(rect, label, property);
-        EditorGUI.indentLevel++;
+        EditorGUI.indentLevel += 2;
         SerializedProperty name = property.FindPropertyRelative("Name");
         SerializedProperty voiceType = property.FindPropertyRelative("VoiceType");
         SerializedProperty pitch = property.FindPropertyRelative("Pitch");
@@ -44,6 +44,7 @@ public class CharacterVoiceDrawer : PropertyDrawer
             portraitController.DebugSource.PlayOneShot(portraitController.DebugVoices[voiceType.enumValueIndex]);
             //soundController.EditorPlaySound(conversationPlayer.TextBeeps[voiceType.enumValueIndex], pitch.floatValue);
         }
+        EditorGUI.indentLevel -= 2;
 
         EditorGUI.EndProperty();
 
