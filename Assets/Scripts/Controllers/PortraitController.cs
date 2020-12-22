@@ -10,8 +10,8 @@ public class PortraitController : MonoBehaviour
     [Header("Portraits")]
     public List<Portrait> Portraits;
     public List<GenericPortrait> GenericPortraits;
-    [SerializeField]
-    private List<string> genericNames;
+    // In the future, may add other way to identify name groups (ex. names for guards, names for males/females, names for Tormen etc.)
+    public List<GenericCharacterVoice> GenericVoicesAndNames;
     public Portrait ErrorPortrait;
     [Header("Voices")]
     public List<CharacterVoice> CharacterVoices;
@@ -23,9 +23,6 @@ public class PortraitController : MonoBehaviour
     // I just realized how many problems thus far could've been solved with a dictionary...
     [HideInInspector]
     public Dictionary<string, Portrait> TempPortraits = new Dictionary<string, Portrait>(); 
-    // In the future, may add other way to identify name groups (ex. names for guards, names for males/females, names for Tormen etc.)
-    [HideInInspector]
-    public Dictionary<int, string[]> GenericNames = new Dictionary<int, string[]>();
     private void Reset()
     {
         Portraits.Add(new Portrait());
@@ -36,12 +33,17 @@ public class PortraitController : MonoBehaviour
         Current = this;
         Destroy(DebugSource);
         DebugVoices.Clear();
-        // Process generic names
-        for (int i = 0; i < genericNames.Count; i++)
-        {
-            GenericNames.Add(i, genericNames[i].Split(','));
-        }
         // Process portraits
+        for (int i = 0; i < Portraits.Count; i++)
+        {
+            Portraits[i].Voice = CharacterVoices.Find(a => a.Name == Portraits[i].Name) ?? ErrorVoice;
+        }
+        // Process generic names
+        for (int i = 0; i < GenericVoicesAndNames.Count; i++)
+        {
+            GenericVoicesAndNames[i].Init();
+        }
+        // Process generic portraits
         for (int i = 0; i < GenericPortraits.Count; i++)
         {
             GenericPortraits[i].Init();
@@ -68,10 +70,6 @@ public class PortraitController : MonoBehaviour
         // Select portrait
         return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
     }
-    public CharacterVoice FindVoice(string name)
-    {
-        return CharacterVoices.Find(a => a.Name == name) ?? ErrorVoice;
-    }
 }
 
 [System.Serializable]
@@ -83,6 +81,8 @@ public class Portrait
     public Palette BackgroundColor = new Palette();
     [Range(0, 3)]
     public int ForegroundColorID;
+    [HideInInspector]
+    public CharacterVoice Voice;
     public Portrait()
     {
         BackgroundColor = new Palette();
@@ -123,8 +123,8 @@ public class GenericPortrait
     public Portrait ToPortrait()
     {
         Portrait portrait = new Portrait();
-        string[] genericNamesOptions = PortraitController.Current.GenericNames[NameValuesID];
-        portrait.Name = genericNamesOptions[Random.Range(0, genericNamesOptions.Length)];
+        portrait.Voice = PortraitController.Current.GenericVoicesAndNames[NameValuesID].ToVoice();
+        portrait.Name = portrait.Voice.Name;
         portrait.Background = Background;
         portrait.Foreground = Foreground;
         portrait.BackgroundColor = PossibleBackgroundColors[Random.Range(0, PossibleBackgroundColors.Count)];
@@ -143,5 +143,31 @@ public class CharacterVoice
 {
     public string Name;
     public VoiceType VoiceType;
+    [Range(0, 2)]
     public float Pitch = 1;
+}
+
+[System.Serializable]
+public class GenericCharacterVoice
+{
+    [SerializeField]
+    private string names;
+    public List<VoiceType> AvailableVoiceTypes;
+    public Vector2 PitchRange;
+    [HideInInspector]
+    public string[] Names;
+
+    public void Init()
+    {
+        Names = names.Split(',');
+    }
+
+    public CharacterVoice ToVoice()
+    {
+        CharacterVoice voice = new CharacterVoice();
+        voice.Name = Names[Random.Range(0, Names.Length)];
+        voice.VoiceType = AvailableVoiceTypes[Random.Range(0, AvailableVoiceTypes.Count)];
+        voice.Pitch = Random.Range(PitchRange.x, PitchRange.y);
+        return voice;
+    }
 }

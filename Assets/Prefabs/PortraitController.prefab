@@ -55,6 +55,10 @@ MonoBehaviour:
       - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
       - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
     ForegroundColorID: 0
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   - Name: Firbell
     Background: {fileID: 21300000, guid: 51c8042ce24e493448b1f7fb5f5e662d, type: 3}
     Foreground: {fileID: 21300000, guid: 87c2eac70914e3e488ed2fea0a8c69ac, type: 3}
@@ -65,6 +69,10 @@ MonoBehaviour:
       - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
     ForegroundColorID: 3
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   - Name: Xirveros
     Background: {fileID: 21300000, guid: 0d17df2050d179546be93b004e3abb1a, type: 3}
     Foreground: {fileID: 21300000, guid: 79d20c30b1cb5fe4b8d714e0babb0618, type: 3}
@@ -75,6 +83,10 @@ MonoBehaviour:
       - {r: 0.8941177, g: 0, b: 0.37647063, a: 1}
       - {r: 0.6745098, g: 0, b: 0.15686275, a: 1}
     ForegroundColorID: 3
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   - Name: Kresla
     Background: {fileID: 21300000, guid: 26dc33e5d5154fd4b89cfe8c3804b120, type: 3}
     Foreground: {fileID: 21300000, guid: 4c0ca9fbfdb929d429f4f944a8a18d1c, type: 3}
@@ -85,6 +97,10 @@ MonoBehaviour:
       - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
       - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
     ForegroundColorID: 3
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   - Name: Monster
     Background: {fileID: 21300000, guid: aefc7e88f738bbe41b1800323d3811cb, type: 3}
     Foreground: {fileID: 21300000, guid: 389de8980a12d524f96cce244e3f8976, type: 3}
@@ -95,6 +111,10 @@ MonoBehaviour:
       - {r: 0.86274517, g: 0, b: 0.8313726, a: 1}
       - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
     ForegroundColorID: 1
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   - Name: Torment
     Background: {fileID: 21300000, guid: 985c9986db390984f8e8ab3757210cb7, type: 3}
     Foreground: {fileID: 21300000, guid: ad9b6ad94e832a8419c10451c7f33590, type: 3}
@@ -105,6 +125,10 @@ MonoBehaviour:
       - {r: 0, g: 0.909804, b: 0.8941177, a: 1}
       - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
     ForegroundColorID: 3
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   GenericPortraits:
   - tags: female,young
     NameValuesID: 1
@@ -211,9 +235,15 @@ MonoBehaviour:
       - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
       - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
     Tags: []
-  genericNames:
-  - Alph,Bob,Cloud,Devdan
-  - Astrid,Bobbie,Cithrin,Davned
+  GenericVoicesAndNames:
+  - names: Alph,Bob,Cloud,Devdan
+    AvailableVoiceTypes: 0000000003000000
+    PitchRange: {x: 0.5, y: 1.2}
+    Names: []
+  - names: Astrid,Bobbie,Cithrin,Denvad
+    AvailableVoiceTypes: 0100000002000000
+    PitchRange: {x: 0.8, y: 1.5}
+    Names: []
   ErrorPortrait:
     Name: 
     Background: {fileID: 0}
@@ -225,6 +255,10 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 1}
       - {r: 0, g: 0, b: 0, a: 1}
     ForegroundColorID: 0
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   CharacterVoices:
   - Name: Frogman
     VoiceType: 3
@@ -264,7 +298,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.5
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

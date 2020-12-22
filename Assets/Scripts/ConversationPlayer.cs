@@ -278,7 +278,7 @@ public class ConversationPlayer : MidBattleScreen
             string[] parts = line.Split(':')[0].Split('|');
             Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
             Portrait.Portrait = portrait;
-            voice = PortraitController.Current.FindVoice(parts[0]);
+            voice = portrait.Voice;
             if (parts.Length > 1)
             {
                 Name.text = parts[parts.Length - 1];
