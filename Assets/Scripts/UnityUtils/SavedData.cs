@@ -46,7 +46,7 @@ public static class SavedData
         Type selectedType = typeof(T);
         if (selectedType == typeof(string))
         {
-            if (!defaultValue.Equals(default(T)))
+            if (!Equals(defaultValue, default(T)))
             {
                 return (T)Convert.ChangeType(PlayerPrefs.GetString(dataName, defaultValue.ToString()), typeof(T));
             }
@@ -54,7 +54,7 @@ public static class SavedData
         }
         else if (selectedType == typeof(int))
         {
-            if (!defaultValue.Equals(default(T)))
+            if (!Equals(defaultValue, default(T)))
             {
                 return (T)Convert.ChangeType(PlayerPrefs.GetInt(dataName, Convert.ToInt32(defaultValue)), typeof(T));
             }
@@ -62,7 +62,7 @@ public static class SavedData
         }
         else if (selectedType == typeof(float))
         {
-            if (!defaultValue.Equals(default(T)))
+            if (!Equals(defaultValue, default(T)))
             {
                 return (T)Convert.ChangeType(PlayerPrefs.GetFloat(dataName, (float)Convert.ToDouble(defaultValue)), typeof(T));
             }

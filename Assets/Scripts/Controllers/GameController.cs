@@ -336,6 +336,28 @@ public class GameController : MonoBehaviour
     public bool CheckGameState()
     {
         CheckDifficulty();
+        if (checkPlayerDead)
+        {
+            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
+            if (units.Find(a => a.Name == "Frogman") == null)
+            {
+                // Lose
+                Lose();
+                return true;
+            }
+            else if (CheckPlayerWin())
+            {
+                // Win
+                ConversationPlayer.Current.PlayPostBattle();
+                return true;
+            }
+            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
+            {
+                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
+                playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
+            }
+            checkPlayerDead = false;
+        }
         if (checkEndTurn)
         {
             if (units.Find(a => a.TheTeam == currentPhase && !a.Moved) == null)
@@ -354,35 +376,12 @@ public class GameController : MonoBehaviour
                 StartPhase(current);
             }
         }
-        if (checkPlayerDead)
-        {
-            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
-            if (units.Find(a => a.Name == "Frogman") == null)
-            {
-                // Lose
-                Lose();
-            }
-            else if (CheckPlayerWin())
-            {
-                // Win
-                ConversationPlayer.Current.PlayPostBattle();
-            }
-            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
-            {
-                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
-                playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
-            }
-            checkPlayerDead = false;
-        }
         return false;
     }
     public void ManuallyEndTurn()
     {
         units.FindAll(a => a.TheTeam == currentPhase && !a.Moved).ForEach(a => a.Moved = true);
         checkEndTurn = true;
-    }
-    private void EndTurn(Team currentTeam)
-    {
     }
     protected virtual void HandleAButton()
     {
@@ -652,7 +651,10 @@ public class GameController : MonoBehaviour
         InteractState = InteractState.None;
         unit.Moved = true;
         checkEndTurn = true;
-        unit = null;
+        if (MidBattleScreen.Current == null) // Prevent the extra frame of waiting
+        {
+            CheckGameState();
+        }
         // TEMP!!
         CrossfadeMusicPlayer.Current.Play(CrossfadeMusicPlayer.Current.Playing.Replace("Battle", ""));
     }
