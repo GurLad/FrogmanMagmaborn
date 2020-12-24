@@ -12,6 +12,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     [Header("Battle Backgrounds")]
     public List<BattleBackground> AttackerBattleBackgrounds;
     public List<BattleBackground> DefenderBattleBackgrounds;
+    [Header("SFX")]
+    public AudioClip HitSFX;
+    public AudioClip MissSFX;
+    public AudioClip NoDamageSFX;
     [Header("Animation Data")]
     public float AttackerTargetPos = 3;
     public float DefenderTargetPos = 4;
@@ -302,10 +306,20 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         switch (result)
         {
             case true:
-                // Do nothing for hit
+                // Play sound for hit
+                int damage = attacker.GetDamage(defender);
+                if (damage == 0)
+                {
+                    SoundController.PlaySound(NoDamageSFX, 1);
+                }
+                else
+                {
+                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Stats.MaxHP);
+                }
                 break;
             case false:
                 // Move for miss
+                SoundController.PlaySound(MissSFX, 1);
                 if (attackerAttack)
                 {
                     DefenderObject.transform.position -= new Vector3(1, 0, 0);
@@ -317,6 +331,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 break;
             case null:
                 // Destroy sprite for dead
+                SoundController.PlaySound(HitSFX, 0.5f);
                 if (attackerAttack)
                 {
                     Destroy(DefenderObject.gameObject);

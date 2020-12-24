@@ -150,6 +150,7 @@ public class CharacterVoice
 [System.Serializable]
 public class GenericCharacterVoice
 {
+    [TextArea]
     [SerializeField]
     private string names;
     public List<VoiceType> AvailableVoiceTypes;

@@ -543,7 +543,7 @@ public class Unit : MapObject
         }
         return Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
     }
-    private int GetDamage(Unit other)
+    public int GetDamage(Unit other)
     {
         int ArmorModifier = GameController.Current.Map[other.Pos.x, other.Pos.y].GetArmorModifier(other);
         if (TheTeam == Team.Player && EffectiveAgainst(other))
