@@ -61,6 +61,7 @@ public class MenuController : MidBattleScreen
         if (FinishOnSelect)
         {
             // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
+            MidBattleScreen.Set(this, false);
             gameObject.SetActive(false);
         }
     }

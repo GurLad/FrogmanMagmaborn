@@ -30,7 +30,7 @@ public class TurnAnimation : MidBattleScreen
         currentStep = Step.Open;
         count = 0;
         gameObject.SetActive(true);
-        MidBattleScreen.Current = this;
+        MidBattleScreen.Set(this, true);
     }
     private void Update()
     {
@@ -51,7 +51,7 @@ public class TurnAnimation : MidBattleScreen
                         break;
                     case Step.Sleep:
                         gameObject.SetActive(false);
-                        MidBattleScreen.Current = null;
+                        MidBattleScreen.Set(this, false);
                         break;
                     default:
                         break;

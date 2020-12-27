@@ -100,7 +100,7 @@ public class ConversationPlayer : MidBattleScreen
     {
         postBattle = false;
         gameObject.SetActive(true);
-        MidBattleScreen.Current = this;
+        MidBattleScreen.Set(this, true);
         origin = conversation;
         if (GameController.Current != null)
         {
@@ -124,13 +124,13 @@ public class ConversationPlayer : MidBattleScreen
         }
         postBattle = true;
         gameObject.SetActive(true);
-        MidBattleScreen.Current = this;
+        MidBattleScreen.Set(this, true);
         StartLine(0);
     }
     public void Pause()
     {
         gameObject.SetActive(false);
-        MidBattleScreen.Current = null;
+        MidBattleScreen.Set(this, false);
     }
     public void Resume(int mod = 1)
     {
@@ -140,7 +140,7 @@ public class ConversationPlayer : MidBattleScreen
             return;
         }
         gameObject.SetActive(true);
-        MidBattleScreen.Current = this;
+        MidBattleScreen.Set(this, true);
         StartLine(currentLine + mod);
     }
     public void CheckWait()
@@ -312,7 +312,7 @@ public class ConversationPlayer : MidBattleScreen
     private void FinishConversation()
     {
         // Finish conversation
-        MidBattleScreen.Current = null;
+        MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         // Clear TempPortraits

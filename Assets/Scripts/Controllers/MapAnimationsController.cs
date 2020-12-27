@@ -59,27 +59,20 @@ public class MapAnimationsController : MidBattleScreen
     private void StartAnimation(AnimationType type)
     {
         CurrentAnimation = type;
-        MidBattleScreen.Current = this;
+        MidBattleScreen.Set(this, true);
     }
     private void EndAnimation()
     {
         CurrentAnimation = AnimationType.None;
-        if (MidBattleScreen.Current == this)
+        // Support for chaining animations & actions.
+        count = 0;
+        MidBattleScreen.Set(this, false);
+        // Do a game-state check once before moving on to the next animation.
+        if (!GameController.Current.CheckGameState())
         {
-            // Support for chaining animations & actions.
-            count = 0;
-            MidBattleScreen.Current = null;
-            // Do a game-state check once before moving on to the next animation.
-            if (!GameController.Current.CheckGameState())
-            {
-                System.Action tempAction = OnFinishAnimation;
-                OnFinishAnimation = null;
-                tempAction();
-            }
-        }
-        else
-        {
-            throw new System.Exception("Mid-battle screen in the middle of an animation?!");
+            System.Action tempAction = OnFinishAnimation;
+            OnFinishAnimation = null;
+            tempAction();
         }
     }
     public void AnimateMovement(Unit unit, Vector2Int targetPos)

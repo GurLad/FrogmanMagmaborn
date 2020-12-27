@@ -215,7 +215,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
-        if (MidBattleScreen.Current != null) // For ConversationPlayer
+        if (MidBattleScreen.HasCurrent) // For ConversationPlayer
         {
             UIUnitInfoPanel.gameObject.SetActive(false);
             UIFightPanel.gameObject.SetActive(false);
@@ -486,7 +486,7 @@ public class GameController : MonoBehaviour
         {
             case InteractState.None:
                 MenuController pauseMenu = Instantiate(PauseMenu, Canvas.transform).GetComponentInChildren<MenuController>();
-                MidBattleScreen.Current = pauseMenu;
+                MidBattleScreen.Set(pauseMenu, true);
                 break;
             case InteractState.Move:
                 break;
@@ -503,7 +503,7 @@ public class GameController : MonoBehaviour
             if (DifficultyMenu != null) // Get difficulty
             {
                 DifficultyMenu.SetActive(true);
-                MidBattleScreen.Current = DifficultyMenu.GetComponentInChildren<MenuController>();
+                MidBattleScreen.Set(DifficultyMenu.GetComponentInChildren<MenuController>(), true);
                 return;
             }
             else // Update difficulty
@@ -651,7 +651,7 @@ public class GameController : MonoBehaviour
         InteractState = InteractState.None;
         unit.Moved = true;
         checkEndTurn = true;
-        if (MidBattleScreen.Current == null) // Prevent the extra frame of waiting
+        if (!MidBattleScreen.HasCurrent) // Prevent the extra frame of waiting
         {
             CheckGameState();
         }
@@ -700,7 +700,7 @@ public class GameController : MonoBehaviour
     public void TransitionToMidBattleScreen(MidBattleScreen screen)
     {
         transform.parent.gameObject.SetActive(false);
-        MidBattleScreen.Current = screen;
+        MidBattleScreen.Set(screen, true);
         CameraBlackScreen.SetActive(true);
     }
     public void KillUnit(Unit unit)
