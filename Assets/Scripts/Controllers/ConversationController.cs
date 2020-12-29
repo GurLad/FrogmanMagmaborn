@@ -85,7 +85,7 @@ public class ConversationData : System.IComparable<ConversationData>
         }
         // Check unique & id
         id = id ?? sourceFile.name;
-        if (unique && SavedData.Load<int>(id) == 1)
+        if (unique && SavedData.Load<int>("ConversationData", id) == 1)
         {
             Done = true;
         }
@@ -163,7 +163,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return KnowledgeController.HasKnowledge(parts[1]);
             case "hasFlag":
                 // Return whether a conversation flag is turned on
-                return SavedData.Load("Flag" + parts[1], 0) == 1;
+                return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;
             case "numRuns":
                 // Return whether a certain number of runs was reached.
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.NumRuns, int.Parse(parts[1].Substring(1)));
@@ -211,7 +211,7 @@ public class ConversationData : System.IComparable<ConversationData>
     {
         if (unique)
         {
-            SavedData.Save(id, 1);
+            SavedData.Save("ConversationData", id, 1);
             return true;
         }
         return false;

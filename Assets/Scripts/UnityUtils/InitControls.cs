@@ -11,6 +11,12 @@ public class InitControls : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
+        // Create a new slot. Move this to a slot switcher once I add that option.
+        if (!SavedData.HasKey("InitFiles", SaveMode.Slot))
+        {
+            SavedData.CreateFile("Knowledge", SaveFileType.PlayerPrefs);
+            SavedData.CreateFile("ConversationData", SaveFileType.PlayerPrefs);
+        }
         if (!SavedData.HasKey("InitControls", SaveMode.Global))
         {
             SavedData.Save("InitControls", 1, SaveMode.Global);

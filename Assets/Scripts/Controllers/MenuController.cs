@@ -10,6 +10,7 @@ public class MenuController : MidBattleScreen
     public bool Cancelable; // For things like the main menu vs. pause menu
     public bool FinishOnSelect = true;
     public Trigger CancelTrigger;
+    public Trigger AfterMenuDone;
     private Text text;
     [HideInInspector]
     public Text Text
@@ -36,6 +37,7 @@ public class MenuController : MidBattleScreen
         {
             MenuDone();
             MenuItems[Selected].Activate();
+            AfterMenuDone?.Activate();
             return;
         }
         if (Control.GetButtonDown(Control.CB.B) && Cancelable)
@@ -61,7 +63,10 @@ public class MenuController : MidBattleScreen
         if (FinishOnSelect)
         {
             // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
-            MidBattleScreen.Set(this, false);
+            if (GameController.Current != null)
+            {
+                MidBattleScreen.Set(this, false);
+            }
             gameObject.SetActive(false);
         }
     }

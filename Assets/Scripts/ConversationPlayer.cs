@@ -179,7 +179,7 @@ public class ConversationPlayer : MidBattleScreen
                     KnowledgeController.UnlockKnowledge(parts[2]);
                     break;
                 case "setFlag":
-                    SavedData.Save("Flag" + parts[2], 1);
+                    SavedData.Save("ConversationData", "Flag" + parts[2], 1);
                     break;
                 case "if":
                     /* Syntax:

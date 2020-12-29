@@ -722,6 +722,7 @@ public class GameController : MonoBehaviour
     {
         LevelNumber++;
         currentKnowledge++;
+        SavedData.SaveAll(SaveMode.Slot);
         PlayersLevelUp();
     }
     private void PlayersLevelUp()
@@ -1011,7 +1012,8 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
-        SavedData.Appeand("Knowledge", currentKnowledge);
+        SavedData.Append("Knowledge", "Amount", currentKnowledge);
+        SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("Menu");
     }
     public int LeftToMove()

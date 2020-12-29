@@ -26,6 +26,7 @@ public class ChangeControls : MonoBehaviour
             currentKey++;
             if (currentKey >= Descriptions.Count)
             {
+                SavedData.SaveAll(SaveMode.Global);
                 gameObject.SetActive(false);
                 Source.gameObject.SetActive(true);
             }
