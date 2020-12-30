@@ -406,7 +406,7 @@ public static class SavedData
             Type selectedType = typeof(T);
             if (selectedType == typeof(string))
             {
-                return (T)Convert.ChangeType(Get(StringValues, dataName, defaultValue.ToString()), typeof(T));
+                return (T)Convert.ChangeType(Get(StringValues, dataName, defaultValue?.ToString() ?? ""), typeof(T));
             }
             else if (selectedType == typeof(int))
             {

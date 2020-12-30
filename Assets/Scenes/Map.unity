@@ -4228,8 +4228,9 @@ MonoBehaviour:
   - {fileID: 806976469}
   Selected: 0
   Cancelable: 0
-  FinishOnSelect: 1
+  FinishOnSelect: 0
   CancelTrigger: {fileID: 0}
+  AfterMenuDone: {fileID: 0}
 --- !u!114 &544758966
 MonoBehaviour:
   m_ObjectHideFlags: 0

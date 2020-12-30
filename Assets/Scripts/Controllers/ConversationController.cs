@@ -173,6 +173,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "turn":
                 // Return whether a certain turn has passed. Obviously only works in "wait" commands.
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.Turn, int.Parse(parts[1].Substring(1)));
+            case "unitAlive":
+                // Return whether a certain unit is alive.
+                return GameController.Current.CheckUnitAlive(parts[1]);
             default:
                 break;
         }

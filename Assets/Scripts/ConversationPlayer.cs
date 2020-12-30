@@ -143,13 +143,19 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Set(this, true);
         StartLine(currentLine + mod);
     }
-    public void CheckWait()
+    /// <summary>
+    /// Checks whether the wait requiremenet was met.
+    /// </summary>
+    /// <returns>True if it was (aka resumes conversation), false if it wasn't.</returns>
+    public bool CheckWait()
     {
         if (!string.IsNullOrEmpty(waitRequirement) && origin.MeetsRequirement(waitRequirement))
         {
             waitRequirement = "";
             Resume();
+            return true;
         }
+        return false;
     }
     private void StartLine(int num)
     {

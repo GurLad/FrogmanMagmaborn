@@ -222,7 +222,10 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(false);
             return;
         }
-        CheckGameState();
+        if (CheckGameState())
+        {
+            return;
+        }
         // Interact/UI code
         if (interactable)
         {
@@ -338,7 +341,10 @@ public class GameController : MonoBehaviour
         CheckDifficulty();
         if (checkPlayerDead)
         {
-            CheckConveresationWait(); // Most characterNumber/alive/whatever commands
+            if (CheckConveresationWait()) // Most characterNumber/alive/whatever commands
+            {
+                return true;
+            }
             if (units.Find(a => a.Name == "Frogman") == null)
             {
                 // Lose
@@ -1028,6 +1034,11 @@ public class GameController : MonoBehaviour
     {
         return IsValidPos(pos.x, pos.y);
     }
+    // TODO: Replace all instances of "frogman/boss dead" with this function.
+    public bool CheckUnitAlive(string name)
+    {
+        return units.Find(a => a.ToString() == name) != null;
+    }
     private bool CheckPlayerWin()
     {
         switch (selectedRoom.Objective)
@@ -1040,13 +1051,18 @@ public class GameController : MonoBehaviour
                 throw new System.Exception("No objective!");
         }
     }
-    private void CheckConveresationWait()
+    /// <summary>
+    /// Checks whether the current conversation's wait requiremenet was met.
+    /// </summary>
+    /// <returns>True if it was (aka resumes conversation), false if it wasn't.</returns>
+    private bool CheckConveresationWait()
     {
         // For now, always check it (change to until it's done, as 99% of the time conversations won't have wait commands)
         if (ConversationPlayer.Current != null)
         {
-            ConversationPlayer.Current.CheckWait();
+            return ConversationPlayer.Current.CheckWait();
         }
+        return false;
     }
 
     private class Room

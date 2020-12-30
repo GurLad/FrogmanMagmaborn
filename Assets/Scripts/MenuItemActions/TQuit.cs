@@ -6,6 +6,7 @@ public class TQuit : Trigger
 {
     public override void Activate()
     {
+        SavedData.SaveAll();
         Application.Quit();
     }
 }
