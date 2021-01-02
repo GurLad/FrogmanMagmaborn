@@ -14,8 +14,8 @@ public class InitControls : MonoBehaviour
         // Create a new slot. Move this to a slot switcher once I add that option.
         if (!SavedData.HasKey("InitFiles", SaveMode.Slot))
         {
-            SavedData.CreateFile("Knowledge", SaveFileType.PlayerPrefs);
-            SavedData.CreateFile("ConversationData", SaveFileType.PlayerPrefs);
+            SavedData.CreateFile("Knowledge", SaveFileType.File);
+            SavedData.CreateFile("ConversationData", SaveFileType.File);
         }
         if (!SavedData.HasKey("InitControls", SaveMode.Global))
         {

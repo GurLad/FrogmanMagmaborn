@@ -283,7 +283,6 @@ public static class SavedData
         }
     }
 
-    // Just when I thought that I finally found a use for internal, C# had to ruin that one use. The first time I found an advantage to Java (not having properties is still a killer, though).
     private class SaveFile
     {
         public string Name { get; }
@@ -315,6 +314,12 @@ public static class SavedData
                     PlayerPrefsSaveDictionary(FloatValues, PlayerPrefs.SetFloat, slot);
                     break;
                 case SaveFileType.File:
+                    Debug.Log(JsonUtility.ToJson(this, true));
+                    if (!System.IO.Directory.Exists(Application.persistentDataPath + "/Slot" + slot))
+                    {
+                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/Slot" + slot);
+                    }
+                    System.IO.File.WriteAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json", JsonUtility.ToJson(this));
                     break;
                 default:
                     break;
@@ -346,6 +351,16 @@ public static class SavedData
                     PlayerPrefsLoadDictionary(FloatValues, PlayerPrefs.GetFloat, slot);
                     break;
                 case SaveFileType.File:
+                    if (!System.IO.Directory.Exists(Application.persistentDataPath + "/Slot" + slot))
+                    {
+                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/Slot" + slot);
+                    }
+                    if (!System.IO.File.Exists(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json"))
+                    {
+                        return;
+                    }
+                    JsonUtility.FromJsonOverwrite(System.IO.File.ReadAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json"), this);
+                    Debug.Log(JsonUtility.ToJson(this, true));
                     break;
                 default:
                     break;
