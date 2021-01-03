@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+/* On the generic type functions:
+ * Generic types are a bad idea here, as only three types are supported. However, copying & pasting the save & load functions 12 times is bad too. Here are the options:
+ * -Current (generic types with if)
+ * -Overloading (tons of copy-pastes, although could be one-liners)
+ * -A basic class with casting overrides for string/int/float (most elegant, but weird & harder to discern int vs. float in editor)
+ */ 
+
 /*
  * TODO: 
  * V-Fix Appeand & HasKey
@@ -11,7 +19,7 @@ using UnityEngine;
  * V-Add create file
  *  -Add auto-save to files (inefficent, but for lazy people)
  * V-Auto save & load when changing slot/starting the game
- *  -Add File SaveFileType (after making sure everything works in PlayerPrefs mode)
+ * V-Add File SaveFileType (after making sure everything works in PlayerPrefs mode)
  */ 
 
 
@@ -314,12 +322,13 @@ public static class SavedData
                     PlayerPrefsSaveDictionary(FloatValues, PlayerPrefs.SetFloat, slot);
                     break;
                 case SaveFileType.File:
-                    Debug.Log(JsonUtility.ToJson(this, true));
                     if (!System.IO.Directory.Exists(Application.persistentDataPath + "/Slot" + slot))
                     {
                         System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/Slot" + slot);
                     }
-                    System.IO.File.WriteAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json", JsonUtility.ToJson(this));
+                    FileSaveDictionary(StringValues, slot);
+                    FileSaveDictionary(IntValues, slot);
+                    FileSaveDictionary(FloatValues, slot);
                     break;
                 default:
                     break;
@@ -341,6 +350,21 @@ public static class SavedData
             }
         }
 
+        private void FileSaveDictionary<T>(Dictionary<string, T> dictionary, int slot)
+        {
+            // Dictionary ToString
+            string result = "";
+            foreach (string key in dictionary.Keys)
+            {
+                result += key + ":" + dictionary[key] + '\a';
+            }
+            // Save file
+            if (result.Length > 0)
+            {
+                System.IO.File.WriteAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + "Type" + typeof(T).ToString() + "s.data", result.Substring(0, result.Length - 1));
+            }
+        }
+
         public void Load(int slot)
         {
             switch (Type)
@@ -355,12 +379,9 @@ public static class SavedData
                     {
                         System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/Slot" + slot);
                     }
-                    if (!System.IO.File.Exists(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json"))
-                    {
-                        return;
-                    }
-                    JsonUtility.FromJsonOverwrite(System.IO.File.ReadAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + ".json"), this);
-                    Debug.Log(JsonUtility.ToJson(this, true));
+                    FileLoadDictionary(StringValues, slot);
+                    FileLoadDictionary(IntValues, slot);
+                    FileLoadDictionary(FloatValues, slot);
                     break;
                 default:
                     break;
@@ -379,6 +400,40 @@ public static class SavedData
                     continue;
                 }
                 dictionary.Add(key, loadFunction(slot + Name + key));
+            }
+        }
+
+        private void FileLoadDictionary<T>(Dictionary<string, T> dictionary, int slot)
+        {
+            dictionary.Clear();
+            // Load file
+            if (!System.IO.File.Exists(Application.persistentDataPath + "/Slot" + slot + "/" + Name + "Type" + typeof(T).ToString() + "s.data"))
+            {
+                return;
+            }
+            string result = System.IO.File.ReadAllText(Application.persistentDataPath + "/Slot" + slot + "/" + Name + "Type" + typeof(T).ToString() + "s.data");
+            // Dictionary FromString
+            if (result == "")
+            {
+                return;
+            }
+            string[] pairs = result.Split('\a');
+            foreach (string pair in pairs)
+            {
+                string[] parts = pair.Split(':');
+                Type selectedType = typeof(T);
+                if (selectedType == typeof(string))
+                {
+                    Set(StringValues, parts[0], parts[1].ToString());
+                }
+                else if (selectedType == typeof(int))
+                {
+                    Set(IntValues, parts[0], Convert.ToInt32(parts[1]));
+                }
+                else if (selectedType == typeof(float))
+                {
+                    Set(FloatValues, parts[0], (float)Convert.ToDouble(parts[1]));
+                }
             }
         }
 

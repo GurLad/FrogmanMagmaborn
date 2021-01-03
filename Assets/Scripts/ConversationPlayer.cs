@@ -329,6 +329,7 @@ public class ConversationPlayer : MidBattleScreen
             if (postBattle || origin.PostBattleLines.Count <= 0)
             {
                 origin.Choose();
+                SavedData.SaveAll(SaveMode.Slot);
                 if (SavedData.Load("FlagTutorialFinish", 0) == 0)
                 {
                     Tutorial.SetActive(true);
