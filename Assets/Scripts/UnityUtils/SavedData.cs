@@ -10,17 +10,7 @@ using UnityEngine;
  * -Current (generic types with if)
  * -Overloading (tons of copy-pastes, although could be one-liners)
  * -A basic class with casting overrides for string/int/float (most elegant, but weird & harder to discern int vs. float in editor)
- */ 
-
-/*
- * TODO: 
- * V-Fix Appeand & HasKey
- * V-Add SaveAll & LoadAll
- * V-Add create file
- *  -Add auto-save to files (inefficent, but for lazy people)
- * V-Auto save & load when changing slot/starting the game
- * V-Add File SaveFileType (after making sure everything works in PlayerPrefs mode)
- */ 
+ */
 
 
 public enum SaveFileType { PlayerPrefs, File }
@@ -32,6 +22,10 @@ public static class SavedData
     /// You must change this through code, as those files are created when the game launches.
     /// </summary>
     public const SaveFileType DEFAULT_GLOBAL_FILES_SAVE_TYPE = SaveFileType.PlayerPrefs;
+    /// <summary>
+    /// You must change this through code, as those files are created when the game launches.
+    /// </summary>
+    public const bool DEFAULT_FILES_AUTO_SAVE = false;
     /// <summary>
     /// The amount of available save slots. You should probably change this in the code.
     /// </summary>
@@ -76,7 +70,7 @@ public static class SavedData
     /// <param name="fileName">The filename.</param>
     /// <param name="type">The type of the new file. Use PlayerPrefs for things like settings, and File for more complex things like player stats.</param>
     /// <param name="saveSlot">Creates a file based on one from a different slot. <b>Does not change the current slot - the file will be saved to it.</b></param>
-    public static void CreateFile(string fileName, SaveFileType type, int saveSlot = -1)
+    public static void CreateFile(string fileName, SaveFileType type, int saveSlot = -1, bool autoSave = DEFAULT_FILES_AUTO_SAVE)
     {
         if (fileName.Contains(',') || fileName.Contains(';') || fileName == "")
         {
@@ -91,7 +85,7 @@ public static class SavedData
             return;
         }
         saveSlot = saveSlot >= 0 ? saveSlot : SaveSlot;
-        SaveFiles.Add(fileName, new SaveFile(fileName, type, saveSlot));
+        SaveFiles.Add(fileName, new SaveFile(fileName, type, saveSlot, autoSave));
     }
     /// <summary>
     /// Saves a string, int or float to the default file.
@@ -294,18 +288,19 @@ public static class SavedData
     private class SaveFile
     {
         public string Name { get; }
-        public SaveFileType Type { get; set; }
+        public SaveFileType Type { get; }
         public Dictionary<string, string> StringValues { get; } = new Dictionary<string, string>();
         public Dictionary<string, int> IntValues { get; } = new Dictionary<string, int>();
         public Dictionary<string, float> FloatValues { get; } = new Dictionary<string, float>();
-        public bool Autosave { get; set; } = false;
+        public bool AutoSave { get; }
         private bool dataChanged; // More efficient in SaveAll
 
-        public SaveFile(string name, SaveFileType type, int slot)
+        public SaveFile(string name, SaveFileType type, int slot, bool autoSave = SavedData.DEFAULT_FILES_AUTO_SAVE)
         {
             Name = name;
             Type = type;
             Load(slot);
+            AutoSave = autoSave;
         }
 
         public void Save(int slot)
@@ -455,6 +450,10 @@ public static class SavedData
             else
             {
                 throw new Exception("Unsupported type");
+            }
+            if (AutoSave)
+            {
+                Save(SavedData.GlobalFile == this ? -1 : SavedData.SaveSlot);
             }
         }
 
