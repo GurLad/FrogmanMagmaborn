@@ -48,6 +48,10 @@ MonoBehaviour:
   Tracks:
   - Name: TheFrogman
     AudioClip: {fileID: 8300000, guid: 4525683308800f04cb24882696dc2a1b, type: 3}
+  - Name: ToriTheme
+    AudioClip: {fileID: 8300000, guid: 7b6dde437cd1b504e9be121cdd7acb7f, type: 3}
+  - Name: ToriThemeBattle
+    AudioClip: {fileID: 8300000, guid: 7b6e04bf93ac26747b162ef8225c7f9c, type: 3}
   - Name: MagmaFlows
     AudioClip: {fileID: 8300000, guid: fe9d94bfaf152cb448c7c516ee7ed5c6, type: 3}
   - Name: MagmaFlowsBattle
@@ -60,16 +64,12 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 33a3269b3d3c2f946ab3cb92da8f98c5, type: 3}
   - Name: ToTheDeathBattle
     AudioClip: {fileID: 8300000, guid: 65311ede9c3463b4f89ab4ebbc7281b6, type: 3}
+  - Name: TormentorIntro
+    AudioClip: {fileID: 8300000, guid: 6dccacf0de2316245af7c43390fdd9b4, type: 3}
   - Name: Tormentor
     AudioClip: {fileID: 8300000, guid: 0e74daab4239b8b40a749e6d41004747, type: 3}
   - Name: TormentorBattle
     AudioClip: {fileID: 8300000, guid: 51ecfa39e0becb04bb6e19ebe49c920b, type: 3}
-  - Name: TormentorIntro
-    AudioClip: {fileID: 8300000, guid: 6dccacf0de2316245af7c43390fdd9b4, type: 3}
-  - Name: ToriTheme
-    AudioClip: {fileID: 8300000, guid: 7b6dde437cd1b504e9be121cdd7acb7f, type: 3}
-  - Name: ToriThemeBattle
-    AudioClip: {fileID: 8300000, guid: 7b6e04bf93ac26747b162ef8225c7f9c, type: 3}
   - Name: EnterTheGuards
     AudioClip: {fileID: 8300000, guid: 8e4e9d37c47ca8149aa7c242c8eaf83c, type: 3}
   - Name: EnterTheGuardsBattle
@@ -82,6 +82,8 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 14ed95e411fa3c44c895c1ab1b6adba8, type: 3}
   - Name: AfterBattle
     AudioClip: {fileID: 8300000, guid: 13a58705a9c1b3f4a853f97bf7368207, type: 3}
+  - Name: BeforeBattle2
+    AudioClip: {fileID: 8300000, guid: 45cd06f539099bd409c9012a64a6267c, type: 3}
   FadeSpeed: 2
   Volume: 1
   PlayOnStart: 1
