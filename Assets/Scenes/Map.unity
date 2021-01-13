@@ -2479,6 +2479,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 1
   palette: 0
+--- !u!1 &344136688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344136689}
+  - component: {fileID: 344136690}
+  m_Layer: 0
+  m_Name: Ooze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344136689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344136688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606634283}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344136690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344136688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations:
+  - Name: Idle
+    SpriteSheet: {fileID: 21300000, guid: 5d0e63d0bb21ea241ae08c3083da6ef3, type: 3}
+    NumberOfFrames: 3
+    Speed: 0
+    Loop: 1
+    Frames:
+    - {fileID: 436410375}
+    - {fileID: 1262703197}
+    - {fileID: 1636587617}
+  FixedSpeed: 1
+  BaseSpeed: 0
+  ActivateOnStart: 1
+  Renderer: {fileID: 0}
 --- !u!1 &364160043
 GameObject:
   m_ObjectHideFlags: 0
@@ -12485,6 +12542,7 @@ Transform:
   - {fileID: 643128391}
   - {fileID: 1067756981}
   - {fileID: 1285666671}
+  - {fileID: 344136689}
   m_Father: {fileID: 709891506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12509,6 +12567,8 @@ MonoBehaviour:
     Class: Goblin
   - Unit: Kresla
     Class: Gargoyle
+  - Unit: Kepluigi
+    Class: Ooze
   UnitGrowths:
   - Name: Frogman
     Growths: 020000000300000002000000010000000400000003000000
@@ -12518,14 +12578,18 @@ MonoBehaviour:
     Growths: 040000000300000002000000010000000200000002000000
     Flies: 0
     Inclination: 0
-  - Name: Kresla
-    Growths: 010000000100000003000000030000000400000000000000
-    Flies: 1
-    Inclination: 1
   - Name: Xirveros
     Growths: 030000000200000002000000030000000100000003000000
     Flies: 0
     Inclination: 1
+  - Name: Kresla
+    Growths: 010000000100000003000000030000000400000000000000
+    Flies: 1
+    Inclination: 1
+  - Name: Kepluigi
+    Growths: 030000000400000003000000010000000200000002000000
+    Flies: 0
+    Inclination: 0
   ClassGrowths:
   - Name: Skeleton
     Growths: 030000000300000002000000010000000200000001000000
@@ -12560,15 +12624,15 @@ MonoBehaviour:
     Flies: 0
     Inclination: 0
   - Name: Lancer
-    Growths: 020000000200000001000000010000000300000003000000
+    Growths: 030000000100000002000000010000000200000003000000
     Flies: 0
     Inclination: 2
   - Name: Archer
-    Growths: 020000000100000003000000020000000300000001000000
+    Growths: 020000000100000003000000030000000200000001000000
     Flies: 0
     Inclination: 1
   - Name: Knight
-    Growths: 030000000200000002000000030000000200000001000000
+    Growths: 030000000200000001000000030000000200000001000000
     Flies: 0
     Inclination: 0
   ClassAnimations:
@@ -12583,6 +12647,9 @@ MonoBehaviour:
     Projectile: {fileID: 0}
   - Name: Gargoyle
     Animation: {fileID: 1778818849}
+    Projectile: {fileID: 0}
+  - Name: Ooze
+    Animation: {fileID: 344136690}
     Projectile: {fileID: 0}
   - Name: Lich
     Animation: {fileID: 1259153108}
@@ -12632,6 +12699,12 @@ MonoBehaviour:
     HitStat: 2
     Damage: 0
     Weight: 1
+    Range: 1
+  - ClassName: Ooze
+    Name: Body
+    HitStat: 0
+    Damage: 0
+    Weight: -1
     Range: 1
   - ClassName: Lich
     Name: Dark Magic
@@ -15211,6 +15284,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
   - {fileID: 4900000, guid: f3680b26a1805eb42b6162681826e933, type: 3}
   - {fileID: 4900000, guid: c3512488bcb852d4f85c1ee254c225d6, type: 3}
+  - {fileID: 4900000, guid: bd0b5748d218de54484c8e0b4f4d1f60, type: 3}
   RoomThemes:
   - MagmaFlows
   - Dungeon

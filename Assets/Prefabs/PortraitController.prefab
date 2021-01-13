@@ -129,6 +129,20 @@ MonoBehaviour:
       Name: 
       VoiceType: 0
       Pitch: 1
+  - Name: Kepluigi
+    Background: {fileID: 21300000, guid: a7883dd9f0f1e6f42ad4f684523812bd, type: 3}
+    Foreground: {fileID: 21300000, guid: c362d6fbe870fdb48a5f05d2e147cd7a, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+      - {r: 0, g: 0.65882355, b: 0.28235295, a: 1}
+      - {r: 0, g: 0.34509805, b: 0, a: 1}
+    ForegroundColorID: 2
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
   GenericPortraits:
   - tags: female,young
     NameValuesID: 1
@@ -372,7 +386,7 @@ MonoBehaviour:
     VoiceType: 2
     Pitch: 0.8
   - Name: Xirveros
-    VoiceType: 3
+    VoiceType: 0
     Pitch: 0.5
   - Name: Kresla
     VoiceType: 1
@@ -380,6 +394,9 @@ MonoBehaviour:
   - Name: Torment
     VoiceType: 2
     Pitch: 1.5
+  - Name: Kepluigi
+    VoiceType: 2
+    Pitch: 0.6
   ErrorVoice:
     Name: 
     VoiceType: 0
@@ -403,7 +420,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.6
   Loop: 0
   Mute: 0
   Spatialize: 0
