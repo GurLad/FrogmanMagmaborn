@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum VoiceType { Square50, Square25, Square12, Triangle }
 public class PortraitController : MonoBehaviour
 {
     public static PortraitController Current;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-public enum Difficulty { NotSet, Easy, Medium, Hard }
+
 public class GameController : MonoBehaviour
 {
     public enum Objective { Rout, Boss }
@@ -136,14 +136,6 @@ public class GameController : MonoBehaviour
         {
             return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
-    }
-    public static string TeamToString(Team team)
-    {
-        if (Current.LevelNumber % 4 == 0 && team == Team.Monster)
-        {
-            return "Torment";
-        }
-        return team.ToString();
     }
     protected virtual void Awake()
     {
@@ -960,7 +952,7 @@ public class GameController : MonoBehaviour
                 unit.TheTeam = team;
                 unit.name = "Unit" + name;
                 GrowthsStruct unitGrowths;
-                unit.Name = TeamToString(team);
+                unit.Name = team.Name();
                 unit.Class = parts[1];
                 unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
                 unit.MovementMarker = EnemyMarker;

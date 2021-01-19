@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum KnowledgeUpgradeType { Toggle, Choice }
-public enum HardcodedKnowledge { LevelUpChoice, InclinationBuff } // For convenience only
 public class KnowledgeController : MonoBehaviour
 {
     public List<KnowledgeUpgrade> Upgrades;

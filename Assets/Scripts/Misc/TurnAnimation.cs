@@ -25,7 +25,7 @@ public class TurnAnimation : MidBattleScreen
     public void ShowTurn(Team team)
     {
         ShowHideText(false);
-        text.text = GameController.TeamToString(team) + " turn";
+        text.text = team.Name() + " turn";
         palette.Palette = (int)team;
         currentStep = Step.Open;
         count = 0;

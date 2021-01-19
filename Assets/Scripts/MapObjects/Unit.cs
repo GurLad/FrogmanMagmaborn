@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 
-public enum Team { Player, Monster, Guard }
-public enum AIType { Charge, Hold, Guard }
-public enum Inclination { Physical, Technical, Skillful } // Bad names
 public class Unit : MapObject
 {
     [Header("Basic info")]
@@ -92,7 +89,7 @@ public class Unit : MapObject
                 Icon = PortraitController.Current.FindPortrait(Name);
                 break;
             case Team.Monster:
-                Icon = PortraitController.Current.FindPortrait(GameController.TeamToString(TheTeam));
+                Icon = PortraitController.Current.FindPortrait(TheTeam.Name());
                 break;
             case Team.Guard:
                 Icon = PortraitController.Current.FindGenericPortrait();

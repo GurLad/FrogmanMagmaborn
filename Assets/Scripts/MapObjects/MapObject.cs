@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum InteractState { None, Move, Attack }
+
 public abstract class MapObject : MonoBehaviour
 {
     private Vector2Int pos;
