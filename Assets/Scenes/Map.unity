@@ -8672,7 +8672,6 @@ MonoBehaviour:
       VoiceType: 0
       Pitch: 1
   Weapon:
-    ClassName: 
     Name: 
     HitStat: 0
     Damage: 0
@@ -12572,69 +12571,152 @@ MonoBehaviour:
   UnitGrowths:
   - Name: Frogman
     Growths: 020000000300000002000000010000000400000003000000
-    Flies: 0
     Inclination: 2
   - Name: Firbell
     Growths: 040000000300000002000000010000000200000002000000
-    Flies: 0
     Inclination: 0
   - Name: Xirveros
     Growths: 030000000200000002000000030000000100000003000000
-    Flies: 0
     Inclination: 1
   - Name: Kresla
     Growths: 010000000100000003000000030000000400000000000000
-    Flies: 1
     Inclination: 1
   - Name: Kepluigi
     Growths: 030000000400000003000000010000000200000002000000
-    Flies: 0
     Inclination: 0
-  ClassGrowths:
+  ClassDatas:
+  - Name: Frogman
+    Flies: 0
+    Inclination: 2
+    Growths: 010000000100000001000000010000000100000001000000
+    Weapon:
+      Name: Bow
+      HitStat: 0
+      Damage: -1
+      Weight: 0
+      Range: 2
+    MapSprite: {fileID: 0}
   - Name: Skeleton
+    Flies: 0
+    Inclination: 0
     Growths: 030000000300000002000000010000000200000001000000
-    Flies: 0
-    Inclination: 0
+    Weapon:
+      Name: Axe
+      HitStat: 0
+      Damage: 2
+      Weight: 1
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Goblin
+    Flies: 0
+    Inclination: 1
     Growths: 020000000100000002000000030000000100000003000000
-    Flies: 0
-    Inclination: 1
+    Weapon:
+      Name: Sword
+      HitStat: 1
+      Damage: 0
+      Weight: 0
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Gargoyle
+    Flies: 1
+    Inclination: 1
     Growths: 010000000100000003000000030000000300000000000000
-    Flies: 1
-    Inclination: 1
+    Weapon:
+      Name: Knives
+      HitStat: 2
+      Damage: 0
+      Weight: 1
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Lich
+    Flies: 0
+    Inclination: 2
     Growths: 020000000100000003000000010000000200000003000000
-    Flies: 0
-    Inclination: 2
+    Weapon:
+      Name: Dark Magic
+      HitStat: 0
+      Damage: 0
+      Weight: 0
+      Range: 2
+    MapSprite: {fileID: 0}
   - Name: Despair
+    Flies: 1
+    Inclination: 1
     Growths: 000000000000000000000000030000000300000000000000
-    Flies: 1
-    Inclination: 1
+    Weapon:
+      Name: ???
+      HitStat: 1
+      Damage: 1
+      Weight: 0
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Fear
-    Growths: 000000000300000003000000000000000000000000000000
     Flies: 1
     Inclination: 0
+    Growths: 000000000300000003000000000000000000000000000000
+    Weapon:
+      Name: ???
+      HitStat: 1
+      Damage: 1
+      Weight: 0
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Pain
+    Flies: 0
+    Inclination: 2
     Growths: 030000000000000000000000000000000000000003000000
-    Flies: 0
-    Inclination: 2
-  - Name: Torment
-    Growths: 000000000000000000000000090000000000000009000000
-    Flies: 0
-    Inclination: 0
+    Weapon:
+      Name: ???
+      HitStat: 1
+      Damage: 1
+      Weight: 0
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Lancer
-    Growths: 030000000100000002000000010000000200000003000000
     Flies: 0
     Inclination: 2
+    Growths: 030000000100000002000000010000000200000003000000
+    Weapon:
+      Name: Lance
+      HitStat: 0
+      Damage: 1
+      Weight: 0
+      Range: 1
+    MapSprite: {fileID: 0}
   - Name: Archer
-    Growths: 020000000100000003000000030000000200000001000000
     Flies: 0
     Inclination: 1
+    Growths: 020000000100000003000000030000000200000001000000
+    Weapon:
+      Name: Crossbow
+      HitStat: 1
+      Damage: 1
+      Weight: 2
+      Range: 2
+    MapSprite: {fileID: 0}
   - Name: Knight
-    Growths: 030000000200000001000000030000000200000001000000
     Flies: 0
     Inclination: 0
+    Growths: 030000000200000001000000030000000200000001000000
+    Weapon:
+      Name: Greatsword
+      HitStat: -1
+      Damage: 3
+      Weight: 1
+      Range: 1
+    MapSprite: {fileID: 0}
+  - Name: Ooze
+    Flies: 0
+    Inclination: 0
+    Growths: 020000000300000003000000010000000100000002000000
+    Weapon:
+      Name: Body
+      HitStat: 0
+      Damage: 0
+      Weight: -1
+      Range: 1
+    MapSprite: {fileID: 0}
   ClassAnimations:
   - Name: Frogman
     Animation: {fileID: 969796486}
@@ -12675,85 +12757,6 @@ MonoBehaviour:
   - Name: Knight
     Animation: {fileID: 1285666672}
     Projectile: {fileID: 0}
-  ClassBaseWeapons:
-  - ClassName: Frogman
-    Name: Bow
-    HitStat: 0
-    Damage: -1
-    Weight: 0
-    Range: 2
-  - ClassName: Skeleton
-    Name: Axe
-    HitStat: 0
-    Damage: 2
-    Weight: 1
-    Range: 1
-  - ClassName: Goblin
-    Name: Sword
-    HitStat: 1
-    Damage: 0
-    Weight: 0
-    Range: 1
-  - ClassName: Gargoyle
-    Name: Knives
-    HitStat: 2
-    Damage: 0
-    Weight: 1
-    Range: 1
-  - ClassName: Ooze
-    Name: Body
-    HitStat: 0
-    Damage: 0
-    Weight: -1
-    Range: 1
-  - ClassName: Lich
-    Name: Dark Magic
-    HitStat: 0
-    Damage: 0
-    Weight: 0
-    Range: 2
-  - ClassName: Despair
-    Name: ???
-    HitStat: 1
-    Damage: 1
-    Weight: 0
-    Range: 1
-  - ClassName: Fear
-    Name: ???
-    HitStat: 1
-    Damage: 1
-    Weight: 0
-    Range: 1
-  - ClassName: Pain
-    Name: ???
-    HitStat: 1
-    Damage: 1
-    Weight: 0
-    Range: 1
-  - ClassName: Torment
-    Name: ???
-    HitStat: 10
-    Damage: 10
-    Weight: 0
-    Range: 10
-  - ClassName: Lancer
-    Name: Lance
-    HitStat: 0
-    Damage: 1
-    Weight: 0
-    Range: 1
-  - ClassName: Archer
-    Name: Crossbow
-    HitStat: 1
-    Damage: 1
-    Weight: 2
-    Range: 2
-  - ClassName: Knight
-    Name: Greatsword
-    HitStat: -1
-    Damage: 3
-    Weight: 1
-    Range: 1
 --- !u!1 &1626109149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8617805530085685082, guid: b3917e3aa982594419baa4f8a1789a3a,

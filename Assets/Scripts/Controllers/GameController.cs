@@ -804,11 +804,12 @@ public class GameController : MonoBehaviour
         unit.Level = level;
         unit.TheTeam = Team.Player;
         unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
-        GrowthsStruct unitGrowths;
+        GrowthsStruct unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name);
+        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats = new Stats();
-        unit.Stats.Growths = (unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name)).Growths;
-        unit.Flies = unitGrowths.Flies;
-        unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
+        unit.Stats.Growths = unitGrowths.Growths;
+        unit.Flies = classData.Flies;
+        unit.Weapon = classData.Weapon;
         unit.Inclination = unitGrowths.Inclination;
         int inclination = KnowledgeController.GetInclination(unit.Name);
         if (inclination > 0)
@@ -819,6 +820,25 @@ public class GameController : MonoBehaviour
         AssignUnitMapAnimation(unit);
         unit.Stats += unit.Stats.GetLevelUp(level);
         unit.Init();
+        return unit;
+    }
+    public Unit CreateEnemyUnit(string name, int level, Team team)
+    {
+        Unit unit = CreateUnit();
+        unit.TheTeam = team;
+        unit.name = "Unit" + name;
+        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+        unit.Name = team.Name();
+        unit.Class = name;
+        unit.Stats.Growths = classData.Growths;
+        unit.MovementMarker = EnemyMarker;
+        unit.AttackMarker = EnemyAttackMarker;
+        unit.Flies = classData.Flies;
+        unit.Inclination = classData.Inclination;
+        unit.Stats += unit.Stats.GetLevelUp(level);
+        unit.Level = level;
+        unit.Weapon = classData.Weapon;
+        AssignUnitMapAnimation(unit);
         return unit;
     }
     private void AssignUnitMapAnimation(Unit unit)
@@ -948,25 +968,12 @@ public class GameController : MonoBehaviour
             }
             else // Enemy units
             {
-                Unit unit = CreateUnit();
-                unit.TheTeam = team;
-                unit.name = "Unit" + name;
-                GrowthsStruct unitGrowths;
-                unit.Name = team.Name();
-                unit.Class = parts[1];
-                unit.Stats.Growths = (unitGrowths = UnitClassData.ClassGrowths.Find(a => a.Name == unit.Class)).Growths;
-                unit.MovementMarker = EnemyMarker;
-                unit.AttackMarker = EnemyAttackMarker;
+                Unit unit = CreateEnemyUnit(name, int.Parse(parts[2]), team);
                 if (parts.Length > 6)
                 {
                     unit.ReinforcementTurn = int.Parse(parts[6]);
                     unit.Statue = parts[7] == "T";
                 }
-                unit.Flies = unitGrowths.Flies;
-                unit.Inclination = unitGrowths.Inclination;
-                unit.Stats += unit.Stats.GetLevelUp(int.Parse(parts[2]));
-                unit.Level = int.Parse(parts[2]);
-                unit.Weapon = UnitClassData.ClassBaseWeapons.Find(a => a.ClassName == unit.Class);
                 unit.AIType = (AIType)int.Parse(parts[3]);
                 unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                 if (unit.ReinforcementTurn > 0 && !unit.Statue)
@@ -974,7 +981,6 @@ public class GameController : MonoBehaviour
                     unit.PreviousPos = unit.Pos;
                     unit.Pos = Vector2Int.one * -1;
                 }
-                AssignUnitMapAnimation(unit);
                 unit.gameObject.SetActive(true);
             }
         }

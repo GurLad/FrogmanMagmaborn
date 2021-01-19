@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon
 {
     private const int BASE_HIT = 80;
-    public string ClassName; // For ClassBaseWeapons
     public string Name;
     [SerializeField]
     private int HitStat;
