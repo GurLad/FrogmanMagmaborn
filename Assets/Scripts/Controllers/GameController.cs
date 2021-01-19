@@ -1020,7 +1020,7 @@ public class GameController : MonoBehaviour
     {
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.SaveAll(SaveMode.Slot);
-        SceneController.LoadScene("Menu");
+        SceneController.LoadScene("GameOver");
     }
     public int LeftToMove()
     {

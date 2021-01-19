@@ -18,15 +18,15 @@ public class OpeningCutscene : MonoBehaviour
     private int currentPart;
     private int lastCheckedCurrent;
     private PaletteTransition transition;
-    private Palette CreditsReverse;
+    private Palette creditsReverse;
     private void Start()
     {
         transition = PaletteController.Current.TransitionTo(true, 0, CreditsColor, Speed);
         CreditsObject.text = Credits[0];
-        CreditsReverse = new Palette();
+        creditsReverse = new Palette();
         for (int i = 1; i < 4; i++)
         {
-            CreditsReverse.Colors[i] = CreditsColor[4 - i];
+            creditsReverse.Colors[i] = CreditsColor[4 - i];
         }
     }
     private void Update()
@@ -73,7 +73,7 @@ public class OpeningCutscene : MonoBehaviour
             }
             else
             {
-                transition = PaletteController.Current.TransitionTo(true, 0, currentPart % 2 == 0 ? CreditsColor : CreditsReverse, Speed);
+                transition = PaletteController.Current.TransitionTo(true, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed);
                 CreditsObject.text = Credits[currentPart / 2];
                 CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
             }
