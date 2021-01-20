@@ -16,7 +16,7 @@ public class UnitClassData : MonoBehaviour
         string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Classes.json").text;
         Debug.Log(json);
         JsonUtility.FromJsonOverwrite("{" + '"' + "ClassDatas" + '"' + ":" + json + "}", this);
-        //this = JsonUtility.FromJson<UnitClassData>("{" + '"' + "ClassDatas" + '"' + ":" + json + "}");
+        // this = JsonUtility.FromJson<UnitClassData>("{" + '"' + "ClassDatas" + '"' + ":" + json + "}");
     }
     #endif
 }
