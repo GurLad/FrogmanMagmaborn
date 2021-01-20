@@ -11,7 +11,7 @@ public class UnitClassDataEditor : Editor
         DrawDefaultInspector();
 
         UnitClassData myScript = (UnitClassData)target;
-        if (GUILayout.Button("Load Conversations"))
+        if (GUILayout.Button("Load Class Data"))
         {
             myScript.AutoLoad();
         }

@@ -2479,63 +2479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 1
   palette: 0
---- !u!1 &344136688
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 344136689}
-  - component: {fileID: 344136690}
-  m_Layer: 0
-  m_Name: Ooze
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &344136689
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344136688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &344136690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344136688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 8df5ab19d26adef498bbe5b798e8e21b, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &364160043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,63 +3225,6 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
---- !u!1 &462614124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 462614125}
-  - component: {fileID: 462614126}
-  m_Layer: 0
-  m_Name: Skeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &462614125
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462614124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &462614126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462614124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: d1ee0a42535fb4247b1b3b4d95255bc4, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &463356242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,63 +5114,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600656163}
   m_CullTransparentMesh: 0
---- !u!1 &643128390
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 643128391}
-  - component: {fileID: 643128392}
-  m_Layer: 0
-  m_Name: Lancer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &643128391
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643128390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &643128392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643128390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 8b0da1962321df843a2c6ff789461e99, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &666486847
 GameObject:
   m_ObjectHideFlags: 0
@@ -5515,63 +5344,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &675860570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 675860571}
-  - component: {fileID: 675860572}
-  m_Layer: 0
-  m_Name: Fear
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &675860571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675860570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &675860572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675860570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 96df68ccf158c994db7812c3ca6555d1, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!224 &679938300 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5252264313711068438, guid: 99dc6529185d8984eb1b9c399751fb12,
@@ -6167,63 +5939,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &751536211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 751536212}
-  - component: {fileID: 751536213}
-  m_Layer: 0
-  m_Name: Despair
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &751536212
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751536211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &751536213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751536211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 5d0e63d0bb21ea241ae08c3083da6ef3, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &765555178
 GameObject:
   m_ObjectHideFlags: 0
@@ -7833,7 +7548,7 @@ GameObject:
   - component: {fileID: 969796485}
   - component: {fileID: 969796486}
   m_Layer: 0
-  m_Name: Frogman
+  m_Name: BaseAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7867,7 +7582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animations:
   - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 5bd3188103ef63545908071590e19eb4, type: 3}
+    SpriteSheet: {fileID: 0}
     NumberOfFrames: 3
     Speed: 0
     Loop: 1
@@ -7877,7 +7592,7 @@ MonoBehaviour:
     - {fileID: 1636587617}
   FixedSpeed: 1
   BaseSpeed: 0
-  ActivateOnStart: 1
+  ActivateOnStart: 0
   Renderer: {fileID: 0}
 --- !u!1 &979996279
 GameObject:
@@ -8417,63 +8132,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1067756980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1067756981}
-  - component: {fileID: 1067756982}
-  m_Layer: 0
-  m_Name: Archer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1067756981
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067756980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1067756982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067756980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: bf10fbd6619184a41a61670445169951, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1078602795
 GameObject:
   m_ObjectHideFlags: 0
@@ -9914,63 +9572,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251508929}
   m_CullTransparentMesh: 0
---- !u!1 &1259153106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1259153107}
-  - component: {fileID: 1259153108}
-  m_Layer: 0
-  m_Name: Lich
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1259153107
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259153106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1259153108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259153106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 7b49e472431790e4e9cadb598f3a2c27, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!213 &1262703197
 Sprite:
   m_ObjectHideFlags: 0
@@ -10296,63 +9897,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1285666670
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1285666671}
-  - component: {fileID: 1285666672}
-  m_Layer: 0
-  m_Name: Knight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1285666671
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285666670}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1285666672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285666670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 12b8b012ce0d2aa46a4c1fba3f29c8f4, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1291573590
 GameObject:
   m_ObjectHideFlags: 0
@@ -11385,63 +10929,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1450278647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1450278648}
-  - component: {fileID: 1450278649}
-  m_Layer: 0
-  m_Name: Torment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1450278648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450278647}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1450278649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450278647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: 3361d7b1f893faa45a06a4b5bc38a6b3, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1492192456
 GameObject:
   m_ObjectHideFlags: 0
@@ -12444,63 +11931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OpenCloseTime: 0.1
   DisplayTime: 0.8
---- !u!1 &1567419626
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1567419627}
-  - component: {fileID: 1567419628}
-  m_Layer: 0
-  m_Name: Goblin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1567419627
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567419626}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1567419628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567419626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: a55053d229b5f4340a271c44fceb6336, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1606634282
 GameObject:
   m_ObjectHideFlags: 0
@@ -12530,18 +11960,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 969796485}
-  - {fileID: 462614125}
-  - {fileID: 1567419627}
-  - {fileID: 1778818848}
-  - {fileID: 1259153107}
-  - {fileID: 751536212}
-  - {fileID: 675860571}
-  - {fileID: 1928878172}
-  - {fileID: 1450278648}
-  - {fileID: 643128391}
-  - {fileID: 1067756981}
-  - {fileID: 1285666671}
-  - {fileID: 344136689}
   m_Father: {fileID: 709891506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12595,7 +12013,7 @@ MonoBehaviour:
       Damage: -1
       Weight: 0
       Range: 2
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 5a7bdf25d0341b445894b86cfcae71ed, type: 3}
   - Name: Skeleton
     Flies: 0
     Inclination: 0
@@ -12606,7 +12024,7 @@ MonoBehaviour:
       Damage: 2
       Weight: 1
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: ee42314bc4287494d8a7721b22014187, type: 3}
   - Name: Goblin
     Flies: 0
     Inclination: 1
@@ -12617,7 +12035,7 @@ MonoBehaviour:
       Damage: 0
       Weight: 0
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: e6a39c6e6c1126048b43e0d0148c5d26, type: 3}
   - Name: Gargoyle
     Flies: 1
     Inclination: 1
@@ -12628,7 +12046,7 @@ MonoBehaviour:
       Damage: 0
       Weight: 1
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: e028bee5326ca4945b6c6ebd90121955, type: 3}
   - Name: Lich
     Flies: 0
     Inclination: 2
@@ -12639,7 +12057,7 @@ MonoBehaviour:
       Damage: 0
       Weight: 0
       Range: 2
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 4e97aa9cc335cc948be0f4f8a4cb2c64, type: 3}
   - Name: Despair
     Flies: 1
     Inclination: 1
@@ -12650,7 +12068,7 @@ MonoBehaviour:
       Damage: 1
       Weight: 0
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 8839dbb8725e416469d7bc498ff6ecab, type: 3}
   - Name: Fear
     Flies: 1
     Inclination: 0
@@ -12661,7 +12079,7 @@ MonoBehaviour:
       Damage: 1
       Weight: 0
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: c167491d81e54e3478270656d2b0822f, type: 3}
   - Name: Pain
     Flies: 0
     Inclination: 2
@@ -12672,7 +12090,7 @@ MonoBehaviour:
       Damage: 1
       Weight: 0
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 22111d63bba34bc48a7378910307e5a4, type: 3}
   - Name: Lancer
     Flies: 0
     Inclination: 2
@@ -12683,7 +12101,7 @@ MonoBehaviour:
       Damage: 1
       Weight: 0
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 702305f2709a07e4dbeef3b2cf8c71cb, type: 3}
   - Name: Archer
     Flies: 0
     Inclination: 1
@@ -12694,7 +12112,7 @@ MonoBehaviour:
       Damage: 1
       Weight: 2
       Range: 2
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 07ad9a8d028416446a4ab47ecd606bef, type: 3}
   - Name: Knight
     Flies: 0
     Inclination: 0
@@ -12705,7 +12123,7 @@ MonoBehaviour:
       Damage: 3
       Weight: 1
       Range: 1
-    MapSprite: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: 8cfef2a8504f37841a6a9a7c681c4ed0, type: 3}
   - Name: Ooze
     Flies: 0
     Inclination: 0
@@ -12716,47 +12134,8 @@ MonoBehaviour:
       Damage: 0
       Weight: -1
       Range: 1
-    MapSprite: {fileID: 0}
-  ClassAnimations:
-  - Name: Frogman
-    Animation: {fileID: 969796486}
-    Projectile: {fileID: 0}
-  - Name: Skeleton
-    Animation: {fileID: 462614126}
-    Projectile: {fileID: 0}
-  - Name: Goblin
-    Animation: {fileID: 1567419628}
-    Projectile: {fileID: 0}
-  - Name: Gargoyle
-    Animation: {fileID: 1778818849}
-    Projectile: {fileID: 0}
-  - Name: Ooze
-    Animation: {fileID: 344136690}
-    Projectile: {fileID: 0}
-  - Name: Lich
-    Animation: {fileID: 1259153108}
-    Projectile: {fileID: 0}
-  - Name: Despair
-    Animation: {fileID: 751536213}
-    Projectile: {fileID: 0}
-  - Name: Fear
-    Animation: {fileID: 675860572}
-    Projectile: {fileID: 0}
-  - Name: Pain
-    Animation: {fileID: 1928878173}
-    Projectile: {fileID: 0}
-  - Name: Torment
-    Animation: {fileID: 1450278649}
-    Projectile: {fileID: 0}
-  - Name: Lancer
-    Animation: {fileID: 643128392}
-    Projectile: {fileID: 0}
-  - Name: Archer
-    Animation: {fileID: 1067756982}
-    Projectile: {fileID: 0}
-  - Name: Knight
-    Animation: {fileID: 1285666672}
-    Projectile: {fileID: 0}
+    MapSprite: {fileID: 21300000, guid: a0831ec3ac6cd8b46b6ab95af8e65f2c, type: 3}
+  BaseAnimation: {fileID: 969796486}
 --- !u!1 &1626109149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8617805530085685082, guid: b3917e3aa982594419baa4f8a1789a3a,
@@ -14462,63 +13841,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1778818847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1778818848}
-  - component: {fileID: 1778818849}
-  m_Layer: 0
-  m_Name: Gargoyle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1778818848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778818847}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1778818849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778818847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: bd385b9932c43034c8c254226062ac83, type: 3}
-    NumberOfFrames: 1
-    Speed: 0
-    Loop: 0
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 0
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1807430663
 GameObject:
   m_ObjectHideFlags: 0
@@ -15504,63 +14826,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1928878171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1928878172}
-  - component: {fileID: 1928878173}
-  m_Layer: 0
-  m_Name: Pain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1928878172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1928878171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606634283}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1928878173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1928878171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4389cce616c1ce54d9c530e6be96a64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animations:
-  - Name: Idle
-    SpriteSheet: {fileID: 21300000, guid: f0709926096b75344bd632f57eda691a, type: 3}
-    NumberOfFrames: 3
-    Speed: 0
-    Loop: 1
-    Frames:
-    - {fileID: 436410375}
-    - {fileID: 1262703197}
-    - {fileID: 1636587617}
-  FixedSpeed: 1
-  BaseSpeed: 0
-  ActivateOnStart: 1
-  Renderer: {fileID: 0}
 --- !u!1 &1939318499
 GameObject:
   m_ObjectHideFlags: 0

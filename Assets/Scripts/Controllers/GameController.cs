@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
                     Unit unit = CreateUnit();
                     unit.Load(playerUnits[i]);
                     unit.name = "Unit" + unit.Name;
-                    AssignUnitMapAnimation(unit);
+                    AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Name));
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
                 }
@@ -817,7 +817,7 @@ public class GameController : MonoBehaviour
             Debug.Log("Changing inclination!");
             unit.ChangeInclination((Inclination)(inclination - 1));
         }
-        AssignUnitMapAnimation(unit);
+        AssignUnitMapAnimation(unit, classData);
         unit.Stats += unit.Stats.GetLevelUp(level);
         unit.Init();
         return unit;
@@ -827,9 +827,9 @@ public class GameController : MonoBehaviour
         Unit unit = CreateUnit();
         unit.TheTeam = team;
         unit.name = "Unit" + name;
-        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Name = team.Name();
         unit.Class = name;
+        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats.Growths = classData.Growths;
         unit.MovementMarker = EnemyMarker;
         unit.AttackMarker = EnemyAttackMarker;
@@ -838,12 +838,16 @@ public class GameController : MonoBehaviour
         unit.Stats += unit.Stats.GetLevelUp(level);
         unit.Level = level;
         unit.Weapon = classData.Weapon;
-        AssignUnitMapAnimation(unit);
+        AssignUnitMapAnimation(unit, classData);
         return unit;
     }
-    private void AssignUnitMapAnimation(Unit unit)
+    private void AssignUnitMapAnimation(Unit unit, ClassData classData)
     {
-        Instantiate(UnitClassData.ClassAnimations.Find(a => a.Name == unit.Class).Animation, unit.transform).Renderer = unit.GetComponent<SpriteRenderer>();
+        AdvancedSpriteSheetAnimation animation = Instantiate(UnitClassData.BaseAnimation, unit.transform);
+        animation.Renderer = unit.GetComponent<SpriteRenderer>();
+        animation.Animations[0].SpriteSheet = classData.MapSprite;
+        animation.Start();
+        animation.Activate(0);
     }
     public void LoadMap(string roomName = "")
     {

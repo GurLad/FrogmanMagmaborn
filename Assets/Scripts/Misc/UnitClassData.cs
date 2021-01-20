@@ -7,16 +7,19 @@ public class UnitClassData : MonoBehaviour
     public List<UnitClass> UnitClasses;
     public List<GrowthsStruct> UnitGrowths;
     public List<ClassData> ClassDatas;
-    public List<ClassAnimation> ClassAnimations;
+    public AdvancedSpriteSheetAnimation BaseAnimation;
 
     #if UNITY_EDITOR
     public void AutoLoad()
     {
-        //Debug.Log(JsonUtility.ToJson(ClassDatas));
+        // Load json
         string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Classes.json").text;
-        Debug.Log(json);
         JsonUtility.FromJsonOverwrite("{" + '"' + "ClassDatas" + '"' + ":" + json + "}", this);
-        // this = JsonUtility.FromJson<UnitClassData>("{" + '"' + "ClassDatas" + '"' + ":" + json + "}");
+        // Load animations
+        for (int i = 0; i < ClassDatas.Count; i++)
+        {
+            ClassDatas[i].MapSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
+        }
     }
     #endif
 }
