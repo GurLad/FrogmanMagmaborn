@@ -80,10 +80,12 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 680cca5da6efe7a41a94a7c1320c7477, type: 3}
   - Name: BeforeBattle
     AudioClip: {fileID: 8300000, guid: 14ed95e411fa3c44c895c1ab1b6adba8, type: 3}
-  - Name: AfterBattle
-    AudioClip: {fileID: 8300000, guid: 13a58705a9c1b3f4a853f97bf7368207, type: 3}
   - Name: BeforeBattle2
     AudioClip: {fileID: 8300000, guid: 45cd06f539099bd409c9012a64a6267c, type: 3}
+  - Name: GuardTheme
+    AudioClip: {fileID: 8300000, guid: 125ae54872b964043bda277656c09afc, type: 3}
+  - Name: AfterBattle
+    AudioClip: {fileID: 8300000, guid: 13a58705a9c1b3f4a853f97bf7368207, type: 3}
   FadeSpeed: 2
   Volume: 1
   PlayOnStart: 1
