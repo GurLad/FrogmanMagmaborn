@@ -8,6 +8,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 {
     private enum State { AttackerWalking, AttackerAttacking, AttackerFinishingAttack, DefenderAttacking, DefenderFinishingAttack, AttackerRangeAttacking, AttackerRangeFinishingAttack, DefenderRangeAttacking, DefenderRangeFinishingAttack, WaitTime}
     [Header("Class Animations")]
+    public AdvancedSpriteSheetAnimation BaseClassAnimation;
     public List<ClassAnimation> ClassAnimations;
     [Header("Battle Backgrounds")]
     public List<BattleBackground> AttackerBattleBackgrounds;
@@ -345,6 +346,38 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         UpdateDisplay();
         return result;
     }
+
+    #if UNITY_EDITOR
+    public void AutoLoad()
+    {
+        ClassAnimations.Clear();
+        string[] folders = UnityEditor.AssetDatabase.GetSubFolders("Assets/Data/Images/ClassBattleAnimations");
+        Debug.Log(string.Join(",", folders));
+        foreach (string folder in folders)
+        {
+            AdvancedSpriteSheetAnimation animation = Instantiate(BaseClassAnimation, transform);
+            string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { folder });
+            foreach (string fileName in fileNames)
+            {
+                Sprite file = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
+                Debug.Log(fileName + ", " + file.name);
+                SpriteSheetData newData = new SpriteSheetData();
+                newData.SpriteSheet = file;
+                newData.NumberOfFrames = (int)file.rect.width / (int)file.rect.height;
+                newData.Speed = 0;
+                newData.Name = file.name;
+                newData.Loop = newData.Name == "Walk" || newData.Name == "Idle"; // Quick & dirty, think of a better fix
+                animation.Animations.Add(newData);
+            }
+            ClassAnimation classAnimation = new ClassAnimation();
+            classAnimation.Animation = animation;
+            string[] temp = folder.Split('/');
+            classAnimation.Name = animation.name = temp[temp.Length - 1];
+            ClassAnimations.Add(classAnimation);
+        }
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+    #endif
 }
 
 [System.Serializable]

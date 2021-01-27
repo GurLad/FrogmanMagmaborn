@@ -17,3 +17,18 @@ public class UnitClassDataEditor : Editor
         }
     }
 }
+
+[CustomEditor(typeof(BattleAnimationController))]
+public class BattleAnimationControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        BattleAnimationController myScript = (BattleAnimationController)target;
+        if (GUILayout.Button("Load Animations"))
+        {
+            myScript.AutoLoad();
+        }
+    }
+}

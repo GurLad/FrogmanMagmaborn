@@ -20,6 +20,7 @@ public class UnitClassData : MonoBehaviour
         {
             ClassDatas[i].MapSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
         }
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
     #endif
 }
