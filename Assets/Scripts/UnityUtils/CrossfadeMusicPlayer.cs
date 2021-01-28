@@ -66,7 +66,6 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         Playing = name;
         mainAudioSource.volume = Volume;
         seconderyAudioSource.volume = 0;
-        seconderyAudioSource.Play();
         count = 0;
         if (keepTimestamp ?? KeepTimestamp)
         {
@@ -76,6 +75,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         {
             seconderyAudioSource.time = 0;
         }
+        seconderyAudioSource.Play();
     }
     public void PlayIntro(string name, bool? keepTimestamp = null)
     {

@@ -217,6 +217,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case "AttackEnd":
                 if (state == State.AttackerFinishingAttack)
                 {
+                    attackerAnimation.Activate("Idle");
                     if (Defender == null || Defender.Statue)
                     {
                         state = State.WaitTime;
@@ -231,7 +232,6 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                     {
                         defenderAnimation.Activate("AttackStart");
                     }
-                    attackerAnimation.Activate("Idle");
                     float temp = AttackerObject.transform.position.z;
                     AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
                     DefenderObject.transform.position -= new Vector3(0, 0, DefenderObject.transform.position.z - temp);

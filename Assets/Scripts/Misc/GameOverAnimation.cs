@@ -17,6 +17,7 @@ public class GameOverAnimation : MonoBehaviour
     private void Start()
     {
         transition = PaletteController.Current.TransitionTo(true, 0, GameOverPalette, Speed);
+        CrossfadeMusicPlayer.Current.Play("GameOver", false);
     }
     private void Update()
     {
@@ -50,6 +51,7 @@ public class GameOverAnimation : MonoBehaviour
     private void End()
     {
         // TBA: Add restart/return to menu/exit menu
+        CrossfadeMusicPlayer.Current.Play("TheFrogman", false);
         SceneController.LoadScene("Menu");
     }
 }
