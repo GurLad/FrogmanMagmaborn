@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public enum Objective { Rout, Boss }
+    public enum Objective { Rout, Boss, Escape, Survive }
     public static GameController Current;
     public List<TileSet> TileSets1;
     public Vector2Int MapSize;
@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
     public Marker EnemyMarker;
     public Marker EnemyAttackMarker;
     public PointerMarker PointerMarker;
+    public GameObject EscapeMarker;
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
@@ -137,6 +138,27 @@ public class GameController : MonoBehaviour
             return MapObjects.Where(a => a is Unit).Cast<Unit>().ToList();
         }
     }
+    private Unit frogman
+    {
+        get
+        {
+            return units.Find(a => a.Name == "Frogman");
+        }
+    }
+    private Vector2Int _escapePos;
+    private Vector2Int escapePos
+    {
+        get
+        {
+            return _escapePos;
+        }
+        set
+        {
+            _escapePos = value;
+            EscapeMarker.transform.position = new Vector3(value.x * TileSize, -value.y * TileSize, EscapeMarker.transform.position.z);
+        }
+    }
+
     protected virtual void Awake()
     {
         /*
@@ -187,7 +209,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 5;
+            LevelNumber = 6;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));
@@ -337,7 +359,7 @@ public class GameController : MonoBehaviour
             {
                 return true;
             }
-            if (units.Find(a => a.Name == "Frogman") == null)
+            if (frogman == null)
             {
                 // Lose
                 Lose();
@@ -372,7 +394,21 @@ public class GameController : MonoBehaviour
                 } while (units.Find(a => a.TheTeam == current) == null);
                 Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
                 StartPhase(current);
+                if (CheckPlayerWin(Objective.Survive))
+                {
+                    // Win
+                    ConversationPlayer.Current.PlayPostBattle();
+                    return true;
+                }
+                TurnAnimation.ShowTurn(currentPhase);
             }
+            else if (CheckPlayerWin(Objective.Escape))
+            {
+                // Win
+                ConversationPlayer.Current.PlayPostBattle();
+                return true;
+            }
+            checkEndTurn = false;
         }
         return false;
     }
@@ -663,8 +699,7 @@ public class GameController : MonoBehaviour
     public void StartPhase(Team team)
     {
         currentPhase = team;
-        enemyMoveDelayCount  = 0;
-        TurnAnimation.ShowTurn(team);
+        enemyMoveDelayCount = 0;
         foreach (var item in units)
         {
             item.Moved = false;
@@ -780,6 +815,17 @@ public class GameController : MonoBehaviour
         List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
         selectedRoom = options[UnityEngine.Random.Range(0, options.Count)];
         Debug.Log("Selected room: " + selectedRoom.Name);
+        // Room-specific behaviours
+        if (selectedRoom.Objective == Objective.Escape)
+        {
+            string[] parts = selectedRoom.ObjectiveData.Split(',');
+            escapePos = new Vector2Int(int.Parse(parts[0]), int.Parse(parts[1]));
+            EscapeMarker.gameObject.SetActive(true);
+        }
+        else
+        {
+            EscapeMarker.gameObject.SetActive(false);
+        }
         // Play conversation
         ConversationPlayer.Current.Play(conversation);
     }
@@ -1004,6 +1050,10 @@ public class GameController : MonoBehaviour
                 return "Rout the enemy";
             case Objective.Boss:
                 return "Defeat " + selectedRoom.ObjectiveData;
+            case Objective.Escape:
+                return "Escape!";
+            case Objective.Survive:
+                return "Survive " + selectedRoom.ObjectiveData + " turn";
             default:
                 break;
         }
@@ -1049,9 +1099,21 @@ public class GameController : MonoBehaviour
                 return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
                 return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
+            case Objective.Escape:
+                return frogman.Pos == escapePos;
+            case Objective.Survive:
+                return Turn > int.Parse(selectedRoom.ObjectiveData) || units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             default:
                 throw new System.Exception("No objective!");
         }
+    }
+    private bool CheckPlayerWin(Objective toCheck)
+    {
+        if (toCheck != selectedRoom.Objective)
+        {
+            return false;
+        }
+        return CheckPlayerWin();
     }
     /// <summary>
     /// Checks whether the current conversation's wait requiremenet was met.
