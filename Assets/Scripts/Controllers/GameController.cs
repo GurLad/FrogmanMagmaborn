@@ -818,7 +818,7 @@ public class GameController : MonoBehaviour
         // Room-specific behaviours
         if (selectedRoom.Objective == Objective.Escape)
         {
-            string[] parts = selectedRoom.ObjectiveData.Split(',');
+            string[] parts = selectedRoom.ObjectiveData.Split(':');
             escapePos = new Vector2Int(int.Parse(parts[0]), int.Parse(parts[1]));
             EscapeMarker.gameObject.SetActive(true);
         }
