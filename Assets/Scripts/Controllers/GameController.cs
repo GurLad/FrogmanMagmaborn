@@ -209,7 +209,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 6;
+            LevelNumber = 5;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));
