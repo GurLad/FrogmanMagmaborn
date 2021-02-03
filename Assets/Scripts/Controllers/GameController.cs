@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,11 +8,13 @@ public class GameController : MonoBehaviour
 {
     public enum Objective { Rout, Boss, Escape, Survive }
     public static GameController Current;
-    public List<TileSet> TileSets1;
+    [Header("Rooms data")]
     public Vector2Int MapSize;
     public float TileSize;
-    public List<TextAsset> Rooms;
+    public List<TileSet> TileSets;
     public List<string> RoomThemes;
+    public List<UnitReplacement> UnitReplacements;
+    public List<TextAsset> Rooms;
     [Header("UI")]
     public RectTransform UITileInfoPanel;
     public Text UITileInfo;
@@ -90,7 +91,8 @@ public class GameController : MonoBehaviour
                     Unit unit = CreateUnit();
                     unit.Load(playerUnits[i]);
                     unit.name = "Unit" + unit.Name;
-                    AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Name));
+                    Debug.Log("Loading " + unit.Name);
+                    AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
                 }
@@ -179,7 +181,7 @@ public class GameController : MonoBehaviour
             // Level numer
             room.RoomNumber = int.Parse(selectedRoom[3]);
             // Tile set
-            room.TileSet = TileSets1.Find(a => a.Name == selectedRoom[2]);
+            room.TileSet = TileSets.Find(a => a.Name == selectedRoom[2]);
             // Objective
             string[] objectiveParts = selectedRoom[4].Split(':');
             room.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
@@ -199,6 +201,8 @@ public class GameController : MonoBehaviour
             room.Units = selectedRoom[1].Split(';').ToList();
             rooms.Add(room);
         }
+        // Init unit replacements
+        UnitReplacements.ForEach(a => a.Init());
         // Awake enemy marker
         EnemyMarker.GetComponent<PalettedSprite>().Awake();
         // Set base palette
@@ -874,6 +878,11 @@ public class GameController : MonoBehaviour
         unit.TheTeam = team;
         unit.name = "Unit" + name;
         unit.Name = team.Name();
+        UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
+        if (replacement != null)
+        {
+            name = replacement.Get();
+        }
         unit.Class = name;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats.Growths = classData.Growths;
@@ -1218,5 +1227,22 @@ public class TileSet
             Palette1.Colors[i] = Color.black;
             Palette2.Colors[i] = Color.black;
         }
+    }
+}
+
+[System.Serializable]
+public class UnitReplacement
+{
+    public string Class;
+    public List<string> ReplacedBy;
+
+    public void Init()
+    {
+        ReplacedBy.Add(Class);
+    }
+
+    public string Get()
+    {
+        return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
     }
 }

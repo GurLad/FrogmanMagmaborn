@@ -14447,7 +14447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae03e012177738f40b843508591ec598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileSets1:
+  MapSize: {x: 16, y: 15}
+  TileSize: 1
+  TileSets:
   - Name: Dungeon
     Palette1:
       Colors:
@@ -14597,8 +14599,17 @@ MonoBehaviour:
     - {fileID: 505663789}
     - {fileID: 509163897}
     - {fileID: 2128636561}
-  MapSize: {x: 16, y: 15}
-  TileSize: 1
+  RoomThemes:
+  - MagmaFlows
+  - Dungeon
+  - ToTheDeath
+  - Tormentor
+  - EnterTheGuards
+  - ToriTheme
+  UnitReplacements:
+  - Class: Skeleton
+    ReplacedBy:
+    - Ooze
   Rooms:
   - {fileID: 4900000, guid: 39a452794dabf7d43b1436f7bbdee8a3, type: 3}
   - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
@@ -14614,13 +14625,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 45ee885040e21ed4aa1683b2c8bb8a0e, type: 3}
   - {fileID: 4900000, guid: f5d0fcb7edf8d144b8e0e193103681a7, type: 3}
   - {fileID: 4900000, guid: 0104d8eb312df814fb9350d36facfb04, type: 3}
-  RoomThemes:
-  - MagmaFlows
-  - Dungeon
-  - ToTheDeath
-  - Tormentor
-  - EnterTheGuards
-  - ToriTheme
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
