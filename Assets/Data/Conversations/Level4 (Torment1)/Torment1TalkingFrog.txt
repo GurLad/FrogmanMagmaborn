@@ -1,0 +1,58 @@
+priority:1
+unique:T
+~
+roomNumber:4
+hasFlag:TalkingFrogFirbell
+~
+# No demands (I can do this since a non-existent demand defaults to true :))
+~
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Frogman: Oh no!
+:play:Trustworthy
+Torment: Oh yes! Missed me, Frogman?
+Frogman: N-
+Torment: That was rhetorical! Heh heh heh!
+But don't worry, I ha- ve a joke this time!
+:play:Trickster:T
+Torment: What did Torment say to the frog?
+Frogman: What?! Even you?!
+:playIntro:Tormentor
+:loadMap:
+:loadUnits:
+Torment: Ahhh! A talking frog! HAH HAH HAH HAH HAH!
+Frogman: I can't believe-
+Torment: Enough talk! FIGHT!
+~
+:play:Trickster
+:loadUnits:InitTormentRoom
+Frogman: Huh... Huh... Is it... over?
+Torment: Oh! Exquisite! Fantastic! Beautiful!
+You truly are the champion I've been
+looking for!
+Frogman: Chamion?! Are you crazy?!
+We would never help the likes of you!
+Torment: Oh, really? Try again!
+Frogman: AHHHHHHH!
+AHHHHHHH!
+AHHHHHHH!
+...
+Torment: Now, now. I'm not cruel. Ha.
+Actually, I am, but that's not important.
+We both seek the same thing, see?
+Getting out of here. I'm trapped, like you
+So we could just help each other, yes? Heh.
+Frogman: How can you help us? Why would you?
+Torment: You... aren't very smart, are you? Heh!
+I just told you why! As for how...
+I still have some power here.
+I can give you weapon- s. Supernatural ones.
+:loadMap:InitTormentRoom
+Here, have this as a token of goodwill.
+Frogman: ...
+Torment|Dev: Hey! You there! Yes,in front of the screen!
+Are you enjoying this game?
+Because it's over!
+You will now die!
+:lose:

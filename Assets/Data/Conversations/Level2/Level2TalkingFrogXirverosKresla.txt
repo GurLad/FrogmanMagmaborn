@@ -1,0 +1,24 @@
+priority:1
+unique:T
+id:TalkingFrogXirveros
+~
+roomNumber:2
+hasCharacter:Kresla
+hasFlag:CanTalkingFrogXirveros
+~
+charactersAlive:=2
+~
+:play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits:
+Xirveros: Hello Frog! I have no song, but joke!
+Kresla: Ohh, this'll be great!
+Frogman: I'm not sure I want-
+Xirveros: What did goblin say to frog?
+Frogman: ...Seriously?
+Xirveros: Ahhh! A talking frog!
+Funny, yes? Ha ha ha!
+Kresla: HA HA HA HA!
+Frogman: I can't even... I'll just pretend this
+never happened.
+:setFlag:TalkingFrogXirveros

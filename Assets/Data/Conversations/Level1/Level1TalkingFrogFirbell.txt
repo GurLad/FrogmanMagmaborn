@@ -1,0 +1,30 @@
+priority:1
+unique:T
+~
+roomNumber:1
+~
+hasCharacter:Firbell
+hasFlag:TalkingFrogXirveros
+hasFlag:FirbellOnKresla
+~
+:play:BeforeBattle
+Firbell: Hello there, Frogman.
+Frogman: Well met, Firbell.
+Firbell: Would you like to hear a joke?
+Frogman: This better not be about-
+Firbell: Actually, let us defeat these monsters
+first.
+Frogman: Let's. And please forget the joke.
+~
+Firbell: What did the skeleton say to the frog?
+Frogman: Don't you da-
+Firbell: Ahhh! A talking frog!
+...
+You do not seem amused.
+Frogman: I am not. Who set this up? Kresla?
+I thought you were avoiding her.
+Firbell: No, Xirveros told it to me.
+He also told me to tell it to you.
+Frogman: This must be Kresla's doing...
+Oh well, time to go.
+:setFlag:TalkingFrogFirbell
