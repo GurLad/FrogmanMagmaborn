@@ -189,16 +189,21 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "if":
                     /* Syntax:
-                     * if:hasFlag:bla{
+                     * :if:hasFlag:bla{
                      * Firbell: Will happen if hasFlag (requirement)
                      * }
                      * Firbell: Will anyway happen
                      */
                     string requirement = line.Substring(line.IndexOf(':', 1) + 1);
                     requirement = requirement.Substring(0, requirement.IndexOf('{'));
+                    int numBrackets = 1;
                     if (!origin.MeetsRequirement(requirement))
                     {
-                        while (lines[++num] != "}") { }
+                        while (numBrackets > 0)
+                        {
+                            numBrackets -= lines[++num] == "}" ? 1 : 0;
+                            numBrackets += lines[num].Contains("{") ? 1 : 0;
+                        }
                     }
                     break;
                 case "wait":

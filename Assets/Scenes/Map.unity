@@ -518,11 +518,15 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 5e958a78ae741f94989401204da60c85, type: 3}
   - {fileID: 4900000, guid: 1336866809ebdf14399e3d60631f4339, type: 3}
   - {fileID: 4900000, guid: 4a21332be738a024489f16d300a1c4ab, type: 3}
+  - {fileID: 4900000, guid: 8f8c7dbd718db104f88a5aadd0065d12, type: 3}
+  - {fileID: 4900000, guid: 4d8676669b0a67d4f9d05db0028cac16, type: 3}
   - {fileID: 4900000, guid: afd899658c4d12d4f89aebecdbe15a9d, type: 3}
   - {fileID: 4900000, guid: db5ad9139844eac47b2076d5df185a9e, type: 3}
   - {fileID: 4900000, guid: 18ebf6103dc513844806ffb47c062bec, type: 3}
   - {fileID: 4900000, guid: c17cc2b4c07547642825eb51dceadf15, type: 3}
   - {fileID: 4900000, guid: 9294e01bc19e4a2428484513845d1dcb, type: 3}
+  - {fileID: 4900000, guid: b5841d0f526a62644923376010b7cba8, type: 3}
+  - {fileID: 4900000, guid: f9b23b91b1d6e29409d86ca247fc3d75, type: 3}
   - {fileID: 4900000, guid: 3d4d9abd2dddbd04b8e198000dffd274, type: 3}
   - {fileID: 4900000, guid: 90464151bb9dc7242946fe4b60923226, type: 3}
   - {fileID: 4900000, guid: f1b0640b57ad90e4b9d5659fd63d53e4, type: 3}
@@ -533,6 +537,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3a496a95f805c3248a9238155045b575, type: 3}
   - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
   - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
+  - {fileID: 4900000, guid: ff1081ace6756d74c847d691a7c94a30, type: 3}
   - {fileID: 4900000, guid: bf0c1e5f8c239104681416220c4fd044, type: 3}
   - {fileID: 4900000, guid: 168cad2a5f37a2346907ea0cede181b1, type: 3}
   Path: Conversations
@@ -14651,7 +14656,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 1
+  StartAtEndgame: 0
   SpeedMultiplier: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}

@@ -18,13 +18,13 @@ Firbell: Yes, Xirveros. Let us make Irenhold proud!
 Xirveros: For Irenhold!
 }
 :if:hasCharacter:Kresla{
+:if:hasFlag:TalkingFrogKresla{
+:setFlag:CanTalkingFrogXirveros
+}
 Xirveros: Kresla fight too?
 Kresla: What? Not refering to me as queen today?
 Xirveros: No, no! In your place, K is eyeless!
 Kresla: Your memory is so erratic... What is
 your true story?
 I WILL find that out. One day.
-:if:hasFlag:TalkingFrogKresla{
-:setFlag:CanTalkingFrogXirveros
-}
 }

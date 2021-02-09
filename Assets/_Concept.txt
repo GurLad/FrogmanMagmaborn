@@ -5,6 +5,42 @@ They eventually managed to channel the crystals' power individually, creating su
 The last area will essentially be a tour of the Guard's main facility, showing the Clone Vats, the crystals themselves etc. This should show parallels between the monsters and the Guards (especially since the Guards basically destroyed civilization whenever people rediscovered the Magma Emblems), to make the final choice more difficult.
 The lead guard (aka other final boss) will use crystal-powered technology, and will probably be a "crystalpunk" cyborg/machine.
 
+Conversation system, revised:
+The current system is good enough for simple conversations, but is pretty bad for complex ones (ex. Level3FirstTime), with lots of copy-pastes and continutiy problems (mostly when characters die between the pre- and post-battle conversations). So here are two solutions, both based on a master-slave system:
+1.	Add header/source files (like C) - headers will include only the requirements and if-s, while the source will have the actual conversation. This should be much cleaner, but also more annoying to use and maintain.
+2.	Split the conversation into many "functions" - the base conversation will be the aftermentioned header with requirements and if-s, while the content will appear in named sections (functions) below it.
+Example (for 2, but similar to 1):
+
+prority:42
+unique:T
+~ # Requirements
+roomNumber:2
+~ # Demands
+~ # Content
+:if:hasCharacter:Firbell{
+:call:Firbell
+}
+:elseIf:hasCharacter:Kresla{
+:call:Kresla
+}
+:else{
+:call:Xirveros
+}
+~ # Post-battle
+Frogman: Whew! We survived!
+
+# ==== Functions ====
+
+# First time with Firbell
+~ Firbell
+Firbell: This is Xirveros.
+# First time with Kresla
+~ Kresla
+Kresla: This is Xirveros.
+# First time (both Firbell and Kresla are dead)
+~ Xirveros
+Xirveros: I am Xirveros.
+
 =============================================================================================================
 
 Older (better formatted at my concept compilation file):
