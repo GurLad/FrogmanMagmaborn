@@ -54,6 +54,7 @@ public class ConversationData : System.IComparable<ConversationData>
     public List<string> Demands { get; private set; } // See above.
     public List<string> Lines { get; private set; } // See above.
     public List<string> PostBattleLines { get; private set; }
+    public Dictionary<string, List<string>> Functions;
     public bool Done { get; private set; }
     private int priority;
     private bool unique;
@@ -89,7 +90,7 @@ public class ConversationData : System.IComparable<ConversationData>
         {
             Done = true;
         }
-        // Current approach, Requirments is a list of strings
+        // Requirements, demands, text and everything else
         Requirements = new List<string>(parts[1].Split('\n'));
         Requirements.RemoveAt(0);
         Requirements.RemoveAt(Requirements.Count - 1);
@@ -103,18 +104,24 @@ public class ConversationData : System.IComparable<ConversationData>
             Lines.RemoveAt(Lines.Count - 1);
             PostBattleLines = new List<string>(parts[4].Split('\n'));
             PostBattleLines.RemoveAt(0);
+            if (parts.Length > 5)
+            {
+                PostBattleLines.RemoveAt(PostBattleLines.Count - 1);
+                Functions = new Dictionary<string, List<string>>();
+                for (int i = 5; i < parts.Length; i++)
+                {
+                    List<string> functionParts = new List<string>(parts[i].Split('\n'));
+                    string functionName = functionParts[0].Trim();
+                    functionParts.RemoveAt(0);
+                    functionParts.RemoveAt(functionParts.Count - 1);
+                    Functions.Add(functionName, functionParts);
+                }
+            }
         }
         else
         {
             PostBattleLines = new List<string>();
         }
-        // Alternate approach with custom classes. Currently theoretical.
-        //lines = parts[1].Split('\n');
-        //for (int i = 0; i < lines.Length; i++)
-        //{
-        //    string[] lineParts = lines[i].Split(':');
-        //    Requirements.Add(new RequirementClass(lineParts[0], lineParts[1]));
-        //}
     }
     // When I originally wrote this class, I commented on everything. Too bad future me isn't as patient.
     public bool MeetsRequirements()

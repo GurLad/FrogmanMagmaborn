@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     public Palette TormentPalette;
     [Header("Debug")]
     public bool StartAtEndgame;
-    public int SpeedMultiplier;
+    public int EndgameLevel;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
@@ -210,10 +210,9 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
-        Time.timeScale = SpeedMultiplier; // For debugging
         if (StartAtEndgame)
         {
-            LevelNumber = 5;
+            LevelNumber = EndgameLevel;
             playerUnitsCache = new List<Unit>();
             PlayerUnits.Add(CreatePlayerUnit("Frogman"));
             PlayerUnits.Add(CreatePlayerUnit("Firbell"));

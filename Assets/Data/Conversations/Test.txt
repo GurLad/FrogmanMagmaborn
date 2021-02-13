@@ -4,7 +4,25 @@ unique:F
 roomNumber:6
 ~
 ~
+
 :play:BeforeBattle2
 Frogman: Time to test stuff!
+:call:Func1
+Frogman: Calling func2.
+:call:Func2
+Frogman: The end!
+:finishConversation:
+Frogman: Oops!
 ~
 Frogman: Finished testing!
+
+# === Functions ====
+
+~ Func1
+Frogman: Func1!
+:call:Func2
+Frogman: Returned!
+:return:
+Frogman: Error!
+~ Func2
+Frogman: Func2!

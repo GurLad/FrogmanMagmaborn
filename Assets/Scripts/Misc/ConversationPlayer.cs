@@ -33,13 +33,8 @@ public class ConversationPlayer : MidBattleScreen
     private bool postBattle = false;
     private string targetLine;
     private string waitRequirement = "";
-    private List<string> lines
-    {
-        get
-        {
-            return postBattle ? origin.PostBattleLines : origin.Lines;
-        }
-    }
+    private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
+    private List<string> lines;
     private void Awake()
     {
         Current = this;
@@ -113,6 +108,7 @@ public class ConversationPlayer : MidBattleScreen
                 GameController.Current.LoadMap();
             }
         }
+        lines = origin.Lines;
         StartLine(0);
     }
     public void PlayPostBattle()
@@ -125,6 +121,7 @@ public class ConversationPlayer : MidBattleScreen
         postBattle = true;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
+        lines = origin.PostBattleLines;
         StartLine(0);
     }
     public void Pause()
@@ -159,13 +156,24 @@ public class ConversationPlayer : MidBattleScreen
     }
     private void StartLine(int num)
     {
+        if (num >= lines.Count)
+        {
+            FinishConversation();
+            return;
+        }
         currentLine = num;
         string line = lines[currentLine];
+        if (line == "") // Empty line
+        {
+            StartLine(num + 1);
+        }
         if (line[0] == ':') // Command
         {
             string[] parts = line.Split(':');
             switch (parts[1])
             {
+                // Level/conversation-specific commands
+
                 case "play":
                     CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
                     break;
@@ -181,12 +189,41 @@ public class ConversationPlayer : MidBattleScreen
                 case "loadMap":
                     GameController.Current.LoadMap(parts[2]);
                     break;
+                case "addGenericCharacter":
+                    // Add to TempPortraits with parts[2] internal name and parts[3] tags
+                    PortraitController.Current.TempPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
+                    break;
+                case "wait":
+                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
+                    Pause();
+                    return;
+                case "showInfoDialogue":
+                    // Args: title
+                    InfoDialogue.Text.text = parts[2];
+                    InfoDialogue.gameObject.SetActive(true);
+                    Pause();
+                    return;
+                case "lose":
+                    GameController.Current.Lose();
+                    return;
+                case "win":
+                    GameController.Current.Win();
+                    return;
+                case "finishConversation":
+                    FinishConversation();
+                    return;
+
+                // Global commands
+
                 case "unlockKnowledge":
                     KnowledgeController.UnlockKnowledge(parts[2]);
                     break;
                 case "setFlag":
                     SavedData.Save("ConversationData", "Flag" + parts[2], 1);
                     break;
+
+                // Synteax commands (ifs, functions...)
+
                 case "if":
                     /* Syntax:
                      * :if:hasFlag:bla{
@@ -206,26 +243,26 @@ public class ConversationPlayer : MidBattleScreen
                         }
                     }
                     break;
-                case "wait":
-                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
-                    Pause();
+                case "call":
+                    // Store current lines & position
+                    functionStack.Push(new FunctionStackObject(num, lines));
+                    // Load new lines
+                    if (origin.Functions.ContainsKey(parts[2]))
+                    {
+                        lines = origin.Functions[parts[2]];
+                        StartLine(0);
+                        return;
+                    }
+                    throw new System.Exception("No matching function! (" + parts[2] + ")");
+                case "return":
+                    if (functionStack.Count == 0)
+                    {
+                        throw new System.Exception("Nothing to return from!");
+                    }
+                    FunctionStackObject function = functionStack.Pop();
+                    lines = function.Lines;
+                    StartLine(function.LineNumber + 1);
                     return;
-                case "showInfoDialogue":
-                    // Args: title
-                    InfoDialogue.Text.text = parts[2];
-                    InfoDialogue.gameObject.SetActive(true);
-                    Pause();
-                    return;
-                case "lose":
-                    GameController.Current.Lose();
-                    return;
-                case "win":
-                    GameController.Current.Win();
-                    return;
-                case "addGenericCharacter":
-                    // Add to TempPortraits with parts[2] internal name and parts[3] tags
-                    PortraitController.Current.TempPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
-                    break;
 
                 // Tutorial commands
 
@@ -255,26 +292,12 @@ public class ConversationPlayer : MidBattleScreen
                 default:
                     break;
             }
-            if (num + 1 < lines.Count)
-            {
-                StartLine(num + 1);
-            }
-            else
-            {
-                FinishConversation();
-            }
+            StartLine(num + 1);
             return;
         }
         else if (line[0] == '#' || line[0] == '}') // Comment, like this one :) Or end of if block
         {
-            if (num + 1 < lines.Count)
-            {
-                StartLine(num + 1);
-            }
-            else
-            {
-                FinishConversation();
-            }
+            StartLine(num + 1);
             return;
         }
         if (line.Contains("[")) // Variable name (like button name)
@@ -322,6 +345,14 @@ public class ConversationPlayer : MidBattleScreen
     }
     private void FinishConversation()
     {
+        // Check if this is the last part
+        if (functionStack.Count > 0)
+        {
+            FunctionStackObject function = functionStack.Pop();
+            lines = function.Lines;
+            StartLine(function.LineNumber + 1);
+            return;
+        }
         // Finish conversation
         MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
@@ -411,5 +442,17 @@ public class ConversationPlayer : MidBattleScreen
         //playingVoice = true;
         float voiceMod = ((letter - 'm') / 13) * VoiceMod;
         SoundController.PlaySound(VoiceTypes[(int)voice.VoiceType], voice.Pitch + voiceMod);
+    }
+
+    private class FunctionStackObject
+    {
+        public int LineNumber;
+        public List<string> Lines;
+
+        public FunctionStackObject(int lineNumber, List<string> lines)
+        {
+            LineNumber = lineNumber;
+            Lines = lines;
+        }
     }
 }
