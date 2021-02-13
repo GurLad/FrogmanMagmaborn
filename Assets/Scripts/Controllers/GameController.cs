@@ -746,6 +746,8 @@ public class GameController : MonoBehaviour
             Debug.Log("Pseudo-killed " + unit.Name);
             unit.Statue = true;
             unit.ReinforcementTurn = int.MaxValue;
+            unit.PreviousPos = unit.Pos;
+            unit.Pos = -Vector2Int.one;
         }
         else // Perma-death
         {

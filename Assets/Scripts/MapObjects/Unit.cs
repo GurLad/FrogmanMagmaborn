@@ -331,12 +331,27 @@ public class Unit : MapObject
         void ActualFight(Unit target)
         {
             CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
-            BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
-            GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
-            battleAnimationController.Attacker = this;
-            battleAnimationController.Defender = target;
-            battleAnimationController.StartBattle();
-            GameController.Current.FinishMove(this);
+            if (SavedData.Load<int>("BattleAnimationsMode", 1, SaveMode.Global) == 0) // Real animations
+            {
+                BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
+                GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
+                battleAnimationController.Attacker = this;
+                battleAnimationController.Defender = target;
+                battleAnimationController.StartBattle();
+                GameController.Current.FinishMove(this);
+            }
+            else // Map animations
+            {
+                GameController.Current.RemoveMarkers();
+                MapAnimationsController.Current.AnimateBattle(this, target);
+                MapAnimationsController.Current.OnFinishAnimation = () =>
+                {
+                    if (this != null)
+                    {
+                        GameController.Current.FinishMove(this);
+                    }
+                };
+            }
         }
         if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
         {

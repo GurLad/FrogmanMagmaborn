@@ -5,20 +5,38 @@ using UnityEngine;
 public class MapAnimationsController : MidBattleScreen
 {
     public enum AnimationType { None, Movement, Battle, Delay }
+    private enum BattleAnimationState { AttackerAttacking, AttackerFinishingAttack, AttackerDelay, DefenderAttacking, DefenderFinishingAttack, DefenderDelay }
     public new static MapAnimationsController Current;
     [Header("Movement animation")]
     public float WalkSpeed;
     public AudioClip WalkSound;
     [Header("Delay animation")]
     public float DelayTime;
+    [Header("Battle animation")]
+    public float BattleSpeed;
+    public float BattleMoveDistance;
+    public AdvancedSpriteSheetAnimation BattleMissAnimation;
+    [Header("SFX")]
+    public AudioClip HitSFX;
+    public AudioClip MissSFX;
+    public AudioClip NoDamageSFX;
     [HideInInspector]
     public AnimationType CurrentAnimation;
     [HideInInspector]
     public System.Action OnFinishAnimation;
-    // Movement animation vars
+    // Global animation vars
     private float count;
+    // Movement animation vars
     private Unit currentUnit;
     private List<Vector2Int> path = new List<Vector2Int>();
+    // Battle animation vars
+    private BattleAnimationState battleState;
+    private Unit attacker;
+    private Unit defender;
+    private Vector3 attackerBasePos;
+    private Vector3 defenderBasePos;
+    private Vector3 battleDirection;
+    private AdvancedSpriteSheetAnimation missAnimation;
     private void Awake()
     {
         Current = this;
@@ -44,6 +62,75 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Battle:
+                count += Time.deltaTime;
+                float percent = count * BattleSpeed;
+                switch (battleState)
+                {
+                    case BattleAnimationState.AttackerAttacking:
+                        attacker.transform.position = attackerBasePos + battleDirection * BattleMoveDistance * Mathf.Min(1, percent);
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            count -= 1 / BattleSpeed;
+                            HandleDamage(attacker, defender, true);
+                            battleState = BattleAnimationState.AttackerFinishingAttack;
+                        }
+                        break;
+                    case BattleAnimationState.AttackerFinishingAttack:
+                        attacker.transform.position = attackerBasePos + battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            count -= 1 / BattleSpeed;
+                            battleState = BattleAnimationState.AttackerDelay;
+                        }
+                        break;
+                    case BattleAnimationState.AttackerDelay:
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            count -= 1 / BattleSpeed;
+                            if (defender != null && defender.CanAttack(attacker))
+                            {
+                                if (missAnimation != null)
+                                {
+                                    Destroy(missAnimation.gameObject);
+                                }
+                                battleState = BattleAnimationState.DefenderAttacking;
+                            }
+                            else
+                            {
+                                FinishBattle();
+                            }
+                        }
+                        break;
+                    case BattleAnimationState.DefenderAttacking:
+                        defender.transform.position = defenderBasePos - battleDirection * BattleMoveDistance * Mathf.Min(1, percent);
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            count -= 1 / BattleSpeed;
+                            HandleDamage(defender, attacker, false);
+                            battleState = BattleAnimationState.DefenderFinishingAttack;
+                        }
+                        break;
+                    case BattleAnimationState.DefenderFinishingAttack:
+                        defender.transform.position = defenderBasePos - battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            count -= 1 / BattleSpeed;
+                            battleState = BattleAnimationState.DefenderDelay;
+                        }
+                        break;
+                    case BattleAnimationState.DefenderDelay:
+                        if (count >= 1 / BattleSpeed)
+                        {
+                            if (missAnimation != null)
+                            {
+                                Destroy(missAnimation.gameObject);
+                            }
+                            FinishBattle();
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case AnimationType.Delay:
                 count += Time.deltaTime;
@@ -72,7 +159,7 @@ public class MapAnimationsController : MidBattleScreen
         {
             System.Action tempAction = OnFinishAnimation;
             OnFinishAnimation = null;
-            tempAction();
+            tempAction?.Invoke();
         }
     }
     public void AnimateMovement(Unit unit, Vector2Int targetPos)
@@ -124,9 +211,15 @@ public class MapAnimationsController : MidBattleScreen
         // Start animation
         StartAnimation(AnimationType.Movement);
     }
-    public void AnimateBattle()
+    public void AnimateBattle(Unit attacking, Unit defending)
     {
-
+        attacker = attacking;
+        defender = defending;
+        attackerBasePos = attacker.transform.position;
+        defenderBasePos = defender.transform.position;
+        battleDirection = (defenderBasePos - attackerBasePos).normalized;
+        battleState = BattleAnimationState.AttackerAttacking;
+        StartAnimation(AnimationType.Battle);
     }
     public void AnimateDelay()
     {
@@ -135,5 +228,46 @@ public class MapAnimationsController : MidBattleScreen
             Debug.LogWarning("Count isn't zero - it's " + count);
         }
         StartAnimation(AnimationType.Delay);
+    }
+
+    private bool? HandleDamage(Unit attacking, Unit defending, bool attackerAttack)
+    {
+        bool? result = attacking.Attack(defending);
+        switch (result)
+        {
+            case true:
+                // Play sound for hit
+                int damage = attacking.GetDamage(defending);
+                if (damage == 0)
+                {
+                    SoundController.PlaySound(NoDamageSFX, 1);
+                }
+                else
+                {
+                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defending.Stats.MaxHP);
+                }
+                break;
+            case false:
+                // Show animation for miss
+                SoundController.PlaySound(MissSFX, 1);
+                missAnimation = Instantiate(BattleMissAnimation.gameObject).GetComponent<AdvancedSpriteSheetAnimation>();
+                missAnimation.transform.position = attackerAttack ? defenderBasePos : attackerBasePos;
+                missAnimation.transform.position += new Vector3(0, 0, -0.5f);
+                missAnimation.Start();
+                missAnimation.Activate(0);
+                missAnimation.gameObject.SetActive(true);
+                break;
+            case null:
+                // Destroy sprite for dead
+                SoundController.PlaySound(HitSFX, 0.5f);
+                break;
+        }
+        return result;
+    }
+
+    private void FinishBattle()
+    {
+        CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
+        EndAnimation();
     }
 }
