@@ -12,10 +12,10 @@ public class InclinationIndicator : MonoBehaviour
     {
         if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff))
         {
-            if (BattlePreview && gameObject.activeSelf)
-            {
-                transform.parent.parent.gameObject.GetComponent<RectTransform>().sizeDelta -= new Vector2(4, 0);
-            }
+            //if (BattlePreview && gameObject.activeSelf)
+            //{
+            //    transform.parent.parent.gameObject.GetComponent<RectTransform>().sizeDelta -= new Vector2(4, 0);
+            //}
             Destroy(gameObject);
         }
     }

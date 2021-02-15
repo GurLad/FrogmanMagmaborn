@@ -21,12 +21,8 @@ public class GameController : MonoBehaviour
     public RectTransform UIUnitInfoPanel;
     public Text UIUnitInfo;
     public RectTransform UIFightPanel;
-    public PalettedSprite UIAttackerPanel;
-    public Text UIAttackerInfo;
-    public InclinationIndicator UIAttackerInclination;
-    public PalettedSprite UIDefenderPanel;
-    public Text UIDefenderInfo;
-    public InclinationIndicator UIDefenderInclination;
+    public MiniBattleStatsPanel UIAttackerPanel;
+    public MiniBattleStatsPanel UIDefenderPanel;
     public TurnAnimation TurnAnimation;
     [Header("Mid-battle screens")]
     public GameObject Battle;
@@ -593,74 +589,20 @@ public class GameController : MonoBehaviour
     }
     private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
     {
-        // Get the relevant parts
-        PalettedSprite panel = reverse ? UIDefenderPanel : UIAttackerPanel;
-        Text info = reverse ? UIDefenderInfo : UIAttackerInfo;
-        InclinationIndicator inclination = reverse ? UIDefenderInclination : UIAttackerInclination;
-        // Check if selecting the same unit...
-        if (origin == target)
-        {
-            if (InteractState == InteractState.Attack && reverse)
-            {
-                // ...to wait
-                panel.Palette = 3;
-                info.text = "\n Wait";
-                panel.gameObject.SetActive(true);
-                if (inclination != null)
-                {
-                    inclination.gameObject.SetActive(false);
-                }
-                return;
-            }
-            else
-            {
-                // ...while moving (same as selecting nothing)
-                if (reverse)
-                {
-                    origin = null;
-                }
-                else if (InteractState == InteractState.Move)
-                {
-                    target = null;
-                }
-            }
-        }
-        // Check if selecting nothing
-        bool display = !reverse || (origin != null && origin.TheTeam != target.TheTeam);
-        if (!display)
-        {
-            panel.gameObject.SetActive(false);
-            return;
-        }
-        // Find many bools
-        bool displayAttack = reverse || (origin != target && target != null && target.TheTeam != origin.TheTeam);
-        bool canAttack = target != null && (!reverse || InteractState == InteractState.Move || origin.CanAttack(target) || MapObjectsAtPos(origin.Pos).Find(a => a is AttackMarker) == null);
-        bool moveToCenter = !reverse && (target == null || (target.TheTeam == origin.TheTeam && target != origin));
-        // Show info
-        panel.gameObject.SetActive(true);
-        panel.Palette = (int)origin.TheTeam;
-        if (displayAttack) // Show battle preview
-        {
-            info.text = origin.AttackPreview(target, 2, canAttack);
-        }
-        else // Show unit name & inclination
-        {
-            info.text = origin.Name.Substring(0, 6) + "\n\nHP :" + origin.Health;
-        }
-        if (inclination != null)
-        {
-            inclination.gameObject.SetActive(true);
-            inclination.Display(origin, target);
-        }
-        // Move to center if there is only one panel
-        if (!reverse)
-        {
-            panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, moveToCenter ? -20 : 0);
-        }
+        MiniBattleStatsPanel panel = reverse ? UIDefenderPanel : UIAttackerPanel;
+        panel.DisplayBattleForecast(origin, target, reverse);
     }
     public void InteractWithTile(int x, int y)
     {
         MapObjectsAtPos(x, y).ForEach(a => a.Interact(InteractState));
+    }
+    public bool MarkerAtPos<T>(int x, int y) where T : Marker
+    {
+        return MapObjects.Find(a => a.Pos.x == x && a.Pos.y == y && a is T) == null;
+    }
+    public bool MarkerAtPos<T>(Vector2Int pos) where T : Marker
+    {
+        return MarkerAtPos<T>(pos.x, pos.y);
     }
     private List<MapObject> MapObjectsAtPos(int x, int y)
     {

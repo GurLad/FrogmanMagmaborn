@@ -16,6 +16,7 @@ public class MapAnimationsController : MidBattleScreen
     public float BattleSpeed;
     public float BattleMoveDistance;
     public AdvancedSpriteSheetAnimation BattleMissAnimation;
+    public RectTransform BattleBasePanelPosition;
     [Header("SFX")]
     public AudioClip HitSFX;
     public AudioClip MissSFX;
@@ -31,6 +32,8 @@ public class MapAnimationsController : MidBattleScreen
     private List<Vector2Int> path = new List<Vector2Int>();
     // Battle animation vars
     private BattleAnimationState battleState;
+    private MiniBattleStatsPanel attackerPanel;
+    private MiniBattleStatsPanel defenderPanel;
     private Unit attacker;
     private Unit defender;
     private Vector3 attackerBasePos;
@@ -219,6 +222,8 @@ public class MapAnimationsController : MidBattleScreen
         defenderBasePos = defender.transform.position;
         battleDirection = (defenderBasePos - attackerBasePos).normalized;
         battleState = BattleAnimationState.AttackerAttacking;
+        attackerPanel = InitPanel(GameController.Current.UIAttackerPanel, attacker, defender, false);
+        defenderPanel = InitPanel(GameController.Current.UIDefenderPanel, defender, attacker, true);
         StartAnimation(AnimationType.Battle);
     }
     public void AnimateDelay()
@@ -228,6 +233,23 @@ public class MapAnimationsController : MidBattleScreen
             Debug.LogWarning("Count isn't zero - it's " + count);
         }
         StartAnimation(AnimationType.Delay);
+    }
+
+    private MiniBattleStatsPanel InitPanel(MiniBattleStatsPanel panel, Unit attacking, Unit defending, bool reverse)
+    {
+        MiniBattleStatsPanel newPanel = Instantiate(panel.gameObject, panel.transform.parent.parent).GetComponent<MiniBattleStatsPanel>();
+        newPanel.DisplayMidBattleForecast(attacking, defending, false);
+        RectTransform rectTransform = newPanel.GetComponent<RectTransform>();
+        rectTransform.anchorMin = BattleBasePanelPosition.anchorMin;
+        rectTransform.anchorMax = BattleBasePanelPosition.anchorMax;
+        rectTransform.sizeDelta = BattleBasePanelPosition.sizeDelta;
+        int size = GameController.Current.MapSize.x / 2;
+        float posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+        float posY = Mathf.Clamp((attacking.Pos.y + defending.Pos.y) / 2f + 0.5f, 3, GameController.Current.MapSize.y - 3);
+        rectTransform.anchoredPosition = new Vector2(
+            posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * (posX > 0 ? -1 : 1),
+            -posY * GameController.Current.TileSize * 16);
+        return newPanel;
     }
 
     private bool? HandleDamage(Unit attacking, Unit defending, bool attackerAttack)
@@ -262,12 +284,33 @@ public class MapAnimationsController : MidBattleScreen
                 SoundController.PlaySound(HitSFX, 0.5f);
                 break;
         }
+        // Update display
+        if (attacker != null && defender != null)
+        {
+            attackerPanel.DisplayMidBattleForecast(attacker, defender, false);
+            defenderPanel.DisplayMidBattleForecast(defender, attacker, true);
+        }
+        else
+        {
+            if (attacker != null)
+            {
+                attackerPanel.DisplayMidBattleForecast(attacker, attacker, false);
+                defenderPanel.DisplayMidBattleForecast(attacker, attacker, true);
+            }
+            else
+            {
+                attackerPanel.DisplayMidBattleForecast(defender, defender, true);
+                defenderPanel.DisplayMidBattleForecast(defender, defender, false);
+            }
+        }
         return result;
     }
 
     private void FinishBattle()
     {
         CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
+        Destroy(attackerPanel.gameObject);
+        Destroy(defenderPanel.gameObject);
         EndAnimation();
     }
 }
