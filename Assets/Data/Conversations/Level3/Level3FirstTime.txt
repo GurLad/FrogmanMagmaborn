@@ -1,0 +1,151 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:hasFlag:Level3FirstTime{
+:call:PreAfterFail
+:finishConversation:
+}
+:setFlag:Level3FirstTime
+:if:hasCharacter:Firbell{
+:call:PreFirbell
+:finishConversation:
+}
+:if:hasCharacter:Kresla{
+:call:PreKresla
+:finishConversation:
+}
+:if:hasCharacter:Xirveros{
+:call:PreXirveros
+:finishConversation:
+}
+:call:PreAlone
+~ After battle
+:if:hasCharacter:Firbell{
+:call:PostFirbell
+:finishConversation:
+}
+:if:hasCharacter:Kresla{
+:call:PostKresla
+:finishConversation:
+}
+:if:hasCharacter:Xirveros{
+:call:PostXirveros
+:finishConversation:
+}
+:call:PostGeneric
+
+# === Functions ====
+
+~ PreFirbell
+:play:BeforeBattle
+Frogman: Well, those monsters weren't that-
+:play:ToTheDeath
+Firbell: Oh no. We need to turn back. Now.
+Frogman: Huh? Why?
+Firbell: Do you see that monster there?
+It is a Lich.
+One of the strongest monsters around here,
+capable of devastating Black Magic.
+Frogman: Magic? Never seen that before here.
+Firbell: Because most monsters can't use it.
+The Lich won't attack us unless provoked,
+so we should leave-
+Frogman: Then let's defeat it. It's a better goal
+than endlessly wandering around.
+Firbell: Are you crazy?! It is much too powerful!
+Frogman: It's not like dying costs us anything...
+Firbell: No, but-
+Frogman: Then let's go!
+Firbell: What are you doing?!
+...
+I can't just let you go on your own!
+Oh well, time to slay a few fiends.
+~ PreKresla
+:play:BeforeBattle
+Frogman: Well, those monsters weren't that-
+:play:ToTheDeath
+Kresla: Frogman? I hate to say this, but we must run
+Now!
+Frogman: Huh? Why?
+Kresla: Do you see that monster there?
+It's a Lich! A mighty undead wizard!
+It doesn't feel pain, the cost of magic,
+so it's much stronger than most monsters.
+Frogman: Magic? Never seen that before here.
+Kresla: Because most monsters can't use it.
+I don't really mind dying myself, but
+most people do, so we can just-
+Frogman: Then let's defeat it. It's a better goal
+than endlessly wandering around.
+Kresla: Oh! I like your style!
+All right! Fancy dying again, then?
+Frogman: No, but let's go!
+~ PreXirveros
+:play:BeforeBattle
+Frogman: Well, those monsters weren't that-
+:play:ToTheDeath
+Xirveros: Frog? Bad monster here. Very bad.
+Frogman: What monster?
+Xirveros: Bad monster! Scary mo- nster! Magic monster!
+Frogman: Magic? Never seen that before here.
+Xirveros: Magic rare! Magic bad! Magic painful!
+Frogman: Uh... Sure...
+Let's go defeat it then.
+Xirveros: Frog crazy!
+...
+Follow frog!
+~ PreAlone
+:play:BeforeBattle
+Frogman: I'm all alone again...
+# TBA: add Kresla or Firbell (de[ending on who died)
+:play:ToTheDeath
+Frogman: Fine. I'll do this myself.
+~ PreAfterFail
+:play:ToTheDeath
+Frogman: You again. This time, I won't lose.
+~ PostFirbell
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+Firbell: Frogman, wait. We sho- uld not go that far.
+Frogman: Huh? Why not?
+Firbell: The deeper you go, the stronger the monsters
+become.
+Like that Lich we just fought.
+We should stick close to where we were Born
+Frogman: Sure, there might be tough enemies ahead.
+But we're immortal, so we might as well
+fight them.
+Firbell: We could just survive as long as we can.
+This is what I have done thus far.
+Frogman: I'm sorry, but that sounds pointless.
+Firbell: Do you want to end up like Xirveros?
+Because that was what he did.
+Frogman: Hm. Good point. Let's go then.
+Firbell: What?! Did you not listen to a word-
+And there he goes again. The fool...
+~ PostKresla
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+Kresla: Frogman! Wait up! Before you go on, you
+should know that there will be tough enemies
+ahead.
+Frogman: How do you know that?
+Kresla: Through trial and error, of course!
+The deeper you go, the stronger the monsters
+That's why people like me tend to stay near
+where we're Born.
+Frogman: I thought that you were fearless?
+Kresla: I am! Just wanted to let you know that I'm
+going ahead anyway!
+Frogman: Good. Me too.
+~ PostXirveros
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+Xirveros: TBA
+~ PostGeneric
+Frogman: Yay! We've won!
+Frogman: TBA
