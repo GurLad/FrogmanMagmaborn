@@ -14,6 +14,7 @@ public class MapAnimationsController : MidBattleScreen
     public float DelayTime;
     [Header("Battle animation")]
     public float BattleSpeed;
+    public float BattleFlashTime;
     public float BattleMoveDistance;
     public AdvancedSpriteSheetAnimation BattleMissAnimation;
     public RectTransform BattleBasePanelPosition;
@@ -31,6 +32,7 @@ public class MapAnimationsController : MidBattleScreen
     private Unit currentUnit;
     private List<Vector2Int> path = new List<Vector2Int>();
     // Battle animation vars
+    private float battleTrueFlashTime;
     private BattleAnimationState battleState;
     private MiniBattleStatsPanel attackerPanel;
     private MiniBattleStatsPanel defenderPanel;
@@ -80,6 +82,10 @@ public class MapAnimationsController : MidBattleScreen
                         break;
                     case BattleAnimationState.AttackerFinishingAttack:
                         attacker.transform.position = attackerBasePos + battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
+                        if (count >= battleTrueFlashTime && defender != null)
+                        {
+                            defender.Moved = false;
+                        }
                         if (count >= 1 / BattleSpeed)
                         {
                             count -= 1 / BattleSpeed;
@@ -115,6 +121,10 @@ public class MapAnimationsController : MidBattleScreen
                         break;
                     case BattleAnimationState.DefenderFinishingAttack:
                         defender.transform.position = defenderBasePos - battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
+                        if (count >= battleTrueFlashTime && attacker != null)
+                        {
+                            attacker.Moved = false;
+                        }
                         if (count >= 1 / BattleSpeed)
                         {
                             count -= 1 / BattleSpeed;
@@ -244,10 +254,22 @@ public class MapAnimationsController : MidBattleScreen
         rectTransform.anchorMax = BattleBasePanelPosition.anchorMax;
         rectTransform.sizeDelta = BattleBasePanelPosition.sizeDelta;
         int size = GameController.Current.MapSize.x / 2;
-        float posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+        // Calculate x pos - harder than it sounds
+        float posX;
+        int sign;
+        if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size)) // Good
+        {
+            posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            sign = posX > 0 ? -1 : 1;
+        }
+        else // Oof. Let's prioritize the attacker (not attacking), so it will be the same for both sides.
+        {
+            posX = (attacker.Pos.x * Mathf.Sign(attacker.Pos.x - size) < defender.Pos.x * Mathf.Sign(attacker.Pos.x - size) ? attacker.Pos.x - size : defender.Pos.x - size) + 0.5f;
+            sign = -(int)Mathf.Sign(attacker.Pos.x - size);
+        }
         float posY = Mathf.Clamp((attacking.Pos.y + defending.Pos.y) / 2f + 0.5f, 3, GameController.Current.MapSize.y - 3);
         rectTransform.anchoredPosition = new Vector2(
-            posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * (posX > 0 ? -1 : 1),
+            posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * sign,
             -posY * GameController.Current.TileSize * 16);
         return newPanel;
     }
@@ -267,6 +289,8 @@ public class MapAnimationsController : MidBattleScreen
                 else
                 {
                     SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defending.Stats.MaxHP);
+                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defending.Stats.MaxHP);
+                    defending.Moved = true; // "Flash"
                 }
                 break;
             case false:
