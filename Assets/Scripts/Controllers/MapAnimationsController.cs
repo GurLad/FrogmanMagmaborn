@@ -53,6 +53,7 @@ public class MapAnimationsController : MidBattleScreen
             case AnimationType.None:
                 break;
             case AnimationType.Movement:
+                Time.timeScale = Control.GetButton(Control.CB.B) ? 2 : 1; // Double speed
                 count += Time.deltaTime;
                 if (count >= 1 / WalkSpeed)
                 {
@@ -67,6 +68,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Battle:
+                Time.timeScale = Control.GetButton(Control.CB.B) ? 2 : 1; // Double speed
                 count += Time.deltaTime;
                 float percent = count * BattleSpeed;
                 switch (battleState)
@@ -146,6 +148,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Delay:
+                Time.timeScale = Control.GetButton(Control.CB.B) ? 2 : 1; // Double speed
                 count += Time.deltaTime;
                 if (count >= DelayTime)
                 {
@@ -164,6 +167,7 @@ public class MapAnimationsController : MidBattleScreen
     private void EndAnimation()
     {
         CurrentAnimation = AnimationType.None;
+        Time.timeScale = 1; // Remove double speed
         // Support for chaining animations & actions.
         count = 0;
         MidBattleScreen.Set(this, false);

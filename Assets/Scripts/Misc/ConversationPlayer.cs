@@ -131,13 +131,13 @@ public class ConversationPlayer : MidBattleScreen
     }
     public void Resume(int mod = 1)
     {
+        MidBattleScreen.Set(this, true);
         if (currentLine + mod >= lines.Count)
         {
             FinishConversation();
             return;
         }
         gameObject.SetActive(true);
-        MidBattleScreen.Set(this, true);
         StartLine(currentLine + mod);
     }
     /// <summary>

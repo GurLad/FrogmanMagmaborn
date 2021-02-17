@@ -15040,8 +15040,13 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  StartAtEndgame: 1
-  EndgameLevel: 5
+  DebugStartAtEndgame: 1
+  DebugEndgameLevel: 3
+  DebugUnits:
+  - Frogman
+  - Xirveros
+  - Kresla
+  DebugUnlimitedMove: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}

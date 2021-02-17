@@ -32,9 +32,11 @@ public class GameController : MonoBehaviour
     public GameObject DifficultyMenu;
     [Header("Torment palette")]
     public Palette TormentPalette;
-    [Header("Debug")]
-    public bool StartAtEndgame;
-    public int EndgameLevel;
+    [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
+    public bool DebugStartAtEndgame;
+    public int DebugEndgameLevel;
+    public List<string> DebugUnits;
+    public bool DebugUnlimitedMove;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
@@ -206,13 +208,22 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
-        if (StartAtEndgame)
+        if (DebugStartAtEndgame)
         {
-            LevelNumber = EndgameLevel;
+            LevelNumber = DebugEndgameLevel;
             playerUnitsCache = new List<Unit>();
-            PlayerUnits.Add(CreatePlayerUnit("Frogman"));
-            PlayerUnits.Add(CreatePlayerUnit("Firbell"));
-            PlayerUnits.Add(CreatePlayerUnit("Xirveros"));
+            foreach (string unit in DebugUnits)
+            {
+                PlayerUnits.Add(CreatePlayerUnit(unit));
+            }
+            if (DebugUnlimitedMove)
+            {
+                foreach (Unit unit in PlayerUnits)
+                {
+                    unit.Movement = 50;
+                    unit.Flies = true;
+                }
+            }
         }
         else
         {
@@ -626,16 +637,19 @@ public class GameController : MonoBehaviour
     }
     public void FinishMove(Unit unit)
     {
+        unit.Moved = true;
+        FinishMoveDead();
+    }
+    public void FinishMoveDead()
+    {
         RemoveMarkers();
         InteractState = InteractState.None;
-        unit.Moved = true;
         checkEndTurn = true;
         if (!MidBattleScreen.HasCurrent) // Prevent the extra frame of waiting
         {
             CheckGameState();
         }
-        // TEMP!!
-        CrossfadeMusicPlayer.Current.Play(CrossfadeMusicPlayer.Current.Playing.Replace("Battle", ""));
+        CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
     }
     public Unit FindUnitAtPos(int x, int y)
     {
