@@ -21,6 +21,7 @@ public class Unit : MapObject
     public Inclination Inclination;
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
+    public AIPriorities Priorities;
     [HideInInspector]
     public Portrait Icon;
     [HideInInspector]
@@ -55,6 +56,10 @@ public class Unit : MapObject
     public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
     private bool moved;
     private PalettedSprite palette;
+    public Unit()
+    {
+        Priorities = new AIPriorities(this);
+    }    
     public void Init()
     {
         palette = GetComponent<PalettedSprite>();
@@ -369,7 +374,7 @@ public class Unit : MapObject
     }
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam && !a.Statue).ToList(); // Pretty much all AIs nead enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam && !a.Statue && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
         switch (AIType)
         {
             case AIType.Charge:
@@ -383,6 +388,13 @@ public class Unit : MapObject
                 List<Vector2Int> attackFrom = new List<Vector2Int>();
                 int[,] fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, checkedTiles, attackFrom, true);
                 enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y] != 0).ToList();
+                if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
+                {
+                    Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and ends the turn");
+                    MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+                    MapAnimationsController.Current.AnimateDelay();
+                    return;
+                }
                 Unit target = enemyUnits[0];
                 enemyUnits.RemoveAt(0);
                 if (enemyUnits.Count > 0)
@@ -490,7 +502,7 @@ public class Unit : MapObject
                         }
                     }
                 }
-                Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit);
+                Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                 MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
                 return true;
@@ -498,36 +510,41 @@ public class Unit : MapObject
         }
         return false;
     }
-    private int HoldAITargetValue(Unit unit)
+    private float HoldAITargetValue(Unit unit)
     {
         int trueDamage = GetDamage(unit);
         int hit = GetHitChance(unit);
-        int damage = Mathf.RoundToInt(trueDamage * hit / 100.0f + 0.01f); // Round 0.5 up
-        //Debug.Log(Class + " damage against " + unit.Name + " is " + damage + " (" + trueDamage + " * " + (hit / 100.0f) + ")");
-        // If can kill, value is -(unit health), so AI will always prioritize killing
-        if (unit.Health - damage <= 0)
+        int damage = Priorities.GetAIDamageValue(unit);
+
+        // If can kill, value is -100, so AI will always prioritize killing
+        if (unit.Health - damage <= 0 && hit >= MaxAcceptableHitRisk)
         {
-            return -unit.Health;
+            return -100;
         }
-        // If can kill with a risky move, return 0, so enemy will be more chaotic (but still prefer a more consistent kill)
+        // If can kill with a risky move, return -unit.Health / 2, so enemy will be more chaotic (but still prefer a more consistent kill)
         if (unit.Health - trueDamage <= 0 && hit >= MaxAcceptableHitRisk)
         {
-            return 0;
+            return -unit.Health / 2 + Priorities.GetTotalPriority(unit);
         }
         // If can't damage, return 100, so enemy will never choose to deal no damage over actually dealing damage
         if (damage <= 0)
         {
             if (trueDamage > 0)
             {
-                return 100 - hit;
+                return 100 - hit / 10;
             }
             else
             {
                 return 100;
             }
         }
-        // Otherwise, return the approx. health left to the enemy
-        return unit.Health - damage;
+        // Otherwise, time to calculate true weight!
+        //Debug.Log(ToString() + " AI values against " + unit.ToString() + " are: " + 
+        //    "Damage (" + Priorities.TrueDamageWeight + "): " + Priorities.TrueDamageValue(unit) +
+        //    ", Relative Damage (" + Priorities.RelativeDamageWeight + "): " + Priorities.RelativeDamageValue(unit) +
+        //    ", Survival (" + Priorities.SurvivalWeight + "): " + Priorities.SurvivalValue(unit) +
+        //    "; Final calculation: " + Priorities.GetTotalPriority(unit));
+        return Priorities.GetTotalPriority(unit);
     }
     private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, int[,] fullMoveRange)
     {
@@ -652,5 +669,80 @@ public class Unit : MapObject
         AttackMarker = attackMarker;
         LoadIcon();
         moved = false;
+    }
+
+    [System.Serializable]
+    public class AIPriorities
+    {
+        public float TrueDamageWeight, RelativeDamageWeight, SurvivalWeight;
+        public AICautionLevel CautionLevel;
+        private Unit thisUnit;
+
+        public AIPriorities(Unit unit)
+        {
+            thisUnit = unit;
+        }
+
+        public void Set(float trueDamageWeight, float relativeDamageWeight, float survivalWeight, AICautionLevel cautionLevel)
+        {
+            TrueDamageWeight = trueDamageWeight;
+            RelativeDamageWeight = relativeDamageWeight;
+            SurvivalWeight = survivalWeight;
+            CautionLevel = cautionLevel;
+        }
+
+        public bool ShouldAttack(Unit unit)
+        {
+            if (SurvivalWeight <= 0) // Monster units always attack
+            {
+                return true;
+            }
+            else
+            {
+                if (((CautionLevel & AICautionLevel.NoDamage) != 0) && (thisUnit.GetDamage(unit) <= 0 || thisUnit.GetHitChance(unit) <= 0))
+                {
+                    //Debug.Log("Shouldn't try attack " + unit + " (No damage)");
+                    return false;
+                }
+                if (((CautionLevel & AICautionLevel.Suicide) != 0) && (SurvivalValue(unit) >= 0))
+                {
+                    //Debug.Log("Shouldn't try attack " + unit + " (Suicide)");
+                    return false;
+                }
+                if (((CautionLevel & AICautionLevel.LittleDamage) != 0) && (GetAIDamageValue(unit) <= 0))
+                {
+                    //Debug.Log("Shouldn't try attack " + unit + " (Little damage)");
+                    return false;
+                }
+                //Debug.Log("Should try attack " + unit);
+                return true;
+            }
+        }
+
+        public float GetTotalPriority(Unit unit)
+        {
+            return TrueDamageWeight * TrueDamageValue(unit) + RelativeDamageWeight * RelativeDamageValue(unit) + SurvivalWeight * SurvivalValue(unit);
+        }
+
+        public int GetAIDamageValue(Unit other)
+        {
+            return Mathf.RoundToInt(thisUnit.GetDamage(other) * thisUnit.GetHitChance(other) / 100.0f + 0.01f);
+        }
+        // These should be private. Public for debug purposes
+        public int TrueDamageValue(Unit unit)
+        {
+            return -GetAIDamageValue(unit);
+        }
+
+        public int RelativeDamageValue(Unit unit)
+        {
+            return unit.Health - GetAIDamageValue(unit);
+        }
+
+        public int SurvivalValue(Unit unit)
+        {
+            int survivalValue = Mathf.RoundToInt(unit.GetDamage(thisUnit) * unit.GetHitChance(thisUnit) / 100.0f + 0.01f) - thisUnit.Health;
+            return survivalValue > 0 ? survivalValue + 5 : survivalValue;
+        }
     }
 }

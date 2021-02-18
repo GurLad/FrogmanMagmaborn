@@ -853,6 +853,15 @@ public class GameController : MonoBehaviour
         unit.Level = level;
         unit.Weapon = classData.Weapon;
         AssignUnitMapAnimation(unit, classData);
+        // Set priorities - in the future, think of a better, non-hardcoded way to do this.
+        if (team != Team.Guard)
+        {
+            unit.Priorities.Set(1, 0, 0, AICautionLevel.None);
+        }
+        else
+        {
+            unit.Priorities.Set(0, 0.5f, 0.5f, AICautionLevel.NoDamage | AICautionLevel.Suicide);
+        }
         return unit;
     }
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)
