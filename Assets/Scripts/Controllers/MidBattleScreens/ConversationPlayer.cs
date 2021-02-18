@@ -163,9 +163,10 @@ public class ConversationPlayer : MidBattleScreen
         }
         currentLine = num;
         string line = lines[currentLine];
-        if (line == "") // Empty line
+        if (line.Length <= 0) // Empty line
         {
             StartLine(num + 1);
+            return;
         }
         if (line[0] == ':') // Command
         {
@@ -197,12 +198,6 @@ public class ConversationPlayer : MidBattleScreen
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
                     return;
-                case "showInfoDialogue":
-                    // Args: title
-                    InfoDialogue.Text.text = parts[2];
-                    InfoDialogue.gameObject.SetActive(true);
-                    Pause();
-                    return;
                 case "lose":
                     GameController.Current.Lose();
                     return;
@@ -211,6 +206,22 @@ public class ConversationPlayer : MidBattleScreen
                     return;
                 case "finishConversation":
                     FinishConversation();
+                    return;
+
+                // Show other screens (MidBattleScreens)
+
+                case "showInfoDialogue":
+                    // Args: title
+                    InfoDialogue.Text.text = parts[2];
+                    InfoDialogue.gameObject.SetActive(true);
+                    Pause();
+                    return;
+                case "showPartTitle":
+                    // Args: subtitle, title
+                    Pause();
+                    PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
+                    partTitle.Begin(new List<string>(new string[] { parts[2], parts[3] }));
+                    GameController.Current.TransitionToMidBattleScreen(partTitle);
                     return;
 
                 // Global commands

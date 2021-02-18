@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     public GameObject LevelUpScreen;
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
+    public GameObject PartTitle;
     [Header("Torment palette")]
     public Palette TormentPalette;
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
@@ -231,7 +232,6 @@ public class GameController : MonoBehaviour
             playerUnitsCache = new List<Unit>();
         }
         difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
-        NumRuns++; // Very abusable - maybe only if finishing the first level?
         CreateLevel();
     }
     /// <summary>
@@ -378,6 +378,8 @@ public class GameController : MonoBehaviour
             else if (CheckPlayerWin())
             {
                 // Win
+                RemoveMarkers();
+                InteractState = InteractState.None; // To prevent weird corner cases.
                 ConversationPlayer.Current.PlayPostBattle();
                 return true;
             }
@@ -1036,6 +1038,7 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
+        NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("GameOver");

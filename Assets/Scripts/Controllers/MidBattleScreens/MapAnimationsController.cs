@@ -6,7 +6,7 @@ public class MapAnimationsController : MidBattleScreen
 {
     public enum AnimationType { None, Movement, Battle, Delay }
     private enum BattleAnimationState { AttackerAttacking, AttackerFinishingAttack, AttackerDelay, DefenderAttacking, DefenderFinishingAttack, DefenderDelay }
-    public new static MapAnimationsController Current;
+    public static MapAnimationsController Current;
     [Header("Movement animation")]
     public float WalkSpeed;
     public AudioClip WalkSound;

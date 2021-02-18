@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MidBattleScreen : MonoBehaviour
+public abstract class MidBattleScreen : MonoBehaviour
 {
     private static MidBattleScreen Current;
     public static bool HasCurrent

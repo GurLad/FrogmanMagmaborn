@@ -350,6 +350,10 @@ public class Unit : MapObject
                     {
                         GameController.Current.FinishMove(this);
                     }
+                    else
+                    {
+                        GameController.Current.FinishMoveDead();
+                    }
                 };
             }
         }
