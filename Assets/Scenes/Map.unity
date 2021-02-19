@@ -12407,7 +12407,7 @@ MonoBehaviour:
     Growths: 010000000100000001000000010000000100000001000000
     Weapon:
       Name: Bow
-      HitStat: 0
+      HitStat: 1
       Damage: -1
       Weight: 0
       Range: 2
@@ -12533,6 +12533,17 @@ MonoBehaviour:
       Weight: -1
       Range: 1
     MapSprite: {fileID: 21300000, guid: a0831ec3ac6cd8b46b6ab95af8e65f2c, type: 3}
+  - Name: Torment
+    Flies: 0
+    Inclination: 0
+    Growths: 010000000100000001000000010000000100000001000000
+    Weapon:
+      Name: 
+      HitStat: 0
+      Damage: 0
+      Weight: 0
+      Range: 0
+    MapSprite: {fileID: 21300000, guid: 302638e038dcdf9429d911e5ce2985df, type: 3}
   BaseAnimation: {fileID: 969796486}
 --- !u!1 &1626109149 stripped
 GameObject:
@@ -15048,12 +15059,12 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 5
+  DebugEndgameLevel: 4
   DebugUnits:
   - Frogman
   - Xirveros
   - Firbell
-  DebugUnlimitedMove: 1
+  DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
