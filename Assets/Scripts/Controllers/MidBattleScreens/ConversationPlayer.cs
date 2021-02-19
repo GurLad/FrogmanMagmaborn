@@ -185,7 +185,20 @@ public class ConversationPlayer : MidBattleScreen
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
                     break;
                 case "loadUnits":
-                    GameController.Current.LoadLevelUnits(parts[2]);
+                    if (parts.Length < 4)
+                    {
+                        GameController.Current.LoadLevelUnits(parts[2]);
+                    }
+                    else
+                    {
+                        GameController.Current.LoadLevelUnits(parts[2], parts[3].ToLower() switch
+                        {
+                            "player" => Team.Player,
+                            "monster" => Team.Monster,
+                            "guard" => Team.Guard,
+                            _ => null
+                        });
+                    }
                     break;
                 case "loadMap":
                     GameController.Current.LoadMap(parts[2]);
@@ -311,13 +324,6 @@ public class ConversationPlayer : MidBattleScreen
             StartLine(num + 1);
             return;
         }
-        if (line.Contains("[")) // Variable name (like button name)
-        {
-            Debug.Log(line);
-            line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
-            line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
-            Debug.Log(line);
-        }
         if (line.IndexOf(':') != -1)
         {
             string[] parts = line.Split(':')[0].Split('|');
@@ -332,6 +338,14 @@ public class ConversationPlayer : MidBattleScreen
             {
                 Name.text = portrait.Name;
             }
+        }
+        if (line.Contains("[")) // Variable name (like button name)
+        {
+            Debug.Log(line);
+            line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
+            line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
+            line = line.Replace("[Name]", Name.text);
+            Debug.Log(line);
         }
         // Find the line break
         string trueLine = FindLineBreack(TrueLine(line));
@@ -375,7 +389,7 @@ public class ConversationPlayer : MidBattleScreen
             // Intro conversations
             if (postBattle || origin.PostBattleLines.Count <= 0)
             {
-                origin.Choose();
+                origin.Choose(true);
                 SavedData.SaveAll(SaveMode.Slot);
                 if (SavedData.Load("FlagTutorialFinish", 0) == 0)
                 {
@@ -397,7 +411,7 @@ public class ConversationPlayer : MidBattleScreen
             // Battle conversations
             if (postBattle)
             {
-                origin.Choose();
+                origin.Choose(true);
                 origin = null;
                 GameController.Current.Win();
             }
@@ -406,7 +420,11 @@ public class ConversationPlayer : MidBattleScreen
                 CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
                 if (origin.PostBattleLines.Count <= 0)
                 {
-                    origin.Choose();
+                    origin.Choose(true);
+                }
+                else
+                {
+                    origin.Choose(false);
                 }
             }
         }

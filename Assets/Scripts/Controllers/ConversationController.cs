@@ -86,7 +86,7 @@ public class ConversationData : System.IComparable<ConversationData>
         }
         // Check unique & id
         id = id ?? sourceFile.name;
-        if (unique && SavedData.Load<int>("ConversationData", id) == 1)
+        if (unique && SavedData.Load<int>("ConversationData", "ID" + id) == 2)
         {
             Done = true;
         }
@@ -133,25 +133,27 @@ public class ConversationData : System.IComparable<ConversationData>
         }
         foreach (var requirement in Requirements)
         {
-            if (requirement[0] == '!')
+            if (!MeetsRequirement(requirement))
             {
-                if (MeetsRequirement(requirement.Substring(1)))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (!MeetsRequirement(requirement))
-                {
-                    return false;
-                }
+                return false;
             }
         }
         return true;
     }
 
     public bool MeetsRequirement(string requirement)
+    {
+        if (requirement[0] == '!')
+        {
+            return !CheckRequirements(requirement.Substring(1));
+        }
+        else
+        {
+            return CheckRequirements(requirement);
+        }
+    }
+
+    private bool CheckRequirements(string requirement)
     {
         string[] parts = requirement.Split(':');
         switch (parts[0])
@@ -174,6 +176,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "numRuns":
                 // Return whether a certain number of runs was reached.
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.NumRuns, int.Parse(parts[1].Substring(1)));
+            case "firstTime":
+                // Return whether the pre-battle part of the conversation was played
+                return SavedData.Load<int>("ConversationData", "ID" + id) == 0;
 
             // Mid-battle requirements
 
@@ -217,11 +222,11 @@ public class ConversationData : System.IComparable<ConversationData>
         }
     }
 
-    public bool Choose()
+    public bool Choose(bool postBattle)
     {
         if (unique)
         {
-            SavedData.Save("ConversationData", id, 1);
+            SavedData.Save("ConversationData", "ID" + id, postBattle ? 2 : 1);
             return true;
         }
         return false;

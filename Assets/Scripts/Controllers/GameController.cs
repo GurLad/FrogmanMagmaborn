@@ -872,7 +872,7 @@ public class GameController : MonoBehaviour
         animation.Start();
         animation.Activate(0);
     }
-    public void LoadMap(string roomName = "")
+    private Room LoadRoom(string roomName = "")
     {
         Room room;
         if (roomName == "")
@@ -887,6 +887,11 @@ public class GameController : MonoBehaviour
                 throw new System.Exception("No matching room! (" + roomName + ")");
             }
         }
+        return room;
+    }
+    public void LoadMap(string roomName = "")
+    {
+        Room room = LoadRoom(roomName);
         // Clear previous level
         if (currentMapObject != null)
         {
@@ -913,21 +918,9 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    public void LoadLevelUnits(string roomName = "")
+    public void LoadLevelUnits(string roomName = "", Team? ofTeam = null)
     {
-        Room room;
-        if (roomName == "")
-        {
-            room = selectedRoom;
-        }
-        else
-        {
-            room = rooms.Find(a => a.Name == roomName);
-            if (room == null)
-            {
-                throw new System.Exception("No matching room! (" + roomName + ")");
-            }
-        }
+        Room room = LoadRoom(roomName);
         // Clear previous level
         MapObjects.Clear();
         if (currentUnitsObject != null)
@@ -944,6 +937,10 @@ public class GameController : MonoBehaviour
         {
             string[] parts = unitDatas[i].Split(',');
             Team team = (Team)int.Parse(parts[0]);
+            if (team != (ofTeam ?? team))
+            {
+                continue;
+            }
             string name = parts[1];
             if (team == Team.Player)
             {
@@ -1173,6 +1170,8 @@ public class GameController : MonoBehaviour
                             break;
                     }
                     break;
+                case "mapID":
+                    return Name == parts[1];
                 default:
                     break;
             }

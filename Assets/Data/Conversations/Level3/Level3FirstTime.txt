@@ -5,11 +5,10 @@ roomNumber:3
 ~ Demands
 # Nothinig
 ~ Before battle
-:if:hasFlag:Level3FirstTime{
+:if:!firstTime:{
 :call:PreAfterFail
 :finishConversation:
 }
-:setFlag:Level3FirstTime
 :if:hasCharacter:Firbell{
 :call:PreFirbell
 :finishConversation:
@@ -115,7 +114,7 @@ Frogman: You again. This time, I won't lose.
 ~ PostFirbell
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
-:loadUnits:InitTormentRoom
+:loadUnits:InitTormentRoom:player
 Firbell: Frogman, wait. We sho- uld not go that far.
 Frogman: Huh? Why not?
 Firbell: The deeper you go, the stronger the monsters
@@ -137,7 +136,7 @@ And there he goes again. The fool...
 ~ PostKresla
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
-:loadUnits:InitTormentRoom
+:loadUnits:InitTormentRoom:player
 Kresla: Frogman! Wait up! Before you go on, you
 should know that there will be tough enemies
 ahead.
@@ -154,6 +153,7 @@ Frogman: Good. Me too.
 ~ PostXirveros
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
 Xirveros: TBA
 
 ~ PostGeneric
