@@ -30,6 +30,7 @@ public class MapAnimationsController : MidBattleScreen
     private float count;
     // Movement animation vars
     private Unit currentUnit;
+    private SpriteRenderer unitSpriteRenderer;
     private List<Vector2Int> path = new List<Vector2Int>();
     // Battle animation vars
     private float battleTrueFlashTime;
@@ -59,6 +60,7 @@ public class MapAnimationsController : MidBattleScreen
                 {
                     count -= 1 / WalkSpeed;
                     SoundController.PlaySound(WalkSound);
+                    FlipX(path[0] - currentUnit.Pos, unitSpriteRenderer);
                     currentUnit.Pos = path[0];
                     path.RemoveAt(0);
                     if (path.Count <= 0)
@@ -226,6 +228,7 @@ public class MapAnimationsController : MidBattleScreen
         } while (targetPos != unit.Pos);
         path.Reverse();
         // Start animation
+        unitSpriteRenderer = unit.gameObject.GetComponent<SpriteRenderer>();
         StartAnimation(AnimationType.Movement);
     }
     public void AnimateBattle(Unit attacking, Unit defending)
@@ -238,6 +241,8 @@ public class MapAnimationsController : MidBattleScreen
         battleState = BattleAnimationState.AttackerAttacking;
         attackerPanel = InitPanel(GameController.Current.UIAttackerPanel, attacker, defender, false);
         defenderPanel = InitPanel(GameController.Current.UIDefenderPanel, defender, attacker, true);
+        FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
+        FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
         StartAnimation(AnimationType.Battle);
     }
     public void AnimateDelay()
@@ -340,5 +345,10 @@ public class MapAnimationsController : MidBattleScreen
         Destroy(attackerPanel.gameObject);
         Destroy(defenderPanel.gameObject);
         EndAnimation();
+    }
+
+    private void FlipX(Vector2Int direction, SpriteRenderer unitRenderer)
+    {
+        unitRenderer.flipX = direction.x != 0 ? (direction.x > 0 ? true : false) : unitRenderer.flipX;
     }
 }
