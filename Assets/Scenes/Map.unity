@@ -15035,6 +15035,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 45ee885040e21ed4aa1683b2c8bb8a0e, type: 3}
   - {fileID: 4900000, guid: f5d0fcb7edf8d144b8e0e193103681a7, type: 3}
   - {fileID: 4900000, guid: 0104d8eb312df814fb9350d36facfb04, type: 3}
+  - {fileID: 4900000, guid: f798a95fad2b69b40aa029762cbab797, type: 3}
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
@@ -15060,11 +15061,11 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 5
+  DebugEndgameLevel: 3
   DebugUnits:
   - Frogman
-  - Xirveros
   - Firbell
+  - Xirveros
   DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}

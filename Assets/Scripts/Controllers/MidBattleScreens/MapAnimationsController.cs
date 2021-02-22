@@ -88,7 +88,10 @@ public class MapAnimationsController : MidBattleScreen
                         attacker.transform.position = attackerBasePos + battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
                         if (count >= battleTrueFlashTime && defender != null)
                         {
-                            defender.Moved = false;
+                            if (!defender.Statue)
+                            {
+                                defender.Moved = false;
+                            }
                         }
                         if (count >= 1 / BattleSpeed)
                         {
@@ -127,7 +130,7 @@ public class MapAnimationsController : MidBattleScreen
                         defender.transform.position = defenderBasePos - battleDirection * BattleMoveDistance * Mathf.Max(0, 1 - percent);
                         if (count >= battleTrueFlashTime && attacker != null)
                         {
-                            attacker.Moved = false;
+                            attacker.Moved = false; // Attacker can't be a statue
                         }
                         if (count >= 1 / BattleSpeed)
                         {
@@ -299,7 +302,10 @@ public class MapAnimationsController : MidBattleScreen
                 {
                     SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defending.Stats.MaxHP);
                     battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defending.Stats.MaxHP);
-                    defending.Moved = true; // "Flash"
+                    if (!defending.Statue)
+                    {
+                        defending.Moved = true; // "Flash"
+                    }
                 }
                 break;
             case false:
@@ -341,7 +347,6 @@ public class MapAnimationsController : MidBattleScreen
 
     private void FinishBattle()
     {
-        CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
         Destroy(attackerPanel.gameObject);
         Destroy(defenderPanel.gameObject);
         EndAnimation();

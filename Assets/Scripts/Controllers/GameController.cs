@@ -929,7 +929,7 @@ public class GameController : MonoBehaviour
         }
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
-        List<Unit> playerCharacters = PlayerUnits;
+        List<Unit> playerCharacters = PlayerUnits.Where(a => a != null).ToList();
         // Units
         List<string> unitDatas = room.Units;
         int numPlayers = 0;

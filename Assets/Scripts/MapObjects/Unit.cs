@@ -335,9 +335,9 @@ public class Unit : MapObject
     {
         void ActualFight(Unit target)
         {
-            CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
             if (SavedData.Load<int>("BattleAnimationsMode", 1, SaveMode.Global) == 0) // Real animations
             {
+                CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
                 BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
                 GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
                 battleAnimationController.Attacker = this;

@@ -3,7 +3,8 @@ unique:T
 ~ Requirements
 roomNumber:3
 ~ Demands
-# Nothinig
+# The other room is currently too hard
+mapID:Boss1-0
 ~ Before battle
 :if:!firstTime:{
 :call:PreAfterFail
