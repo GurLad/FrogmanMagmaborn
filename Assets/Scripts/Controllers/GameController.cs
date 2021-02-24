@@ -1053,6 +1053,10 @@ public class GameController : MonoBehaviour
     {
         return units.FindAll(a => a.TheTeam == Team.Player && !a.Moved).Count;
     }
+    public int GameSpeed()
+    {
+        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ Control.GetButton(Control.CB.B)) ? 2 : 1;
+    }
     public bool IsValidPos(int x, int y)
     {
         return x >= 0 && y >= 0 && x < MapSize.x && y < MapSize.y;

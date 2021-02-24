@@ -59,7 +59,7 @@ public class Unit : MapObject
     public Unit()
     {
         Priorities = new AIPriorities(this);
-    }    
+    }
     public void Init()
     {
         palette = GetComponent<PalettedSprite>();
@@ -335,7 +335,7 @@ public class Unit : MapObject
     {
         void ActualFight(Unit target)
         {
-            if (SavedData.Load<int>("BattleAnimationsMode", 1, SaveMode.Global) == 0) // Real animations
+            if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
             {
                 CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
                 BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();

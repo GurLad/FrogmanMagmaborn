@@ -116,15 +116,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
 
     private void Update()
     {
-        if (Control.GetButton(Control.CB.B))
-        {
-            // Speed up
-            Time.timeScale = 2;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = GameController.Current.GameSpeed(); // Speed up
         switch (state)
         {
             case State.AttackerWalking:

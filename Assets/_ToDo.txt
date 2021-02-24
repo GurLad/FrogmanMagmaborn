@@ -1,5 +1,7 @@
  -Bugs:
   -Intro palette is ruined (by Game Over one).
+  -When cancelling confirm dialoug, MidBattleScreen doesn't revert (aka game unpauses while still in a menu).
+  -The PalettedSprite script was disabled for some reason when entering Level4 after the FirstTime conversation of 3. No idea why, especially as it DID render the dark-gray color invisible.
 
  -Fix AI for 2 range units:
   -Fix find closest unit
