@@ -99,11 +99,11 @@ public class ConversationPlayer : MidBattleScreen
         origin = conversation;
         if (GameController.Current != null)
         {
-            if (!origin.Lines.Contains(":loadUnits:") && !origin.Lines.Contains(":loadUnits"))
+            if (origin.Lines.Find(a => a.Contains(":loadUnits")) == null)
             {
                 GameController.Current.LoadLevelUnits();
             }
-            if (!origin.Lines.Contains(":loadMap:") && !origin.Lines.Contains(":loadMap"))
+            if (origin.Lines.Find(a => a.Contains(":loadMap")) == null)
             {
                 GameController.Current.LoadMap();
             }

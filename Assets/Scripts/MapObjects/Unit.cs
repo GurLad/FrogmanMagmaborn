@@ -23,18 +23,23 @@ public class Unit : MapObject
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;
     [HideInInspector]
+    [System.NonSerialized]
     public Portrait Icon;
     [HideInInspector]
     public Weapon Weapon;
     [HideInInspector]
+    [System.NonSerialized]
     public int Health;
     [HideInInspector]
     public int Level;
     [HideInInspector]
+    [System.NonSerialized]
     public Vector2Int PreviousPos;
     [HideInInspector]
+    [System.NonSerialized]
     public int ReinforcementTurn;
     [HideInInspector]
+    [System.NonSerialized]
     public bool Statue;
     public bool Moved
     {

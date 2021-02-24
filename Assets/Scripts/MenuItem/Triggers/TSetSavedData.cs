@@ -25,10 +25,12 @@ public class TSetSavedData : Trigger
         if (FileName != "")
         {
             SavedData.Save(FileName, DataName, current);
+            SavedData.SaveAll(SaveMode.Slot);
         }
         else
         {
             SavedData.Save(DataName, current, SaveMode);
+            SavedData.SaveAll(SaveMode);
         }
         DisplayLabel.text = Values[current];
     }

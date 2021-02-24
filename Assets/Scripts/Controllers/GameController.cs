@@ -83,6 +83,7 @@ public class GameController : MonoBehaviour
         {
             if (playerUnitsCache == null)
             {
+                Debug.Log("Loading player units...");
                 playerUnitsCache = new List<Unit>();
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
@@ -723,6 +724,20 @@ public class GameController : MonoBehaviour
     }
     private void PlayersLevelUp()
     {
+        List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
+        // Custom level-up system
+        foreach (Unit character in playerCharacters)
+        {
+            character.Level++;
+            character.transform.parent = transform;
+        }
+        LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
+        levelUpController.Players = playerCharacters;
+        TransitionToMidBattleScreen(levelUpController);
+
+    }
+    public void PlayersSave()
+    {
         // Save player characters
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
         playerCharacters.ForEach(a => a.Statue = false); // Revive "dead" units on Easy
@@ -736,18 +751,6 @@ public class GameController : MonoBehaviour
             Debug.Log(playerCharacters[i].Save());
             Destroy(playerCharacters[i].gameObject);
         }
-        playerUnitsCache = null;
-        playerCharacters = PlayerUnits;
-        // Custom level-up system
-        foreach (Unit character in playerCharacters)
-        {
-            character.Level++;
-            character.transform.parent = transform;
-        }
-        LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
-        levelUpController.Players = playerCharacters;
-        TransitionToMidBattleScreen(levelUpController);
-
     }
     public void CreateLevel()
     {
@@ -899,7 +902,6 @@ public class GameController : MonoBehaviour
         }
         // Load room
         Set = room.TileSet;
-        Debug.Log(Set);
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Map
@@ -925,7 +927,8 @@ public class GameController : MonoBehaviour
         MapObjects.Clear();
         if (currentUnitsObject != null)
         {
-            Destroy(currentUnitsObject.gameObject);
+            DestroyImmediate(currentUnitsObject.gameObject);
+            playerUnitsCache = null;
         }
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
