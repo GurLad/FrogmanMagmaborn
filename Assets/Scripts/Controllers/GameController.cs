@@ -710,6 +710,7 @@ public class GameController : MonoBehaviour
         }
         else // Perma-death
         {
+            PlayerUnits.Remove(unit);
             Destroy(unit.gameObject);
         }
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
@@ -998,7 +999,6 @@ public class GameController : MonoBehaviour
                 unit.gameObject.SetActive(true);
             }
         }
-        Debug.Log("Units: " + string.Join(", ", units));
         currentPhase = Team.Player;
         interactable = true;
     }

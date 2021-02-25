@@ -75,11 +75,6 @@ public class Unit : MapObject
         palette.Awake();
         //Start(); // There is a very weird bug - units created with CreatePlayerUnit don't activate their Start function. This is a bad workaround.
     }
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        Debug.Log(ToString() + " is dead");
-    }
     protected override void Start()
     {
         base.Start();
@@ -95,7 +90,6 @@ public class Unit : MapObject
         {
             Movement = 0;
         }
-        Debug.Log("Created " + ToString() + " under parent " + transform.parent.gameObject.name);
     }
     private void LoadIcon()
     {
