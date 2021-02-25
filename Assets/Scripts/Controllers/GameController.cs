@@ -210,6 +210,7 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        playerUnitsCache = new List<Unit>();
         if (DebugStartAtEndgame)
         {
             LevelNumber = DebugEndgameLevel;
@@ -634,7 +635,6 @@ public class GameController : MonoBehaviour
     {
         int previousCount = MapObjects.Count;
         MapObjects.FindAll(a => a is Marker).ForEach(a => Destroy(a.gameObject));
-        MapObjects.RemoveAll(a => a is Marker);
         previousPos = new Vector2Int(-1, -1);
         return previousCount != MapObjects.Count;
     }
@@ -710,7 +710,6 @@ public class GameController : MonoBehaviour
         }
         else // Perma-death
         {
-            MapObjects.Remove(unit);
             Destroy(unit.gameObject);
         }
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
@@ -729,17 +728,15 @@ public class GameController : MonoBehaviour
         foreach (Unit character in playerCharacters)
         {
             character.Level++;
-            character.transform.parent = transform;
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
         levelUpController.Players = playerCharacters;
         TransitionToMidBattleScreen(levelUpController);
-
     }
     public void PlayersSave()
     {
         // Save player characters
-        List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
+        List<Unit> playerCharacters = PlayerUnits;
         playerCharacters.ForEach(a => a.Statue = false); // Revive "dead" units on Easy
         playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
         playerCharacters = playerCharacters.ToList();
@@ -749,14 +746,19 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < playerCharacters.Count; i++)
         {
             Debug.Log(playerCharacters[i].Save());
-            Destroy(playerCharacters[i].gameObject);
         }
     }
     public void CreateLevel()
     {
         List<Unit> playerCharacters = PlayerUnits;
+        // Select conversation
+        Debug.Log(string.Join(", ", playerCharacters));
+        ConversationData conversation = ConversationController.Current.SelectConversation();
+        // Select room
+        List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
+        selectedRoom = options[UnityEngine.Random.Range(0, options.Count)];
+        Debug.Log("Selected room: " + selectedRoom.Name);
         // Clear previous level
-        MapObjects.Clear();
         if (currentMapObject != null)
         {
             Destroy(currentMapObject.gameObject);
@@ -775,12 +777,6 @@ public class GameController : MonoBehaviour
         {
             PaletteController.Current.SpritePalettes[1] = basePalette;
         }
-        // Select conversation
-        ConversationData conversation = ConversationController.Current.SelectConversation();
-        // Select room
-        List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
-        selectedRoom = options[UnityEngine.Random.Range(0, options.Count)];
-        Debug.Log("Selected room: " + selectedRoom.Name);
         // Room-specific behaviours
         if (selectedRoom.Objective == Objective.Escape)
         {
@@ -924,9 +920,9 @@ public class GameController : MonoBehaviour
     {
         Room room = LoadRoom(roomName);
         // Clear previous level
-        MapObjects.Clear();
         if (currentUnitsObject != null)
         {
+            PlayersSave();
             DestroyImmediate(currentUnitsObject.gameObject);
             playerUnitsCache = null;
         }
@@ -956,11 +952,6 @@ public class GameController : MonoBehaviour
                         unit.transform.parent = currentUnitsObject;
                         unit.Health = unit.Stats.MaxHP;
                         unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-                        if (!MapObjects.Contains(unit)) // This shouldn't exist - it's because of the weird "no Start" bug on units created with CreatePlayerUnit.
-                        {
-                            Debug.Log("Why isn't " + unit.Name + " part of MapObjects?");
-                            MapObjects.Add(unit);
-                        }
                     }
                     continue;
                 }
@@ -970,11 +961,6 @@ public class GameController : MonoBehaviour
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
-                    if (!MapObjects.Contains(unit)) // This shouldn't exist - it's because of the weird "no Start" bug on units created with CreatePlayerUnit.
-                    {
-                        Debug.Log("Why isn't " + unit.Name + " part of MapObjects?");
-                        MapObjects.Add(unit);
-                    }
                     cursorPos = unit.Pos; // Auto-cursor
                     continue;
                 }
@@ -983,6 +969,7 @@ public class GameController : MonoBehaviour
                     unit = CreatePlayerUnit(name, int.Parse(parts[2]));
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    PlayerUnits.Add(unit);
                     if (name != "Frogman")
                     {
                         Debug.LogWarning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");

@@ -28,4 +28,13 @@ public abstract class MapObject : MonoBehaviour
         }
         GameController.Current.MapObjects.Add(this);
     }
+    protected virtual void OnDestroy()
+    {
+        if (!GameController.Current.MapObjects.Contains(this)) // This shouldn't happen - MapObjects are supposed to remove themselves
+        {
+            Debug.LogWarning("MapObjects doesn't contain " + name + "!");
+            return;
+        }
+        GameController.Current.MapObjects.Remove(this);
+    }
 }
