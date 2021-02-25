@@ -3,8 +3,6 @@ unique:T
 ~ Requirements
 roomNumber:3
 ~ Demands
-# The other room is currently too hard
-mapID:Boss1-0
 ~ Before battle
 :if:!firstTime:{
 :call:PreAfterFail
@@ -24,16 +22,16 @@ mapID:Boss1-0
 }
 :call:PreAlone
 ~ After battle
+:if:hasCharacter:Xirveros{
+:call:PostXirveros
+:finishConversation:
+}
 :if:hasCharacter:Firbell{
 :call:PostFirbell
 :finishConversation:
 }
 :if:hasCharacter:Kresla{
 :call:PostKresla
-:finishConversation:
-}
-:if:hasCharacter:Xirveros{
-:call:PostXirveros
 :finishConversation:
 }
 :call:PostGeneric
@@ -155,8 +153,17 @@ Frogman: Good. Me too.
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
-Xirveros: TBA
+Xirveros: Frog! Turn back. Now. This too far!
+Frogman: Why would I do that?
+Xirveros: They will come. You will fight.
+We will die.
+Frogman: Xirveros, you're not making any sense.
+Xirveros: Frog, don't make my mistake.
+Turn back before it's too late.
+Frogman: But why? What will happen?
+Xirveros: Do not listen. Do not listen. Do no listen.
+Frogman: Why do I even bother? Let's just go.
 
 ~ PostGeneric
-Frogman: Yay! We've won!
-Frogman: TBA
+Frogman: That was tough! I'm sorry, everyone.
+I'll just have to go on without you.

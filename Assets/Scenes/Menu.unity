@@ -363,6 +363,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8250517176615488238, guid: be17dd5609ef6f74fac86f48d61a47c2, type: 3}
     - {fileID: 8787433539657881122, guid: be17dd5609ef6f74fac86f48d61a47c2, type: 3}
+    - {fileID: 6610457670701876902, guid: be17dd5609ef6f74fac86f48d61a47c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: be17dd5609ef6f74fac86f48d61a47c2, type: 3}
 --- !u!224 &44633937 stripped
 RectTransform:
@@ -2450,7 +2451,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2020
+  m_Text: 2021
 --- !u!222 &770784415
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4746,6 +4747,17 @@ MonoBehaviour:
   TransitionSpeed: 3
   Camera: {fileID: 130552027}
   Frogman: {fileID: 313605834}
+  BaseBackgrounds:
+  - Colors:
+    - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0.86274517, g: 0, b: 0.8313726, a: 1}
+    - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
+  - Colors:
+    - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0.9568628, g: 0.81568635, b: 0.7058824, a: 1}
+    - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
 --- !u!1001 &1540331689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6070,7 +6082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Credits:
-  - 2020
+  - 2021
   - Gur Ladizhinsky
   - Presents
   CreditsColor:

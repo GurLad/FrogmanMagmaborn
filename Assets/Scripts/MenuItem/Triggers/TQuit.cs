@@ -7,6 +7,7 @@ public class TQuit : Trigger
     public override void Activate()
     {
         SavedData.SaveAll();
+        SavedData.SaveAll(SaveMode.Global);
         Application.Quit();
     }
 }

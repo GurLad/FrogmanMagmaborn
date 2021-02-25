@@ -391,7 +391,7 @@ public class ConversationPlayer : MidBattleScreen
             {
                 origin.Choose(true);
                 SavedData.SaveAll(SaveMode.Slot);
-                if (SavedData.Load("FlagTutorialFinish", 0) == 0)
+                if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
                 {
                     Tutorial.SetActive(true);
                 }

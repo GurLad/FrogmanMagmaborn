@@ -9,7 +9,7 @@ public class TShowMenu : Trigger
 
     public override void Activate()
     {
-        if (This != false)
+        if (This != null)
         {
             MidBattleScreen.Set(This, false);
             This.gameObject.SetActive(false);

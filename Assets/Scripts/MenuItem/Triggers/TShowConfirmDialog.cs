@@ -5,9 +5,9 @@ using UnityEngine;
 public class TShowConfirmDialog : Trigger
 {
     public GameObject YesAction;
-    public GameObject ThisMenu;
+    public MenuController ThisMenu;
     public TExternalTrigger YesButton;
-    public TEnableDisable NoButton;
+    public TShowMenu NoButton;
 
     public override void Activate()
     {

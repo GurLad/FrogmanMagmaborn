@@ -8,24 +8,19 @@ public class Intro : MonoBehaviour
     public float TransitionSpeed;
     public Transform Camera;
     public GameObject Frogman;
+    public Palette[] BaseBackgrounds;
     private bool finishedMove;
     private PaletteTransition transition;
     private int lastCheckedCurrent;
-    private Palette[] baseBackgrounds;
     private void Awake()
     {
-        baseBackgrounds = new Palette[2];
-        for (int i = 0; i < baseBackgrounds.Length; i++)
-        {
-            baseBackgrounds[i] = new Palette(PaletteController.Current.BackgroundPalettes[i]);
-        }
         gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        for (int i = 0; i < baseBackgrounds.Length; i++)
+        for (int i = 0; i < BaseBackgrounds.Length; i++)
         {
-            PaletteController.Current.BackgroundPalettes[i] = baseBackgrounds[i];
+            PaletteController.Current.BackgroundPalettes[i] = BaseBackgrounds[i];
         }
     }
     private void Update()
