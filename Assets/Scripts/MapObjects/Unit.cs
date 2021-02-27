@@ -102,7 +102,18 @@ public class Unit : MapObject
                 Icon = PortraitController.Current.FindPortrait(TheTeam.Name());
                 break;
             case Team.Guard:
-                Icon = PortraitController.Current.FindGenericPortrait();
+                // Check whether there are any conversation guards
+                IEnumerable<Portrait> temp = PortraitController.Current.TempPortraits.Values.Where(a => !a.Assigned);
+                // Otherwise, load a random portrait
+                if (temp.Count() <= 0)
+                {
+                    Icon = PortraitController.Current.FindGenericPortrait();
+                }
+                else
+                {
+                    Icon = temp.First();
+                    Icon.Assigned = true;
+                }
                 break;
             default:
                 break;
@@ -395,9 +406,8 @@ public class Unit : MapObject
                 enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y] != 0).ToList();
                 if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
                 {
-                    Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and ends the turn");
-                    MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
-                    MapAnimationsController.Current.AnimateDelay();
+                    Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
+                    RetreatAI(fullDangerArea);
                     return;
                 }
                 Unit target = enemyUnits[0];
@@ -416,34 +426,10 @@ public class Unit : MapObject
                     }
                 }
                 // Now, recover a path.
-                attackFrom.Clear();
-                int[,] trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement, trueDangerArea = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], attackFrom);
-                Vector2Int currentMoveTarget = new Vector2Int(target.Pos.x, target.Pos.y);
-                GameController.Current.RemoveMarkers();
-                while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y] <= 0)
-                {
-                    Vector2Int min = currentMoveTarget;
-                    for (int i = -1; i <= 1; i++)
-                    {
-                        for (int j = -1; j <= 1; j++)
-                        {
-                            if ((i == 0 || j == 0) && GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
-                                fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
-                                fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
-                            {
-                                min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
-                            }
-                        }
-                    }
-                    if (min == currentMoveTarget)
-                    {
-                        throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget);
-                    }
-                    currentMoveTarget = min;
-                }
+                Vector2Int moveTarget = ClosestMoveablePointToTarget(target.Pos, fullDangerArea);
                 // Finally, move to the target location.
                 MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
-                MoveTo(currentMoveTarget);
+                MoveTo(moveTarget);
                 break;
             case AIType.Hold:
                 if (!TryHoldAI(enemyUnits))
@@ -514,6 +500,66 @@ public class Unit : MapObject
             }
         }
         return false;
+    }
+    private void RetreatAI(int[,] fullDangerArea)
+    {
+        Vector2Int minPoint = Vector2Int.zero;
+        for (int x = 0; x < GameController.Current.MapSize.x; x++)
+        {
+            for (int y = 0; y < GameController.Current.MapSize.y; y++)
+            {
+                if (x == 0 || y == 0 || x == GameController.Current.MapSize.x - 1 || y == GameController.Current.MapSize.y - 1)
+                {
+                    if (fullDangerArea[x, y] > 0 && (fullDangerArea[minPoint.x, minPoint.y] <= 0 || fullDangerArea[minPoint.x, minPoint.y] < fullDangerArea[x, y]))
+                    {
+                        minPoint = new Vector2Int(x, y);
+                    }
+                }
+            }
+        }
+        Vector2Int target = ClosestMoveablePointToTarget(minPoint, fullDangerArea);
+        if (target.x == 0 || target.y == 0 || target.x == GameController.Current.MapSize.x - 1 || target.y == GameController.Current.MapSize.y - 1) // Can reach the end of the map, aka retreat, aka die
+        {
+            MapAnimationsController.Current.OnFinishAnimation = () =>
+            {
+                MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.KillUnit(this);
+                MapAnimationsController.Current.AnimateDelay();
+            };
+        }
+        else
+        {
+            MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+        }
+        MoveTo(target);
+    }
+    private Vector2Int ClosestMoveablePointToTarget(Vector2Int target, int[,] fullDangerArea)
+    {
+        List<Vector2Int> attackFrom = new List<Vector2Int>();
+        int[,] trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement, trueDangerArea = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], attackFrom);
+        Vector2Int currentMoveTarget = new Vector2Int(target.x, target.y);
+        GameController.Current.RemoveMarkers();
+        while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y] <= 0)
+        {
+            Vector2Int min = currentMoveTarget;
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if ((i == 0 || j == 0) && GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
+                        fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
+                        fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
+                    {
+                        min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
+                    }
+                }
+            }
+            if (min == currentMoveTarget)
+            {
+                throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget);
+            }
+            currentMoveTarget = min;
+        }
+        return currentMoveTarget;
     }
     private float HoldAITargetValue(Unit unit)
     {

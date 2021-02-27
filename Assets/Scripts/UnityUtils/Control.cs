@@ -99,7 +99,7 @@ public static class Control
 
     public static string DisplayShortButtonName(string keySaveName)
     {
-        return DisplayButtonName(keySaveName).Replace("Arrow", "").Replace("Keypad", "Num").Replace("Alpha", "");
+        return DisplayButtonName(keySaveName).Replace("Arrow", "").Replace("Keypad", "Num").Replace("Alpha", "").Replace("Enter", "Entr");
     }
 
     public static KeyCode GetKeyCode(string keySaveName)

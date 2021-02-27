@@ -23,9 +23,12 @@ public class InitControls : MonoBehaviour
             Control.SetButton(Control.CB.Start, KeyCode.Return);
             Control.SetAxis(Control.Axis.X, KeyCode.RightArrow, KeyCode.LeftArrow);
             Control.SetAxis(Control.Axis.Y, KeyCode.UpArrow, KeyCode.DownArrow);
-            InitA.gameObject.SetActive(true);
-            InitB.gameObject.SetActive(true);
-            InitStart.text = InitStart.text.Replace("Start", "Enter");
+            if (InitA != null)
+            {
+                InitA.gameObject.SetActive(true);
+                InitB.gameObject.SetActive(true);
+                InitStart.text = InitStart.text.Replace("Start", "Enter");
+            }
         }
     }
 }

@@ -82,6 +82,8 @@ public class Portrait
     public int ForegroundColorID;
     [HideInInspector]
     public CharacterVoice Voice;
+    [HideInInspector]
+    public bool Assigned;
     public Portrait()
     {
         BackgroundColor = new Palette();
