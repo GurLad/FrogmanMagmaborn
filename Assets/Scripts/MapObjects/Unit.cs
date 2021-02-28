@@ -477,15 +477,17 @@ public class Unit : MapObject
                     {
                         if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range)
                         {
-                            // Works with any range weapons, but this is a quick & dirty fix
                             if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
                                 unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y &&
                                 dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
                             {
+                                // This is probably the longest, messiest if I've ever written. Let's hope it works.
                                 if (currentBest.x < 0 ||
-                                    GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier < GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier ||
+                                    ((!unit.CanAttackPos(unit.Pos.x + i, unit.Pos.y + j) || unit.CanAttackPos(currentBest.x, currentBest.y)) &&
+                                    (GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier < GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier ||
                                     (GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier == GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier &&
-                                     Vector2Int.Distance(currentBest, Pos) > Vector2Int.Distance(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j), Pos)))
+                                     Vector2Int.Distance(currentBest, Pos) > Vector2Int.Distance(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j), Pos)))) ||
+                                    (!unit.CanAttackPos(unit.Pos.x + i, unit.Pos.y + j) && unit.CanAttackPos(currentBest.x, currentBest.y)))
                                 {
                                     currentBest = new Vector2Int(unit.Pos.x + i, unit.Pos.y + j);
                                 }
@@ -641,7 +643,15 @@ public class Unit : MapObject
     }
     public bool CanAttack(Unit other)
     {
-        return other != null && !Statue && Weapon.Range >= Vector2Int.Distance(Pos, other.Pos);
+        return other != null && CanAttackPos(other.Pos);
+    }
+    public bool CanAttackPos(Vector2Int pos)
+    {
+        return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - pos.x) + Mathf.Abs(Pos.y - pos.y));
+    }
+    public bool CanAttackPos(int x, int y)
+    {
+        return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - x) + Mathf.Abs(Pos.y - y));
     }
     public string AttackPreview(Unit other, int padding = 2, bool canAttack = true)
     {
