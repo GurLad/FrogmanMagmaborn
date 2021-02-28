@@ -40,7 +40,6 @@ public class ConversationController : MonoBehaviour
         foreach (string fileName in fileNames)
         {
             TextAsset file = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
-            Debug.Log(fileName + ", " + file.name);
             Conversations.Add(file);
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
