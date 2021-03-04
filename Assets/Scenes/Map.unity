@@ -12407,8 +12407,8 @@ MonoBehaviour:
     MapSprite: {fileID: 21300000, guid: ee42314bc4287494d8a7721b22014187, type: 3}
   - Name: Goblin
     Flies: 0
-    Inclination: 1
-    Growths: 020000000100000002000000030000000100000003000000
+    Inclination: 2
+    Growths: 030000000100000001000000020000000200000003000000
     Weapon:
       Name: Sword
       HitStat: 1
@@ -12526,6 +12526,17 @@ MonoBehaviour:
       Weight: 0
       Range: 0
     MapSprite: {fileID: 21300000, guid: 302638e038dcdf9429d911e5ce2985df, type: 3}
+  - Name: Golem
+    Flies: 0
+    Inclination: 1
+    Growths: 020000000100000003000000030000000100000002000000
+    Weapon:
+      Name: Hammer
+      HitStat: 1
+      Damage: 1
+      Weight: 1
+      Range: 1
+    MapSprite: {fileID: 21300000, guid: f6e7001b9fedea6469ea751a321510cb, type: 3}
   BaseAnimation: {fileID: 969796486}
 --- !u!1 &1626109149 stripped
 GameObject:
@@ -15001,6 +15012,9 @@ MonoBehaviour:
   - Class: Skeleton
     ReplacedBy:
     - Ooze
+  - Class: Goblin
+    ReplacedBy:
+    - Golem
   Rooms:
   - {fileID: 4900000, guid: 39a452794dabf7d43b1436f7bbdee8a3, type: 3}
   - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
@@ -15041,7 +15055,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 6
   DebugUnits:
   - Frogman
