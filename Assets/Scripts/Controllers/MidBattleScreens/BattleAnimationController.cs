@@ -209,7 +209,14 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case "AttackEnd":
                 if (state == State.AttackerFinishingAttack)
                 {
-                    attackerAnimation.Activate("Idle");
+                    if (attackerAnimation.HasAnimation("IdlePost"))
+                    {
+                        attackerAnimation.Activate("IdlePost");
+                    }
+                    else
+                    {
+                        attackerAnimation.Activate("Idle");
+                    }
                     if (Defender == null || Defender.Statue)
                     {
                         state = State.WaitTime;
@@ -233,13 +240,26 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     if (Attacker == null || AttackerObject == null)
                     {
-                        defenderAnimation.Activate("Idle");
+                        if (defenderAnimation.HasAnimation("IdlePost"))
+                        {
+                            defenderAnimation.Activate("IdlePost");
+                        }
+                        else
+                        {
+                            defenderAnimation.Activate("Idle");
+                        }
                         state = State.WaitTime;
                         return;
                     }
                     AttackerObject.transform.position = new Vector3(AttackerTargetPos, AttackerObject.transform.position.y, AttackerObject.transform.position.z);
-                    attackerAnimation.Activate("Idle");
-                    defenderAnimation.Activate("Idle");
+                    if (defenderAnimation.HasAnimation("IdlePost"))
+                    {
+                        defenderAnimation.Activate("IdlePost");
+                    }
+                    else
+                    {
+                        defenderAnimation.Activate("Idle");
+                    }
                     state = State.WaitTime;
                 }
                 break;
@@ -342,7 +362,22 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     #if UNITY_EDITOR
     public void AutoLoad()
     {
+        // Clear previous
         ClassAnimations.Clear();
+        List<GameObject> toDestroy = new List<GameObject>();
+        foreach (Transform child in transform)
+        {
+            if (child != BaseClassAnimation.transform)
+            {
+                toDestroy.Add(child.gameObject);
+            }
+        }
+        while (toDestroy.Count > 0)
+        {
+            DestroyImmediate(toDestroy[0]);
+            toDestroy.RemoveAt(0);
+        }
+        // Now load new
         string[] folders = UnityEditor.AssetDatabase.GetSubFolders("Assets/Data/Images/ClassBattleAnimations");
         Debug.Log(string.Join(",", folders));
         foreach (string folder in folders)
