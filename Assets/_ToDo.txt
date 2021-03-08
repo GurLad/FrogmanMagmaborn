@@ -1,3 +1,7 @@
+ -Knowledge menu rework:
+  -Instead of each upgrade having a type, make a seperate list for each type of upgrade (ex. Upgrades list, Inclination Changing list, Torment Powers list...).
+  -Add a different KnowledgeMenuItem for each type, all inheriting from a base KnowledgeMenuItem.
+
  -Fix AI for 2 range units:
   -Fix find closest unit
   -Fix find which unit to attack

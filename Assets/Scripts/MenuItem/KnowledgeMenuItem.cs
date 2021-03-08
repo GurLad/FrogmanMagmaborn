@@ -35,8 +35,7 @@ public class KnowledgeMenuItem : MenuItem
     {
         base.Select();
         Controller.Description.text = Upgrade.Description;
-        Controller.Cost.text = "Cost:" + Upgrade.Cost.ToString().PadLeft(7);
-        Controller.Cost.gameObject.SetActive(!Upgrade.Bought);
+        Controller.Cost.text = Upgrade.Bought ? "Bought" : ("Cost:" + Upgrade.Cost.ToString().PadLeft(7));
     }
     public override void Activate()
     {
@@ -56,6 +55,7 @@ public class KnowledgeMenuItem : MenuItem
         {
             if (Controller.Knowledge >= Upgrade.Cost)
             {
+                Controller.Cost.text = "Bought";
                 if (Upgrade.Type == KnowledgeUpgradeType.Toggle)
                 {
                     BoughtIndicator.sprite = Controller.BuyUpgrade(Upgrade);

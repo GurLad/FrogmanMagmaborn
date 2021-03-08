@@ -4178,6 +4178,7 @@ MonoBehaviour:
   Cancelable: 0
   FinishOnSelect: 0
   CancelTrigger: {fileID: 0}
+  StartTrigger: {fileID: 0}
   AfterMenuDone: {fileID: 0}
 --- !u!114 &544758966
 MonoBehaviour:
@@ -15055,7 +15056,7 @@ MonoBehaviour:
     - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 3
   DebugUnits:
   - Frogman

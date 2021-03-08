@@ -10,6 +10,7 @@ public class MenuController : MidBattleScreen
     public bool Cancelable; // For things like the main menu vs. pause menu
     public bool FinishOnSelect = true;
     public Trigger CancelTrigger;
+    public Trigger StartTrigger;
     public Trigger AfterMenuDone;
     private Text text;
     [HideInInspector]
@@ -46,6 +47,15 @@ public class MenuController : MidBattleScreen
             if (CancelTrigger != null)
             {
                 CancelTrigger.Activate();
+            }
+            return;
+        }
+        if (Control.GetButtonDown(Control.CB.Start))
+        {
+            if (StartTrigger != null)
+            {
+                MenuDone();
+                StartTrigger.Activate();
             }
             return;
         }

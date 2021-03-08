@@ -105,6 +105,7 @@ public class KnowledgeUpgrade
     public string Name;
     public string InternalName;
     public KnowledgeUpgradeType Type;
+    [TextArea]
     public string Description;
     public int Cost;
     public bool Active
