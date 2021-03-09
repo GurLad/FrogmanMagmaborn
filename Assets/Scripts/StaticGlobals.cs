@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Difficulty { NotSet, Easy, Medium, Hard }
-public enum KnowledgeUpgradeType { Toggle, Choice }
+public enum KnowledgeUpgradeType { Toggle, Inclination }
 public enum HardcodedKnowledge { LevelUpChoice, InclinationBuff } // For convenience only
 public enum Team { Player, Monster, Guard }
 public enum AIType { Charge, Hold, Guard }

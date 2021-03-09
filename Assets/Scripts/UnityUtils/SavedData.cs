@@ -60,7 +60,7 @@ public static class SavedData
 
     private static int saveSlot = 0;
     private static SaveFile GlobalFile = new SaveFile("GlobalSettings", DEFAULT_GLOBAL_FILES_SAVE_TYPE, -1);
-    private static SaveFile SlotFile = new SaveFile("Default", DEFAULT_GLOBAL_FILES_SAVE_TYPE, 0);
+    private static SaveFile SlotFile = new SaveFile("Default", SaveFileType.File, 0);
     private static Dictionary<string, SaveFile> SaveFiles = new Dictionary<string, SaveFile>();
 
     /// <summary>

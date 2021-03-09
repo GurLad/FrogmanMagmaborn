@@ -1172,39 +1172,39 @@ public class GameController : MonoBehaviour
             return true;
         }
     }
-}
 
-[System.Serializable]
-public class TileSet
-{
-    public string Name;
-    public Palette Palette1 = new Palette();
-    public Palette Palette2 = new Palette();
-    public List<Tile> Tiles;
-
-    public TileSet()
+    [System.Serializable]
+    public class TileSet
     {
-        for (int i = 0; i < 4; i++)
+        public string Name;
+        public Palette Palette1 = new Palette();
+        public Palette Palette2 = new Palette();
+        public List<Tile> Tiles;
+
+        public TileSet()
         {
-            Palette1.Colors[i] = Color.black;
-            Palette2.Colors[i] = Color.black;
+            for (int i = 0; i < 4; i++)
+            {
+                Palette1.Colors[i] = Color.black;
+                Palette2.Colors[i] = Color.black;
+            }
         }
     }
-}
 
-[System.Serializable]
-public class UnitReplacement
-{
-    public string Class;
-    public List<string> ReplacedBy;
-
-    public void Init()
+    [System.Serializable]
+    public class UnitReplacement
     {
-        ReplacedBy.Add(Class);
-    }
+        public string Class;
+        public List<string> ReplacedBy;
 
-    public string Get()
-    {
-        return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
+        public void Init()
+        {
+            ReplacedBy.Add(Class);
+        }
+
+        public string Get()
+        {
+            return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
+        }
     }
 }

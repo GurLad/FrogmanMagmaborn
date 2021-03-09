@@ -23,6 +23,13 @@ public class UnitClassData : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
     #endif
+
+    [System.Serializable]
+    public class UnitClass
+    {
+        public string Unit;
+        public string Class;
+    }
 }
 
 [System.Serializable]
@@ -48,11 +55,4 @@ public class ClassData
     {
         return Name;
     }
-}
-
-[System.Serializable]
-public class UnitClass
-{
-    public string Unit;
-    public string Class;
 }

@@ -61,12 +61,15 @@ public class MenuController : MidBattleScreen
         }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
-            MenuItems[Selected].Unselect();
-            Selected += -Control.GetAxisInt(Control.Axis.Y) + count;
-            Selected %= count;
-            MenuItems[Selected].Select();
+            SelectItem((Selected - Control.GetAxisInt(Control.Axis.Y) + count) % count);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
+    }
+    public void SelectItem(int index)
+    {
+        MenuItems[Selected].Unselect();
+        Selected = index;
+        MenuItems[Selected].Select();
     }
     private void MenuDone()
     {

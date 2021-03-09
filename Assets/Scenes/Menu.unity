@@ -1823,55 +1823,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 614624176}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &614624179 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 832186916908638403, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 614624176}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &614624180 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 832186918215127003, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
     type: 3}
   m_PrefabInstance: {fileID: 614624176}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &614624181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614624180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e75d57a170375428e99eb0243b0f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Indicators:
-  - {fileID: 614624179}
-  BoughtIndicator: {fileID: 614624184}
-  Upgrade:
-    Name: 
-    InternalName: 
-    Type: 0
-    Description: 
-    Cost: 0
-    DefaultState: 0
-    NumChoices: 0
-    ChoiceValue: 0
-  Controller: {fileID: 0}
---- !u!114 &614624184 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1569966219983287507, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 614624176}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &666951854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4276,7 +4233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190998945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5637,66 +5594,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d217c60e1053b54aaa99c76197ef445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Upgrades:
-  - Name: Choice +1
-    InternalName: LevelUpChoice
+  UpgradeMenus:
+  - Name: Upgrades
     Type: 0
-    Description: Increase amount of options when leveling up.
-    Cost: 1
-    DefaultState: 0
-    NumChoices: 0
-    ChoiceValue: 0
+    Upgrades:
+    - Name: Choice +1
+      InternalName: LevelUpChoice
+      Description: Increase amount of options when leveling up.
+      Cost: 1
+      DefaultState: 0
+      NumChoices: 0
+      ChoiceValue: 0
+    - Name: Inclination
+      InternalName: InclinationBuff
+      Description: Increase offensive stats against enemies of the same inclination.
+      Cost: 3
+      DefaultState: 0
+      NumChoices: 0
+      ChoiceValue: 0
   - Name: Inclination
-    InternalName: InclinationBuff
-    Type: 0
-    Description: Increase offensive stats against enemies of the same inclination.
-    Cost: 3
-    DefaultState: 0
-    NumChoices: 0
-    ChoiceValue: 0
-  - Name: Frogman Inc
-    InternalName: InclinationFrogman
     Type: 1
-    Description: Change Frogman's inclination.
-    Cost: 3
-    DefaultState: -1
-    NumChoices: 3
-    ChoiceValue: 0
-  - Name: Firbell Inc
-    InternalName: InclinationFirbell
+    Upgrades:
+    - Name: Frogman
+      InternalName: InclinationFrogman
+      Description: Change Frogman's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Firbell
+      InternalName: InclinationFirbell
+      Description: Change Firbell's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Xirveros
+      InternalName: InclinationXirveros
+      Description: Change Xirveros's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Kresla
+      InternalName: InclinationKresla
+      Description: Change Kresla's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Kepluigi
+      InternalName: InclinationKepluigi
+      Description: Change Kepluigi's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+  - Name: fgdfgd
     Type: 1
-    Description: Change Firbell's inclination.
-    Cost: 3
-    DefaultState: -1
-    NumChoices: 3
-    ChoiceValue: 0
-  - Name: Xirveros Inc
-    InternalName: InclinationXirveros
-    Type: 1
-    Description: Change Xirverosn's inclination.
-    Cost: 3
-    DefaultState: -1
-    NumChoices: 3
-    ChoiceValue: 0
-  - Name: Kresla Inc
-    InternalName: InclinationKresla
-    Type: 1
-    Description: Change Kresla's inclination.
-    Cost: 3
-    DefaultState: -1
-    NumChoices: 3
-    ChoiceValue: 0
+    Upgrades:
+    - Name: Firbell
+      InternalName: InclinationFirbell
+      Description: Change Firbell's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Xirveros
+      InternalName: InclinationXirveros
+      Description: Change Xirveros's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Kresla
+      InternalName: InclinationKresla
+      Description: Change Kresla's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Kepluigi
+      InternalName: InclinationKepluigi
+      Description: Change Kepluigi's inclination.
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
   ActiveSprite: {fileID: 21300000, guid: efc9e1002975f4f48affddb1d58ec88a, type: 3}
   InactiveSprite: {fileID: 21300000, guid: a9914cf431e51984599f5908d4346f8a, type: 3}
-  ChoiceSprites:
+  InclinationSprites:
   - {fileID: 21300000, guid: 6713736bb5fad5943a8685381b038ca4, type: 3}
   - {fileID: 21300000, guid: 37ba4107551702647a46e01f34280835, type: 3}
   - {fileID: 21300000, guid: e4e0cbb4469896f46b5ac6c2943865eb, type: 3}
-  UpgradeMenu: {fileID: 1190998948}
+  BaseMenu: {fileID: 1190998948}
+  MenuName: {fileID: 1750411773}
   Description: {fileID: 1292630490}
   Amount: {fileID: 1626519671}
   Cost: {fileID: 586202692}
-  BaseMenuItem: {fileID: 614624181}
+  BaseMenuItem: {fileID: 614624180}
+  Arrows: {fileID: 2075668816}
 --- !u!1 &1626519669
 GameObject:
   m_ObjectHideFlags: 0

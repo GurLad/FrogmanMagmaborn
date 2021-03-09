@@ -5,17 +5,23 @@ using UnityEngine.UI;
 
 public class KnowledgeController : MonoBehaviour
 {
-    public List<KnowledgeUpgrade> Upgrades;
+    public enum UpgradeState { Available, Active, Inactive, Locked = -1 }
+    public List<KnowledgeUpgradeList> UpgradeMenus;
     public Sprite ActiveSprite;
     public Sprite InactiveSprite;
-    public Sprite[] ChoiceSprites;
+    public Sprite[] InclinationSprites;
     [Header("Objects")]
-    public MenuController UpgradeMenu;
+    public MenuController BaseMenu;
+    public Text MenuName;
     public Text Description;
     public Text Amount;
     public Text Cost;
-    public KnowledgeMenuItem BaseMenuItem;
+    public GameObject BaseMenuItem;
+    public GameObject Arrows;
+    private List<MenuController> menus = new List<MenuController>();
+    private int selectedMenu;
     private int knowledge;
+    private bool pressedLastFrame;
     public static bool HasKnowledge(HardcodedKnowledge name)
     {
         return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
@@ -48,29 +54,97 @@ public class KnowledgeController : MonoBehaviour
     private void Awake()
     {
         Knowledge = SavedData.Load<int>("Knowledge", "Amount");
-        int pos = 0;
-        for (int i = 0; i < Upgrades.Count; i++)
+        for (int i = 0; i < UpgradeMenus.Count; i++) // For each menu
         {
-            Upgrades[i].Load((int)Upgrades[i].DefaultState);
-            if (Upgrades[i].State == KnowledgeUpgrade.UpgradeState.Locked)
+            int pos = 0;
+            // Create a new menu
+            MenuController menu = Instantiate(BaseMenu.gameObject, BaseMenu.transform.parent).GetComponent<MenuController>();
+            menus.Add(menu);
+            menu.gameObject.SetActive(i == 0);
+            // Add upgrades
+            foreach (KnowledgeUpgrade upgrade in UpgradeMenus[i].Upgrades)
             {
-                continue;
+                upgrade.Load((int)upgrade.DefaultState);
+                if (upgrade.State == UpgradeState.Locked)
+                {
+                    continue;
+                }
+                KnowledgeMenuItem item;
+                switch (UpgradeMenus[i].Type)
+                {
+                    case KnowledgeUpgradeType.Toggle:
+                        item = Instantiate(BaseMenuItem, menu.transform).AddComponent<ToggleKnowledgeMenuItem>();
+                        break;
+                    case KnowledgeUpgradeType.Inclination:
+                        item = Instantiate(BaseMenuItem, menu.transform).AddComponent<InclinationKnowledgeMenuItem>();
+                        break;
+                    default:
+                        throw new System.Exception("No type?");
+                }
+                // A very bad code for finding the indicators
+                item.Indicators = new List<GameObject>();
+                foreach (Transform child in item.transform)
+                {
+                    if (child.name.Contains("State"))
+                    {
+                        item.BoughtIndicator = child.gameObject.GetComponent<Image>();
+                    }
+                    else
+                    {
+                        item.Indicators.Add(child.gameObject);
+                    }
+                }
+                RectTransform rectTransform = item.GetComponent<RectTransform>();
+                rectTransform.SetParent(menu.GetComponent<RectTransform>(), true);
+                rectTransform.anchoredPosition += new Vector2(0, -16 * pos++);
+                item.Controller = this;
+                item.Upgrade = upgrade;
+                item.GetComponent<Text>().text = item.Upgrade.Name.PadRight(12);
+                item.gameObject.SetActive(true);
+                menu.MenuItems.Add(item);
             }
-            KnowledgeMenuItem item = Instantiate(BaseMenuItem.gameObject, UpgradeMenu.transform).GetComponent<KnowledgeMenuItem>();
-            RectTransform rectTransform = item.GetComponent<RectTransform>();
-            rectTransform.SetParent(UpgradeMenu.GetComponent<RectTransform>(), true);
-            rectTransform.anchoredPosition += new Vector2(0, -16 * pos++);
-            item.Controller = this;
-            item.Upgrade = Upgrades[i];
-            item.GetComponent<Text>().text = item.Upgrade.Name.PadRight(12);
-            item.gameObject.SetActive(true);
-            UpgradeMenu.MenuItems.Add(item);
+            // Remove the menu if empty (locked)
+            if (menu.MenuItems.Count <= 1)
+            {
+                menus.Remove(menu);
+                Destroy(menu.gameObject);
+                UpgradeMenus.RemoveAt(i--);
+            }
+        }
+        if (menus.Count < 2) // Only one menu
+        {
+            Arrows.gameObject.SetActive(false);
+        }
+        selectedMenu = 0;
+    }
+    private void Update()
+    {
+        if (menus.Count < 2)
+        {
+            return;
+        }
+        if (Control.GetAxisInt(Control.Axis.X) != 0)
+        {
+            if (!pressedLastFrame)
+            {
+                menus[selectedMenu].gameObject.SetActive(false);
+                selectedMenu += menus.Count + Control.GetAxisInt(Control.Axis.X);
+                selectedMenu %= menus.Count;
+                menus[selectedMenu].gameObject.SetActive(true);
+                menus[selectedMenu].SelectItem(1);
+                MenuName.text = UpgradeMenus[selectedMenu].Name;
+                pressedLastFrame = true;
+            }
+        }
+        else
+        {
+            pressedLastFrame = false;
         }
     }
     public Sprite BuyUpgrade(KnowledgeUpgrade upgrade)
     {
         Knowledge -= upgrade.Cost;
-        upgrade.State = KnowledgeUpgrade.UpgradeState.Active;
+        upgrade.State = UpgradeState.Active;
         return SetUpgradeActive(upgrade, true);
     }
     public Sprite SetUpgradeActive(KnowledgeUpgrade upgrade, bool active)
@@ -96,67 +170,74 @@ public class KnowledgeController : MonoBehaviour
         upgrade.Save();
         return value % 3; // So 1 is physical (red), 2 is technical (blue), 3 = 0 is skillful (green)
     }
-}
 
-[System.Serializable]
-public class KnowledgeUpgrade
-{
-    public enum UpgradeState { Available, Active, Inactive, Locked = -1 }
-    public string Name;
-    public string InternalName;
-    public KnowledgeUpgradeType Type;
-    [TextArea]
-    public string Description;
-    public int Cost;
-    public bool Active
+    [System.Serializable]
+    public class KnowledgeUpgradeList
     {
-        get
-        {
-            return State == UpgradeState.Active;
-        }
-        set
-        {
-            State = value ? UpgradeState.Active : UpgradeState.Inactive;
-        }
+        public string Name;
+        public KnowledgeUpgradeType Type;
+        public List<KnowledgeUpgrade> Upgrades;
     }
-    public bool Bought
+
+    [System.Serializable]
+    public class KnowledgeUpgrade
     {
-        get
+        public string Name;
+        public string InternalName;
+        [TextArea]
+        public string Description;
+        public int Cost;
+        public bool Active
         {
-            return State != UpgradeState.Available && State != UpgradeState.Locked;
+            get
+            {
+                return State == UpgradeState.Active;
+            }
+            set
+            {
+                State = value ? UpgradeState.Active : UpgradeState.Inactive;
+            }
         }
-    }
-    public UpgradeState DefaultState;
-    public int NumChoices;
-    [HideInInspector]
-    public int ChoiceValue;
-    private UpgradeState state;
-    public UpgradeState State
-    {
-        get
+        public bool Bought
         {
-            return state;
+            get
+            {
+                return State != UpgradeState.Available && State != UpgradeState.Locked;
+            }
         }
-        set
+        public UpgradeState DefaultState;
+        public int NumChoices;
+        [HideInInspector]
+        public int ChoiceValue;
+        private UpgradeState state;
+        public UpgradeState State
         {
-            state = value;
-            ChoiceValue = (int)state;
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
+                ChoiceValue = (int)state;
+            }
         }
-    }
-    public void Save()
-    {
-        SavedData.Save("Knowledge", "Upgrade" + InternalName, Type == KnowledgeUpgradeType.Toggle ? (int)State : ChoiceValue);
-    }
-    public void Load(int defaultValue)
-    {
-        if (Type == KnowledgeUpgradeType.Toggle)
+        private KnowledgeUpgradeType Type;
+        public void Save()
         {
-            State = (UpgradeState)SavedData.Load("Knowledge", "Upgrade" + InternalName, defaultValue);
+            SavedData.Save("Knowledge", "Upgrade" + InternalName, Type == KnowledgeUpgradeType.Toggle ? (int)State : ChoiceValue);
         }
-        else
+        public void Load(int defaultValue)
         {
-            ChoiceValue = SavedData.Load("Knowledge", "Upgrade" + InternalName, defaultValue);
-            state = (UpgradeState)Mathf.Min(1, ChoiceValue);
+            if (Type == KnowledgeUpgradeType.Toggle)
+            {
+                State = (UpgradeState)SavedData.Load("Knowledge", "Upgrade" + InternalName, defaultValue);
+            }
+            else
+            {
+                ChoiceValue = SavedData.Load("Knowledge", "Upgrade" + InternalName, defaultValue);
+                state = (UpgradeState)Mathf.Min(1, ChoiceValue);
+            }
         }
     }
 }
