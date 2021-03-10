@@ -10,6 +10,7 @@ public class KnowledgeController : MonoBehaviour
     public Sprite ActiveSprite;
     public Sprite InactiveSprite;
     public Sprite[] InclinationSprites;
+    public Sprite[] TormentPowersSprites;
     [Header("Objects")]
     public MenuController BaseMenu;
     public Text MenuName;
@@ -77,6 +78,9 @@ public class KnowledgeController : MonoBehaviour
                         break;
                     case KnowledgeUpgradeType.Inclination:
                         item = Instantiate(BaseMenuItem, menu.transform).AddComponent<InclinationKnowledgeMenuItem>();
+                        break;
+                    case KnowledgeUpgradeType.TormentPower:
+                        item = Instantiate(BaseMenuItem, menu.transform).AddComponent<TormentKnowledgeMenuItem>();
                         break;
                     default:
                         throw new System.Exception("No type?");
@@ -186,6 +190,8 @@ public class KnowledgeController : MonoBehaviour
         public string InternalName;
         [TextArea]
         public string Description;
+        [TextArea]
+        public string AltDescription;
         public int Cost;
         public bool Active
         {

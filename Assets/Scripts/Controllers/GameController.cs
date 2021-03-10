@@ -630,13 +630,17 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Removes all markers.
     /// </summary>
-    /// <returns>True if there were any markers, flase otherwise.</returns>
+    /// <returns>True if there were any markers, false otherwise.</returns>
     public bool RemoveMarkers()
     {
-        int previousCount = MapObjects.Count;
-        MapObjects.FindAll(a => a is Marker).ForEach(a => Destroy(a.gameObject));
         previousPos = new Vector2Int(-1, -1);
-        return previousCount != MapObjects.Count;
+        List<MapObject> markers = MapObjects.FindAll(a => a is Marker);
+        if (markers.Count > 0)
+        {
+            markers.ForEach(a => Destroy(a.gameObject));
+            return true;
+        }
+        return false;
     }
     public void FinishMove(Unit unit)
     {

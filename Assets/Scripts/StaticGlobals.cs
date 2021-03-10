@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Difficulty { NotSet, Easy, Medium, Hard }
-public enum KnowledgeUpgradeType { Toggle, Inclination }
+public enum KnowledgeUpgradeType { Toggle, Inclination, TormentPower }
 public enum HardcodedKnowledge { LevelUpChoice, InclinationBuff } // For convenience only
 public enum Team { Player, Monster, Guard }
 public enum AIType { Charge, Hold, Guard }
@@ -22,5 +22,9 @@ public static class StaticGlobals
             return "Torment";
         }
         return team.ToString();
+    }
+    public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)
+    {
+        return "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[paletteID][colorIndex]) + ">" + str + "</color>";
     }
 }

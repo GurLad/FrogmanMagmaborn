@@ -40,7 +40,7 @@ public abstract class KnowledgeMenuItem : MenuItem
             }
         }
     }
-    protected abstract void ShowBoughtIndicator();
-    protected abstract void ChangeActiveStatus();
     protected abstract void Buy();
+    protected abstract void ChangeActiveStatus();
+    protected abstract void ShowBoughtIndicator();
 }

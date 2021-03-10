@@ -5601,6 +5601,7 @@ MonoBehaviour:
     - Name: Choice +1
       InternalName: LevelUpChoice
       Description: Increase amount of options when leveling up.
+      AltDescription: 
       Cost: 1
       DefaultState: 0
       NumChoices: 0
@@ -5608,6 +5609,7 @@ MonoBehaviour:
     - Name: Inclination
       InternalName: InclinationBuff
       Description: Increase offensive stats against enemies of the same inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: 0
       NumChoices: 0
@@ -5618,6 +5620,7 @@ MonoBehaviour:
     - Name: Frogman
       InternalName: InclinationFrogman
       Description: Change Frogman's inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: -1
       NumChoices: 3
@@ -5625,6 +5628,7 @@ MonoBehaviour:
     - Name: Firbell
       InternalName: InclinationFirbell
       Description: Change Firbell's inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: -1
       NumChoices: 3
@@ -5632,6 +5636,7 @@ MonoBehaviour:
     - Name: Xirveros
       InternalName: InclinationXirveros
       Description: Change Xirveros's inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: -1
       NumChoices: 3
@@ -5639,6 +5644,7 @@ MonoBehaviour:
     - Name: Kresla
       InternalName: InclinationKresla
       Description: Change Kresla's inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: -1
       NumChoices: 3
@@ -5646,39 +5652,21 @@ MonoBehaviour:
     - Name: Kepluigi
       InternalName: InclinationKepluigi
       Description: Change Kepluigi's inclination.
+      AltDescription: 
       Cost: 3
       DefaultState: -1
       NumChoices: 3
       ChoiceValue: 0
-  - Name: fgdfgd
-    Type: 1
+  - Name: Torment
+    Type: 2
     Upgrades:
-    - Name: Firbell
-      InternalName: InclinationFirbell
-      Description: Change Firbell's inclination.
-      Cost: 3
-      DefaultState: -1
-      NumChoices: 3
-      ChoiceValue: 0
-    - Name: Xirveros
-      InternalName: InclinationXirveros
-      Description: Change Xirveros's inclination.
-      Cost: 3
-      DefaultState: -1
-      NumChoices: 3
-      ChoiceValue: 0
-    - Name: Kresla
-      InternalName: InclinationKresla
-      Description: Change Kresla's inclination.
-      Cost: 3
-      DefaultState: -1
-      NumChoices: 3
-      ChoiceValue: 0
-    - Name: Kepluigi
-      InternalName: InclinationKepluigi
-      Description: Change Kepluigi's inclination.
-      Cost: 3
-      DefaultState: -1
+    - Name: Deny/Accept
+      InternalName: TormentDenyAccept
+      Description: 'I : Take 1 non-lethal damage each turn, but enemies have -1 all
+        stats'
+      AltDescription: 'II: Heal 1 damage each turn, but enemies have +1 all stats'
+      Cost: 0
+      DefaultState: 0
       NumChoices: 3
       ChoiceValue: 0
   ActiveSprite: {fileID: 21300000, guid: efc9e1002975f4f48affddb1d58ec88a, type: 3}
@@ -5687,6 +5675,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6713736bb5fad5943a8685381b038ca4, type: 3}
   - {fileID: 21300000, guid: 37ba4107551702647a46e01f34280835, type: 3}
   - {fileID: 21300000, guid: e4e0cbb4469896f46b5ac6c2943865eb, type: 3}
+  TormentPowersSprites:
+  - {fileID: 21300000, guid: 2222ef5016218a942a05dfc1db1e4693, type: 3}
+  - {fileID: 21300000, guid: 2dc6918b63724f1449983ca6f18ad967, type: 3}
+  - {fileID: 21300000, guid: f9b7535c486d248479b98b3ca0354373, type: 3}
   BaseMenu: {fileID: 1190998948}
   MenuName: {fileID: 1750411773}
   Description: {fileID: 1292630490}

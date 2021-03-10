@@ -230,7 +230,7 @@ public class Stats
     }
     private string ColorText(int id)
     {
-        return (statValues[id] > 0 ? "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[(id / 2 + 1) % 3][1]) + ">" + StatName(id) + ":</color>" : StatName(id) + ":") + statValues[id].ToString().PadRight(3);
+        return (statValues[id] > 0 ? (StatName(id) + ":").ToColoredString((id / 2 + 1) % 3) : StatName(id) + ":") + statValues[id].ToString().PadRight(3);
     }
     private string StatName(int id)
     {
