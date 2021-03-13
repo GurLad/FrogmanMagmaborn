@@ -231,7 +231,7 @@ public class KnowledgeController : MonoBehaviour
         private KnowledgeUpgradeType Type;
         public void Save()
         {
-            SavedData.Save("Knowledge", "Upgrade" + InternalName, Type == KnowledgeUpgradeType.Toggle ? (int)State : ChoiceValue);
+            SavedData.Save("Knowledge", "Upgrade" + InternalName, ChoiceValue);
         }
         public void Load(int defaultValue)
         {

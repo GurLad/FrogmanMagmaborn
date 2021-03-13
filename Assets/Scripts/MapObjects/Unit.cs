@@ -657,7 +657,7 @@ public class Unit : MapObject
     {
         return "HP :" + Health.ToString().PadRight(padding) + 
             "\nDMG:" + (canAttack ? GetDamage(other).ToString() : "--").PadRight(padding) + 
-            "\nHIT:" + (canAttack ? GetHitChance(other).ToString().Replace("100", padding <= 2 ? "99" : "100") : "--").PadRight(padding);
+            "\nHIT:" + (canAttack ? GetHitChance(other).ToString() : "--").PadRight(padding);
     }
     public string BattleStats()
     {

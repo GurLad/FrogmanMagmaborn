@@ -1038,6 +1038,7 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
+        PaletteController.Current.SpritePalettes[1] = basePalette; // Fix Torment palette
         NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.SaveAll(SaveMode.Slot);
