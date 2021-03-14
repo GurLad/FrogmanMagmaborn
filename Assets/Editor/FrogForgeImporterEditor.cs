@@ -23,5 +23,9 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.BattleAnimationController.AutoLoad();
         }
+        if (myScript.PortraitController != null && GUILayout.Button("Load Portraits"))
+        {
+            myScript.PortraitController.AutoLoad();
+        }
     }
 }

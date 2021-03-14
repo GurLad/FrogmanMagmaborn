@@ -69,6 +69,21 @@ public class PortraitController : MonoBehaviour
         // Select portrait
         return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
     }
+    #if UNITY_EDITOR
+    public void AutoLoad()
+    {
+        // Load json
+        string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Portraits.json").text;
+        JsonUtility.FromJsonOverwrite("{" + '"' + "Portraits" + '"' + ":" + json + "}", this);
+        // Load animations
+        for (int i = 0; i < Portraits.Count; i++)
+        {
+            Portraits[i].Foreground = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/Portraits/" + Portraits[i].Name + "/F.png");
+            Portraits[i].Background = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/Portraits/" + Portraits[i].Name + "/B.png");
+        }
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+    #endif
 }
 
 [System.Serializable]

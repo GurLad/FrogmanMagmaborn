@@ -46,96 +46,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Portraits:
   - Name: Frogman
-    Background: {fileID: 21300000, guid: 7275e5ebc10300d43b71b12f827ab4d5, type: 3}
-    Foreground: {fileID: 21300000, guid: 65822cec2c84afd4795bc4be04256037, type: 3}
+    Background: {fileID: 21300000, guid: d1a002508154df84884c5cb8f2d0b8d9, type: 3}
+    Foreground: {fileID: 21300000, guid: c26c9b8444c0c004f92f0049a543e7f1, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
       - {r: 1, g: 1, b: 1, a: 1}
       - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
-      - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
+      - {r: 0.3137255, g: 0.1882353, b: 0, a: 1}
     ForegroundColorID: 0
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Firbell
-    Background: {fileID: 21300000, guid: 51c8042ce24e493448b1f7fb5f5e662d, type: 3}
-    Foreground: {fileID: 21300000, guid: 87c2eac70914e3e488ed2fea0a8c69ac, type: 3}
+    Background: {fileID: 21300000, guid: 7ac463c2a372528459df82bbe1d328ca, type: 3}
+    Foreground: {fileID: 21300000, guid: d43ac6d65cea39441a64962772de32b4, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
-      - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
-      - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
+      - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
+      - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
     ForegroundColorID: 3
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Xirveros
-    Background: {fileID: 21300000, guid: 0d17df2050d179546be93b004e3abb1a, type: 3}
-    Foreground: {fileID: 21300000, guid: 79d20c30b1cb5fe4b8d714e0babb0618, type: 3}
+    Background: {fileID: 21300000, guid: 3e277ead549e3774fb07f19be743bb2f, type: 3}
+    Foreground: {fileID: 21300000, guid: beee822a2322202438ff74d3d8495c9f, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.98823535, g: 0.34509805, b: 0.6117647, a: 1}
-      - {r: 0.8941177, g: 0, b: 0.37647063, a: 1}
+      - {r: 0.9882353, g: 0.34509805, b: 0.6117647, a: 1}
+      - {r: 0.89411765, g: 0, b: 0.3764706, a: 1}
       - {r: 0.6745098, g: 0, b: 0.15686275, a: 1}
     ForegroundColorID: 3
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Kresla
-    Background: {fileID: 21300000, guid: 26dc33e5d5154fd4b89cfe8c3804b120, type: 3}
-    Foreground: {fileID: 21300000, guid: 4c0ca9fbfdb929d429f4f944a8a18d1c, type: 3}
+    Background: {fileID: 21300000, guid: 306371f2925ffd84cacb2e2ed04e920b, type: 3}
+    Foreground: {fileID: 21300000, guid: 93fbeea89ecd893489644012c98bb4f8, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
-      - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
-      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+      - {r: 0.3137255, g: 0.1882353, b: 0, a: 1}
+      - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+      - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
     ForegroundColorID: 3
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Monster
-    Background: {fileID: 21300000, guid: aefc7e88f738bbe41b1800323d3811cb, type: 3}
-    Foreground: {fileID: 21300000, guid: 389de8980a12d524f96cce244e3f8976, type: 3}
+    Background: {fileID: 21300000, guid: d72f78fd4839c79429728e6e5e3c812e, type: 3}
+    Foreground: {fileID: 21300000, guid: 68f99502b3ccf7e45b87bcf2b67233e8, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.98823535, g: 0.47058827, b: 0.98823535, a: 1}
-      - {r: 0.86274517, g: 0, b: 0.8313726, a: 1}
+      - {r: 0.9882353, g: 0.47058824, b: 0.9882353, a: 1}
+      - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
       - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
     ForegroundColorID: 1
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Torment
-    Background: {fileID: 21300000, guid: 985c9986db390984f8e8ab3757210cb7, type: 3}
-    Foreground: {fileID: 21300000, guid: ad9b6ad94e832a8419c10451c7f33590, type: 3}
+    Background: {fileID: 21300000, guid: 4e9520428490e4342916a434f0112ae7, type: 3}
+    Foreground: {fileID: 21300000, guid: 624d4834ae4bbee4d99b18181d12b36c, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
       - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
-      - {r: 0, g: 0.909804, b: 0.8941177, a: 1}
-      - {r: 0.6431373, g: 0.909804, b: 0.98823535, a: 1}
+      - {r: 0, g: 0.9098039, b: 0.89411765, a: 1}
+      - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
     ForegroundColorID: 3
     Voice:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   - Name: Kepluigi
-    Background: {fileID: 21300000, guid: a7883dd9f0f1e6f42ad4f684523812bd, type: 3}
-    Foreground: {fileID: 21300000, guid: c362d6fbe870fdb48a5f05d2e147cd7a, type: 3}
+    Background: {fileID: 21300000, guid: 025e942501399d740906554927ec7558, type: 3}
+    Foreground: {fileID: 21300000, guid: 0493bbaea767c584ab5d41dc0b84c064, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+      - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
       - {r: 0, g: 0.65882355, b: 0.28235295, a: 1}
       - {r: 0, g: 0.34509805, b: 0, a: 1}
     ForegroundColorID: 2
@@ -143,6 +149,7 @@ MonoBehaviour:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   GenericPortraits:
   - tags: female,young
     NameValuesID: 1
@@ -378,6 +385,7 @@ MonoBehaviour:
       Name: 
       VoiceType: 0
       Pitch: 1
+    Assigned: 0
   CharacterVoices:
   - Name: Frogman
     VoiceType: 3
