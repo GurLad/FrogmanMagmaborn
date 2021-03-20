@@ -1,0 +1,34 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:5
+~ Demands
+# Nothinig
+~ Before battle
+:loadUnits::guards
+:addGenericCharacter:Guard1:old
+:addGenericCharacter:Guard2:young
+Guard1: Ah... The good ol' magma. Been too long
+since my last battle.
+Guard2: It's... It's so hot! How can you even
+fight in here?
+Guard1: Don't worry, kid. You'll get used to it.
+Just swim in there a bit more!
+Guard2: What? Swim in the magma?!
+Guard1: Of course! Why, don't you youngsters do it?
+How can you fight without knowing how
+to swim im magma?
+Guard2: But i-it's dangerous!
+Guard1: Are you this cowardly?
+Back in my day, EVERY- ONE swam in magma!
+Guard2: But-
+Guard1: No buts! After this battle, you'll go for
+a swim!
+Guard2: A-all right...
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
