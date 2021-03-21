@@ -533,13 +533,17 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1a7854919801fd346bf653dba23a8bf6, type: 3}
   - {fileID: 4900000, guid: 2d8b8df215eb39c4280ce5891fb1108d, type: 3}
   - {fileID: 4900000, guid: 3a496a95f805c3248a9238155045b575, type: 3}
+  - {fileID: 4900000, guid: 2e1bd13240f38e944b95eb816fdca56e, type: 3}
   - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
   - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
+  - {fileID: 4900000, guid: 71f56ca6ef5990c4ebb0ed308995693b, type: 3}
   - {fileID: 4900000, guid: ff1081ace6756d74c847d691a7c94a30, type: 3}
+  - {fileID: 4900000, guid: b4e3d9ae71a191047ae008b812cb6b73, type: 3}
+  - {fileID: 4900000, guid: 8735270fb7ed9454fbde30799e845b43, type: 3}
+  - {fileID: 4900000, guid: 9a443581f8657964c8a4bb7807dd3ccf, type: 3}
+  - {fileID: 4900000, guid: d3ba5e2ebd4155c4e8024a96efc68013, type: 3}
   - {fileID: 4900000, guid: 8f974e8b1ae5fab4c88c275030c9eb1f, type: 3}
   - {fileID: 4900000, guid: 9435ace81de6bdd4381afc4a5118d53b, type: 3}
-  - {fileID: 4900000, guid: 168cad2a5f37a2346907ea0cede181b1, type: 3}
-  - {fileID: 4900000, guid: bd2fe1cce814f50418727347124e1131, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -15018,22 +15022,20 @@ MonoBehaviour:
     ReplacedBy:
     - Golem
   Rooms:
-  - {fileID: 4900000, guid: 39a452794dabf7d43b1436f7bbdee8a3, type: 3}
-  - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
-  - {fileID: 4900000, guid: 6a706ad4a0aeb8b4c935d6c7b9be2a19, type: 3}
-  - {fileID: 4900000, guid: ebda35d761691014589ef4771c8442b7, type: 3}
   - {fileID: 4900000, guid: 4a80e62a2063aae4e83ff7def7e34386, type: 3}
-  - {fileID: 4900000, guid: acaa5ef5b44b9f246b22adf70736b428, type: 3}
+  - {fileID: 4900000, guid: f798a95fad2b69b40aa029762cbab797, type: 3}
   - {fileID: 4900000, guid: 60f144b8f5c20a84a9c8c749eac1ef7a, type: 3}
-  - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
+  - {fileID: 4900000, guid: 39a452794dabf7d43b1436f7bbdee8a3, type: 3}
+  - {fileID: 4900000, guid: 6a706ad4a0aeb8b4c935d6c7b9be2a19, type: 3}
+  - {fileID: 4900000, guid: acaa5ef5b44b9f246b22adf70736b428, type: 3}
   - {fileID: 4900000, guid: f3680b26a1805eb42b6162681826e933, type: 3}
   - {fileID: 4900000, guid: c3512488bcb852d4f85c1ee254c225d6, type: 3}
   - {fileID: 4900000, guid: bd0b5748d218de54484c8e0b4f4d1f60, type: 3}
   - {fileID: 4900000, guid: 45ee885040e21ed4aa1683b2c8bb8a0e, type: 3}
-  - {fileID: 4900000, guid: f5d0fcb7edf8d144b8e0e193103681a7, type: 3}
-  - {fileID: 4900000, guid: 0104d8eb312df814fb9350d36facfb04, type: 3}
-  - {fileID: 4900000, guid: f798a95fad2b69b40aa029762cbab797, type: 3}
-  - {fileID: 4900000, guid: d8a82ab95fb65104bbf52705642ec3c7, type: 3}
+  - {fileID: 4900000, guid: cdf1db803924658418854320328da343, type: 3}
+  - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
+  - {fileID: 4900000, guid: ebda35d761691014589ef4771c8442b7, type: 3}
+  - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
@@ -15059,7 +15061,7 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 7
+  DebugEndgameLevel: 5
   DebugUnits:
   - Frogman
   - Firbell
@@ -17220,6 +17222,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1933120765138063302, guid: 462264a2a0c695647aaf7b8f54ff65c5,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7267162193386645212, guid: 462264a2a0c695647aaf7b8f54ff65c5,
         type: 3}
       propertyPath: m_Name

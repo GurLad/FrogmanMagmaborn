@@ -14,7 +14,7 @@ public class UnitClassData : MonoBehaviour
     {
         // Load json
         string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Classes.json").text;
-        JsonUtility.FromJsonOverwrite("{" + '"' + "ClassDatas" + '"' + ":" + json + "}", this);
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassDatas"), this);
         // Load animations
         for (int i = 0; i < ClassDatas.Count; i++)
         {

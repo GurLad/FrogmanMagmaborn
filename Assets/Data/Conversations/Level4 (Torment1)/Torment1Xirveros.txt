@@ -1,0 +1,55 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:4
+hasCharacter:Xirveros
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Frogman: It's you again!
+:play:Trustworthy
+Torment: It IS me again, heh heh!
+And you have Xirveros with you, I see!
+What a lovely sight!
+Frogman: What is Xirveros to do with anything?
+Torment: What isn't Xirveros to do with? Ha ha!
+Didn't he ever tell you?
+Frogman: Tell me what?
+:play:Trickster:T
+Torment: He was my previous champion, yes! Heh!
+Frogman: What?!
+Tried to betray me at the end! It was...
+Fantastic! Ha ha ha!
+I broke his already fragile mind then.
+Can't have you be too independent, you know
+Frogman: Is this a threat?
+:playIntro:Tormentor
+:loadMap:
+:loadUnits:
+Torment: Oh, it very much is! HA HA HA!!!
+Just follow my orders, and all will be fine!
+Or not. Heh heh heh!
+Frogman: I-
+Torment: I can already tell you're about to say
+something boring. Ha!
+As if I'd listen. Enough talk - FIGHT!
+~ After battle
+Torment: Ohh, you're so much more interesting
+when fighting instead of talking! Heh heh!
+Frogman: You... This... I...
+Torment: See? That's much better now! Ha ha!
+Maybe I should break your mind too. Hm...
+Frogman: N-no! There is no need! I'll never
+betray you!
+Torment: HA HA HA!!! As if! But nevertheless, I do
+enjoy our conversations. Heh!
+:loadMap:InitTormentRoom
+You can keep your mind. For now.
+:loadMap:InitTormentRoom:Player
+Frogman: ...Xirveros?
+Xirveros: ...Ah... Arrrg... Br... Tor... Ment... 
+Frogman: I'm sorry, Xirveros. I didn't know...
+Xirveros: Frog \w@ Frog \w@     Frog \w@ Frog \w@

@@ -27,4 +27,8 @@ public static class StaticGlobals
     {
         return "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[paletteID][colorIndex]) + ">" + str + "</color>";
     }
+    public static string ForgeJsonToUnity(this string json, string propertyName)
+    {
+        return "{" + '"' + propertyName + '"' + ":" + json + "}";
+    }
 }

@@ -11,6 +11,7 @@ public class PortraitController : MonoBehaviour
     public List<GenericPortrait> GenericPortraits;
     // In the future, may add other way to identify name groups (ex. names for guards, names for males/females, names for Tormen etc.)
     public List<GenericCharacterVoice> GenericVoicesAndNames;
+    public List<Palette> GenericPossibleBackgroundColors = new List<Palette>();
     public Portrait ErrorPortrait;
     [Header("Voices")]
     public List<CharacterVoice> CharacterVoices;
@@ -72,14 +73,23 @@ public class PortraitController : MonoBehaviour
     #if UNITY_EDITOR
     public void AutoLoad()
     {
-        // Load json
+        // Load jsons
         string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Portraits.json").text;
-        JsonUtility.FromJsonOverwrite("{" + '"' + "Portraits" + '"' + ":" + json + "}", this);
-        // Load animations
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Portraits"), this);
+        json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/GenericPortraits.json").text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("GenericPortraits"), this);
+        json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/GenericPortraitsGlobalData.json").text;
+        JsonUtility.FromJsonOverwrite(json, this);
+        // Load sprites
         for (int i = 0; i < Portraits.Count; i++)
         {
             Portraits[i].Foreground = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/Portraits/" + Portraits[i].Name + "/F.png");
             Portraits[i].Background = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/Portraits/" + Portraits[i].Name + "/B.png");
+        }
+        for (int i = 0; i < GenericPortraits.Count; i++)
+        {
+            GenericPortraits[i].Foreground = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/GenericPortraits/" + GenericPortraits[i].Name + "/F.png");
+            GenericPortraits[i].Background = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/GenericPortraits/" + GenericPortraits[i].Name + "/B.png");
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
@@ -117,19 +127,10 @@ public class GenericPortrait
     public int NameValuesID;
     public Sprite Background;
     public Sprite Foreground;
-    public List<Palette> PossibleBackgroundColors = new List<Palette>();
+    // For FrogForge
+    public string Name;
     [HideInInspector]
     public List<string> Tags;
-    // Currently, can always use every foreground palette. Replace when adding Tormen
-    public GenericPortrait()
-    {
-        Palette first = new Palette();
-        PossibleBackgroundColors.Add(first);
-        for (int i = 0; i < 4; i++)
-        {
-            first.Colors[i] = Color.black;
-        }
-    }
 
     public void Init()
     {
@@ -143,7 +144,7 @@ public class GenericPortrait
         portrait.Name = portrait.Voice.Name;
         portrait.Background = Background;
         portrait.Foreground = Foreground;
-        portrait.BackgroundColor = PossibleBackgroundColors[Random.Range(0, PossibleBackgroundColors.Count)];
+        portrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
         portrait.ForegroundColorID = Random.Range(0, 4);
         return portrait;
     }
