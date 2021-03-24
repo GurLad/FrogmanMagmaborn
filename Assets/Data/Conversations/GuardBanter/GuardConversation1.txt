@@ -1,13 +1,14 @@
 priority:-1
 unique:F
+id:GuardPreBanter
 ~ Requirements
-roomNumber:5
+roomNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
-:loadUnits::guards
 :addGenericCharacter:Guard1:old
 :addGenericCharacter:Guard2:young
+:loadUnits::guard
 Guard1: Ah... The good ol' magma. Been too long
 since my last battle.
 Guard2: It's... It's so hot! How can you even

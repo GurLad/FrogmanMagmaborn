@@ -278,6 +278,18 @@ public class ConversationPlayer : MidBattleScreen
                         return;
                     }
                     throw new System.Exception("No matching function! (" + parts[2] + ")");
+                case "callOther":
+                    // Store current lines & position
+                    functionStack.Push(new FunctionStackObject(num, lines));
+                    // Load new conversation
+                    ConversationData conversation = ConversationController.Current.SelectConversationByID(parts[2]);
+                    if (conversation != null)
+                    {
+                        lines = postBattle ? conversation.PostBattleLines : conversation.Lines;
+                        StartLine(0);
+                        return;
+                    }
+                    throw new System.Exception("No matching conversation! (" + parts[2] + ")");
                 case "return":
                     if (functionStack.Count == 0)
                     {

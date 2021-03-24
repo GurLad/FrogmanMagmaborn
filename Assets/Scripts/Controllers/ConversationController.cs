@@ -26,10 +26,18 @@ public class ConversationController : MonoBehaviour
         currentOptions.Sort();
         Debug.Log("Options: " + string.Join(", ", currentOptions));
         ConversationData chosen = currentOptions[0];
-        //if (chosen.Choose())
-        //{
-        //    options.Remove(chosen);
-        //}
+        return chosen;
+    }
+    public ConversationData SelectConversationByID(string id)
+    {
+        List<ConversationData> currentOptions = options.FindAll(a => a.ID == id);
+        if (currentOptions.Count <= 0)
+        {
+            return null;
+        }
+        currentOptions.Sort();
+        Debug.Log("Options: " + string.Join(", ", currentOptions));
+        ConversationData chosen = currentOptions[0];
         return chosen;
     }
     #if UNITY_EDITOR 

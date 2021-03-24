@@ -934,6 +934,16 @@ public class GameController : MonoBehaviour
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
         List<Unit> playerCharacters = PlayerUnits.Where(a => a != null).ToList();
+        if ((ofTeam ?? Team.Player) != Team.Player)
+        {
+            // "Remove" player units
+            foreach (Unit player in playerCharacters)
+            {
+                player.Pos = Vector2Int.one * -1;
+                player.transform.parent = currentUnitsObject;
+            }
+        }
+        PortraitController.Current.TempPortraits.Values.ToList().ForEach(a => a.Assigned = false);
         // Units
         List<string> unitDatas = room.Units;
         int numPlayers = 0;

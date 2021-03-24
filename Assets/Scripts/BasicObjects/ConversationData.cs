@@ -10,9 +10,9 @@ public class ConversationData : System.IComparable<ConversationData>
     public List<string> PostBattleLines { get; private set; }
     public Dictionary<string, List<string>> Functions;
     public bool Done { get; private set; }
+    public string ID { get; private set; } = null;
     private int priority;
     private bool unique;
-    private string id = null;
 
     public ConversationData(TextAsset sourceFile)
     {
@@ -32,15 +32,15 @@ public class ConversationData : System.IComparable<ConversationData>
                     unique = lineParts[1] == "T";
                     break;
                 case "id":
-                    id = lineParts[1];
+                    ID = lineParts[1];
                     break;
                 default:
                     break;
             }
         }
         // Check unique & id
-        id = id ?? sourceFile.name;
-        if (unique && SavedData.Load<int>("ConversationData", "ID" + id) == 2)
+        ID = ID ?? sourceFile.name;
+        if (unique && SavedData.Load<int>("ConversationData", "ID" + ID) == 2)
         {
             Done = true;
         }
@@ -82,7 +82,7 @@ public class ConversationData : System.IComparable<ConversationData>
     {
         if (Done) // Failsafe
         {
-            Debug.LogWarning("Checking requirements of a done conversation? (" + id + ")");
+            Debug.LogWarning("Checking requirements of a done conversation? (" + ID + ")");
             return false;
         }
         foreach (var requirement in Requirements)
@@ -132,7 +132,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.NumRuns, int.Parse(parts[1].Substring(1)));
             case "firstTime":
                 // Return whether the pre-battle part of the conversation was played
-                return SavedData.Load<int>("ConversationData", "ID" + id) == 0;
+                return SavedData.Load<int>("ConversationData", "ID" + ID) == 0;
 
             // Mid-battle requirements
 
@@ -180,7 +180,7 @@ public class ConversationData : System.IComparable<ConversationData>
     {
         if (unique)
         {
-            SavedData.Save("ConversationData", "ID" + id, postBattle ? 2 : 1);
+            SavedData.Save("ConversationData", "ID" + ID, postBattle ? 2 : 1);
             return true;
         }
         return false;
@@ -188,6 +188,6 @@ public class ConversationData : System.IComparable<ConversationData>
 
     public override string ToString()
     {
-        return id;
+        return ID;
     }
 }

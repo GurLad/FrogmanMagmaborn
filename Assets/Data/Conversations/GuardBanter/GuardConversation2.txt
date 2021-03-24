@@ -1,14 +1,15 @@
 priority:-1
 unique:F
+id:GuardPreBanter
 ~ Requirements
-roomNumber:5
+roomNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
-:loadUnits::guards
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
 :addGenericCharacter:Guard3:
+:loadUnits::guard
 Guard1: Hey, wanna play a game of Tag afterwards?
 Guard2: Tag? Seriously?
 Guard3: I love Tag! Let's do it!

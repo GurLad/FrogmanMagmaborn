@@ -1,13 +1,14 @@
 priority:-1
 unique:F
+id:GuardPreBanter
 ~ Requirements
-roomNumber:5
+roomNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
-:loadUnits::guards
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
+:loadUnits::guard
 Guard1: Um...
 Guard2: Yes?
 Guard1: Sorry to bother you, but have you seen my
