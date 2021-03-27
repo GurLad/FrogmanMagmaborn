@@ -120,6 +120,10 @@ public class KnowledgeController : MonoBehaviour
             Arrows.gameObject.SetActive(false);
         }
         selectedMenu = 0;
+        menus[selectedMenu].SelectItem(0);
+        MenuName.text = UpgradeMenus[selectedMenu].Name;
+        Description.text = UpgradeMenus[selectedMenu].Description;
+        Cost.text = "";
     }
     private void Update()
     {
@@ -135,8 +139,10 @@ public class KnowledgeController : MonoBehaviour
                 selectedMenu += menus.Count + Control.GetAxisInt(Control.Axis.X);
                 selectedMenu %= menus.Count;
                 menus[selectedMenu].gameObject.SetActive(true);
-                menus[selectedMenu].SelectItem(1);
+                menus[selectedMenu].SelectItem(0);
                 MenuName.text = UpgradeMenus[selectedMenu].Name;
+                Description.text = UpgradeMenus[selectedMenu].Description;
+                Cost.text = "";
                 pressedLastFrame = true;
             }
         }
@@ -179,6 +185,8 @@ public class KnowledgeController : MonoBehaviour
     public class KnowledgeUpgradeList
     {
         public string Name;
+        [TextArea]
+        public string Description;
         public KnowledgeUpgradeType Type;
         public List<KnowledgeUpgrade> Upgrades;
     }

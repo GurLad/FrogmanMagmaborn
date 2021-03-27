@@ -2,6 +2,8 @@ priority:5
 unique:T
 ~
 roomNumber:5
+# Temp - for beta
+!hasFlag:finishedBeta
 ~
 # Gurantee a map that makes sense for the arrivals
 mapID:Level5-1
@@ -20,15 +22,15 @@ Who made them? When? How? I've never seen
 any usable materials!
 We must explo-
 }
-:addUnit:Xeklogi
+:addUnit:Xeplogi
 :loadUnits::player
-Xeklogi|???: Hold! Who goes there?!
+Xeplogi|???: Hold! Who goes there?!
 Frogman: We are-
-Xeklogi|???: You! How can you talk?
+Xeplogi|???: You! How can you talk?
 What manner of black magic is this?!
 Were you sent here by Memerian?!
 Frogman: Who?
-Xeklogi|???: Your trickery cannot fool me, demon!
+Xeplogi|???: Your trickery cannot fool me, demon!
 Know, with your last breath, that the 
 warrior who bested y-
 :addGenericCharacter:Guard1:
@@ -36,7 +38,7 @@ warrior who bested y-
 :play:GuardTheme
 ???: Hey! Is someone there?
 Frogman: Huh? Another Magma Emblemer?
-Xeklogi|???: W-who dares interr-
+Xeplogi|???: W-who dares interr-
 :loadUnits:
 Guard2: No, look! Those are Magma Emblemers!
 Frogman: Humans?!
@@ -49,24 +51,24 @@ Kresla: Humans?!
 :if:hasCharacter:Xirveros{
 Xirveros: No! No! Not again! We must turn back!
 }
-Xeklogi|???: Stop that at onc-
+Xeplogi|???: Stop that at onc-
 Guard1: Aha! This must be my lucky day!
 Fiends! Your rein of terror has come to an
 end! For I, [Name], will kill you now!
-Xeklogi|???: No! I must do so first!
+Xeplogi|???: No! I must do so first!
 Guard2: How many of them are there?!
 Never mind, kill every last one of them!
-Xeklogi|???: I am NOT one of them! I am The Great-
+Xeplogi|???: I am NOT one of them! I am The Great-
 Frogman: You! Ooze! Please, we're in the same
 side here!
 Help us defeat these monsters and humans!
-Xeklogi|???: I will never help the likes of you!
+Xeplogi|???: I will never help the likes of you!
 Frogman: Fine. Suit yourself.
-Xeklogi|???: Let me fini-
+Xeplogi|???: Let me fini-
 Guard2: CHAAAAAAAAARGE!
-Xeklogi|???: Oh, now you've done it!
+Xeplogi|???: Oh, now you've done it!
 Talking demons! Let us join forces!
-Xeklogi: Know that The Great Xeklogi is on your
+Xeplogi: Know that The Great Xeplogi is on your
 side!
 Frogman: ...I'm beginning to regret this...
 ~ Post-battle
@@ -74,4 +76,6 @@ Frogman: Whew! We survived!
 Torment|???: Not for much longer! This is the end of
 this beta!
 You will die now! Goodbye!
+:setFlag:finishedBeta
+:showPartTitle:End of:Beta
 :lose:

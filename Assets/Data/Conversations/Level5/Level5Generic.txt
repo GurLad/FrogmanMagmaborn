@@ -1,4 +1,4 @@
-priority:21
+priority:-1
 unique:F
 ~ Requirements
 roomNumber:5
@@ -6,11 +6,11 @@ roomNumber:5
 # Nothinig
 ~ Before battle
 :callOther:GuardPreBanter
-:addUnit:Kepluigi
+:play:BeforeBattle2
+:addUnit:Xeplogi
 :loadUnits:
-Frogman: Uh... This is supposed to be impossible.
-Oh well. The game works. Please pretend
-that this is a normal conversation.
+Frogman: I don't have anything interesting to say.
+Yet.
 ~ After battle
 Frogman: Congratulations! Now we shall die.
 :lose:

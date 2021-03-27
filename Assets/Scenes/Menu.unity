@@ -5596,6 +5596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeMenus:
   - Name: Upgrades
+    Description: Pay knowled- ge to gain permanent upgrades.
     Type: 0
     Upgrades:
     - Name: Choice +1
@@ -5615,6 +5616,8 @@ MonoBehaviour:
       NumChoices: 0
       ChoiceValue: 0
   - Name: Inclination
+    Description: Change characters' inclination, changing what stats they gain in
+      level ups and what enemies they are strong against.
     Type: 1
     Upgrades:
     - Name: Frogman
@@ -5658,6 +5661,8 @@ MonoBehaviour:
       NumChoices: 3
       ChoiceValue: 0
   - Name: Torment
+    Description: 'Choose one mode to use per power. Monsters get an addition- al
+      stat for each Torment power you activate. '
     Type: 2
     Upgrades:
     - Name: Deny/Accept
