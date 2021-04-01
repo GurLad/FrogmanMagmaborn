@@ -150,6 +150,21 @@ MonoBehaviour:
       VoiceType: 0
       Pitch: 1
     Assigned: 0
+  - Name: Memerian
+    Background: {fileID: 21300000, guid: 39af27ca39c98ad429634cf4ec19c55e, type: 3}
+    Foreground: {fileID: 21300000, guid: 5f7f1696546c1ca429afdd1829314df8, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.9882353, g: 0.8784314, b: 0.7058824, a: 1}
+      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
+      - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
+    ForegroundColorID: 1
+    Voice:
+      Name: 
+      VoiceType: 0
+      Pitch: 1
+    Assigned: 0
   GenericPortraits:
   - tags: female,young
     NameValuesID: 1
@@ -321,6 +336,9 @@ MonoBehaviour:
   - Name: Kepluigi
     VoiceType: 2
     Pitch: 0.6
+  - Name: Memerian
+    VoiceType: 1
+    Pitch: 0.8
   ErrorVoice:
     Name: 
     VoiceType: 0
@@ -344,7 +362,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.6
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0

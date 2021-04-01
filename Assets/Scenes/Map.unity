@@ -546,6 +546,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: b4e3d9ae71a191047ae008b812cb6b73, type: 3}
   - {fileID: 4900000, guid: 8f974e8b1ae5fab4c88c275030c9eb1f, type: 3}
   - {fileID: 4900000, guid: 9435ace81de6bdd4381afc4a5118d53b, type: 3}
+  - {fileID: 4900000, guid: 15943aae81b605647a3b43de4524532b, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -12374,6 +12375,8 @@ MonoBehaviour:
     Class: Gargoyle
   - Unit: Xeplogi
     Class: Ooze
+  - Unit: Memerian
+    Class: Golem
   UnitGrowths:
   - Name: Frogman
     Growths: 020000000300000002000000010000000400000003000000
@@ -12382,13 +12385,16 @@ MonoBehaviour:
     Growths: 040000000300000002000000010000000200000002000000
     Inclination: 0
   - Name: Xirveros
-    Growths: 030000000200000002000000030000000100000003000000
+    Growths: 030000000100000002000000030000000200000003000000
     Inclination: 1
   - Name: Kresla
     Growths: 010000000100000003000000030000000400000000000000
     Inclination: 1
   - Name: Xeplogi
     Growths: 030000000400000003000000010000000200000002000000
+    Inclination: 0
+  - Name: Memerian
+    Growths: 040000000200000003000000020000000200000001000000
     Inclination: 0
   ClassDatas:
   - Name: Frogman
@@ -15077,11 +15083,12 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 5
+  DebugEndgameLevel: 6
   DebugUnits:
   - Frogman
   - Firbell
   - Xirveros
+  - Xeplogi
   DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
