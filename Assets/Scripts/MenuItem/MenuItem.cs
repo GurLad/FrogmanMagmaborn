@@ -6,6 +6,17 @@ using UnityEngine.UI;
 public class MenuItem : MonoBehaviour
 {
     public List<GameObject> Indicators;
+    public string Text
+    {
+        get
+        {
+            return text.text;
+        }
+        set
+        {
+            (text ??= GetComponent<Text>()).text = value;
+        }
+    }
     private Text text;
     private List<Trigger> triggers;
     private void Awake()

@@ -17,6 +17,7 @@ public class ConversationPlayer : MidBattleScreen
     public Text Text;
     public PortraitHolder Portrait;
     public GameObject Arrow;
+    public MenuController ChoiceMenu;
     public MenuController InfoDialogue;
     [Header("Main menu only")]
     public GameObject Knowledge;
@@ -138,6 +139,7 @@ public class ConversationPlayer : MidBattleScreen
             return;
         }
         gameObject.SetActive(true);
+        enabled = true;
         StartLine(currentLine + mod);
     }
     /// <summary>
@@ -225,9 +227,9 @@ public class ConversationPlayer : MidBattleScreen
 
                 case "showInfoDialogue":
                     // Args: title
-                    InfoDialogue.Text.text = parts[2];
-                    InfoDialogue.gameObject.SetActive(true);
                     Pause();
+                    InfoDialogue.Text.text = parts[2];
+                    InfoDialogue.Begin();
                     return;
                 case "showPartTitle":
                     // Args: subtitle, title
@@ -235,6 +237,24 @@ public class ConversationPlayer : MidBattleScreen
                     PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
                     partTitle.Begin(new List<string>(new string[] { parts[2], parts[3] }));
                     GameController.Current.TransitionToMidBattleScreen(partTitle);
+                    return;
+                case "showChoice":
+                    // Args: choosingCharacterName, option1, option2
+                    Pause();
+                    gameObject.SetActive(true);
+                    enabled = false;
+                    Text.text = "";
+                    Arrow.SetActive(false);
+                    Portrait.Portrait = PortraitController.Current.FindPortrait(Name.text = parts[2]);
+                    if (parts.Length != 5)
+                    {
+                        throw new System.Exception("Currently, choices of more than 2 options aren't supported.");
+                    }
+                    ChoiceMenu.MenuItems[0].Text = parts[3];
+                    ChoiceMenu.MenuItems[1].Text = parts[4];
+                    // To prevent people from thinking a choice is "correct"
+                    ChoiceMenu.SelectItem(Random.Range(0, 2));
+                    ChoiceMenu.Begin();
                     return;
 
                 // Global commands
@@ -246,7 +266,7 @@ public class ConversationPlayer : MidBattleScreen
                     SavedData.Save("ConversationData", "Flag" + parts[2], 1);
                     break;
 
-                // Synteax commands (ifs, functions...)
+                // Syntax commands (ifs, functions...)
 
                 case "if":
                     /* Syntax:
@@ -264,6 +284,7 @@ public class ConversationPlayer : MidBattleScreen
                         if (lines[num + 1].Contains(":else:"))
                         {
                             StartLine(num + 2);
+                            return;
                         }
                     }
                     break;

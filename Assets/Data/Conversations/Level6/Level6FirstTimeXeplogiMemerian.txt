@@ -1,0 +1,42 @@
+priority:5
+unique:F
+~ Requirements
+roomNumber:6
+hasCharacter:Xeplogi
+charactersAlive:>2
+~ Demands
+# TBA: Add room tags, and force a room built for Memerian and Keplogi
+~ Before battle
+:addUnit:Memerian
+:loadUnits::player
+:play:BeforeBattle
+:showChoice:Frogman:Trust Xeplogi:Trust Memerian
+:if:chose:0{
+Xeplogi: Ha! Yes!
+Memerian: Oh well. Your loss.
+}
+:else:{
+Memerian: Finally, someone sane.
+Xeplogi: No! You're evil!
+}
+Xeplogi: You! How dare you show your face here!
+Memerian|???: Oh. It's you again. What was your name?
+Kerluigi? Xekloigi?
+Xeplogi: How could you forget?! I am the great, the-
+Memerian|???: Oh, I remember, all right. Get over it.
+Frogman: Hey there. Calm down, please.
+Memerian|???: Oh, you must be the new champion.
+Frogman: The what?
+Xeplogi: Do not listen to her words of trickery!
+She is the evil Memerian!
+Memerian: Do you have to say this every time?
+Frogman: TBA. I'll redo this conversation later.
+# TBA: Add choice: fight with Memerian or Keplogi.
+:loadUnits:
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

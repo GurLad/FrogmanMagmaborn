@@ -142,6 +142,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "unitAlive":
                 // Return whether a certain unit is alive.
                 return GameController.Current.CheckUnitAlive(parts[1]);
+            case "chose":
+                // Return whether the last choice matches the given id.
+                return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);
             default:
                 break;
         }

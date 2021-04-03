@@ -27,7 +27,7 @@ public class MenuController : MidBattleScreen
     }
     private int count;
     private int previousSign;
-    public void Start()
+    private void Start()
     {
         MenuItems[Selected].Select();
         count = MenuItems.Count;
@@ -64,6 +64,11 @@ public class MenuController : MidBattleScreen
             SelectItem((Selected - Control.GetAxisInt(Control.Axis.Y) + count) % count);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
+    }
+    public void Begin()
+    {
+        gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
     }
     public void SelectItem(int index)
     {
