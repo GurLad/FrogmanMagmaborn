@@ -10,6 +10,12 @@ charactersAlive:>2
 :addUnit:Memerian
 :loadUnits::player
 :play:BeforeBattle
+:if:!hasCharacter:Memerian{
+Frogman: Entered if!
+}
+:else:{
+Frogman: Entered else!
+}
 Xeplogi: You! How dare you show your face here!
 Memerian|???: Oh. It's you again. What was your name?
 Kerluigi? Xekloigi?

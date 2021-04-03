@@ -257,15 +257,19 @@ public class ConversationPlayer : MidBattleScreen
                      */
                     string requirement = line.Substring(line.IndexOf(':', 1) + 1);
                     requirement = requirement.Substring(0, requirement.IndexOf('{'));
-                    int numBrackets = 1;
                     if (!origin.MeetsRequirement(requirement))
                     {
-                        while (numBrackets > 0)
+                        num = SkipBlock(num);
+                        // If found an else, do that content.
+                        if (lines[num + 1].Contains(":else:"))
                         {
-                            numBrackets -= lines[++num] == "}" ? 1 : 0;
-                            numBrackets += lines[num].Contains("{") ? 1 : 0;
+                            StartLine(num + 2);
                         }
                     }
+                    break;
+                case "else":
+                    // Reaching an else outside an if means that it wasn't taken, so just skip the block.
+                    num = SkipBlock(num);
                     break;
                 case "call":
                     // Store current lines & position
@@ -459,6 +463,16 @@ public class ConversationPlayer : MidBattleScreen
             }
         }
         return line;
+    }
+    private int SkipBlock(int currentLine)
+    {
+        int numBrackets = 1;
+        while (numBrackets > 0)
+        {
+            numBrackets -= lines[++currentLine] == "}" ? 1 : 0;
+            numBrackets += lines[currentLine].Contains("{") ? 1 : 0;
+        }
+        return currentLine;
     }
     private bool LineAddition(string trueLine)
     {
