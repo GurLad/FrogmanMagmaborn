@@ -1,0 +1,28 @@
+priority:-1
+unique:F
+id:GuardPreBanter
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:play:GuardTheme
+:addGenericCharacter:Guard:
+:addGenericCharacter:Bob:male
+:loadUnits::guard
+Guard: Hey there, Bob!
+Bob: My name is [Name].
+Guard: Sure thing, Bob. Say, want to go eat food?
+Bob: No. We're on guard duty.
+Guard: Oof, you're no fun at all, Bob!
+Bob: My name isn't-
+Guard: But if you ever change your mind...
+You know where to find me, Bob!
+Bob: ...Argh.
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

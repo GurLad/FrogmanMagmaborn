@@ -169,14 +169,7 @@ public class ConversationData : System.IComparable<ConversationData>
 
     public int CompareTo(ConversationData other)
     {
-        if (priority.CompareTo(other.priority) != 0)
-        {
-            return -priority.CompareTo(other.priority);
-        }
-        else
-        {
-            return UnityEngine.Random.Range(-1, 2);
-        }
+        return -priority.CompareTo(other.priority);
     }
 
     public bool Choose(bool postBattle)

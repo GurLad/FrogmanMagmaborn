@@ -24,8 +24,9 @@ public class ConversationController : MonoBehaviour
     {
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
+        currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
         Debug.Log("Options: " + string.Join(", ", currentOptions));
-        ConversationData chosen = currentOptions[0];
+        ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
     public ConversationData SelectConversationByID(string id)
@@ -36,8 +37,9 @@ public class ConversationController : MonoBehaviour
             return null;
         }
         currentOptions.Sort();
+        currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
         Debug.Log("Options: " + string.Join(", ", currentOptions));
-        ConversationData chosen = currentOptions[0];
+        ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
     #if UNITY_EDITOR 

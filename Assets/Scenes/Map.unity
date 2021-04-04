@@ -515,6 +515,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 04842d0aaad1632409b2945b7d8f362e, type: 3}
   - {fileID: 4900000, guid: c37c786f03852d14ba6ca35f1bedd730, type: 3}
   - {fileID: 4900000, guid: 25298ee91bdb0064fa51e4afded15435, type: 3}
+  - {fileID: 4900000, guid: 1cd7f8f70669ad34ba812cf0aa1d0c89, type: 3}
   - {fileID: 4900000, guid: f203e19ab3ce2fc42948bdaae468ac1a, type: 3}
   - {fileID: 4900000, guid: 701cb10db094e7f4ca6a1090eff6183c, type: 3}
   - {fileID: 4900000, guid: 660f5cf41b104c34a903abc706da5d98, type: 3}
@@ -547,7 +548,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 8f974e8b1ae5fab4c88c275030c9eb1f, type: 3}
   - {fileID: 4900000, guid: 9435ace81de6bdd4381afc4a5118d53b, type: 3}
   - {fileID: 4900000, guid: 54b0d073a8569ed4795ed05ffedf1fdc, type: 3}
-  - {fileID: 4900000, guid: cda4fae99a30dcf428946835c437ad56, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -15084,12 +15084,11 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 6
+  DebugEndgameLevel: 5
   DebugUnits:
   - Frogman
   - Firbell
   - Xirveros
-  - Xeplogi
   DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
