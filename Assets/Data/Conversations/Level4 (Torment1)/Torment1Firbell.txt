@@ -6,9 +6,51 @@ hasCharacter:Firbell
 ~ Demands
 # Nothinig
 ~ Before battle
-Torment: TBA
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+Firbell: Frogman... Why is it so empty here?
+After the lich, we...
+we...
+Frogman: Firbell?
+Oh. They're here again.
+:loadUnits:InitTormentRoom
+:play:Trustworthy
+Torment: Missed me, Frogman? Heh heh!
+Frogman: Why do you keep doing this to my friends?
+Torment: Friends?! Ha ha ha! You're all my pawns!
+Nothing more! Even Firbell, heh!
+Frogman: What does she have to do with anything?
+Torment: Oh, I'm simply the one keeping her sane.
+Why, her family was so thoroughly betrayed,
+it's beautiful! Ha Ha Ha!
+Frogman: What are you talking about?
+Torment: Didn't you figure it out? What a fool. Heh!
+:playIntro:Tormentor
+:loadMap:
+:loadUnits:
+They're all gone! Dead! Forgotten!
+Irenhold is GONE! HA HA HA HA!
+Frogman: No...
+Torment: Oh, stop pretending to care. Heh. As fun as
+it was to gloat, it's that time again.
+Time to DIE!
 ~ After battle
-# Name: Text.
+:play:Trickster
+Frogman: You... Monster...
+Torment: Get over it. You don't even know Irenhold!
+She stops functioning whenever she realizes
+the truth. So I prevent her.
+After all, how can she kill for me
+otherwise? Heh heh!
+Frogman: I-
+:loadMap:InitTormentRoom
+Torment: I already know what you're about to say.
+Keep it to yourself, it's boring! Heh!
+Frogman: You can read minds?!
+# Torment can't while they're alive, but he might as well troll Frogman for fun.
+Torment: Why, of course! HA HA HA!
+Goodbye now!
 
 # === Functions ====
 

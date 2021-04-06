@@ -1,0 +1,28 @@
+priority:-1
+unique:F
+id:GuardPreBanter
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:play:GuardTheme
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
+:loadUnits::guard
+Guard1: Hay.
+Guard2: Oy, hello again! What's up?
+Guard1: Ya know, tha usual. Stand around, kill
+monstars. How 'bout you?
+Guard2: I 'ust slew me a 'ighty beast! 'Tis
+was the size 'f you head! But two!
+Guard1: Wall don, frand! Lat's hop wa hav a good
+hunt today, hah?
+Guard2: Oh, 'tis will be 'ood indeed!
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
