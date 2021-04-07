@@ -209,6 +209,19 @@ public class ConversationPlayer : MidBattleScreen
                     // Add to TempPortraits with parts[2] internal name and parts[3] tags
                     PortraitController.Current.TempPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
                     break;
+                case "setTeam":
+                    // Changes a unit's team
+                    Unit target = GameController.Current.GetNamedUnit(parts[2]);
+                    if (target != null)
+                    {
+                        target.TheTeam = parts[3].ToTeam() ?? target.TheTeam;
+                        target.Moved = target.Moved;
+                    }
+                    else
+                    {
+                        throw new System.Exception("No matching unit! (" + parts[2] + ")");
+                    }
+                    break;
                 case "wait":
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();

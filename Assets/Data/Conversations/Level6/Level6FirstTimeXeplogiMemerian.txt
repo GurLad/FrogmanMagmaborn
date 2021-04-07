@@ -14,10 +14,12 @@ charactersAlive:>2
 :if:chose:0{
 Xeplogi: Ha! Yes!
 Memerian: Oh well. Your loss.
+:setTeam:Memerian:monster
 }
 :else:{
 Memerian: Finally, someone sane.
 Xeplogi: No! You're evil!
+:setTeam:Xeplogi:monster
 }
 Xeplogi: You! How dare you show your face here!
 Memerian|???: Oh. It's you again. What was your name?

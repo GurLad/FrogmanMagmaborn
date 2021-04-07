@@ -1073,7 +1073,11 @@ public class GameController : MonoBehaviour
     // TODO: Replace all instances of "frogman/boss dead" with this function.
     public bool CheckUnitAlive(string name)
     {
-        return units.Find(a => a.ToString() == name) != null;
+        return GetNamedUnit(name) != null;
+    }
+    public Unit GetNamedUnit(string name)
+    {
+        return units.Find(a => a.ToString() == name);
     }
     private bool CheckPlayerWin()
     {
@@ -1082,7 +1086,7 @@ public class GameController : MonoBehaviour
             case Objective.Rout:
                 return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
-                return units.FindAll(a => a.Class == selectedRoom.ObjectiveData).Count == 0;
+                return CheckUnitAlive(selectedRoom.ObjectiveData);
             case Objective.Escape:
                 return frogman.Pos == escapePos;
             case Objective.Survive:

@@ -699,7 +699,7 @@ public class Unit : MapObject
     }
     public override string ToString()
     {
-        return TheTeam == Team.Player ? Name : Class;
+        return TheTeam == Team.Player ? Name : (Name == TheTeam.Name() ? Class : Name);
     }
     public void ChangeInclination(Inclination target)
     {

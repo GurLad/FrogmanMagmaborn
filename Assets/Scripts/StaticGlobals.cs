@@ -23,6 +23,16 @@ public static class StaticGlobals
         }
         return team.ToString();
     }
+    public static Team? ToTeam(this string teamName)
+    {
+        return teamName.ToLower() switch
+        {
+            "player" => Team.Player,
+            "monster" => Team.Monster,
+            "guard" => Team.Guard,
+            _ => null
+        };
+    }
     public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)
     {
         return "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[paletteID][colorIndex]) + ">" + str + "</color>";
