@@ -11,6 +11,7 @@ public enum Inclination { Physical, Technical, Skillful } // Bad names
 public enum VoiceType { Square50, Square25, Square12, Triangle }
 public enum InteractState { None, Move, Attack }
 public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, LittleDamage = 4 }
+public enum TormentPowerState { None, I, II }
 
 public static class StaticGlobals
 {

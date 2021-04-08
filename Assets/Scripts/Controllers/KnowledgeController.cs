@@ -39,6 +39,10 @@ public class KnowledgeController : MonoBehaviour
     {
         SavedData.Save("Knowledge", "Upgrade" + name, 0);
     }
+    public static TormentPowerState TormentPower(string name)
+    {
+        return (TormentPowerState)Mathf.Max(0, SavedData.Load<int>("Knowledge", "UpgradeTorment" + name));
+    }
     public int Knowledge
     {
         get
@@ -66,6 +70,7 @@ public class KnowledgeController : MonoBehaviour
             foreach (KnowledgeUpgrade upgrade in UpgradeMenus[i].Upgrades)
             {
                 upgrade.Load((int)upgrade.DefaultState);
+                upgrade.NumChoices = UpgradeMenus[i].NumChoices;
                 if (upgrade.State == UpgradeState.Locked)
                 {
                     continue;
@@ -187,6 +192,7 @@ public class KnowledgeController : MonoBehaviour
         public string Name;
         [TextArea]
         public string Description;
+        public int NumChoices;
         public KnowledgeUpgradeType Type;
         public List<KnowledgeUpgrade> Upgrades;
     }
@@ -220,6 +226,7 @@ public class KnowledgeController : MonoBehaviour
             }
         }
         public UpgradeState DefaultState;
+        [HideInInspector]
         public int NumChoices;
         [HideInInspector]
         public int ChoiceValue;

@@ -26,7 +26,7 @@ public class SoundController : MonoBehaviour
     private List<AudioSource> audioSources = new List<AudioSource>();
     private AudioSource fixedPitchSource;
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < 3; i++)
         {

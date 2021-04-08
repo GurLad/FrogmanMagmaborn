@@ -693,6 +693,19 @@ public class GameController : MonoBehaviour
         if (team == Team.Player)
         {
             Turn++;
+            switch (KnowledgeController.TormentPower("HurtHelp"))
+            {
+                case TormentPowerState.None:
+                    break;
+                case TormentPowerState.I:
+                    units.ForEach(a => a.Health -= (a.TheTeam != Team.Player && !a.Moved && a.Health > 1) ? 1 : 0);
+                    break;
+                case TormentPowerState.II:
+                    PlayerUnits.ForEach(a => a.Health += a.Health >= a.Stats.MaxHP ? 0 : 1);
+                    break;
+                default:
+                    break;
+            }
         }
         CheckConveresationWait(); // Wait for turn events
     }

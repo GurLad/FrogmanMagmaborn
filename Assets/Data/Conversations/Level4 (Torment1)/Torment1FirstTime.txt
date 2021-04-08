@@ -24,6 +24,7 @@ Torment: Now, now, don't panic. That's enough.
 :loadUnits:InitTormentRoom
 Frogman: Is it... over?
 Torment: Oh! Exquisite! Fantastic! Beautiful!
+# TODO: Remove the champion reference. This shuld only be mentioned during Part 2.
 You truly are the champion I've been
 looking for!
 Frogman: Chamion?! Are you crazy?!
@@ -43,9 +44,9 @@ Torment: You... aren't very smart, are you? Heh!
 I just told you why! As for how...
 I still have some power here.
 :loadMap:InitTormentRoom
-At least, I'm supposed to. I don't have them
-yet.
-Wait for the next version!
+Torment: You will know it soon enough... Heh heh.
+:unlockKnowledge:TormentHurtHelp
+:showInfoDialogue:New knowledge!
 Frogman: ...
 :showPartTitle:Part 2:Immortal
 
