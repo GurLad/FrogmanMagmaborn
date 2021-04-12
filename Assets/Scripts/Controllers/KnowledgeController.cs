@@ -6,23 +6,16 @@ using UnityEngine.UI;
 public class KnowledgeController : MonoBehaviour
 {
     public enum UpgradeState { Available, Active, Inactive, Locked = -1 }
-    public List<KnowledgeUpgradeList> UpgradeMenus;
-    public Sprite ActiveSprite;
-    public Sprite InactiveSprite;
-    public Sprite[] InclinationSprites;
-    public Sprite[] TormentPowersSprites;
-    [Header("Objects")]
-    public MenuController BaseMenu;
-    public Text MenuName;
-    public Text Description;
-    public Text Amount;
-    public Text Cost;
-    public GameObject BaseMenuItem;
-    public GameObject Arrows;
-    private List<MenuController> menus = new List<MenuController>();
-    private int selectedMenu;
-    private int knowledge;
-    private bool pressedLastFrame;
+
+    // Statics - maybe split to a different file?
+
+    public static int TotalTormentPowers
+    {
+        get
+        {
+            return SavedData.Load<int>("Knowledge", "TormentPowerCount");
+        }
+    }
     public static bool HasKnowledge(HardcodedKnowledge name)
     {
         return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
@@ -43,6 +36,26 @@ public class KnowledgeController : MonoBehaviour
     {
         return (TormentPowerState)Mathf.Max(0, SavedData.Load<int>("Knowledge", "UpgradeTorment" + name));
     }
+
+    // Knowledge menu stuff - should split to a different file. One day.
+
+    public List<KnowledgeUpgradeList> UpgradeMenus;
+    public Sprite ActiveSprite;
+    public Sprite InactiveSprite;
+    public Sprite[] InclinationSprites;
+    public Sprite[] TormentPowersSprites;
+    [Header("Objects")]
+    public MenuController BaseMenu;
+    public Text MenuName;
+    public Text Description;
+    public Text Amount;
+    public Text Cost;
+    public GameObject BaseMenuItem;
+    public GameObject Arrows;
+    private List<MenuController> menus = new List<MenuController>();
+    private int selectedMenu;
+    private int knowledge;
+    private bool pressedLastFrame;
     public int Knowledge
     {
         get
@@ -129,6 +142,8 @@ public class KnowledgeController : MonoBehaviour
         MenuName.text = UpgradeMenus[selectedMenu].Name;
         Description.text = UpgradeMenus[selectedMenu].Description;
         Cost.text = "";
+        // Reset Torment Power count
+        SavedData.Save("Knowledge", "TormentPowerCount", 0);
     }
     private void Update()
     {
@@ -154,6 +169,13 @@ public class KnowledgeController : MonoBehaviour
         else
         {
             pressedLastFrame = false;
+        }
+    }
+    public void MenusDone()
+    {
+        foreach (MenuController menu in menus)
+        {
+            menu.MenuDone();
         }
     }
     public Sprite BuyUpgrade(KnowledgeUpgrade upgrade)

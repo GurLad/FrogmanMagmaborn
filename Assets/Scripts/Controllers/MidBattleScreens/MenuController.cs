@@ -36,14 +36,14 @@ public class MenuController : MidBattleScreen
     {
         if (Control.GetButtonDown(Control.CB.A))
         {
-            MenuDone();
+            FinishMenu();
             MenuItems[Selected].Activate();
             AfterMenuDone?.Activate();
             return;
         }
         if (Control.GetButtonDown(Control.CB.B) && Cancelable)
         {
-            MenuDone();
+            FinishMenu();
             if (CancelTrigger != null)
             {
                 CancelTrigger.Activate();
@@ -54,7 +54,7 @@ public class MenuController : MidBattleScreen
         {
             if (StartTrigger != null)
             {
-                MenuDone();
+                FinishMenu();
                 StartTrigger.Activate();
             }
             return;
@@ -76,16 +76,21 @@ public class MenuController : MidBattleScreen
         Selected = index;
         MenuItems[Selected].Select();
     }
-    private void MenuDone()
+    public void MenuDone()
+    {
+        // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
+        if (GameController.Current != null)
+        {
+            MidBattleScreen.Set(this, false);
+        }
+        gameObject.SetActive(false);
+        MenuItems.ForEach(a => a.OnMenuDone());
+    }
+    private void FinishMenu()
     {
         if (FinishOnSelect)
         {
-            // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
-            if (GameController.Current != null)
-            {
-                MidBattleScreen.Set(this, false);
-            }
-            gameObject.SetActive(false);
+            MenuDone();
         }
     }
 }

@@ -39,4 +39,8 @@ public class MenuItem : MonoBehaviour
     {
         triggers.ForEach(a => a.Activate());
     }
+    public virtual void OnMenuDone()
+    {
+        // Do nothing
+    }
 }

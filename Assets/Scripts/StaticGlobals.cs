@@ -15,6 +15,7 @@ public enum TormentPowerState { None, I, II }
 
 public static class StaticGlobals
 {
+    public const string MAIN_CHARACTER_NAME = "Frogman";
     // Extension methods
     public static string Name(this Team team)
     {

@@ -145,9 +145,11 @@ public class Stats
     /// Uses fixed values (no random level ups).
     /// </summary>
     /// <param name="numLevels">The number of times to level up.</param>
+    /// <param name="numLevels">The number of times to increase a stat per level. Should never be anything other than 3 barring Torment Powers.</param>
     /// <returns>Stat changes (for display and addition)</returns>
-    public Stats GetLevelUp(int numLevels)
+    public Stats GetMultipleLevelUps(int numLevels, int numStats = 3)
     {
+        // The current algorithm causes a huge amount of min-maxing. This makes wierd builds (ex. tanky Frogman) easier to execute, but min-maxed builds less effective.
         Stats result = new Stats();
         result.Growths = Growths;
         List<float> statMods = new List<float>();
@@ -156,7 +158,7 @@ public class Stats
             result[i] = 0;
             statMods.Add((float)Growths[i] / sumGrowths);
         }
-        for (int i = 0; i < 3 * numLevels; i++) // Three stats per level
+        for (int i = 0; i < numStats * numLevels; i++) // NumStats (3) stats per level
         {
             // If two stats are equal, chooses a random one, thus rendering the extra level-up useless. 
             int maxMod = 0;
@@ -167,7 +169,7 @@ public class Stats
                     maxMod = j;
                 }
             }
-            statMods[maxMod] -= 1f / 3;
+            statMods[maxMod] -= 1f / numStats;
             result[maxMod]++;
             for (int j = 0; j < 6; j++)
             {
@@ -179,8 +181,9 @@ public class Stats
     /// <summary>
     /// Returns the stats increased after a random level up.
     /// </summary>
+    /// <param name="numLevels">The number of times to increase a stat. Should never be anything other than 3 barring Torment Powers.</param>
     /// <returns>Stat changes (for display and addition)</returns>
-    public Stats GetLevelUp()
+    public Stats GetLevelUp(int numStats = 3)
     {
         Stats result = new Stats();
         result.Growths = Growths;
@@ -188,7 +191,7 @@ public class Stats
         {
             result[i] = 0;
         }
-        for (int i = 0; i < 3; i++) // Three stats per level
+        for (int i = 0; i < numStats; i++) // NumStats (3) stats per level
         {
             int j;
             do

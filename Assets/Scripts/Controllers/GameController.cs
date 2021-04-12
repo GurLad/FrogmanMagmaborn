@@ -62,6 +62,8 @@ public class GameController : MonoBehaviour
     public Unit Selected;
     [HideInInspector]
     public int Turn;
+    [HideInInspector]
+    public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
     protected Difficulty difficulty;
     private Palette basePalette;
     private List<Room> rooms;
@@ -144,7 +146,7 @@ public class GameController : MonoBehaviour
     {
         get
         {
-            return units.Find(a => a.Name == "Frogman");
+            return units.Find(a => a.Name == StaticGlobals.MAIN_CHARACTER_NAME);
         }
     }
     private Vector2Int _escapePos;
@@ -385,7 +387,7 @@ public class GameController : MonoBehaviour
                 ConversationPlayer.Current.PlayPostBattle();
                 return true;
             }
-            if (difficulty == Difficulty.Easy) // "Kill" player units on easy
+            if (!GameCalculations.PermaDeath) // "Kill" player units when perma-death is off
             {
                 List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
                 playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
@@ -563,7 +565,7 @@ public class GameController : MonoBehaviour
                     {
                         if (unit.TheTeam == Team.Player)
                         {
-                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.Stats.GetLevelUp(++unit.Level);
+                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.AutoLevel(++unit.Level);
                             unit.Health = unit.Stats.MaxHP;
                         }
                     }
@@ -717,7 +719,7 @@ public class GameController : MonoBehaviour
     }
     public void KillUnit(Unit unit)
     {
-        if (difficulty == Difficulty.Easy && unit.TheTeam == Team.Player && unit.Name != "Frogman") // No perma-death
+        if (!GameCalculations.PermaDeath && unit.TheTeam == Team.Player && unit.Name != StaticGlobals.MAIN_CHARACTER_NAME) // No perma-death
         {
             Debug.Log("Pseudo-killed " + unit.Name);
             unit.Statue = true;
@@ -727,7 +729,11 @@ public class GameController : MonoBehaviour
         }
         else // Perma-death
         {
-            PlayerUnits.Remove(unit);
+            if (PlayerUnits.Contains(unit))
+            {
+                PlayerUnits.Remove(unit);
+                NumDeadPlayerUnits++;
+            }
             Destroy(unit.gameObject);
         }
         checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
@@ -756,7 +762,7 @@ public class GameController : MonoBehaviour
         // Save player characters
         List<Unit> playerCharacters = PlayerUnits;
         playerCharacters.ForEach(a => a.Statue = false); // Revive "dead" units on Easy
-        playerCharacters.Sort((a, b) => a.Name == "Frogman" ? -1 : (b.Name == "Frogman" ? 1 : 0));
+        playerCharacters.Sort((a, b) => a.Name == StaticGlobals.MAIN_CHARACTER_NAME ? -1 : (b.Name == StaticGlobals.MAIN_CHARACTER_NAME ? 1 : 0));
         playerCharacters = playerCharacters.ToList();
         string saveData = "";
         playerCharacters.ForEach(a => saveData += a.Save() + "\n");
@@ -820,10 +826,6 @@ public class GameController : MonoBehaviour
     public Unit CreatePlayerUnit(string name, int level = -1)
     {
         level = level >= 0 ? level : LevelNumber;
-        if (difficulty != Difficulty.Hard && difficulty != Difficulty.NotSet)
-        {
-            level++;
-        }
         Unit unit = CreateUnit();
         unit.Name = name;
         unit.name = "Unit" + name;
@@ -844,7 +846,7 @@ public class GameController : MonoBehaviour
             unit.ChangeInclination((Inclination)(inclination - 1));
         }
         AssignUnitMapAnimation(unit, classData);
-        unit.Stats += unit.Stats.GetLevelUp(level);
+        unit.Stats += unit.AutoLevel(level);
         unit.Init();
         return unit;
     }
@@ -866,7 +868,7 @@ public class GameController : MonoBehaviour
         unit.AttackMarker = EnemyAttackMarker;
         unit.Flies = classData.Flies;
         unit.Inclination = classData.Inclination;
-        unit.Stats += unit.Stats.GetLevelUp(level);
+        unit.Stats += unit.AutoLevel(level);
         unit.Level = level;
         unit.Weapon = classData.Weapon;
         AssignUnitMapAnimation(unit, classData);
@@ -983,7 +985,7 @@ public class GameController : MonoBehaviour
                     }
                     continue;
                 }
-                else if (name == "Frogman" && playerCharacters.Count > 0)
+                else if (name == StaticGlobals.MAIN_CHARACTER_NAME && playerCharacters.Count > 0)
                 {
                     unit = playerCharacters[0];
                     unit.transform.parent = currentUnitsObject;
@@ -998,7 +1000,7 @@ public class GameController : MonoBehaviour
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
                     PlayerUnits.Add(unit);
-                    if (name != "Frogman")
+                    if (name != StaticGlobals.MAIN_CHARACTER_NAME)
                     {
                         Debug.LogWarning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");
                     }
