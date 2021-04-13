@@ -19,8 +19,4 @@ public class Tile : MonoBehaviour
     {
         return Name + '\n' + (MovementCost <= 9 ? (MovementCost + (High ? "All\n" : "Mov\n") + ArmorModifier.ToString()[0] + "Arm") : High ? "\nHigh" : "\nLow");
     }
-    public int GetArmorModifier(Unit unit)
-    {
-        return (unit.Flies && !High) ? 0 : ArmorModifier;
-    }
 }

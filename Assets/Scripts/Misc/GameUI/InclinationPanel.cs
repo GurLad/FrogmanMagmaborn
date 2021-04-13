@@ -12,7 +12,7 @@ public class InclinationPanel : MonoBehaviour
     public Text Text;
     public void Display(Unit unit)
     {
-        if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff))
+        if (!GameCalculations.HasInclinationUpgrade)
         {
             Destroy(gameObject);
         }

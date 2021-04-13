@@ -273,7 +273,7 @@ public class ConversationPlayer : MidBattleScreen
                 // Global commands
 
                 case "unlockKnowledge":
-                    KnowledgeController.UnlockKnowledge(parts[2]);
+                    GameCalculations.UnlockKnowledge(parts[2]);
                     break;
                 case "setFlag":
                     SavedData.Save("ConversationData", "Flag" + parts[2], 1);
@@ -285,6 +285,9 @@ public class ConversationPlayer : MidBattleScreen
                     /* Syntax:
                      * :if:hasFlag:bla{
                      * Firbell: Will happen if hasFlag (requirement)
+                     * }
+                     * :else:{
+                     * Firbell: Will happen if !hasFlag
                      * }
                      * Firbell: Will anyway happen
                      */

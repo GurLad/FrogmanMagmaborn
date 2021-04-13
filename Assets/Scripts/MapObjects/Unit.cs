@@ -177,14 +177,14 @@ public class Unit : MapObject
                     {
                         continue;
                     }
-                    if (range - GetMovementCost(GameController.Current.Map[x + i, y + j]) >= 0)
+                    if (range - GameController.Current.Map[x + i, y + j].GetMovementCost(this) >= 0)
                     {
                         Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
                         if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
                         {
                             continue;
                         }
-                        GetMovement(x + i, y + j, range - GetMovementCost(GameController.Current.Map[x + i, y + j]), checkedTiles, attackFrom, ignoreAllies);
+                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].GetMovementCost(this), checkedTiles, attackFrom, ignoreAllies);
                     }
                     else if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
                     {
@@ -192,17 +192,6 @@ public class Unit : MapObject
                     }
                 }
             }
-        }
-    }
-    private int GetMovementCost(Tile tile)
-    {
-        if (Flies)
-        {
-            return tile.High ? tile.MovementCost : 1;
-        }
-        else
-        {
-            return tile.MovementCost;
         }
     }
     private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)
@@ -565,8 +554,8 @@ public class Unit : MapObject
     }
     private float HoldAITargetValue(Unit unit)
     {
-        int trueDamage = GetDamage(unit);
-        int hit = GetHitChance(unit);
+        int trueDamage = this.GetDamage(unit);
+        int hit = this.GetHitChance(unit);
         int damage = Priorities.GetAIDamageValue(unit);
 
         // If can kill, value is -100, so AI will always prioritize killing
@@ -618,29 +607,6 @@ public class Unit : MapObject
         }
         return min;
     }
-    private int GetHitChance(Unit other)
-    {
-        if (TheTeam == Team.Player && EffectiveAgainst(other))
-        {
-            Stats[(int)Inclination * 2] += 2;
-            int hit = Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
-            Stats[(int)Inclination * 2] -= 2;
-            return hit;
-        }
-        return Mathf.Min(100, Weapon.Hit - 10 * (other.Stats.Evasion - other.Weapon.Weight - Stats.Precision));
-    }
-    public int GetDamage(Unit other)
-    {
-        int ArmorModifier = GameController.Current.Map[other.Pos.x, other.Pos.y].GetArmorModifier(other);
-        if (TheTeam == Team.Player && EffectiveAgainst(other))
-        {
-            Stats[(int)Inclination * 2] += 2;
-            int damage = Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
-            Stats[(int)Inclination * 2] -= 2;
-            return damage;
-        }
-        return Mathf.Max(0, Stats.Strength + Weapon.Damage - 2 * Mathf.Max(0, other.Stats.Armor + ArmorModifier - Stats.Pierce));
-    }
     public bool CanAttack(Unit other)
     {
         return other != null && CanAttackPos(other.Pos);
@@ -656,8 +622,8 @@ public class Unit : MapObject
     public string AttackPreview(Unit other, int padding = 2, bool canAttack = true)
     {
         return "HP :" + Health.ToString().PadRight(padding) + 
-            "\nDMG:" + (canAttack ? GetDamage(other).ToString() : "--").PadRight(padding) + 
-            "\nHIT:" + (canAttack ? GetHitChance(other).ToString() : "--").PadRight(padding);
+            "\nDMG:" + (canAttack ? this.GetDamage(other).ToString() : "--").PadRight(padding) + 
+            "\nHIT:" + (canAttack ? this.GetHitChance(other).ToString() : "--").PadRight(padding);
     }
     public string BattleStats()
     {
@@ -669,7 +635,7 @@ public class Unit : MapObject
     }
     public bool? Attack(Unit unit)
     {
-        int percent = GetHitChance(unit);
+        int percent = this.GetHitChance(unit);
         if (percent >= 80)
         {
             percent += 10;
@@ -682,7 +648,7 @@ public class Unit : MapObject
         if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
         {
             Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
-            unit.Health -= GetDamage(unit);
+            unit.Health -= this.GetDamage(unit);
             // Kill?
             if (unit.Health <= 0)
             {
@@ -712,10 +678,6 @@ public class Unit : MapObject
         {
             Stats.Growths[i]++;
         }
-    }
-    public bool EffectiveAgainst(Unit target) // Might change effectiveness to triangle
-    {
-        return target != null && Inclination == target.Inclination && KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff);
     }
     public string Save()
     {

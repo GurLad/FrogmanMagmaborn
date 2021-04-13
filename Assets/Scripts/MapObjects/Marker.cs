@@ -9,11 +9,12 @@ public abstract class Marker : MapObject
     public void ShowArmorIcon()
     {
         Tile tile = GameController.Current.Map[Pos.x, Pos.y];
-        if (tile.GetArmorModifier(Origin) != 0)
+        int armMod = tile.GetArmorModifier(Origin);
+        if (armMod != 0)
         {
             AdvancedSpriteSheetAnimation advancedSpriteSheetAnimation = GetComponent<AdvancedSpriteSheetAnimation>();
             advancedSpriteSheetAnimation.Start();
-            advancedSpriteSheetAnimation.Activate("Arm" + (tile.ArmorModifier > 0 ? "+" : "-"));
+            advancedSpriteSheetAnimation.Activate("Arm" + (armMod > 0 ? "+" : "-"));
         }
     }
 }

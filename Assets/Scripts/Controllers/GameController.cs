@@ -695,19 +695,7 @@ public class GameController : MonoBehaviour
         if (team == Team.Player)
         {
             Turn++;
-            switch (KnowledgeController.TormentPower("HurtHelp"))
-            {
-                case TormentPowerState.None:
-                    break;
-                case TormentPowerState.I:
-                    units.ForEach(a => a.Health -= (a.TheTeam != Team.Player && !a.Moved && a.Health > 1) ? 1 : 0);
-                    break;
-                case TormentPowerState.II:
-                    PlayerUnits.ForEach(a => a.Health += a.Health >= a.Stats.MaxHP ? 0 : 1);
-                    break;
-                default:
-                    break;
-            }
+            GameCalculations.EndTurnEvents(units); // Pretty bad code - replace with listeners? But wouldn't work with game calculations...
         }
         CheckConveresationWait(); // Wait for turn events
     }
@@ -839,12 +827,7 @@ public class GameController : MonoBehaviour
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
         unit.Inclination = unitGrowths.Inclination;
-        int inclination = KnowledgeController.GetInclination(unit.Name);
-        if (inclination > 0)
-        {
-            Debug.Log("Changing inclination!");
-            unit.ChangeInclination((Inclination)(inclination - 1));
-        }
+        unit.LoadInclination();
         AssignUnitMapAnimation(unit, classData);
         unit.Stats += unit.AutoLevel(level);
         unit.Init();

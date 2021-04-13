@@ -10,7 +10,7 @@ public class InclinationIndicator : MonoBehaviour
     public bool BattlePreview;
     private void Start()
     {
-        if (!KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff))
+        if (!GameCalculations.HasInclinationUpgrade)
         {
             //if (BattlePreview && gameObject.activeSelf)
             //{

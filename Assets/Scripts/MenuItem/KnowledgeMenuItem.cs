@@ -7,9 +7,9 @@ public abstract class KnowledgeMenuItem : MenuItem
 {
     public Image BoughtIndicator;
     [HideInInspector]
-    public KnowledgeController.KnowledgeUpgrade Upgrade;
+    public KnowledgeMenuController.KnowledgeUpgrade Upgrade;
     [HideInInspector]
-    public KnowledgeController Controller;
+    public KnowledgeMenuController Controller;
     protected PalettedSprite IndicatorPalette;
     private void Start()
     {
@@ -27,7 +27,7 @@ public abstract class KnowledgeMenuItem : MenuItem
     }
     public override void Activate()
     {
-        if (Upgrade.State != KnowledgeController.UpgradeState.Available)
+        if (Upgrade.State != KnowledgeMenuController.UpgradeState.Available)
         {
             ChangeActiveStatus();
         }

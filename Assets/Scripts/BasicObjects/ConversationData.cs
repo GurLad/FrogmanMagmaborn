@@ -123,7 +123,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return int.Parse(parts[1]) == GameController.Current.LevelNumber;
             case "hasKnowledge":
                 // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
-                return KnowledgeController.HasKnowledge(parts[1]);
+                return GameCalculations.HasKnowledge(parts[1]);
             case "hasFlag":
                 // Return whether a conversation flag is turned on
                 return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;

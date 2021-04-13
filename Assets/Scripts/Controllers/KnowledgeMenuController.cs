@@ -3,41 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KnowledgeController : MonoBehaviour
+public class KnowledgeMenuController : MonoBehaviour
 {
     public enum UpgradeState { Available, Active, Inactive, Locked = -1 }
-
-    // Statics - maybe split to a different file?
-
-    public static int TotalTormentPowers
-    {
-        get
-        {
-            return SavedData.Load<int>("Knowledge", "TormentPowerCount");
-        }
-    }
-    public static bool HasKnowledge(HardcodedKnowledge name)
-    {
-        return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
-    }
-    public static bool HasKnowledge(string name)
-    {
-        return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
-    }
-    public static int GetInclination(string characterName)
-    {
-        return SavedData.Load<int>("Knowledge", "UpgradeInclination" + characterName);
-    }
-    public static void UnlockKnowledge(string name)
-    {
-        SavedData.Save("Knowledge", "Upgrade" + name, 0);
-    }
-    public static TormentPowerState TormentPower(string name)
-    {
-        return (TormentPowerState)Mathf.Max(0, SavedData.Load<int>("Knowledge", "UpgradeTorment" + name));
-    }
-
-    // Knowledge menu stuff - should split to a different file. One day.
 
     public List<KnowledgeUpgradeList> UpgradeMenus;
     public Sprite ActiveSprite;
