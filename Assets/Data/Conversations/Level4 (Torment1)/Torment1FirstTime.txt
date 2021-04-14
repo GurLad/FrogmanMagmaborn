@@ -42,11 +42,19 @@ So we could just help each other, yes? Heh.
 Frogman: How can you help us? Why would you?
 Torment: You... aren't very smart, are you? Heh!
 I just told you why! As for how...
-I still have some power here.
 :loadMap:InitTormentRoom
-Torment: You will know it soon enough... Heh heh.
+# Replace with "unlockedKnowledge"
+:if:!hasKnowledge:TormentHurtHelp{
+I still have some power here.
+You will know it soon enough... Heh heh.
 :unlockKnowledge:TormentHurtHelp
 :showInfoDialogue:New knowledge!
+}
+:else:{
+Well, you already HAVE my power, ha ha ha!
+That's all right. I'm not offended... Heh.
+Off you go, then!
+}
 Frogman: ...
 :showPartTitle:Part 2:Immortal
 
@@ -95,6 +103,7 @@ Enough talk! FIGHT!
 :loadUnits:
 
 ~ PreGeneric
+:setFlag:Torment1FirstTimeFail
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
