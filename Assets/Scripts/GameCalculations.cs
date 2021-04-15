@@ -18,12 +18,17 @@ public static class GameCalculations
 
         public static bool HasKnowledge(HardcodedKnowledge name)
         {
-            return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name) > 0;
         }
 
         public static bool HasKnowledge(string name)
         {
-            return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name) > 0;
+        }
+
+        public static bool FoundKnowledge(string name)
+        {
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name) >= 0;
         }
 
         public static int GetInclination(string characterName)
@@ -111,6 +116,11 @@ public static class GameCalculations
     public static bool HasKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
     {
         return KnowledgeController.HasKnowledge(name);
+    }
+
+    public static bool FoundKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
+    {
+        return KnowledgeController.FoundKnowledge(name);
     }
 
     public static void UnlockKnowledge(string name)

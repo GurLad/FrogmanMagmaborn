@@ -7,14 +7,27 @@ hasKnowledge:InclinationFrogman
 ~
 ~
 :play:BeforeBattle
+:if:firstTime:{
 Xirveros: Frog!
 Frogman: Yes, Xirveros? What now?
 Xirveros: Know Frog song? Need more song!
 Frogman: No, not really.
 Xirveros: I shall observe frog! Write frog song!
 Frogman: Please don't.
+}
+:else:{
+Xirveros: Frog!
+:call:Unlock
+}
 ~
+:if:!foundKnowledge:InclinationXirveros{
 :play:AfterBattle
+:call:Unlock
+}
+
+# Functions
+
+~ Unlock
 Xirveros: I have frog song!
 This is my frog    \w@
 Tall as a log      \w@

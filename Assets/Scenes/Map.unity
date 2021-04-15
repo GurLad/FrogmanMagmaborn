@@ -2773,7 +2773,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 376109210}
   - {fileID: 376109209}
-  Description: Your units gain +1 level, but revive between runs only.
+  Description: Your units gain an extra level.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &376109213
 MonoBehaviour:
@@ -6458,7 +6458,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 806976467}
   - {fileID: 806976466}
-  Description: Your units revive between runs only. Not recommended.
+  Description: Your units do not get extra levels. Not recommended.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &806976470
 MonoBehaviour:
@@ -15034,7 +15034,7 @@ MonoBehaviour:
   - ToTheDeath
   - Tormentor
   - EnterTheGuards
-  - EternalPast
+  - OverAndOver
   UnitReplacements:
   - Class: Skeleton
     ReplacedBy:
@@ -15085,11 +15085,12 @@ MonoBehaviour:
     - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
     - {r: 1, g: 0, b: 1, a: 0}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 4
+  DebugEndgameLevel: 6
   DebugUnits:
   - Frogman
   - Firbell
   - Xirveros
+  - Xeplogi
   DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
@@ -15120,6 +15121,7 @@ MonoBehaviour:
   InteractState: 0
   Selected: {fileID: 0}
   Turn: 0
+  NumDeadPlayerUnits: 0
 --- !u!4 &1902908236
 Transform:
   m_ObjectHideFlags: 0
@@ -15815,7 +15817,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 1990259760}
   - {fileID: 1990259759}
-  Description: Your units gain +1 level and revive between battles.
+  Description: Your units gain +2 extra levels. Recommended.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &1990259763
 MonoBehaviour:

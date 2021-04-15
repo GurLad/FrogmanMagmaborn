@@ -6,8 +6,8 @@ hasCharacter:Firbell
 hasKnowledge:InclinationFrogman
 ~
 ~
-:if:firstTime:{
 :play:ToTheDeath
+:if:firstTime:{
 Firbell: Frogman?
 Frogman: Yes?
 Firbell: I have been watching the way you fight.
@@ -30,8 +30,8 @@ style.
 :play:AfterBattle
 Firbell: Well, that was quite well done.
 Frogman: You were very helpful yourself.
-# Replace with "unlockedKnowledge". Also, add this to all other InclinationUnlocking conversations.
-:if:!hasKnowledge:InclinationFibell{
+# Add this to all other InclinationUnlocking conversations.
+:if:!foundKnowledge:InclinationFibell{
 Firbell: Nevertheless, I shall try a different
 fighting style.
 :call:Unlock

@@ -7,6 +7,7 @@ hasKnowledge:InclinationFrogman
 ~
 ~
 :play:ToTheDeath
+:if:firstTime:{
 Kresla: Hey, Frogman!
 Frogman: Yes?
 Kresla: Do you think I could fight like the Lich?
@@ -16,11 +17,26 @@ I mean focusing on my skill, like you.
 Frogman: Ah. All right, I guess.
 Kresla: What happened to your enthusiasm?
 Never mind, let's just defeat the Lich.
+}
+:else:{
+Kresla: Another lich? I never got this far this
+many times before you arrived, Frogman!
+Frogman: Thanks...?
+:call:Unlock
+Kresla: Now, let's go kill another lich!
+}
 ~
 :play:AfterBattle
 Kresla: Well, that was quite intense!
 Let's do it again sometime!
 Frogman: We probably will.
+:if:!foundKnowledge:InclinationKresla{
+:call:Unlock
+}
+
+# Functions
+
+~ Unlock
 Kresla: Oh, and as for what I was saying before,
 I AM going to try out different styles now.
 Frogman: All right. Good luck!

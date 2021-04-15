@@ -43,8 +43,7 @@ Frogman: How can you help us? Why would you?
 Torment: You... aren't very smart, are you? Heh!
 I just told you why! As for how...
 :loadMap:InitTormentRoom
-# Replace with "unlockedKnowledge"
-:if:!hasKnowledge:TormentHurtHelp{
+:if:!foundKnowledge:TormentHurtHelp{
 I still have some power here.
 You will know it soon enough... Heh heh.
 :unlockKnowledge:TormentHurtHelp

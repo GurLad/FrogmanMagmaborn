@@ -124,6 +124,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "hasKnowledge":
                 // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
                 return GameCalculations.HasKnowledge(parts[1]);
+            case "foundKnowledge":
+                // Return if found knowledge upgrade, based on internal name (ex. InclinationFrogman)
+                return GameCalculations.FoundKnowledge(parts[1]);
             case "hasFlag":
                 // Return whether a conversation flag is turned on
                 return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;
@@ -133,6 +136,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "firstTime":
                 // Return whether the pre-battle part of the conversation was played
                 return SavedData.Load<int>("ConversationData", "ID" + ID) == 0;
+            case "finishedConversation":
+                // Return whether the whole conversation was played
+                return SavedData.Load<int>("ConversationData", "ID" + ID) == 2;
 
             // Mid-battle requirements
 

@@ -22,16 +22,16 @@ roomNumber:3
 }
 :call:PreAlone
 ~ After battle
-:if:hasCharacter:Xirveros{
-:call:PostXirveros
-:finishConversation:
-}
 :if:hasCharacter:Firbell{
 :call:PostFirbell
 :finishConversation:
 }
 :if:hasCharacter:Kresla{
 :call:PostKresla
+:finishConversation:
+}
+:if:hasCharacter:Xirveros{
+:call:PostXirveros
 :finishConversation:
 }
 :call:PostGeneric
@@ -49,7 +49,7 @@ It is a Lich.
 One of the strongest monsters around here,
 capable of devastating Black Magic.
 Frogman: Magic? Never seen that before here.
-Firbell: Because most monsters can't use it.
+Firbell: Because monsters can't normally use it.
 The Lich won't attack us unless provoked,
 so we should leave-
 Frogman: Then let's defeat it. It's a better goal
@@ -72,17 +72,21 @@ Now!
 Frogman: Huh? Why?
 Kresla: Do you see that monster there?
 It's a Lich! A mighty undead wizard!
-It doesn't feel pain, the cost of magic,
-so it's much stronger than most monsters.
-Frogman: Magic? Never seen that before here.
-Kresla: Because most monsters can't use it.
-I don't really mind dying myself, but
-most people do, so we can just-
-Frogman: Then let's defeat it. It's a better goal
+Frogman: Wizard? Never seen any before here.
+Kresla: Oh, let me explain!
+Regular magic requires pain - which is why
+humans don't use it, and monsters can't.
+Frogman: Huh.
+However, liches use a strange crystal to
+channel it - I don't know how! Every time
+I get close to study it, they kill me.
+Frogman: Well, that was before my time, right?
+Kresla: Obviously. Are you thinking what I am?
+Frogman: Yes, let's defeat it. It's a better goal
 than endlessly wandering around.
 Kresla: Oh! I like your style!
-All right! Fancy dying again, then?
-Frogman: No, but let's go!
+I WILL find out your secret, lich!
+Frogman: Let's go!
 
 ~ PreXirveros
 :play:BeforeBattle
@@ -133,7 +137,10 @@ Firbell: What?! Did you not listen to a word-
 And there he goes again. The fool...
 
 ~ PostKresla
-Frogman: That was tough. Let's get out of here now!
+Kresla: Oh. It just disintegrated.
+With the crystal. What a shame.
+Frogman: Kresla, we need to get out of here now!
+Kresla: No, wait!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 Kresla: Frogman! Wait up! Before you go on, you
