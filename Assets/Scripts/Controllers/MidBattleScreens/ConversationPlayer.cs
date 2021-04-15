@@ -364,6 +364,7 @@ public class ConversationPlayer : MidBattleScreen
                     TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
                     break;
                 case "tutorialFinish":
+                    SavedData.SaveAll(SaveMode.Slot);
                     SceneController.LoadScene("Map");
                     return;
                 default:

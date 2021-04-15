@@ -11,10 +11,8 @@ public class TShowMenu : Trigger
     {
         if (This != null)
         {
-            MidBattleScreen.Set(This, false);
-            This.gameObject.SetActive(false);
+            This.Finish();
         }
-        MidBattleScreen.Set(Target, true);
-        Target.gameObject.SetActive(true);
+        Target.Begin();
     }
 }

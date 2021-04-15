@@ -13,7 +13,7 @@ public class OpeningCutscene : MonoBehaviour
     public float Speed;
     [Header("Objects")]
     public Text CreditsObject;
-    public GameObject Menu;
+    public GameObject PressStart;
     private bool finishedCredits;
     private int currentPart;
     private int lastCheckedCurrent;
@@ -43,7 +43,7 @@ public class OpeningCutscene : MonoBehaviour
                 ImageParts[i].gameObject.SetActive(true);
                 ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
             }
-            Menu.SetActive(true);
+            PressStart.SetActive(true);
             Destroy(this);
             if (CreditsObject != null)
             {
@@ -56,7 +56,7 @@ public class OpeningCutscene : MonoBehaviour
             currentPart++;
             if (finishedCredits && currentPart >= ImageParts.Count)
             {
-                Menu.SetActive(true);
+                PressStart.SetActive(true);
                 Destroy(this);
                 return;
             }

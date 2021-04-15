@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PressStart : MonoBehaviour
 {
-    public GameObject Menu;
+    public MenuController Menu;
     private void Update()
     {
         if (Control.GetButtonDown(Control.CB.Start))
         {
-            Menu.SetActive(true);
+            Menu.Begin();
             Destroy(gameObject);
         }
     }

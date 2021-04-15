@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b3465a22a2596449954f8441efdf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 2714873136382096874}
+  Menu: {fileID: 2714873136382096876}
 --- !u!1001 &44633936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Conversations:
+  - {fileID: 4900000, guid: 086f336791e016941abcc9e58608a55b, type: 3}
   - {fileID: 4900000, guid: 7ae65f9fd86cc9b40a2c2827ddecb24a, type: 3}
   - {fileID: 4900000, guid: 9afb5fbbdc9d58d4dbbcea98a5a2ca74, type: 3}
   - {fileID: 4900000, guid: 5d3f32d2ef5169845b1c0e30b577ca55, type: 3}
@@ -1572,7 +1573,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 480397906}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &480397909
+--- !u!114 &480397908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1581,11 +1582,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 480397907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d543fb252349c42b8a2eb0ebf599b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 679631410}
-  Enable: 1
+  This: {fileID: 0}
+  Target: {fileID: 679631412}
 --- !u!1 &586202690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,7 +2074,7 @@ MonoBehaviour:
   - {fileID: 1812044644}
   Selected: 0
   Cancelable: 1
-  FinishOnSelect: 1
+  FinishOnSelect: 0
   CancelTrigger: {fileID: 1812044645}
   StartTrigger: {fileID: 0}
   AfterMenuDone: {fileID: 0}
@@ -3535,7 +3536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b3465a22a2596449954f8441efdf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 2714873136382096874}
+  Menu: {fileID: 0}
 --- !u!114 &1018104459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4312,7 +4313,7 @@ MonoBehaviour:
   Cancelable: 0
   FinishOnSelect: 0
   CancelTrigger: {fileID: 0}
-  StartTrigger: {fileID: 1487284087}
+  StartTrigger: {fileID: 1613232625}
   AfterMenuDone: {fileID: 0}
 --- !u!114 &1190998949
 MonoBehaviour:
@@ -4927,6 +4928,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1487284086}
+  - component: {fileID: 1487284089}
+  - component: {fileID: 1487284088}
   - component: {fileID: 1487284087}
   m_Layer: 5
   m_Name: EndTrigger
@@ -4963,13 +4966,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 1487284085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff331f4fff0c3443814dd47c5cdcbd6, type: 3}
+  m_Script: {fileID: 11500000, guid: def90cd24b7708c478f501a960f0793c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Targets:
-  - {fileID: 1613232625}
-  - {fileID: 1613232627}
-  - {fileID: 1613232628}
+--- !u!114 &1487284088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487284085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1625292045}
+  Enable: 0
+--- !u!114 &1487284089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487284085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf261cdd058de5440998fca30435fee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1625292049}
+        m_TargetAssemblyTypeName: KnowledgeController, Assembly-CSharp
+        m_MethodName: MenusDone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1515143099
 GameObject:
   m_ObjectHideFlags: 0
@@ -5514,9 +5554,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1613232624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def90cd24b7708c478f501a960f0793c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ff331f4fff0c3443814dd47c5cdcbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Targets:
+  - {fileID: 1487284089}
+  - {fileID: 1487284088}
+  - {fileID: 1487284087}
 --- !u!114 &1613232626 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3207550779875205074, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
@@ -5529,47 +5573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467eff0380184ad4e8fa5a04cfa4ee2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1613232627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613232624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 1625292045}
-  Enable: 0
---- !u!114 &1613232628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613232624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf261cdd058de5440998fca30435fee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1625292049}
-        m_TargetAssemblyTypeName: KnowledgeController, Assembly-CSharp
-        m_MethodName: MenusDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1625292045
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,11 +5848,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627142173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d543fb252349c42b8a2eb0ebf599b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 2714873136382096874}
-  Enable: 1
+  This: {fileID: 0}
+  Target: {fileID: 2714873136382096876}
 --- !u!114 &1627142176 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3207550779875205074, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
@@ -5912,7 +5915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b3465a22a2596449954f8441efdf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 2714873136382096874}
+  Menu: {fileID: 0}
 --- !u!114 &1647725151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6191,11 +6194,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812044643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d543fb252349c42b8a2eb0ebf599b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1020722010}
-  Enable: 1
+  This: {fileID: 679631412}
+  Target: {fileID: 1020722012}
 --- !u!1 &1824631761
 GameObject:
   m_ObjectHideFlags: 0
@@ -6619,7 +6622,7 @@ MonoBehaviour:
     - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
   Speed: 3
   CreditsObject: {fileID: 770784414}
-  Menu: {fileID: 35769310}
+  PressStart: {fileID: 35769310}
 --- !u!1 &2049609995 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 832186918215127003, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
@@ -6647,11 +6650,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2049609995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360bda0302ccdb4c8bf000adb9062ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d543fb252349c42b8a2eb0ebf599b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1020722010}
-  Enable: 1
+  This: {fileID: 0}
+  Target: {fileID: 1020722012}
 --- !u!1001 &2068986908
 PrefabInstance:
   m_ObjectHideFlags: 0

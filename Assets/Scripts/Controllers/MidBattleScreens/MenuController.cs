@@ -76,13 +76,10 @@ public class MenuController : MidBattleScreen
         Selected = index;
         MenuItems[Selected].Select();
     }
-    public void MenuDone()
+    public void Finish()
     {
         // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
-        if (GameController.Current != null)
-        {
-            MidBattleScreen.Set(this, false);
-        }
+        MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         MenuItems.ForEach(a => a.OnMenuDone());
     }
@@ -90,7 +87,7 @@ public class MenuController : MidBattleScreen
     {
         if (FinishOnSelect)
         {
-            MenuDone();
+            Finish();
         }
     }
 }

@@ -37,10 +37,10 @@ warrior who bested y-
 :addGenericCharacter:Guard2:
 :play:GuardTheme
 ???: Hey! Is someone there?
-Frogman: Huh? Another Magma Emblemer?
+Frogman: Huh? Another Magmaborn?
 Xeplogi|???: W-who dares interr-
 :loadUnits:
-Guard2: No, look! Those are Magma Emblemers!
+Guard2: No, look! Those are Magmaborns!
 Frogman: Humans?!
 :if:hasCharacter:Firbell{
 Firbell: Humans?!
@@ -76,6 +76,8 @@ Frogman: Whew! We survived!
 Torment|???: Not for much longer! This is the end of
 this beta!
 You will die now! Goodbye!
+(You can reach level 5 again for a preview
+of things to come)
 :setFlag:finishedBeta
 :showPartTitle:End of:Beta
 :lose:

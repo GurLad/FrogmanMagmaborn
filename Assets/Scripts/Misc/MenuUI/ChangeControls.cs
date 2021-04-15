@@ -28,7 +28,7 @@ public class ChangeControls : MonoBehaviour
             {
                 SavedData.SaveAll(SaveMode.Global);
                 gameObject.SetActive(false);
-                Source.gameObject.SetActive(true);
+                Source.Begin();
             }
             else
             {
