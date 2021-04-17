@@ -106,7 +106,7 @@ public class KnowledgeMenuController : MonoBehaviour
             Arrows.gameObject.SetActive(false);
         }
         selectedMenu = 0;
-        menus[selectedMenu].Begin();
+        menus[selectedMenu].gameObject.SetActive(true);
         menus[selectedMenu].SelectItem(0);
         MenuName.text = UpgradeMenus[selectedMenu].Name;
         Description.text = UpgradeMenus[selectedMenu].Description;
@@ -124,10 +124,10 @@ public class KnowledgeMenuController : MonoBehaviour
         {
             if (!pressedLastFrame)
             {
-                menus[selectedMenu].Finish();
+                menus[selectedMenu].gameObject.SetActive(false);
                 selectedMenu += menus.Count + Control.GetAxisInt(Control.Axis.X);
                 selectedMenu %= menus.Count;
-                menus[selectedMenu].Begin();
+                menus[selectedMenu].gameObject.SetActive(true);
                 menus[selectedMenu].SelectItem(0);
                 MenuName.text = UpgradeMenus[selectedMenu].Name;
                 Description.text = UpgradeMenus[selectedMenu].Description;
@@ -144,6 +144,7 @@ public class KnowledgeMenuController : MonoBehaviour
     {
         foreach (MenuController menu in menus)
         {
+            menu.Begin();
             menu.Finish();
         }
     }

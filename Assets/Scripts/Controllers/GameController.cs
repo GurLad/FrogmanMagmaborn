@@ -833,16 +833,19 @@ public class GameController : MonoBehaviour
         unit.Init();
         return unit;
     }
-    public Unit CreateEnemyUnit(string name, int level, Team team)
+    public Unit CreateEnemyUnit(string name, int level, Team team, bool canReplace)
     {
         Unit unit = CreateUnit();
         unit.TheTeam = team;
         unit.name = "Unit" + name;
         unit.Name = team.Name();
-        UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
-        if (replacement != null)
+        if (canReplace)
         {
-            name = replacement.Get();
+            UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
+            if (replacement != null)
+            {
+                name = replacement.Get();
+            }
         }
         unit.Class = name;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
@@ -995,7 +998,7 @@ public class GameController : MonoBehaviour
             }
             else // Enemy units
             {
-                Unit unit = CreateEnemyUnit(name, int.Parse(parts[2]), team);
+                Unit unit = CreateEnemyUnit(name, int.Parse(parts[2]), team, !(parts.Length > 6 && parts[7] == "T"));
                 if (parts.Length > 6)
                 {
                     unit.ReinforcementTurn = int.Parse(parts[6]);

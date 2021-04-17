@@ -660,11 +660,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Conversations:
-  - {fileID: 4900000, guid: 086f336791e016941abcc9e58608a55b, type: 3}
   - {fileID: 4900000, guid: 7ae65f9fd86cc9b40a2c2827ddecb24a, type: 3}
   - {fileID: 4900000, guid: 9afb5fbbdc9d58d4dbbcea98a5a2ca74, type: 3}
   - {fileID: 4900000, guid: 5d3f32d2ef5169845b1c0e30b577ca55, type: 3}
   - {fileID: 4900000, guid: ec8a7aa00001cdd4a99a333761e5a2c8, type: 3}
+  - {fileID: 4900000, guid: be1342c5b89f06a449d61e4a194fe04b, type: 3}
   Path: IntroConversations
 --- !u!224 &182878992 stripped
 RectTransform:
@@ -5712,7 +5712,7 @@ MonoBehaviour:
       Description: 'I : Your units revive after each battle.'
       AltDescription: 'II: Frogman gets +1 stat every level for each dead player.'
       Cost: 3
-      DefaultState: -1
+      DefaultState: 0
       NumChoices: 3
       ChoiceValue: 0
     - Name: Order/Chaos
@@ -5720,7 +5720,7 @@ MonoBehaviour:
       Description: 'I : Your units start with +2 levels, but can''t level-up.'
       AltDescription: 'II: Your units get +1 stat each level, but can''t choose level-ups.'
       Cost: 3
-      DefaultState: -1
+      DefaultState: 0
       NumChoices: 3
       ChoiceValue: 0
     - Name: Speed/Safety
@@ -5728,7 +5728,7 @@ MonoBehaviour:
       Description: 'I : Terrain doesn''t slow down your units.'
       AltDescription: 'II: Harmful terrain helps your units instead.'
       Cost: 3
-      DefaultState: -1
+      DefaultState: 0
       NumChoices: 3
       ChoiceValue: 0
   ActiveSprite: {fileID: 21300000, guid: efc9e1002975f4f48affddb1d58ec88a, type: 3}
