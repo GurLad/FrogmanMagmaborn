@@ -147,7 +147,9 @@ public static class GameCalculations
         Stats temp = unit.Stats.GetMultipleLevelUps(level); // StatsPerLevel modifiers would be broken if they affected auto-levels
         if (unit.TheTeam == Team.Monster) // It wouldn't make sense for Torment to buff Guards, although might be too easy this way.
         {
-            temp += unit.Stats.GetLevelUp(KnowledgeController.TotalTormentPowers);
+            // Based on freedback from Dan, I'm removing the drawback - better making the game too easy, than making people not use Torment Powers.
+            // Alternative: the Torment Power penalty only works on hard, or as an unlockable challange mode.
+            //temp += unit.Stats.GetLevelUp(KnowledgeController.TotalTormentPowers);
         }
         return temp;
     }
