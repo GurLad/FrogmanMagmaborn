@@ -13,8 +13,6 @@ public class PortraitController : MonoBehaviour
     public List<GenericCharacterVoice> GenericVoicesAndNames;
     public List<Palette> GenericPossibleBackgroundColors = new List<Palette>();
     public Portrait ErrorPortrait;
-    [Header("Voices")]
-    public List<CharacterVoice> CharacterVoices;
     [Header("Error voice")]
     public CharacterVoice ErrorVoice;
     [Header("Debug only")]
@@ -33,11 +31,6 @@ public class PortraitController : MonoBehaviour
         Current = this;
         Destroy(DebugSource);
         DebugVoices.Clear();
-        // Process portraits
-        for (int i = 0; i < Portraits.Count; i++)
-        {
-            Portraits[i].Voice = CharacterVoices.Find(a => a.Name == Portraits[i].Name) ?? ErrorVoice;
-        }
         // Process generic names
         for (int i = 0; i < GenericVoicesAndNames.Count; i++)
         {
@@ -105,7 +98,6 @@ public class Portrait
     public Palette BackgroundColor = new Palette();
     [Range(0, 3)]
     public int ForegroundColorID;
-    [HideInInspector]
     public CharacterVoice Voice;
     [HideInInspector]
     public bool Assigned;
@@ -116,6 +108,10 @@ public class Portrait
         {
             BackgroundColor.Colors[i] = Color.black;
         }
+    }
+    public override string ToString()
+    {
+        return '"' + Name + '"';
     }
 }
 
@@ -140,8 +136,9 @@ public class GenericPortrait
     public Portrait ToPortrait()
     {
         Portrait portrait = new Portrait();
-        portrait.Voice = PortraitController.Current.GenericVoicesAndNames[NameValuesID].ToVoice();
-        portrait.Name = portrait.Voice.Name;
+        NamedVoice voice = PortraitController.Current.GenericVoicesAndNames[NameValuesID].ToVoice();
+        portrait.Voice = voice;
+        portrait.Name = voice.Name;
         portrait.Background = Background;
         portrait.Foreground = Foreground;
         portrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
@@ -158,10 +155,15 @@ public class GenericPortrait
 [System.Serializable]
 public class CharacterVoice
 {
-    public string Name;
     public VoiceType VoiceType;
     [Range(0, 2)]
     public float Pitch = 1;
+}
+
+[System.Serializable]
+public class NamedVoice : CharacterVoice
+{
+    public string Name;
 }
 
 [System.Serializable]
@@ -180,9 +182,9 @@ public class GenericCharacterVoice
         Names = names.Split(',');
     }
 
-    public CharacterVoice ToVoice()
+    public NamedVoice ToVoice()
     {
-        CharacterVoice voice = new CharacterVoice();
+        NamedVoice voice = new NamedVoice();
         voice.Name = Names[Random.Range(0, Names.Length)];
         voice.VoiceType = AvailableVoiceTypes[Random.Range(0, AvailableVoiceTypes.Count)];
         voice.Pitch = Random.Range(PitchRange.x, PitchRange.y);
