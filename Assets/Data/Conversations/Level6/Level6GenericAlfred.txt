@@ -1,0 +1,24 @@
+priority:-1
+unique:F
+~ Requirements
+# If got Xeplogi (high units count) but some died, get Alfred.
+roomNumber:6
+hasCharacter:Xeplogi
+charactersAlive:<3
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits:
+Alfred: Hurroomph!
+~ After battle
+Frogman: Congratulations! Now we shall die.
+Torment: Yes!
+:showPartTitle:You:Died
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

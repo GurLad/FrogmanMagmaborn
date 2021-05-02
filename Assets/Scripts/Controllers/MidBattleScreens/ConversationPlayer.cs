@@ -21,7 +21,7 @@ public class ConversationPlayer : MidBattleScreen
     public MenuController InfoDialogue;
     [Header("Main menu only")]
     public GameObject Knowledge;
-    public GameObject Tutorial;
+    public MenuController Tutorial;
     [SerializeField]
     private bool startActive = true;
     private CurrentState state;
@@ -447,7 +447,7 @@ public class ConversationPlayer : MidBattleScreen
                 SavedData.SaveAll(SaveMode.Slot);
                 if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
                 {
-                    Tutorial.SetActive(true);
+                    Tutorial.Begin();
                 }
                 else
                 {

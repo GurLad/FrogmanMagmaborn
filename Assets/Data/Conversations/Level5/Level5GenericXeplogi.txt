@@ -1,0 +1,19 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:5
+charactersAlive:>1
+~ Demands
+# Nothinig
+~ Before battle
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Xeplogi
+:loadUnits:
+Xeplogi: I'm here, too!
+~ After battle
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
