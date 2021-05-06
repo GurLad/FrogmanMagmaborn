@@ -823,7 +823,7 @@ public class GameController : MonoBehaviour
         GrowthsStruct unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name);
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats = new Stats();
-        unit.Stats.Growths = unitGrowths.Growths;
+        unit.Stats.Growths = unitGrowths.Values;
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
         unit.Inclination = unitGrowths.Inclination;
@@ -849,7 +849,7 @@ public class GameController : MonoBehaviour
         }
         unit.Class = name;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
-        unit.Stats.Growths = classData.Growths;
+        unit.Stats.Growths = classData.Growths.Values;
         unit.MovementMarker = EnemyMarker;
         unit.AttackMarker = EnemyAttackMarker;
         unit.Flies = classData.Flies;

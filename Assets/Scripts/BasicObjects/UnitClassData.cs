@@ -37,7 +37,7 @@ public class GrowthsStruct
 {
     public string Name;
     [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
-    public int[] Growths = new int[6];
+    public int[] Values = new int[6];
     public Inclination Inclination;
 }
 
@@ -47,7 +47,7 @@ public class ClassData
     public string Name;
     public bool Flies;
     public Inclination Inclination;
-    public int[] Growths = new int[6];
+    public GrowthsStruct Growths;
     public Weapon Weapon;
     public Sprite MapSprite;
 
