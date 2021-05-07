@@ -819,14 +819,14 @@ public class GameController : MonoBehaviour
         unit.name = "Unit" + name;
         unit.Level = level;
         unit.TheTeam = Team.Player;
-        unit.Class = UnitClassData.UnitClasses.Find(a => a.Unit == unit.Name).Class;
-        GrowthsStruct unitGrowths = UnitClassData.UnitGrowths.Find(a => a.Name == unit.Name);
+        UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
+        unit.Class = unitData.Class;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats = new Stats();
-        unit.Stats.Growths = unitGrowths.Values;
+        unit.Stats.Growths = unitData.Growths.Values;
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
-        unit.Inclination = unitGrowths.Inclination;
+        unit.Inclination = unitData.Inclination;
         unit.LoadInclination();
         AssignUnitMapAnimation(unit, classData);
         unit.Stats += unit.AutoLevel(level);

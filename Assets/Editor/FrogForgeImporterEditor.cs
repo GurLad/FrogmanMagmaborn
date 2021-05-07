@@ -15,7 +15,7 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.ConversationController.AutoLoad();
         }
-        if (myScript.UnitClassData != null && GUILayout.Button("Load Class Data"))
+        if (myScript.UnitClassData != null && GUILayout.Button("Load Class + Unit Data"))
         {
             myScript.UnitClassData.AutoLoad();
         }

@@ -12366,46 +12366,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d44a6ca0b34c4b9d2bb7fcd5f11fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitClasses:
-  - Unit: Frogman
-    Class: Frogman
-  - Unit: Firbell
-    Class: Skeleton
-  - Unit: Xirveros
-    Class: Goblin
-  - Unit: Kresla
-    Class: Gargoyle
-  - Unit: Xeplogi
-    Class: Ooze
-  - Unit: Memerian
-    Class: Golem
-  UnitGrowths:
+  UnitDatas:
   - Name: Frogman
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Frogman
     Inclination: 2
+    Growths:
+      Values: 020000000300000002000000010000000400000003000000
   - Name: Firbell
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Skeleton
     Inclination: 0
+    Growths:
+      Values: 040000000300000002000000010000000200000002000000
   - Name: Xirveros
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Goblin
     Inclination: 1
+    Growths:
+      Values: 030000000100000002000000030000000200000003000000
   - Name: Kresla
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Gargoyle
     Inclination: 1
+    Growths:
+      Values: 010000000100000003000000030000000400000000000000
   - Name: Xeplogi
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Ooze
     Inclination: 0
+    Growths:
+      Values: 020000000400000003000000010000000200000002000000
   - Name: Memerian
-    Values: 000000000000000000000000000000000000000000000000
+    Class: Golem
     Inclination: 0
+    Growths:
+      Values: 040000000200000002000000030000000200000001000000
+  - Name: Alfred
+    Class: Slither
+    Inclination: 2
+    Growths:
+      Values: 020000000200000001000000030000000200000004000000
   ClassDatas:
   - Name: Frogman
     Flies: 0
     Inclination: 2
     Growths:
-      Name: 
       Values: 010000000100000001000000010000000100000001000000
-      Inclination: 0
     Weapon:
       Name: Bow
       HitStat: 1
@@ -12417,9 +12419,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 0
     Growths:
-      Name: 
       Values: 030000000300000002000000010000000200000001000000
-      Inclination: 0
     Weapon:
       Name: Axe
       HitStat: 0
@@ -12431,9 +12431,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 2
     Growths:
-      Name: 
       Values: 030000000100000001000000020000000200000003000000
-      Inclination: 0
     Weapon:
       Name: Sword
       HitStat: 1
@@ -12445,9 +12443,7 @@ MonoBehaviour:
     Flies: 1
     Inclination: 1
     Growths:
-      Name: 
       Values: 010000000100000003000000030000000300000000000000
-      Inclination: 0
     Weapon:
       Name: Knives
       HitStat: 2
@@ -12459,9 +12455,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 2
     Growths:
-      Name: 
       Values: 020000000100000003000000010000000200000003000000
-      Inclination: 0
     Weapon:
       Name: Dark Magic
       HitStat: 0
@@ -12473,9 +12467,7 @@ MonoBehaviour:
     Flies: 1
     Inclination: 1
     Growths:
-      Name: 
       Values: 000000000000000000000000030000000300000000000000
-      Inclination: 0
     Weapon:
       Name: ???
       HitStat: 1
@@ -12487,9 +12479,7 @@ MonoBehaviour:
     Flies: 1
     Inclination: 0
     Growths:
-      Name: 
       Values: 000000000300000003000000000000000000000000000000
-      Inclination: 0
     Weapon:
       Name: ???
       HitStat: 1
@@ -12501,9 +12491,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 2
     Growths:
-      Name: 
       Values: 030000000000000000000000000000000000000003000000
-      Inclination: 0
     Weapon:
       Name: ???
       HitStat: 1
@@ -12515,9 +12503,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 2
     Growths:
-      Name: 
       Values: 030000000100000002000000010000000200000003000000
-      Inclination: 0
     Weapon:
       Name: Lance
       HitStat: 0
@@ -12529,9 +12515,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 1
     Growths:
-      Name: 
       Values: 020000000100000003000000030000000200000001000000
-      Inclination: 0
     Weapon:
       Name: Crossbow
       HitStat: 1
@@ -12543,9 +12527,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 0
     Growths:
-      Name: 
       Values: 030000000200000001000000030000000200000001000000
-      Inclination: 0
     Weapon:
       Name: Greatsword
       HitStat: -1
@@ -12557,9 +12539,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 0
     Growths:
-      Name: 
       Values: 020000000300000003000000010000000100000002000000
-      Inclination: 0
     Weapon:
       Name: Body
       HitStat: 0
@@ -12571,9 +12551,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 0
     Growths:
-      Name: 
       Values: 010000000100000001000000010000000100000001000000
-      Inclination: 0
     Weapon:
       Name: 
       HitStat: 0
@@ -12585,9 +12563,7 @@ MonoBehaviour:
     Flies: 0
     Inclination: 1
     Growths:
-      Name: 
       Values: 020000000100000003000000030000000100000002000000
-      Inclination: 0
     Weapon:
       Name: Hammer
       HitStat: 1
@@ -12599,9 +12575,7 @@ MonoBehaviour:
     Flies: 1
     Inclination: 2
     Growths:
-      Name: 
       Values: 020000000100000001000000020000000300000003000000
-      Inclination: 0
     Weapon:
       Name: Claws
       HitStat: 1

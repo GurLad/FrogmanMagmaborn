@@ -4,41 +4,43 @@ using UnityEngine;
 
 public class UnitClassData : MonoBehaviour
 {
-    public List<UnitClass> UnitClasses;
-    public List<GrowthsStruct> UnitGrowths;
+    public List<UnitData> UnitDatas;
     public List<ClassData> ClassDatas;
     public AdvancedSpriteSheetAnimation BaseAnimation;
 
     #if UNITY_EDITOR
     public void AutoLoad()
     {
-        // Load json
+        // Load classes json
         string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Classes.json").text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassDatas"), this);
-        // Load animations
+        // Load classes animations
         for (int i = 0; i < ClassDatas.Count; i++)
         {
             ClassDatas[i].MapSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
+        // Load units json
+        json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Units.json").text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("UnitDatas"), this);
     }
     #endif
 
     [System.Serializable]
-    public class UnitClass
+    public class GrowthsStruct
     {
-        public string Unit;
-        public string Class;
+        [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
+        public int[] Values = new int[6];
     }
 }
 
 [System.Serializable]
-public class GrowthsStruct
+public class UnitData
 {
     public string Name;
-    [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
-    public int[] Values = new int[6];
+    public string Class;
     public Inclination Inclination;
+    public UnitClassData.GrowthsStruct Growths;
 }
 
 [System.Serializable]
@@ -47,7 +49,7 @@ public class ClassData
     public string Name;
     public bool Flies;
     public Inclination Inclination;
-    public GrowthsStruct Growths;
+    public UnitClassData.GrowthsStruct Growths;
     public Weapon Weapon;
     public Sprite MapSprite;
 
