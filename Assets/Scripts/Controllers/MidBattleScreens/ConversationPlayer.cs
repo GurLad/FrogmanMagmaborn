@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,6 +52,11 @@ public class ConversationPlayer : MidBattleScreen
                     if (Control.GetButtonDown(Control.CB.A))
                     {
                         PlayLetter('m');
+                        if (targetLine.Count(a => a == '\n') > 1)
+                        {
+                            int lengthReduce = targetLine.IndexOf('\n');
+                            targetLine = targetLine.Substring(lengthReduce + 1);
+                        }
                         Text.text = targetLine;
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
@@ -63,6 +69,14 @@ public class ConversationPlayer : MidBattleScreen
                             if (++currentChar < targetLine.Length)
                             {
                                 count -= 1;
+                                if (targetLine[currentChar] == '\n' && Text.text.Count(a => a == '\n') > 0)
+                                {
+                                    Text.text = Text.text.Split('\n')[1];
+                                    int lengthReduce = targetLine.IndexOf('\n');
+                                    targetLine = targetLine.Substring(lengthReduce);
+                                    currentChar -= lengthReduce;
+                                    count -= 1;
+                                }
                                 Text.text += targetLine[currentChar];
                                 PlayLetter(targetLine[currentChar]);
                             }
@@ -514,7 +528,7 @@ public class ConversationPlayer : MidBattleScreen
     }
     private bool LineAddition(string trueLine)
     {
-        return trueLine.IndexOf('\n') < 0 && currentLine >= 1;
+        return /*trueLine.IndexOf('\n') < 0 &&*/ currentLine >= 1;
     }
     private void PlayLetter(char letter)
     {
