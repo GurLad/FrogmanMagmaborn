@@ -14,28 +14,34 @@ Alfred|???: ...Hi there.
 Frogman: Hm? Who's there?
 :addUnit:Alfred
 :loadUnits::player
-Alfred|???: Me.
+Alfred|???: Me. Name's Alfred.
 :if:hasCharacter:Firbell{
-Firbell: Hello there. Who are you?
-Alfred: Name's Alfred.
-Firbell: Well met. My name is Firbell, and this-
-Alfred: Okay. You fight Guards too?
+Firbell: Well met, Alfred. My name is Firbell, and
+this here is Frogman.
+Alfred: Got it. You fight Guards too?
 Frogman: Yes, we do.
-Alfred: Good. I'll join you.
-Ffrogman: Uh...  sure. So, wh... Where are you going?
+Alfred: Good. Been too long since I had comrades.
+Firbell: What happened to them?
+Alfred: Died before me.
+Frogman: Oh. I'm sorry-
 Alfred: Conversation's over. Guards approaching.
 Firbell: How can you-
 }
 :else:{
 :if:hasCharacter:Kresla{
 Kresla: Oh, hi! Another flying monster, are you?
-Alfred|???: Yes. You fly too.
-Kresla: Obviously! Good to know I'm not the only
-one! So, how do you fly?
-Alfred|???: I flap my wings.
-# More TBA
+Alfred: Yes. Too bad I died by the time I had wings.
+Kresla: Well, you're immortal now! You have all the
+time in the world to use them!
+Alfred: Yes. I use them for vengeance.
+For my fallen comrades.
+Kresla: Wow. What a boring view of life.
+Alfred: I live to kill.       ...
+Conversation's over. Guards approaching.
+Kresla: Huh? Where?
 :else:{
-# Xirveros & alone TBA
+:if:hasCharacter:Xirveros{
+# TBA
 }
 :play:GuardTheme
 :loadUnits:
@@ -46,8 +52,9 @@ A Magma party?
 Guard2: Heh heh. Magma party. Sounds fun.
 Guard1: What? No, that's not- Argh. Kill them all!
 Guard2: Heh heh. Kill them. Sounds fun.
-Alfred: You're the monsters. I'll kill you.
-Frogman: Sure thing. Go ahead.
+Alfred: You there... Guards...
+How much weight... Can you handle?
+Frogman: Uh... Sure. Inspiring.
 ~ After battle
 # Name: Text.
 
