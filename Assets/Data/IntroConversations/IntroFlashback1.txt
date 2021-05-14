@@ -1,0 +1,39 @@
+priority:2
+unique:T
+~ Requirements
+numRuns:>4
+~ Demands
+~ Before battle
+:play:BeforeBattle
+Frogman: Urgh... My head...
+Wait... I remember... something?
+# Load village background image
+:showImage:VillageBG
+:play:ForgottenMemories
+# TBA: Actually add portraits for them
+# Marcus is Frogman. No idea for a design yet
+:addGenericCharacter:Marcus:male
+:addGenericCharacter:Marmar:male
+Marcus|???: Good morning, Marmar. Going to the forest
+again, huh?
+Marmar|Marmar: Mornin'! Sure am. These woods ain't
+gonna cut 'emselves, eh?
+Marcus|???: Ha ha!
+Marmar|Marmar: So, how 'bout you? Goin' hunting again?
+Marcus|???: Yes. These beasts ain't gonna hunt
+themselves, eh?
+Marmar|Marmar: Ha ha! Bring home a frog or two, eh?
+Marcus|???: Sure. Can't disappoint you now, can I?
+Marmar|Marmar: You better not! Har!
+Well, off I go then! G'day!
+:play:BeforeBattle
+Frogman: ...
+Marmar... Who were you?
+
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

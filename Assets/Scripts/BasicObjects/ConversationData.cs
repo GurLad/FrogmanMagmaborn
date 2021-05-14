@@ -132,7 +132,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;
             case "numRuns":
                 // Return whether a certain number of runs was reached.
-                return MeetsComparisonRequirement(parts[1][0], GameController.Current.NumRuns, int.Parse(parts[1].Substring(1)));
+                return MeetsComparisonRequirement(parts[1][0], SavedData.Load<int>("NumRuns"), int.Parse(parts[1].Substring(1)));
             case "firstTime":
                 // Return whether the pre-battle part of the conversation was played
                 return SavedData.Load<int>("ConversationData", "ID" + ID) == 0;
