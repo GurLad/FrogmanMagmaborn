@@ -36,12 +36,21 @@ time in the world to use them!
 Alfred: Yes. I use them for vengeance.
 For my fallen comrades.
 Kresla: Wow. What a boring view of life.
-Alfred: I live to kill.       ...
+Alfred: My life is over. All I have left is the will
+to fight.
 Conversation's over. Guards approaching.
 Kresla: Huh? Where?
 :else:{
-:if:hasCharacter:Xirveros{
-# TBA
+Frogman: Oh. You can come closer, you know.
+Alfred: No need. I can hear you just fine.
+Frogman: If you insist.
+Alfred: ...
+Frogman: Um... So you're Magmaborn too, yes?
+Alfred: Yes. I fight Guards.
+Frogman: Good. Me too.
+Alfred: Good.
+Frogman: ...
+Alfred: Conversation's over. Guards approaching.
 }
 :play:GuardTheme
 :loadUnits:
@@ -56,9 +65,16 @@ Alfred: You there... Guards...
 How much weight... Can you handle?
 Frogman: Uh... Sure. Inspiring.
 ~ After battle
-# Name: Text.
+:if:hasCharacter:Alfred{
+:call:PostAlfred
+}
+:else:{
+:call:PostAlfredDead
+}
 
 # === Functions ====
 
-~ Sample
+~ PostAlfred
+# Name: Text.
+~ PostAlfredDead
 # Name: Text.
