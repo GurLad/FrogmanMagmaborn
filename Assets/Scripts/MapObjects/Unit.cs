@@ -93,15 +93,15 @@ public class Unit : MapObject
     }
     private void LoadIcon()
     {
-        switch (TheTeam)
+        switch (GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode)
         {
-            case Team.Player:
+            case PortraitLoadingMode.Name:
                 Icon = PortraitController.Current.FindPortrait(Name);
                 break;
-            case Team.Monster:
+            case PortraitLoadingMode.Team:
                 Icon = PortraitController.Current.FindPortrait(TheTeam.Name());
                 break;
-            case Team.Guard:
+            case PortraitLoadingMode.Generic:
                 // Check whether there are any conversation guards
                 IEnumerable<Portrait> temp = PortraitController.Current.TempPortraits.Values.Where(a => !a.Assigned);
                 // Otherwise, load a random portrait
@@ -591,11 +591,11 @@ public class Unit : MapObject
     private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, int[,] fullMoveRange)
     {
         int min = int.MaxValue;
-        for (int i = -1; i <= 1; i++)
+        for (int i = -Weapon.Range; i <= Weapon.Range; i++)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int j = -Weapon.Range; j <= Weapon.Range; j++)
             {
-                if ((i == 0 || j == 0) && GameController.Current.IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
+                if ((Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range && Mathf.Abs(i) + Mathf.Abs(j) > 0) && GameController.Current.IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
                 {
                     min = movement - fullMoveRange[pos.x + i, pos.y + j];
                 }
@@ -693,79 +693,88 @@ public class Unit : MapObject
         LoadIcon();
         moved = false;
     }
+}
 
-    [System.Serializable]
-    public class AIPriorities
+
+[System.Serializable]
+public class AIPriorities
+{
+    public float TrueDamageWeight, RelativeDamageWeight, SurvivalWeight;
+    public AICautionLevel CautionLevel;
+    private Unit thisUnit;
+
+    public AIPriorities(Unit unit)
     {
-        public float TrueDamageWeight, RelativeDamageWeight, SurvivalWeight;
-        public AICautionLevel CautionLevel;
-        private Unit thisUnit;
+        thisUnit = unit;
+    }
 
-        public AIPriorities(Unit unit)
+    public void Set(float trueDamageWeight, float relativeDamageWeight, float survivalWeight, AICautionLevel cautionLevel)
+    {
+        TrueDamageWeight = trueDamageWeight;
+        RelativeDamageWeight = relativeDamageWeight;
+        SurvivalWeight = survivalWeight;
+        CautionLevel = cautionLevel;
+    }
+
+    public void Set(AIPriorities copyFrom)
+    {
+        TrueDamageWeight = copyFrom.TrueDamageWeight;
+        RelativeDamageWeight = copyFrom.RelativeDamageWeight;
+        SurvivalWeight = copyFrom.SurvivalWeight;
+        CautionLevel = copyFrom.CautionLevel;
+    }
+
+    public bool ShouldAttack(Unit unit)
+    {
+        if (SurvivalWeight <= 0) // Monster units always attack
         {
-            thisUnit = unit;
+            return true;
         }
-
-        public void Set(float trueDamageWeight, float relativeDamageWeight, float survivalWeight, AICautionLevel cautionLevel)
+        else
         {
-            TrueDamageWeight = trueDamageWeight;
-            RelativeDamageWeight = relativeDamageWeight;
-            SurvivalWeight = survivalWeight;
-            CautionLevel = cautionLevel;
-        }
-
-        public bool ShouldAttack(Unit unit)
-        {
-            if (SurvivalWeight <= 0) // Monster units always attack
+            if (((CautionLevel & AICautionLevel.NoDamage) != 0) && (thisUnit.GetDamage(unit) <= 0 || thisUnit.GetHitChance(unit) <= 0))
             {
-                return true;
+                //Debug.Log("Shouldn't try attack " + unit + " (No damage)");
+                return false;
             }
-            else
+            if (((CautionLevel & AICautionLevel.Suicide) != 0) && (SurvivalValue(unit) >= 0))
             {
-                if (((CautionLevel & AICautionLevel.NoDamage) != 0) && (thisUnit.GetDamage(unit) <= 0 || thisUnit.GetHitChance(unit) <= 0))
-                {
-                    //Debug.Log("Shouldn't try attack " + unit + " (No damage)");
-                    return false;
-                }
-                if (((CautionLevel & AICautionLevel.Suicide) != 0) && (SurvivalValue(unit) >= 0))
-                {
-                    //Debug.Log("Shouldn't try attack " + unit + " (Suicide)");
-                    return false;
-                }
-                if (((CautionLevel & AICautionLevel.LittleDamage) != 0) && (GetAIDamageValue(unit) <= 0))
-                {
-                    //Debug.Log("Shouldn't try attack " + unit + " (Little damage)");
-                    return false;
-                }
-                //Debug.Log("Should try attack " + unit);
-                return true;
+                //Debug.Log("Shouldn't try attack " + unit + " (Suicide)");
+                return false;
             }
+            if (((CautionLevel & AICautionLevel.LittleDamage) != 0) && (GetAIDamageValue(unit) <= 0))
+            {
+                //Debug.Log("Shouldn't try attack " + unit + " (Little damage)");
+                return false;
+            }
+            //Debug.Log("Should try attack " + unit);
+            return true;
         }
+    }
 
-        public float GetTotalPriority(Unit unit)
-        {
-            return TrueDamageWeight * TrueDamageValue(unit) + RelativeDamageWeight * RelativeDamageValue(unit) + SurvivalWeight * SurvivalValue(unit);
-        }
+    public float GetTotalPriority(Unit unit)
+    {
+        return TrueDamageWeight * TrueDamageValue(unit) + RelativeDamageWeight * RelativeDamageValue(unit) + SurvivalWeight * SurvivalValue(unit);
+    }
 
-        public int GetAIDamageValue(Unit other)
-        {
-            return Mathf.RoundToInt(thisUnit.GetDamage(other) * thisUnit.GetHitChance(other) / 100.0f + 0.01f);
-        }
-        // These should be private. Public for debug purposes
-        public int TrueDamageValue(Unit unit)
-        {
-            return -GetAIDamageValue(unit);
-        }
+    public int GetAIDamageValue(Unit other)
+    {
+        return Mathf.RoundToInt(thisUnit.GetDamage(other) * thisUnit.GetHitChance(other) / 100.0f + 0.01f);
+    }
+    // These should be private. Public for debug purposes
+    public int TrueDamageValue(Unit unit)
+    {
+        return -GetAIDamageValue(unit);
+    }
 
-        public int RelativeDamageValue(Unit unit)
-        {
-            return unit.Health - GetAIDamageValue(unit);
-        }
+    public int RelativeDamageValue(Unit unit)
+    {
+        return unit.Health - GetAIDamageValue(unit);
+    }
 
-        public int SurvivalValue(Unit unit)
-        {
-            int survivalValue = Mathf.RoundToInt(unit.GetDamage(thisUnit) * unit.GetHitChance(thisUnit) / 100.0f + 0.01f) - thisUnit.Health;
-            return survivalValue > 0 ? survivalValue + 5 : survivalValue;
-        }
+    public int SurvivalValue(Unit unit)
+    {
+        int survivalValue = Mathf.RoundToInt(unit.GetDamage(thisUnit) * unit.GetHitChance(thisUnit) / 100.0f + 0.01f) - thisUnit.Health;
+        return survivalValue > 0 ? survivalValue + 5 : survivalValue;
     }
 }

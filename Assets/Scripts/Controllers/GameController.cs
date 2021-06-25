@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     public Vector2Int MapSize;
     public float TileSize;
     public List<TileSet> TileSets;
-    public List<string> RoomThemes;
     public List<UnitReplacement> UnitReplacements;
     public List<TextAsset> Rooms;
     [Header("UI")]
@@ -31,8 +30,9 @@ public class GameController : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
     public GameObject PartTitle;
-    [Header("Torment palette")]
-    public Palette TormentPalette;
+    [Header("Other data controllers")]
+    public UnitClassData UnitClassData;
+    public LevelMetadataController LevelMetadataController;
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
     public bool DebugStartAtEndgame;
     public int DebugEndgameLevel;
@@ -43,13 +43,14 @@ public class GameController : MonoBehaviour
     public GameObject Cursor;
     public GameObject Canvas;
     public Unit BaseUnit;
-    public UnitClassData UnitClassData;
     public Marker EnemyMarker;
     public Marker EnemyAttackMarker;
     public PointerMarker PointerMarker;
     public GameObject EscapeMarker;
     [HideInInspector]
     public int LevelNumber;
+    [HideInInspector]
+    public LevelMetadata LevelMetadata;
     [HideInInspector]
     public TileSet Set;
     [HideInInspector]
@@ -65,7 +66,6 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
     protected Difficulty difficulty;
-    private Palette basePalette;
     private List<Room> rooms;
     private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour
     private bool checkEndTurn;
     private Room selectedRoom;
     private int currentKnowledge;
+    private int enemyCount; // To increase performance
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
     {
@@ -207,8 +208,6 @@ public class GameController : MonoBehaviour
         UnitReplacements.ForEach(a => a.Init());
         // Awake enemy marker
         EnemyMarker.GetComponent<PalettedSprite>().Awake();
-        // Set base palette
-        basePalette = new Palette(PaletteController.Current.SpritePalettes[1]);
     }
     private void Start()
     {
@@ -317,19 +316,24 @@ public class GameController : MonoBehaviour
                 {
                     anchor = new Vector2Int(1, 1);
                 }
+                if (enemyCount == -1)
+                {
+                    enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
+                }
+                UIUnitInfoPanel.gameObject.SetActive(true);
                 if (unit != null)
                 {
-                    UIUnitInfoPanel.gameObject.SetActive(true);
                     UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
-                    UIUnitInfoPanel.anchorMin = anchor;
-                    UIUnitInfoPanel.anchorMax = anchor;
-                    UIUnitInfoPanel.pivot = anchor;
                     UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
                 }
                 else
                 {
-                    UIUnitInfoPanel.gameObject.SetActive(false);
+                    UIUnitInfo.text = GetInfoObjectiveText();
+                    UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = 3;
                 }
+                UIUnitInfoPanel.anchorMin = anchor;
+                UIUnitInfoPanel.anchorMax = anchor;
+                UIUnitInfoPanel.pivot = anchor;
                 if (InteractState != InteractState.None)
                 {
                     UIFightPanel.gameObject.SetActive(true);
@@ -392,6 +396,7 @@ public class GameController : MonoBehaviour
                 List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
                 playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
             }
+            enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
             checkPlayerDead = false;
         }
         if (checkEndTurn)
@@ -575,26 +580,12 @@ public class GameController : MonoBehaviour
     }
     private void EnemyAI()
     {
-        // Monster AI (individual AIs)
-        if (currentPhase == Team.Monster)
+        // Enemy AI. TBA: Change to check which team is player controlled and which is computer controlled.
+        if (currentPhase != Team.Player)
         {
             if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
             {
-                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Monster && !a.Moved);
-                // AI
-                currentEnemy.AI(units);
-            }
-            else
-            {
-                enemyMoveDelayCount += Time.deltaTime;
-            }
-        }
-        // Guard AI (group AI, TBA. Currently monster AI code)
-        if (currentPhase == Team.Guard)
-        {
-            if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
-            {
-                Unit currentEnemy = units.Find(a => a.TheTeam == Team.Guard && !a.Moved);
+                Unit currentEnemy = units.Find(a => a.TheTeam == currentPhase && !a.Moved);
                 // AI
                 currentEnemy.AI(units);
             }
@@ -780,15 +771,8 @@ public class GameController : MonoBehaviour
             Destroy(currentUnitsObject.gameObject);
         }
         Turn = 1;
-        // Set palette for Torment levels
-        if (LevelNumber % 4 == 0)
-        {
-            PaletteController.Current.SpritePalettes[1] = TormentPalette;
-        }
-        else
-        {
-            PaletteController.Current.SpritePalettes[1] = basePalette;
-        }
+        // Set palettes
+        SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
         // Room-specific behaviours
         if (selectedRoom.Objective == Objective.Escape)
         {
@@ -858,15 +842,7 @@ public class GameController : MonoBehaviour
         unit.Level = level;
         unit.Weapon = classData.Weapon;
         AssignUnitMapAnimation(unit, classData);
-        // Set priorities - in the future, think of a better, non-hardcoded way to do this.
-        if (team != Team.Guard)
-        {
-            unit.Priorities.Set(1, 0, 0, AICautionLevel.None);
-        }
-        else
-        {
-            unit.Priorities.Set(0, 0.5f, 0.5f, AICautionLevel.NoDamage | AICautionLevel.Suicide);
-        }
+        unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
         return unit;
     }
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)
@@ -1014,6 +990,7 @@ public class GameController : MonoBehaviour
                 unit.gameObject.SetActive(true);
             }
         }
+        enemyCount = -1;
         currentPhase = Team.Player;
         interactable = true;
     }
@@ -1021,7 +998,7 @@ public class GameController : MonoBehaviour
     {
         units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
     }
-    public string ObjectiveData()
+    public string GetPauseObjectiveText()
     {
         switch (selectedRoom.Objective)
         {
@@ -1038,6 +1015,23 @@ public class GameController : MonoBehaviour
         }
         return "";
     }
+    public string GetInfoObjectiveText()
+    {
+        switch (selectedRoom.Objective)
+        {
+            case Objective.Rout:
+                return "Kill " + enemyCount + "\nenemies";
+            case Objective.Boss:
+                return "Defeat\n" + selectedRoom.ObjectiveData;
+            case Objective.Escape:
+                return "Reach the\nmarker";
+            case Objective.Survive:
+                return "Survive\n" + (int.Parse(selectedRoom.ObjectiveData) - Turn + 1) + " turns";
+            default:
+                break;
+        }
+        return "";
+    }
     public void ShowPointerMarker(Unit origin, int paletteID)
     {
         PointerMarker pointerMarker = Instantiate(PointerMarker.gameObject).GetComponent<PointerMarker>();
@@ -1049,7 +1043,7 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
-        PaletteController.Current.SpritePalettes[1] = basePalette; // Fix Torment palette
+        SetPalettesFromMetadata(LevelMetadataController[0]); // Fix Torment palette
         NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.SaveAll(SaveMode.Slot);
@@ -1116,6 +1110,13 @@ public class GameController : MonoBehaviour
             return ConversationPlayer.Current.CheckWait();
         }
         return false;
+    }
+    private void SetPalettesFromMetadata(LevelMetadata metadata)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            PaletteController.Current.SpritePalettes[i] = metadata.TeamDatas[i].Palette;
+        }
     }
 
     private class Room

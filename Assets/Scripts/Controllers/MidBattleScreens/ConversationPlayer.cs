@@ -485,7 +485,7 @@ public class ConversationPlayer : MidBattleScreen
             }
             else
             {
-                CrossfadeMusicPlayer.Current.Play(GameController.Current.RoomThemes[GameController.Current.LevelNumber - 1], false);
+                CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
                 if (origin.PostBattleLines.Count <= 0)
                 {
                     origin.Choose(true);

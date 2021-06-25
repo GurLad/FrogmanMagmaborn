@@ -554,7 +554,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6f9a9b6529b165242b229bff80a6242c, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
-  - {fileID: 4900000, guid: 632e34aa2de7a56499793ae37f7aea05, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -14882,6 +14881,7 @@ GameObject:
   - component: {fileID: 1902908236}
   - component: {fileID: 1902908235}
   - component: {fileID: 1902908237}
+  - component: {fileID: 1902908238}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -15053,13 +15053,6 @@ MonoBehaviour:
     - {fileID: 505663789}
     - {fileID: 509163897}
     - {fileID: 2128636561}
-  RoomThemes:
-  - MagmaFlows
-  - Dungeon
-  - ToTheDeath
-  - Tormentor
-  - EnterTheGuards
-  - OverAndOver
   UnitReplacements:
   - Class: Skeleton
     ReplacedBy:
@@ -15103,30 +15096,69 @@ MonoBehaviour:
   DifficultyMenu: {fileID: 505687530}
   PartTitle: {fileID: 112909811045203277, guid: 5389f5b73927a774b8d02677a15b8be2,
     type: 3}
-  TormentPalette:
-    Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
-    - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
-    - {r: 1, g: 0, b: 1, a: 0}
+  UnitClassData: {fileID: 1606634284}
+  LevelMetadataController: {fileID: 1902908238}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 6
+  DebugEndgameLevel: 5
   DebugUnits:
   - Frogman
   - Kresla
   - Xirveros
-  - Xeplogi
-  DebugUnlimitedMove: 1
+  DebugUnlimitedMove: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}
-  UnitClassData: {fileID: 1606634284}
   EnemyMarker: {fileID: 1532390035}
   EnemyAttackMarker: {fileID: 1131682979}
   PointerMarker: {fileID: 28154510}
   EscapeMarker: {fileID: 2049331675}
   LevelNumber: 2
+  LevelMetadata:
+    TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+      Name: 
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+      Name: 
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 1}
+      Name: 
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    MusicName: 
   Set:
     Name: 
     Palette1:
@@ -15196,6 +15228,328 @@ MonoBehaviour:
   MissSFX: {fileID: 8300000, guid: 734204ac8fd74b440a2794ce4507d642, type: 3}
   NoDamageSFX: {fileID: 8300000, guid: ce86335980fa1e843b15b5c2478efefd, type: 3}
   CurrentAnimation: 0
+--- !u!114 &1902908238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902908234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65dd8ab3e8a65b40b7fe1eb478ce5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMetadata:
+    TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: 
+  LevelMetadatas:
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: MagmaFlows
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: Dungeon
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: ToTheDeath
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
+        - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Torment
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 1
+        SurvivalWeight: 0
+        CautionLevel: 0
+    MusicName: Tormentor
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: EnterTheGuards
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
+        - {r: 0, g: 0, b: 0.98823535, a: 1}
+        - {r: 1, g: 0, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: OverAndOver
 --- !u!1 &1912965044
 GameObject:
   m_ObjectHideFlags: 0

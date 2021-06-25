@@ -10,8 +10,9 @@ public enum AIType { Charge, Hold, Guard }
 public enum Inclination { Physical, Technical, Skillful } // Bad names
 public enum VoiceType { Square50, Square25, Square12, Triangle }
 public enum InteractState { None, Move, Attack }
-public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, LittleDamage = 4 }
+public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, TEMP = 3, LittleDamage = 4 }
 public enum TormentPowerState { None, I, II }
+public enum PortraitLoadingMode { Name, Team, Generic }
 
 public static class StaticGlobals
 {
@@ -19,11 +20,7 @@ public static class StaticGlobals
     // Extension methods
     public static string Name(this Team team)
     {
-        if (GameController.Current.LevelNumber % 4 == 0 && team == Team.Monster)
-        {
-            return "Torment";
-        }
-        return team.ToString();
+        return GameController.Current.LevelMetadata.TeamDatas[(int)team].Name;
     }
     public static Team? ToTeam(this string teamName)
     {
