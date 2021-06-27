@@ -98,6 +98,8 @@ public class Portrait
     public Palette BackgroundColor = new Palette();
     [Range(0, 3)]
     public int ForegroundColorID;
+    [Range(0, 3)]
+    public int AccentColor;
     public CharacterVoice Voice;
     [HideInInspector]
     public bool Assigned;
@@ -143,6 +145,7 @@ public class GenericPortrait
         portrait.Foreground = Foreground;
         portrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
         portrait.ForegroundColorID = Random.Range(0, 4);
+        portrait.AccentColor = 2;
         return portrait;
     }
 

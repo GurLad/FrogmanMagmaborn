@@ -10,6 +10,7 @@ public class PortraitHolder : MonoBehaviour
     public int BackgroundPalleteID = 3;
     private PalettedSprite foregroundPalette;
     private PalettedSprite backgroundPalette;
+    private Portrait _portrait = null;
     public Portrait Portrait
     {
         set
@@ -19,6 +20,11 @@ public class PortraitHolder : MonoBehaviour
             backgroundPalette.UpdatePalette();
             Foreground.sprite = value.Foreground;
             foregroundPalette.Palette = value.ForegroundColorID;
+            _portrait = value;
+        }
+        get
+        {
+            return _portrait;
         }
     }
     private void Awake()

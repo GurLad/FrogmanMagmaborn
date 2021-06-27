@@ -13,13 +13,21 @@ public class ConversationPlayer : MidBattleScreen
     public int LineWidth = 22;
     public List<AudioClip> VoiceTypes;
     public float VoiceMod;
+    public float PunctuationDelay;
     [Header("Objects")]
+    public RectTransform NameHolder;
     public Text Name;
     public Text Text;
-    public PortraitHolder Portrait;
+    public PortraitHolder PortraitL;
+    public PortraitHolder PortraitR;
     public GameObject Arrow;
     public MenuController ChoiceMenu;
     public MenuController InfoDialogue;
+    [Header("Palette stuff")]
+    public PalettedSprite TextHolderPalette;
+    public PalettedSprite NameHolderPalette;
+    public PalettedSprite PortraitLHolderPalette;
+    public PalettedSprite PortraitRHolderPalette;
     [Header("Main menu only")]
     public GameObject Knowledge;
     public MenuController Tutorial;
@@ -29,6 +37,9 @@ public class ConversationPlayer : MidBattleScreen
     private ConversationData origin;
     private CharacterVoice voice;
     private bool playingVoice;
+    private bool currentSpeakerIsLeft = false;
+    private string speakerL = "";
+    private string speakerR = "";
     private int currentLine;
     private int currentChar;
     private float count;
@@ -41,6 +52,7 @@ public class ConversationPlayer : MidBattleScreen
     {
         Current = this;
         gameObject.SetActive(startActive);
+        PortraitR.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -75,9 +87,21 @@ public class ConversationPlayer : MidBattleScreen
                                     int lengthReduce = targetLine.IndexOf('\n');
                                     targetLine = targetLine.Substring(lengthReduce);
                                     currentChar -= lengthReduce;
-                                    count -= 1;
+                                    count -= PunctuationDelay;
                                 }
                                 Text.text += targetLine[currentChar];
+                                if (targetLine[currentChar] == ' ')
+                                {
+                                    char letter = targetLine[currentChar - 1];
+                                    if (letter == '.' || letter == ',' || letter == '!' || letter == '?')
+                                    {
+                                        count -= PunctuationDelay * (letter == ',' ? 0.5f : 1);
+                                    }
+                                }
+                                if (currentChar + 1 < targetLine.Length && targetLine[currentChar + 1] == '\n' && Text.text.Count(a => a == '\n') > 0)
+                                {
+                                    count -= PunctuationDelay;
+                                }
                                 PlayLetter(targetLine[currentChar]);
                             }
                             else
@@ -249,6 +273,12 @@ public class ConversationPlayer : MidBattleScreen
                 case "finishConversation":
                     FinishConversation();
                     return;
+                case "setSingleSpeaker":
+                    // Removes all speakers and makes sure the next is on the left/right
+                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
+                    SetSinglePortrait(left);
+                    currentSpeakerIsLeft = !left;
+                    return;
 
                 // Show other screens (MidBattleScreens)
 
@@ -272,7 +302,9 @@ public class ConversationPlayer : MidBattleScreen
                     enabled = false;
                     Text.text = "";
                     Arrow.SetActive(false);
-                    Portrait.Portrait = PortraitController.Current.FindPortrait(Name.text = parts[2]);
+                    PortraitL.Portrait = PortraitController.Current.FindPortrait(Name.text = parts[2]);
+                    SetSinglePortrait(true);
+                    SetSpeaker(true);
                     if (parts.Length != 5)
                     {
                         throw new System.Exception("Currently, choices of more than 2 options aren't supported.");
@@ -396,8 +428,6 @@ public class ConversationPlayer : MidBattleScreen
         {
             string[] parts = line.Split(':')[0].Split('|');
             Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
-            Portrait.Portrait = portrait;
-            voice = portrait.Voice;
             if (parts.Length > 1)
             {
                 Name.text = parts[parts.Length - 1];
@@ -406,6 +436,19 @@ public class ConversationPlayer : MidBattleScreen
             {
                 Name.text = portrait.Name;
             }
+            if (currentSpeakerIsLeft)
+            {
+                PortraitR.Portrait = portrait;
+                speakerR = Name.text;
+                SetSpeaker(false);
+            }
+            else
+            {
+                PortraitL.Portrait = portrait;
+                speakerL = Name.text;
+                SetSpeaker(true);
+            }    
+            voice = portrait.Voice;
         }
         if (line.Contains("[")) // Variable name (like button name)
         {
@@ -529,6 +572,33 @@ public class ConversationPlayer : MidBattleScreen
     private bool LineAddition(string trueLine)
     {
         return /*trueLine.IndexOf('\n') < 0 &&*/ currentLine >= 1;
+    }
+    private void SetSpeaker(bool left)
+    {
+        PortraitHolder target = left ? PortraitL : PortraitR;
+        NameHolder.anchoredPosition = new Vector2(left ? 64 : 112, NameHolder.anchoredPosition.y);
+        Name.text = left ? speakerL : speakerR;
+        voice = target.Portrait.Voice;
+        TextHolderPalette.Palette = target.Portrait.AccentColor;
+        NameHolderPalette.Palette = target.Portrait.AccentColor;
+        target.gameObject.SetActive(true);
+        if (left)
+        {
+            PortraitLHolderPalette.Palette = target.Portrait.AccentColor;
+            PortraitRHolderPalette.Palette = 3;
+        }
+        else
+        {
+            PortraitRHolderPalette.Palette = target.Portrait.AccentColor;
+            PortraitLHolderPalette.Palette = 3;
+        }
+        currentSpeakerIsLeft = left;
+    }
+    private void SetSinglePortrait(bool left)
+    {
+        PortraitL.gameObject.SetActive(left);
+        PortraitR.gameObject.SetActive(!left);
+        SetSpeaker(left);
     }
     private void PlayLetter(char letter)
     {
