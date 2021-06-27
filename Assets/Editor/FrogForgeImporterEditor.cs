@@ -27,5 +27,9 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.PortraitController.AutoLoad();
         }
+        if (myScript.LevelMetadataController != null && GUILayout.Button("Load Level Metadata"))
+        {
+            myScript.LevelMetadataController.AutoLoad();
+        }
     }
 }

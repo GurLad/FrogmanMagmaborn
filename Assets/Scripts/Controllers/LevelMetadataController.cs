@@ -16,4 +16,18 @@ public class LevelMetadataController : MonoBehaviour
             return i <= 0 ? DefaultMetadata : LevelMetadatas[i - 1];
         }
     }
+
+    #if UNITY_EDITOR
+    public void AutoLoad()
+    {
+        // Load metadatas json
+        string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/LevelMetadata.json").text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("LevelMetadatas"), this);
+        // Find default
+        DefaultMetadata = LevelMetadatas[0];
+        LevelMetadatas.RemoveAt(0);
+        // Dirty
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+    #endif
 }

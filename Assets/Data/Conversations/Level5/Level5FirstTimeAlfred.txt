@@ -10,60 +10,49 @@ charactersAlive:<2
 :loadUnits::player
 Frogman: Huh. Xeplogi isn't here.
 Hopefully it will be a bit quite at last.
-Alfred|???: ...Hi there.
-Frogman: Hm? Who's there?
 :addUnit:Alfred
 :loadUnits::player
-Alfred|???: Me. Name's Alfred.
-:if:hasCharacter:Firbell{
-Firbell: Well met, Alfred. My name is Firbell, and
-this here is Frogman.
-Alfred: Got it. You fight Guards too?
-Frogman: Yes, we do.
-Alfred: Good. Been too long since I had comrades.
-Firbell: What happened to them?
-Alfred: Died before me.
-Frogman: Oh. I'm sorry-
-Alfred: Conversation's over. Guards approaching.
-Firbell: How can you-
+Alfred|???: Hey. You there.
+Frogman: Ah! Where did you come from?
+Alfred: Name's Alfred. Who are you?
+if:hasCharacter:Firbell{
+Frogman: My name is Frogman.
+Firbell: And I am Firbell. Pleased to make your aquentice.
+Alfred: Greetings.
+Are you here to fight the Guards?
+Frogman: The humans, you mean?
+Alfred: Obviously. Have you never heard of them?
+Firbell: No. What are they doing here?
+Alfred: Ah. You wouldn't know. One must feel their
+wrath to truly know them.
+Frogman: Uh... Sure. What is-
+Alfred: Silence! I can smell them coming.
+Firbell: How? I noticed that you do not have a
+nose.
+:setFlag:AlfredFirbell
 }
 :else:{
 :if:hasCharacter:Kresla{
-Kresla: Oh, hi! Another flying monster, are you?
-Alfred: Yes. Too bad I died by the time I had wings.
-Kresla: Well, you're immortal now! You have all the
-time in the world to use them!
-Alfred: Yes. I use them for vengeance.
-For my fallen comrades.
-Kresla: Wow. What a boring view of life.
-Alfred: My life is over. All I have left is the will
-to fight.
-Conversation's over. Guards approaching.
-Kresla: Huh? Where?
-:else:{
-Frogman: Oh. You can come closer, you know.
-Alfred: No need. I can hear you just fine.
-Frogman: If you insist.
-Alfred: ...
-Frogman: Um... So you're Magmaborn too, yes?
-Alfred: Yes. I fight Guards.
-Frogman: Good. Me too.
-Alfred: Good.
-Frogman: ...
-Alfred: Conversation's over. Guards approaching.
+:setFlag:AlfredKresla
 }
-:play:GuardTheme
-:loadUnits:
+:else:{
+:if:hasCharacter:Xirveros{
+:setFlag:AlfredXirveros
+}
+:else:{
+# Alone
+}
+}
+}
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
+:play:GuardTheme
+:loadUnits:
 Guard1: Well, well... What do we have here?
 A Magma party?
 Guard2: Heh heh. Magma party. Sounds fun.
 Guard1: What? No, that's not- Argh. Kill them all!
 Guard2: Heh heh. Kill them. Sounds fun.
-Alfred: You there... Guards...
-How much weight... Can you handle?
-Frogman: Uh... Sure. Inspiring.
 ~ After battle
 :if:hasCharacter:Alfred{
 :call:PostAlfred

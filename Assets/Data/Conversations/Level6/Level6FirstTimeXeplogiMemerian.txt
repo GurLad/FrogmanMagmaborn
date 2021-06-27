@@ -10,6 +10,16 @@ charactersAlive:>2
 :addUnit:Memerian
 :loadUnits::player
 :play:BeforeBattle
+Xeplogi: You! You! How DARE you show your face here!
+Memerian|???: Who, me? My, my, so much excitement.
+Xeplogi: Don't you mock me! I shall destroy you-
+Memerian|???: You there. You look sane. 
+Frogman: Hey there. Calm down, please.
+Memerian|???: Oh, you must be the new champion.
+Frogman: The what?
+Xeplogi: Do not listen to her words of trickery!
+She is the evil Memerian!
+Memerian: Do you have to say this every time?
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
 Xeplogi: Ha! Yes!
@@ -21,19 +31,6 @@ Memerian: Finally, someone sane.
 Xeplogi: No! You're evil!
 :setTeam:Xeplogi:monster
 }
-Xeplogi: You! How dare you show your face here!
-Memerian|???: Oh. It's you again. What was your name?
-Kerluigi? Xekloigi?
-Xeplogi: How could you forget?! I am the great, the-
-Memerian|???: Oh, I remember, all right. Get over it.
-Frogman: Hey there. Calm down, please.
-Memerian|???: Oh, you must be the new champion.
-Frogman: The what?
-Xeplogi: Do not listen to her words of trickery!
-She is the evil Memerian!
-Memerian: Do you have to say this every time?
-Frogman: TBA. I'll redo this conversation later.
-# TBA: Add choice: fight with Memerian or Keplogi.
 :loadUnits:
 ~ After battle
 # Name: Text.

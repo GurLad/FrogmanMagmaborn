@@ -8,4 +8,5 @@ public class FrogForgeImporter : MonoBehaviour
     public UnitClassData UnitClassData;
     public BattleAnimationController BattleAnimationController;
     public PortraitController PortraitController;
+    public LevelMetadataController LevelMetadataController;
 }
