@@ -260,6 +260,12 @@ public class ConversationPlayer : MidBattleScreen
                         throw new System.Exception("No matching unit! (" + parts[2] + ")");
                     }
                     break;
+                case "setSingleSpeaker":
+                    // Removes all speakers and makes sure the next is on the left/right
+                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
+                    SetSinglePortrait(left);
+                    currentSpeakerIsLeft = !left;
+                    break;
                 case "wait":
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
@@ -272,12 +278,6 @@ public class ConversationPlayer : MidBattleScreen
                     return;
                 case "finishConversation":
                     FinishConversation();
-                    return;
-                case "setSingleSpeaker":
-                    // Removes all speakers and makes sure the next is on the left/right
-                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
-                    SetSinglePortrait(left);
-                    currentSpeakerIsLeft = !left;
                     return;
 
                 // Show other screens (MidBattleScreens)
@@ -578,18 +578,18 @@ public class ConversationPlayer : MidBattleScreen
         PortraitHolder target = left ? PortraitL : PortraitR;
         NameHolder.anchoredPosition = new Vector2(left ? 64 : 112, NameHolder.anchoredPosition.y);
         Name.text = left ? speakerL : speakerR;
-        voice = target.Portrait.Voice;
-        TextHolderPalette.Palette = target.Portrait.AccentColor;
-        NameHolderPalette.Palette = target.Portrait.AccentColor;
+        voice = target.Portrait?.Voice ?? null;
+        TextHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
+        NameHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
         target.gameObject.SetActive(true);
         if (left)
         {
-            PortraitLHolderPalette.Palette = target.Portrait.AccentColor;
+            PortraitLHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
             PortraitRHolderPalette.Palette = 3;
         }
         else
         {
-            PortraitRHolderPalette.Palette = target.Portrait.AccentColor;
+            PortraitRHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
             PortraitLHolderPalette.Palette = 3;
         }
         currentSpeakerIsLeft = left;

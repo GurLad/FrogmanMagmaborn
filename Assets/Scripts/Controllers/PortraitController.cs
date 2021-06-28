@@ -122,7 +122,7 @@ public class GenericPortrait
 {
     [SerializeField]
     private string tags;
-    public int NameValuesID;
+    public int VoiceType;
     public Sprite Background;
     public Sprite Foreground;
     // For FrogForge
@@ -138,7 +138,7 @@ public class GenericPortrait
     public Portrait ToPortrait()
     {
         Portrait portrait = new Portrait();
-        NamedVoice voice = PortraitController.Current.GenericVoicesAndNames[NameValuesID].ToVoice();
+        NamedVoice voice = PortraitController.Current.GenericVoicesAndNames[VoiceType].ToVoice();
         portrait.Voice = voice;
         portrait.Name = voice.Name;
         portrait.Background = Background;
