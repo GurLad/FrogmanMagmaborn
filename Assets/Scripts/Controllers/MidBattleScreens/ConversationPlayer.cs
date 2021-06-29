@@ -428,25 +428,26 @@ public class ConversationPlayer : MidBattleScreen
         {
             string[] parts = line.Split(':')[0].Split('|');
             Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
-            if (parts.Length > 1)
+            if (parts.Length > 1 && parts[1] != "")
             {
-                Name.text = parts[parts.Length - 1];
+                Name.text = parts[1];
             }
             else
             {
                 Name.text = portrait.Name;
             }
-            if (currentSpeakerIsLeft)
-            {
-                PortraitR.Portrait = portrait;
-                speakerR = Name.text;
-                SetSpeaker(false);
-            }
-            else
+            bool left = parts.Length > 2 ? parts[2] == "L" : !currentSpeakerIsLeft;
+            if (left)
             {
                 PortraitL.Portrait = portrait;
                 speakerL = Name.text;
                 SetSpeaker(true);
+            }
+            else
+            {
+                PortraitR.Portrait = portrait;
+                speakerR = Name.text;
+                SetSpeaker(false);
             }    
             voice = portrait.Voice;
         }
