@@ -1024,7 +1024,7 @@ public class GameController : MonoBehaviour
             case Objective.Boss:
                 return "Defeat\n" + selectedRoom.ObjectiveData;
             case Objective.Escape:
-                return "Reach the\nmarker";
+                return "Frogman\nto mark";
             case Objective.Survive:
                 return "Survive\n" + (int.Parse(selectedRoom.ObjectiveData) - Turn + 1) + " turns";
             default:
