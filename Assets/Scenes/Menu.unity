@@ -4570,7 +4570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c45bac2fddc6204b9f2cd0fa4261ca2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b3086b9a5b55d241b4de5001c5a3991, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6614,9 +6614,9 @@ MonoBehaviour:
   ImagePalettes:
   - Colors:
     - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.9568628, g: 0.81568635, b: 0.7058824, a: 1}
-    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
-    - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+    - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
+    - {r: 0, g: 0.65882355, b: 0.28235295, a: 1}
+    - {r: 0, g: 0.34509805, b: 0, a: 1}
   - Colors:
     - {r: 0, g: 0, b: 0, a: 1}
     - {r: 0.40784317, g: 0.28235295, b: 0.98823535, a: 1}
@@ -6624,10 +6624,10 @@ MonoBehaviour:
     - {r: 0, g: 0, b: 0.7686275, a: 1}
   - Colors:
     - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 1, g: 1, b: 1, a: 1}
-    - {r: 0.98823535, g: 0.8470589, b: 0.5176471, a: 1}
-    - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
-  Speed: 3
+    - {r: 0.9568628, g: 0.81568635, b: 0.7058824, a: 1}
+    - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
+    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
+  Speed: 2.6666667
   CreditsObject: {fileID: 770784414}
   PressStart: {fileID: 35769310}
 --- !u!1 &2049609995 stripped
