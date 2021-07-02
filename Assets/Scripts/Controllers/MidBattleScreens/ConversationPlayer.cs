@@ -64,12 +64,16 @@ public class ConversationPlayer : MidBattleScreen
                     if (Control.GetButtonDown(Control.CB.A))
                     {
                         PlayLetter('m');
-                        if (targetLine.Count(a => a == '\n') > 1)
+                        int aIndex = targetLine.IndexOf('\a', currentChar);
+                        string trueLine = aIndex > 0 ? targetLine.Substring(0, aIndex) : targetLine;
+                        while (trueLine.Count(a => a == '\n') > 1)
                         {
-                            int lengthReduce = targetLine.IndexOf('\n');
-                            targetLine = targetLine.Substring(lengthReduce + 1);
+                            int lengthReduce = trueLine.IndexOf('\n');
+                            trueLine = trueLine.Substring(lengthReduce + 1);
                         }
-                        Text.text = targetLine;
+                        Text.text = trueLine;
+                        targetLine = (aIndex < targetLine.Length - 1 && aIndex > 0) ? targetLine : "";
+                        currentChar = aIndex;
                         Arrow.SetActive(true);
                         state = CurrentState.Waiting;
                     }
@@ -81,6 +85,14 @@ public class ConversationPlayer : MidBattleScreen
                             if (++currentChar < targetLine.Length)
                             {
                                 count -= 1;
+                                if (targetLine[currentChar] == '\a')
+                                {
+                                    int aIndex = targetLine.IndexOf('\a');
+                                    targetLine = (aIndex < targetLine.Length - 1 && aIndex > 0) ? targetLine : "";
+                                    Arrow.SetActive(true);
+                                    state = CurrentState.Waiting;
+                                    return;
+                                }
                                 if (targetLine[currentChar] == '\n' && Text.text.Count(a => a == '\n') > 0)
                                 {
                                     Text.text = Text.text.Split('\n')[1];
@@ -106,6 +118,7 @@ public class ConversationPlayer : MidBattleScreen
                             }
                             else
                             {
+                                targetLine = "";
                                 Arrow.SetActive(true);
                                 state = CurrentState.Waiting;
                             }
@@ -115,7 +128,12 @@ public class ConversationPlayer : MidBattleScreen
                 case CurrentState.Waiting:
                     if (Control.GetButtonDown(Control.CB.A))
                     {
-                        if (++currentLine >= lines.Count)
+                        if (targetLine != "")
+                        {
+                            Arrow.SetActive(false);
+                            state = CurrentState.Writing;
+                        }
+                        else if (++currentLine >= lines.Count)
                         {
                             FinishConversation();
                         }
@@ -459,8 +477,9 @@ public class ConversationPlayer : MidBattleScreen
             line = line.Replace("[Name]", Name.text);
             Debug.Log(line);
         }
+        line = line.Replace(@"\a", "\a");
         // Find the line break
-        string trueLine = FindLineBreack(TrueLine(line));
+        string trueLine = FindLineBreaks(TrueLine(line));
         // Check if it's short (aka no line break) and had previous
         if (line.IndexOf(':') < 0 && LineAddition(trueLine))
         {
@@ -547,17 +566,23 @@ public class ConversationPlayer : MidBattleScreen
         line = line.Substring(index >= 0 ? index + 2 : 0);
         return line;
     }
-    private string FindLineBreack(string line)
+    private string FindLineBreaks(string line)
     {
-        for (int i = line.IndexOf(' '); i > -1; i = line.IndexOf(' ', i + 1))
+        int lineWidth = LineWidth;
+        string cutLine = line;
+        for (int i = line.IndexOf(' '); i > -1; i = cutLine.IndexOf(' ', i + 1))
         {
-            int length = line.Substring(0, i + 1).Length + line.Substring(i + 1).Split(' ')[0].Length;
-            if (length > LineWidth)
+            int nextLength = cutLine.Substring(i + 1).Split(' ')[0].Length;
+            int length = i + 1 + nextLength - cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a');
+            if (length > lineWidth)
             {
-                line = line.Substring(0, i) + '\n' + line.Substring(i + 1);
-                break;
+                //Debug.Log("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
+                line = line.Substring(0, line.LastIndexOf('\n') + 1) + cutLine.Substring(0, i) + '\n' + cutLine.Substring(i + 1);
+                i = 0;
+                cutLine = line.Substring(line.LastIndexOf('\n') + 1);
             }
         }
+        //Debug.Log(line);
         return line;
     }
     private int SkipBlock(int currentLine)
