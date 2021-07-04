@@ -18,7 +18,7 @@ public class StatusScreenController : MidBattleScreen
     public void Show(Unit unit)
     {
         Name.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP + "\nLevel:" + unit.Level;
-        Stats.text = unit.Stats.ToString();
+        Stats.text = unit.Stats.ToString(6);
         Weapon.text = unit.Weapon.ToString();
         Status.text = "Team:" + unit.TheTeam.Name().PadRight(7) + (unit.TheTeam != Team.Player ? ("\nA.I.:" + unit.AIType.ToString().PadRight(7)) : "\n") + "\nCond:" + unit.State().PadRight(7);
         BattleStats.Display(unit);
@@ -29,13 +29,6 @@ public class StatusScreenController : MidBattleScreen
         foreach (var item in PaletteSprites)
         {
             item.Palette = (int)unit.TheTeam;
-        }
-    }
-    private void Update()
-    {
-        if (Control.GetButtonDown(Control.CB.B))
-        {
-            Quit();
         }
     }
 }

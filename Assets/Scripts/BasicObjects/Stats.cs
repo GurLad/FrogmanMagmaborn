@@ -209,8 +209,12 @@ public class Stats
     }
     public override string ToString()
     {
-        return "Str:" + Strength.ToString().PadRight(3) + "Pir:" + Pierce.ToString().PadRight(3) + "Pre:" + Precision.ToString().PadRight(3) +
-            "\nEnd:" + Endurance.ToString().PadRight(3) + "Arm:" + Armor.ToString().PadRight(3) + "Eva:" + Evasion.ToString().PadRight(3);
+        return ToString(3);
+    }
+    public string ToString(int padding)
+    {
+        return "Str:" + Strength.ToString().PadRight(padding) + "Pir:" + Pierce.ToString().PadRight(padding) + "Pre:" + Precision.ToString().PadRight(padding) +
+            "\nEnd:" + Endurance.ToString().PadRight(padding) + "Arm:" + Armor.ToString().PadRight(padding) + "Eva:" + Evasion.ToString().PadRight(padding);
     }
     public string ToColoredString()
     {

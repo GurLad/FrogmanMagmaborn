@@ -64,7 +64,7 @@ public class ConversationPlayer : MidBattleScreen
                     if (Control.GetButtonDown(Control.CB.A))
                     {
                         PlayLetter('m');
-                        int aIndex = targetLine.IndexOf('\a', currentChar);
+                        int aIndex = targetLine.IndexOf('\a', currentChar + 1);
                         string trueLine = aIndex > 0 ? targetLine.Substring(0, aIndex) : targetLine;
                         while (trueLine.Count(a => a == '\n') > 1)
                         {
@@ -483,7 +483,7 @@ public class ConversationPlayer : MidBattleScreen
         // Check if it's short (aka no line break) and had previous
         if (line.IndexOf(':') < 0 && LineAddition(trueLine))
         {
-            string[] previousLineParts = targetLine.Split('\n');
+            string[] previousLineParts = FindLineBreaks(TrueLine(lines[num - 1])).Replace(@"\a", "\a").Split('\n');
             targetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
             currentChar = previousLineParts[previousLineParts.Length - 1].Length;
             Text.text = previousLineParts[previousLineParts.Length - 1] + targetLine[currentChar].ToString();

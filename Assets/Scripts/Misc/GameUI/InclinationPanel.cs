@@ -23,7 +23,7 @@ public class InclinationPanel : MonoBehaviour
         GetComponent<PalettedSprite>().Palette = ((int)unit.Inclination + 1) % 3;
         if (unit.TheTeam == Team.Player)
         {
-            Text.text += "Bonus     against " + unit.Inclination.ToString().ToLower() + ".";
+            Text.text += "+2     against same type.";
             SetIcon(Bonus, (int)unit.Inclination, 0);
         }
         else
