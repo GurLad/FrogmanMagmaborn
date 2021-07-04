@@ -18,40 +18,38 @@ hasCharacter:Firbell
 :play:BeforeBattle
 Firbell|???: I have not seen you before.
 Are you new here?
-Frogman: Yes? What is this place?
-Firbell|???: Ah. First of all, do not panic.
-You are dead.
+Frogman: Y-Yes? What is this place?\a What is going on?
+Firbell|???: Ah. First of all, do not panic.\a You are dead.
 Frogman: What?!
 Firbell|???: Do you remember your previous life?
 Frogman: No...
-Firbell|???: Quite common. You seem to have a weapon.
-Let us defeat these monsters, and
-then we can have a proper conversation.
-Firbell: My name is Firbell, by the way.
+Firbell|???: Quite common. I will explain all in time.\a However, as you have probably noticed,\a we are surrounded by monsters.
+Frogman: Monsters?!
+Firbell|???: Yes. I do not have time to explain. Ready your bow.
+Frogman: My b-bow?\a Right, I have a bow...
+Firbell||L: My name is Firbell, by the way.
 
 ~ PostFirst
 :play:AfterBattle
-Frogman: We won... What were those things?
-Firbell: Dead people. Like us. But less lucky.
+Frogman: We've won... What were those things?
+Firbell: Dead people. Like us.
 Frogman: What do you mean? They were mindless beasts!
-Firbell: Do you have an Emblem on you, perhaps?
-Frogman: Huh? Ah... maybe? Wait, yes, here.
+Firbell: Yes. We retain our mind using Emblems.\a You have one on you as well.
 :showImage:Emblem
-Firbell: Yes, of course. I have one too.
-So do all sapient beings here.
-Your memory will return soon.
-Frogman: Do you remember your life?
-Firbell: Of course.
-I am princess Firbell of Irenhold,
-daughter of queen Kirmella and heir
-to the throne.
-Frogman: Uh...
-Isn't it more likely someone else
-inherited the throne?
-Considering that you're dead...
-Firbell: That may be so, but until I meet such a
-person, I would prefer it if you called me
-by my name from when I was still alive.
-Anyway, we should probably leave
-before more monsters show up.
+Frogman: Huh? You mean this crystal thing?
+Firbell: Yes, of course.
+I have one too, as do all sapient beings here.
+You have probably noticed it on my crown.
+Frogman: Where is it from?\a Do you remember from your life?
+Firbell: Of course I do. You will as well, soon enough.
+I am princess Firbell of Irenhold,\a daughter of queen Kirmella and heir to the\a throne.
+Frogman: Uh...\a Isn't it more likely someone else inherited the\a throne when you died?
+Firbell: ...I am sorry, did you say something, frog?
+By the way, you haven't told me your name yet.
+Frogman: I... don't remember it.
+Firbell: What? That is impossible.
+We all remember our name when we are first Born.
+Frogman: Born?
+Firbell: Revive from the Magma.\a You are a strange case, frog.
+Let us leave this place before more monsters show up.
 :showPartTitle:Part 1:Monster
