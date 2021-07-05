@@ -8,42 +8,27 @@ hasCharacter:Kresla
 # Currently, the Firbell/Kresla maps are character specific. I need to change that.
 ~
 :play:BeforeBattle
-Kresla|???: I've never seen you before!
-More than that, I've never seen
-your KIND before! You must be new here!
+Kresla|???: I've never seen you before!\a More than that, I've never seen your KIND before!\a You must be new here!
 Frogman: Who are you? Where's Firbell?
 Kresla|???: Right, of course, where are my manners?
-Kresla: My name is Kresla, a renowned scholar.
-You've probably heard of me when you were
-still alive.
-Firbell is very inter- eseting, isn't she?
-But I'm getting ahead of myself. What did
-you ask again?
-Frogman: Where is she. But we are surrounded
-by monsters, let's deal with them first.
+Kresla||L: My name is Kresla, a renowned scholar.
+You've probably heard of me when you were still alive.\a Assuming we were alive around the same time and place.\a Where are you from?
+Frogman: Um, I don't remember.
+Krelsa: Oh well. Let me know once you do!\a Oh, you asked me something, didn't you?
+Frogman: Yes, where is Firbell?
+Never mind, we are surrounded by monsters,\a let's deal with them first.
 Kresla: Yes, yes, the boring monsters first.
 ~
 :play:AfterBattle
-Kresla: Now that's taken care of, where were we?
-What are you? Where are you from?
-Frogman: I, uh, don't remember.
-Kresla: THAT new, huh? Interesting!
-This is quite the discovery!
-If only I could tell my fellow scholars!
-But THOSE cowards would never come here
-Anyway, did you say something?
+Kresla: Now that's taken care of, where were we?\a Right, Firbell. You're very new, aren't you?
+Frogman: Yes, I am.
+Kresla: And a new monster type, to boot!\a This is quite the discovery!\a If only I could tell my fellow scholars...
+But those cowards would never come here.\a Anyway, did you say something?
 Frogman: No, but-
-Kresla: Ah, right! You wanted to know where
-Firbell is!
-Well, each time we return, is from a
-different place, and always from Magma.
-This time, you returned near me.
-Last time, near Firbell.
-If only I could map this place...
-It's huge!
+Kresla: Ah, right! You wanted to know where Firbell is!
+Well, each time we are Born is from a different place,\a and always from Magma.
+This time, you returned near me. Last time, near Firbell.\a If only I could map this place... It's huge!
 Frogman: Ah, that makes sense. Shall we leave now?
-Kresla: Did I tell you about Firbell's kingdom?
-That was my first discovery here!
-You see, where she comes from...
+Kresla: Did I tell you about Firbell's kingdom? That was my first discovery here! You see, where she comes from...
 Frogman: Right. I'm leaving.
 Kresla: ...she still thinks... Huh? Wait for me!
