@@ -20,7 +20,7 @@ public class PortraitController : MonoBehaviour
     public AudioSource DebugSource;
     // I just realized how many problems thus far could've been solved with a dictionary...
     [HideInInspector]
-    public Dictionary<string, Portrait> TempPortraits = new Dictionary<string, Portrait>(); 
+    public Dictionary<string, Portrait> GeneratedGenericPortraits = new Dictionary<string, Portrait>(); 
     private void Reset()
     {
         Portraits.Add(new Portrait());
@@ -44,7 +44,7 @@ public class PortraitController : MonoBehaviour
     }
     public Portrait FindPortrait(string name)
     {
-        return Portraits.Find(a => a.Name == name) ?? (TempPortraits.ContainsKey(name) ? TempPortraits[name] :  ErrorPortrait);
+        return Portraits.Find(a => a.Name == name) ?? (GeneratedGenericPortraits.ContainsKey(name) ? GeneratedGenericPortraits[name] :  ErrorPortrait);
     }
     public Portrait FindGenericPortrait(string tags = "")
     {
@@ -101,8 +101,6 @@ public class Portrait
     [Range(0, 3)]
     public int AccentColor;
     public CharacterVoice Voice;
-    [HideInInspector]
-    public bool Assigned;
     public Portrait()
     {
         BackgroundColor = new Palette();

@@ -100,24 +100,20 @@ public class Unit : MapObject
                 break;
             case PortraitLoadingMode.Team:
                 Icon = PortraitController.Current.FindPortrait(TheTeam.Name());
+                Name = Class;
                 break;
             case PortraitLoadingMode.Generic:
-                // Check whether there are any conversation guards
-                IEnumerable<Portrait> temp = PortraitController.Current.TempPortraits.Values.Where(a => !a.Assigned);
-                // Otherwise, load a random portrait
-                if (temp.Count() <= 0)
-                {
-                    Icon = PortraitController.Current.FindGenericPortrait();
-                }
-                else
-                {
-                    Icon = temp.First();
-                    Icon.Assigned = true;
-                }
+                Icon = PortraitController.Current.FindGenericPortrait();
+                Name = Icon.Name;
                 break;
             default:
                 break;
         }
+    }
+    public void SetIcon(Portrait icon, bool changeName = true)
+    {
+        Icon = icon;
+        Name = icon.Name;
     }
     public override void Interact(InteractState interactState)
     {

@@ -263,7 +263,7 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "addGenericCharacter":
                     // Add to TempPortraits with parts[2] internal name and parts[3] tags
-                    PortraitController.Current.TempPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
+                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
                     break;
                 case "setTeam":
                     // Changes a unit's team
@@ -513,8 +513,6 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
-        // Clear TempPortraits
-        PortraitController.Current.TempPortraits.Clear();
         if (GameController.Current == null)
         {
             // Intro conversations
@@ -549,6 +547,7 @@ public class ConversationPlayer : MidBattleScreen
             else
             {
                 CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
+                GameController.Current.AssignGenericPortraitsToUnits();
                 if (origin.PostBattleLines.Count <= 0)
                 {
                     origin.Choose(true);
@@ -559,6 +558,8 @@ public class ConversationPlayer : MidBattleScreen
                 }
             }
         }
+        // Clear TempPortraits
+        PortraitController.Current.GeneratedGenericPortraits.Clear();
     }
     private string TrueLine(string line)
     {

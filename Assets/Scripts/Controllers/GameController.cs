@@ -821,8 +821,8 @@ public class GameController : MonoBehaviour
     {
         Unit unit = CreateUnit();
         unit.TheTeam = team;
+        unit.Name = name;
         unit.name = "Unit" + name;
-        unit.Name = team.Name();
         if (canReplace)
         {
             UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
@@ -920,7 +920,6 @@ public class GameController : MonoBehaviour
                 player.transform.parent = currentUnitsObject;
             }
         }
-        PortraitController.Current.TempPortraits.Values.ToList().ForEach(a => a.Assigned = false);
         // Units
         List<string> unitDatas = room.Units;
         int numPlayers = 0;
@@ -1073,6 +1072,15 @@ public class GameController : MonoBehaviour
     public Unit GetNamedUnit(string name)
     {
         return units.Find(a => a.ToString() == name);
+    }
+    public void AssignGenericPortraitsToUnits(Team? team = null)
+    {
+        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
+        List<Portrait> portraits = PortraitController.Current.GeneratedGenericPortraits.Values.ToList();
+        for (int i = 0; i < portraits.Count && i < targetUnits.Count; i++)
+        {
+            targetUnits[i].SetIcon(portraits[i]);
+        }
     }
     private bool CheckPlayerWin()
     {
