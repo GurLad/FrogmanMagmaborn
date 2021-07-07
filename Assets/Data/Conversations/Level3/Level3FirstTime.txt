@@ -42,24 +42,20 @@ roomNumber:3
 :play:BeforeBattle
 Frogman: Well, those monsters weren't that-
 :play:ToTheDeath
-Firbell: Oh no. We need to turn back. Now.
+Firbell: Oh no. Frogman, we need to turn back.\a Now.
 Frogman: Huh? Why?
-Firbell: Do you see that monster there?
-It is a Lich.
-One of the strongest monsters around here,
-capable of devastating Black Magic.
+Firbell: Do you see that monster there?\a It is a Lich.
+One of the strongest monsters around here,\a capable of devastating Black Magic.
 Frogman: Magic? Never seen that before here.
-Firbell: Because monsters can't normally use it.
-The Lich won't attack us unless provoked,
-so we should leave-
-Frogman: Then let's defeat it. It's a better goal
-than endlessly wandering around.
+Firbell: Because monsters cannot naturally use it.\a They do not feel pain, the fuel for magic.
+The Lich will not attack us unless provoked,\a so we should leave-
+Frogman: Why leave? Let's defeat it.
+It's a better goal than endlessly wandering around,\a don't you think?
 Firbell: Are you crazy?! It is much too powerful!
 Frogman: It's not like dying costs us anything...
 Firbell: No, but-
 Frogman: Then let's go!
-Firbell: What are you doing?!
-...
+Firbell: What are you doing?!\a ...
 I can't just let you go on your own!
 Oh well, time to slay a few fiends.
 
@@ -67,19 +63,15 @@ Oh well, time to slay a few fiends.
 :play:BeforeBattle
 Frogman: Well, those monsters weren't that-
 :play:ToTheDeath
-Kresla: Frogman? I hate to say this, but we must run
-Now!
+Kresla: Frogman? I hate to say this, but we must run.\a Now!
 Frogman: Huh? Why?
-Kresla: Do you see that monster there?
-It's a Lich! A mighty undead wizard!
+Kresla: Do you see that monster there? It's a Lich! A mighty undead wizard!
 Frogman: Wizard? Never seen any before here.
 Kresla: Oh, let me explain!
-Regular magic requires pain - which is why
-humans don't use it, and monsters can't.
-Frogman: Huh.
-Kresla: However, liches use a strange crystal to
-channel it - I don't know how! Every time
-I get close to study it, they kill me.
+Regular magic requires pain -\a which is why humans don't use it,\a at least where I come from.\a Irenhold's people apperantly felt otherwise.\a Or at least the royalty. I wonder how they got people-
+Frogman: Kresla. About the Lich.
+Kresla: Right, right. Monsters can't feel pain,\a as you've probably noticed.\a Which makes most of them unable to use magic,\a like Xirveros.
+I don't know how the Liches do it!\a Every time I get close to study one, it kill me.
 Frogman: Well, that was before my time, right?
 Kresla: Obviously. Are you thinking what I am?
 Frogman: Yes, let's defeat it. It's a better goal
@@ -94,11 +86,10 @@ Frogman: Well, those monsters weren't that-
 :play:ToTheDeath
 Xirveros: Frog? Bad monster here. Very bad.
 Frogman: What monster?
-Xirveros: Bad monster! Scary mo- nster! Magic monster!
+Xirveros: Bad monster!\a Scary monster!\a Magic monster!
 Frogman: Magic? Never seen that before here.
 Xirveros: Magic rare! Magic bad! Magic painful!
-Frogman: Uh... Sure...
-Let's go defeat it then.
+Frogman: Uh... Sure...\a Let's go defeat it then.
 Xirveros: Frog crazy!
 ...
 Follow frog!
@@ -118,52 +109,43 @@ Frogman: You again. This time, I won't lose.
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
-Firbell: Frogman, wait. We sho- uld not go that far.
+:play:AfterBattle
+Firbell: Frogman, wait. We should not go that far.
 Frogman: Huh? Why not?
-Firbell: The deeper you go, the stronger the monsters
-become.
-Like that Lich we just fought.
-We should stick close to where we were Born
+Firbell: The deeper you go, the stronger the monsters become.\a Like that Lich we just fought.\a We should stick close to where we were Born.
 Frogman: Sure, there might be tough enemies ahead.
-But we're immortal, so we might as well
-fight them.
-Firbell: We could just survive as long as we can.
-This is what I have done thus far.
+But we're immortal, so we might as well fight them.
+Firbell: We could just survive as long as we can.\a This is what I have done thus far.
 Frogman: I'm sorry, but that sounds pointless.
-Firbell: Do you want to end up like Xirveros?
-Because that was what he did.
-Frogman: Hm. Good point. Let's go then.
+Firbell: Do you want to end up like Xirveros?\a Because that was what he did.
+Frogman: Huh. Good to know.\a But I'm not Xirveros.\a I must go ahead anyway.\a Are you coming?
 Firbell: What?! Did you not listen to a word-
 And there he goes again. The fool...
 
 ~ PostKresla
-Kresla: Oh. It just disintegrated.
-With the crystal. What a shame.
+Kresla: Oh.\a It just disintegrated.\a What a shame.
 Frogman: Kresla, we need to get out of here now!
 Kresla: No, wait!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
-Kresla: Frogman! Wait up! Before you go on, you
-should know that there will be tough enemies
-ahead.
+:play:AfterBattle
+Kresla: Frogman! Wait up! Before you go on,
+you should know that there will be tougher enemies ahead.
 Frogman: How do you know that?
-Kresla: Through trial and error, of course!
-The deeper you go, the stronger the monsters
-That's why people like me tend to stay near
-where we're Born.
-Frogman: I thought that you were fearless?
-Kresla: I am! Just wanted to let you know that I'm
-going ahead anyway!
-Frogman: Good. Me too.
+Kresla: Through trial and error, of course!\a The deeper you go, the stronger the monsters become,\a like the Lich.
+That's why people like me tend to stay near where we're Born.
+Frogman: I didn't expect that from you, the fearless scholar.
+Kresla: Unforunatly, bravery alone isn't enough to beat stronger\a monsters, like the Lich.\a But with our powers combined,\a we can be unstopable!
+Frogman: Yes. So let's go.
 
 ~ PostXirveros
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
+:play:AfterBattle
 Xirveros: Frog! Turn back. Now. This too far!
 Frogman: Why would I do that?
-Xirveros: They will come. You will fight.
-We will die.
+Xirveros: They will come. You will fight.\a We will die.
 Frogman: Xirveros, you're not making any sense.
 Xirveros: Frog, don't make my mistake.
 Turn back before it's too late.
