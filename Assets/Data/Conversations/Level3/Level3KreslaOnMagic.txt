@@ -1,0 +1,48 @@
+priority:1
+unique:T
+~ Requirements
+roomNumber:3
+hasFlag:MetTormentKresla
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle
+:if:FirstTime{
+Kresla: Hey, Frogman!
+Frogman: What is it now, Kresla?
+Kresla: I have a theory about the Lich's magic!
+Frogman: Really? What is it?
+Kresla: Well, as you've noticed-
+Frogman: Kresla, let's defeat the Lich before making theories on it.
+Kresla: Right, right.
+}
+:else:{
+Kresla: Frogman, you still haven't heard my theory!
+Frogman: Yes, Kresla. After the battle.
+Kresla: Urgh...
+
+~ After battle
+Frogman: Let's get out of here!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:AfterBattle
+Kresla: So, as you've noticed, the Lich uses a crystal-topped\a staff. It obviously channels it's magic through it,\a as we've seen many times before.
+Frogman: Yes.
+Kresla: However, the question remained, where did it find one?\a I've never seen any here.
+# TBA: Change if Kresla reached level 7 before this conversation
+Frogman: Actually, I have.
+Kresla: Really?! Where?!
+Frogman: It's... complicated.
+Kresla: Oh. Well, anyway, even if it did find one,\a it's still a mindless monster.\a So how did it make a staff?\a And how could it learn to use magic?
+Frogman: Huh.
+# Again, if Kresla reached level 7, she'd comment on how they must be dead elite guards (mages). Otherwise, this conversation.
+Kresla: So, it must have used magic, and the crystal,\a BEFORE dying!
+Frogman: Yes, that makes sense.
+Kresla: But don't you see? There was never any record of such\a crystals while I was alive!\a Even Xirveros and Firbell have never heard of them!\a So where did they come from? Are they from the far future? Are they Guards? Are they from space? This is an extraordinary discovery! Frogman?\a Are you listening?\a Frogman!
+Frogman: Wha... Huh? Uh, yes, of course!
+Kresla: Unbelievable!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

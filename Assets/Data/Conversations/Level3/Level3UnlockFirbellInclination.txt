@@ -1,4 +1,4 @@
-priority:1
+priority:4
 unique:T
 ~
 roomNumber:3
@@ -6,34 +6,26 @@ hasCharacter:Firbell
 hasKnowledge:InclinationFrogman
 ~
 ~
-:play:ToTheDeath
+:play:BeforeBattle
 :if:firstTime:{
 Firbell: Frogman?
 Frogman: Yes?
-Firbell: I have been watching the way you fight.
-The way Kresla and Xirveros fight.
-I believe you have much to teach me in
-that regard.
-Frogman: Thank you?
-Firbell: We can talk further once we kill the Lich
-Frogman: All right.
+Firbell: I have noticed that you have tried changing your fighting\a style as of late.
+Frogman: Why, yes, I have.\a I thought it might improve my abilities.
+Firbell: Hm. Intriguing.
+But let us focus on the battle for now, shall we?
 }
 :else:{
 Firbell: Oh. It is a Lich again.
 Frogman: Indeed.
-Firbell: We failed last time. So I have decided.
-I shall try a different fighting
-style.
+Firbell: We have failed last time.
 :call:Unlock
 }
 ~
 :play:AfterBattle
 Firbell: Well, that was quite well done.
 Frogman: You were very helpful yourself.
-# Add this to all other InclinationUnlocking conversations.
 :if:!foundKnowledge:InclinationFibell{
-Firbell: Nevertheless, I shall try a different
-fighting style.
 :call:Unlock
 }
 :else:{
@@ -43,9 +35,9 @@ Firbell: Let us get out of here, shall we?
 # Functions
 
 ~ Unlock
-Frogman: Uh... why?
-Firbell: I find the way you all fight intriguing.
-I would like to try it as well.
-Frogman: All right. As you wish.
+Firbell||L: I think I shall try out a different fighting style too.
+Frogman: I'm not sure that doing that right now is a good idea.
+Firbell: Perhaps. But I shall do so next time.
+Frogman: All right.
 :unlockKnowledge:InclinationFirbell
 :showInfoDialogue:New knowledge!
