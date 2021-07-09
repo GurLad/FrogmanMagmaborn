@@ -1,0 +1,29 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle
+:if:firstTime:{
+Firbell: Frogman. Magic stuff.
+Frogman: After the battle.
+Firbell: Oof.
+}
+:else:{
+Firbell: Later
+}
+
+~ After battle
+Frogman: Let's get out of here!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:AfterBattle
+Firbell: More magic stuff.
+Frogman: Interesting.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
