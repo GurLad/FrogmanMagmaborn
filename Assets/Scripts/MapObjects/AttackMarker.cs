@@ -14,7 +14,15 @@ public class AttackMarker : Marker
                 if (unit.TheTeam != Origin.TheTeam)
                 {
                     // Fight!
-                    Origin.Fight(unit);
+                    GameController.Current.Target = unit; // Very bad workaround
+                    if (ConversationPlayer.Current?.CheckWait() ?? false)
+                    {
+                        ConversationPlayer.Current.OnFinishConversation = () => Origin.Fight(unit);
+                    }
+                    else
+                    {
+                        Origin.Fight(unit);
+                    }
                 }
                 else if (unit == Origin)
                 {

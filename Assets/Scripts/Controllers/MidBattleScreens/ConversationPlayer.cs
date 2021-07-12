@@ -31,6 +31,8 @@ public class ConversationPlayer : MidBattleScreen
     [Header("Main menu only")]
     public GameObject Knowledge;
     public MenuController Tutorial;
+    [HideInInspector]
+    public System.Action OnFinishConversation;
     [SerializeField]
     private bool startActive = true;
     private CurrentState state;
@@ -185,6 +187,8 @@ public class ConversationPlayer : MidBattleScreen
     {
         gameObject.SetActive(false);
         MidBattleScreen.Set(this, false);
+        SetSinglePortrait(true);
+        currentSpeakerIsLeft = false;
     }
     public void Resume(int mod = 1)
     {
@@ -287,6 +291,10 @@ public class ConversationPlayer : MidBattleScreen
                 case "wait":
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
+                    if (!postBattle)
+                    {
+                        CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
+                    }
                     return;
                 case "lose":
                     GameController.Current.Lose();
@@ -513,6 +521,8 @@ public class ConversationPlayer : MidBattleScreen
         MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
+        SetSinglePortrait(true);
+        currentSpeakerIsLeft = false;
         if (GameController.Current == null)
         {
             // Intro conversations
@@ -558,8 +568,11 @@ public class ConversationPlayer : MidBattleScreen
                 }
             }
         }
-        // Clear TempPortraits
+        // Clear TempPortraits & cleanup
         PortraitController.Current.GeneratedGenericPortraits.Clear();
+        System.Action action = OnFinishConversation;
+        action?.Invoke();
+        OnFinishConversation = null;
     }
     private string TrueLine(string line)
     {

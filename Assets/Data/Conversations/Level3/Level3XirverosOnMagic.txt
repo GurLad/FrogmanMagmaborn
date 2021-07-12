@@ -1,27 +1,50 @@
-priority:-1
-unique:F
+priority:10
+unique:T
 ~ Requirements
-roomNumber:0
+roomNumber:3
 ~ Demands
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
 :if:firstTime:{
-Xirveros: Frog! Magic.
-Frogman: After the battle.
-Xirveros: Oof.
+Xirveros: Frog! Lich!
+Frogman: Yes, I know. Lich.
+Xirveros: Lich has magic. Me not. You not.\a Why?
+Frogman: I don't know.\a You can always ask it.
+Xirveros: Good idea! Frog, to lich!
+Frogman: I... I was joking...
 }
 :else:{
-Xirveros: Magic \w@
+Xirveros: Frog! Let's ask lich magic!
+Frogman: Xirveros, forget I said anything.
+Xirveros: What?
+Frogman: That's the spirit.
 }
+:wait:attacking:Lich
+Xirveros: Lich! How you use magic?
+Monster|Lich: ...
+Frogman||R: Xirveros, stop fooling around!
+Xirveros: Lich?
+Frogman: Oh, for frog's sake, Xirveros! Stop talking to the lich!
+Xirveros: For frog, fight lich!
 
 ~ After battle
-Frogman: Let's get out of here!
+Xirveros: No, lich!
+Frogman: Xirveros, we're outta here!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:AfterBattle
-Xirveros: Magic! Magic!
-Frogman: Interesting.
+Xirveros: Lich dead.
+Frogman: I know, Xirveros. We're lucky you aren't dead.\a What were you thinking?! Talking to a lich?!\a That... that was a bad joke!\a You could've died!
+Xirveros: Died.\a Me died.\a Knowledge died.\a All died.
+Frogman: You... That's no what I me-
+Xirveros: They dead. All dead. Did they remember?\a Recover?\a Abrhys... Welki...
+Frogman: Who?
+Xirveros: Apprentice. Teacher. They before you.\a Before death.
+Frogman: Huh. Who were they?
+Xirveros: Nnngh... Frog. Frog. Froooo...
+Frogman: Oh. They are coming.
+:setFlag:XirverosPast1
 
 # === Functions ====
 

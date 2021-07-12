@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     public int DebugEndgameLevel;
     public List<string> DebugUnits;
     public bool DebugUnlimitedMove;
+    public bool DebugOPPlayers;
     [Header("Objects")]
     public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
@@ -61,6 +62,8 @@ public class GameController : MonoBehaviour
     public InteractState InteractState = InteractState.None;
     [HideInInspector]
     public Unit Selected;
+    [HideInInspector]
+    public Unit Target; // Very bad workaround
     [HideInInspector]
     public int Turn;
     [HideInInspector]
@@ -226,6 +229,13 @@ public class GameController : MonoBehaviour
                 {
                     unit.Movement = 50;
                     unit.Flies = true;
+                }
+            }
+            if (DebugOPPlayers)
+            {
+                foreach (Unit unit in PlayerUnits)
+                {
+                    unit.Stats += unit.AutoLevel(50);
                 }
             }
         }
@@ -1089,7 +1099,7 @@ public class GameController : MonoBehaviour
             case Objective.Rout:
                 return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
-                return CheckUnitAlive(selectedRoom.ObjectiveData);
+                return !CheckUnitAlive(selectedRoom.ObjectiveData);
             case Objective.Escape:
                 return frogman.Pos == escapePos;
             case Objective.Survive:
