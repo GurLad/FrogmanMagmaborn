@@ -1,0 +1,36 @@
+priority:-1
+unique:F
+id:GuardPreBanter
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:play:GuardTheme
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:young
+:addGenericCharacter:Guard3:old
+:loadUnits::guard
+Guard1: Psst...
+Guard2: Hm?
+Guard1: Psst... Over here...
+Guard2: Huh? What is it?
+Guard1: Shhh!\a See there?\a It's a goblin!
+Guard2: Oh my, you're right! We need to inf-
+Guard1: No, stay quite!\a I've always wanted to adopt a goblin!
+Guard2: You what?!
+Guard1: Yes, don't you think they're cute?\a I'm going to catch it!
+Guard2: What?! And where will you keep it?\a You can't just store a monster in your pocket!
+Guard3: What's all this ruckus?!
+Guard2: S-sorry sir, my friend here just-
+Guard3: What are you doing?! Hey, come back!
+Guard1: Oof, you scared the goblin away!\a How will I catch it now?!
+Guard3: You what?! Fools, fall back in line!\a There are monsters approaching!
+
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
