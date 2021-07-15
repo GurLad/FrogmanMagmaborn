@@ -23,15 +23,21 @@ public class Unit : MapObject
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;
     [HideInInspector]
+    public Weapon Weapon;
+    [HideInInspector]
+    public int Level;
+    [HideInInspector]
+    [System.NonSerialized]
+    public string BattleQuote = "";
+    [HideInInspector]
+    [System.NonSerialized]
+    public string DeathQuote = "";
+    [HideInInspector]
     [System.NonSerialized]
     public Portrait Icon;
     [HideInInspector]
-    public Weapon Weapon;
-    [HideInInspector]
     [System.NonSerialized]
     public int Health;
-    [HideInInspector]
-    public int Level;
     [HideInInspector]
     [System.NonSerialized]
     public Vector2Int PreviousPos;
@@ -363,7 +369,12 @@ public class Unit : MapObject
                 };
             }
         }
-        if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
+        if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
+        {
+            ConversationPlayer.Current.OnFinishConversation = () => ActualFight(unit);
+            ConversationPlayer.Current.PlayOneShot(BattleQuote != "" ? BattleQuote : unit.BattleQuote);
+        }
+        else if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
         {
             ActualFight(unit);
         }

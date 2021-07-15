@@ -63,8 +63,6 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public Unit Selected;
     [HideInInspector]
-    public Unit Target; // Very bad workaround
-    [HideInInspector]
     public int Turn;
     [HideInInspector]
     public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
@@ -77,7 +75,7 @@ public class GameController : MonoBehaviour
     private Camera main;
     private Transform currentMapObject;
     private Transform currentUnitsObject;
-    private bool checkPlayerDead;
+    private string deadUnitDeathQuote;
     private bool checkEndTurn;
     private Room selectedRoom;
     private int currentKnowledge;
@@ -381,10 +379,16 @@ public class GameController : MonoBehaviour
     public bool CheckGameState()
     {
         CheckDifficulty();
-        if (checkPlayerDead)
+        if (deadUnitDeathQuote != null)
         {
             if (CheckConveresationWait()) // Most characterNumber/alive/whatever commands
             {
+                return true;
+            }
+            else if (deadUnitDeathQuote != "")
+            {
+                ConversationPlayer.Current.PlayOneShot(deadUnitDeathQuote);
+                deadUnitDeathQuote = "";
                 return true;
             }
             if (frogman == null)
@@ -407,7 +411,7 @@ public class GameController : MonoBehaviour
                 playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
             }
             enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
-            checkPlayerDead = false;
+            deadUnitDeathQuote = null;
         }
         if (checkEndTurn)
         {
@@ -725,7 +729,7 @@ public class GameController : MonoBehaviour
             }
             Destroy(unit.gameObject);
         }
-        checkPlayerDead = true; // Since I need to wait for the battle animation to finish first
+        deadUnitDeathQuote = unit.DeathQuote; // Since I need to wait for the battle animation to finish first
     }
     public void Win()
     {

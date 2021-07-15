@@ -151,9 +151,6 @@ public class ConversationData : System.IComparable<ConversationData>
             case "chose":
                 // Return whether the last choice matches the given id.
                 return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);
-            case "attacking":
-                // Return whether a certain unit is being attacked.
-                return GameController.Current.InteractState == InteractState.Attack && GameController.Current.Target.ToString() == parts[1];
             default:
                 break;
         }

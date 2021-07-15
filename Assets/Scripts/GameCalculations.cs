@@ -163,7 +163,7 @@ public static class GameCalculations
             attacker.Stats[(int)attacker.Inclination * 2] -= 2;
             return hit;
         }
-        return Mathf.Min(100, attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision));
+        return Mathf.Clamp(attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision), 0, 100);
     }
 
     public static int GetDamage(this Unit attacker, Unit defender) // See above.

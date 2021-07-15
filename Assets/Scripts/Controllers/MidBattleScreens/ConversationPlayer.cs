@@ -170,6 +170,19 @@ public class ConversationPlayer : MidBattleScreen
         lines = origin.Lines;
         StartLine(0);
     }
+    public void PlayOneShot(string text)
+    {
+        // Store current lines & position
+        if (currentLine < lines.Count)
+        {
+            functionStack.Push(new FunctionStackObject(currentLine, lines));
+        }
+        // Load new lines
+        lines = new List<string>(text.Split('\n'));
+        StartLine(0);
+        gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
+    }
     public void PlayPostBattle()
     {
         if (origin.PostBattleLines.Count <= 0)
@@ -276,6 +289,25 @@ public class ConversationPlayer : MidBattleScreen
                     {
                         target.TheTeam = parts[3].ToTeam() ?? target.TheTeam;
                         target.Moved = target.Moved;
+                    }
+                    else
+                    {
+                        throw new System.Exception("No matching unit! (" + parts[2] + ")");
+                    }
+                    break;
+                case "setBattleQuote":
+                    // Set a unit's battle quote (aka add boss battle quote). Must use a function.
+                    Unit target1 = GameController.Current.GetNamedUnit(parts[2]);
+                    if (target1 != null)
+                    {
+                        if (origin.Functions.ContainsKey(parts[3]))
+                        {
+                            target1.BattleQuote = string.Join("\n", origin.Functions[parts[3]]);
+                        }
+                        else
+                        {
+                            throw new System.Exception("No matching function! (" + parts[3] + ")");
+                        }
                     }
                     else
                     {
@@ -518,6 +550,7 @@ public class ConversationPlayer : MidBattleScreen
             return;
         }
         // Finish conversation
+        lines.Clear();
         MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
