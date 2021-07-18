@@ -2,17 +2,19 @@ priority:1
 unique:T
 ~ Requirements
 roomNumber:0
+hasFlag:XirverosPast1
 ~ Demands
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
 :if:firstTime:{
-Firbell: Frogman. Magic stuff.
-Frogman: After the battle.
-Firbell: Oof.
+Frogman: Firbell. Have you heard about Xirveros' friends?
+Firbell: What? I do not remember him mentioning friends.
+Frogman: What were their names?\a Abrhys?\a Welki?
+Firbell: Oh. Them.\a We will talk about it after the battle.
 }
 :else:{
-Firbell: Later
+Frogman: Ah... A Lich again...
 }
 
 ~ After battle
@@ -20,8 +22,18 @@ Frogman: Let's get out of here!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:AfterBattle
-Firbell: More magic stuff.
-Frogman: Interesting.
+Firbell: Frogman.
+Frogman: Yes?
+Firbell: About Xirveros' associates.
+I have never heard of them when I was alive,\a and Xirveros never talked about them much.
+Frogman: Oh.
+Firbell: But they have very peculiar names.\a What was a commoner from Abenzon doing in\a Irenhold? And where did this Welki even come from?
+I have never heard such a name besides here.
+Frogman: What's so weird about it?
+Firbell: I do not recognize her title, if it even is one,\a nor her place of birth.
+She must have come from a very far away place, like Kresla.\a And you.
+Frogman: I... see. Hm...
+:setFlag:XirverosPast2
 
 # === Functions ====
 

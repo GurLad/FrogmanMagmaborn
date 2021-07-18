@@ -1,0 +1,26 @@
+priority:-1
+unique:F
+~ Requirements
+# Never appear
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+# Set Torment met flags
+:if:hasCharacter:Firbell{
+:setFlag:MetTormentFirbell
+}
+:if:hasCharacter:Kresla{
+:setFlag:MetTormentKresla
+}
+:if:hasCharacter:Xirveros{
+:setFlag:MetTormentXirveros
+}
+# Revive units (reduce difficulty) TBA
+
+~ After battle
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

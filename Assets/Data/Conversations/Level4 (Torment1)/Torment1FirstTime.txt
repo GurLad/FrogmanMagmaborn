@@ -5,13 +5,7 @@ roomNumber:4
 ~
 # No demands (I can do this since a non-existent demand defaults to true :))
 ~
-# Set Torment Firbell flag
-:if:hasCharacter:Firbell{
-:setFlag:MetTormentFirbell
-}
-:if:hasCharacter:Kresla{
-:setFlag:MetTormentKresla
-}
+:callOther:TormentBase
 :if:!firstTime:{
 :call:PreGeneric
 :finishConversation:
@@ -19,43 +13,35 @@ roomNumber:4
 :call:PreFirst
 ~
 Frogman: H-How many more are there?!
-Torment: Now, now, don't panic. That's enough.
+Torment: Now, now, don't panic. That's quite enough.
 :play:Trickster
 :loadUnits:InitTormentRoom
 Frogman: Is it... over?
-Torment: Oh! Exquisite! Fantastic! Beautiful!
-# TODO: Remove the champion reference. This shuld only be mentioned during Part 2.
-You truly are the champion I've been
-looking for!
-Frogman: Chamion?! Are you crazy?!
-We would never help the likes of you!
-Torment: Oh, really? Try again!
+Torment: Oh, yes it is! And it was simply...\a Exquisite! Fantastic! Beautiful!
+I can sense an incredible... partnership coming up! Ha ha!
+Frogman: Partnership?! Are you crazy?!\a We would never help the likes of you!
+Torment: Are you sure about that? Try again!
 Frogman: AHHHHHHH!
 AHHHHHHH!
 AHHHHHHH!
 ...
-Torment: Now, now. I'm not cruel. Ha.
-Actually, I am, but that's not important.
-We both seek the same thing, see?
-Getting out of here. I'm trapped, like you
-So we could just help each other, yes? Heh.
-Frogman: How can you help us? Why would you?
-Torment: You... aren't very smart, are you? Heh!
-I just told you why! As for how...
+Torment: Now, now. I'm not cruel. Ha.\a Actually, I am, but that's irrelevant.\a We both seek the same thing, see?
+Getting out of here. I'm trapped, just like you.
+So we could just help each other, yes? Heh.\a A mutual partnership,\a between two prisoners. Ha!
+Frogman: H-How... can you help us? Why would you?
+Torment: You... aren't very smart, are you? Heh! I just told you why!\a As for how...
 :loadMap:InitTormentRoom
 :if:!foundKnowledge:TormentHurtHelp{
-I still have some power here.
-You will know it soon enough... Heh heh.
+I still have some power here.\a You will know it soon enough... Heh heh.
 :unlockKnowledge:TormentHurtHelp
 :showInfoDialogue:New knowledge!
 }
 :else:{
-Well, you already HAVE my power, ha ha ha!
-That's all right. I'm not offended... Heh.
+Well, you already HAVE my power, ha ha ha!\a That's all right. I'm not offended...\a Heh.
 Off you go, then!
 }
 Frogman: ...
-:showPartTitle:Part 2:Immortal
+:showPartTitle:Part 2:Prisoner
 
 # === Functions ====
 
@@ -65,40 +51,34 @@ Frogman: ...
 :loadUnits:InitTormentRoom
 Frogman: Hm? What is that?
 Torment|???: ...
-Frogman: Do you have a Magma Emblem? Can you talk?
+Frogman: Do you have a Magma Emblem?\a Can you talk?
 :play:Trustworthy
 Torment|???: Ha. Ha ha. HA HA HA!!!
 Frogman: What's so funny?
-Torment|???: Do I... have a Magma Emblem? Heh heh!
-Do you not know who I am, Frogman?
+Torment|???: Do I... have a Magma Emblem? Heh heh!\a Do you not know who I am,\a Frogman?
 :if:charactersAlive:>0{
-Frogman: No. Does anybody know this... thing?
+Frogman: Uh... no.\a Does anybody know this... thing?
 ...
 Huh?
-Torment|???: Did you not notice I froze your companions?
-HA HA HA!!
-You are so foolish! Please, do go on!
+Torment|???: Oh, don't even bother.\a Their minds are temporarily...\a turned off. HA HA HA!!
+Frogman: What?!
 }
-Frogman: Who are you?! What is going on?!
+Frogman||L: Who are you?!
+What is going on?!
 :play:Trickster:T
-Torment|???: Why, I suppose I haven't introduced
-myself yet!
-Who am I? Such a deep question! Heh heh!
+Torment|???: Why, I suppose I haven't introduced myself yet!
+Who am I? Such a deep question,\a for someone so foolish! Heh heh!
 I am... pain. Fear. Despair.
-I am your life, and your death.
-Undeath, as well.
+I am your life, and your death. Undeath, as well.
 I am your magic. Your god.
 I am...
 :playIntro:Tormentor
 :loadMap:
 Torment: TORMENT!!!
 Frogman: What is going on?!!
-Torment: OH, I LOVE this part! You're going to fight
-my minions.... TO THE DEATH! HA HA HA!!!
+Torment: OH, I LOVE this part!\a You're going to fight my minions...\a TO THE DEATH! HA HA HA!!!
 Frogman: Why?!
-Torment: Why?! I feed on pain! Need it!
-It doesn't matter who! Only PAIN!
-Enough talk! FIGHT!
+Torment: Why?! I feed on pain! Need it!\a It doesn't matter who! Only PAIN! Enough talk! FIGHT!
 :loadUnits:
 
 ~ PreGeneric
@@ -108,13 +88,13 @@ Enough talk! FIGHT!
 :loadUnits:InitTormentRoom
 Frogman: Oh no!
 :play:Trustworthy
-Torment: Oh yes!
-Frogman: Not again!
+Torment: Oh yes! It's me again!
 :play:Trickster:T
-Torment: Yes again!
-Torment: Heh heh heh!
+Why, you failed pretty spectacularly last time!
+Heh heh!
 :playIntro:Tormentor
 :loadMap:
+Let's see you try again! HA HA HA!
+Frogman: Oh no!!!
 :loadUnits:
-Torment: HA HA HA!!!
-Frogman: Oh no!!!!!1
+
