@@ -3,6 +3,7 @@ unique:T
 ~
 roomNumber:4
 hasFlag:TalkingFrogFirbell
+!hasFlag:TalkingFrogTorment
 ~
 # No demands (I can do this since a non-existent demand defaults to true :))
 ~
@@ -14,20 +15,20 @@ Frogman: Oh no!
 :play:Trustworthy
 Torment: Oh yes! Missed me, Frogman?
 Frogman: N-
-Torment: That was rhetorical! Heh heh heh!
-But don't worry, I ha- ve a joke this time!
+Torment: That was rhetorical! Heh heh heh!\a But don't worry, I have a joke this time!
 :play:Trickster:T
 Torment: What did Torment say to the frog?
 Frogman: What?! Even you?!
 :playIntro:Tormentor
 :loadMap:
 :loadUnits:
-Torment: Ahhh! A talking frog! HAH HAH HAH HAH HAH!
+Torment: Ahhh! A talking frog!\a HAH HAH HAH HAH HAH!
 Frogman: I can't believe-
-Torment: Enough talk! FIGHT!
+Torment: Bla bla bla! FIGHT!
+:setFlag:TalkingFrogTorment
+# TBA: Mark as finished even if never reached the post-battle
 ~
 :play:Trickster
 :loadUnits:InitTormentRoom
-Torment: Ha ha ha! Well, you can go on now,
-my talking champion!
+Torment: Ha ha ha! Well, you can go on now, my talking companion!
 Frogman: You...

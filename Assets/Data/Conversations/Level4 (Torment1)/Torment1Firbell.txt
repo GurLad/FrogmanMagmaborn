@@ -6,6 +6,7 @@ hasCharacter:Firbell
 ~ Demands
 # Nothinig
 ~ Before battle
+# TBA: Add !firstTime dialouge
 :callOther:TormentBase
 :play:BeforeBattle
 :loadMap:InitTormentRoom
@@ -19,39 +20,33 @@ Oh. They're here again.
 :play:Trustworthy
 Torment: Missed me, Frogman? Heh heh!
 Frogman: Why do you keep doing this to my friends?
-Torment: Friends?! Ha ha ha! You're all my pawns!
-Nothing more! Even Firbell, heh!
-Frogman: What does she have to do with anything?
-Torment: Oh, I'm simply the one keeping her sane.
-Why, her family was so thoroughly betrayed,
-it's beautiful! Ha Ha Ha!
+Torment: Friends?! HA HA HA! That's so precious, coming from you!\a Why, are you the one keeping them alive?\a Protecting them?\a Preserving their sanity? Heh heh!
+Frogman: At least I'm not trying to kill them!\a And Xirveros is far from sane!
+Torment: But this isn't about him, is it?\a He deserved it! Ha ha!
+:play:Trickster:T
 Frogman: What are you talking about?
-Torment: Didn't you figure it out? What a fool. Heh!
+Torment: Didn't you figure it out? What a fool. Heh!\a Firbell's mind is so fragile,\a you'd have cracked it a dozen times if not for me!\a Ha ha ha!
+Frogman: I don't know what you're talking about!
+Torment: Oh, really? Let me tell you then.\a Why, her family was so thoroughly betrayed,\a it's beautiful! Ha Ha Ha!
+Frogman: Her family? What happened to them?
 :playIntro:Tormentor
 :loadMap:
 :loadUnits:
-They're all gone! Dead! Forgotten!
-Irenhold is GONE! HA HA HA HA!
+Torment: They're all gone!\a Dead!\a Forgotten!
+Irenhold is GONE! HA HA HA!
 Frogman: No...
-Torment: Oh, stop pretending to care. Heh. As fun as
-it was to gloat, it's that time again.
-Time to DIE!
+Torment: Oh, stop pretending to care. Heh.\a As fun as it was to gloat, it's that time again.\a Time to DIE!
 ~ After battle
 :play:Trickster
 Frogman: You... Monster...
-Torment: Get over it. You don't even know Irenhold!
-She stops functioning whenever she realizes
-the truth. So I prevent her.
-After all, how can she kill for me
-otherwise? Heh heh!
+Torment: Seriously? Using that insult on me? Ha!\a Get over it. You don't even know Irenhold!
+She stops functioning whenever she realizes the truth.\a I'm merely protecting her. Heh.\a Who's the friend and who is the monster here, eh? Ha ha!
 Frogman: I-
 :loadMap:InitTormentRoom
-Torment: I already know what you're about to say.
-Keep it to yourself, it's boring! Heh!
+Torment: I already know what you're about to say.\a Keep it to yourself, it's boring! Heh!
 Frogman: You can read minds?!
 # Torment can't while they're alive, but he might as well troll Frogman for fun.
-Torment: Why, of course! HA HA HA!
-Goodbye now! And have some more power!
+Torment: Why, of course! HA HA HA!\a Goodbye now!\a Oh, and have some more power!\a No need to thank me! Heh.
 :unlockKnowledge:TormentLifeDeath
 :showInfoDialogue:New knowledge!
 
