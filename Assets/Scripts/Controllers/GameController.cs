@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     [Header("Rooms data")]
     public Vector2Int MapSize;
     public float TileSize;
-    public List<TileSet> TileSets;
     public List<UnitReplacement> UnitReplacements;
     public List<TextAsset> Rooms;
     [Header("UI")]
@@ -33,6 +32,7 @@ public class GameController : MonoBehaviour
     [Header("Other data controllers")]
     public UnitClassData UnitClassData;
     public LevelMetadataController LevelMetadataController;
+    public MapController MapController;
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
     public bool DebugStartAtEndgame;
     public int DebugEndgameLevel;
@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public LevelMetadata LevelMetadata;
     [HideInInspector]
-    public TileSet Set;
+    public Tileset Set;
     [HideInInspector]
     public Tile[,] Map;
     [HideInInspector]
@@ -185,7 +185,7 @@ public class GameController : MonoBehaviour
             // Level numer
             room.RoomNumber = int.Parse(selectedRoom[3]);
             // Tile set
-            room.TileSet = TileSets.Find(a => a.Name == selectedRoom[2]);
+            room.TileSet = MapController.Tilesets.Find(a => a.Name == selectedRoom[2]);
             // Objective
             string[] objectiveParts = selectedRoom[4].Split(':');
             room.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
@@ -905,7 +905,7 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < MapSize.y; j++)
             {
                 int tileID = room.Map[i, j];
-                Tile newTile = Instantiate(Set.Tiles[tileID].gameObject, currentMapObject).GetComponent<Tile>();
+                Tile newTile = Instantiate(Set.TileObjects[tileID].gameObject, currentMapObject).GetComponent<Tile>();
                 newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
                 newTile.gameObject.SetActive(true);
                 Map[i, j] = newTile;
@@ -1147,7 +1147,7 @@ public class GameController : MonoBehaviour
         public int RoomNumber;
         public int[,] Map;
         public List<string> Units;
-        public TileSet TileSet;
+        public Tileset TileSet;
         public Objective Objective;
         public string ObjectiveData;
         public bool MatchesDemands(ConversationData conversation)
@@ -1213,24 +1213,6 @@ public class GameController : MonoBehaviour
                     break;
             }
             return true;
-        }
-    }
-
-    [System.Serializable]
-    public class TileSet
-    {
-        public string Name;
-        public Palette Palette1 = new Palette();
-        public Palette Palette2 = new Palette();
-        public List<Tile> Tiles;
-
-        public TileSet()
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                Palette1.Colors[i] = Color.black;
-                Palette2.Colors[i] = Color.black;
-            }
         }
     }
 

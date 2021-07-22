@@ -1,3 +1,6 @@
+ -Move all room logic to MapController.
+ -Rename Tilemap to Tileset in Frog Forge.
+
  -Add room events:
   -Each room has an event that plays after the normal conversation (most rooms still have no event). This is mostly for changing enemy AI mid-battle.
   -Add relevant requirements & commands:

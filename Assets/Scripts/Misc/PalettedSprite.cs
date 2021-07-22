@@ -65,4 +65,9 @@ public class PalettedSprite : MonoBehaviour
             }
         }
     }
+
+    public void ForceSilentSetPalette(int index) // Very bad workaround for FFImporter
+    {
+        palette = index;
+    }
 }

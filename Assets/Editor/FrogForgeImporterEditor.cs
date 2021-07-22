@@ -31,5 +31,9 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.LevelMetadataController.AutoLoad();
         }
+        if (myScript.MapController != null && GUILayout.Button("Load Tilesets"))
+        {
+            myScript.MapController.AutoLoad();
+        }
     }
 }
