@@ -27,10 +27,8 @@ public class Unit : MapObject
     [HideInInspector]
     public int Level;
     [HideInInspector]
-    [System.NonSerialized]
     public string BattleQuote = "";
     [HideInInspector]
-    [System.NonSerialized]
     public string DeathQuote = "";
     [HideInInspector]
     [System.NonSerialized]

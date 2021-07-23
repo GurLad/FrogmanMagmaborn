@@ -391,13 +391,7 @@ public class GameController : MonoBehaviour
                 deadUnitDeathQuote = "";
                 return true;
             }
-            if (frogman == null)
-            {
-                // Lose
-                Lose();
-                return true;
-            }
-            else if (CheckPlayerWin())
+            if (CheckPlayerWin())
             {
                 // Win
                 RemoveMarkers();
@@ -824,11 +818,13 @@ public class GameController : MonoBehaviour
         unit.Stats.Growths = unitData.Growths.Values;
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
+        unit.DeathQuote = unitData.DeathQuote;
         unit.Inclination = unitData.Inclination;
         unit.LoadInclination();
         AssignUnitMapAnimation(unit, classData);
         unit.Stats += unit.AutoLevel(level);
         unit.Init();
+        Debug.Log(unit.Name + ", when dies: " + unit.DeathQuote);
         return unit;
     }
     public Unit CreateEnemyUnit(string name, int level, Team team, bool canReplace)

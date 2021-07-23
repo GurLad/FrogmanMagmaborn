@@ -41,6 +41,8 @@ public class UnitData
     public string Class;
     public Inclination Inclination;
     public UnitClassData.GrowthsStruct Growths;
+    [TextArea]
+    public string DeathQuote;
 }
 
 [System.Serializable]
