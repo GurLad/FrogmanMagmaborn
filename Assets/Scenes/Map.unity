@@ -443,6 +443,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6f9a9b6529b165242b229bff80a6242c, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
+  - {fileID: 4900000, guid: 762eb6324ea50ca4b8c15047109bf81a, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -10266,6 +10267,8 @@ MonoBehaviour:
     Weight: 0
     Range: 0
   Level: 0
+  BattleQuote: 
+  DeathQuote: 
 --- !u!212 &1111376494
 SpriteRenderer:
   m_ObjectHideFlags: 0

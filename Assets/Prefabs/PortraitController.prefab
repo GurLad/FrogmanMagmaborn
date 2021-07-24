@@ -59,7 +59,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 3
       Pitch: 1
-    Assigned: 0
   - Name: Firbell
     Background: {fileID: 21300000, guid: 7ac463c2a372528459df82bbe1d328ca, type: 3}
     Foreground: {fileID: 21300000, guid: d43ac6d65cea39441a64962772de32b4, type: 3}
@@ -74,7 +73,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.8
-    Assigned: 0
   - Name: Xirveros
     Background: {fileID: 21300000, guid: 3e277ead549e3774fb07f19be743bb2f, type: 3}
     Foreground: {fileID: 21300000, guid: beee822a2322202438ff74d3d8495c9f, type: 3}
@@ -89,7 +87,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 0.5
-    Assigned: 0
   - Name: Kresla
     Background: {fileID: 21300000, guid: 306371f2925ffd84cacb2e2ed04e920b, type: 3}
     Foreground: {fileID: 21300000, guid: 93fbeea89ecd893489644012c98bb4f8, type: 3}
@@ -104,7 +101,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 1
       Pitch: 1.25
-    Assigned: 0
   - Name: Monster
     Background: {fileID: 21300000, guid: d72f78fd4839c79429728e6e5e3c812e, type: 3}
     Foreground: {fileID: 21300000, guid: 68f99502b3ccf7e45b87bcf2b67233e8, type: 3}
@@ -119,7 +115,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1
-    Assigned: 0
   - Name: Torment
     Background: {fileID: 21300000, guid: 4e9520428490e4342916a434f0112ae7, type: 3}
     Foreground: {fileID: 21300000, guid: 624d4834ae4bbee4d99b18181d12b36c, type: 3}
@@ -130,11 +125,10 @@ MonoBehaviour:
       - {r: 0, g: 0.9098039, b: 0.89411765, a: 1}
       - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
     ForegroundColorID: 3
-    AccentColor: 2
+    AccentColor: 0
     Voice:
       VoiceType: 2
       Pitch: 1.5
-    Assigned: 0
   - Name: Xeplogi
     Background: {fileID: 21300000, guid: 6add5ec614ff386429af24351fa82f0e, type: 3}
     Foreground: {fileID: 21300000, guid: 346a109af78e76c4a81b08dfc6560a9e, type: 3}
@@ -149,7 +143,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.6
-    Assigned: 0
   - Name: Memerian
     Background: {fileID: 21300000, guid: 39af27ca39c98ad429634cf4ec19c55e, type: 3}
     Foreground: {fileID: 21300000, guid: 5f7f1696546c1ca429afdd1829314df8, type: 3}
@@ -164,7 +157,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 1
       Pitch: 0.8
-    Assigned: 0
   - Name: Alfred
     Background: {fileID: 21300000, guid: a0abfefbdb411df44bdb4b34342eaddb, type: 3}
     Foreground: {fileID: 21300000, guid: d0fdf11286051014ebe1ccd6f2bb1581, type: 3}
@@ -179,7 +171,20 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1.2
-    Assigned: 0
+  - Name: Deharo
+    Background: {fileID: 21300000, guid: f4517fb49d75d844690c40c2ec19def2, type: 3}
+    Foreground: {fileID: 21300000, guid: accde15ab975f9a4aa545d8b76324a35, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
+      - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
+      - {r: 0.3137255, g: 0.1882353, b: 0, a: 1}
+    ForegroundColorID: 2
+    AccentColor: 0
+    Voice:
+      VoiceType: 2
+      Pitch: 1.6
   GenericPortraits:
   - tags: female,young
     VoiceType: 1
@@ -343,7 +348,6 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1
-    Assigned: 0
   ErrorVoice:
     VoiceType: 0
     Pitch: 5
