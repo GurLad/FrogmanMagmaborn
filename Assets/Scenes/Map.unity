@@ -17227,6 +17227,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
   - {fileID: 4900000, guid: ebda35d761691014589ef4771c8442b7, type: 3}
   - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
+  - {fileID: 4900000, guid: 7bb53d1485cac27438f3f6316ffb655e, type: 3}
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
@@ -17249,12 +17250,12 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 5
+  DebugEndgameLevel: 4
   DebugUnits:
   - Frogman
-  - Firbell
+  - Kresla
   - Xirveros
-  DebugUnlimitedMove: 1
+  DebugUnlimitedMove: 0
   DebugOPPlayers: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}

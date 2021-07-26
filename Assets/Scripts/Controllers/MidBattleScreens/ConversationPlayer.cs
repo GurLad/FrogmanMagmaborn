@@ -54,6 +54,9 @@ public class ConversationPlayer : MidBattleScreen
     {
         Current = this;
         gameObject.SetActive(startActive);
+    }
+    private void Start()
+    {
         PortraitR.gameObject.SetActive(false);
     }
     private void Update()

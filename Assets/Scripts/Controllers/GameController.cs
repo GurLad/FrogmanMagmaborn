@@ -680,9 +680,17 @@ public class GameController : MonoBehaviour
                 {
                     item.Moved = true;
                 }
-                else if (!item.Statue && FindUnitAtPos(item.PreviousPos.x, item.PreviousPos.y) == null)
+                else if (!item.Statue)
                 {
-                    item.Pos = item.PreviousPos;
+                    if (FindUnitAtPos(item.PreviousPos.x, item.PreviousPos.y) == null) // Spawn now
+                    {
+                        item.Pos = item.PreviousPos;
+                    }
+                    else // Spawn in a turn
+                    {
+                        item.Moved = true;
+                        item.ReinforcementTurn = 1;
+                    }
                 }
                 else if (item.Statue)
                 {
