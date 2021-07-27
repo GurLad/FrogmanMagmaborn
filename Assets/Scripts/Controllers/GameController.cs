@@ -735,6 +735,7 @@ public class GameController : MonoBehaviour
     }
     public void Win()
     {
+        GameCalculations.EndMapEvents(units);
         LevelNumber++;
         currentKnowledge++;
         SavedData.SaveAll(SaveMode.Slot);

@@ -5634,7 +5634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeMenus:
   - Name: Upgrades
-    Description: Pay knowled- ge to gain permanent upgrades.
+    Description: Pay knowledge to gain permanent upgrades.
     NumChoices: 2
     Type: 0
     Upgrades:
@@ -5734,6 +5734,31 @@ MonoBehaviour:
       InternalName: TormentSpeedSafety
       Description: 'I : Terrain doesn''t slow down your units.'
       AltDescription: 'II: Harmful terrain helps your units instead.'
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Honor/Glory
+      InternalName: TormentHonorGlory
+      Description: 'I : Minimum damage is 1 and minimum hit is 50% (all units).'
+      AltDescription: 'II: All damage is doubled.'
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Push/Pull
+      InternalName: TormentPushPull
+      Description: 'I : Your units can push allies by targeting them.'
+      AltDescription: 'II: Your units can pull allies by targeting them.'
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Wrath/Mercy
+      InternalName: TormentWrathMercy
+      Description: 'I : Your units gain +1 Str after battle if all enemies are dead.'
+      AltDescription: 'II: Your units gain +1 End after battle if some enemies are
+        alive.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3

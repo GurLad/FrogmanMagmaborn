@@ -96,6 +96,23 @@ public static class GameCalculations
         return baseNum;
     }
 
+    public static bool HasKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
+    {
+        return KnowledgeController.HasKnowledge(name);
+    }
+
+    public static bool FoundKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
+    {
+        return KnowledgeController.FoundKnowledge(name);
+    }
+
+    public static void UnlockKnowledge(string name)
+    {
+        KnowledgeController.UnlockKnowledge(name);
+    }
+
+    // Game events
+
     public static void EndTurnEvents(List<Unit> units)
     {
         switch (KnowledgeController.TormentPower("HurtHelp"))
@@ -113,19 +130,27 @@ public static class GameCalculations
         }
     }
 
-    public static bool HasKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
+    public static void EndMapEvents(List<Unit> units)
     {
-        return KnowledgeController.HasKnowledge(name);
-    }
-
-    public static bool FoundKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
-    {
-        return KnowledgeController.FoundKnowledge(name);
-    }
-
-    public static void UnlockKnowledge(string name)
-    {
-        KnowledgeController.UnlockKnowledge(name);
+        switch (KnowledgeController.TormentPower("WrathMercy"))
+        {
+            case TormentPowerState.None:
+                break;
+            case TormentPowerState.I:
+                if (units.Find(a => a.TheTeam != Team.Player) == null)
+                {
+                    units.ForEach(a => a.Stats.Strength++);
+                }
+                break;
+            case TormentPowerState.II:
+                if (units.Find(a => a.TheTeam != Team.Player) != null)
+                {
+                    units.ForEach(a => a.Stats.Endurance++);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     // Unit extension methods
@@ -154,29 +179,44 @@ public static class GameCalculations
         return temp;
     }
 
-    public static int GetHitChance(this Unit attacker, Unit defender) // Technically, this doesn't use KnowledgeController, but it's still an important game calculation.
+    public static int GetHitChance(this Unit attacker, Unit defender)
     {
+        int Hit(Unit attacker, Unit defender) => Mathf.Clamp(attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision), KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.I ? 50 : 0, 100);
         if (attacker.EffectiveAgainst(defender))
         {
             attacker.Stats[(int)attacker.Inclination * 2] += 2;
-            int hit = Mathf.Min(100, attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision));
+            int hit = Hit(attacker, defender);
             attacker.Stats[(int)attacker.Inclination * 2] -= 2;
             return hit;
         }
-        return Mathf.Clamp(attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision), 0, 100);
+        return Hit(attacker, defender);
     }
 
-    public static int GetDamage(this Unit attacker, Unit defender) // See above.
+    public static int GetDamage(this Unit attacker, Unit defender)
     {
         int armorModifier = GameController.Current.Map[defender.Pos.x, defender.Pos.y].GetArmorModifier(defender);
+        int Damage(Unit attacker, Unit defender)
+        {
+            int value = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
+            switch (KnowledgeController.TormentPower("HonorGlory"))
+            {
+                case TormentPowerState.I:
+                    return Mathf.Max(1, value);
+                case TormentPowerState.II:
+                    return value * 2;
+                case TormentPowerState.None:
+                default:
+                    return value;
+            }
+        }
         if (attacker.EffectiveAgainst(defender))
         {
             attacker.Stats[(int)attacker.Inclination * 2] += 2;
-            int damage = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
+            int damage = Damage(attacker, defender);
             attacker.Stats[(int)attacker.Inclination * 2] -= 2;
             return damage;
         }
-        return Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
+        return Damage(attacker, defender);
     }
 
     public static void LoadInclination(this Unit unit)
