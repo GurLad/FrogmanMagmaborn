@@ -2,45 +2,38 @@ priority:5
 unique:T
 ~
 roomNumber:5
-# Temp - for beta
-!hasFlag:finishedBeta
 ~
 # Gurantee a map that makes sense for the arrivals
 mapID:Level5-1
 ~
 :play:BeforeBattle2
 :loadUnits::player
-Frogman: Huh? Structures? Never seen any before.
+Frogman: Huh?\a Structures?\a I've never seen any here before.
 # TODO: Seperate properly
 :if:hasCharacter:Firbell{
-Firbell: Neither have I. I have never been this deep
-before as well.
+Firbell: Neither have I.\a We must be rather deep indeed.\a Who could have made them?
 }
 :if:hasCharacter:Kresla{
-Kresla: Structures? Here?! This is incrdible!
-Who made them? When? How? I've never seen
-any usable materials!
-We must explo-
+Kresla: Structures? Here?! This is incredible!\a Who made them? When? How?\a I've never even seen any usable materials!\a We must explo-
 }
 :addUnit:Xeplogi
 :loadUnits::player
-Xeplogi|???: Hold! Who goes there?!
+Xeplogi|???|R: Hold! Who goes there?!
 Frogman: We are-
-Xeplogi|???: You! How can you talk?
-What manner of black magic is this?!
-Were you sent here by Memerian?!
+Xeplogi|???: You! How can you speak?
+What manner of black magic is this?!\a Were you sent here by Memerian?!
 Frogman: Who?
-Xeplogi|???: Your trickery cannot fool me, demon!
-Know, with your last breath, that the 
-warrior who bested y-
-:addGenericCharacter:Guard1:
-:addGenericCharacter:Guard2:
+Xeplogi|???: Your trickery cannot fool me, foul demon!\a I, the humble servant of the glorious Tori,\a am the only person worthy enough to be reborn,\a sent to defeat the evil Memerian and\a her nasty minions!
+Frogman: ...What.
+Xeplogi|???: The time for chatter is up! Prepare to be-
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
 :play:GuardTheme
 ???: Hey! Is someone there?
-Frogman: Huh? Another Magmaborn?
-Xeplogi|???: W-who dares interr-
+Frogman|: Huh? Another Magmaborn?
+Xeplogi|???|R: W-who dares interr-
 :loadUnits:
-Guard2: No, look! Those are Magmaborns!
+Guard2: No, look! Those are Magmaborn!
 Frogman: Humans?!
 :if:hasCharacter:Firbell{
 Firbell: Humans?!
@@ -49,27 +42,21 @@ Firbell: Humans?!
 Kresla: Humans?!
 }
 :if:hasCharacter:Xirveros{
-Xirveros: No! No! Not again! We must turn back!
+Xirveros: No... Again... Frog, back...
 }
-Xeplogi|???: Stop that at onc-
-Guard1: Aha! This must be my lucky day!
-Fiends! Your rein of terror has come to an
-end! For I, [Name], will kill you now!
-Xeplogi|???: No! I must do so first!
-Guard2: How many of them are there?!
-Never mind, kill every last one of them!
-Xeplogi|???: I am NOT one of them! I am The Great-
-Frogman: You! Ooze! Please, we're in the same
-side here!
+Xeplogi|???|R: Stop that at onc-
+Guard1: Aha! This must be my lucky day!\a Fiends! Your reign of terror has come to an end!\a For I, [Name], shall destroy you all!
+Xeplogi|???: No! I must do so first!\a It is my divine duty-
+Guard2: How many of them are there?!\a Never mind, kill every last one of them!
+Xeplogi|???: I am NOT one of them! I am the Great-
+Frogman: You! Ooze!\a Please, we're on the same side here!
 Help us defeat these monsters and humans!
-Xeplogi|???: I will never help the likes of you!
+Xeplogi|???: Join forces with scum like you? Ha!\a I work alone, as is my destiny as the Great- 
 Frogman: Fine. Suit yourself.
-Xeplogi|???: Let me fini-
+Xeplogi|???: Let me finish! I-
 Guard2: CHAAAAAAAAARGE!
-Xeplogi|???: Oh, now you've done it!
-Talking demons! Let us join forces!
-Xeplogi: Know that The Great Xeplogi is on your
-side!
+Xeplogi|???: Oh, now you've done it!\a Talking demons! Let us join forces!
+Xeplogi||R: Know that the Great Xeplogi is on your side!
 Frogman: ...I'm beginning to regret this...
 ~ Post-battle
 Frogman: Whew! We survived!

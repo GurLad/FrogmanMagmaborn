@@ -7,8 +7,38 @@ hasCharacter:Kresla
 # Nothinig
 ~ Before battle
 :callOther:TormentBase
-Torment: TBA
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:play:Trustworthy
+Torment: Hello, hello! Back so soon? Heh!
+Frogman: Unfortunately...
+Torment: Why the sour face, eh? Ha!\a Your dullness almost makes me wish Kresla was here!
+Frogman: She... she's right here.
+Torment: No, I meant her mind, heh!
+But keeping that one in line is hard enough as is.
+Frogman: What are you talking about?
+Torment: Well, you know her!\a Always so curious about everything,\a she might have even discovered my existence!\a And that simply wouldn't do, would it now?\a Ha ha ha!
+Frogman: Why are you so intent on hiding?
+:play:Trickster:T
+Torment: Not everyone is as gullible as you, heh heh!\a Some would never an...\a evil being like me willingly! HA HA HA!\a As if they have a choice!
+Frogman: And do I have a choice?
+:playIntro:Tormentor
+:loadMap:
+:loadUnits:
+Torment: PWAH HA HA HA! As if! But worry not,\a you have the honor of being my...\a chosen one! Heh!
+Frogman: Argh...
+Torment: Cry later - now is the time to FIGHT!
+
 ~ After battle
+Frogman: Torment... Enough of this!
+Torment: Ohh, fight some more please!\a For science!\a Heh heh!
+Frogman: What?!
+:play:Trickster
+:loadUnits:InitTormentRoom
+Torment: Just kidding. Ha ha!
+I take good care of good pawns like you. Heh.
+Frogman: ...
+Torment: Well, goodbye now! See you soon! Ha!
 :unlockKnowledge:TormentSpeedSafety
 :showInfoDialogue:New knowledge!
 # Name: Text.
