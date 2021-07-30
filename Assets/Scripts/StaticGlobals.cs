@@ -13,6 +13,7 @@ public enum InteractState { None, Move, Attack }
 public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, TEMP = 3, LittleDamage = 4 }
 public enum TormentPowerState { None, I, II }
 public enum PortraitLoadingMode { Name, Team, Generic }
+public enum Objective { Rout, Boss, Escape, Survive }
 
 public static class StaticGlobals
 {

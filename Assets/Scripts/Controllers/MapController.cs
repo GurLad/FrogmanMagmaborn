@@ -6,12 +6,16 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
 {
     [Header("Data")]
     public List<Tileset> Tilesets;
+    public List<Map> Maps;
     [Header("Objects")]
     public Tile BaseTile;
     public Transform TilesetsContainer;
+    [HideInInspector]
+    [SerializeField]
+    private MapData mapData;
 
     #if UNITY_EDITOR
-    public void AutoLoad()
+    public void AutoLoadTilesets()
     {
         // Clear previous data
         Tilesets.Clear();
@@ -59,6 +63,61 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         }
     }
     #endif
+
+    #if UNITY_EDITOR
+    public void AutoLoadMaps()
+    {
+        // Clear previous data
+        Maps.Clear();
+        // Load jsons
+        string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/Maps" });
+        foreach (string fileName in fileNames)
+        {
+            TextAsset file = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
+            JsonUtility.FromJsonOverwrite(file.text.ForgeJsonToUnity("mapData"), this);
+            Map map = new Map();
+            // Level numer
+            map.LevelNumber = mapData.LevelNumber;
+            // Tileset
+            map.Tileset = Tilesets.Find(a => a.Name == mapData.Tileset);
+            // Objective
+            string[] objectiveParts = mapData.Objective.Split(':');
+            map.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
+            map.ObjectiveData = mapData.Objective.Substring(mapData.Objective.IndexOf(':') + 1);
+            // Map
+            map.MapString = mapData.Tiles;
+            // Units
+            map.Units = new List<UnitPlacementData>(mapData.Units);
+            // Name
+            map.Name = mapData.Name;
+            Maps.Add(map);
+        }
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+    #endif
+
+    [System.Serializable]
+    public class MapData
+    {
+        public string Tiles;
+        public List<UnitPlacementData> Units;
+        public string Tileset;
+        public int LevelNumber;
+        public string Objective;
+        public string Name;
+    }
+
+    [System.Serializable]
+    public class UnitPlacementData
+    {
+        public Vector2Int Pos;
+        public Team Team;
+        public int Level;
+        public string Class;
+        public AIType AIType;
+        public int ReinforcementTurn;
+        public bool Statue;
+    }
 }
 
 [System.Serializable]
@@ -104,5 +163,96 @@ public class Tileset
         public int ArmorMod;
         public int Palette;
         public bool High;
+    }
+}
+
+[System.Serializable]
+public class Map
+{
+    public string Name;
+    public int LevelNumber;
+    public int[,] Tilemap;
+    public List<MapController.UnitPlacementData> Units;
+    public Tileset Tileset;
+    public Objective Objective;
+    public string ObjectiveData;
+    public string MapString;
+    public void Init()
+    {
+        string[] lines = MapString.Split(';');
+        Vector2Int mapSize = GameController.MAP_SIZE; // TBA: Maps can have different size. For level 12, so future me will deal with it.
+        Tilemap = new int[mapSize.x, mapSize.y];
+        for (int k = 0; k < mapSize.x; k++)
+        {
+            string[] line = lines[k].Split('|');
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                Tilemap[k, j] = int.Parse(line[j]);
+            }
+        }
+    }
+    public bool MatchesDemands(ConversationData conversation)
+    {
+        if (LevelNumber != GameController.Current.LevelNumber)
+        {
+            return false;
+        }
+        foreach (var demand in conversation.Demands)
+        {
+            if (demand[0] == '!')
+            {
+                if (MeetsDemand(demand.Substring(1)))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!MeetsDemand(demand))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    private bool MeetsDemand(string demand)
+    {
+        string[] parts = demand.Split(':');
+        switch (parts[0])
+        {
+            case "hasCharacter":
+                return string.Join("|", Units).Contains(parts[1]);
+            case "charactersAlive":
+                // Find number of returning playable characters in map (excluding Frogman and recruitments)
+                int count = 0;
+                foreach (MapController.UnitPlacementData unit in Units)
+                {
+                    if (unit.Class == "P")
+                    {
+                        // Is player
+                        count++;
+                    }
+                }
+                int targetNumber = int.Parse(parts[1].Substring(1));
+                // Format: charactersAlive:?X, ex. charactersAlive:>2
+                switch (parts[1][0])
+                {
+                    case '>':
+                        return count > targetNumber;
+                    case '<':
+                        return count < targetNumber;
+                    case '=':
+                        return count == targetNumber;
+                    default:
+                        break;
+                }
+                break;
+            case "mapID":
+                return Name == parts[1];
+            default:
+                break;
+        }
+        return true;
     }
 }

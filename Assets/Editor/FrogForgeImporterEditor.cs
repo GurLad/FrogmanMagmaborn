@@ -33,7 +33,11 @@ public class FrogForgeImporterEditor : Editor
         }
         if (myScript.MapController != null && GUILayout.Button("Load Tilesets"))
         {
-            myScript.MapController.AutoLoad();
+            myScript.MapController.AutoLoadTilesets();
+        }
+        if (myScript.MapController != null && GUILayout.Button("Load Maps"))
+        {
+            myScript.MapController.AutoLoadMaps();
         }
     }
 }

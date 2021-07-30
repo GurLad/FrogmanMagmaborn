@@ -6,13 +6,12 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public enum Objective { Rout, Boss, Escape, Survive }
+    public static readonly Vector2Int MAP_SIZE = new Vector2Int(16, 15);
     public static GameController Current;
-    [Header("Rooms data")]
-    public Vector2Int MapSize;
+    [Header("Map data")]
+    public Vector2Int MapSize = new Vector2Int(16, 15);
     public float TileSize;
     public List<UnitReplacement> UnitReplacements;
-    public List<TextAsset> Rooms;
     [Header("UI")]
     public RectTransform UITileInfoPanel;
     public Text UITileInfo;
@@ -67,7 +66,6 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
     protected Difficulty difficulty;
-    private List<Room> rooms;
     private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
     private float enemyMoveDelayCount;
@@ -77,7 +75,7 @@ public class GameController : MonoBehaviour
     private Transform currentUnitsObject;
     private string deadUnitDeathQuote;
     private bool checkEndTurn;
-    private Room selectedRoom;
+    private Map selectedMap;
     private int currentKnowledge;
     private int enemyCount; // To increase performance
     private List<Unit> playerUnitsCache;
@@ -167,44 +165,10 @@ public class GameController : MonoBehaviour
 
     protected virtual void Awake()
     {
-        /*
-         * I had a few different ideas:
-         * -Current
-         * -Dungeon: floors and walls, and generate straight lines
-         * -Roads: continue random number of steps in a direction, change. Randomaly split/stop.
-         */
         Current = this;
         main = Camera.main;
-        // Load rooms
-        rooms = new List<Room>();
-        for (int i = 0; i < Rooms.Count; i++)
-        {
-            Room room = new Room();
-            room.Name = Rooms[i].name;
-            string[] selectedRoom = Rooms[i].text.Replace("\r", "").Split('\n');
-            // Level numer
-            room.RoomNumber = int.Parse(selectedRoom[3]);
-            // Tile set
-            room.TileSet = MapController.Tilesets.Find(a => a.Name == selectedRoom[2]);
-            // Objective
-            string[] objectiveParts = selectedRoom[4].Split(':');
-            room.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
-            room.ObjectiveData = selectedRoom[4].Substring(selectedRoom[4].IndexOf(':') + 1);
-            // Map
-            string[] lines = selectedRoom[0].Split(';');
-            room.Map = new int[MapSize.x, MapSize.y];
-            for (int k = 0; k < MapSize.x; k++)
-            {
-                string[] line = lines[k].Split('|');
-                for (int j = 0; j < MapSize.y; j++)
-                {
-                    room.Map[k, j] = int.Parse(line[j]);
-                }
-            }
-            // Units
-            room.Units = selectedRoom[1].Split(';').ToList();
-            rooms.Add(room);
-        }
+        // Init maps
+        MapController.Maps.ForEach(a => a.Init());
         // Init unit replacements
         UnitReplacements.ForEach(a => a.Init());
         // Awake enemy marker
@@ -775,9 +739,9 @@ public class GameController : MonoBehaviour
         Debug.Log(string.Join(", ", playerCharacters));
         ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
-        List<Room> options = rooms.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
-        selectedRoom = options[UnityEngine.Random.Range(0, options.Count)];
-        Debug.Log("Selected room: " + selectedRoom.Name);
+        List<Map> options = MapController.Maps.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
+        selectedMap = options[UnityEngine.Random.Range(0, options.Count)];
+        Debug.Log("Selected room: " + selectedMap.Name);
         // Clear previous level
         if (currentMapObject != null)
         {
@@ -791,9 +755,9 @@ public class GameController : MonoBehaviour
         // Set palettes
         SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
         // Room-specific behaviours
-        if (selectedRoom.Objective == Objective.Escape)
+        if (selectedMap.Objective == Objective.Escape)
         {
-            string[] parts = selectedRoom.ObjectiveData.Split(':');
+            string[] parts = selectedMap.ObjectiveData.Split(':');
             escapePos = new Vector2Int(int.Parse(parts[0]), int.Parse(parts[1]));
             EscapeMarker.gameObject.SetActive(true);
         }
@@ -872,36 +836,36 @@ public class GameController : MonoBehaviour
         animation.Start();
         animation.Activate(0);
     }
-    private Room LoadRoom(string roomName = "")
+    private Map LoadMapData(string mapName = "")
     {
-        Room room;
-        if (roomName == "")
+        Map map;
+        if (mapName == "")
         {
-            room = selectedRoom;
+            map = selectedMap;
         }
         else
         {
-            room = rooms.Find(a => a.Name == roomName);
-            if (room == null)
+            map = MapController.Maps.Find(a => a.Name == mapName);
+            if (map == null)
             {
-                throw new System.Exception("No matching room! (" + roomName + ")");
+                throw new System.Exception("No matching map! (" + mapName + ")");
             }
         }
-        return room;
+        return map;
     }
-    public void LoadMap(string roomName = "")
+    public void LoadMap(string mapName = "")
     {
-        Room room = LoadRoom(roomName);
+        Map map = LoadMapData(mapName);
         // Clear previous level
         if (currentMapObject != null)
         {
             Destroy(currentMapObject.gameObject);
         }
-        // Load room
-        Set = room.TileSet;
+        // Load map
+        Set = map.Tileset;
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
-        // Map
+        // Create map
         currentMapObject = new GameObject("MapObject").transform;
         currentMapObject.parent = transform;
         Map = new Tile[MapSize.x, MapSize.y];
@@ -909,7 +873,7 @@ public class GameController : MonoBehaviour
         {
             for (int j = 0; j < MapSize.y; j++)
             {
-                int tileID = room.Map[i, j];
+                int tileID = map.Tilemap[i, j];
                 Tile newTile = Instantiate(Set.TileObjects[tileID].gameObject, currentMapObject).GetComponent<Tile>();
                 newTile.transform.position = new Vector2(TileSize * i, -TileSize * j);
                 newTile.gameObject.SetActive(true);
@@ -919,7 +883,7 @@ public class GameController : MonoBehaviour
     }
     public void LoadLevelUnits(string roomName = "", Team? ofTeam = null)
     {
-        Room room = LoadRoom(roomName);
+        Map room = LoadMapData(roomName);
         // Clear previous level
         if (currentUnitsObject != null)
         {
@@ -940,17 +904,17 @@ public class GameController : MonoBehaviour
             }
         }
         // Units
-        List<string> unitDatas = room.Units;
+        List<MapController.UnitPlacementData> unitDatas = room.Units;
         int numPlayers = 0;
         for (int i = 0; i < unitDatas.Count; i++)
         {
-            string[] parts = unitDatas[i].Split(',');
-            Team team = (Team)int.Parse(parts[0]);
+            MapController.UnitPlacementData unitData = unitDatas[i];
+            Team team = unitData.Team;
             if (team != (ofTeam ?? team))
             {
                 continue;
             }
-            string name = parts[1];
+            string name = unitData.Class;
             if (team == Team.Player)
             {
                 Unit unit;
@@ -961,7 +925,7 @@ public class GameController : MonoBehaviour
                         unit = playerCharacters[++numPlayers];
                         unit.transform.parent = currentUnitsObject;
                         unit.Health = unit.Stats.MaxHP;
-                        unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                        unit.Pos = unitData.Pos;
                     }
                     continue;
                 }
@@ -970,15 +934,15 @@ public class GameController : MonoBehaviour
                     unit = playerCharacters[0];
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
-                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    unit.Pos = unitData.Pos;
                     cursorPos = unit.Pos; // Auto-cursor
                     continue;
                 }
                 else
                 {
-                    unit = CreatePlayerUnit(name, int.Parse(parts[2]));
+                    unit = CreatePlayerUnit(name, unitData.Level);
                     unit.Health = unit.Stats.MaxHP;
-                    unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                    unit.Pos = unitData.Pos;
                     PlayerUnits.Add(unit);
                     if (name != StaticGlobals.MAIN_CHARACTER_NAME)
                     {
@@ -992,14 +956,11 @@ public class GameController : MonoBehaviour
             }
             else // Enemy units
             {
-                Unit unit = CreateEnemyUnit(name, int.Parse(parts[2]), team, !(parts.Length > 6 && parts[7] == "T"));
-                if (parts.Length > 6)
-                {
-                    unit.ReinforcementTurn = int.Parse(parts[6]);
-                    unit.Statue = parts[7] == "T";
-                }
-                unit.AIType = (AIType)int.Parse(parts[3]);
-                unit.Pos = new Vector2Int(int.Parse(parts[4]), int.Parse(parts[5]));
+                Unit unit = CreateEnemyUnit(name, unitData.Level, team, !unitData.Statue);
+                unit.ReinforcementTurn = unitData.ReinforcementTurn;
+                unit.Statue = unitData.Statue;
+                unit.AIType = unitData.AIType;
+                unit.Pos = unitData.Pos;
                 if (unit.ReinforcementTurn > 0 && !unit.Statue)
                 {
                     unit.PreviousPos = unit.Pos;
@@ -1018,16 +979,16 @@ public class GameController : MonoBehaviour
     }
     public string GetPauseObjectiveText()
     {
-        switch (selectedRoom.Objective)
+        switch (selectedMap.Objective)
         {
             case Objective.Rout:
                 return "Rout the enemy";
             case Objective.Boss:
-                return "Defeat " + selectedRoom.ObjectiveData;
+                return "Defeat " + selectedMap.ObjectiveData;
             case Objective.Escape:
                 return "Escape!";
             case Objective.Survive:
-                return "Survive " + selectedRoom.ObjectiveData + " turn";
+                return "Survive " + selectedMap.ObjectiveData + " turn";
             default:
                 break;
         }
@@ -1035,16 +996,16 @@ public class GameController : MonoBehaviour
     }
     public string GetInfoObjectiveText()
     {
-        switch (selectedRoom.Objective)
+        switch (selectedMap.Objective)
         {
             case Objective.Rout:
                 return "Kill " + enemyCount + "\nenemies";
             case Objective.Boss:
-                return "Defeat\n" + selectedRoom.ObjectiveData;
+                return "Defeat\n" + selectedMap.ObjectiveData;
             case Objective.Escape:
                 return "Frogman\nto mark";
             case Objective.Survive:
-                return "Survive\n" + (int.Parse(selectedRoom.ObjectiveData) - Turn + 1) + " turns";
+                return "Survive\n" + (int.Parse(selectedMap.ObjectiveData) - Turn + 1) + " turns";
             default:
                 break;
         }
@@ -1103,23 +1064,23 @@ public class GameController : MonoBehaviour
     }
     private bool CheckPlayerWin()
     {
-        switch (selectedRoom.Objective)
+        switch (selectedMap.Objective)
         {
             case Objective.Rout:
                 return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
-                return !CheckUnitAlive(selectedRoom.ObjectiveData);
+                return !CheckUnitAlive(selectedMap.ObjectiveData);
             case Objective.Escape:
                 return frogman.Pos == escapePos;
             case Objective.Survive:
-                return Turn > int.Parse(selectedRoom.ObjectiveData) || units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
+                return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             default:
                 throw new System.Exception("No objective!");
         }
     }
     private bool CheckPlayerWin(Objective toCheck)
     {
-        if (toCheck != selectedRoom.Objective)
+        if (toCheck != selectedMap.Objective)
         {
             return false;
         }
@@ -1143,81 +1104,6 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             PaletteController.Current.SpritePalettes[i] = metadata.TeamDatas[i].Palette;
-        }
-    }
-
-    private class Room
-    {
-        public string Name;
-        public int RoomNumber;
-        public int[,] Map;
-        public List<string> Units;
-        public Tileset TileSet;
-        public Objective Objective;
-        public string ObjectiveData;
-        public bool MatchesDemands(ConversationData conversation)
-        {
-            if (RoomNumber != Current.LevelNumber)
-            {
-                return false;
-            }
-            foreach (var demand in conversation.Demands)
-            {
-                if (demand[0] == '!')
-                {
-                    if (MeetsDemand(demand.Substring(1)))
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    if (!MeetsDemand(demand))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        private bool MeetsDemand(string demand)
-        {
-            string[] parts = demand.Split(':');
-            switch (parts[0])
-            {
-                case "hasCharacter":
-                    return string.Join("|", Units).Contains(parts[1]);
-                case "charactersAlive":
-                    // Find number of returning playable characters in map (excluding Frogman and recruitments)
-                    int count = 0;
-                    foreach (string unit in Units)
-                    {
-                        if (unit.Split(',')[1] == "P")
-                        {
-                            // Is player
-                            count++;
-                        }
-                    }
-                    int targetNumber = int.Parse(parts[1].Substring(1));
-                    // Format: charactersAlive:?X, ex. charactersAlive:>2
-                    switch (parts[1][0])
-                    {
-                        case '>':
-                            return count > targetNumber;
-                        case '<':
-                            return count < targetNumber;
-                        case '=':
-                            return count == targetNumber;
-                        default:
-                            break;
-                    }
-                    break;
-                case "mapID":
-                    return Name == parts[1];
-                default:
-                    break;
-            }
-            return true;
         }
     }
 

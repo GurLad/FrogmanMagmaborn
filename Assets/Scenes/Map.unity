@@ -443,7 +443,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6f9a9b6529b165242b229bff80a6242c, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
-  - {fileID: 4900000, guid: 762eb6324ea50ca4b8c15047109bf81a, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -17211,23 +17210,6 @@ MonoBehaviour:
   - Class: Gargoyle
     ReplacedBy:
     - Slither
-  Rooms:
-  - {fileID: 4900000, guid: 4a80e62a2063aae4e83ff7def7e34386, type: 3}
-  - {fileID: 4900000, guid: f798a95fad2b69b40aa029762cbab797, type: 3}
-  - {fileID: 4900000, guid: 60f144b8f5c20a84a9c8c749eac1ef7a, type: 3}
-  - {fileID: 4900000, guid: 39a452794dabf7d43b1436f7bbdee8a3, type: 3}
-  - {fileID: 4900000, guid: 6a706ad4a0aeb8b4c935d6c7b9be2a19, type: 3}
-  - {fileID: 4900000, guid: acaa5ef5b44b9f246b22adf70736b428, type: 3}
-  - {fileID: 4900000, guid: f3680b26a1805eb42b6162681826e933, type: 3}
-  - {fileID: 4900000, guid: c3512488bcb852d4f85c1ee254c225d6, type: 3}
-  - {fileID: 4900000, guid: bd0b5748d218de54484c8e0b4f4d1f60, type: 3}
-  - {fileID: 4900000, guid: 45ee885040e21ed4aa1683b2c8bb8a0e, type: 3}
-  - {fileID: 4900000, guid: 8466a912e85863a409fe222c3b6a055c, type: 3}
-  - {fileID: 4900000, guid: cdf1db803924658418854320328da343, type: 3}
-  - {fileID: 4900000, guid: 07bda661cddec7a4ea6e846ba72a19ea, type: 3}
-  - {fileID: 4900000, guid: ebda35d761691014589ef4771c8442b7, type: 3}
-  - {fileID: 4900000, guid: c153ed137776c344594b604935946bfd, type: 3}
-  - {fileID: 4900000, guid: 7bb53d1485cac27438f3f6316ffb655e, type: 3}
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
@@ -18473,8 +18455,4842 @@ MonoBehaviour:
       ArmorMod: 0
       Palette: 1
       High: 0
+  Maps:
+  - Name: Boss1-0
+    LevelNumber: 3
+    Units:
+    - Pos: {x: 1, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 7}
+      Team: 1
+      Level: 2
+      Class: Skeleton
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 8}
+      Team: 1
+      Level: 2
+      Class: Skeleton
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 5}
+      Team: 1
+      Level: 2
+      Class: Goblin
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 5}
+      Team: 1
+      Level: 2
+      Class: Goblin
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 7}
+      Team: 1
+      Level: 4
+      Class: Lich
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 1
+    - Pos: {x: 0, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 1
+    - Pos: {x: 2, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 3
+      Statue: 1
+    - Pos: {x: 2, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 3
+      Statue: 1
+    - Pos: {x: 4, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 1
+    - Pos: {x: 4, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 1
+    - Pos: {x: 6, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 5
+      Statue: 1
+    - Pos: {x: 6, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 5
+      Statue: 1
+    - Pos: {x: 8, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 1
+    - Pos: {x: 8, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 1
+    - Pos: {x: 10, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 7
+      Statue: 1
+    - Pos: {x: 10, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 7
+      Statue: 1
+    - Pos: {x: 12, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 1
+    - Pos: {x: 12, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 1
+    - Pos: {x: 14, y: 14}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 9
+      Statue: 1
+    - Pos: {x: 14, y: 0}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 9
+      Statue: 1
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 1
+    ObjectiveData: Lich
+    MapString: 10|0|0|0|4|7|7|7|7|7|10|0|0|0|4;10|0|0|0|4|15|17|27|15|17|10|0|0|0|4;10|0|0|0|4|7|27|7|8|8|11|0|0|0|4;10|0|0|0|4|7|7|10|0|0|0|0|0|0|4;10|0|0|0|4|27|27|10|1|3|9|0|0|0|4;10|0|0|0|4|15|24|10|0|5|11|0|0|0|4;10|0|0|0|4|27|13|10|0|0|1|0|0|0|4;10|0|0|0|4|7|13|27|6|6|9|0|0|0|4;10|0|0|0|4|15|22|16|16|24|10|0|0|0|4;10|0|0|0|4|27|14|7|7|14|10|0|0|0|4;10|0|0|0|5|8|8|7|27|8|11|0|0|0|4;10|0|0|0|0|0|0|4|10|0|0|0|0|0|4;10|0|0|0|3|6|6|27|7|6|9|0|0|0|4;10|0|0|0|12|7|7|7|7|7|12|0|0|0|4;10|0|0|0|19|24|7|27|7|18|25|0|0|0|4;10|0|0|0|19|22|24|27|18|22|25|0|0|0|4
+  - Name: Boss1-1
+    LevelNumber: 3
+    Units:
+    - Pos: {x: 5, y: 13}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 10}
+      Team: 1
+      Level: 2
+      Class: Goblin
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 5}
+      Team: 1
+      Level: 2
+      Class: Goblin
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 9}
+      Team: 1
+      Level: 2
+      Class: Skeleton
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 5}
+      Team: 1
+      Level: 2
+      Class: Skeleton
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 2}
+      Team: 1
+      Level: 4
+      Class: Lich
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 12}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 1
+    - Pos: {x: 2, y: 10}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 3
+      Statue: 1
+    - Pos: {x: 6, y: 9}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 1
+    - Pos: {x: 1, y: 7}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 5
+      Statue: 1
+    - Pos: {x: 4, y: 3}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 1
+    - Pos: {x: 7, y: 8}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 7
+      Statue: 1
+    - Pos: {x: 7, y: 2}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 1
+    - Pos: {x: 10, y: 5}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 9
+      Statue: 1
+    - Pos: {x: 9, y: 11}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 10
+      Statue: 1
+    - Pos: {x: 13, y: 10}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 11
+      Statue: 1
+    - Pos: {x: 15, y: 7}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 12
+      Statue: 1
+    - Pos: {x: 15, y: 4}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 13
+      Statue: 1
+    - Pos: {x: 12, y: 1}
+      Team: 1
+      Level: 2
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 14
+      Statue: 1
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 1
+    ObjectiveData: Lich
+    MapString: 0|0|0|3|6|18|21|16|21|24|6|9|0|0|0;0|3|6|18|21|22|25|1|19|22|16|24|6|6|9;3|18|21|22|22|22|26|0|20|26|1|19|21|21|16;21|22|22|23|23|26|7|6|7|10|0|20|23|26|7;22|22|25|1|0|4|7|27|7|8|6|7|7|7|7;22|22|22|24|6|7|7|7|12|0|4|7|27|7|7;23|22|23|26|7|7|15|16|26|1|18|24|8|7|7;7|14|1|0|4|7|10|0|1|18|22|25|0|12|7;7|7|15|21|24|8|7|6|15|23|23|26|1|19|24;7|7|7|20|25|0|4|7|7|10|0|1|18|22|23;7|7|27|7|14|1|12|27|7|7|6|18|22|25|10;7|2|8|7|7|15|23|17|7|27|8|19|22|25|10;24|1|0|4|7|7|7|7|7|10|0|19|22|26|11;22|21|21|24|8|27|7|8|7|12|1|19|26|11|0;20|23|22|25|0|18|24|0|18|22|16|26|11|0|0;5|8|20|25|1|19|25|1|19|25|8|11|0|0|0
+  - Name: InitTormentRoom
+    LevelNumber: 0
+    Units:
+    - Pos: {x: 8, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 7}
+      Team: 2
+      Level: 0
+      Class: Torment
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 27|9|0|0|0|0|0|3|15|26|27|8|11|0|0;7|27|6|9|0|3|6|27|8|8|11|1|1|0|0;8|8|7|7|6|7|7|11|0|0|0|0|1|0|3;1|1|5|8|8|8|11|0|0|0|0|1|3|6|7;1|0|0|0|0|1|0|0|0|0|0|3|18|21|21;9|0|0|0|0|1|1|0|0|0|1|5|20|22|22;7|6|9|1|1|3|6|6|9|1|1|1|4|19|22;8|2|10|0|0|4|7|7|7|9|0|0|5|20|23;0|4|11|1|1|4|7|27|7|10|0|0|1|5|8;6|11|0|0|0|4|27|7|12|10|0|0|0|1|0;11|0|0|0|3|7|7|7|13|10|0|0|0|1|0;0|0|0|0|5|27|7|7|13|27|9|0|0|3|6;0|0|0|0|1|5|8|15|26|27|10|1|1|4|27;0|0|3|9|1|0|0|5|8|8|11|1|0|4|7;0|3|12|7|6|9|1|1|1|1|1|0|0|4|27;3|7|20|17|7|27|6|6|9|0|0|0|0|4|27
+  - Name: Level2-0
+    LevelNumber: 2
+    Units:
+    - Pos: {x: 9, y: 13}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 7}
+      Team: 0
+      Level: 2
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 10}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 4}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 4}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 8}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 7}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 8|8|7|7|8|8|7|13|7|11|0|0|0|0|0;0|0|4|10|0|0|4|13|10|0|0|0|0|0|0;6|6|27|7|6|6|7|13|10|0|3|9|0|0|0;7|8|8|8|7|15|16|26|10|1|4|27|9|0|0;11|0|1|0|5|8|8|27|10|0|4|2|10|0|0;0|0|1|0|0|0|0|5|11|0|5|8|11|0|0;0|0|3|6|6|9|0|0|0|0|0|1|0|0|0;0|0|5|2|27|7|6|9|0|0|0|1|0|0|0;0|0|0|4|15|16|17|10|1|1|3|6|6|6|6;0|0|0|5|8|8|8|11|0|0|5|8|8|8|27;0|0|0|0|0|0|0|0|0|0|0|0|1|0|5;0|0|0|0|0|0|0|0|0|0|0|0|1|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|9|0;6|6|9|0|0|0|0|0|0|0|0|3|27|11|0;7|7|11|0|0|0|0|0|3|6|6|7|10|0|0;5|11|0|0|0|0|0|0|4|18|21|24|11|0|0
+  - Name: Level2-1
+    LevelNumber: 2
+    Units:
+    - Pos: {x: 0, y: 2}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 5}
+      Team: 0
+      Level: 2
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 9}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 6}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 12}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 13}
+      Team: 1
+      Level: 1
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 7|7|7|9|0|0|0|0|0|0|0|0|0|0|0;8|8|7|27|6|6|6|6|6|6|9|0|0|0|0;0|0|5|8|8|15|16|16|16|17|7|6|6|6|6;0|0|0|0|1|5|8|8|7|27|7|7|27|12|7;0|0|0|0|0|1|1|0|5|8|15|17|7|13|7;0|0|0|0|0|3|9|0|0|0|5|8|7|14|7;0|0|0|0|0|5|27|9|0|0|0|1|5|8|8;0|0|0|0|0|0|4|10|0|0|0|1|0|0|0;0|0|0|0|0|0|4|10|0|0|3|9|0|0|0;0|3|6|6|9|0|4|10|0|0|4|11|0|0|0;3|7|2|7|10|1|5|27|6|6|10|0|0|0|0;5|8|27|2|10|0|0|5|8|8|11|0|0|0|0;0|0|5|7|10|0|0|0|0|0|0|0|0|0|0;0|0|0|5|11|0|0|0|0|0|0|0|0|3|6;0|0|0|0|0|0|0|0|0|0|0|0|3|7|27;0|0|0|0|0|0|0|0|0|0|0|0|4|7|18
+  - Name: Level2-2
+    LevelNumber: 2
+    Units:
+    - Pos: {x: 4, y: 11}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 12}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 1}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 8}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 3}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 9}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 4}
+      Team: 1
+      Level: 1
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 22|25|10|0|0|0|0|0|0|0|0|0|4|27|7;23|26|11|0|0|0|0|0|0|0|0|0|5|8|8;7|10|0|0|0|0|0|0|0|0|0|0|0|0|0;27|10|1|1|3|9|0|0|0|0|0|0|0|0|0;8|11|0|0|5|11|0|0|0|0|0|0|0|0|0;0|0|0|0|0|1|0|0|3|6|9|0|0|0|0;0|0|0|0|0|1|3|6|15|24|10|0|0|0|0;0|0|0|0|0|3|12|27|7|13|10|0|0|0|0;0|0|0|0|0|4|13|7|7|14|10|0|0|0|0;0|0|0|0|0|4|13|7|27|7|11|0|0|0|0;0|0|0|0|0|4|20|16|17|11|0|0|0|0|0;0|0|0|0|0|5|8|8|11|1|0|0|0|0|0;0|0|0|0|0|0|0|0|1|1|0|3|9|0|0;0|0|0|0|0|0|0|0|1|3|6|15|17|9|0;6|9|0|0|0|0|0|0|3|27|27|7|7|10|0;4|11|0|0|0|0|0|0|5|18|24|7|27|10|0
+  - Name: Level2-3
+    LevelNumber: 2
+    Units:
+    - Pos: {x: 4, y: 11}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 12}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 1}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 8}
+      Team: 1
+      Level: 1
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 3}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 9}
+      Team: 1
+      Level: 1
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 4}
+      Team: 1
+      Level: 1
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 0|0|5|8|11|0|0|0|0|0|0|0|1|0|0;0|0|0|0|0|0|0|0|0|0|0|3|9|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;9|0|0|0|3|9|0|0|0|0|3|7|10|0|0;7|9|0|0|5|27|6|9|1|0|4|12|10|0|0;5|27|9|1|1|5|8|11|1|1|4|14|10|0|0;0|5|10|0|0|0|0|0|0|0|4|27|11|0|0;0|0|4|9|0|0|0|0|0|3|7|10|0|0|0;0|0|5|7|9|0|0|0|0|4|12|10|0|0|0;0|0|0|5|27|6|6|9|1|4|14|11|0|0|0;0|0|0|0|5|15|16|17|6|7|11|0|0|0|0;0|0|0|0|1|5|8|8|8|11|0|0|0|3|6;0|0|0|0|0|0|0|0|1|1|0|0|0|4|7;0|0|0|0|0|0|0|0|0|1|1|1|3|7|27;0|0|0|0|0|0|0|0|0|0|1|3|7|27|7
+  - Name: Level5-0
+    LevelNumber: 0
+    Units:
+    - Pos: {x: 2, y: 12}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 13}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 8}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 1}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 7}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 0}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 3}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 6}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 2}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 2}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 12}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 13}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 11}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 28|28|28|28|28|28|32|34|29|37|28|28|28|28|28;28|28|28|28|28|28|28|31|34|34|33|33|33|33|33;33|33|33|36|28|28|28|31|34|34|34|34|29|34|34;34|34|34|34|33|33|33|34|3|6|6|9|34|34|34;34|34|34|34|34|29|34|34|4|15|24|10|34|35|34;6|6|6|6|9|34|34|34|5|0|14|10|37|28|31;16|17|27|12|10|34|29|34|34|5|8|11|37|28|31;7|1|7|13|10|34|34|34|29|34|34|34|37|28|32;7|7|7|13|0|6|6|9|34|35|35|34|37|28|28;7|7|1|14|27|15|24|10|37|28|28|31|34|33|33;1|7|7|7|7|7|14|10|37|28|28|31|34|29|34;7|7|7|1|7|7|27|10|34|33|33|34|3|6|6;7|18|21|24|1|7|12|10|34|34|34|34|4|15|16;7|19|22|25|1|7|13|10|34|34|3|6|27|7|7;7|20|23|26|7|7|13|10|34|34|4|12|7|7|1;7|7|7|7|1|1|13|10|34|34|4|13|1|7|7
+  - Name: Level5-1
+    LevelNumber: 5
+    Units:
+    - Pos: {x: 7, y: 2}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 3}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 10}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 12}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 11}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 7}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 5}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 10}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 7}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 28|32|35|35|34|34|34|34|34|34|34|36|28|28|28;28|28|28|28|31|34|34|29|34|34|34|34|36|28|28;28|28|28|28|31|34|29|34|34|35|35|35|35|33|33;28|28|28|28|32|34|34|34|38|28|28|28|28|31|34;28|28|28|28|28|32|34|37|28|28|28|28|30|34|34;36|28|28|28|28|28|31|37|28|28|30|33|34|34|34;38|28|28|30|36|28|31|37|28|30|29|34|34|3|6;28|28|28|32|38|28|31|34|33|34|34|34|29|0|0;36|28|28|28|28|30|34|0|6|9|34|34|34|34|5;34|36|28|28|28|31|34|4|27|11|34|34|34|34|34;32|38|28|28|28|31|34|5|11|34|34|34|34|34|34;28|28|28|30|33|34|34|34|34|34|3|6|6|0|6;36|28|30|34|34|29|2|9|34|34|4|18|17|0|7;32|33|34|29|34|34|5|11|34|34|4|14|7|7|7;28|32|35|35|35|35|35|34|34|34|0|27|7|7|7;28|28|28|28|28|28|28|32|34|34|4|12|7|7|7
+  - Name: Level5-2
+    LevelNumber: 5
+    Units:
+    - Pos: {x: 7, y: 2}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 3}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 10}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 12}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 11}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 7}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 5}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 10}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 7}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 2
+    ObjectiveData: 15:2
+    MapString: 28|28|28|28|28|28|32|35|34|34|29|34|34|34|34;28|30|33|36|28|28|28|28|32|35|34|34|34|34|34;28|31|2|9|36|28|28|28|28|28|32|34|34|29|34;28|31|5|11|38|28|28|28|28|28|28|32|34|34|34;28|32|35|38|39|39|30|36|28|28|28|28|32|34|34;36|39|28|28|28|39|32|34|36|28|28|28|28|32|35;34|33|33|36|28|28|28|32|29|36|28|28|28|28|28;29|34|34|38|28|28|28|39|32|38|39|39|28|28|28;35|35|38|28|28|30|33|29|39|28|28|30|33|36|28;28|28|28|28|30|34|34|37|28|28|28|31|3|9|33;33|33|33|33|29|34|34|37|28|28|28|31|5|2|6;6|6|6|6|6|6|9|37|28|28|28|32|35|5|2;16|16|17|27|15|24|10|37|28|28|28|28|28|31|5;7|0|7|7|7|14|10|37|28|28|28|28|28|32|35;7|7|7|7|7|27|10|34|36|28|28|28|28|28|28;0|7|7|0|7|12|10|34|37|28|28|30|36|28|28
+  - Name: Level5-3
+    LevelNumber: 5
+    Units:
+    - Pos: {x: 7, y: 2}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 3}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 10}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 12}
+      Team: 1
+      Level: 4
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 11}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 1
+      Level: 4
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 7}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 5}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 2
+      Level: 4
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 10}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 7}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 2
+    ObjectiveData: 8:14
+    MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|34;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|28|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;28|28|28|28|32|5|8|11|35|35|29|34|35|35|35;28|28|28|28|28|32|35|38|28|28|32|38|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28
+  - Name: Level6-M0
+    LevelNumber: 6
+    Units:
+    - Pos: {x: 3, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 10}
+      Team: 1
+      Level: 5
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 0}
+      Team: 1
+      Level: 5
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 11}
+      Team: 1
+      Level: 5
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 13}
+      Team: 1
+      Level: 5
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 12}
+      Team: 1
+      Level: 5
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 9}
+      Team: 1
+      Level: 5
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 2}
+      Team: 2
+      Level: 5
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 2}
+      Team: 2
+      Level: 5
+      Class: Knight
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 3}
+      Team: 2
+      Level: 5
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 5}
+      Team: 2
+      Level: 5
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 5}
+      Team: 2
+      Level: 5
+      Class: Knight
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 4}
+      Team: 2
+      Level: 5
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 28|28|28|28|28|28|28|28|30|34|29|34|34|34|34;36|28|28|28|28|28|30|33|34|34|35|35|35|34|34;34|33|33|33|33|33|29|34|34|38|28|28|28|31|34;34|29|35|35|35|35|35|34|37|28|28|28|28|31|34;34|37|28|28|28|28|28|31|29|33|36|28|28|31|29;29|37|28|28|28|30|33|34|34|34|38|28|30|29|34;34|34|33|33|33|34|34|34|34|37|28|28|31|3|6;34|3|6|6|6|6|6|6|0|37|28|30|3|1|0;34|4|0|7|0|1|1|10|34|38|28|31|5|0|1;34|4|15|16|16|24|0|11|37|28|28|31|34|35|5;34|0|27|1|1|13|10|34|38|28|30|29|38|28|32;32|5|18|24|0|13|10|37|28|28|31|38|28|28|28;28|31|19|25|1|13|11|38|28|30|37|28|28|30|36;28|32|20|26|1|14|37|28|28|31|37|28|30|34|34;28|28|32|5|7|27|9|33|33|29|34|33|34|18|16;28|28|28|32|5|27|0|9|34|34|34|34|29|13|7
+  - Name: SpawnPoint1
+    LevelNumber: 1
+    Units:
+    - Pos: {x: 11, y: 9}
+      Team: 0
+      Level: 1
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 4}
+      Team: 0
+      Level: 1
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 13}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 0
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 4}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 0|0|0|0|0|0|0|0|0|0|0|5|8|8|11;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|3|6|6|6|6|6|9|0|0|0|0|0|0|0;0|4|18|16|16|16|24|10|0|0|0|0|0|0|0;0|4|14|7|8|7|14|10|0|0|0|3|6|6|9;0|4|7|10|1|4|7|10|1|1|1|4|27|7|7;0|4|12|7|6|7|12|10|0|0|0|5|7|7|27;0|4|20|16|16|16|26|10|0|0|0|0|5|7|27;0|5|8|8|8|8|8|11|0|0|0|0|0|5|8;0|0|0|0|0|1|0|0|0|0|0|0|0|0|0;0|0|0|0|0|1|0|0|0|0|0|3|9|0|0;0|0|0|3|6|6|6|6|9|0|3|27|11|0|0;6|6|6|7|27|7|7|7|10|1|5|11|0|0|0;7|7|7|7|7|27|7|8|11|0|0|0|0|0|0;21|24|7|7|8|8|11|0|0|0|0|0|0|0|0;22|25|8|11|0|0|0|0|0|0|0|0|0|0|3
+  - Name: SpawnPoint2
+    LevelNumber: 1
+    Units:
+    - Pos: {x: 11, y: 9}
+      Team: 0
+      Level: 1
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 4}
+      Team: 0
+      Level: 1
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 13}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 0
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 4}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    Tileset:
+      Name: Magma
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      TileObjects:
+      - {fileID: 1579142071}
+      - {fileID: 1689085811}
+      - {fileID: 1014523101}
+      - {fileID: 1696775748}
+      - {fileID: 719077163}
+      - {fileID: 328033340}
+      - {fileID: 33594299}
+      - {fileID: 546926279}
+      - {fileID: 265043234}
+      - {fileID: 1336057906}
+      - {fileID: 546723908}
+      - {fileID: 1604212329}
+      - {fileID: 771582821}
+      - {fileID: 1022218019}
+      - {fileID: 1225951604}
+      - {fileID: 1237814367}
+      - {fileID: 326596373}
+      - {fileID: 1598988774}
+      - {fileID: 1847052226}
+      - {fileID: 287116807}
+      - {fileID: 597334872}
+      - {fileID: 413380129}
+      - {fileID: 1015151974}
+      - {fileID: 1896451749}
+      - {fileID: 299954281}
+      - {fileID: 1765788637}
+      - {fileID: 2084277970}
+      - {fileID: 964472041}
+      Tiles:
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 0|0|0|0|0|0|0|0|0|0|5|10|0|0|0;0|0|0|0|0|0|0|0|0|0|0|5|6|9|0;0|0|0|0|0|0|0|0|0|0|0|0|5|10|0;0|0|0|0|0|0|0|3|9|0|0|0|0|4|6;0|0|0|0|0|0|0|5|27|9|0|0|0|5|8;6|9|0|0|0|0|0|0|5|11|0|0|0|0|0;27|10|0|0|0|0|0|0|1|0|0|0|0|0|0;8|11|1|0|0|0|0|0|1|1|1|0|0|0|0;0|0|1|3|9|0|0|1|3|12|9|1|0|0|0;0|0|1|4|11|0|1|3|18|23|24|9|1|0|0;0|0|3|10|0|1|3|15|26|8|20|24|9|1|0;0|0|4|10|1|1|4|27|10|1|4|19|17|1|0;0|0|5|11|0|1|5|15|24|6|18|26|11|1|0;0|0|0|0|0|0|1|5|20|21|26|11|1|0|0;0|0|0|0|0|0|0|1|5|14|11|1|0|0|0;0|0|0|0|0|0|0|0|1|1|1|0|0|0|0
+  - Name: TormentRoom0
+    LevelNumber: 4
+    Units:
+    - Pos: {x: 8, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    Tileset:
+      Name: Torment
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.40784314, g: 0.28235295, b: 0.9882353, a: 1}
+        - {r: 0.2509804, g: 0.15686275, b: 0.76862746, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 1}
+        - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+        - {r: 0, g: 0, b: 0.76862746, a: 1}
+      TileObjects:
+      - {fileID: 1990342513}
+      - {fileID: 1784241837}
+      - {fileID: 2126638021}
+      - {fileID: 1861432428}
+      - {fileID: 1509170746}
+      - {fileID: 301321706}
+      - {fileID: 141691241}
+      - {fileID: 1706078037}
+      - {fileID: 95554962}
+      - {fileID: 1393071585}
+      - {fileID: 504429304}
+      - {fileID: 1487070999}
+      - {fileID: 411810197}
+      - {fileID: 2007252516}
+      - {fileID: 1602749847}
+      - {fileID: 1736595004}
+      - {fileID: 1257979130}
+      - {fileID: 611380820}
+      - {fileID: 962798092}
+      - {fileID: 216913105}
+      - {fileID: 1029524402}
+      - {fileID: 634540048}
+      Tiles:
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 1
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 1
+      - Name: Life
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 1
+      - Name: Pain
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+    Objective: 3
+    ObjectiveData: 6
+    MapString: 0|0|1|0|0|9|10|12|10|11|2|0|1|0|21;6|18|2|21|0|0|0|16|2|0|21|0|0|6|18;8|4|10|10|18|3|6|14|18|3|6|10|10|5|20;0|0|0|0|5|10|19|3|7|10|4|2|0|0|21;21|6|10|10|20|2|16|3|16|2|8|10|10|18|2;0|16|2|1|0|21|16|3|16|2|0|1|0|16|2;21|8|10|10|10|12|5|12|4|12|10|10|10|20|2;0|0|0|0|1|7|13|5|13|19|3|0|21|0|0;0|21|0|0|1|7|13|5|13|19|3|0|0|0|21;0|6|10|10|10|14|4|14|5|14|10|10|10|18|2;0|16|2|1|0|0|16|3|16|2|21|1|0|16|2;21|8|10|10|18|2|16|3|16|2|6|10|10|20|2;0|0|0|21|4|10|19|3|7|10|5|2|0|21|0;6|5|10|10|20|3|8|12|20|3|8|10|10|4|18;8|20|2|0|0|0|0|16|2|0|21|0|0|8|20;0|0|1|0|21|9|10|14|10|11|2|21|1|0|0
+  - Name: TormentRoom1
+    LevelNumber: 4
+    Units:
+    - Pos: {x: 8, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    Tileset:
+      Name: Torment
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.40784314, g: 0.28235295, b: 0.9882353, a: 1}
+        - {r: 0.2509804, g: 0.15686275, b: 0.76862746, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 1}
+        - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+        - {r: 0, g: 0, b: 0.76862746, a: 1}
+      TileObjects:
+      - {fileID: 1990342513}
+      - {fileID: 1784241837}
+      - {fileID: 2126638021}
+      - {fileID: 1861432428}
+      - {fileID: 1509170746}
+      - {fileID: 301321706}
+      - {fileID: 141691241}
+      - {fileID: 1706078037}
+      - {fileID: 95554962}
+      - {fileID: 1393071585}
+      - {fileID: 504429304}
+      - {fileID: 1487070999}
+      - {fileID: 411810197}
+      - {fileID: 2007252516}
+      - {fileID: 1602749847}
+      - {fileID: 1736595004}
+      - {fileID: 1257979130}
+      - {fileID: 611380820}
+      - {fileID: 962798092}
+      - {fileID: 216913105}
+      - {fileID: 1029524402}
+      - {fileID: 634540048}
+      Tiles:
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 1
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 1
+      - Name: Life
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 1
+      - Name: Pain
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 1
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Void
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+    Objective: 3
+    ObjectiveData: 6
+    MapString: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
+  mapData:
+    Tiles: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
+    Units:
+    - Pos: {x: 8, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    Tileset: Torment
+    LevelNumber: 4
+    Objective: Survive:6
+    Name: TormentRoom1
 --- !u!1 &1932295645
 GameObject:
   m_ObjectHideFlags: 0
