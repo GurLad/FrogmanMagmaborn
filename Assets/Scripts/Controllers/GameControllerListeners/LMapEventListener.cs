@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LMapEventListener : AGameControllerListener
+{
+    private ConversationData targetEvent;
+
+    public void Init(string eventData)
+    {
+        targetEvent = new ConversationData(eventData);
+    }
+
+    public override void OnBeginPlayerTurn(List<Unit> units)
+    {
+        if (targetEvent.MeetsRequirements())
+        {
+            ConversationPlayer.Current.PlayOneShot(string.Join(",", targetEvent.Lines));
+        }
+    }
+
+    public override void OnEndMap(List<Unit> units, bool playerWon)
+    {
+        // Do nothing
+    }
+}

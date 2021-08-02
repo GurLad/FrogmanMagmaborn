@@ -87,7 +87,9 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Map
             map.MapString = mapData.Tiles;
             // Units
-            map.Units = new List<UnitPlacementData>(mapData.Units);
+            map.Units = new List<UnitPlacementData>(mapData.Units.ConvertAll(a => a.Clone()));
+            // Map events
+            map.MapEvents = mapData.MapEvents.ConvertAll(a => "~\n" + a.Requirements + "~\n" + a.Event);
             // Name
             map.Name = mapData.Name;
             Maps.Add(map);
@@ -101,6 +103,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
     {
         public string Tiles;
         public List<UnitPlacementData> Units;
+        public List<MapEventData> MapEvents;
         public string Tileset;
         public int LevelNumber;
         public string Objective;
@@ -117,6 +120,26 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         public AIType AIType;
         public int ReinforcementTurn;
         public bool Statue;
+
+        public UnitPlacementData Clone()
+        {
+            UnitPlacementData data = new UnitPlacementData();
+            data.Pos = new Vector2Int(Pos.x, Pos.y);
+            data.Team = Team;
+            data.Level = Level;
+            data.Class = Class;
+            data.AIType = AIType;
+            data.ReinforcementTurn = ReinforcementTurn;
+            data.Statue = Statue;
+            return data;
+        }
+    }
+
+    [System.Serializable]
+    public class MapEventData
+    {
+        public string Requirements;
+        public string Event;
     }
 }
 
@@ -173,6 +196,7 @@ public class Map
     public int LevelNumber;
     public int[,] Tilemap;
     public List<MapController.UnitPlacementData> Units;
+    public List<string> MapEvents;
     public Tileset Tileset;
     public Objective Objective;
     public string ObjectiveData;

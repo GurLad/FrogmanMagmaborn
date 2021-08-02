@@ -14,10 +14,12 @@ public class ConversationData : System.IComparable<ConversationData>
     private int priority;
     private bool unique;
 
-    public ConversationData(TextAsset sourceFile)
+    public ConversationData(TextAsset sourceFile) : this(sourceFile.text, sourceFile.name) { }
+
+    public ConversationData(string text, string altID = "Temp")
     {
         // I know that using JSON is techincally better, but I want to be able to create events using a simple text editor, so splits are simple.
-        string source = sourceFile.text.Replace("\r", "").Replace('~', '\a').Replace(@"\w", "~");
+        string source = text.Replace("\r", "").Replace('~', '\a').Replace(@"\w", "~");
         string[] parts = source.Split('\a');
         string[] lines = parts[0].Split('\n');
         for (int i = 0; i < lines.Length; i++)
@@ -39,7 +41,7 @@ public class ConversationData : System.IComparable<ConversationData>
             }
         }
         // Check unique & id
-        ID = ID ?? sourceFile.name;
+        ID = ID ?? altID;
         if (unique && SavedData.Load<int>("ConversationData", "ID" + ID) == 2)
         {
             Done = true;
@@ -77,6 +79,7 @@ public class ConversationData : System.IComparable<ConversationData>
             PostBattleLines = new List<string>();
         }
     }
+
     // When I originally wrote this class, I commented on everything. Too bad future me isn't as patient.
     public bool MeetsRequirements()
     {

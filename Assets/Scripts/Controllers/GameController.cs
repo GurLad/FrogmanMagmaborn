@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
     public Marker EnemyAttackMarker;
     public PointerMarker PointerMarker;
     public GameObject EscapeMarker;
+    public GameObject ListenersObject;
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
     protected Difficulty difficulty;
+    private List<IGameControllerListener> listeners = new List<IGameControllerListener>();
     private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
     private float enemyMoveDelayCount;
@@ -666,7 +668,7 @@ public class GameController : MonoBehaviour
         if (team == Team.Player)
         {
             Turn++;
-            GameCalculations.EndTurnEvents(units); // Pretty bad code - replace with listeners? But wouldn't work with game calculations...
+            NotifyListeners(a => a.OnBeginPlayerTurn(units));
         }
         CheckConveresationWait(); // Wait for turn events
     }
@@ -699,7 +701,7 @@ public class GameController : MonoBehaviour
     }
     public void Win()
     {
-        GameCalculations.EndMapEvents(units);
+        NotifyListeners(a => a.OnEndMap(units, true));
         LevelNumber++;
         currentKnowledge++;
         SavedData.SaveAll(SaveMode.Slot);
@@ -880,6 +882,14 @@ public class GameController : MonoBehaviour
                 Map[i, j] = newTile;
             }
         }
+        // Load map events
+        List<LMapEventListener> currentListeners = new List<LMapEventListener>(ListenersObject.GetComponentsInChildren<LMapEventListener>());
+        currentListeners.ForEach(a => Destroy(a));
+        foreach (string mapEvent in map.MapEvents)
+        {
+            LMapEventListener listener = ListenersObject.AddComponent<LMapEventListener>();
+            listener.Init(mapEvent);
+        }
     }
     public void LoadLevelUnits(string roomName = "", Team? ofTeam = null)
     {
@@ -1022,6 +1032,7 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
+        NotifyListeners(a => a.OnEndMap(units, false));
         SetPalettesFromMetadata(LevelMetadataController[0]); // Fix Torment palette
         NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
@@ -1061,6 +1072,18 @@ public class GameController : MonoBehaviour
         {
             targetUnits[i].SetIcon(portraits[i]);
         }
+    }
+    public void AddListener(IGameControllerListener listener)
+    {
+        listeners.Add(listener);
+    }
+    public void RemoveListener(IGameControllerListener listener)
+    {
+        listeners.Remove(listener);
+    }
+    private void NotifyListeners(System.Action<IGameControllerListener> action)
+    {
+        listeners.ForEach(a => action(a));
     }
     private bool CheckPlayerWin()
     {
