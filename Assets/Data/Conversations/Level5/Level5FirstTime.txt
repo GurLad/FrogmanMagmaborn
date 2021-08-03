@@ -59,12 +59,16 @@ Xeplogi|???: Oh, now you've done it!\a Talking demons! Let us join forces!
 Xeplogi||R: Know that the Great Xeplogi is on your side!
 Frogman: ...I'm beginning to regret this...
 ~ Post-battle
-Frogman: Whew! We survived!
-Torment|???: Not for much longer! This is the end of
-this beta!
-You will die now! Goodbye!
-(You can reach level 5 again for a preview
-of things to come)
-:setFlag:finishedBeta
-:showPartTitle:End of:Beta
-:lose:
+Frogman: Everyone, this way!\a Let's get out of here!
+:loadMap:Part2RestArea
+:play:PostBattle
+Xeplogi: Hold!\a Where do you come from, monster friends?\a Are you Tori minions sent to serve me?
+Frogman: What? No, we're fellow Magmaborn.
+Xeplogi: What?
+Frogman: When you died, you had a crystal with you - an emblem,\a you might say, correct?
+Xeplogi: Are you talking about the holy Tori relic?
+Frogman: Yes, whatever. Anyway, this allowed you to be reborn as a-
+Xeplogi: And serve the glorious Tori in his holy crusade against\a Memerian!
+Frogman: I- you know what, never mind.\a Yes, we're Tori followers.\a Happy now?
+Xeplogi: Indeed! Let us march on!
+Frogman: *sigh*
