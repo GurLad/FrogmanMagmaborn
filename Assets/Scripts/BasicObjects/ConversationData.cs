@@ -154,6 +154,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "chose":
                 // Return whether the last choice matches the given id.
                 return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);
+            case "hasTempFlag":
+                // Return whether a temp conversation flag is turned on
+                return SavedData.Load("ConversationData", "TempFlag" + parts[1], 0) == 1;
             case "teamMaxPos":
                 // Compaers the max pos of a unit in the given team to the given value (x or y)
                 // Params: x/y:team:?value

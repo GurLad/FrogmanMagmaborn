@@ -753,6 +753,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentUnitsObject.gameObject);
         }
+        List<LMapEventListener> currentListeners = new List<LMapEventListener>(ListenersObject.GetComponentsInChildren<LMapEventListener>());
+        currentListeners.ForEach(a => Destroy(a));
         Turn = 1;
         // Set palettes
         SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
@@ -883,8 +885,6 @@ public class GameController : MonoBehaviour
             }
         }
         // Load map events
-        List<LMapEventListener> currentListeners = new List<LMapEventListener>(ListenersObject.GetComponentsInChildren<LMapEventListener>());
-        currentListeners.ForEach(a => Destroy(a));
         foreach (string mapEvent in map.MapEvents)
         {
             LMapEventListener listener = ListenersObject.AddComponent<LMapEventListener>();

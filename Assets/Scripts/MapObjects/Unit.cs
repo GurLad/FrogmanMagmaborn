@@ -15,7 +15,6 @@ public class Unit : MapObject
     public string Class;
     public AIType AIType;
     [Header("Stats")]
-    public int Movement;
     public bool Flies;
     public Stats Stats;
     public Inclination Inclination;
@@ -45,6 +44,14 @@ public class Unit : MapObject
     [HideInInspector]
     [System.NonSerialized]
     public bool Statue;
+    public int BattleStatsStr { get { return Stats.Strength + Weapon.Damage; } }
+    public int BattleStatsEnd { get { return Stats.MaxHP; } }
+    public int BattleStatsPir { get { return Stats.Pierce; } }
+    public int BattleStatsArm { get { return Stats.Armor; } }
+    public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
+    public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
+    private PalettedSprite palette;
+    private bool moved;
     public bool Moved
     {
         get
@@ -57,14 +64,18 @@ public class Unit : MapObject
             palette.Palette = moved ? 3 : (int)TheTeam;
         }
     }
-    public int BattleStatsStr { get { return Stats.Strength + Weapon.Damage; } }
-    public int BattleStatsEnd { get { return Stats.MaxHP; } }
-    public int BattleStatsPir { get { return Stats.Pierce; } }
-    public int BattleStatsArm { get { return Stats.Armor; } }
-    public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
-    public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
-    private bool moved;
-    private PalettedSprite palette;
+    private int movement = 5;
+    public int Movement
+    {
+        get
+        {
+            return AIType == AIType.Guard ? 0 : movement;
+        }
+        set
+        {
+            movement = value;
+        }
+    }
     public Unit()
     {
         Priorities = new AIPriorities(this);
@@ -90,10 +101,6 @@ public class Unit : MapObject
         LoadIcon();
         Moved = Statue;
         Health = Stats.MaxHP;
-        if (AIType == AIType.Guard)
-        {
-            Movement = 0;
-        }
     }
     private void LoadIcon()
     {
@@ -537,11 +544,12 @@ public class Unit : MapObject
         while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y] <= 0)
         {
             Vector2Int min = currentMoveTarget;
-            for (int i = -1; i <= 1; i++)
+            for (int i = -Weapon.Range; i <= Weapon.Range; i++)
             {
-                for (int j = -1; j <= 1; j++)
+                for (int j = -Weapon.Range; j <= Weapon.Range; j++)
                 {
-                    if ((i == 0 || j == 0) && GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
+                    if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range &&
+                        GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
                         fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
                         fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
                     {
@@ -551,7 +559,7 @@ public class Unit : MapObject
             }
             if (min == currentMoveTarget)
             {
-                throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget);
+                throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget + ", attacker: " + ToString() + ", target: " + target);
             }
             currentMoveTarget = min;
         }

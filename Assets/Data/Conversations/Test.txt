@@ -1,10 +1,13 @@
 priority:21
 unique:F
 ~ Requirements
+roomNumber:5
 ~ Demands
 mapID:Level5-3
 ~ Before battle
 :play:BeforeBattle
+:addUnit:Xeplogi
+:loadUnits:
 Frogman: afjsdkfjsl
 # Name: Text.
 ~ After battle

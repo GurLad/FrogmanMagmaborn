@@ -50,6 +50,7 @@ public class ConversationPlayer : MidBattleScreen
     private string waitRequirement = "";
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
     private List<string> lines;
+    private List<string> tempFlags = new List<string>();
     private void Awake()
     {
         Current = this;
@@ -397,6 +398,11 @@ public class ConversationPlayer : MidBattleScreen
                 case "setFlag":
                     SavedData.Save("ConversationData", "Flag" + parts[2], 1);
                     break;
+                case "setTempFlag":
+                    // Params: name
+                    SavedData.Save("ConversationData", "TempFlag" + parts[2], 1);
+                    tempFlags.Add(parts[2]);
+                    break;
 
                 // Syntax commands (ifs, functions...)
 
@@ -600,6 +606,9 @@ public class ConversationPlayer : MidBattleScreen
             {
                 origin.Choose(true);
                 origin = null;
+                // Clear temp flags
+                tempFlags.ForEach(a => SavedData.Save("ConversationData", "TempFlag" + a, 0));
+                tempFlags.Clear();
                 GameController.Current.Win();
             }
             else

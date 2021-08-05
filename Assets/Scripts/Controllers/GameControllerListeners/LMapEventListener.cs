@@ -13,6 +13,10 @@ public class LMapEventListener : AGameControllerListener
 
     public override void OnBeginPlayerTurn(List<Unit> units)
     {
+        if (MidBattleScreen.HasCurrent)
+        {
+            return;
+        }
         if (targetEvent.MeetsRequirements())
         {
             ConversationPlayer.Current.PlayOneShot(string.Join("\n", targetEvent.Lines));

@@ -1,17 +1,15 @@
 priority:-1
 unique:F
 ~ Requirements
-# If got Xeplogi (high units count) but some died, get Alfred. Rare.
+# If no Alfred nor Xeplogi, just Memerian
 roomNumber:6
-hasCharacter:Xeplogi
-charactersAlive:<3
 ~ Demands
 # Nothinig
 ~ Before battle
 :play:BeforeBattle2
-:addUnit:Alfred
+:addUnit:Memerian
 :loadUnits:
-Alfred: Hurroomph!
+Memerian: Hello.
 ~ After battle
 Frogman: Congratulations! Now we shall die.
 Torment: Yes!

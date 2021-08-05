@@ -440,8 +440,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ab2413dfeeaf6494aa09f684ac61a829, type: 3}
   - {fileID: 4900000, guid: f28b282f1945dcd4a93c440fa3debc9d, type: 3}
   - {fileID: 4900000, guid: 54b0d073a8569ed4795ed05ffedf1fdc, type: 3}
-  - {fileID: 4900000, guid: 6f9a9b6529b165242b229bff80a6242c, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
+  - {fileID: 4900000, guid: c3ae171760113854d9f3a64836ff991f, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
   - {fileID: 4900000, guid: ed7d448e54a7eb94aab8de6e3a395a4b, type: 3}
   Path: Conversations
@@ -10248,7 +10248,6 @@ MonoBehaviour:
   Name: Frogman
   Class: Frogman
   AIType: 0
-  Movement: 5
   Flies: 0
   Stats:
     Growths: 010000000100000001000000010000000100000001000000
@@ -14871,7 +14870,7 @@ MonoBehaviour:
       Values: 010000000100000003000000030000000400000000000000
     DeathQuote: ':play:DeadAlly
 
-      Kresla: ''Tis but... a flash... wound...'
+      Kresla: ''Tis but... a flesh... wound...'
   - Name: Xeplogi
     Class: Ooze
     Inclination: 0
@@ -15078,6 +15077,18 @@ MonoBehaviour:
       Weight: -1
       Range: 1
     MapSprite: {fileID: 21300000, guid: a68fe9ebbb8f8a44d8f24719eb74b3e4, type: 3}
+  - Name: Worker
+    Flies: 0
+    Inclination: 1
+    Growths:
+      Values: 010000000100000001000000010000000100000001000000
+    Weapon:
+      Name: Stick
+      HitStat: -2
+      Damage: -2
+      Weight: 2
+      Range: 1
+    MapSprite: {fileID: 21300000, guid: f6500386e8e6d754fba7f15ba50517af, type: 3}
   BaseAnimation: {fileID: 969796486}
 --- !u!1 &1626109149 stripped
 GameObject:
@@ -18673,16 +18684,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 9
       Statue: 1
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -19020,16 +19022,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 14
       Statue: 1
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -19248,16 +19241,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -19504,16 +19488,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -19739,16 +19714,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -19995,16 +19961,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -20251,16 +20208,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -20507,16 +20455,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -20812,16 +20751,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21196,16 +21126,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21580,16 +21501,7 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21967,13 +21879,36 @@ MonoBehaviour:
     MapEvents:
     - '~
 
-      teamMaxPos:y:player:>6~
+      teamMaxPos:y:player:>8
+
+      !hasTempFlag:charged
 
       ~
 
-      Guard1: Charge!
+      ~
 
-      :setTeamAI:charge'
+      Guard1:
+      They''re behind us! Charge!
+
+      :setTeamAI:guard:charge
+
+      :setTempFlag:charged'
+    - '~
+
+      turn:>5
+
+      !hasTempFlag:charged
+
+      ~
+
+      ~
+
+      Guard1:
+      You''re too slow! Charge!
+
+      :setTeamAI:guard:charge
+
+      :setTempFlag:charged'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -22232,7 +22167,7 @@ MonoBehaviour:
         High: 0
     Objective: 2
     ObjectiveData: 8:14
-    MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|34;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|28|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;28|28|28|28|32|5|8|11|35|35|29|34|35|35|35;28|28|28|28|28|32|35|38|28|28|32|38|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28
+    MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|34;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|39|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;28|28|28|28|32|5|8|11|35|35|29|34|35|35|35;28|28|28|28|28|32|35|38|28|28|32|38|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28;28|28|28|28|28|28|28|28|28|28|28|28|28|28|28
   - Name: Level6-M0
     LevelNumber: 6
     Units:
@@ -22355,16 +22290,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -22655,16 +22581,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -22962,16 +22879,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -23197,16 +23105,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Magma
       Palette1:
@@ -23502,16 +23401,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Torment
       Palette1:
@@ -23771,16 +23661,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents:
-    - '~
-
-      teamMaxPos:y:player:>6~
-
-      ~
-
-      Guard1: Charge!
-
-      :setTeamAI:charge'
+    MapEvents: []
     Tileset:
       Name: Torment
       Palette1:
@@ -24042,11 +23923,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents:
-    - Requirements: teamMaxPos:y:player:>6
-      Event: 'Guard1: Charge!
-
-        :setTeamAI:charge'
+    MapEvents: []
     Tileset: Torment
     LevelNumber: 4
     Objective: Survive:6

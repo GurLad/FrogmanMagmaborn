@@ -87,11 +87,11 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     {
         if (on)
         {
-            Play(Playing + "Battle");
+            Play(Playing + "_Battle");
         }
         else
         {
-            Play(Playing.Replace("Battle", ""));
+            Play(Playing.Replace("_Battle", ""));
         }
         playingBattle = true;
     }
