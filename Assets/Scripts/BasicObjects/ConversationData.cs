@@ -154,6 +154,14 @@ public class ConversationData : System.IComparable<ConversationData>
             case "chose":
                 // Return whether the last choice matches the given id.
                 return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);
+            case "teamMaxPos":
+                // Compaers the max pos of a unit in the given team to the given value (x or y)
+                // Params: x/y:team:?value
+                return MeetsComparisonRequirement(parts[3][0], GameController.Current.FindMinMaxPosUnit(parts[2].ToTeam(), parts[1] == "x", true), int.Parse(parts[3].Substring(1)));
+            case "teamMinPos":
+                // Compaers the min pos of a unit in the given team to the given value (x or y)
+                // Params: x/y:team:?value
+                return MeetsComparisonRequirement(parts[3][0], GameController.Current.FindMinMaxPosUnit(parts[2].ToTeam(), parts[1] == "x", false), int.Parse(parts[3].Substring(1)));
             default:
                 break;
         }

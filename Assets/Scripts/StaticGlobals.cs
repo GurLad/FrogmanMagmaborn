@@ -33,6 +33,16 @@ public static class StaticGlobals
             _ => null
         };
     }
+    public static AIType ToAIType(this string aiName)
+    {
+        return aiName.ToLower() switch
+        {
+            "charge" => AIType.Charge,
+            "guard" => AIType.Guard,
+            "hold" => AIType.Hold,
+            _ => throw new System.Exception("No matching AI type! (" + aiName + ")")
+        };
+    }
     public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)
     {
         return "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[paletteID][colorIndex]) + ">" + str + "</color>";

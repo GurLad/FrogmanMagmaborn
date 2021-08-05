@@ -254,38 +254,39 @@ public class ConversationPlayer : MidBattleScreen
                 // Level/conversation-specific commands
 
                 case "play":
+                    // Params: string name, bool keepTimestamp = false
                     CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
                     break;
                 case "playIntro":
+                    // Params: string name
                     CrossfadeMusicPlayer.Current.PlayIntro(parts[2], false);
                     break;
                 case "addUnit":
+                    // Params: string name
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
                     break;
                 case "loadUnits":
+                    // Params: string mapName = chosenMap, Team team = allTeams
                     if (parts.Length < 4)
                     {
                         GameController.Current.LoadLevelUnits(parts[2]);
                     }
                     else
                     {
-                        GameController.Current.LoadLevelUnits(parts[2], parts[3].ToLower() switch
-                        {
-                            "player" => Team.Player,
-                            "monster" => Team.Monster,
-                            "guard" => Team.Guard,
-                            _ => null
-                        });
+                        GameController.Current.LoadLevelUnits(parts[2], parts[3].ToTeam());
                     }
                     break;
                 case "loadMap":
+                    // Params: string mapName = chosenMap
                     GameController.Current.LoadMap(parts[2]);
                     break;
                 case "addGenericCharacter":
+                    // Params: string internalName, string forceTags = none
                     // Add to TempPortraits with parts[2] internal name and parts[3] tags
                     PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
                     break;
                 case "setTeam":
+                    // Params: string unitName, Team changeTo
                     // Changes a unit's team
                     Unit target = GameController.Current.GetNamedUnit(parts[2]);
                     if (target != null)
@@ -299,6 +300,7 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     break;
                 case "setBattleQuote":
+                    // Params: string unitName, string functionName
                     // Set a unit's battle quote (aka add boss battle quote). Must use a function.
                     Unit target1 = GameController.Current.GetNamedUnit(parts[2]);
                     if (target1 != null)
@@ -318,12 +320,19 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     break;
                 case "setSingleSpeaker":
+                    // Params: bool left = true
                     // Removes all speakers and makes sure the next is on the left/right
                     bool left = parts.Length > 2 ? parts[2] == "L" : true;
                     SetSinglePortrait(left);
                     currentSpeakerIsLeft = !left;
                     break;
+                case "setTeamAI":
+                    // Params: Team team, AIType ai
+                    Team team = parts[2].ToTeam() ?? throw new System.Exception("No team!");
+                    GameController.Current.AssignAIToTeam(team, parts[3].ToAIType());
+                    break;
                 case "wait":
+                    // Params: string[] requirement
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
                     if (!postBattle)
@@ -332,12 +341,15 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     return;
                 case "lose":
+                    // Params: none
                     GameController.Current.Lose();
                     return;
                 case "win":
+                    // Params: none
                     GameController.Current.Win();
                     return;
                 case "finishConversation":
+                    // Params: none
                     FinishConversation();
                     return;
 

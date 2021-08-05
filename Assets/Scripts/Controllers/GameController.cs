@@ -1060,6 +1060,21 @@ public class GameController : MonoBehaviour
     {
         return GetNamedUnit(name) != null;
     }
+    public int FindMinMaxPosUnit(Team? team, bool x, bool max)
+    {
+        Debug.Log("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
+        int minMax = max ? -1 : (x ? MapSize.x : MapSize.y);
+        List<Unit> targets = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
+        foreach (Unit unit in targets)
+        {
+            if ((x ? unit.Pos.x : unit.Pos.y) * (max ? 1 : -1) > minMax * (max ? 1 : -1))
+            {
+                minMax = x ? unit.Pos.x : unit.Pos.y;
+            }
+        }
+        Debug.Log("Result: " + minMax);
+        return minMax;
+    }
     public Unit GetNamedUnit(string name)
     {
         return units.Find(a => a.ToString() == name);
@@ -1072,6 +1087,11 @@ public class GameController : MonoBehaviour
         {
             targetUnits[i].SetIcon(portraits[i]);
         }
+    }
+    public void AssignAIToTeam(Team team, AIType ai)
+    {
+        List<Unit> targetUnit = units.FindAll(a => a.TheTeam == team);
+        targetUnit.ForEach(a => a.AIType = ai);
     }
     public void AddListener(IGameControllerListener listener)
     {

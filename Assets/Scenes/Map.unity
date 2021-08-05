@@ -443,6 +443,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6f9a9b6529b165242b229bff80a6242c, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
+  - {fileID: 4900000, guid: ed7d448e54a7eb94aab8de6e3a395a4b, type: 3}
   Path: Conversations
 --- !u!1 &56271733
 GameObject:
@@ -17275,10 +17276,11 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 2
+  DebugEndgameLevel: 5
   DebugUnits:
   - Frogman
   - Kresla
+  - Xirveros
   DebugUnlimitedMove: 0
   DebugOPPlayers: 0
   CameraBlackScreen: {fileID: 1626109149}
@@ -18671,7 +18673,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 9
       Statue: 1
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -19009,7 +19020,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 14
       Statue: 1
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -19228,7 +19248,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -19475,7 +19504,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -19701,7 +19739,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -19948,7 +19995,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -20195,7 +20251,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -20442,7 +20507,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -20738,7 +20812,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21113,7 +21196,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21488,7 +21580,16 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -21863,7 +21964,16 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -22245,7 +22355,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: HumanDungeon
       Palette1:
@@ -22505,6 +22624,306 @@ MonoBehaviour:
     Objective: 0
     ObjectiveData: Rout
     MapString: 28|28|28|28|28|28|28|28|30|34|29|34|34|34|34;36|28|28|28|28|28|30|33|34|34|35|35|35|34|34;34|33|33|33|33|33|29|34|34|38|28|28|28|31|34;34|29|35|35|35|35|35|34|37|28|28|28|28|31|34;34|37|28|28|28|28|28|31|29|33|36|28|28|31|29;29|37|28|28|28|30|33|34|34|34|38|28|30|29|34;34|34|33|33|33|34|34|34|34|37|28|28|31|3|6;34|3|6|6|6|6|6|6|0|37|28|30|3|1|0;34|4|0|7|0|1|1|10|34|38|28|31|5|0|1;34|4|15|16|16|24|0|11|37|28|28|31|34|35|5;34|0|27|1|1|13|10|34|38|28|30|29|38|28|32;32|5|18|24|0|13|10|37|28|28|31|38|28|28|28;28|31|19|25|1|13|11|38|28|30|37|28|28|30|36;28|32|20|26|1|14|37|28|28|31|37|28|30|34|34;28|28|32|5|7|27|9|33|33|29|34|33|34|18|16;28|28|28|32|5|27|0|9|34|34|34|34|29|13|7
+  - Name: Part2RestArea
+    LevelNumber: 0
+    Units:
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 10}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
+    Tileset:
+      Name: HumanDungeon
+      Palette1:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.6117647, g: 0.47058824, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      Palette2:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+      TileObjects:
+      - {fileID: 979459139}
+      - {fileID: 229653984}
+      - {fileID: 1401151286}
+      - {fileID: 239401642}
+      - {fileID: 2065349357}
+      - {fileID: 1407504008}
+      - {fileID: 2000813505}
+      - {fileID: 635237648}
+      - {fileID: 1307053608}
+      - {fileID: 1971137222}
+      - {fileID: 841164004}
+      - {fileID: 1124452111}
+      - {fileID: 679692316}
+      - {fileID: 298860837}
+      - {fileID: 1335164943}
+      - {fileID: 1327646518}
+      - {fileID: 854273379}
+      - {fileID: 1699524857}
+      - {fileID: 1716668186}
+      - {fileID: 1047547536}
+      - {fileID: 894803651}
+      - {fileID: 815844378}
+      - {fileID: 1867645241}
+      - {fileID: 1018400458}
+      - {fileID: 1121368052}
+      - {fileID: 961072258}
+      - {fileID: 1493816544}
+      - {fileID: 2112539007}
+      - {fileID: 1251698422}
+      - {fileID: 1758685270}
+      - {fileID: 533868348}
+      - {fileID: 1991580882}
+      - {fileID: 564453597}
+      - {fileID: 2061792546}
+      - {fileID: 2083354281}
+      - {fileID: 1312483144}
+      - {fileID: 1497696814}
+      - {fileID: 509914374}
+      - {fileID: 857739893}
+      - {fileID: 580459426}
+      Tiles:
+      - Name: Brkn
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Tile
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 1
+        High: 0
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Wall
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 1
+        High: 1
+      - Name: Fort
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: Mgma
+        MoveCost: 99
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Rock
+        MoveCost: 2
+        ArmorMod: 1
+        Palette: 1
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: None
+        MoveCost: 1
+        ArmorMod: 0
+        Palette: 2
+        High: 0
+      - Name: Path
+        MoveCost: 2
+        ArmorMod: -1
+        Palette: 2
+        High: 0
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
   - Name: SpawnPoint1
     LevelNumber: 1
     Units:
@@ -22543,7 +22962,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -22769,7 +23197,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Magma
       Palette1:
@@ -23065,7 +23502,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Torment
       Palette1:
@@ -23325,7 +23771,16 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>6~
+
+      ~
+
+      Guard1: Charge!
+
+      :setTeamAI:charge'
     Tileset:
       Name: Torment
       Palette1:
@@ -23587,7 +24042,11 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 6
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: teamMaxPos:y:player:>6
+      Event: 'Guard1: Charge!
+
+        :setTeamAI:charge'
     Tileset: Torment
     LevelNumber: 4
     Objective: Survive:6

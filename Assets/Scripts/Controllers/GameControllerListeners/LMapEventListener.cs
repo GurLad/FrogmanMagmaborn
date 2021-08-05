@@ -15,7 +15,7 @@ public class LMapEventListener : AGameControllerListener
     {
         if (targetEvent.MeetsRequirements())
         {
-            ConversationPlayer.Current.PlayOneShot(string.Join(",", targetEvent.Lines));
+            ConversationPlayer.Current.PlayOneShot(string.Join("\n", targetEvent.Lines));
         }
     }
 
