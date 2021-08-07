@@ -286,6 +286,10 @@ public class ConversationPlayer : MidBattleScreen
                     // Add to TempPortraits with parts[2] internal name and parts[3] tags
                     PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
                     break;
+                case "getGenericCharacter":
+                    // Params: string internalName, Team fromTeam = null
+                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], GameController.Current.GetGenericPortrait(parts.Length > 3 ? parts[3].ToTeam() : null));
+                    break;
                 case "setTeam":
                     // Params: string unitName, Team changeTo
                     // Changes a unit's team

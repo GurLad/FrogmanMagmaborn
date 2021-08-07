@@ -1079,6 +1079,11 @@ public class GameController : MonoBehaviour
     {
         return units.Find(a => a.ToString() == name);
     }
+    public Portrait GetGenericPortrait(Team? team = null)
+    {
+        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
+        return targetUnits[0].Icon;
+    }
     public void AssignGenericPortraitsToUnits(Team? team = null)
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
