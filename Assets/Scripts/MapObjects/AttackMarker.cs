@@ -22,5 +22,9 @@ public class AttackMarker : Marker
                 }
             }
         }
+        else if (interactState == InteractState.None)
+        {
+            GameController.Current.RemoveMarkers();
+        }
     }
 }

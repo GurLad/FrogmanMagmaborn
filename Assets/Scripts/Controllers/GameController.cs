@@ -43,9 +43,9 @@ public class GameController : MonoBehaviour
     public GameObject Cursor;
     public GameObject Canvas;
     public Unit BaseUnit;
-    public Marker EnemyMarker;
-    public Marker EnemyAttackMarker;
     public PointerMarker PointerMarker;
+    public Marker MoveMarker;
+    public Marker AttackMarker;
     public GameObject EscapeMarker;
     public GameObject ListenersObject;
     [HideInInspector]
@@ -173,8 +173,9 @@ public class GameController : MonoBehaviour
         MapController.Maps.ForEach(a => a.Init());
         // Init unit replacements
         UnitReplacements.ForEach(a => a.Init());
-        // Awake enemy marker
-        EnemyMarker.GetComponent<PalettedSprite>().Awake();
+        // Init markers
+        MoveMarker.Init();
+        AttackMarker.Init();
     }
     private void Start()
     {
@@ -821,8 +822,6 @@ public class GameController : MonoBehaviour
         unit.Class = name;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats.Growths = classData.Growths.Values;
-        unit.MovementMarker = EnemyMarker;
-        unit.AttackMarker = EnemyAttackMarker;
         unit.Flies = classData.Flies;
         unit.Inclination = classData.Inclination;
         unit.Stats += unit.AutoLevel(level);

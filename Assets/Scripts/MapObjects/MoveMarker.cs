@@ -17,5 +17,9 @@ public class MoveMarker : Marker
             };
             Origin.MoveTo(Pos);
         }
+        else if (interactState == InteractState.None)
+        {
+            GameController.Current.RemoveMarkers();
+        }
     }
 }

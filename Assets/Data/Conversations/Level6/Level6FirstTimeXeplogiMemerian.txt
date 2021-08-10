@@ -24,14 +24,17 @@ Memerian: Do you have to say this every time?
 :if:chose:0{
 Xeplogi: Ha! Yes!
 Memerian: Oh well. Your loss.
+:loadUnits:
+Frogman: ...
 :setTeam:Memerian:monster
 }
 :else:{
 Memerian: Finally, someone sane.
 Xeplogi: No! You're evil!
+:loadUnits:
+Frogman: ...
 :setTeam:Xeplogi:monster
 }
-:loadUnits:
 ~ After battle
 # Name: Text.
 
