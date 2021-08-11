@@ -13,18 +13,18 @@ Xeplogi: YOU! I've finally found you!\a The demon who has plagued my life and tr
 :if:charactersAlive:<2{
 Memerian|???: Hey. Who are you?\a And what are you doing with Xeplogi the mad?
 Xeplogi: The mad?! Have you no shame, fiend?! I shall-
-Frogman: My name is Frogman. Who might you be?
-Xeplogi: She is the evil Memerian!
+Frogman||L: My name is Frogman. Who might you be?
+Xeplogi||L: She is the evil Memerian!
 Memerian: Just Memerian will do, thanks.\a You're new here, and appear sane -\a are you Torment's new champion?
 Frogman: Wait... you know Torment?!
-Xeplogi: Do not listen to her words of trickery!\a She-
+Xeplogi||L: Do not listen to her words of trickery!\a She-
 Memerian: Will you shut Xeplogi up, or shall I?
 Xeplogi: Ha! Frogman will never help the likes of you!
 :call:Choice
 }
-:else:
-{
+:else:{
 TBA
+:call:Choice
 }
 ~ After battle
 # Name: Text.
@@ -34,7 +34,7 @@ TBA
 ~ Choice
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
-Frogman: I trust Xeplogi.
+Frogman||L: I trust Xeplogi.
 If he claims you're evil, there must be a reason.
 Memerian: ...Seriously?\a What is wrong with you people?
 Xeplogi: Ha! Your time is up, Memerian!
@@ -46,7 +46,7 @@ Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
 Memerian: You've left me no choice, Frogman.\a Prepare to die.
 }
 :else:{
-Frogman: Sorry, Xeplogi, but you're obviously insane.\a I've never heard of this Tori,\a and I'd like to here Memerian out.
+Frogman||L: Sorry, Xeplogi, but you're obviously insane.\a I've never heard of this Tori,\a and I'd like to here Memerian out.
 Xeplogi: You... you traitor! I shall destroy you!
 Memerian: Don't mind him.\a He's always like that.
 :play:GuardTheme

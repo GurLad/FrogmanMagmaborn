@@ -52,7 +52,19 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private AdvancedSpriteSheetAnimation defenderAnimation;
     private PalettedSprite defenderPalette;
     private GameObject currentProjectile;
-    private State state;
+    private State _state;
+    private State state
+    {
+        get
+        {
+            return _state;
+        }
+        set
+        {
+            _state = value;
+            count = 0;
+        }
+    }
     private Vector3 currentAttackerPos;
     private float count = 0;
 
@@ -70,8 +82,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         attackerAnimation.Activate("Idle");
         defenderAnimation.Listeners.Add(this);
         defenderAnimation.Activate("Idle");
-        attackerPalette = attackerAnimation.GetComponent<PalettedSprite>();
-        defenderPalette = defenderAnimation.GetComponent<PalettedSprite>();
+        attackerPalette = attackerAnimation.transform.parent.gameObject.GetComponent<PalettedSprite>();
+        defenderPalette = defenderAnimation.transform.parent.gameObject.GetComponent<PalettedSprite>();
         Tile attackerTile = GameController.Current.Map[Attacker.Pos.x, Attacker.Pos.y];
         AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
         Tile defenderTile = GameController.Current.Map[Defender.Pos.x, Defender.Pos.y];
@@ -90,6 +102,16 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             state = State.AttackerRangeAttacking;
         }
         UpdateDisplay();
+        foreach (var item in AttackerSprites)
+        {
+            item.Palette = (int)Attacker.TheTeam;
+        }
+        attackerPalette.Palette = Attacker.Statue ? 3 : (int)Attacker.TheTeam;
+        foreach (var item in DefenderSprites)
+        {
+            item.Palette = (int)Defender.TheTeam;
+        }
+        defenderPalette.Palette = Defender.Statue ? 3 : (int)Defender.TheTeam;
     }
 
     private void UpdateDisplay()
@@ -102,14 +124,6 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         AttackerIcon.Portrait = Attacker.Icon;
         AttackerHealthbarFull.sizeDelta = new Vector2(Attacker.Health * 4, 8);
         AttackerHealthbarEmpty.sizeDelta = new Vector2(Attacker.Stats.MaxHP * 4, 8);
-        foreach (var item in AttackerSprites)
-        {
-            item.Palette = (int)Attacker.TheTeam;
-        }
-        if (Attacker.Statue)
-        {
-            attackerPalette.Palette = 3;
-        }
         DefenderInfo.text = Defender.ToString().PadRight(7) + '\n' + Defender.AttackPreview(Attacker, 3, Defender.CanAttack(Attacker));
         if (DefenderInclination != null)
         {
@@ -118,19 +132,12 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         DefenderIcon.Portrait = Defender.Icon;
         DefenderHealthbarFull.sizeDelta = new Vector2(Defender.Health * 4, 8);
         DefenderHealthbarEmpty.sizeDelta = new Vector2(Defender.Stats.MaxHP * 4, 8);
-        foreach (var item in DefenderSprites)
-        {
-            item.Palette = (int)Defender.TheTeam;
-        }
-        if (Defender.Statue)
-        {
-            attackerPalette.Palette = 3;
-        }
     }
 
     private void Update()
     {
         Time.timeScale = GameController.Current.GameSpeed(); // Speed up
+        count += Time.deltaTime;
         switch (state)
         {
             case State.AttackerWalking:
@@ -148,6 +155,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case State.AttackerFinishingAttack:
                 if (count >= battleTrueFlashTime && DefenderObject != null)
                 {
+                    battleTrueFlashTime = Mathf.Infinity;
                     defenderPalette.Palette = (int)Defender.TheTeam;
                 }
                 break;
@@ -160,6 +168,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case State.DefenderFinishingAttack:
                 if (count >= battleTrueFlashTime && AttackerObject != null)
                 {
+                    battleTrueFlashTime = Mathf.Infinity;
                     attackerPalette.Palette = (int)Attacker.TheTeam;
                 }
                 break;
@@ -204,7 +213,11 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     attackerPalette.Palette = (int)Attacker.TheTeam;
                 }
-                count += Time.deltaTime;
+                if (count >= battleTrueFlashTime && DefenderObject != null)
+                {
+                    battleTrueFlashTime = Mathf.Infinity;
+                    defenderPalette.Palette = (int)Defender.TheTeam;
+                }
                 if (count >= WaitTime)
                 {
                     CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
@@ -359,6 +372,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Stats.MaxHP);
                     battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Stats.MaxHP);
+                    Debug.Log("Flashing: " + battleTrueFlashTime + ", count: " + count);
                     if (!defender.Statue)
                     {
                         if (attackerAttack) // "Flash"

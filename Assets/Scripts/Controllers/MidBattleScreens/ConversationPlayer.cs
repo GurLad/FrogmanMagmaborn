@@ -50,6 +50,7 @@ public class ConversationPlayer : MidBattleScreen
     private string waitRequirement = "";
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
     private List<string> lines;
+    private string[] previousLineParts;
     private List<string> tempFlags = new List<string>();
     private void Awake()
     {
@@ -242,7 +243,6 @@ public class ConversationPlayer : MidBattleScreen
         }
         currentLine = num;
         string line = lines[currentLine];
-        Debug.Log(line);
         if (line.Length <= 0) // Empty line
         {
             StartLine(num + 1);
@@ -547,9 +547,8 @@ public class ConversationPlayer : MidBattleScreen
         // Find the line break
         string trueLine = FindLineBreaks(TrueLine(line));
         // Check if it's short (aka no line break) and had previous
-        if (line.IndexOf(':') < 0 && LineAddition(trueLine))
+        if (line.IndexOf(':') < 0 && LineAddition(trueLine) && previousLineParts != null)
         {
-            string[] previousLineParts = FindLineBreaks(TrueLine(lines[num - 1])).Replace(@"\a", "\a").Split('\n');
             targetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
             currentChar = previousLineParts[previousLineParts.Length - 1].Length;
             Text.text = previousLineParts[previousLineParts.Length - 1] + targetLine[currentChar].ToString();
@@ -560,6 +559,7 @@ public class ConversationPlayer : MidBattleScreen
             currentChar = 0;
             Text.text = targetLine[currentChar].ToString();
         }
+        previousLineParts = trueLine.Split('\n');
         PlayLetter(targetLine[currentChar]);
         count = 0;
         state = CurrentState.Writing;
@@ -582,6 +582,7 @@ public class ConversationPlayer : MidBattleScreen
         state = CurrentState.Sleep;
         SetSinglePortrait(true);
         currentSpeakerIsLeft = false;
+        previousLineParts = null;
         if (GameController.Current == null)
         {
             // Intro conversations
