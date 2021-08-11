@@ -25,6 +25,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public float AttackerSpeed;
     public float ProjectileSpeed;
     public float WaitTime = 0.5f;
+    public float BattleFlashTime;
     public SpriteRenderer AttackerObject;
     public SpriteRenderer DefenderObject;
     [Header("Attacker UI")]
@@ -45,8 +46,11 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public Unit Attacker;
     [HideInInspector]
     public Unit Defender;
+    private float battleTrueFlashTime;
     private AdvancedSpriteSheetAnimation attackerAnimation;
+    private PalettedSprite attackerPalette;
     private AdvancedSpriteSheetAnimation defenderAnimation;
+    private PalettedSprite defenderPalette;
     private GameObject currentProjectile;
     private State state;
     private Vector3 currentAttackerPos;
@@ -66,6 +70,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         attackerAnimation.Activate("Idle");
         defenderAnimation.Listeners.Add(this);
         defenderAnimation.Activate("Idle");
+        attackerPalette = attackerAnimation.GetComponent<PalettedSprite>();
+        defenderPalette = defenderAnimation.GetComponent<PalettedSprite>();
         Tile attackerTile = GameController.Current.Map[Attacker.Pos.x, Attacker.Pos.y];
         AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
         Tile defenderTile = GameController.Current.Map[Defender.Pos.x, Defender.Pos.y];
@@ -100,6 +106,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         {
             item.Palette = (int)Attacker.TheTeam;
         }
+        if (Attacker.Statue)
+        {
+            attackerPalette.Palette = 3;
+        }
         DefenderInfo.text = Defender.ToString().PadRight(7) + '\n' + Defender.AttackPreview(Attacker, 3, Defender.CanAttack(Attacker));
         if (DefenderInclination != null)
         {
@@ -111,6 +121,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         foreach (var item in DefenderSprites)
         {
             item.Palette = (int)Defender.TheTeam;
+        }
+        if (Defender.Statue)
+        {
+            attackerPalette.Palette = 3;
         }
     }
 
@@ -132,10 +146,22 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case State.AttackerAttacking:
                 break;
             case State.AttackerFinishingAttack:
+                if (count >= battleTrueFlashTime && DefenderObject != null)
+                {
+                    defenderPalette.Palette = (int)Defender.TheTeam;
+                }
                 break;
             case State.DefenderAttacking:
+                if (!Defender.Statue && defenderPalette.Palette != (int)Defender.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
+                {
+                    defenderPalette.Palette = (int)Defender.TheTeam;
+                }
                 break;
             case State.DefenderFinishingAttack:
+                if (count >= battleTrueFlashTime && AttackerObject != null)
+                {
+                    attackerPalette.Palette = (int)Attacker.TheTeam;
+                }
                 break;
             case State.AttackerRangeAttacking:
                 break;
@@ -174,6 +200,10 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 currentProjectile.transform.position = currentAttackerPos;
                 break;
             case State.WaitTime:
+                if (!Attacker.Statue && attackerPalette.Palette != (int)Attacker.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
+                {
+                    attackerPalette.Palette = (int)Attacker.TheTeam;
+                }
                 count += Time.deltaTime;
                 if (count >= WaitTime)
                 {
@@ -328,6 +358,18 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 else
                 {
                     SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Stats.MaxHP);
+                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Stats.MaxHP);
+                    if (!defender.Statue)
+                    {
+                        if (attackerAttack) // "Flash"
+                        {
+                            defenderPalette.Palette = 3;
+                        }
+                        else
+                        {
+                            attackerPalette.Palette = 3;
+                        }
+                    }
                 }
                 break;
             case false:

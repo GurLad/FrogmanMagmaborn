@@ -242,6 +242,7 @@ public class ConversationPlayer : MidBattleScreen
         }
         currentLine = num;
         string line = lines[currentLine];
+        Debug.Log(line);
         if (line.Length <= 0) // Empty line
         {
             StartLine(num + 1);
