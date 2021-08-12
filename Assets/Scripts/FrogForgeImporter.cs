@@ -10,4 +10,35 @@ public class FrogForgeImporter : MonoBehaviour
     public PortraitController PortraitController;
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
+
+    public static void LoadSpriteOrAnimationToObject(GameObject gameObject, Sprite sprite, int width, int speed = -1, bool loop = true, bool activateOnStart = true)
+    {
+        SpriteRenderer renderer = gameObject.GetOrAddComponenet<SpriteRenderer>();
+        if (sprite.rect.width > width)
+        {
+            AdvancedSpriteSheetAnimation anim = gameObject.AddComponent<AdvancedSpriteSheetAnimation>();
+            SpriteSheetData newData = new SpriteSheetData();
+            newData.SpriteSheet = sprite;
+            newData.NumberOfFrames = (int)sprite.rect.width / (int)sprite.rect.height;
+            newData.Speed = speed > 0 ? speed : 0;
+            newData.Name = sprite.name;
+            newData.Loop = loop;
+            anim.Animations = new List<SpriteSheetData>();
+            anim.Animations.Add(newData);
+            anim.FixedSpeed = speed <= 0;
+            anim.ActivateOnStart = activateOnStart;
+            anim.Renderer = renderer;
+        }
+        else
+        {
+            renderer.sprite = sprite;
+        }
+    }
+
+#if UNITY_EDITOR
+    public static T LoadFile<T>(string path) where T : Object // For the future moddable version
+    {
+        return UnityEditor.AssetDatabase.LoadAssetAtPath<T>("Assets/Data/" + path);
+    }
+#endif
 }

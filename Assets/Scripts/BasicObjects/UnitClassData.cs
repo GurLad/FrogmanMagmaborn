@@ -12,12 +12,12 @@ public class UnitClassData : MonoBehaviour
     public void AutoLoad()
     {
         // Load classes json
-        string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Classes.json").text;
+        string json = FrogForgeImporter.LoadFile<TextAsset>("Classes.json").text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassDatas"), this);
         // Load classes animations
         for (int i = 0; i < ClassDatas.Count; i++)
         {
-            ClassDatas[i].MapSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
+            ClassDatas[i].MapSprite = FrogForgeImporter.LoadFile<Sprite>("Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
         // Load units json

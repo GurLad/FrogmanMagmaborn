@@ -865,7 +865,7 @@ public class GameController : MonoBehaviour
             Destroy(currentMapObject.gameObject);
         }
         // Load map
-        Set = map.Tileset;
+        Set = MapController.Tilesets.Find(a => a.Name == map.Tileset);
         PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
         PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
         // Create map

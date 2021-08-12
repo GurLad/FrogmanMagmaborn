@@ -185,6 +185,48 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
+  - Name: DeharoFB
+    Background: {fileID: 21300000, guid: d5793a5f0ba8db5418b25bef3bb03983, type: 3}
+    Foreground: {fileID: 21300000, guid: 7eb69b1f5a8b885419a281bce3d61f34, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 0
+    Voice:
+      VoiceType: 2
+      Pitch: 1.6
+  - Name: Alex
+    Background: {fileID: 21300000, guid: 304f8f126bb63a742a2136215ced6076, type: 3}
+    Foreground: {fileID: 21300000, guid: bbb11c79d25314946bba71339dc8c52b, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 0
+    Voice:
+      VoiceType: 2
+      Pitch: 0.5
+  - Name: John
+    Background: {fileID: 21300000, guid: 4214dac8ca92e214a99b4d3a44af4d86, type: 3}
+    Foreground: {fileID: 21300000, guid: 6529bcf52c45da748a89796a3168bc2d, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 0
+    Voice:
+      VoiceType: 3
+      Pitch: 1
   GenericPortraits:
   - tags: female,young
     VoiceType: 1

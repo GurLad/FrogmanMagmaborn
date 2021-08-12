@@ -51,4 +51,8 @@ public static class StaticGlobals
     {
         return "{" + '"' + propertyName + '"' + ":" + json + "}";
     }
+    public static T GetOrAddComponenet<T>(this GameObject gameObject) where T : Component
+    {
+        return gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
+    }
 }

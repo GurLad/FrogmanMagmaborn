@@ -21,7 +21,7 @@ public class LevelMetadataController : MonoBehaviour
     public void AutoLoad()
     {
         // Load metadatas json
-        string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/LevelMetadata.json").text;
+        string json = FrogForgeImporter.LoadFile<TextAsset>("LevelMetadata.json").text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("LevelMetadatas"), this);
         // Find default
         DefaultMetadata = LevelMetadatas[0];

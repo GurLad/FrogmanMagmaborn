@@ -30,7 +30,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             toDestroy.RemoveAt(0);
         }
         // Load jsons
-        string json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Tilesets.json").text;
+        string json = FrogForgeImporter.LoadFile<TextAsset>("Tilesets.json").text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Tilesets"), this);
         // Generate objects & load sprites
         for (int i = 0; i < Tilesets.Count; i++)
@@ -40,25 +40,8 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             Tilesets[i].GenerateObjects(BaseTile, container);
             for (int j = 0; j < Tilesets[i].TileObjects.Count; j++)
             {
-                Sprite file = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/Images/Tilesets/" + Tilesets[i].Name + "/" + j + ".png");
-                if (file.rect.width > 16)
-                {
-                    AdvancedSpriteSheetAnimation anim = Tilesets[i].TileObjects[j].gameObject.AddComponent<AdvancedSpriteSheetAnimation>();
-                    SpriteSheetData newData = new SpriteSheetData();
-                    newData.SpriteSheet = file;
-                    newData.NumberOfFrames = (int)file.rect.width / (int)file.rect.height;
-                    newData.Speed = 0;
-                    newData.Name = file.name;
-                    newData.Loop = true;
-                    anim.Animations = new List<SpriteSheetData>();
-                    anim.Animations.Add(newData);
-                    anim.FixedSpeed = anim.ActivateOnStart = true;
-                    anim.Renderer = Tilesets[i].TileObjects[j].gameObject.GetComponent<SpriteRenderer>();
-                }
-                else
-                {
-                    Tilesets[i].TileObjects[j].gameObject.GetComponent<SpriteRenderer>().sprite = file;
-                }
+                Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/Tilesets/" + Tilesets[i].Name + "/" + j + ".png");
+                FrogForgeImporter.LoadSpriteOrAnimationToObject(Tilesets[i].TileObjects[j].gameObject, file, 16);
             }
         }
     }
@@ -79,7 +62,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Level numer
             map.LevelNumber = mapData.LevelNumber;
             // Tileset
-            map.Tileset = Tilesets.Find(a => a.Name == mapData.Tileset);
+            map.Tileset = mapData.Tileset;
             // Objective
             string[] objectiveParts = mapData.Objective.Split(':');
             map.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
@@ -197,7 +180,7 @@ public class Map
     public int[,] Tilemap;
     public List<MapController.UnitPlacementData> Units;
     public List<string> MapEvents;
-    public Tileset Tileset;
+    public string Tileset;
     public Objective Objective;
     public string ObjectiveData;
     public string MapString;
