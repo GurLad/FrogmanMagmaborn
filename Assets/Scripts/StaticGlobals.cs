@@ -53,6 +53,7 @@ public static class StaticGlobals
     }
     public static T GetOrAddComponenet<T>(this GameObject gameObject) where T : Component
     {
-        return gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
+        T temp = gameObject.GetComponent<T>();
+        return temp != null ? temp : gameObject.AddComponent<T>();
     }
 }

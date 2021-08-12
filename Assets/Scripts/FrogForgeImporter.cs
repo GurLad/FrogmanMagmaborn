@@ -19,7 +19,7 @@ public class FrogForgeImporter : MonoBehaviour
             AdvancedSpriteSheetAnimation anim = gameObject.AddComponent<AdvancedSpriteSheetAnimation>();
             SpriteSheetData newData = new SpriteSheetData();
             newData.SpriteSheet = sprite;
-            newData.NumberOfFrames = (int)sprite.rect.width / (int)sprite.rect.height;
+            newData.NumberOfFrames = (int)sprite.rect.width / width;
             newData.Speed = speed > 0 ? speed : 0;
             newData.Name = sprite.name;
             newData.Loop = loop;
@@ -39,6 +39,13 @@ public class FrogForgeImporter : MonoBehaviour
     public static T LoadFile<T>(string path) where T : Object // For the future moddable version
     {
         return UnityEditor.AssetDatabase.LoadAssetAtPath<T>("Assets/Data/" + path);
+    }
+#endif
+
+#if UNITY_EDITOR
+    public static bool CheckFileExists<T>(string path) where T : Object // For the future moddable version
+    {
+        return UnityEditor.AssetDatabase.LoadAssetAtPath<T>("Assets/Data/" + path) != null;
     }
 #endif
 }

@@ -11,6 +11,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public AdvancedSpriteSheetAnimation BaseClassAnimation;
     public List<ClassAnimation> ClassAnimations;
     [Header("Battle Backgrounds")]
+    public Transform BattleBackgroundsAttackerContainer;
+    public Transform BattleBackgroundsDefenderContainer;
     public List<BattleBackground> AttackerBattleBackgrounds;
     public List<BattleBackground> DefenderBattleBackgrounds;
     [Header("SFX")]
@@ -460,21 +462,92 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             ClassAnimations.Add(classAnimation);
         }
         // Battle backgrounds
-
+        // Clear previous
+        AttackerBattleBackgrounds.Clear();
+        DefenderBattleBackgrounds.Clear();
+        toDestroy.Clear();
+        foreach (Transform child in BattleBackgroundsAttackerContainer)
+        {
+            toDestroy.Add(child.gameObject);
+        }
+        foreach (Transform child in BattleBackgroundsDefenderContainer)
+        {
+            toDestroy.Add(child.gameObject);
+        }
+        while (toDestroy.Count > 0)
+        {
+            DestroyImmediate(toDestroy[0]);
+            toDestroy.RemoveAt(0);
+        }
+        // Now load new
+        TilesetsData tilesets = new TilesetsData();
+        string json = FrogForgeImporter.LoadFile<TextAsset>("Tilesets.json").text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Tilesets"), tilesets);
+        foreach (TilesetData tileset in tilesets.Tilesets)
+        {
+            Transform attObject = new GameObject().transform;
+            Transform defObject = new GameObject().transform;
+            defObject.name = attObject.name = tileset.Name;
+            attObject.parent = BattleBackgroundsAttackerContainer;
+            attObject.localPosition = Vector3.zero;
+            defObject.parent = BattleBackgroundsDefenderContainer;
+            defObject.localPosition = Vector3.zero;
+            foreach (BattleBackgroundData battleBackground in tileset.BattleBackgrounds)
+            {
+                Transform container = new GameObject().transform;
+                container.name = battleBackground.Name;
+                if (FrogForgeImporter.CheckFileExists<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "1.png"))
+                {
+                    Sprite sprite = FrogForgeImporter.LoadFile<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "1.png");
+                    GameObject layer1 = new GameObject();
+                    FrogForgeImporter.LoadSpriteOrAnimationToObject(layer1, sprite, 128);
+                    layer1.transform.parent = container;
+                    layer1.name = "1";
+                    layer1.transform.localPosition = Vector3.zero;
+                    PalettedSprite palettedSprite = layer1.AddComponent<PalettedSprite>();
+                    palettedSprite.Background = true;
+                    palettedSprite.ForceSilentSetPalette(0);
+                }
+                if (FrogForgeImporter.CheckFileExists<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "2.png"))
+                {
+                    Sprite sprite = FrogForgeImporter.LoadFile<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "2.png");
+                    GameObject layer2 = new GameObject();
+                    FrogForgeImporter.LoadSpriteOrAnimationToObject(layer2, sprite, 128);
+                    layer2.transform.parent = container;
+                    layer2.name = "2";
+                    layer2.transform.localPosition = Vector3.zero;
+                    PalettedSprite palettedSprite = layer2.AddComponent<PalettedSprite>();
+                    palettedSprite.Background = true;
+                    palettedSprite.ForceSilentSetPalette(1);
+                }
+                container.gameObject.SetActive(false);
+                container.parent = attObject;
+                container.localPosition = Vector3.zero;
+                AttackerBattleBackgrounds.Add(new BattleBackground(tileset.Name, battleBackground.Name, container.gameObject));
+                container = Instantiate(container.gameObject, defObject).transform;
+                container.localPosition = Vector3.zero;
+                DefenderBattleBackgrounds.Add(new BattleBackground(tileset.Name, battleBackground.Name, container.gameObject));
+            }
+        }
+        // Set dirty
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
     #endif
 
+    [System.Serializable]
     private class TilesetsData
     {
-        private List<TilesetData> Tilesets; 
+        public List<TilesetData> Tilesets; 
     }
 
+    [System.Serializable]
     private class TilesetData
     {
+        public string Name;
         public List<BattleBackgroundData> BattleBackgrounds;
     }
 
+    [System.Serializable]
     private class BattleBackgroundData
     {
         public string Name;
@@ -495,4 +568,13 @@ public class BattleBackground
     public string TileSet;
     public string Tile;
     public GameObject Background;
+
+    public BattleBackground(string tileSet, string tile, GameObject background)
+    {
+        TileSet = tileSet;
+        Tile = tile;
+        Background = background;
+    }
+
+    public BattleBackground() {}
 }
