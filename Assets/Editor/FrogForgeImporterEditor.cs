@@ -21,7 +21,11 @@ public class FrogForgeImporterEditor : Editor
         }
         if (myScript.BattleAnimationController != null && GUILayout.Button("Load Battle Animations"))
         {
-            myScript.BattleAnimationController.AutoLoad();
+            myScript.BattleAnimationController.AutoLoadAnimations();
+        }
+        if (myScript.BattleAnimationController != null && GUILayout.Button("Load Battle Backgrounds"))
+        {
+            myScript.BattleAnimationController.AutoLoadBackgrounds();
         }
         if (myScript.PortraitController != null && GUILayout.Button("Load Portraits"))
         {

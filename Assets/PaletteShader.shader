@@ -84,10 +84,25 @@ Shader "Custom/PixelColors" {
                 {
                     float4 texColor = tex2D(_MainTex, IN.texcoord);
                     float4 originColor = float4(texColor.r, texColor.g, texColor.b, texColor.a);
-                    texColor = all(originColor.r == _Color1in.r) ? _Color1out : texColor;
-                    texColor = all(originColor.r == _Color2in.r) ? _Color2out : texColor;
-                    texColor = all(originColor.r == _Color3in.r) ? _Color3out : texColor;
-                    texColor = all(originColor.g == _Color4in.g) ? _Color4out : texColor;
+                    if (originColor.a > 0)
+                    {
+                        if (all(originColor.r == _Color1in.r))
+                        {
+                            texColor = _Color1out;
+                        }
+                        else if (all(originColor.r == _Color2in.r))
+                        {
+                            texColor = _Color2out;
+                        }
+                        else if (all(originColor.r == _Color3in.r))
+                        {
+                            texColor = _Color3out;
+                        }
+                        else
+                        {
+                            texColor = _Color4out;
+                        }
+                    }
 
                     return texColor * IN.color;
                 }

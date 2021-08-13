@@ -418,9 +418,8 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     }
 
     #if UNITY_EDITOR
-    public void AutoLoad()
+    public void AutoLoadAnimations()
     {
-        // Class battle animations
         // Clear previous
         ClassAnimations.Clear();
         List<GameObject> toDestroy = new List<GameObject>();
@@ -461,11 +460,16 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             classAnimation.Name = animation.name = temp[temp.Length - 1];
             ClassAnimations.Add(classAnimation);
         }
-        // Battle backgrounds
+        // Set dirty
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+
+    public void AutoLoadBackgrounds()
+    {
         // Clear previous
         AttackerBattleBackgrounds.Clear();
         DefenderBattleBackgrounds.Clear();
-        toDestroy.Clear();
+        List<GameObject> toDestroy = new List<GameObject>();
         foreach (Transform child in BattleBackgroundsAttackerContainer)
         {
             toDestroy.Add(child.gameObject);
