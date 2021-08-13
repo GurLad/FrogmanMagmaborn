@@ -329,7 +329,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: c3ae171760113854d9f3a64836ff991f, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
-  - {fileID: 4900000, guid: ed7d448e54a7eb94aab8de6e3a395a4b, type: 3}
   Path: Conversations
 --- !u!1 &42525342
 GameObject:
@@ -16992,7 +16991,7 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 4
   DebugUnits:
   - Frogman
@@ -17223,7 +17222,7 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
-    MusicName: Magmaborn
+    MusicName: MagmaFlows
   - TeamDatas:
     - Palette:
         Colors:

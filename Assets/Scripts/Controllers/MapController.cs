@@ -229,7 +229,7 @@ public class Map
         switch (parts[0])
         {
             case "hasCharacter":
-                return string.Join("|", Units).Contains(parts[1]);
+                return Units.Find(a => a.Class == parts[1]) != null;
             case "charactersAlive":
                 // Find number of returning playable characters in map (excluding Frogman and recruitments)
                 int count = 0;

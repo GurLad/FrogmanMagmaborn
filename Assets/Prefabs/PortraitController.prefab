@@ -377,8 +377,8 @@ MonoBehaviour:
     - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
   ErrorPortrait:
     Name: 
-    Background: {fileID: 0}
-    Foreground: {fileID: 0}
+    Background: {fileID: 21300000, guid: fd802f0e9252372429b102790aa9fb70, type: 3}
+    Foreground: {fileID: 21300000, guid: fd802f0e9252372429b102790aa9fb70, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
@@ -392,7 +392,7 @@ MonoBehaviour:
       Pitch: 1
   ErrorVoice:
     VoiceType: 0
-    Pitch: 5
+    Pitch: 0
   DebugVoices:
   - {fileID: 8300000, guid: 9ca22729db8aa8c4394223d2afe1b034, type: 3}
   - {fileID: 8300000, guid: eb61a48ce0c4b874ca932b2402ea0349, type: 3}
