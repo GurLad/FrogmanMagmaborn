@@ -540,6 +540,7 @@ public class ConversationPlayer : MidBattleScreen
             Debug.Log(line);
             line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
             line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
+            line = line.Replace("[StartButton]", Control.DisplayShortButtonName("Start"));
             line = line.Replace("[Name]", Name.text);
             Debug.Log(line);
         }
