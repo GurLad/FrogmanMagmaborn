@@ -1,0 +1,33 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:1
+hasFlag:FirbellDenial1
+~ Demands
+hasCharacter:Firbell
+~ Before battle
+:play:BeforeBattle
+Firbell: Frogman.\a There's something I want to talk to you about.
+Frogman: Yes?
+Firbell: Do you remember where you're from?
+Frogman: Uh...\a No.
+Firbell: I thought so. But once we get out of here,\a where would you go?
+Frogman: I haven't thought about it yet.
+Firbell: Would you want to come to Irenhold, then?
+I think you would prefer it to the other kingdoms.
+Frogman: I... Firbell...
+Firbell: Please, it is all right.\a Even though you aren't from there,\a I could ask mother to admit you to the royal court.\a I'm sure she-
+Frogman: Firbell, let's focus on the monsters first, all right?
+Firbell: All right.
+~ After battle
+:play:AfterBattle
+Firbell: Irenhold could always use more hunters and warriors.
+People would appreciate your martial prowess.
+Frogman: Let... let me think about it.
+Firbell: Very well.\a I will not boother you about it again.\a But my offer still stands.
+Frogman: Thank you...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
