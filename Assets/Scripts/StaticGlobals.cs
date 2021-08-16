@@ -14,6 +14,7 @@ public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, TEMP = 3, Litt
 public enum TormentPowerState { None, I, II }
 public enum PortraitLoadingMode { Name, Team, Generic }
 public enum Objective { Rout, Boss, Escape, Survive }
+public enum GameState { Normal, SideWon, ShowingEvent }
 
 public static class StaticGlobals
 {

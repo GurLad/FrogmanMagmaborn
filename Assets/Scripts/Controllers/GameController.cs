@@ -224,7 +224,7 @@ public class GameController : MonoBehaviour
             Cursor.gameObject.SetActive(false);
             return;
         }
-        if (CheckGameState())
+        if (CheckGameState() != GameState.Normal)
         {
             return;
         }
@@ -340,23 +340,23 @@ public class GameController : MonoBehaviour
         EnemyAI();
     }
     /// <summary>
-    /// Does all every-frame checks (mostly win/lose and handling unit death). Returns true if a side won.
+    /// Does all every-frame checks (mostly win/lose and handling unit death). Returns the game state afterwards.
     /// </summary>
-    /// <returns>True if the level ended (aka don't activate OnFinishAnimation), false otherwise.</returns>
-    public bool CheckGameState()
+    /// <returns>SideWon if the level ended (aka don't activate OnFinishAnimation), ShowingEvent if death quote (aka activate OnFinishAnimation afterwards), Normal otherwise.</returns>
+    public GameState CheckGameState()
     {
         CheckDifficulty();
         if (deadUnitDeathQuote != null)
         {
             if (CheckConveresationWait()) // Most characterNumber/alive/whatever commands
             {
-                return true;
+                return GameState.ShowingEvent;
             }
             else if (deadUnitDeathQuote != "")
             {
                 ConversationPlayer.Current.PlayOneShot(deadUnitDeathQuote);
                 deadUnitDeathQuote = "";
-                return true;
+                return GameState.ShowingEvent;
             }
             if (CheckPlayerWin())
             {
@@ -364,7 +364,7 @@ public class GameController : MonoBehaviour
                 RemoveMarkers();
                 InteractState = InteractState.None; // To prevent weird corner cases.
                 ConversationPlayer.Current.PlayPostBattle();
-                return true;
+                return GameState.SideWon;
             }
             if (!GameCalculations.PermaDeath) // "Kill" player units when perma-death is off
             {
@@ -394,7 +394,7 @@ public class GameController : MonoBehaviour
                 {
                     // Win
                     ConversationPlayer.Current.PlayPostBattle();
-                    return true;
+                    return GameState.SideWon;
                 }
                 TurnAnimation.ShowTurn(currentPhase);
             }
@@ -402,11 +402,11 @@ public class GameController : MonoBehaviour
             {
                 // Win
                 ConversationPlayer.Current.PlayPostBattle();
-                return true;
+                return GameState.SideWon;
             }
             checkEndTurn = false;
         }
-        return false;
+        return GameState.Normal;
     }
     public void ManuallyEndTurn()
     {

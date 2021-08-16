@@ -177,7 +177,7 @@ public class MapAnimationsController : MidBattleScreen
         count = 0;
         MidBattleScreen.Set(this, false);
         // Do a game-state check once before moving on to the next animation.
-        if (!GameController.Current.CheckGameState())
+        if (GameController.Current.CheckGameState() != GameState.SideWon)
         {
             System.Action tempAction = OnFinishAnimation;
             OnFinishAnimation = null;

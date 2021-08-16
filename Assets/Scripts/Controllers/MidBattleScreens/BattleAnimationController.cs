@@ -374,7 +374,6 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Stats.MaxHP);
                     battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Stats.MaxHP);
-                    Debug.Log("Flashing: " + battleTrueFlashTime + ", count: " + count);
                     if (!defender.Statue)
                     {
                         if (attackerAttack) // "Flash"
