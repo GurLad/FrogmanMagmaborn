@@ -330,7 +330,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: c3ae171760113854d9f3a64836ff991f, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
-  - {fileID: 4900000, guid: c3d58af3848fc8f47bfe95dc9ee7434d, type: 3}
   Path: Conversations
 --- !u!1 &42525342
 GameObject:
@@ -16994,13 +16993,13 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 7
+  DebugEndgameLevel: 5
   DebugUnits:
   - Frogman
   - Firbell
   - Xirveros
   DebugUnlimitedMove: 0
-  DebugOPPlayers: 1
+  DebugOPPlayers: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
@@ -17445,50 +17444,6 @@ MonoBehaviour:
         SurvivalWeight: 0.5
         CautionLevel: 3
     MusicName: OverAndOver
-  - TeamDatas:
-    - Palette:
-        Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.7372549, g: 0.972549, b: 0.09411765, a: 1}
-        - {r: 0, g: 0.47058824, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
-      Name: Player
-      PlayerControlled: 1
-      PortraitLoadingMode: 0
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.9882353, g: 0.72156864, b: 0.9882353, a: 1}
-        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
-      Name: Monster
-      PlayerControlled: 0
-      PortraitLoadingMode: 1
-      AI:
-        TrueDamageWeight: 1
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0.972549, b: 0.9882353, a: 1}
-        - {r: 0, g: 0.2509804, b: 0.34509805, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
-      Name: Guard
-      PlayerControlled: 0
-      PortraitLoadingMode: 2
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0.5
-        SurvivalWeight: 0.5
-        CautionLevel: 3
-    MusicName: Unbreakable
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19044,66 +18999,59 @@ MonoBehaviour:
   - Name: Level5-1
     LevelNumber: 5
     Units:
-    - Pos: {x: 4, y: 13}
+    - Pos: {x: 2, y: 6}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 5, y: 14}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 14}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 6}
-      Team: 1
-      Level: 4
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 1, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 9}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 12}
       Team: 1
       Level: 4
       Class: Skeleton
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 1, y: 11}
+    - Pos: {x: 7, y: 9}
+      Team: 1
+      Level: 4
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 13}
       Team: 1
       Level: 4
       Class: Goblin
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 3, y: 9}
+    - Pos: {x: 7, y: 4}
       Team: 1
       Level: 4
-      Class: Gargoyle
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 10}
-      Team: 1
-      Level: 4
-      Class: Skeleton
+      Class: Goblin
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
@@ -19121,7 +19069,7 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 12, y: 5}
+    - Pos: {x: 10, y: 5}
       Team: 2
       Level: 4
       Class: Lancer
@@ -19135,14 +19083,21 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 14, y: 11}
       Team: 2
       Level: 4
       Class: Knight
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 6}
+    - Pos: {x: 10, y: 12}
+      Team: 2
+      Level: 4
+      Class: Knight
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 14}
       Team: 2
       Level: 4
       Class: Archer
@@ -19158,9 +19113,9 @@ MonoBehaviour:
       Statue: 0
     MapEvents: []
     Tileset: HumanDungeon
-    Objective: 0
-    ObjectiveData: Rout
-    MapString: 28|32|35|35|34|34|34|34|34|34|34|36|28|28|28;28|28|28|28|31|34|34|29|34|34|34|34|36|28|28;28|28|28|28|31|34|29|34|34|35|35|35|35|33|33;28|28|28|28|32|34|34|34|38|28|28|28|28|31|34;28|28|28|28|28|32|34|37|28|28|28|28|30|34|34;36|28|28|28|28|28|31|37|28|28|30|33|34|34|34;38|28|28|30|36|28|31|37|28|30|29|34|34|3|6;28|28|28|32|38|28|31|34|33|34|34|34|29|0|0;36|28|28|28|28|30|34|0|6|9|34|34|34|34|5;34|36|28|28|28|31|34|4|27|11|34|34|34|34|34;32|38|28|28|28|31|34|5|11|34|34|34|34|34|34;28|28|28|30|33|34|34|34|34|34|3|6|6|0|6;36|28|30|34|34|29|2|9|34|34|4|18|17|0|7;32|33|34|29|34|34|5|11|34|34|4|14|7|7|7;28|32|35|35|35|35|35|34|34|34|0|27|7|7|7;28|28|28|28|28|28|28|32|34|34|4|12|7|7|7
+    Objective: 2
+    ObjectiveData: 13:0
+    MapString: 28|32|35|35|34|34|34|34|34|34|34|36|28|28|28;28|28|28|28|31|34|34|29|34|34|34|34|36|28|28;28|28|28|28|31|34|29|34|34|35|35|35|35|33|33;28|28|28|28|32|34|34|34|38|28|28|28|28|31|29;28|28|28|28|39|32|34|37|28|28|28|28|30|34|34;36|28|28|28|39|28|32|38|28|28|30|33|34|3|6;38|28|28|30|36|28|39|39|28|30|29|34|3|0|1;28|28|28|32|38|39|30|33|33|34|34|3|27|18|16;36|28|28|28|39|30|34|0|6|9|34|4|0|13|0;34|36|28|28|28|31|34|4|27|1|0|0|7|20|16;32|38|28|28|28|31|34|5|8|0|1|0|27|1|7;28|28|28|30|33|34|34|34|34|34|4|7|1|0|1;36|28|30|34|34|29|2|9|29|34|4|18|17|0|7;32|33|34|29|34|34|5|11|34|34|4|14|7|7|1;28|32|35|35|35|35|35|34|34|29|0|27|7|7|7;28|28|28|28|28|28|28|32|34|34|4|12|7|1|0
   - Name: Level5-2
     LevelNumber: 5
     Units:
