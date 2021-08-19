@@ -16997,10 +16997,10 @@ MonoBehaviour:
   DebugEndgameLevel: 7
   DebugUnits:
   - Frogman
-  - Kresla
+  - Firbell
   - Xirveros
   DebugUnlimitedMove: 0
-  DebugOPPlayers: 0
+  DebugOPPlayers: 1
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
@@ -17445,6 +17445,50 @@ MonoBehaviour:
         SurvivalWeight: 0.5
         CautionLevel: 3
     MusicName: OverAndOver
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.7372549, g: 0.972549, b: 0.09411765, a: 1}
+        - {r: 0, g: 0.47058824, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0.972549, b: 0.9882353, a: 1}
+        - {r: 0, g: 0.2509804, b: 0.34509805, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: Unbreakable
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0

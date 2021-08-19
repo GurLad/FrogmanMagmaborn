@@ -34,15 +34,13 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public Text AttackerInfo;
     public InclinationIndicator AttackerInclination;
     public PortraitHolder AttackerIcon;
-    public RectTransform AttackerHealthbarFull;
-    public RectTransform AttackerHealthbarEmpty;
+    public HealthbarPanel AttackerHealthbar;
     public List<PalettedSprite> AttackerSprites;
     [Header("Defender UI")]
     public Text DefenderInfo;
     public InclinationIndicator DefenderInclination;
     public PortraitHolder DefenderIcon;
-    public RectTransform DefenderHealthbarFull;
-    public RectTransform DefenderHealthbarEmpty;
+    public HealthbarPanel DefenderHealthbar;
     public List<PalettedSprite> DefenderSprites;
     [HideInInspector]
     public Unit Attacker;
@@ -103,7 +101,6 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             attackerAnimation.Activate("AttackRangeStart");
             state = State.AttackerRangeAttacking;
         }
-        UpdateDisplay();
         foreach (var item in AttackerSprites)
         {
             item.Palette = (int)Attacker.TheTeam;
@@ -114,26 +111,27 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             item.Palette = (int)Defender.TheTeam;
         }
         defenderPalette.Palette = Defender.Statue ? 3 : (int)Defender.TheTeam;
+        AttackerHealthbar.SetMax(Attacker.Stats.MaxHP);
+        DefenderHealthbar.SetMax(Defender.Stats.MaxHP);
+        UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
-        AttackerInfo.text = Attacker.ToString().PadRight(7) + '\n' + Attacker.AttackPreview(Defender, 3, Attacker.CanAttack(Defender));
+        AttackerInfo.text = Attacker.ToString().PadRight(8) + '\n' + Attacker.AttackPreview(Defender, 4, Attacker.CanAttack(Defender));
         if (AttackerInclination != null)
         {
             AttackerInclination.Display(Attacker, Defender);
         }
         AttackerIcon.Portrait = Attacker.Icon;
-        AttackerHealthbarFull.sizeDelta = new Vector2(Attacker.Health * 4, 8);
-        AttackerHealthbarEmpty.sizeDelta = new Vector2(Attacker.Stats.MaxHP * 4, 8);
-        DefenderInfo.text = Defender.ToString().PadRight(7) + '\n' + Defender.AttackPreview(Attacker, 3, Defender.CanAttack(Attacker));
+        AttackerHealthbar.SetValue(Attacker.Health);
+        DefenderInfo.text = Defender.ToString().PadRight(8) + '\n' + Defender.AttackPreview(Attacker, 4, Defender.CanAttack(Attacker));
         if (DefenderInclination != null)
         {
             DefenderInclination.Display(Defender, Attacker);
         }
         DefenderIcon.Portrait = Defender.Icon;
-        DefenderHealthbarFull.sizeDelta = new Vector2(Defender.Health * 4, 8);
-        DefenderHealthbarEmpty.sizeDelta = new Vector2(Defender.Stats.MaxHP * 4, 8);
+        DefenderHealthbar.SetValue(Defender.Health);
     }
 
     private void Update()
