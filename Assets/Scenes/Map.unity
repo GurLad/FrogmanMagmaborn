@@ -18548,6 +18548,14 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Lich
     MapString: 0|0|0|3|6|18|21|16|21|24|6|9|0|0|0;0|3|6|18|21|22|25|1|19|22|16|24|6|6|9;3|18|21|22|22|22|26|0|20|26|1|19|21|21|16;21|22|22|23|23|26|7|6|7|10|0|20|23|26|7;22|22|25|1|0|4|7|27|7|8|6|7|7|7|7;22|22|22|24|6|7|7|7|12|0|4|7|27|7|7;23|22|23|26|7|7|15|16|26|1|18|24|8|7|7;7|14|1|0|4|7|10|0|1|18|22|25|0|12|7;7|7|15|21|24|8|7|6|15|23|23|26|1|19|24;7|7|7|20|25|0|4|7|7|10|0|1|18|22|23;7|7|27|7|14|1|12|27|7|7|6|18|22|25|10;7|2|8|7|7|15|23|17|7|27|8|19|22|25|10;24|1|0|4|7|7|7|7|7|10|0|19|22|26|11;22|21|21|24|8|27|7|8|7|12|1|19|26|11|0;20|23|22|25|0|18|24|0|18|22|16|26|11|0|0;5|8|20|25|1|19|25|1|19|25|8|11|0|0|0
+  - Name: FortressSample
+    LevelNumber: 0
+    Units: []
+    MapEvents: []
+    Tileset: Fortress
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|2|8|14|3|3|1|7|13|5|5|5;5|5|5|5|19|5|5|5|5|0|6|12|5|5|5;5|5|5|5|19|5|5|11|5|0|18|12|5|5|5;5|5|5|5|19|5|5|5|5|1|7|13|5|5|5;5|5|5|5|19|5|5|5|17|4|10|16|5|5|5;5|5|5|5|19|11|5|5|5|1|7|13|5|5|5;5|5|5|5|19|5|5|11|5|0|18|12|5|5|5;5|5|5|5|2|9|15|3|3|1|7|13|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5;5|5|5|5|5|5|5|5|5|5|5|5|5|5|5
   - Name: InitTormentRoom
     LevelNumber: 0
     Units:
@@ -19119,13 +19127,6 @@ MonoBehaviour:
   - Name: Level5-2
     LevelNumber: 5
     Units:
-    - Pos: {x: 4, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 6, y: 1}
       Team: 0
       Level: 0
@@ -19147,6 +19148,13 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
+    - Pos: {x: 4, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
     - Pos: {x: 4, y: 4}
       Team: 1
       Level: 4
@@ -19161,17 +19169,17 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 11}
-      Team: 1
-      Level: 4
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 7, y: 10}
       Team: 1
       Level: 4
       Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 11}
+      Team: 1
+      Level: 4
+      Class: Goblin
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
@@ -19203,6 +19211,13 @@ MonoBehaviour:
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 2
+      Level: 4
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
     - Pos: {x: 14, y: 3}
       Team: 2
       Level: 4
@@ -19222,13 +19237,6 @@ MonoBehaviour:
       Level: 4
       Class: Archer
       AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 4}
-      Team: 2
-      Level: 4
-      Class: Lancer
-      AIType: 1
       ReinforcementTurn: 0
       Statue: 0
     MapEvents:
@@ -19657,42 +19665,92 @@ MonoBehaviour:
     Objective: 0
     ObjectiveData: Rout
     MapString: 0|0|0|0|0|0|0|0|0|0|5|10|0|0|0;0|0|0|0|0|0|0|0|0|0|0|5|6|9|0;0|0|0|0|0|0|0|0|0|0|0|0|5|10|0;0|0|0|0|0|0|0|3|9|0|0|0|0|4|6;0|0|0|0|0|0|0|5|27|9|0|0|0|5|8;6|9|0|0|0|0|0|0|5|11|0|0|0|0|0;27|10|0|0|0|0|0|0|1|0|0|0|0|0|0;8|11|1|0|0|0|0|0|1|1|1|0|0|0|0;0|0|1|3|9|0|0|1|3|12|9|1|0|0|0;0|0|1|4|11|0|1|3|18|23|24|9|1|0|0;0|0|3|10|0|1|3|15|26|8|20|24|9|1|0;0|0|4|10|1|1|4|27|10|1|4|19|17|1|0;0|0|5|11|0|1|5|15|24|6|18|26|11|1|0;0|0|0|0|0|0|1|5|20|21|26|11|1|0|0;0|0|0|0|0|0|0|1|5|14|11|1|0|0|0;0|0|0|0|0|0|0|0|1|1|1|0|0|0|0
-  - Name: The Boss
-    LevelNumber: 7
+  - Name: SpawnPoint3
+    LevelNumber: 1
     Units:
-    - Pos: {x: 6, y: 6}
+    - Pos: {x: 10, y: 10}
       Team: 0
-      Level: 0
+      Level: 1
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 5, y: 7}
+    - Pos: {x: 9, y: 0}
       Team: 0
-      Level: 0
-      Class: P
+      Level: 1
+      Class: Firbell
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 5}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 8}
+    - Pos: {x: 10, y: 5}
       Team: 1
-      Level: 16
-      Class: Ooze
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 6}
+      Team: 1
+      Level: 0
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: Dungeon
+    Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
-    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    MapString: 22|25|10|0|0|0|0|0|0|0|0|0|5|2|7;22|26|11|0|0|0|0|0|0|0|0|0|0|5|7;26|10|0|0|0|0|0|0|0|0|0|0|0|0|5;8|11|0|0|0|0|3|9|0|0|0|0|0|0|0;0|0|0|0|0|0|4|10|1|0|0|0|0|0|0;0|0|0|0|0|3|27|11|1|1|1|1|0|0|0;0|0|0|0|0|4|10|1|1|3|6|9|1|0|0;0|0|0|0|0|5|11|1|3|18|16|24|9|1|0;6|6|6|9|1|1|1|3|18|26|7|13|10|1|0;8|8|8|27|9|1|3|15|26|7|8|13|10|1|0;0|0|0|5|11|1|4|27|7|10|1|13|10|1|0;0|0|0|0|0|1|5|15|24|7|6|13|10|1|0;0|0|0|0|0|0|1|5|20|24|7|13|10|1|0;0|0|0|0|0|0|0|1|5|20|16|26|11|1|0;0|0|0|0|0|0|0|0|1|5|8|11|1|0|0;0|0|0|0|0|0|0|0|0|1|1|1|0|0|0
+  - Name: SpawnPoint4
+    LevelNumber: 1
+    Units:
+    - Pos: {x: 10, y: 4}
+      Team: 0
+      Level: 1
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 4}
+      Team: 0
+      Level: 1
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 8}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 6}
+      Team: 1
+      Level: 0
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 11}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Magma
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 7|10|0|0|0|0|0|0|0|0|0|0|0|4|27;5|11|0|0|0|0|0|0|0|0|0|0|0|5|8;0|0|0|0|0|0|0|0|0|3|6|9|1|1|0;0|0|0|0|0|0|0|0|0|5|2|27|9|1|0;0|0|0|0|1|3|9|1|0|1|1|5|7|9|0;0|1|3|6|6|15|17|6|9|1|0|0|5|27|9;0|3|7|7|27|7|7|27|7|9|0|0|0|5|11;3|7|7|7|7|7|7|7|27|10|0|0|0|0|0;4|7|18|17|27|15|24|7|7|10|0|0|0|0|0;4|18|26|7|8|7|20|24|7|7|9|0|0|0|0;4|13|7|10|1|4|7|13|7|2|10|0|0|0|0;4|13|7|10|1|4|7|13|7|27|10|0|0|0|3;5|20|24|7|6|7|18|26|7|27|11|0|0|0|4;0|5|20|17|27|15|26|7|7|10|1|0|0|0|5;0|0|5|8|8|8|8|8|8|11|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   - Name: TormentRoom0
     LevelNumber: 4
     Units:

@@ -20,11 +20,12 @@ public class LMapEventListener : AGameControllerListener
         if (targetEvent.MeetsRequirements())
         {
             ConversationPlayer.Current.PlayOneShot(string.Join("\n", targetEvent.Lines));
+            Destroy(this);
         }
     }
 
     public override void OnEndMap(List<Unit> units, bool playerWon)
     {
-        // Do nothing
+        Destroy(this);
     }
 }

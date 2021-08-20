@@ -151,6 +151,10 @@ public class ConversationData : System.IComparable<ConversationData>
             case "unitAlive":
                 // Return whether a certain unit is alive.
                 return GameController.Current.CheckUnitAlive(parts[1]);
+            case "teamUnitsAlive":
+                // Compares the amount of living units in the given team to the given number.
+                // Params: team:?value
+                return MeetsComparisonRequirement(parts[2][0], GameController.Current.CountUnitsAlive(parts[1].ToTeam()), int.Parse(parts[2].Substring(1)));
             case "chose":
                 // Return whether the last choice matches the given id.
                 return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);

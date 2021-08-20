@@ -754,8 +754,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(currentUnitsObject.gameObject);
         }
-        List<LMapEventListener> currentListeners = new List<LMapEventListener>(ListenersObject.GetComponentsInChildren<LMapEventListener>());
-        currentListeners.ForEach(a => Destroy(a));
         Turn = 1;
         // Set palettes
         SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
@@ -1058,6 +1056,11 @@ public class GameController : MonoBehaviour
     public bool CheckUnitAlive(string name)
     {
         return GetNamedUnit(name) != null;
+    }
+    public int CountUnitsAlive(Team? team)
+    {
+        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
+        return targetUnits.Count;
     }
     public int FindMinMaxPosUnit(Team? team, bool x, bool max)
     {
