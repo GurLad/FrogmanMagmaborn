@@ -63,7 +63,7 @@ public class PortraitController : MonoBehaviour
         // Select portrait
         return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
     }
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoad()
     {
         // Load jsons
@@ -86,7 +86,7 @@ public class PortraitController : MonoBehaviour
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
-    #endif
+#endif
 }
 
 [System.Serializable]

@@ -8,7 +8,7 @@ public class UnitClassData : MonoBehaviour
     public List<ClassData> ClassDatas;
     public AdvancedSpriteSheetAnimation BaseAnimation;
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoad()
     {
         // Load classes json
@@ -24,7 +24,7 @@ public class UnitClassData : MonoBehaviour
         json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Units.json").text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("UnitDatas"), this);
     }
-    #endif
+#endif
 
     [System.Serializable]
     public class GrowthsStruct

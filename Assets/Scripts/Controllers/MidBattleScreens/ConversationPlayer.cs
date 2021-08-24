@@ -23,6 +23,7 @@ public class ConversationPlayer : MidBattleScreen
     public GameObject Arrow;
     public MenuController ChoiceMenu;
     public MenuController InfoDialogue;
+    public CGController CGController;
     [Header("Palette stuff")]
     public PalettedSprite TextHolderPalette;
     public PalettedSprite NameHolderPalette;
@@ -253,16 +254,8 @@ public class ConversationPlayer : MidBattleScreen
             string[] parts = line.Split(':');
             switch (parts[1])
             {
-                // Level/conversation-specific commands
+                // Level (gameplay) commands
 
-                case "play":
-                    // Params: string name, bool keepTimestamp = false
-                    CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
-                    break;
-                case "playIntro":
-                    // Params: string name
-                    CrossfadeMusicPlayer.Current.PlayIntro(parts[2], false);
-                    break;
                 case "addUnit":
                     // Params: string name
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
@@ -281,15 +274,6 @@ public class ConversationPlayer : MidBattleScreen
                 case "loadMap":
                     // Params: string mapName = chosenMap
                     GameController.Current.LoadMap(parts[2]);
-                    break;
-                case "addGenericCharacter":
-                    // Params: string internalName, string forceTags = none
-                    // Add to TempPortraits with parts[2] internal name and parts[3] tags
-                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
-                    break;
-                case "getGenericCharacter":
-                    // Params: string internalName, Team fromTeam = null
-                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], GameController.Current.GetGenericPortrait(parts.Length > 3 ? parts[3].ToTeam() : null));
                     break;
                 case "setTeam":
                     // Params: string unitName, Team changeTo
@@ -325,27 +309,11 @@ public class ConversationPlayer : MidBattleScreen
                         throw new System.Exception("No matching unit! (" + parts[2] + ")");
                     }
                     break;
-                case "setSingleSpeaker":
-                    // Params: bool left = true
-                    // Removes all speakers and makes sure the next is on the left/right
-                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
-                    SetSinglePortrait(left);
-                    currentSpeakerIsLeft = !left;
-                    break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
                     Team team = parts[2].ToTeam() ?? throw new System.Exception("No team!");
                     GameController.Current.AssignAIToTeam(team, parts[3].ToAIType());
                     break;
-                case "wait":
-                    // Params: string[] requirement
-                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
-                    Pause();
-                    if (!postBattle)
-                    {
-                        CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
-                    }
-                    return;
                 case "lose":
                     // Params: none
                     GameController.Current.Lose();
@@ -354,10 +322,44 @@ public class ConversationPlayer : MidBattleScreen
                     // Params: none
                     GameController.Current.Win();
                     return;
-                case "finishConversation":
-                    // Params: none
-                    FinishConversation();
-                    return;
+
+                // Conversation (graphics, music etc.) commands
+
+                case "play":
+                    // Params: string name, bool keepTimestamp = false
+                    CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
+                    break;
+                case "playIntro":
+                    // Params: string name
+                    CrossfadeMusicPlayer.Current.PlayIntro(parts[2], false);
+                    break;
+                case "addGenericCharacter":
+                    // Params: string internalName, string forceTags = none
+                    // Add to TempPortraits with parts[2] internal name and parts[3] tags
+                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
+                    break;
+                case "getGenericCharacter":
+                    // Params: string internalName, Team fromTeam = null
+                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], GameController.Current.GetGenericPortrait(parts.Length > 3 ? parts[3].ToTeam() : null));
+                    break;
+                case "setSingleSpeaker":
+                    // Params: bool left = true
+                    // Removes all speakers and makes sure the next is on the left/right
+                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
+                    SetSinglePortrait(left);
+                    currentSpeakerIsLeft = !left;
+                    break;
+                case "showCG":
+                    // Params: string name
+                    // Removes the previous CG (if any), then shows the requested CG until manually removed
+                    CGController.HideCG(); // Reset saved palettes, just in case
+                    CGController.ShowCG(parts[2]);
+                    break;
+                case "hideCG":
+                    // Params: string name
+                    // Removes the previous CG (if any)
+                    CGController.HideCG();
+                    break;
 
                 // Show other screens (MidBattleScreens)
 
@@ -461,6 +463,15 @@ public class ConversationPlayer : MidBattleScreen
                         return;
                     }
                     throw new System.Exception("No matching conversation! (" + parts[2] + ")");
+                case "wait":
+                    // Params: string[] requirement
+                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
+                    Pause();
+                    if (!postBattle)
+                    {
+                        CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
+                    }
+                    return;
                 case "return":
                     if (functionStack.Count == 0)
                     {
@@ -469,6 +480,10 @@ public class ConversationPlayer : MidBattleScreen
                     FunctionStackObject function = functionStack.Pop();
                     lines = function.Lines;
                     StartLine(function.LineNumber + 1);
+                    return;
+                case "finishConversation":
+                    // Params: none
+                    FinishConversation();
                     return;
 
                 // Tutorial commands

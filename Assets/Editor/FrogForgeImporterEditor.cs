@@ -31,6 +31,10 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.PortraitController.AutoLoad();
         }
+        if (myScript.CGController != null && GUILayout.Button("Load CGs"))
+        {
+            myScript.CGController.AutoLoad();
+        }
         if (myScript.LevelMetadataController != null && GUILayout.Button("Load Level Metadata"))
         {
             myScript.LevelMetadataController.AutoLoad();

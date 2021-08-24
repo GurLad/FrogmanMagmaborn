@@ -42,7 +42,7 @@ public class ConversationController : MonoBehaviour
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
-    #if UNITY_EDITOR 
+#if UNITY_EDITOR 
     public void AutoLoad()
     {
         Conversations.Clear();
@@ -54,7 +54,7 @@ public class ConversationController : MonoBehaviour
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
-    #endif
+#endif
 }
 
 /*

@@ -414,7 +414,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         return result;
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoadAnimations()
     {
         // Clear previous
@@ -533,7 +533,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         // Set dirty
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
-    #endif
+#endif
 
     [System.Serializable]
     private class TilesetsData

@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
     [SerializeField]
     private MapData mapData;
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoadTilesets()
     {
         // Clear previous data
@@ -45,9 +45,9 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             }
         }
     }
-    #endif
+#endif
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoadMaps()
     {
         // Clear previous data
@@ -79,7 +79,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         }
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
-    #endif
+#endif
 
     [System.Serializable]
     public class MapData

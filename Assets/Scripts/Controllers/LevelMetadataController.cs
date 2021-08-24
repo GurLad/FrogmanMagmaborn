@@ -17,7 +17,7 @@ public class LevelMetadataController : MonoBehaviour
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public void AutoLoad()
     {
         // Load metadatas json
@@ -29,5 +29,5 @@ public class LevelMetadataController : MonoBehaviour
         // Dirty
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
-    #endif
+#endif
 }
