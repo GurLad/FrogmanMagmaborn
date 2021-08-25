@@ -2,7 +2,8 @@ priority:4
 unique:T
 ~ Requirements
 roomNumber:5
-charactersAlive:<2
+# The first time has no requirement (like Xeplogi). This could make the run slightly easier, but prevents people from completely missing out on a character.
+#charactersAlive:<2
 ~ Demands
 # Nothinig
 ~ Before battle
@@ -21,21 +22,20 @@ Alfred: Greetings.\a You fighting the Guards?
 Frogman: The humans, you mean?
 Alfred: Obviously.\a Never heard of 'em before?
 Firbell: No. What are they doing here?
-Alfred: Ah. Lucky you.\a Never felt their wrath, eh?
-Frogman: No, not really.\a Fought them once or twice here.
-Alfred: Pah! The only ones here are scum.\a But I smell 'em coming.\a Get ready.
+Alfred: Ah.\a Lucky you.\a Free of their wrath.\a The destruction they leave behind.
+Frogman: Wow, I didn't know they were so powerful.\a We've only fought them once or twice here.
+Alfred: Pah! The ones here are scum.\a They are weak\a But I smell 'em coming.\a Get ready.
 Firbell: How can you smell without a-
 :setFlag:AlfredFirbell
 }
 :else:{
 :if:hasCharacter:Kresla{
 Kresla: Hi there! I've never seen you before!\a Where were you from?
-Alfred: Alros.\a Used to be Abenzon kingdom.\a But I wasn't born that time.
-Kresla: Alros? You mean Althres?\a Oh, I'm from there too!\a A few centuries - or millnias - later, however.
+Alfred: Alros.\a Used to be Abenzon kingdom, some said.\a But I wasn't born that time.
+Kresla: Alros? You mean Althres?\a Oh, I'm from there too!\a A few centuries - or millenias - later, however.
 Alfred: Really? What's your name?
-Kresla: Right, how could I forget? Name's Kresla.
-Alfred: Think I'm a fool, eh?
-Queen of a Resy kingdom, born in Alros?\a You're lucky the Guards're here,\a or I'd killed you.
+Kresla: Right, I keep forgetting, don't I? Name's Kresla.
+Alfred: Ha! Think I'm a fool, eh?\a Queen of some Resy kingdom, born in Alros?\a You're lucky the Guards're here,\a or I'd killed you.
 Kresla: What? Oh, you're like Xirveros!\a From his time, I mean!\a Wait, how can you tell-
 :setFlag:AlfredKresla
 }

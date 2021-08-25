@@ -73,3 +73,17 @@ Xeplogi: And serve the glorious Tori in his holy crusade against\a Memerian!
 Frogman: I- you know what, never mind.\a Yes, we're Tori followers.\a Happy now?
 Xeplogi: Indeed! Let us march on!
 Frogman: *sigh*
+:if:hasCharacter:Firbell{
+Firbell: Frogman.
+Frogman: Yes?
+Firbell: Are you sure that siding with this lunatic is a good idea?
+Frogman: He's a Magmaborn, like us.\a We should all help each other,\a regardless of our conditions.
+Firbell: ...Very well. I will trust you on this.\a But these humans... Why are we fighting them?
+Frogman: They attacked us.
+Firbell: Still. These are no mindless monsters.\a They are sentient beings.\a Are we doing the right thing?
+Frogman: ...We have no other choice.
+Firbell: No, we could-
+Frogman: We should get out of here soon, Firbell.\a Will you help us fight?
+Firbell: I-\a This...\a Very well, Frogman.\a Lead the way.
+:setFlag:FirbellMorality1
+}

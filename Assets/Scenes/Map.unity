@@ -21996,6 +21996,18 @@ MonoBehaviour:
   MovementCost: 99
   ArmorModifier: 0
   High: 1
+--- !u!114 &2099690533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4789963763846025884, guid: 418b964e45a35c440a8d44cd2ba54949,
+    type: 3}
+  m_PrefabInstance: {fileID: 7897415133979970161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7999c495a9efc0942a39edf5c91d5138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100321854
 GameObject:
   m_ObjectHideFlags: 0
@@ -22632,6 +22644,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrogForgeImporter
       objectReference: {fileID: 0}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
+      propertyPath: CGController
+      value: 
+      objectReference: {fileID: 2099690533}
     - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
         type: 3}
       propertyPath: MapController

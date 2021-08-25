@@ -34,10 +34,10 @@ public class CGController : MonoBehaviour
         Debug.Log("Searching for " + name);
         CG toShow = CGs.Find(a => a.Name == name);
         Debug.Log("Found " + (toShow?.FGPalette1.ToString() ?? "Null"));
-        BG1.gameObject.GetComponent<Image>().sprite = toShow.BGImage1;
-        BG2.gameObject.GetComponent<Image>().sprite = toShow.BGImage2;
-        FG1.gameObject.GetComponent<Image>().sprite = toShow.FGImage1;
-        FG2.gameObject.GetComponent<Image>().sprite = toShow.FGImage2;
+        LoadImage(BG1, toShow.BGImage1);
+        LoadImage(BG2, toShow.BGImage2);
+        LoadImage(FG1, toShow.FGImage1);
+        LoadImage(FG2, toShow.FGImage2);
         PaletteController.Current.BackgroundPalettes[0] = toShow.BGPalette1;
         PaletteController.Current.BackgroundPalettes[1] = toShow.BGPalette2;
         BG1.Palette = 0;
@@ -52,6 +52,19 @@ public class CGController : MonoBehaviour
         PaletteController.Current.BackgroundPalettes[0] = previousBG1Palette ?? PaletteController.Current.BackgroundPalettes[0];
         PaletteController.Current.BackgroundPalettes[1] = previousBG2Palette ?? PaletteController.Current.BackgroundPalettes[1];
         Container.SetActive(false);
+    }
+
+    private void LoadImage(PalettedSprite display, Sprite image)
+    {
+        if (image != null)
+        {
+            display.gameObject.GetComponent<Image>().sprite = image;
+            display.gameObject.SetActive(true);
+        }
+        else
+        {
+            display.gameObject.SetActive(false);
+        }
     }
 
 #if UNITY_EDITOR
