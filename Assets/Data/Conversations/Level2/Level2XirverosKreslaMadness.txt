@@ -1,0 +1,35 @@
+priority:1
+unique:T
+~ Requirements
+roomNumber:2
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle
+:loadUnits::player
+Kresla: Hey there, Xirveros!
+Xirveros: Kresla!\a You build goblin pyramid?
+Frogman: What?
+Kresla: I have no idea.
+Xirveros: Pyramid of doom! Of frogs!
+Kresla: Go on.
+Xirveros: Take forty two frogs. Put on thirty seven goblins.\a Then pour magma!
+Frogman: ...What?
+Kresla: Sure, I'll try that.\a Except we only have one frog.
+Frogman: Wait, are you talking about me?
+Kresla: Who else?\a Maybe we can split you into forty two parts,\a then find the goblins, and-
+Frogman: Kresla, what is wrong with you?!
+:loadUnits:
+Xirveros: Yes! For split frog, need eighty goblins,\a not thiry seven!
+Kresla: Really? I'll try to remember that.
+Frogman: You're all mad.\a Speaking of goblins,\a did you notice the monsters here?
+Xirveros: Monsters?! Are there goblins?
+Frogman: This is irrelevant! We need to fight!
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

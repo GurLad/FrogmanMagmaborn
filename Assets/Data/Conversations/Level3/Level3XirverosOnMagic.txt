@@ -2,6 +2,7 @@ priority:1
 unique:T
 ~ Requirements
 roomNumber:3
+hasFlag:XirverosPast1
 ~ Demands
 # Nothinig
 ~ Before battle
@@ -32,13 +33,13 @@ Xirveros: Lich dead.
 Frogman: I know, Xirveros. We're lucky you aren't dead.\a What were you thinking?! Talking to a lich?!\a That... that was a bad joke!\a You could've died!
 Xirveros: Died.\a Me died.\a Knowledge died.\a All died.
 Frogman: You... That's no what I me-
-Xirveros: They dead. All dead. Did they remember?\a Recover?\a Abrhys... Welki...
+Xirveros: They dead. All dead.\a All for Firlor.\a Did they remember?\a Recover?\a Abrhys... Welki...
 Frogman: Who?
 Xirveros: Apprentice. Teacher. They before you.\a Before death.
 Frogman: Huh. Who were they?
 Xirveros: Nnngh... Frog. Frog. Froooo...
 Frogman: Oh. They are coming.
-:setFlag:XirverosPast1
+:setFlag:XirverosPast2
 
 # === Functions ====
 
