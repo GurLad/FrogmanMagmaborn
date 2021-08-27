@@ -1,0 +1,36 @@
+priority:2
+unique:T
+~ Requirements
+roomNumber:4
+hasFlag:MetAlfred
+~ Demands
+# Nothinig
+~ Before battle
+# TBA: Add !firstTime dialouge
+:callOther:TormentBase
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+Frogman: Oh no!
+:loadUnits:InitTormentRoom
+:play:Trustworthy
+Torment||R: Alfred stuff.
+:play:Trickster:T
+Torment||R: More Alfred stuff.
+:playIntro:Tormentor
+:loadMap:
+:loadUnits:
+Torment||R: Even MORE!
+~ After battle
+:play:Trickster
+Frogman: Oof...
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: Power!\a Unlimited POWER!
+:unlockKnowledge:TormentWrathMercy
+:showInfoDialogue:New knowledge!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
