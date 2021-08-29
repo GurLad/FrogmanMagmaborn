@@ -1,11 +1,10 @@
  -Move all room logic to MapController.
- -Rename Tilemap to Tileset in Frog Forge.
 
- -Add room events:
-  -Each room has an event that plays after the normal conversation (most rooms still have no event). This is mostly for changing enemy AI mid-battle.
-  -Add relevant requirements & commands:
-   -frogmanPoxX, frogmanPosY, numUnitsInTeam
-   -setTeamAI:Guard:Charge
+V-Add room events:
+ V-Each room has an event that plays after the normal conversation (most rooms still have no event). This is mostly for changing enemy AI mid-battle.
+ V-Add relevant requirements & commands:
+  ~-frogmanPoxX, frogmanPosY, numUnitsInTeam
+  V-setTeamAI:Guard:Charge
 
 ?-Fix AI for 2 range units:
   -Fix find closest unit
@@ -20,8 +19,8 @@
 
  -Show range on hover
  -Mouse controls
- -Add show more info on stat screen (like FEGBA R button)
- -Improve tutorial (add another unit, how to view stats and show danger area)
+~-Add show more info on stat screen (like FEGBA R button) (currently a very lazy implementation)
+~-Improve tutorial (add another unit, how to view stats and show danger area) (currently a very lazy implementation)
  -Add Inclination tutorial/explaination.
 V-Add movement animations (I've been delaying this for so long, I completely forgot about it)
  -Add undo last move (if didn't attack)
@@ -32,7 +31,7 @@ V-Add game over screen
  V-Battle animation mode (Original, Fast (default) and Map)
   -View past tutorials
 ~-Add what happens to events the player didn't finish (probably a setFlag in the pre-battle part, and if that skips it if the flag)
- -Find a way to make early levels less boring (probably simply add more maps)
+~-Find a way to make early levels less boring (probably simply add more maps) (added more maps)
  -First Kresla level is too hard
  -Still a bit too hard apperantly
 V-Fix turn phase animation

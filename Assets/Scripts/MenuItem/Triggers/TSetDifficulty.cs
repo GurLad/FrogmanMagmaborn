@@ -7,7 +7,7 @@ public class TSetDifficulty : Trigger
     public Difficulty Difficulty;
     public override void Activate()
     {
-        SavedData.Save("Difficulty", (int)Difficulty);
+        SavedData.Save("Knowledge", "UpgradeDifficulty", (int)Difficulty);
         SavedData.SaveAll(SaveMode.Slot);
     }
 }

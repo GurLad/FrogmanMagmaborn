@@ -12,6 +12,7 @@ public class KnowledgeMenuController : MonoBehaviour
     public Sprite InactiveSprite;
     public Sprite[] InclinationSprites;
     public Sprite[] TormentPowersSprites;
+    public Sprite[] DifficultySprites;
     [Header("Objects")]
     public MenuController BaseMenu;
     public Text MenuName;
@@ -67,6 +68,9 @@ public class KnowledgeMenuController : MonoBehaviour
                         break;
                     case KnowledgeUpgradeType.TormentPower:
                         item = Instantiate(BaseMenuItem, menu.transform).AddComponent<TormentKnowledgeMenuItem>();
+                        break;
+                    case KnowledgeUpgradeType.Difficulty:
+                        item = Instantiate(BaseMenuItem, menu.transform).AddComponent<DifficultyKnowledgeMenuItem>();
                         break;
                     default:
                         throw new System.Exception("No type?");

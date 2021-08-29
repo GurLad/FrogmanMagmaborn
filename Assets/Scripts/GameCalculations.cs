@@ -157,18 +157,19 @@ public static class GameCalculations
 
     public static Stats AutoLevel(this Unit unit, int level)
     {
-        Difficulty difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
+        Difficulty difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
         if (unit.TheTeam == Team.Player)
         {
-            if (difficulty != Difficulty.Hard && difficulty != Difficulty.NotSet)
+            if (difficulty != Difficulty.Insane && difficulty != Difficulty.NotSet)
             {
-                level += difficulty == Difficulty.Easy ? 2 : 1;
+                level += difficulty == Difficulty.Normal ? 2 : 1;
             }
             if (KnowledgeController.TormentPower("OrderChaos") == TormentPowerState.I) // It would be more efficent to include this in the default, but less future-proof
             {
                 level += 2;
             }
         }
+        unit.Level = level;
         Stats temp = unit.Stats.GetMultipleLevelUps(level); // StatsPerLevel modifiers would be broken if they affected auto-levels
         if (unit.TheTeam == Team.Monster) // It wouldn't make sense for Torment to buff Guards, although might be too easy this way.
         {

@@ -179,6 +179,8 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
+        Debug.Log(difficulty + " is the difficulty");
         playerUnitsCache = new List<Unit>();
         if (DebugStartAtEndgame)
         {
@@ -209,7 +211,6 @@ public class GameController : MonoBehaviour
             LevelNumber = 1;
             playerUnitsCache = new List<Unit>();
         }
-        difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
         CreateLevel();
     }
     /// <summary>
@@ -538,14 +539,14 @@ public class GameController : MonoBehaviour
             }
             else // Update difficulty
             {
-                difficulty = (Difficulty)SavedData.Load("Difficulty", 0);
-                if (difficulty != Difficulty.Hard) // Level up player units
+                difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
+                if (difficulty != Difficulty.Insane) // Level up player units
                 {
                     foreach (Unit unit in units)
                     {
                         if (unit.TheTeam == Team.Player)
                         {
-                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.AutoLevel(++unit.Level);
+                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.AutoLevel(unit.Level);
                             unit.Health = unit.Stats.MaxHP;
                         }
                     }
@@ -822,8 +823,8 @@ public class GameController : MonoBehaviour
         unit.Stats.Growths = classData.Growths.Values;
         unit.Flies = classData.Flies;
         unit.Inclination = classData.Inclination;
-        unit.Stats += unit.AutoLevel(level);
         unit.Level = level;
+        unit.Stats += unit.AutoLevel(level);
         unit.Weapon = classData.Weapon;
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);

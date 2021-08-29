@@ -70,7 +70,7 @@ public class TutorialGameController : GameController
     }
     protected override void CheckDifficulty()
     {
-        difficulty = Difficulty.Hard;
+        difficulty = Difficulty.Insane;
     }
     private void WrongInput()
     {

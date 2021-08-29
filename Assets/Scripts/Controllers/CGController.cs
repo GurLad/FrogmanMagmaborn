@@ -31,9 +31,7 @@ public class CGController : MonoBehaviour
     {
         previousBG1Palette = PaletteController.Current.BackgroundPalettes[0];
         previousBG2Palette = PaletteController.Current.BackgroundPalettes[1];
-        Debug.Log("Searching for " + name);
         CG toShow = CGs.Find(a => a.Name == name);
-        Debug.Log("Found " + (toShow?.FGPalette1.ToString() ?? "Null"));
         LoadImage(BG1, toShow.BGImage1);
         LoadImage(BG2, toShow.BGImage2);
         LoadImage(FG1, toShow.FGImage1);
