@@ -134,7 +134,16 @@ public class GameController : MonoBehaviour
         {
             _interactable = value;
             UITileInfoPanel.gameObject.SetActive(_interactable);
+            UIUnitInfoPanel.gameObject.SetActive(_interactable);
             Cursor.gameObject.SetActive(_interactable);
+            if (interactable)
+            {
+                UpdateUI();
+            }
+            else
+            {
+                UIFightPanel.gameObject.SetActive(false);
+            }
         }
     }
     private List<Unit> units
@@ -281,61 +290,9 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UITileInfo.text = Map[cursorPos.x, cursorPos.y].ToString();
-                Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
-                Vector2 anchor;
-                if (cursorPos.x >= MapSize.x / 2)
-                {
-                    anchor = new Vector2Int(0, 1);
-                }
-                else
-                {
-                    anchor = new Vector2Int(1, 1);
-                }
-                if (enemyCount == -1)
-                {
-                    enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
-                }
-                UIUnitInfoPanel.gameObject.SetActive(true);
-                if (unit != null)
-                {
-                    UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
-                    UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
-                }
-                else
-                {
-                    UIUnitInfo.text = GetInfoObjectiveText();
-                    UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = 3;
-                }
-                UIUnitInfoPanel.anchorMin = anchor;
-                UIUnitInfoPanel.anchorMax = anchor;
-                UIUnitInfoPanel.pivot = anchor;
-                if (InteractState != InteractState.None)
-                {
-                    UIFightPanel.gameObject.SetActive(true);
-                    anchor.y = 0.5f;
-                    UIFightPanel.anchorMin = anchor;
-                    UIFightPanel.anchorMax = anchor;
-                    UIFightPanel.pivot = anchor;
-                    DisplayBattleForecast(Selected, unit);
-                    DisplayBattleForecast(unit, Selected, true);
-                }
-                else
-                {
-                    UIFightPanel.gameObject.SetActive(false);
-                }
-                anchor.y = 0;
-                UITileInfoPanel.anchorMin = anchor;
-                UITileInfoPanel.anchorMax = anchor;
-                UITileInfoPanel.pivot = anchor;
+                UpdateUI();
             }
             previousPos = cursorPos;
-        }
-        else
-        {
-            UIUnitInfoPanel.gameObject.SetActive(false);
-            UIFightPanel.gameObject.SetActive(false);
-            Cursor.gameObject.SetActive(false);
         }
         // End Interact/UI code
         EnemyAI();
@@ -553,6 +510,55 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+    }
+    private void UpdateUI()
+    {
+        UITileInfo.text = Map[cursorPos.x, cursorPos.y].ToString();
+        Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
+        Vector2 anchor;
+        if (cursorPos.x >= MapSize.x / 2)
+        {
+            anchor = new Vector2Int(0, 1);
+        }
+        else
+        {
+            anchor = new Vector2Int(1, 1);
+        }
+        if (enemyCount == -1)
+        {
+            enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
+        }
+        if (unit != null)
+        {
+            UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
+            UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
+        }
+        else
+        {
+            UIUnitInfo.text = GetInfoObjectiveText();
+            UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = 3;
+        }
+        UIUnitInfoPanel.anchorMin = anchor;
+        UIUnitInfoPanel.anchorMax = anchor;
+        UIUnitInfoPanel.pivot = anchor;
+        if (InteractState != InteractState.None)
+        {
+            UIFightPanel.gameObject.SetActive(true);
+            anchor.y = 0.5f;
+            UIFightPanel.anchorMin = anchor;
+            UIFightPanel.anchorMax = anchor;
+            UIFightPanel.pivot = anchor;
+            DisplayBattleForecast(Selected, unit);
+            DisplayBattleForecast(unit, Selected, true);
+        }
+        else
+        {
+            UIFightPanel.gameObject.SetActive(false);
+        }
+        anchor.y = 0;
+        UITileInfoPanel.anchorMin = anchor;
+        UITileInfoPanel.anchorMax = anchor;
+        UITileInfoPanel.pivot = anchor;
     }
     private void EnemyAI()
     {

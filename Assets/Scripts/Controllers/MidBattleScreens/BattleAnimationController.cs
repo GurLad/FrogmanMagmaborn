@@ -153,7 +153,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case State.AttackerAttacking:
                 break;
             case State.AttackerFinishingAttack:
-                if (count >= battleTrueFlashTime && DefenderObject != null)
+                if (!Defender.Statue && count >= battleTrueFlashTime && DefenderObject != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
                     defenderPalette.Palette = (int)Defender.TheTeam;
@@ -166,7 +166,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 }
                 break;
             case State.DefenderFinishingAttack:
-                if (count >= battleTrueFlashTime && AttackerObject != null)
+                if (!Attacker.Statue && count >= battleTrueFlashTime && AttackerObject != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
                     attackerPalette.Palette = (int)Attacker.TheTeam;
@@ -213,7 +213,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     attackerPalette.Palette = (int)Attacker.TheTeam;
                 }
-                if (count >= battleTrueFlashTime && DefenderObject != null)
+                if (!Defender.Statue && count >= battleTrueFlashTime && DefenderObject != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
                     defenderPalette.Palette = (int)Defender.TheTeam;
