@@ -378,6 +378,7 @@ public class Unit : MapObject
         {
             ConversationPlayer.Current.OnFinishConversation = () => ActualFight(unit);
             ConversationPlayer.Current.PlayOneShot(BattleQuote != "" ? BattleQuote : unit.BattleQuote);
+            unit.BattleQuote = BattleQuote = "";
         }
         else if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
         {

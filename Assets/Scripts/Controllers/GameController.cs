@@ -133,16 +133,13 @@ public class GameController : MonoBehaviour
         set
         {
             _interactable = value;
-            UITileInfoPanel.gameObject.SetActive(_interactable);
-            UIUnitInfoPanel.gameObject.SetActive(_interactable);
-            Cursor.gameObject.SetActive(_interactable);
             if (interactable)
             {
-                UpdateUI();
+                ShowUI();
             }
             else
             {
-                UIFightPanel.gameObject.SetActive(false);
+                HideUI();
             }
         }
     }
@@ -189,7 +186,6 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
-        Debug.Log(difficulty + " is the difficulty");
         playerUnitsCache = new List<Unit>();
         if (DebugStartAtEndgame)
         {
@@ -290,7 +286,7 @@ public class GameController : MonoBehaviour
             }
             if (previousPos != cursorPos)
             {
-                UpdateUI();
+                ShowUI();
             }
             previousPos = cursorPos;
         }
@@ -511,8 +507,11 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    private void UpdateUI()
+    private void ShowUI()
     {
+        UITileInfoPanel.gameObject.SetActive(true);
+        UIUnitInfoPanel.gameObject.SetActive(true);
+        Cursor.gameObject.SetActive(true);
         UITileInfo.text = Map[cursorPos.x, cursorPos.y].ToString();
         Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
         Vector2 anchor;
@@ -559,6 +558,12 @@ public class GameController : MonoBehaviour
         UITileInfoPanel.anchorMin = anchor;
         UITileInfoPanel.anchorMax = anchor;
         UITileInfoPanel.pivot = anchor;
+    }
+    private void HideUI()
+    {
+        UITileInfoPanel.gameObject.SetActive(false);
+        UIUnitInfoPanel.gameObject.SetActive(false);
+        Cursor.gameObject.SetActive(false);
     }
     private void EnemyAI()
     {
@@ -985,7 +990,7 @@ public class GameController : MonoBehaviour
         }
         enemyCount = -1;
         currentPhase = Team.Player;
-        interactable = true;
+        //interactable = true;
     }
     public void ShowDangerArea()
     {
