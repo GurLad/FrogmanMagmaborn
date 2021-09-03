@@ -1,7 +1,6 @@
-priority:2
+priority:4
 unique:T
 ~ Requirements
-numRuns:>3
 ~ Demands
 ~ Before battle
 :play:BeforeBattle
@@ -25,6 +24,7 @@ FrogmanMan|Frogman: Good luck!\a Looking forward to your frog stew!
 :play:BeforeBattle
 Frogman||L: ...
 Zip... Who were you?
+:setFlag:Flashback1
 
 ~ After battle
 # Name: Text.

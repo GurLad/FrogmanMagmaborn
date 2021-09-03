@@ -14,8 +14,8 @@ Frogman: Huh. Xeplogi isn't here.\a Hopefully it will be a bit quite at last.
 :loadUnits::player
 Alfred|???: Hey. You there.
 Frogman: Ah! Where did you come from?
-Alfred: Name's Alfred. Who're you?
 :if:hasCharacter:Firbell{
+Alfred: Name's Alfred. Who're you?
 Frogman: My name is Frogman.
 Firbell: And I am Firbell. Pleased to make your acquaintance.
 Alfred: Greetings.\a You fighting the Guards?
@@ -31,7 +31,7 @@ Firbell: How can you smell without a-
 }
 :else:{
 :if:hasCharacter:Kresla{
-Kresla: Hi there! I've never seen you before!\a Where were you from?
+Kresla: Hi there! I've never seen you before!\a Where are you from?
 Alfred: Alros.\a Used to be Abenzon kingdom, some said.\a But I wasn't born that time.
 Kresla: Alros? You mean Althres?\a Oh, I'm from there too!
 A few centuries - or millennia - later, however.
@@ -43,6 +43,7 @@ Kresla: What? Oh, you're like Xirveros!\a From his time, I mean!\a Wait, how can
 }
 :else:{
 :if:hasCharacter:Xirveros{
+Alfred: Name's Alfred. Who're you?
 Xirveros: Me Xirveros. This Frog.
 Alfred: Greetings.\a You fighting the Guards?
 Xirveros: Guards! Guards!
@@ -59,6 +60,7 @@ Xirveros: Guards!
 Alfred: Guards!\a They're here!
 }
 :else:{
+Alfred: Name's Alfred. Who're you?
 Frogman: My name is Frogman.
 Alfred: Greetings.\a You fighting the Guards?
 Frogman: The humans, you mean?
@@ -94,10 +96,11 @@ Frogman: This way!\a Time to get out of here!
 # === Functions ====
 
 ~ PostAlfred
+:if:charactersAlive:>2{
+# If everyone else is alive, Alfred abandons him (dies). Otherwise Frogman convices him to stay.
 :if:teamUnitsAlive:guard:>0{
-# Frogman runs. If everyone else is alive, Alfred abandons him (dies). Otherwise Frogman convices him to stay.
 Alfred: You're running away?!\a Pah, cowards, every one of you!
-Frogman: Alfred, they're too many!\a
+Frogman: Alfred, they're too many!\a We've got to leave, now!
 Alfred: I'd rather die than run!
 Frogman: 
 }

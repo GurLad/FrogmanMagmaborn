@@ -1,0 +1,43 @@
+priority:4
+unique:T
+~ Requirements
+hasFlag:ReachedPart2
+hasFlag:Flashback1
+~ Demands
+~ Before battle
+:play:BeforeBattle
+Frogman: Ah... I'm back...
+Wait, something...\a Another memory...
+# Load village background image
+:showImage:VillageBG
+:play:ForgottenMemories
+FrogmanMan|Frogman|L: Another day, another hunt.\a I hope I'll find a frog today.\a Hm...
+...
+You there.\a I can see you, you know.
+DeharoFB|???: Of course. I didn't want to startle your prey.
+FrogmanMan|Frogman|L: Too late for that. Who are you?\a We don't get many travelers out here.\a Nor do we want to.
+DeharoFB|???: I'm sorry, I didn't mean to disturb you.\a However, I appear to be lost.\a Could you please help me?
+FrogmanMan|Frogman|L: ...Where are you from?
+DeharoFB|???: I... do not remember.
+FrogmanMan|Frogman|L: Sure.
+Zip||L: Hey! Frogman, who's there?
+DeharoFB|???: Sorry, I did not mean to be a bother.\a I'll go now.
+Zip||L: Wait, we don't get many visitors out 'ere!\a Stay awhile, 'ill you?\a I'd love to hear your story!
+FrogmanMan|Frogman|L: Seriously, Zip? This is obviously a bandit.
+Zip||L: Frogman, stop that!
+Sorry for that, stranger. He's abit protective. Har!\a So what's 'our name, eh?
+DeharoFB|???: There is nothing to apologize for, kind stranger.\a Frogman here was right to be cautious.
+FrogmanMan|Frogman|L: ...
+DeharoFB|???: But I thank your hospitality very much.\a My name is...
+:hideCG:
+:play:BeforeBattle
+Frogman: Ah!\a Huh?\a Urgh... These memories are so confusing...
+:setFlag:Flashback2
+
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

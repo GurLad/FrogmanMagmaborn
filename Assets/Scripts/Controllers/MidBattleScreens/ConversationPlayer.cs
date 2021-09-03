@@ -410,6 +410,10 @@ public class ConversationPlayer : MidBattleScreen
                     SavedData.Save("ConversationData", "TempFlag" + parts[2], 1);
                     tempFlags.Add(parts[2]);
                     break;
+                case "markDone":
+                    // Params: none
+                    origin.Choose(true);
+                    break;
 
                 // Syntax commands (ifs, functions...)
 

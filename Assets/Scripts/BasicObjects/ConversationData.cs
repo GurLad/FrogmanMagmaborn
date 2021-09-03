@@ -200,7 +200,7 @@ public class ConversationData : System.IComparable<ConversationData>
     {
         if (unique)
         {
-            SavedData.Save("ConversationData", "ID" + ID, postBattle ? 2 : 1);
+            SavedData.Save("ConversationData", "ID" + ID, Mathf.Max(SavedData.Load<int>("ConversationData", "ID" + ID), postBattle ? 2 : 1));
             return true;
         }
         return false;

@@ -63,6 +63,7 @@ Frogman: Everyone, this way!\a Let's get out of here!
 :loadMap:Part2RestArea
 :loadUnits:Part2RestArea
 :play:SafeAndSound
+:if:hasCharacter:Xeplogi{
 Xeplogi: Hold!\a Where do you come from, monster friends?\a Are you Tori minions sent to serve me?
 Frogman: What? No, we're fellow Magmaborn.
 Xeplogi: What?
@@ -86,5 +87,29 @@ Firbell: No, we could-
 Frogman: We should get out of here soon, Firbell.\a Will you help us fight?
 Firbell: I-\a This...\a Very well, Frogman.\a Lead the way.
 :setFlag:FirbellMorality1
+}
+}
+:else:{
+Frogman||L: Xeplogi didn't make it, huh?
+:if:charactersAlive:>0{
+:if:hasCharacter:Kresla{
+Kresla: No. He was a weird one. I wonder what's his story.\a Who's this Tori?\a How is it possible that he has never seen a\a Magmaborn before? Where did he come from? When?\a So many questions!
+Frogman: Yes, well, I'm sure we'll meet him again one day.
+}
+:else:{
+:if:hasCharacter:Xirveros{
+Xirveros: Ooze dead? No! Me like ooze.\a Me write ooze song!
+Frogman: No, please don't-
+Xirveros: An ooze was here    \w@
+Everyone could hear \w@
+He liked to scream  \w@
+Smelled like cream  \w@
+Over and over       \w@
+Over and over       \w@
+Frogman: ...Wow.
+}
+:else:{
+Frogman||L: Oh well.
+}
 }
 :setFlag:MetXeplogi
