@@ -18,12 +18,22 @@ public static class GameCalculations
 
         public static bool HasKnowledge(HardcodedKnowledge name)
         {
-            return SavedData.Load<int>("Knowledge", "Upgrade" + name) > 0;
+            return HasKnowledge(name.ToString());
         }
 
         public static bool HasKnowledge(string name)
         {
             return SavedData.Load<int>("Knowledge", "Upgrade" + name) > 0;
+        }
+
+        public static bool GetUpgradeActive(HardcodedKnowledge name)
+        {
+            return GetUpgradeActive(name.ToString());
+        }
+
+        public static bool GetUpgradeActive(string name)
+        {
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
         }
 
         public static bool FoundKnowledge(string name)
@@ -51,7 +61,7 @@ public static class GameCalculations
     {
         get
         {
-            return KnowledgeController.TormentPower("OrderChaos") == TormentPowerState.II ? 1 : (KnowledgeController.HasKnowledge(HardcodedKnowledge.LevelUpChoice) ? 3 : 2);
+            return KnowledgeController.TormentPower("OrderChaos") == TormentPowerState.II ? 1 : (KnowledgeController.GetUpgradeActive(HardcodedKnowledge.LevelUpChoice) ? 3 : 2);
         }
     }
 
@@ -67,7 +77,7 @@ public static class GameCalculations
     {
         get
         {
-            return KnowledgeController.HasKnowledge(HardcodedKnowledge.InclinationBuff);
+            return KnowledgeController.GetUpgradeActive(HardcodedKnowledge.InclinationBuff);
         }
     }
 

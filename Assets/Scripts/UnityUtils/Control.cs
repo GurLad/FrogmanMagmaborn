@@ -102,6 +102,11 @@ public static class Control
         return DisplayButtonName(keySaveName).Replace("Arrow", "").Replace("Keypad", "Num").Replace("Alpha", "").Replace("Return", "Enter");
     }
 
+    public static string DisplayShortButtonName(CB button)
+    {
+        return DisplayShortButtonName(button.ToString());
+    }
+
     public static KeyCode GetKeyCode(string keySaveName)
     {
         return (KeyCode)Load(keySaveName + SaveNameModifier(), 0, SaveMode.Global);

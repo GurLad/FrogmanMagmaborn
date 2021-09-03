@@ -12,6 +12,9 @@ public class LevelUpController : MidBattleScreen
     public Text UnitInfo;
     public BattleStatsPanel StatInfo;
     public LevelUpObject BaseLevelUpObject;
+    [Header("Help")]
+    public Text HelpDisplay;
+    public DisplayStatsHelp StatsHelp;
     [HideInInspector]
     public List<Unit> Players;
     private int numOptions;
@@ -21,6 +24,7 @@ public class LevelUpController : MidBattleScreen
     private int previousSign;
     private void Start()
     {
+        HelpDisplay.text = HelpDisplay.text.Replace("Select", Control.DisplayShortButtonName(Control.CB.Select));
         numOptions = GameCalculations.NumLevelUpOptions;
         levelUpObjects = new List<LevelUpObject>();
         for (int i = 0; i < numOptions; i++)
@@ -62,12 +66,20 @@ public class LevelUpController : MidBattleScreen
     }
     private void Update()
     {
-        if (Control.GetButtonDown(Control.CB.A))
+        if (!IsCurrent())
+        {
+            return;
+        }
+        if (Control.GetButtonDown(Control.CB.Select))
+        {
+            StatsHelp.Activate(this);
+        }
+        else if (Control.GetButtonDown(Control.CB.A))
         {
             Players[currentUnitID].Stats += levelUpObjects[selected].Stats;
             NextUnit();
         }
-        if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
+        else if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
             levelUpObjects[selected].PalettedSprite.Palette = 3;
             selected += -Control.GetAxisInt(Control.Axis.Y) + numOptions;

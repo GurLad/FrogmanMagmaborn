@@ -30,6 +30,10 @@ public abstract class MidBattleScreen : MonoBehaviour
     {
         Current.Quit();
     }
+    public bool IsCurrent()
+    {
+        return MidBattleScreen.Current == this;
+    }
     public void Quit()
     {
         Set(this, false);
