@@ -96,17 +96,20 @@ Frogman: This way!\a Time to get out of here!
 # === Functions ====
 
 ~ PostAlfred
-:if:charactersAlive:>2{
-# If everyone else is alive, Alfred abandons him (dies). Otherwise Frogman convices him to stay.
+# The "fix" only happens in level 6 - Alfred abandons the player if they still have too many characters
 :if:teamUnitsAlive:guard:>0{
 Alfred: You're running away?!\a Pah, cowards, every one of you!
 Frogman: Alfred, they're too many!\a We've got to leave, now!
 Alfred: I'd rather die than run!
-Frogman: 
+Frogman: What?\a Um...\a Then look at it this way - if you survive,
+you can help us defeat more Guards in the future!\a Yeah!
+Alfred: ...Urgh.\a Fine.\a This better be worth it.
 }
 :loadMap:Part2RestArea
 :loadUnits:Part2RestArea
 :play:SafeAndSound
+# Frogman notices Alfred's ring
+
 
 ~ PostAlfredDead
 # Name: Text.

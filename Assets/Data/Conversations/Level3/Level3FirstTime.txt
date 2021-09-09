@@ -47,7 +47,10 @@ Frogman: Huh? Why?
 Firbell: Do you see that monster there?\a It is a Lich.
 One of the strongest monsters around here,\a capable of devastating Black Magic.
 Frogman: Magic? Never seen that before here.
-Firbell: Because monsters cannot naturally use it.\a They do not feel pain, the fuel for magic.
+Firbell: Because magic requires magic crystals,\a which are exceedingly rare,\a especially here.
+Frogman: Aren't our Magma Emblems crystals?
+Firbell: Yes, but not magic crystals.\a They cannnot be used for normal magic.
+Frogman: Oh.
 The Lich will not attack us unless provoked,\a so we should leave-
 Frogman: Why leave? Let's defeat it.
 It's a better goal than endlessly wandering around,\a don't you think?
@@ -67,17 +70,15 @@ Kresla: Frogman? I hate to say this, but we must run.\a Now!
 Frogman: Huh? Why?
 Kresla: Do you see that monster there? It's a Lich! A mighty undead wizard!
 Frogman: Wizard? Never seen any before here.
-Kresla: Oh, let me explain!
-Regular magic requires pain -\a which is why humans don't use it,\a at least where I come from.\a Irenhold's people apperantly felt otherwise.\a Or at least the royalty. I wonder how they got people-
+Kresla: I've actually only seen wizards here!\a Although, only dead liches, but still.\a I don't know why they disappeared -\a but I will find out one day! I do have a few-
 Frogman: Kresla. About the Lich.
-Kresla: Right, right. Monsters can't feel pain,\a as you've probably noticed.\a Which makes most of them unable to use magic,\a like Xirveros.
-I don't know how the Liches do it!\a Every time I get close to study one, it kill me.
+Kresla: Right, right. According the Firbell -\a before she stopped talking to me, that is -\a magic is done through unique crystals.
+Since the lich has one, it can wield magic!\a But every time I get close to study one,\a it kills me.
 Frogman: Well, that was before my time, right?
 Kresla: Obviously. Are you thinking what I am?
-Frogman: Yes, let's defeat it. It's a better goal
-than endlessly wandering around.
-Kresla: Oh! I like your style!
-I WILL find out your secret, lich!
+Frogman: Yes, let's defeat it.
+It's a better goal than endlessly wandering around.
+Kresla: Oh! I like your style!\a I WILL find out your secret, lich!
 Frogman: Let's go!
 
 ~ PreXirveros
@@ -129,8 +130,8 @@ Kresla: No, wait!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:AfterBattle
-Kresla: Frogman! Wait up! Before you go on,
-you should know that there will be tougher enemies ahead.
+Kresla: Frogman! Wait up!
+Before you go on, you should know that there will be\a tougher enemies ahead.
 Frogman: How do you know that?
 Kresla: Through trial and error, of course!\a The deeper you go, the stronger the monsters become,\a like the Lich.
 That's why people like me tend to stay near where we're Born.
