@@ -717,6 +717,7 @@ public class GameController : MonoBehaviour
         NotifyListeners(a => a.OnEndMap(units, true));
         LevelNumber++;
         currentKnowledge++;
+        SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
         SavedData.SaveAll(SaveMode.Slot);
         PlayersLevelUp();
     }

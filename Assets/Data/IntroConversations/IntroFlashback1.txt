@@ -5,25 +5,11 @@ unique:T
 ~ Before battle
 :play:BeforeBattle
 Frogman: Urgh... My head...\a Wait... I remember... something?
-# Load village background image
-:showImage:VillageBG
+# TBA
+:showCG:TownBG
 :play:ForgottenMemories
-# TBA: Actually add portraits for them
-# John is Frogman. Alex is his husbend. No idea for designs yet
-FrogmanMan|Frogman|L: *yawn*
-Good morning, Zip.\a Going to the forest again, huh?
-Zip: Mornin'! Sure am.
-These woods ain't gonna cut 'emselves, eh?
-FrogmanMan|Frogman: Ha ha!
-Zip: So, how 'bout you?\a Goin' hunting again?
-FrogmanMan|Frogman: Yes.\a These beasts ain't gonna hunt themselves, eh?
-Zip: Ha ha!\a Bring home a frog or two, 'ill you?
-FrogmanMan|Frogman: Sure thing! I can't disappoint you now, can I?
-Zip: You better not! Har!\a Well, off I go then!
-FrogmanMan|Frogman: Good luck!\a Looking forward to your frog stew!
 :play:BeforeBattle
-Frogman||L: ...
-Zip... Who were you?
+
 :setFlag:Flashback1
 
 ~ After battle

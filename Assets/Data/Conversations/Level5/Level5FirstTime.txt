@@ -80,13 +80,17 @@ Frogman: Yes?
 Firbell: Are you sure that siding with this lunatic is a good idea?
 Frogman: He's a Magmaborn, like us.\a We should all help each other,\a regardless of our conditions.
 Firbell: ...Very well. I will trust you on this.\a But these humans... Why are we fighting them?
-Frogman: They attacked us.
-Firbell: Still. These are no mindless monsters.\a They are sentient beings.\a Are we doing the right thing?
-Frogman: ...We have no other choice.
-Firbell: No, we could-
-Frogman: We should get out of here soon, Firbell.\a Will you help us fight?
-Firbell: I-\a This...\a Very well, Frogman.\a Lead the way.
-:setFlag:FirbellMorality1
+Frogman: They attacked us.\a Do we need another reason?
+Firbell: Yet they are sentinet beings, like us.\a Should we not join forces, as you yourself said?
+Frogman: Xeplogi didn't attack us.
+Firbell: We do appear as monsters.
+What if they were sent here by Irenhold?\a We must inform them I am here.
+Frogman: So this is what it's all about, eh?
+Firbell: It would be dishonorable to fight without a formal-
+Frogman: No, I get it. We'll try talking to them then.\a But I doubt they'll listen.
+Firbell: Very well. Thank you, Frogman.
+:setFlag:FirbellGuards1
+# TBA: Add a similar conversation outside FirstTime, and a follow-up one
 }
 }
 :else:{

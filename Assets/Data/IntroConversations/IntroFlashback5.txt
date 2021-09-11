@@ -1,0 +1,24 @@
+priority:4
+unique:T
+~ Requirements
+furthestLevel:>8
+hasFlag:Flashback4
+~ Demands
+~ Before battle
+:play:BeforeBattle
+Frogman: TBA
+# Load village background image
+:showCG:TavernCG
+:play:ForgottenMemories
+:hideCG:
+:play:BeforeBattle
+Frogman: TBA
+:setFlag:Flashback5
+
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

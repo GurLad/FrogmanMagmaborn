@@ -103,13 +103,38 @@ Frogman: Alfred, they're too many!\a We've got to leave, now!
 Alfred: I'd rather die than run!
 Frogman: What?\a Um...\a Then look at it this way - if you survive,
 you can help us defeat more Guards in the future!\a Yeah!
-Alfred: ...Urgh.\a Fine.\a This better be worth it.
+We're stronger together, don't you think?
+Alfred: ...Urgh.\a Fine.\a I admit you're strong.\a I'll follow for now, Frogman.
 }
 :loadMap:Part2RestArea
 :loadUnits:Part2RestArea
 :play:SafeAndSound
 # Frogman notices Alfred's ring
-
+Frogman||L: Whew, we're safe.
+:if:hasCharacter:Firbell{
+Firbell: At last, we are. But not for long.\a We should prepare for battle.
+Frogman: Sure, go ahead.
+}
+:if:hasCharacter:Kresla{
+Kresla: Yes. And we have time to explore a bit, even!\a I think I'll try to study the structure here.\a What IS this material?
+Frogman: Sure, go ahead.
+}
+:if:hasCharacter:Xirveros{
+Xirveros: This memory. My memory. Like rock! Rock song!\a Fred, want rock song?
+Alfred: ...No.
+Xirveros: Oof.
+}
+Frogman||L: ...
+Alfred: ...Your ring.\a It's like mine.\a Where's it from?
+Frogman: What? Oh, my Magma Emblem.\a I don't remember.
+Alfred: Really?\a There was only one other.\a Taken by the Guards.\a You stole it?
+Frogman: Uh... Maybe?
+Alfred: You better have.\a Only other way is you're a Guard.\a In which case, I'll kill you.
+Frogman: No, I'm pretty sure I wasn't a Guard.\a But then, where is your ring from?
+Alfred: They took them both.\a I was sent to retrieve.\a They killed me, the fools!\a Now I am vengeance.
+Frogman: I... see.
+Alfred: I'll be watching you, Frogman.\a You better not be lying.
+Frogman: I am not.\a ...I hope.
 
 ~ PostAlfredDead
 # Name: Text.
