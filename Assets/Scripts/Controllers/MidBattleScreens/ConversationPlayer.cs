@@ -360,6 +360,13 @@ public class ConversationPlayer : MidBattleScreen
                     // Removes the previous CG (if any)
                     CGController.HideCG();
                     break;
+                case "screenShake":
+                    // Params: float strength = 1, float duration = 1
+                    // Shakes the screen for duartion time with strength amount
+                    float strength = parts.Length > 2 ? float.Parse(parts[2] != "" ? parts[2] : "0.5") : 0.5f;
+                    float duration = parts.Length > 3 ? float.Parse(parts[3] != "" ? parts[3] : "0.5") : 0.5f;
+                    CameraController.Current.ScreenShake(strength, duration);
+                    break;
 
                 // Show other screens (MidBattleScreens)
 

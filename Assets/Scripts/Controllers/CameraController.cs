@@ -72,4 +72,11 @@ public class CameraController : MonoBehaviour
         Screen.SetResolution(ReferenceResolution.x * (CurrentMultiplier + 1), ReferenceResolution.y * (CurrentMultiplier + 1), false);
         SavedData.Save("ScreenSize", CurrentMultiplier, SaveMode.Global);
     }
+    public void ScreenShake(float strength, float duration)
+    {
+        // TBA: Sound
+        ScreenShaker screenShaker = gameObject.AddComponent<ScreenShaker>();
+        screenShaker.Strength = strength;
+        screenShaker.Duration = duration;
+    }
 }
