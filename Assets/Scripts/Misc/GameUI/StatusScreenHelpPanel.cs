@@ -8,6 +8,10 @@ public class StatusScreenHelpPanel : MonoBehaviour
     public Text SmallDisplay;
     public Text ThisDisplay;
     public List<HelpPanelInfo> PanelInfos;
+    public StatusScreenController Controller;
+    [Header("Help")]
+    public Transform Canvas;
+    public DisplayStatsHelp StatsHelp;
     private int current;
     private int count;
     private int previousDir;
@@ -55,6 +59,10 @@ public class StatusScreenHelpPanel : MonoBehaviour
 
     private void Update()
     {
+        if (!Controller.IsCurrent())
+        {
+            return;
+        }
         if (Control.GetButtonDown(Control.CB.B))
         {
             if (!showingInfo)
@@ -72,6 +80,12 @@ public class StatusScreenHelpPanel : MonoBehaviour
         }
         if (showingInfo)
         {
+            if (PanelInfos[current].AllowStatsHelp && Control.GetButtonDown(Control.CB.A))
+            {
+                Debug.Log("A");
+                StatsHelp.Activate(Controller, Canvas);
+                return;
+            }
             int direction = -Control.GetAxisInt(Control.Axis.Y);
             if (direction != 0 && direction != previousDir)
             {
@@ -86,7 +100,7 @@ public class StatusScreenHelpPanel : MonoBehaviour
         PanelInfos[current].Object.Palette = PanelInfos[current].BasePalette;
         current = toShow;
         PanelInfos[current].Object.Palette = 3;
-        ThisDisplay.text = PanelInfos[current].Info;
+        ThisDisplay.text = PanelInfos[current].Info.Replace("[AButton]", Control.DisplayShortButtonName(Control.CB.A));
     }
 }
 
@@ -96,6 +110,7 @@ public class HelpPanelInfo
     public PalettedSprite Object;
     [TextArea]
     public string Info;
+    public bool AllowStatsHelp;
     [HideInInspector]
     public int BasePalette;
 }

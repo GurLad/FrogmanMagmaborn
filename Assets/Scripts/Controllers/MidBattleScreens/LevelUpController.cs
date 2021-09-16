@@ -72,7 +72,7 @@ public class LevelUpController : MidBattleScreen
         }
         if (Control.GetButtonDown(Control.CB.Select))
         {
-            StatsHelp.Activate(this);
+            StatsHelp.Activate(this, transform);
         }
         else if (Control.GetButtonDown(Control.CB.A))
         {

@@ -1840,18 +1840,32 @@ MonoBehaviour:
   ThisDisplay: {fileID: 1051448648}
   PanelInfos:
   - Object: {fileID: 776509100}
-    Info: The final battle stats of this unit. Pretty much all you need to know.
+    Info: 'The unit''s final battle stats.
+
+
+      Press [AButton] for more info.'
+    AllowStatsHelp: 1
     BasePalette: 0
   - Object: {fileID: 9115830112709067179}
     Info: The unit's weapon. Affects damage, hit chance and avoid chance.
+    AllowStatsHelp: 0
     BasePalette: 0
   - Object: {fileID: 1866344050138437231}
-    Info: The internal unit stats. Not that useful during combat.
+    Info: 'The unit''s internal stats.
+
+
+      Press [AButton] for more info.'
+    AllowStatsHelp: 1
     BasePalette: 0
   - Object: {fileID: 2132580398}
     Info: The unit's Inclination. Grants player units a bonus against enemies of
       the same type.
+    AllowStatsHelp: 0
     BasePalette: 0
+  Controller: {fileID: 4889923501704897716}
+  Canvas: {fileID: 1866344049278202259}
+  StatsHelp: {fileID: 5326816696267228841, guid: 1a37bcf6db87a3942a65f932eaa17e04,
+    type: 3}
 --- !u!1001 &1866344048632221563
 PrefabInstance:
   m_ObjectHideFlags: 0

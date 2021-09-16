@@ -44,10 +44,10 @@ public class DisplayStatsHelp : Trigger
         }
     }
 
-    public void Activate(MidBattleScreen caller)
+    public void Activate(MidBattleScreen caller, Transform canvas)
     {
         MidBattleScreen.Set(caller, false);
-        DisplayStatsHelp display = Instantiate(this, caller.transform).GetComponent<DisplayStatsHelp>();
+        DisplayStatsHelp display = Instantiate(this, canvas).GetComponent<DisplayStatsHelp>();
         display.menu.Begin();
         display.caller = caller;
     }
