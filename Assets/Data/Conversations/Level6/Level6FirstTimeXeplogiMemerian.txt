@@ -10,22 +10,42 @@ hasCharacter:Xeplogi
 :loadUnits::player
 :play:BeforeBattle
 Xeplogi: YOU! I've finally found you!\a The demon who has plagued my life and trapped me here!\a In the name of the divinie Tori-
-:if:charactersAlive:<2{
-Memerian|???: Hey. Who are you?\a And what are you doing with Xeplogi the mad?
+Memerian|???: Hey. You there. Who are you?\a And what are you doing with Xeplogi the mad?
 Xeplogi: The mad?! Have you no shame, fiend?! I shall-
 Frogman||L: My name is Frogman. Who might you be?
-Xeplogi||L: She is the evil Memerian!
-Memerian: Just Memerian will do, thanks.\a You're new here, and appear sane -\a are you Torment's new champion?
+Xeplogi||L: She... she is the horrible Memerian!
+Memerian: Just Memerian will do, thanks.
+Xeplogi: The source of all evil! The archnemesis of Torment!\a A devilish monster! A-
+Frogman||L: I get it, Xeplogi.
+# Memerian is afraid to talk about Torment in public, and rightly so.
+:if:charactersAlive:<2{
+Memerian: Anyway. Frogman, were you sent here by Torment?
 Frogman: Wait... you know Torment?!
-Xeplogi||L: Do not listen to her words of trickery!\a She-
-Memerian: Will you shut Xeplogi up, or shall I?
-Xeplogi: Ha! Frogman will never help the likes of you!
-:call:Choice
 }
 :else:{
-Memerian|???: TBA
-:call:Choice
+Memerian: Anyway. Frogman, may we speak in private?
+Frogman: What for?
+Memerian: Let's call them... the divine Tori.
+Frogman: Who?\a Wait, you mean Tor-
+Memerian: Yes.
+:if:hasCharacter:Firbell{
+Firbell: Who are you talking about?
 }
+:else:{
+:if:hasCharacter:Kresla{
+Kresla: Who?
+}
+:else:{
+:if:hasCharacter:Xirveros{
+Xirveros: Tori? No! No Tori!
+}
+}
+}
+Xeplogi||L: Do not listen to her words of trickery!\a She-
+Memerian: Will you shut Xeplogi up, or shall I?
+Xeplogi: Trying to turn Frogman to your side? Ha!\a Frogman will never help the likes of you!
+:call:Choice
+
 ~ After battle
 :play:AfterBattle
 Frogman: Whew. We-
@@ -33,7 +53,10 @@ Torment: Not so fast, heh!
 Frogman: Torment?!
 Torment: Yes, it's me!\a You've reached the end of the beta!
 Frogman: What beta?
-Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!\a You can still play more runs to view more conversations\a and unlock upgrades,\a but you'll have to die now.\a Ha ha!
+Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!
+You can still play more runs to view more conversations
+and unlock upgrades, but you'll have to die now.
+Ha ha!
 :showPartTitle:End of:Beta
 :lose:
 
@@ -61,8 +84,11 @@ Memerian: Don't mind him.\a He's always like that.
 :loadUnits:
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
-Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
+Guard1: What is all this ruckus?\a Magmaborn?!
 Xeplogi: I am NOT one of these so-called Magmaborn!\a They have betrayed me!\a Let us join forces!
-Guard2: TBA
+Guard2: Heh, look, a crazy Magmaborn.
+Xeplogi: Crazy? Me?!
+Guard1: We have no time for foolishness!\a Everyone, charge!
+Xeplogi: You will regret this!\a For Tori!
 :setTeam:Xeplogi:monster
 }
