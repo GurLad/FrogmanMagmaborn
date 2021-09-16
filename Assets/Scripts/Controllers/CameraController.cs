@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
     public CameraMode Mode;
     public int MaxResolutionMultiplier;
     public Vector2Int ReferenceResolution;
+    public AudioClip ScreenShakeSFX;
     [HideInInspector]
     public int CurrentMultiplier = 0;
     private PixelPerfectCamera pixelPerfectCamera;
@@ -74,9 +75,9 @@ public class CameraController : MonoBehaviour
     }
     public void ScreenShake(float strength, float duration)
     {
-        // TBA: Sound
         ScreenShaker screenShaker = gameObject.AddComponent<ScreenShaker>();
         screenShaker.Strength = strength;
         screenShaker.Duration = duration;
+        SoundController.PlaySound(ScreenShakeSFX, 0.5f);
     }
 }

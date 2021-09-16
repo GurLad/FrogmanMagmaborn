@@ -47,6 +47,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             mainAudioSource.Play();
             Playing = Tracks[0].Name;
         }
+        GetComponent<SoundController>().Init();
     }
     public void Play(string name, bool? keepTimestamp = null)
     {
