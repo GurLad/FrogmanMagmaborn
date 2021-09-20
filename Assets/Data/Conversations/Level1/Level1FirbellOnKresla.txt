@@ -8,11 +8,21 @@ hasCharacter:Firbell
 ~
 :play:BeforeBattle
 Firbell: We meet again, Frogman.
-Frogman: Hello.
-I've been thinking lately.
-Why is it that I never see you with Kresla?
-Firbell: ...I do not like her. She... unnerves me.
-Frogman: Why?
-Firbell: I would rather not talk about it.\a Let us defeat these monsters, shall we?
+Frogman: Hello.\a I've been thinking lately.\a Why is it that I never see you with Kresla?
+Firbell: I do not like her. ...Let us defeat this monsters,\a and then I will explain.
+Frogman: Right.
+~
+:play:AfterBattle
+Frogman: Well, that was that.\a So why do you not like Kresla?
+Firbell: She has insulted Irenhold, Xirveros, and me.\a I tend to avoid her.
+Frogman: Oh. What did she do?
+Firbell: She claimed that Irenhold no longer exists.
 Frogman: ...
+Firbell: Preposterous, I know.\a But she could not be dissuaded.\a I cannot stand such insolance.
+Frogman: So you avoid her?
+Firbell: What choice do I have? Killing her has no effect.
+I wonder how could she even get a Magma Emblem.
+Frogman: I... see.
+Firbell: But worry not, I am not offended by you fighting\a alongside her.\a That is your own bad choice.
+Frogman: Thank you?
 :setFlag:FirbellOnKresla
