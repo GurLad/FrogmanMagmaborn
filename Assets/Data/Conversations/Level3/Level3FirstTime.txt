@@ -129,7 +129,7 @@ Frogman: Kresla, we need to get out of here now!
 Kresla: No, wait!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
-:play:AfterBattle
+:play:SafeAndSound
 Kresla: Frogman! Wait up!
 Before you go on, you should know that there will be\a tougher enemies ahead.
 Frogman: How do you know that?
@@ -143,7 +143,7 @@ Frogman: Yes. So let's go.
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
-:play:AfterBattle
+:play:SafeAndSound
 Xirveros: Frog! Turn back. Now. This too far!
 Frogman: Why would I do that?
 Xirveros: They will come. You will fight.\a We will die.

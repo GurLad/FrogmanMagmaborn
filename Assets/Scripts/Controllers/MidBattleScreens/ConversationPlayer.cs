@@ -52,7 +52,6 @@ public class ConversationPlayer : MidBattleScreen
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
     private List<string> lines;
     private string[] previousLineParts;
-    private List<string> tempFlags = new List<string>();
     private void Awake()
     {
         Current = this;
@@ -414,8 +413,7 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "setTempFlag":
                     // Params: name
-                    SavedData.Save("ConversationData", "TempFlag" + parts[2], 1);
-                    tempFlags.Add(parts[2]);
+                    GameController.Current.TempFlags.Add(parts[2]);
                     break;
                 case "markDone":
                     // Params: none
@@ -640,8 +638,7 @@ public class ConversationPlayer : MidBattleScreen
                 origin.Choose(true);
                 origin = null;
                 // Clear temp flags
-                tempFlags.ForEach(a => SavedData.Save("ConversationData", "TempFlag" + a, 0));
-                tempFlags.Clear();
+                GameController.Current.TempFlags.Clear();
                 GameController.Current.Win();
             }
             else

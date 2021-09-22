@@ -6,7 +6,11 @@ roomNumber:2
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
+:addUnit:Xirveros
 :loadUnits::player
+:if:hasFlag:TalkingFrogKresla{
+:setFlag:CanTalkingFrogXirveros
+}
 Kresla: Hey there, Xirveros!
 Xirveros: Kresla!\a You build goblin pyramid?
 Frogman: What?

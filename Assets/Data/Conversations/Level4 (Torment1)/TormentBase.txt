@@ -16,7 +16,23 @@ roomNumber:0
 :if:hasCharacter:Xirveros{
 :setFlag:MetTormentXirveros
 }
-# Revive units (reduce difficulty) TBA
+# Revive units (reduce difficulty)
+:if:hadCharacter:Firbell{
+:addUnit:Kresla
+:loadUnits:InitTormentRoom
+Frogman: Kresla?! What are you doing here?
+Kresla: ...
+Frogman: Ah... Another "gift" from Torment...
+}
+:else:{
+:if:hadCharacter:Kresla{
+:addUnit:Firbell
+:loadUnits:InitTormentRoom
+Frogman: Firbell?! What are you doing here?
+Firbell: ...
+Frogman: Ah... Another "gift" from Torment...
+}
+}
 
 ~ After battle
 

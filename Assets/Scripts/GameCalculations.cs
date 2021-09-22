@@ -100,7 +100,7 @@ public static class GameCalculations
             }
             if (unitName == StaticGlobals.MAIN_CHARACTER_NAME && KnowledgeController.TormentPower("LifeDeath") == TormentPowerState.II)
             {
-                baseNum += GameController.Current.NumDeadPlayerUnits;
+                baseNum += GameController.Current.DeadPlayerUnits.Count;
             }
         }
         return baseNum;

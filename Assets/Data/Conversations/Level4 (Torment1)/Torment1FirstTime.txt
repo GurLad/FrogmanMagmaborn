@@ -5,7 +5,17 @@ roomNumber:4
 ~
 # No demands (I can do this since a non-existent demand defaults to true :))
 ~
-:callOther:TormentBase
+# Set Torment met flags
+:if:hasCharacter:Firbell{
+:setFlag:MetTormentFirbell
+}
+:if:hasCharacter:Kresla{
+:setFlag:MetTormentKresla
+}
+:if:hasCharacter:Xirveros{
+:setFlag:MetTormentXirveros
+}
+
 :if:!firstTime:{
 :call:PreGeneric
 :finishConversation:

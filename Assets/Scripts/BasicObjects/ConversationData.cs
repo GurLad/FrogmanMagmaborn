@@ -118,6 +118,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "hasCharacter":
                 // Check, return false if false.
                 return GameController.Current.PlayerUnits.Find(a => a.Name == parts[1]) != null;
+            case "hadCharacter":
+                // Check whether the given character died
+                return GameController.Current.DeadPlayerUnits.Contains(parts[1]);
             case "charactersAlive":
                 // Format: charactersAlive:?X, ex. charactersAlive:>2
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.PlayerUnits.FindAll(a => a.Name != StaticGlobals.MAIN_CHARACTER_NAME).Count, int.Parse(parts[1].Substring(1)));
@@ -163,7 +166,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return SavedData.Load<int>("ConversationData", "ChoiceResult") == int.Parse(parts[1]);
             case "hasTempFlag":
                 // Return whether a temp conversation flag is turned on
-                return SavedData.Load("ConversationData", "TempFlag" + parts[1], 0) == 1;
+                return GameController.Current.TempFlags.Contains(parts[1]);
             case "teamMaxPos":
                 // Compaers the max pos of a unit in the given team to the given value (x or y)
                 // Params: x/y:team:?value

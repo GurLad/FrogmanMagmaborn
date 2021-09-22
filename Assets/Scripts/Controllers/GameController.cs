@@ -65,7 +65,9 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public int Turn;
     [HideInInspector]
-    public int NumDeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
+    public List<string> DeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
+    [HideInInspector]
+    public List<string> TempFlags = new List<string>();
     protected Difficulty difficulty;
     private List<IGameControllerListener> listeners = new List<IGameControllerListener>();
     private Team currentPhase = Team.Player;
@@ -574,6 +576,10 @@ public class GameController : MonoBehaviour
             {
                 Unit currentEnemy = units.Find(a => a.TheTeam == currentPhase && !a.Moved);
                 // AI
+                if (currentEnemy == null)
+                {
+                    StartPhase((Team)(((int)currentPhase + 1) % 3));
+                }
                 currentEnemy.AI(units);
             }
             else
@@ -706,7 +712,7 @@ public class GameController : MonoBehaviour
             if (PlayerUnits.Contains(unit))
             {
                 PlayerUnits.Remove(unit);
-                NumDeadPlayerUnits++;
+                DeadPlayerUnits.Add(unit.name);
             }
             Destroy(unit.gameObject);
         }
@@ -719,6 +725,7 @@ public class GameController : MonoBehaviour
         currentKnowledge++;
         SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
         SavedData.SaveAll(SaveMode.Slot);
+        interactable = true;
         PlayersLevelUp();
     }
     private void PlayersLevelUp()

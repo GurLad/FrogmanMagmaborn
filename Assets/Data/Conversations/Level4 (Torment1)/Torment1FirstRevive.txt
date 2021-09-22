@@ -1,0 +1,78 @@
+priority:4
+unique:T
+~ Requirements
+roomNumber:4
+!hasCharacter:Firbell
+!hasCharacter:Kresla
+~ Demands
+# Nothinig
+~ Before battle
+# TBA: Add !firstTime dialouge
+:callOther:TormentBase
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:if:hadCharacter:Firbell{
+:addUnit:Kresla
+:loadUnits:InitTormentRoom
+Frogman: Kresla?! What are you doing here?
+Kresla: ...
+}
+:else:{
+:addUnit:Firbell
+:loadUnits:InitTormentRoom
+Frogman: Firbell?! What are you doing here?
+Firbell: ...
+}
+:play:Trustworthy
+Torment: Hello, hello! Long time no see!
+Frogman: Torment!
+Torment: It's me! Heh heh!\a What do you think of my gift?
+Frogman: Gift?
+:if:hadCharacter:Firbell{
+Torment: Yes, Kresla here!\a You killed off Firbell so spectacularly,\a I couldn't let it go unrewarded, now could I? Ha!
+}
+:else:{
+Torment: Yes, Firbell here!\a You killed off Kresla so spectacularly,
+I couldn't let it go unrewarded, now could I? Ha!
+}
+Frogman: That... I didn't mean to...
+:play:Trickster:T
+Torment: Save your excuses for when she can actually hear you. Heh!
+Frogman: ...
+Torment: Nothing to say, eh? Well then, without further ado...
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+FIGHT!
+:markDone:
+~ After battle
+:play:Trickster
+:if:hasCharacter:Firbell{
+Torment: Well, well, you managed to keep Firbell alive, eh?\a Good for her, heh!
+Frogman: Thank... you...
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: You're SO welcome! Ha ha ha!\a But please, do take better care of my pawns.\a They are rather... fragile, you know?\a Heh.
+Frogman: ...
+}
+:else:{
+:if:hasCharacter:Kresla{
+Torment: Well, well, you managed to keep Kresla alive, eh?\a Good for her, heh!
+Frogman: Thank... you...
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: You're SO welcome! Ha ha ha!\a But please, do take better care of my pawns.\a They are rather... fragile, you know?\a Heh.
+Frogman: ...
+}
+:else:{
+Torment: What? You killed her AGAIN? Bad, bad Frogman! Ha ha!
+Frogman: I'm... s-sorry...
+Torment: Don't apologize to me, heh!\a Well, good luck staying alive without her. Ha ha ha!
+Frogman: ...
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

@@ -432,6 +432,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ee1601535e68456428568dd54c4a20dd, type: 3}
   - {fileID: 4900000, guid: 2e1f1aafa70edea4baf56c9157bb27eb, type: 3}
   - {fileID: 4900000, guid: 2e1bd13240f38e944b95eb816fdca56e, type: 3}
+  - {fileID: 4900000, guid: 6a9dc74681283e14c93da3b6c3968811, type: 3}
   - {fileID: 4900000, guid: 62d9fbea2bd890d4abe0f69d502f62c7, type: 3}
   - {fileID: 4900000, guid: 623756a2b83c57e43a8aff46e9c23ff7, type: 3}
   - {fileID: 4900000, guid: 71f56ca6ef5990c4ebb0ed308995693b, type: 3}
@@ -447,7 +448,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: c3ae171760113854d9f3a64836ff991f, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
-  - {fileID: 4900000, guid: 6dfee41aa2add3342a147721535768bf, type: 3}
   Path: Conversations
 --- !u!1 &41882886
 GameObject:
@@ -17696,7 +17696,7 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 4
   DebugUnits:
   - Frogman
@@ -17779,7 +17779,8 @@ MonoBehaviour:
   InteractState: 0
   Selected: {fileID: 0}
   Turn: 0
-  NumDeadPlayerUnits: 0
+  DeadPlayerUnits: []
+  TempFlags: []
 --- !u!4 &1902908236
 Transform:
   m_ObjectHideFlags: 0
