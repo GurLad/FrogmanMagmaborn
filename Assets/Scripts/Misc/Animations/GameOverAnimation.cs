@@ -37,7 +37,7 @@ public class GameOverAnimation : MonoBehaviour
                 }
                 else
                 {
-                    transition = PaletteController.Current.TransitionTo(true, 0, new Palette(), Speed, true);
+                    transition = PaletteController.Current.TransitionTo(true, 0, new Palette(), Speed, true, true);
                     finishedOne = true;
                 }
             }

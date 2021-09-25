@@ -67,7 +67,7 @@ MonoBehaviour:
       - {r: 0, g: 0, b: 0, a: 1}
       - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
       - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
-      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
     ForegroundColorID: 3
     AccentColor: 0
     Voice:
@@ -216,6 +216,20 @@ MonoBehaviour:
   - Name: DeharFB
     Background: {fileID: 21300000, guid: ee413f10566a21d4d8ea91580356bdcf, type: 3}
     Foreground: {fileID: 21300000, guid: b701180f80e09f74286ae837039b86d9, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 3
+    Voice:
+      VoiceType: 2
+      Pitch: 1.6
+  - Name: DeharDisguise
+    Background: {fileID: 21300000, guid: 7d049e0db60a0d54597f9a1c0b0228c9, type: 3}
+    Foreground: {fileID: 21300000, guid: 3758f601c1baa3d47be965dc0e8ec9d9, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}

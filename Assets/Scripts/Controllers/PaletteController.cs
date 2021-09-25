@@ -49,7 +49,7 @@ public class PaletteController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public PaletteTransition TransitionTo(bool background, int id, Palette target, float speed, bool fromCurrent = false)
+    public PaletteTransition TransitionTo(bool background, int id, Palette target, float speed, bool fromCurrent = false, bool reverse = false)
     {
         PaletteTransition transition = gameObject.AddComponent<PaletteTransition>();
         transition.Source = background ? BackgroundPalettes[id] : SpritePalettes[id];
@@ -60,6 +60,7 @@ public class PaletteController : MonoBehaviour
         transition.Target = target;
         transition.Speed = speed;
         transition.Background = background;
+        transition.Reverse = reverse;
         return transition;
     }
 }
@@ -102,7 +103,8 @@ public class PaletteTransition : MonoBehaviour
     public Palette Target;
     public int Current = 3;
     public bool Background;
-    private static float count = 0;
+    public bool Reverse;
+    private float count = 0;
     public void Start()
     {
         if (!Background)
@@ -121,14 +123,29 @@ public class PaletteTransition : MonoBehaviour
                 return;
             }
             count -= 1;
-            for (int i = 2; i > 0; i--)
+            if (!Reverse)
             {
-                Source.Colors[i + 1] = Source[i];
+                for (int i = 2; i > 0; i--)
+                {
+                    Source.Colors[i + 1] = Source[i];
+                }
+                Source.Colors[1] = Target[Current--];
+                if (!Background)
+                {
+                    Source.Colors[3].a = 0;
+                }
             }
-            Source.Colors[1] = Target[Current--];
-            if (!Background)
+            else
             {
-                Source.Colors[3].a = 0;
+                for (int i = 2; i < 4; i++)
+                {
+                    Source.Colors[i - 1] = Source[i];
+                }
+                Source.Colors[3] = Target[4 - (Current--)];
+                if (!Background)
+                {
+                    Source.Colors[3].a = 0;
+                }
             }
         }
     }
