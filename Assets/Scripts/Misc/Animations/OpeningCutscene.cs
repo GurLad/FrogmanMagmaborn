@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class OpeningCutscene : Trigger
 {
+    private enum State { TextShowing, TextHold, TextHiding, ImageShowing, ImageHold }
     [Header("Data")]
     public List<string> Credits;
     public Palette CreditsColor;
     public List<Image> ImageParts;
     public List<Palette> ImagePalettes = new List<Palette>(new Palette[] { new Palette() });
     public float Speed;
+    public float HoldTime;
     [Header("Objects")]
     public Text CreditsObject;
     public GameObject PressStart;
     public GameObject IntroObject;
     private bool fadeOut;
-    private bool finishedCredits;
+    private State state;
     private int currentPart;
     private int lastCheckedCurrent;
     private PaletteTransition transition;
     private Palette creditsReverse;
+    private float count;
 
     public override void Activate()
     {
@@ -37,6 +40,7 @@ public class OpeningCutscene : Trigger
     {
         transition = PaletteController.Current.TransitionTo(true, 0, CreditsColor, Speed);
         CreditsObject.text = Credits[0];
+        state = State.TextShowing;
         creditsReverse = new Palette();
         for (int i = 1; i < 4; i++)
         {
@@ -84,48 +88,103 @@ public class OpeningCutscene : Trigger
                 }
                 return;
             }
-            if (transition == null)
+            else
             {
-                currentPart++;
-                if (finishedCredits && currentPart >= ImageParts.Count)
+                switch (state)
                 {
-                    PressStart.SetActive(true);
-                    enabled = false;
-                    return;
+                    case State.TextShowing:
+                        if (transition == null)
+                        {
+                            count = 0;
+                            state = State.TextHold;
+                        }
+                        else if (lastCheckedCurrent != transition.Current)
+                        {
+                            CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
+                            lastCheckedCurrent = transition.Current;
+                        }
+                        break;
+                    case State.TextHold:
+                        count += Time.deltaTime;
+                        if (count >= HoldTime)
+                        {
+                            count -= HoldTime;
+                            currentPart++;
+                            ShowCurrentCredit();
+                            state = State.TextHiding;
+                        }
+                        break;
+                    case State.TextHiding:
+                        if (transition == null)
+                        {
+                            currentPart++;
+                            if (currentPart >= Credits.Count * 2)
+                            {
+                                currentPart = 0;
+                                Destroy(CreditsObject.gameObject);
+                                ShowCurrentImage();
+                                state = State.ImageShowing;
+                            }
+                            else
+                            {
+                                ShowCurrentCredit();
+                                state = State.TextShowing;
+                            }
+                        }
+                        else if (lastCheckedCurrent != transition.Current)
+                        {
+                            CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
+                            lastCheckedCurrent = transition.Current;
+                        }
+                        break;
+                    case State.ImageShowing:
+                        if (transition == null)
+                        {
+                            count = 0;
+                            state = State.ImageHold;
+                        }
+                        else if (lastCheckedCurrent != transition.Current)
+                        {
+                            ImageParts[currentPart].GetComponent<PalettedSprite>().UpdatePalette();
+                            lastCheckedCurrent = transition.Current;
+                        }
+                        break;
+                    case State.ImageHold:
+                        count += Time.deltaTime;
+                        if (count >= HoldTime)
+                        {
+                            count -= HoldTime;
+                            currentPart++;
+                            if (currentPart >= ImageParts.Count)
+                            {
+                                PressStart.SetActive(true);
+                                enabled = false;
+                            }
+                            else
+                            {
+                                ShowCurrentImage();
+                                state = State.ImageShowing;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else if (!finishedCredits && currentPart >= Credits.Count * 2)
-                {
-                    finishedCredits = true;
-                    currentPart = 0;
-                    Destroy(CreditsObject.gameObject);
-                }
-                if (finishedCredits)
-                {
-                    transition = PaletteController.Current.TransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
-                    ImageParts[currentPart].gameObject.SetActive(true);
-                }
-                else
-                {
-                    transition = PaletteController.Current.TransitionTo(true, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed);
-                    CreditsObject.text = Credits[currentPart / 2];
-                    CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
-                }
-                lastCheckedCurrent = transition.Current;
-                return;
-            }
-            if (lastCheckedCurrent != transition.Current)
-            {
-                if (finishedCredits)
-                {
-                    ImageParts[currentPart].GetComponent<PalettedSprite>().UpdatePalette();
-                }
-                else
-                {
-                    CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
-                }
-                lastCheckedCurrent = transition.Current;
             }
         }
+    }
+    private void ShowCurrentCredit()
+    {
+        transition = PaletteController.Current.TransitionTo(true, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed);
+        CreditsObject.text = Credits[currentPart / 2];
+        CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
+        lastCheckedCurrent = transition.Current;
+    }
+    private void ShowCurrentImage()
+    {
+        transition = PaletteController.Current.TransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
+        ImageParts[currentPart].gameObject.SetActive(true);
+        lastCheckedCurrent = transition.Current;
     }
 }
 
