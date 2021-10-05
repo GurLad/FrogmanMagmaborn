@@ -8,9 +8,34 @@ hasFlag:Flashback1
 :play:BeforeBattle
 Frogman: Ah... I'm back...
 Wait, something...\a Another memory...
-# Load village background image
 :showCG:TavernCG
 :play:ForgottenMemories
+:setSingleSpeaker:R
+Zip: Frogman. She's here.
+FrogmanMan|Frogman: Already? Oh well, nothing to be done about it.\a Let her in.
+Zip: I don't like her, boss. It smells like a trap.
+FrogmanMan|Frogman: I know. But she is alone.\a And she's foreign - no one has seen her before in the city.\a Or without her hood, for that matter.
+Zip: Still, I don't think it's wise-
+FrogmanMan|Frogman: Relax, Zip. I know what I'm doing.\a She is no danger to us.\a Let her in.
+Zip: ...
+DeharDisguised|???|R: Hello, Frogman. Thank you for having an audiance with me.
+FrogmanMan|Frogman: Greetings. Would you like something to drink?
+DeharDisguised|???: Yes, thank you.
+FrogmanMan|Frogman: Zip, bring her a cup of wine, please.
+Zip||L: I have one right here, boss.
+DeharDisguised|???: Thank you, Zip.
+FrogmanMan|Frogman: I hope you do not mind having him here.\a Treat him as my shadow.
+DeharDisguised|???: I see.
+FrogmanMan|Frogman: So. Let's get to buissness. What do you want?
+DeharDisguised|???: Let me start from the beginning. My name is Kebera.\a I'm originally from Straberold to the south.
+FrogmanMan|Frogman: I don't really care. Your request?
+DeharDisguised|???: I'll be blunt then. I was sent here on a mission.\a ...
+FrogmanMan|Frogman: Which is?
+DeharDisguised|???: Unfortunatly, I cannot disclose it to anyone but you, Frogman.\a Those are my instructions.
+FrogmanMan|Frogman: Unacceptable. Zip will hear everything I will.
+DeharDisguised|???: ...I see. Is there a way to change your mind?
+FrogmanMan|Frogman: No.\a If that is all, I think we're done here.\a Zip, show her out.
+DeharDisguised|???: There is no need, Frogman.\a Thank you for your hospitality.
 :hideCG:
 :play:BeforeBattle
 Frogman: Ah!\a Huh?\a Urgh... These memories are so confusing...

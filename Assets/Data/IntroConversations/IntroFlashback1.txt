@@ -5,11 +5,33 @@ unique:T
 ~ Before battle
 :play:BeforeBattle
 Frogman: Urgh... My head...\a Wait... I remember... something?
-# TBA
-:showCG:TownBG
+:showCG:CastleBG
 :play:ForgottenMemories
+FrogmanMan|Frogman: Whew, we're safe.
+Zip: Yes, that was quite a run, boss.
+FrogmanMan|Frogman: Yep. But we've finally lost them.
+Zip: I still don't know how you do it, boss.
+FrogmanMan|Frogman: Which part? Infiltrating the most well-guarded castle in\a the region, stealing all the valuables,\a or getting away with it?
+Zip: Ha! Ever the humble one, eh?
+FrogmanMan|Frogman: Heh. Well, enough with the pleasnetries.\a Status report.
+Zip: Let me see... We have seven silver plates, thirteen forks-
+FrogmanMan|Frogman: Skip the trinkets for now. Highlights?
+Zip: Right. Three Abezy paintings.
+FrogmanMan|Frogman: Abezy? Where did the lord get them?
+Zip: Don't know, boss.
+FrogmanMan|Frogman: They're probably fake. Next?
+Zip: Uh... There's the diamond necklace we found.
+FrogmanMan|Frogman: Right, that one. I don't think the diamonds are real,\a but we can try selling it to another lordling anyway.
+Zip: Probably. What else... Ah, the muskets.
+FrogmanMan|Frogman: We never found the gunpowder and bullets, did we?
+Zip: No, boss. Frankly, I don't think he had any.\a Probably only kept them to impress guests.
+FrogmanMan|Frogman: Yes. Too bad. They're useless then.
+Zip: We might find someone willing-
+FrogmanMan|Frogman: Too risky.\a Well, it's still a good haul.\a Let's go back.
+Zip: Sure thing, boss.
+:hideCG:
 :play:BeforeBattle
-
+Frogman: Ah... I was... a thief?\a And Zip... who were you?
 :setFlag:Flashback1
 
 ~ After battle
