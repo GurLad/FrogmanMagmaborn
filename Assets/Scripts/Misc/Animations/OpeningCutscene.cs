@@ -34,6 +34,7 @@ public class OpeningCutscene : Trigger
             transition = PaletteController.Current.TransitionTo(true, i, new Palette(), Speed, true, true);
         }
         lastCheckedCurrent = transition.Current;
+        count = 0;
     }
 
     private void Start()
@@ -53,9 +54,13 @@ public class OpeningCutscene : Trigger
         {
             if (transition == null)
             {
-                gameObject.SetActive(false);
-                IntroObject.SetActive(true);
-                Destroy(this);
+                count += Time.deltaTime;
+                if (count >= HoldTime)
+                {
+                    gameObject.SetActive(false);
+                    IntroObject.SetActive(true);
+                    Destroy(this);
+                }
             }
             else if (lastCheckedCurrent != transition.Current)
             {
