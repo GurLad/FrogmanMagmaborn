@@ -2219,28 +2219,26 @@ MonoBehaviour:
   BattleFlashTime: 0.2
   AttackerObject: {fileID: 2123345130645428930}
   DefenderObject: {fileID: 2123345129594904247}
-  AttackerInfo: {fileID: 2123345128821395006}
-  AttackerInclination: {fileID: 6317737201296429494}
-  AttackerIcon: {fileID: 1570050897418362801}
-  AttackerHealthbar: {fileID: 2123345129805657403}
-  AttackerSprites:
+  AttackerInfoObject: {fileID: 2123345128821395006}
+  AttackerInclinationObject: {fileID: 6317737201296429494}
+  AttackerIconObject: {fileID: 1570050897418362801}
+  AttackerHealthbarObject: {fileID: 2123345129805657403}
+  AttackerSpritesObject:
+  - {fileID: 8655828600364303715}
   - {fileID: 2123345130464507090}
+  - {fileID: 2123345129207239307}
   - {fileID: 2123345128946298955}
   - {fileID: 2123345128687485062}
-  - {fileID: 2123345129207239307}
-  - {fileID: 8655828600364303715}
-  DefenderInfo: {fileID: 973049126108104297}
-  DefenderInclination: {fileID: 3348557363809042102}
-  DefenderIcon: {fileID: 7889766231115675209}
-  DefenderHealthbar: {fileID: 2123345129805657398}
-  DefenderSprites:
+  DefenderInfoObject: {fileID: 973049126108104297}
+  DefenderInclinationObject: {fileID: 3348557363809042102}
+  DefenderIconObject: {fileID: 7889766231115675209}
+  DefenderHealthbarObject: {fileID: 2123345129805657398}
+  DefenderSpritesObject:
+  - {fileID: 2184959242169290467}
   - {fileID: 2123345130043834303}
+  - {fileID: 7331938576455056243}
   - {fileID: 2123345129690106411}
   - {fileID: 2123345130252703370}
-  - {fileID: 7331938576455056243}
-  - {fileID: 2184959242169290467}
-  Attacker: {fileID: 0}
-  Defender: {fileID: 0}
 --- !u!1 &2123345128687485082
 GameObject:
   m_ObjectHideFlags: 0

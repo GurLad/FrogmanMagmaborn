@@ -31,26 +31,22 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     public SpriteRenderer AttackerObject;
     public SpriteRenderer DefenderObject;
     [Header("Attacker UI")]
-    public Text AttackerInfo;
-    public InclinationIndicator AttackerInclination;
-    public PortraitHolder AttackerIcon;
-    public HealthbarPanel AttackerHealthbar;
-    public List<PalettedSprite> AttackerSprites;
+    public Text AttackerInfoObject;
+    public InclinationIndicator AttackerInclinationObject;
+    public PortraitHolder AttackerIconObject;
+    public HealthbarPanel AttackerHealthbarObject;
+    public List<PalettedSprite> AttackerSpritesObject;
     [Header("Defender UI")]
-    public Text DefenderInfo;
-    public InclinationIndicator DefenderInclination;
-    public PortraitHolder DefenderIcon;
-    public HealthbarPanel DefenderHealthbar;
-    public List<PalettedSprite> DefenderSprites;
+    public Text DefenderInfoObject;
+    public InclinationIndicator DefenderInclinationObject;
+    public PortraitHolder DefenderIconObject;
+    public HealthbarPanel DefenderHealthbarObject;
+    public List<PalettedSprite> DefenderSpritesObject;
     [HideInInspector]
-    public Unit Attacker;
+    public CombatantData Attacker;
     [HideInInspector]
-    public Unit Defender;
+    public CombatantData Defender;
     private float battleTrueFlashTime;
-    private AdvancedSpriteSheetAnimation attackerAnimation;
-    private PalettedSprite attackerPalette;
-    private AdvancedSpriteSheetAnimation defenderAnimation;
-    private PalettedSprite defenderPalette;
     private GameObject currentProjectile;
     private State _state;
     private State state
@@ -68,70 +64,38 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private Vector3 currentAttackerPos;
     private float count = 0;
 
-    public void StartBattle()
+    public void StartBattle(Unit attacker, Unit defender)
     {
-        attackerAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Attacker.Class).Animation, AttackerObject.transform);
-        attackerAnimation.Renderer = AttackerObject;
-        attackerAnimation.Animations.ForEach(a => a.Split());
-        defenderAnimation = Instantiate(ClassAnimations.Find(a => a.Name == Defender.Class).Animation, DefenderObject.transform);
-        defenderAnimation.Renderer = DefenderObject;
-        defenderAnimation.Animations.ForEach(a => a.Split());
-        attackerAnimation.EditorPreview();
-        defenderAnimation.EditorPreview();
-        attackerAnimation.Listeners.Add(this);
-        attackerAnimation.Activate("Idle");
-        defenderAnimation.Listeners.Add(this);
-        defenderAnimation.Activate("Idle");
-        attackerPalette = attackerAnimation.transform.parent.gameObject.GetComponent<PalettedSprite>();
-        defenderPalette = defenderAnimation.transform.parent.gameObject.GetComponent<PalettedSprite>();
-        Tile attackerTile = GameController.Current.Map[Attacker.Pos.x, Attacker.Pos.y];
+        Attacker = new CombatantData(AttackerInfoObject, AttackerInclinationObject, AttackerIconObject, AttackerHealthbarObject, AttackerSpritesObject, AttackerObject, attacker);
+        Defender = new CombatantData(DefenderInfoObject, DefenderInclinationObject, DefenderIconObject, DefenderHealthbarObject, DefenderSpritesObject, DefenderObject, defender);
+        Attacker.Init(this);
+        Defender.Init(this);
+        Attacker.LookingLeft = true;
+        Defender.LookingLeft = false;
+        Tile attackerTile = GameController.Current.Map[Attacker.Unit.Pos.x, Attacker.Unit.Pos.y];
         AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
-        Tile defenderTile = GameController.Current.Map[Defender.Pos.x, Defender.Pos.y];
+        Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
         DefenderBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && defenderTile.Name == a.Tile).Background.SetActive(true);
-        if (Vector2.Distance(Attacker.Pos, Defender.Pos) <= 1)
+        if (Vector2.Distance(Attacker.Unit.Pos, Defender.Unit.Pos) <= 1)
         {
             // Melee attack
-            currentAttackerPos = AttackerObject.transform.position;
-            attackerAnimation.Activate("Walk");
+            currentAttackerPos = Attacker.Object.transform.position;
+            Attacker.Animation.Activate("Walk");
             state = State.AttackerWalking;
         }
         else
         {
             // Ranged attack
-            attackerAnimation.Activate("AttackRangeStart");
+            Attacker.Animation.Activate("AttackRangeStart");
             state = State.AttackerRangeAttacking;
         }
-        foreach (var item in AttackerSprites)
-        {
-            item.Palette = (int)Attacker.TheTeam;
-        }
-        attackerPalette.Palette = Attacker.Statue ? 3 : (int)Attacker.TheTeam;
-        foreach (var item in DefenderSprites)
-        {
-            item.Palette = (int)Defender.TheTeam;
-        }
-        defenderPalette.Palette = Defender.Statue ? 3 : (int)Defender.TheTeam;
-        AttackerHealthbar.SetMax(Attacker.Stats.MaxHP);
-        DefenderHealthbar.SetMax(Defender.Stats.MaxHP);
         UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
-        AttackerInfo.text = Attacker.ToString().PadRight(8) + '\n' + Attacker.AttackPreview(Defender, 4, Attacker.CanAttack(Defender));
-        if (AttackerInclination != null)
-        {
-            AttackerInclination.Display(Attacker, Defender);
-        }
-        AttackerIcon.Portrait = Attacker.Icon;
-        AttackerHealthbar.SetValue(Attacker.Health);
-        DefenderInfo.text = Defender.ToString().PadRight(8) + '\n' + Defender.AttackPreview(Attacker, 4, Defender.CanAttack(Attacker));
-        if (DefenderInclination != null)
-        {
-            DefenderInclination.Display(Defender, Attacker);
-        }
-        DefenderIcon.Portrait = Defender.Icon;
-        DefenderHealthbar.SetValue(Defender.Health);
+        Attacker.UpdateUI(Defender.Unit);
+        Defender.UpdateUI(Attacker.Unit);
     }
 
     private void Update()
@@ -146,30 +110,30 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 {
                     currentAttackerPos.x = AttackerTargetPos;
                     state = State.AttackerAttacking;
-                    attackerAnimation.Activate("AttackStart");
+                    Attacker.Animation.Activate("AttackStart");
                 }
-                AttackerObject.transform.position = currentAttackerPos;
+                Attacker.Object.transform.position = currentAttackerPos;
                 break;
             case State.AttackerAttacking:
                 break;
             case State.AttackerFinishingAttack:
-                if (!Defender.Statue && count >= battleTrueFlashTime && DefenderObject != null)
+                if (!Defender.Unit.Statue && count >= battleTrueFlashTime && Defender.Object != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
-                    defenderPalette.Palette = (int)Defender.TheTeam;
+                    Defender.Palette.Palette = (int)Defender.Unit.TheTeam;
                 }
                 break;
             case State.DefenderAttacking:
-                if (!Defender.Statue && defenderPalette.Palette != (int)Defender.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
+                if (!Defender.Unit.Statue && Defender.Palette.Palette != (int)Defender.Unit.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
                 {
-                    defenderPalette.Palette = (int)Defender.TheTeam;
+                    Defender.Palette.Palette = (int)Defender.Unit.TheTeam;
                 }
                 break;
             case State.DefenderFinishingAttack:
-                if (!Attacker.Statue && count >= battleTrueFlashTime && AttackerObject != null)
+                if (!Attacker.Unit.Statue && count >= battleTrueFlashTime && Attacker.Object != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
-                    attackerPalette.Palette = (int)Attacker.TheTeam;
+                    Attacker.Palette.Palette = (int)Attacker.Unit.TheTeam;
                 }
                 break;
             case State.AttackerRangeAttacking:
@@ -179,13 +143,13 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 if (currentAttackerPos.x <= AttackerProjectileTargetPos)
                 {
                     Destroy(currentProjectile);
-                    if (HandleDamage(Attacker, Defender, true) != null && Defender.CanAttack(Attacker))
+                    if (HandleDamage(Attacker, Defender) != null && Defender.Unit.CanAttack(Attacker.Unit))
                     {
                         state = State.DefenderRangeAttacking;
-                        defenderAnimation.Activate("AttackRangeStart");
-                        float temp = AttackerObject.transform.position.z;
-                        AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
-                        DefenderObject.transform.position -= new Vector3(0, 0, DefenderObject.transform.position.z - temp);
+                        Defender.Animation.Activate("AttackRangeStart");
+                        float temp = Attacker.Object.transform.position.z;
+                        Attacker.Object.transform.position += new Vector3(0, 0, Defender.Object.transform.position.z - temp);
+                        Defender.Object.transform.position -= new Vector3(0, 0, Defender.Object.transform.position.z - temp);
                     }
                     else
                     {
@@ -202,21 +166,21 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
                 if (currentAttackerPos.x >= DefenderProjectileTargetPos)
                 {
                     Destroy(currentProjectile);
-                    HandleDamage(Defender, Attacker, false);
+                    HandleDamage(Defender, Attacker);
                     state = State.WaitTime;
                     break;
                 }
                 currentProjectile.transform.position = currentAttackerPos;
                 break;
             case State.WaitTime:
-                if (!Attacker.Statue && attackerPalette.Palette != (int)Attacker.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
+                if (!Attacker.Unit.Statue && Attacker.Palette.Palette != (int)Attacker.Unit.TheTeam) // In case the attacker post-attack animation is extremely short (aka non-existent)
                 {
-                    attackerPalette.Palette = (int)Attacker.TheTeam;
+                    Attacker.Palette.Palette = (int)Attacker.Unit.TheTeam;
                 }
-                if (!Defender.Statue && count >= battleTrueFlashTime && DefenderObject != null)
+                if (!Defender.Unit.Statue && count >= battleTrueFlashTime && Defender.Object != null)
                 {
                     battleTrueFlashTime = Mathf.Infinity;
-                    defenderPalette.Palette = (int)Defender.TheTeam;
+                    Defender.Palette.Palette = (int)Defender.Unit.TheTeam;
                 }
                 if (count >= WaitTime)
                 {
@@ -238,70 +202,70 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case "AttackStart":
                 if (state == State.AttackerAttacking)
                 {
-                    attackerAnimation.Activate("AttackEnd");
+                    Attacker.Animation.Activate("AttackEnd");
                     state = State.AttackerFinishingAttack;
-                    HandleDamage(Attacker, Defender, true);
+                    HandleDamage(Attacker, Defender);
                 }
                 else if (state == State.DefenderAttacking)
                 {
-                    defenderAnimation.Activate("AttackEnd");
+                    Defender.Animation.Activate("AttackEnd");
                     state = State.DefenderFinishingAttack;
-                    HandleDamage(Defender, Attacker, false);
+                    HandleDamage(Defender, Attacker);
                 }
                 break;
             case "AttackEnd":
                 if (state == State.AttackerFinishingAttack)
                 {
-                    if (attackerAnimation.HasAnimation("IdlePost"))
+                    if (Attacker.Animation.HasAnimation("IdlePost"))
                     {
-                        attackerAnimation.Activate("IdlePost");
+                        Attacker.Animation.Activate("IdlePost");
                     }
                     else
                     {
-                        attackerAnimation.Activate("Idle");
+                        Attacker.Animation.Activate("Idle");
                     }
-                    if (Defender == null || Defender.Statue)
+                    if (Defender.Unit == null || Defender.Unit.Statue)
                     {
                         state = State.WaitTime;
                         return;
                     }
-                    DefenderObject.transform.position = new Vector3(DefenderTargetPos, DefenderObject.transform.position.y, DefenderObject.transform.position.z);
-                    if (defenderAnimation.HasAnimation("CounterStart"))
+                    Defender.Object.transform.position = new Vector3(DefenderTargetPos, Defender.Object.transform.position.y, Defender.Object.transform.position.z);
+                    if (Defender.Animation.HasAnimation("CounterStart"))
                     {
-                        defenderAnimation.Activate("CounterStart");
+                        Defender.Animation.Activate("CounterStart");
                     }
                     else
                     {
-                        defenderAnimation.Activate("AttackStart");
+                        Defender.Animation.Activate("AttackStart");
                     }
-                    float temp = AttackerObject.transform.position.z;
-                    AttackerObject.transform.position += new Vector3(0, 0, DefenderObject.transform.position.z - temp);
-                    DefenderObject.transform.position -= new Vector3(0, 0, DefenderObject.transform.position.z - temp);
+                    float temp = Attacker.Object.transform.position.z;
+                    Attacker.Object.transform.position += new Vector3(0, 0, Defender.Object.transform.position.z - temp);
+                    Defender.Object.transform.position -= new Vector3(0, 0, Defender.Object.transform.position.z - temp);
                     state = State.DefenderAttacking;
                 }
                 else if (state == State.DefenderFinishingAttack)
                 {
-                    if (Attacker == null || AttackerObject == null)
+                    if (Attacker == null || Attacker.Object == null)
                     {
-                        if (defenderAnimation.HasAnimation("IdlePost"))
+                        if (Defender.Animation.HasAnimation("IdlePost"))
                         {
-                            defenderAnimation.Activate("IdlePost");
+                            Defender.Animation.Activate("IdlePost");
                         }
                         else
                         {
-                            defenderAnimation.Activate("Idle");
+                            Defender.Animation.Activate("Idle");
                         }
                         state = State.WaitTime;
                         return;
                     }
-                    AttackerObject.transform.position = new Vector3(AttackerTargetPos, AttackerObject.transform.position.y, AttackerObject.transform.position.z);
-                    if (defenderAnimation.HasAnimation("IdlePost"))
+                    Attacker.Object.transform.position = new Vector3(AttackerTargetPos, Attacker.Object.transform.position.y, Attacker.Object.transform.position.z);
+                    if (Defender.Animation.HasAnimation("IdlePost"))
                     {
-                        defenderAnimation.Activate("IdlePost");
+                        Defender.Animation.Activate("IdlePost");
                     }
                     else
                     {
-                        defenderAnimation.Activate("Idle");
+                        Defender.Animation.Activate("Idle");
                     }
                     state = State.WaitTime;
                 }
@@ -309,42 +273,42 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
             case "AttackRangeStart":
                 if (state == State.AttackerRangeAttacking)
                 {
-                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Attacker.Class).Projectile;
-                    currentProjectile = Instantiate(projectileSource, AttackerObject.transform);
+                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Attacker.Unit.Class).Projectile;
+                    currentProjectile = Instantiate(projectileSource, Attacker.Object.transform);
                     currentProjectile.SetActive(true);
                     currentProjectile.transform.localPosition = projectileSource.transform.localPosition;
-                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Attacker.TheTeam;
+                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Attacker.Unit.TheTeam;
                     currentAttackerPos = currentProjectile.transform.position;
-                    attackerAnimation.Activate("AttackRangeEnd");
+                    Attacker.Animation.Activate("AttackRangeEnd");
                     state = State.AttackerRangeFinishingAttack;
                 }
                 else
                 {
-                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Defender.Class).Projectile;
-                    currentProjectile = Instantiate(projectileSource, DefenderObject.transform);
+                    GameObject projectileSource = ClassAnimations.Find(a => a.Name == Defender.Unit.Class).Projectile;
+                    currentProjectile = Instantiate(projectileSource, Defender.Object.transform);
                     currentProjectile.SetActive(true);
                     Vector3 pos = projectileSource.transform.localPosition;
                     pos.x *= -1;
                     currentProjectile.transform.localPosition = pos;
-                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Defender.TheTeam;
+                    currentProjectile.GetComponent<PalettedSprite>().Palette = (int)Defender.Unit.TheTeam;
                     currentAttackerPos = currentProjectile.transform.position;
                     currentProjectile.GetComponent<SpriteRenderer>().flipX = true;
-                    defenderAnimation.Activate("AttackRangeEnd");
+                    Defender.Animation.Activate("AttackRangeEnd");
                     state = State.DefenderRangeFinishingAttack;
                 }
                 break;
             case "AttackRangeEnd":
                 if (state == State.AttackerRangeFinishingAttack)
                 {
-                    attackerAnimation.Activate("Idle");
+                    Attacker.Animation.Activate("Idle");
                 }
                 else
                 {
-                    defenderAnimation.Activate("Idle");
+                    Defender.Animation.Activate("Idle");
                 }
                 break;
             case "CounterStart":
-                defenderAnimation.Activate("AttackStart");
+                Defender.Animation.Activate("AttackStart");
                 break;
             default:
                 break;
@@ -356,58 +320,37 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         // Do nothing
     }
 
-    private bool? HandleDamage(Unit attacker, Unit defender, bool attackerAttack)
+    private bool? HandleDamage(CombatantData attacker, CombatantData defender)
     {
-        bool? result = attacker.Attack(defender);
+        bool? result = attacker.Unit.Attack(defender.Unit);
         switch (result)
         {
             case true:
                 // Play sound for hit
-                int damage = attacker.GetDamage(defender);
+                int damage = attacker.Unit.GetDamage(defender.Unit);
                 if (damage == 0)
                 {
                     SoundController.PlaySound(NoDamageSFX, 1);
                 }
                 else
                 {
-                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Stats.MaxHP);
-                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Stats.MaxHP);
-                    if (!defender.Statue)
+                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Unit.Stats.MaxHP);
+                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Unit.Stats.MaxHP);
+                    if (!defender.Unit.Statue)
                     {
-                        if (attackerAttack) // "Flash"
-                        {
-                            defenderPalette.Palette = 3;
-                        }
-                        else
-                        {
-                            attackerPalette.Palette = 3;
-                        }
+                        defender.Palette.Palette = 3;
                     }
                 }
                 break;
             case false:
                 // Move for miss
                 SoundController.PlaySound(MissSFX, 1);
-                if (attackerAttack)
-                {
-                    DefenderObject.transform.position -= new Vector3(1, 0, 0);
-                }
-                else
-                {
-                    AttackerObject.transform.position += new Vector3(1, 0, 0);
-                }
+                defender.Object.transform.position += new Vector3(defender.LookingLeft ? 1 : -1, 0, 0);
                 break;
             case null:
                 // Destroy sprite for dead
                 SoundController.PlaySound(HitSFX, 0.5f);
-                if (attackerAttack)
-                {
-                    Destroy(DefenderObject.gameObject);
-                }
-                else
-                {
-                    Destroy(AttackerObject.gameObject);
-                }
+                Destroy(defender.Object.gameObject);
                 break;
         }
         UpdateDisplay();
@@ -552,6 +495,59 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
     private class BattleBackgroundData
     {
         public string Name;
+    }
+
+    public class CombatantData
+    {
+        public Text UIInfo;
+        public InclinationIndicator UIInclination;
+        public PortraitHolder UIPortrait;
+        public HealthbarPanel UIHealthbar;
+        public List<PalettedSprite> Sprites;
+        public Unit Unit;
+        public AdvancedSpriteSheetAnimation Animation;
+        public PalettedSprite Palette;
+        public SpriteRenderer Object;
+        public bool LookingLeft;
+
+        public CombatantData(Text uiInfo, InclinationIndicator uiInclination, PortraitHolder uiPortrait, HealthbarPanel uiHealthbar, List<PalettedSprite> sprites, SpriteRenderer @object, Unit unit)
+        {
+            UIInfo = uiInfo;
+            UIInclination = uiInclination;
+            UIPortrait = uiPortrait;
+            UIHealthbar = uiHealthbar;
+            Sprites = sprites;
+            Object = @object;
+            Unit = unit;
+        }
+
+        public void Init(BattleAnimationController battleAnimationController)
+        {
+            Animation = Instantiate(battleAnimationController.ClassAnimations.Find(a => a.Name == Unit.Class).Animation, Object.transform);
+            Animation.Renderer = Object;
+            Animation.Animations.ForEach(a => a.Split());
+            Animation.EditorPreview();
+            Animation.Listeners.Add(battleAnimationController);
+            Animation.Activate("Idle");
+            Palette = Animation.transform.parent.gameObject.GetComponent<PalettedSprite>();
+            foreach (var item in Sprites)
+            {
+                item.Palette = (int)Unit.TheTeam;
+            }
+            Palette.Palette = Unit.Statue ? 3 : (int)Unit.TheTeam;
+            UIHealthbar.SetMax(Unit.Stats.MaxHP);
+            UIPortrait.Portrait = Unit.Icon;
+        }
+
+        public void UpdateUI(Unit target)
+        {
+            UIInfo.text = Unit.ToString().PadRight(8) + '\n' + Unit.AttackPreview(target, 4, Unit.CanAttack(target));
+            if (UIInclination != null)
+            {
+                UIInclination.Display(Unit, target);
+            }
+            UIHealthbar.SetValue(Unit.Health);
+        }
     }
 }
 
