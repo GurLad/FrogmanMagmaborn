@@ -10,8 +10,8 @@ public class BAWalk : BattleAnimation
 
     private void Update()
     {
-        currentPos.x -= Time.deltaTime * SPEED * (ThisCombatant.LookingLeft ? 1 : -1);
-        if (currentPos.x <= targetPos)
+        currentPos.x -= Time.deltaTime * SPEED * ThisCombatant.LookingLeftSign;
+        if (currentPos.x * ThisCombatant.LookingLeftSign <= targetPos * ThisCombatant.LookingLeftSign)
         {
             currentPos.x = targetPos;
             Destroy(this);
@@ -24,6 +24,6 @@ public class BAWalk : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         ThisCombatant.Animation.Activate("Walk");
         currentPos = ThisCombatant.Object.transform.position;
-        targetPos = OtherCombatant.Object.transform.position.x + (ThisCombatant.LookingLeft ? 1 : -1);
+        targetPos = OtherCombatant.Object.transform.position.x + ThisCombatant.LookingLeftSign;
     }
 }

@@ -32,6 +32,13 @@ public class BAMeleeAttack : BattleAnimation
     public override void Init(BattleAnimationController.CombatantData thisCombatant, BattleAnimationController.CombatantData otherCombatant, BattleAnimationController battleAnimationController)
     {
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
-        ThisCombatant.Animation.Activate("AttackStart");
+        if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
+        {
+            ThisCombatant.Animation.Activate("AttackStart");
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }
