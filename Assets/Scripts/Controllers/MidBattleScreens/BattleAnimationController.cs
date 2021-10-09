@@ -320,7 +320,7 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         // Do nothing
     }
 
-    private bool? HandleDamage(CombatantData attacker, CombatantData defender)
+    public bool? HandleDamage(CombatantData attacker, CombatantData defender)
     {
         bool? result = attacker.Unit.Attack(defender.Unit);
         switch (result)
@@ -508,7 +508,19 @@ public class BattleAnimationController : MidBattleScreen, IAdvancedSpriteSheetAn
         public AdvancedSpriteSheetAnimation Animation;
         public PalettedSprite Palette;
         public SpriteRenderer Object;
-        public bool LookingLeft;
+        private bool _lookingLeft;
+        public bool LookingLeft
+        {
+            get
+            {
+                return _lookingLeft;
+            }
+            set
+            {
+                _lookingLeft = value;
+                Object.flipX = !LookingLeft;
+            }
+        }
 
         public CombatantData(Text uiInfo, InclinationIndicator uiInclination, PortraitHolder uiPortrait, HealthbarPanel uiHealthbar, List<PalettedSprite> sprites, SpriteRenderer @object, Unit unit)
         {
