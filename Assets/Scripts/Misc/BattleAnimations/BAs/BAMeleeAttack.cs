@@ -11,9 +11,9 @@ public class BAMeleeAttack : BattleAnimation
         {
             case "AttackStart":
                 ThisCombatant.Animation.Activate("AttackEnd");
-                BattleAnimationController.HandleDamage(ThisCombatant, OtherCombatant);
                 // Fix looking left for backstabs (teleport)
                 OtherCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                BattleAnimationController.HandleDamage(ThisCombatant, OtherCombatant);
                 break;
             case "AttackEnd":
                 if (ThisCombatant.Animation.HasAnimation("IdlePost"))

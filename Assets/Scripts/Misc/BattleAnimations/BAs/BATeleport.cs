@@ -29,6 +29,8 @@ public class BATeleport : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
+            // Fix looking left for backstabs (teleport mirror match)
+            ThisCombatant.LookingLeft = !OtherCombatant.LookingLeft;
             ThisCombatant.Animation.Activate("TeleportStart");
         }
         else

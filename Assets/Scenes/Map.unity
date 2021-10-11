@@ -17698,7 +17698,7 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 7
+  DebugEndgameLevel: 4
   DebugUnits:
   - Frogman
   - Firbell
@@ -20704,34 +20704,6 @@ MonoBehaviour:
   - Name: TestingArea
     LevelNumber: 7
     Units:
-    - Pos: {x: 4, y: 5}
-      Team: 0
-      Level: 8
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 5}
-      Team: 0
-      Level: 8
-      Class: Firbell
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 5}
-      Team: 0
-      Level: 8
-      Class: Kresla
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 5}
-      Team: 0
-      Level: 8
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 7, y: 8}
       Team: 2
       Level: 8
@@ -20739,45 +20711,10 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 8}
-      Team: 2
-      Level: 8
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 8}
-      Team: 2
-      Level: 8
-      Class: Lich
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 8, y: 5}
       Team: 1
       Level: 8
       Class: Wizard
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 8}
-      Team: 1
-      Level: 8
-      Class: Ooze
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 8}
-      Team: 1
-      Level: 8
-      Class: Slither
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 8}
-      Team: 1
-      Level: 8
-      Class: Knight
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
