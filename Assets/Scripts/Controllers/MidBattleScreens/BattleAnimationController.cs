@@ -165,29 +165,31 @@ public class BattleAnimationController : MidBattleScreen
             toDestroy.RemoveAt(0);
         }
         // Now load new
-        string[] folders = UnityEditor.AssetDatabase.GetSubFolders("Assets/Data/Images/ClassBattleAnimations");
-        Debug.Log(string.Join(",", folders));
-        foreach (string folder in folders)
+        string json = FrogForgeImporter.LoadFile<TextAsset>("Classes.json").text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassAnimations"), this);
+        for (int i = 0; i < ClassAnimations.Count; i++)
         {
             AdvancedSpriteSheetAnimation animation = Instantiate(BaseClassAnimation, transform);
-            string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { folder });
-            foreach (string fileName in fileNames)
+            foreach (BattleBackgroundData animationName in ClassAnimations[i].BattleAnimations)
             {
-                Sprite file = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
-                Debug.Log(fileName + ", " + file.name);
-                SpriteSheetData newData = new SpriteSheetData();
-                newData.SpriteSheet = file;
-                newData.NumberOfFrames = (int)file.rect.width / (int)file.rect.height;
-                newData.Speed = 0;
-                newData.Name = file.name;
-                newData.Loop = newData.Name == "Walk" || newData.Name == "Idle"; // Quick & dirty, think of a better fix
-                animation.Animations.Add(newData);
+                Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
+                if (file != null)
+                {
+                    Debug.Log(animationName.Name + ", " + file.name);
+                    SpriteSheetData newData = new SpriteSheetData();
+                    newData.SpriteSheet = file;
+                    newData.NumberOfFrames = (int)file.rect.width / (int)file.rect.height;
+                    newData.Speed = 0;
+                    newData.Name = animationName.Name;
+                    newData.Loop = newData.Name == "Walk" || newData.Name == "Idle"; // Quick & dirty, think of a better fix
+                    animation.Animations.Add(newData);
+                }
+                else
+                {
+                    Debug.LogWarning("No animation file for " + ClassAnimations[i].Name + "'s " + animationName.Name + " animation");
+                }
             }
-            ClassAnimation classAnimation = new ClassAnimation();
-            classAnimation.Animation = animation;
-            string[] temp = folder.Split('/');
-            classAnimation.Name = animation.name = temp[temp.Length - 1];
-            ClassAnimations.Add(classAnimation);
+            ClassAnimations[i].Animation = animation;
         }
         // Set dirty
         UnityEditor.EditorUtility.SetDirty(gameObject);
@@ -281,7 +283,7 @@ public class BattleAnimationController : MidBattleScreen
     }
 
     [System.Serializable]
-    private class BattleBackgroundData
+    public class BattleBackgroundData
     {
         public string Name;
     }
@@ -364,6 +366,9 @@ public class ClassAnimation
     public string Name;
     public AdvancedSpriteSheetAnimation Animation;
     public GameObject Projectile;
+    public List<BattleAnimationController.BattleBackgroundData> BattleAnimations;
+    public BattleAnimationMode BattleAnimationModeMelee;
+    public BattleAnimationMode BattleAnimationModeRanged;
 }
 
 [System.Serializable]

@@ -15,6 +15,7 @@ public enum TormentPowerState { None, I, II }
 public enum PortraitLoadingMode { Name, Team, Generic }
 public enum Objective { Rout, Boss, Escape, Survive }
 public enum GameState { Normal, SideWon, ShowingEvent }
+public enum BattleAnimationMode { Walk, Projectile, Teleport }
 
 public static class StaticGlobals
 {
