@@ -20704,35 +20704,42 @@ MonoBehaviour:
   - Name: TestingArea
     LevelNumber: 7
     Units:
-    - Pos: {x: 5, y: 7}
+    - Pos: {x: 4, y: 5}
       Team: 0
       Level: 8
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 5, y: 5}
       Team: 0
       Level: 8
       Class: Firbell
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 9}
-      Team: 1
+    - Pos: {x: 6, y: 5}
+      Team: 0
       Level: 8
-      Class: Golem
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 5}
+      Team: 0
+      Level: 8
+      Class: Memerian
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
     - Pos: {x: 7, y: 8}
-      Team: 1
+      Team: 2
       Level: 8
-      Class: Slither
+      Class: Wizard
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 9}
+    - Pos: {x: 8, y: 8}
       Team: 2
       Level: 8
       Class: Archer
@@ -20746,10 +20753,31 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 10, y: 9}
-      Team: 2
+    - Pos: {x: 8, y: 5}
+      Team: 1
       Level: 8
       Class: Wizard
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 8
+      Class: Ooze
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 8}
+      Team: 1
+      Level: 8
+      Class: Slither
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 8}
+      Team: 1
+      Level: 8
+      Class: Knight
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
@@ -20757,7 +20785,7 @@ MonoBehaviour:
     Tileset: Dungeon
     Objective: 0
     ObjectiveData: Rout
-    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|1|0|0|0|0|2|2|2|2|2|2;2|2|2|2|1|0|0|3|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|3|0|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|1|0|0|0|3|0|0|2|2|2|2;2|2|2|2|2|1|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|0|3|0|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|0|0|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|0|0|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
   - Name: TormentRoom0
     LevelNumber: 4
     Units:

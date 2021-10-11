@@ -24,7 +24,7 @@ public class BADamageFlash : BattleAnimation
         }
         else
         {
-            Destroy(this);
+            Finish();
         }
     }
 }

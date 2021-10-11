@@ -7,7 +7,7 @@ public class BACounterAttack : BattleAnimation
     public override void FinishedAnimation(int id, string name)
     {
         base.FinishedAnimation(id, name);
-        Destroy(this);
+        Finish();
     }
 
     public override void Init(BattleAnimationController.CombatantData thisCombatant, BattleAnimationController.CombatantData otherCombatant, BattleAnimationController battleAnimationController)
@@ -15,7 +15,7 @@ public class BACounterAttack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (!ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
-            Destroy(this);
+            Finish();
             return;
         }
         float temp = OtherCombatant.Object.transform.position.z;
@@ -28,7 +28,7 @@ public class BACounterAttack : BattleAnimation
         }
         else
         {
-            Destroy(this);
+            Finish();
         }
     }
 }

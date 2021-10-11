@@ -55,21 +55,60 @@ public class BattleAnimationController : MidBattleScreen
         AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
         Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
         DefenderBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && defenderTile.Name == a.Tile).Background.SetActive(true);
-        if (Vector2.Distance(Attacker.Unit.Pos, Defender.Unit.Pos) <= 1)
+        bool meleeAttack = Vector2.Distance(Attacker.Unit.Pos, Defender.Unit.Pos) <= 1;
+        if (!meleeAttack)
         {
-            // Melee attack
-            animationParts.Enqueue(() => BeginAnimation<BAWalk>(Attacker, Defender));
-            animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(Attacker, Defender));
+            // Move combatants slightly
+            Attacker.Object.transform.position += new Vector3(Attacker.LookingLeftSign, 0, 0);
+            Defender.Object.transform.position += new Vector3(Defender.LookingLeftSign, 0, 0);
+        }
+        // Set init pos
+        Attacker.InitPos = Attacker.Object.transform.position.x;
+        Defender.InitPos = Defender.Object.transform.position.x;
+        Debug.Log(Attacker.InitPos + ", " + Defender.InitPos);
+        // Attacker move
+        bool adjacent = FarAttack(Attacker, Defender, meleeAttack);
+        // Defender move
+        if (adjacent)
+        {
+            // Has no choice but to use adjacent attack
             animationParts.Enqueue(() => BeginAnimation<BACounterAttack>(Defender, Attacker));
             animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(Defender, Attacker));
         }
         else
         {
-            // Ranged attack
-            animationParts.Enqueue(() => BeginAnimation<BARangedAttack>(Attacker, Defender));
-            animationParts.Enqueue(() => BeginAnimation<BARangedAttack>(Defender, Attacker));
+            // Use a far attack
+            FarAttack(Defender, Attacker, meleeAttack);
         }
         UpdateDisplay();
+    }
+
+    /// <summary>
+    /// Decides the non-adjacent attack
+    /// </summary>
+    /// <param name="attacker">Initiator</param>
+    /// <param name="defender">Target</param>
+    /// <param name="melee">Use the melee/ranged mode</param>
+    /// <returns>True if they ended up adjacent, false otherwise</returns>
+    private bool FarAttack(CombatantData attacker, CombatantData defender, bool melee)
+    {
+        switch (melee ? attacker.ClassAnimationData.BattleAnimationModeMelee : attacker.ClassAnimationData.BattleAnimationModeRanged)
+        {
+            case BattleAnimationMode.Walk:
+                animationParts.Enqueue(() => BeginAnimation<BAWalk>(attacker, defender));
+                animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
+                return true;
+            case BattleAnimationMode.Projectile:
+                animationParts.Enqueue(() => BeginAnimation<BARangedAttack>(attacker, defender));
+                return false;
+            case BattleAnimationMode.Teleport:
+                animationParts.Enqueue(() => BeginAnimation<BATeleport>(attacker, defender));
+                animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
+                animationParts.Enqueue(() => BeginAnimation<BATeleportBack>(attacker, defender));
+                return false;
+            default:
+                throw new System.Exception("Impossible");
+        }
     }
 
     private void UpdateDisplay()
@@ -299,6 +338,8 @@ public class BattleAnimationController : MidBattleScreen
         public AdvancedSpriteSheetAnimation Animation;
         public PalettedSprite Palette;
         public SpriteRenderer Object;
+        public ClassAnimation ClassAnimationData;
+        public float InitPos;
         private bool _lookingLeft;
         public bool LookingLeft
         {
@@ -333,7 +374,7 @@ public class BattleAnimationController : MidBattleScreen
 
         public void Init(BattleAnimationController battleAnimationController)
         {
-            Animation = Instantiate(battleAnimationController.ClassAnimations.Find(a => a.Name == Unit.Class).Animation, Object.transform);
+            Animation = Instantiate((ClassAnimationData = battleAnimationController.ClassAnimations.Find(a => a.Name == Unit.Class)).Animation, Object.transform);
             Animation.Renderer = Object;
             Animation.Animations.ForEach(a => a.Split());
             Animation.EditorPreview();

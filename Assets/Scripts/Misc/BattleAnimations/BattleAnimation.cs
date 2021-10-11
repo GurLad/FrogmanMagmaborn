@@ -7,6 +7,7 @@ public abstract class BattleAnimation : MonoBehaviour, IAdvancedSpriteSheetAnima
     protected BattleAnimationController BattleAnimationController;
     protected BattleAnimationController.CombatantData ThisCombatant;
     protected BattleAnimationController.CombatantData OtherCombatant;
+    private bool dead = false;
 
     public virtual void ChangedFrame(int id, string name, int newFrame)
     {
@@ -24,5 +25,20 @@ public abstract class BattleAnimation : MonoBehaviour, IAdvancedSpriteSheetAnima
         OtherCombatant = otherCombatant;
         BattleAnimationController = battleAnimationController;
         ThisCombatant.Animation.Listeners.Add(this);
+    }
+
+    protected void Finish()
+    {
+        // Needs to delay a frame
+        dead = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (dead)
+        {
+            ThisCombatant.Animation.Listeners.Remove(this);
+            Destroy(this);
+        }
     }
 }

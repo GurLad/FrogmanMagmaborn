@@ -14,7 +14,7 @@ public class BAWalk : BattleAnimation
         if (currentPos.x * ThisCombatant.LookingLeftSign <= targetPos * ThisCombatant.LookingLeftSign)
         {
             currentPos.x = targetPos;
-            Destroy(this);
+            Finish();
         }
         ThisCombatant.Object.transform.position = currentPos;
     }
@@ -22,8 +22,17 @@ public class BAWalk : BattleAnimation
     public override void Init(BattleAnimationController.CombatantData thisCombatant, BattleAnimationController.CombatantData otherCombatant, BattleAnimationController battleAnimationController)
     {
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
-        ThisCombatant.Animation.Activate("Walk");
-        currentPos = ThisCombatant.Object.transform.position;
-        targetPos = OtherCombatant.Object.transform.position.x + ThisCombatant.LookingLeftSign;
+        if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
+        {
+            // Fix looking left for backstabs (teleport)
+            ThisCombatant.LookingLeft = !OtherCombatant.LookingLeft;
+            ThisCombatant.Animation.Activate("Walk");
+            currentPos = ThisCombatant.Object.transform.position;
+            targetPos = OtherCombatant.Object.transform.position.x + ThisCombatant.LookingLeftSign;
+        }
+        else
+        {
+            Finish();
+        }
     }
 }

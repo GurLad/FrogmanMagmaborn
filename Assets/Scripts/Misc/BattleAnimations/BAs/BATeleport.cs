@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BAMeleeAttack : BattleAnimation
+public class BATeleport : BattleAnimation
 {
     public override void FinishedAnimation(int id, string name)
     {
         base.FinishedAnimation(id, name);
         switch (name)
         {
-            case "AttackStart":
-                ThisCombatant.Animation.Activate("AttackEnd");
-                BattleAnimationController.HandleDamage(ThisCombatant, OtherCombatant);
-                // Fix looking left for backstabs (teleport)
-                OtherCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+            case "TeleportStart":
+                ThisCombatant.Animation.Activate("TeleportEnd");
+                ThisCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                Vector3 temp = ThisCombatant.Object.transform.position;
+                temp.x = OtherCombatant.Object.transform.position.x + OtherCombatant.LookingLeftSign;
+                ThisCombatant.Object.transform.position = temp;
                 break;
-            case "AttackEnd":
-                if (ThisCombatant.Animation.HasAnimation("IdlePost"))
-                {
-                    ThisCombatant.Animation.Activate("IdlePost");
-                }
-                else
-                {
-                    ThisCombatant.Animation.Activate("Idle");
-                }
+            case "TeleportEnd":
                 Finish();
                 break;
             default:
@@ -36,7 +29,7 @@ public class BAMeleeAttack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
-            ThisCombatant.Animation.Activate("AttackStart");
+            ThisCombatant.Animation.Activate("TeleportStart");
         }
         else
         {

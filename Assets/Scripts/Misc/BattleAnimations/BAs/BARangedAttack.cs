@@ -19,7 +19,7 @@ public class BARangedAttack : BattleAnimation
             {
                 Destroy(currentProjectile);
                 BattleAnimationController.HandleDamage(ThisCombatant, OtherCombatant);
-                Destroy(this);
+                Finish();
             }
         }
     }
@@ -55,11 +55,13 @@ public class BARangedAttack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
+            // Fix looking left for backstabs (teleport)
+            ThisCombatant.LookingLeft = !OtherCombatant.LookingLeft;
             ThisCombatant.Animation.Activate("AttackRangeStart");
         }
         else
         {
-            Destroy(this);
+            Finish();
         }
     }
 }
