@@ -8,7 +8,17 @@ roomNumber:4
 # Nothinig
 ~ Before battle
 # TBA: Add !firstTime dialouge
-:callOther:TormentBase
+# Set Torment met flags
+:if:hasCharacter:Firbell{
+:setFlag:MetTormentFirbell
+}
+:if:hasCharacter:Kresla{
+:setFlag:MetTormentKresla
+}
+:if:hasCharacter:Xirveros{
+:setFlag:MetTormentXirveros
+}
+
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :if:hadCharacter:Firbell{
@@ -66,7 +76,7 @@ Torment: You're SO welcome! Ha ha ha!\a But please, do take better care of my pa
 Frogman: ...
 }
 :else:{
-Torment: What? You killed her AGAIN? Bad, bad Frogman! Ha ha!
+Torment: What? You killed her too? Bad, bad Frogman! Ha ha!
 Frogman: I'm... s-sorry...
 Torment: Don't apologize to me, heh!\a Well, good luck staying alive without her. Ha ha ha!
 Frogman: ...
