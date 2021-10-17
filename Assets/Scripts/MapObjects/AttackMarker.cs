@@ -11,7 +11,7 @@ public class AttackMarker : Marker
             Unit unit = GameController.Current.FindUnitAtPos(Pos.x, Pos.y);
             if (unit != null)
             {
-                if (unit.TheTeam != Origin.TheTeam)
+                if (unit.TheTeam.IsEnemy(Origin.TheTeam))
                 {
                     // Fight!
                     Origin.Fight(unit);

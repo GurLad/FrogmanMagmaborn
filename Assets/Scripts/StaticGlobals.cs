@@ -58,4 +58,8 @@ public static class StaticGlobals
         T temp = gameObject.GetComponent<T>();
         return temp != null ? temp : gameObject.AddComponent<T>();
     }
+    public static bool IsEnemy(this Team origin, Team target) // Very quick & dirty - add to LevelMetadataEditor
+    {
+        return GameController.Current.LevelNumber <= 6 ? origin != target : ((origin == Team.Player && target != Team.Player) || (target == Team.Player && origin != Team.Player));
+    }
 }

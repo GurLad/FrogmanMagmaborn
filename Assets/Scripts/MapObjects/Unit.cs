@@ -165,11 +165,11 @@ public class Unit : MapObject
             return;
         }
         Unit atPos = GameController.Current.FindUnitAtPos(x, y);
-        if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
+        if (atPos == null || atPos == this || (ignoreAllies && !atPos.TheTeam.IsEnemy(TheTeam)))
         {
             checkedTiles[x, y] = range + 1;
         }
-        else if (atPos.TheTeam != TheTeam)
+        else if (atPos.TheTeam.IsEnemy(TheTeam))
         {
             attackFrom.Add(new Vector2Int(x, y));
             return;
@@ -187,13 +187,13 @@ public class Unit : MapObject
                     if (range - GameController.Current.Map[x + i, y + j].GetMovementCost(this) >= 0)
                     {
                         Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
-                        if (atTargetPos != null && atTargetPos.TheTeam != TheTeam && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
+                        if (atTargetPos != null && atTargetPos.TheTeam.IsEnemy(TheTeam) && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
                         {
                             continue;
                         }
                         GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].GetMovementCost(this), checkedTiles, attackFrom, ignoreAllies);
                     }
-                    else if (atPos == null || atPos == this || (ignoreAllies && atPos.TheTeam == TheTeam))
+                    else if (atPos == null || atPos == this || (ignoreAllies && !atPos.TheTeam.IsEnemy(TheTeam)))
                     {
                         attackFrom.Add(new Vector2Int(x + i, y + j));
                     }
@@ -390,7 +390,7 @@ public class Unit : MapObject
     }
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam != TheTeam && !a.Statue && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && !a.Moved && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
         switch (AIType)
         {
             case AIType.Charge:
@@ -407,7 +407,7 @@ public class Unit : MapObject
                 if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
                 {
                     Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
-                    RetreatAI(fullDangerArea);
+                    RetreatAI(GetDangerArea(Pos.x, Pos.y, 50, new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], new List<Vector2Int>(), false));
                     return;
                 }
                 Unit target = enemyUnits[0];
@@ -505,19 +505,28 @@ public class Unit : MapObject
     }
     private void RetreatAI(int[,] fullDangerArea)
     {
-        Vector2Int minPoint = Vector2Int.zero;
+        Vector2Int minPoint = -Vector2Int.one;
         for (int x = 0; x < GameController.Current.MapSize.x; x++)
         {
             for (int y = 0; y < GameController.Current.MapSize.y; y++)
             {
                 if (x == 0 || y == 0 || x == GameController.Current.MapSize.x - 1 || y == GameController.Current.MapSize.y - 1)
                 {
-                    if (fullDangerArea[x, y] > 0 && (fullDangerArea[minPoint.x, minPoint.y] <= 0 || fullDangerArea[minPoint.x, minPoint.y] < fullDangerArea[x, y]))
+                    if (fullDangerArea[x, y] > 0)
                     {
-                        minPoint = new Vector2Int(x, y);
+                        if (minPoint == -Vector2Int.one || fullDangerArea[minPoint.x, minPoint.y] <= 0 || fullDangerArea[minPoint.x, minPoint.y] < fullDangerArea[x, y])
+                        {
+                            minPoint = new Vector2Int(x, y);
+                        }
                     }
                 }
             }
+        }
+        if (minPoint == -Vector2Int.one)
+        {
+            Debug.Log(this + " can't move :(");
+            MoveTo(Pos);
+            return;
         }
         Vector2Int target = ClosestMoveablePointToTarget(minPoint, fullDangerArea);
         if (target.x == 0 || target.y == 0 || target.x == GameController.Current.MapSize.x - 1 || target.y == GameController.Current.MapSize.y - 1) // Can reach the end of the map, aka retreat, aka die
