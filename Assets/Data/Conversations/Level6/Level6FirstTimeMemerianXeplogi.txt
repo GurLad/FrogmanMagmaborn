@@ -31,14 +31,11 @@ Memerian: Yes.
 :if:hasCharacter:Firbell{
 Firbell: Who are you talking about?
 }
-:else:{
 :if:hasCharacter:Kresla{
 Kresla: Who?
 }
-:else:{
 :if:hasCharacter:Xirveros{
 Xirveros: Tori? No! No Tori!
-}
 }
 }
 Xeplogi||L: Do not listen to her words of trickery!\a She-
@@ -77,7 +74,7 @@ Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
 Memerian: You've left me no choice, Frogman.\a Prepare to die.
 }
 :else:{
-Frogman||L: Sorry, Xeplogi, but you're obviously insane.\a I've never heard of this Tori,\a and I'd like to here Memerian out.
+Frogman||L: Sorry, Xeplogi, but you're obviously insane.\a I've never heard of this Tori,\a and I'd like to hear Memerian out.
 Xeplogi: You... you traitor! I shall destroy you!
 Memerian: Don't mind him.\a He's always like that.
 :play:GuardTheme

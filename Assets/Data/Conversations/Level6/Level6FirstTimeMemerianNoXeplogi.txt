@@ -1,0 +1,56 @@
+priority:5
+unique:F
+~ Requirements
+roomNumber:6
+!hasCharacter:Xeplogi
+~ Demands
+# TBA: Add room tags, and force a room built for Memerian and Keplogi
+~ Before battle
+:addUnit:Memerian
+:loadUnits::player
+:play:BeforeBattle
+Memerian|???: Hey. You there. Who are you?
+Frogman||L: My name is Frogman. Who might you be?
+Memerian: TBA
+# Memerian is afraid to talk about Torment in public, and rightly so.
+:if:charactersAlive:<2{
+Memerian: Anyway. Frogman, were you sent here by Torment?
+Frogman: Wait... you know Torment?!
+}
+:else:{
+Memerian: Anyway. Frogman, may we speak in private?
+Frogman: What for?
+Memerian: Let's call them... the divine Tori.
+Frogman: Who?\a Wait, you mean Tor-
+Memerian: Yes.
+:if:hasCharacter:Firbell{
+Firbell: Who are you talking about?
+}
+:if:hasCharacter:Kresla{
+Kresla: Who?
+}
+:if:hasCharacter:Xirveros{
+Xirveros: Tori? No! No Tori!
+}
+}
+
+:play:GuardTheme
+:loadUnits:
+:addGenericCharacter:Guard1:
+Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
+
+~ After battle
+:play:AfterBattle
+Frogman: Whew. We-
+Torment: Not so fast, heh!
+Frogman: Torment?!
+Torment: Yes, it's me!\a You've reached the end of the beta!
+Frogman: What beta?
+Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!
+You can still play more runs to view more conversations
+and unlock upgrades, but you'll have to die now.
+Ha ha!
+:showPartTitle:End of:Beta
+:lose:
+
+# === Functions ====

@@ -208,6 +208,7 @@ public class BattleAnimationController : MidBattleScreen
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassAnimations"), this);
         for (int i = 0; i < ClassAnimations.Count; i++)
         {
+            // Load animations
             AdvancedSpriteSheetAnimation animation = Instantiate(BaseClassAnimation, transform);
             foreach (BattleBackgroundData animationName in ClassAnimations[i].BattleAnimations)
             {
@@ -229,6 +230,16 @@ public class BattleAnimationController : MidBattleScreen
                 }
             }
             ClassAnimations[i].Animation = animation;
+            // Load projectile
+            string projectileLocation = "Images/ClassBattleAnimations/_Projectiles/" + ClassAnimations[i].Name + ".png";
+            if (FrogForgeImporter.CheckFileExists<Sprite>(projectileLocation))
+            {
+                // Instantiate, TBA
+                GameObject a;
+                Sprite projectile = FrogForgeImporter.LoadFile<Sprite>(projectileLocation);
+                FrogForgeImporter.LoadSpriteOrAnimationToObject(a, projectile, 8);
+            }
+
         }
         // Set dirty
         UnityEditor.EditorUtility.SetDirty(gameObject);
@@ -410,6 +421,8 @@ public class ClassAnimation
     public List<BattleAnimationController.BattleBackgroundData> BattleAnimations;
     public BattleAnimationMode BattleAnimationModeMelee;
     public BattleAnimationMode BattleAnimationModeRanged;
+    [HideInInspector]
+    public Vector2Int ProjectilePos;
 }
 
 [System.Serializable]
