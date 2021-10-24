@@ -39,7 +39,7 @@ public class BARangedAttack : BattleAnimation
                 currentProjectile.transform.localPosition = pos;
                 currentProjectile.GetComponent<PalettedSprite>().Palette = (int)ThisCombatant.Unit.TheTeam;
                 currentPorjectilePos = currentProjectile.transform.position;
-                currentProjectile.GetComponent<SpriteRenderer>().flipX = true;
+                currentProjectile.GetComponent<SpriteRenderer>().flipX = !ThisCombatant.LookingLeft;
                 ThisCombatant.Animation.Activate("AttackRangeEnd");
                 break;
             case "AttackRangeEnd":

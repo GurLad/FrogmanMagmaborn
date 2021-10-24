@@ -8,6 +8,7 @@ public class BattleAnimationController : MidBattleScreen
 {
     [Header("Class Animations")]
     public AdvancedSpriteSheetAnimation BaseClassAnimation;
+    public GameObject BaseProjectile;
     public List<ClassAnimation> ClassAnimations;
     [Header("Battle Backgrounds")]
     public Transform BattleBackgroundsAttackerContainer;
@@ -198,6 +199,13 @@ public class BattleAnimationController : MidBattleScreen
                 toDestroy.Add(child.gameObject);
             }
         }
+        foreach (Transform child in BaseProjectile.transform.parent)
+        {
+            if (child != BaseProjectile.transform)
+            {
+                toDestroy.Add(child.gameObject);
+            }
+        }
         while (toDestroy.Count > 0)
         {
             DestroyImmediate(toDestroy[0]);
@@ -210,6 +218,7 @@ public class BattleAnimationController : MidBattleScreen
         {
             // Load animations
             AdvancedSpriteSheetAnimation animation = Instantiate(BaseClassAnimation, transform);
+            animation.gameObject.name = ClassAnimations[i].Name;
             foreach (BattleBackgroundData animationName in ClassAnimations[i].BattleAnimations)
             {
                 Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
@@ -234,10 +243,12 @@ public class BattleAnimationController : MidBattleScreen
             string projectileLocation = "Images/ClassBattleAnimations/_Projectiles/" + ClassAnimations[i].Name + ".png";
             if (FrogForgeImporter.CheckFileExists<Sprite>(projectileLocation))
             {
-                // Instantiate, TBA
-                GameObject a;
-                Sprite projectile = FrogForgeImporter.LoadFile<Sprite>(projectileLocation);
-                FrogForgeImporter.LoadSpriteOrAnimationToObject(a, projectile, 8);
+                GameObject projectileObject = Instantiate(BaseProjectile, BaseProjectile.transform.parent);
+                Sprite projectileSprite = FrogForgeImporter.LoadFile<Sprite>(projectileLocation);
+                FrogForgeImporter.LoadSpriteOrAnimationToObject(projectileObject, projectileSprite, 8);
+                projectileObject.transform.position += new Vector3(ClassAnimations[i].ProjectilePos.x, -ClassAnimations[i].ProjectilePos.y, 0) / 16;
+                projectileObject.name = ClassAnimations[i].Name;
+                ClassAnimations[i].Projectile = projectileObject;
             }
 
         }
