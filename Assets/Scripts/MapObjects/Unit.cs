@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
+using AttackFrom = System.Collections.Generic.List<UnityEngine.Vector2Int>;
 
 public class Unit : MapObject
 {
@@ -158,77 +159,9 @@ public class Unit : MapObject
                 break;
         }
     }
-    private void GetMovement(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
-    {
-        if (checkedTiles[x, y] > range)
-        {
-            return;
-        }
-        Unit atPos = GameController.Current.FindUnitAtPos(x, y);
-        if (atPos == null || atPos == this || (ignoreAllies && !atPos.TheTeam.IsEnemy(TheTeam)))
-        {
-            checkedTiles[x, y] = range + 1;
-        }
-        else if (atPos.TheTeam.IsEnemy(TheTeam))
-        {
-            attackFrom.Add(new Vector2Int(x, y));
-            return;
-        }
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                if (i == 0 || j == 0)
-                {
-                    if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
-                    {
-                        continue;
-                    }
-                    if (range - GameController.Current.Map[x + i, y + j].GetMovementCost(this) >= 0)
-                    {
-                        Unit atTargetPos = GameController.Current.FindUnitAtPos(x + i, y + j);
-                        if (atTargetPos != null && atTargetPos.TheTeam.IsEnemy(TheTeam) && atPos != null && atPos != this && (!ignoreAllies || atPos.TheTeam != TheTeam))
-                        {
-                            continue;
-                        }
-                        GetMovement(x + i, y + j, range - GameController.Current.Map[x + i, y + j].GetMovementCost(this), checkedTiles, attackFrom, ignoreAllies);
-                    }
-                    else if (atPos == null || atPos == this || (ignoreAllies && !atPos.TheTeam.IsEnemy(TheTeam)))
-                    {
-                        attackFrom.Add(new Vector2Int(x + i, y + j));
-                    }
-                }
-            }
-        }
-    }
-    private void GetDangerAreaPart(int x, int y, int range, int[,] checkedTiles)
-    {
-        if (checkedTiles[x, y] > 0 || -checkedTiles[x, y] > range || !GameController.Current.Map[x, y].Passable)
-        {
-            return;
-        }
-        checkedTiles[x, y] = -(range + 1);
-        if (range - 1 > 0)
-        {
-            for (int i = -1; i <= 1; i++)
-            {
-                for (int j = -1; j <= 1; j++)
-                {
-                    if (i == 0 || j == 0)
-                    {
-                        if (x + i < 0 || y + j < 0 || x + i >= GameController.Current.MapSize.x || y + j >= GameController.Current.MapSize.y)
-                        {
-                            continue;
-                        }
-                        GetDangerAreaPart(x + i, y + j, range - 1, checkedTiles);
-                    }
-                }
-            }
-        }
-    }
     private int[,] GetDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
     {
-        GetMovement(x, y, range, checkedTiles, attackFrom, ignoreAllies);
+        FindMovement(x, y, range, checkedTiles, attackFrom, ignoreAllies);
         attackFrom = attackFrom.Distinct().ToList();
         foreach (Vector2Int pos in attackFrom)
         {
@@ -246,7 +179,7 @@ public class Unit : MapObject
     {
         int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
         List<Vector2Int> attackFrom = new List<Vector2Int>();
-        GetMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, ignoreAllies);
+        FindMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, ignoreAllies);
         return checkedTiles;
     }
 
@@ -713,6 +646,146 @@ public class Unit : MapObject
         AttackMarker = attackMarker;
         LoadIcon();
         moved = false;
+    }
+
+    private class DangerArea
+    {
+        public enum TileDataType { Inaccessible, Move, PassThrough, Attack }
+
+        private TileData[,] data;
+        private Unit unit;
+
+        public TileData this[int x, int y]
+        {
+            get => data[x, y];
+            set => data[x, y] = value;
+        }
+
+        public DangerArea(Unit unit)
+        {
+            this.unit = unit;
+            data = new TileData[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+            for (int x = 0; x < GameController.Current.MapSize.x; x++)
+            {
+                for (int y = 0; y < GameController.Current.MapSize.y; y++)
+                {
+                    data[x, y] = new TileData();
+                }
+            }
+        }
+
+
+        private AttackFrom FindMovement(int x, int y, int range)
+        {
+            void Inner(int x, int y, int range, AttackFrom attackFrom) // Recursion
+            {
+                if (this[x, y].Value > range) // Found a better path
+                {
+                    return;
+                }
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (i == 0 || j == 0) // Check cross shape
+                        {
+                            if (OutOfBounds(x + i, y + j)) // Out of bounds
+                            {
+                                continue;
+                            }
+                            if ((range -= GameController.Current.Map[x + i, y + j].GetMovementCost(unit)) >= 0) // Isn't blocked by terrain
+                            {
+                                Unit atPos = GameController.Current.FindUnitAtPos(x + i, y + j);
+                                if (atPos == null) // Empty space - can move
+                                {
+                                    MarkMovementTile(x + i, y + j, range, TileDataType.Move);
+                                }
+                                else if (!unit.TheTeam.IsEnemy(atPos.TheTeam)) // Ally - can pass through
+                                {
+                                    MarkMovementTile(x + i, y + j, range, TileDataType.PassThrough);
+                                }
+                                else // Enemy - can be attacked from here
+                                {
+                                    attackFrom.Add(new Vector2Int(x, y));
+                                    continue;
+                                }
+                                // If Move or PassThrough, continue moving
+                                Inner(x + i, y + j, range, attackFrom);
+                            }
+                            else // Blocked by terrain - can attack from here
+                            {
+                                attackFrom.Add(new Vector2Int(x + i, y + j));
+                            }
+                        }
+                    }
+                }
+            }
+
+            AttackFrom attackFrom = new AttackFrom();
+            if (OutOfBounds(x, y))
+            {
+                throw new System.Exception("Checking movement of an out-of-bounds unit!");
+            }
+            MarkMovementTile(x, y, range, TileDataType.Move);
+            Inner(x, y, range, attackFrom);
+            return attackFrom;
+        }
+
+        private void FindAttackPart(int x, int y, int range)
+        {
+            void Inner (int x, int y, int range, TileData parent)
+            {
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (i == 0 || j == 0)
+                        {
+                            if (OutOfBounds(x + i, y + j))
+                            {
+                                continue;
+                            }
+                            if (this[x + i, y + j].Value > 0 || -this[x + i, y + j].Value > range || !GameController.Current.Map[x + i, y + j].Passable)
+                            {
+                                continue;
+                            }
+                            this[x + i, y + j].Type = TileDataType.Attack;
+                            this[x + i, y + j].Value = -(range + 1);
+                            this[x + i, y + j].Parent = parent;
+                            if (range - 1 > 0)
+                            {
+                                Inner(x + i, y + j, range - 1, parent);
+                            }
+                        }
+                    }
+                }
+                if (this[x, y].Value > 0 || -this[x, y].Value > range || !GameController.Current.Map[x, y].Passable)
+                {
+                    return;
+                }
+            }
+
+            TileData parent = this[x, y];
+            Inner(x, y, range, parent);
+        }
+
+        private bool OutOfBounds(int x, int y)
+        {
+            return x < 0 || y < 0 || x >= GameController.Current.MapSize.x || y >= GameController.Current.MapSize.y;
+        }
+
+        private void MarkMovementTile(int x, int y, int range, TileDataType type)
+        {
+            this[x, y].Type = type;
+            this[x, y].Value = range + 1;
+        }
+
+        public class TileData
+        {
+            public int Value = 0;
+            public TileDataType Type = TileDataType.Inaccessible;
+            public TileData Parent = null;
+        }
     }
 }
 
