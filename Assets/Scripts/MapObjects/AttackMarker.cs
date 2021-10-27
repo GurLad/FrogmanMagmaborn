@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AttackMarker : Marker
 {
+    [HideInInspector]
+    public Vector2Int ParentPos;
+
     public override void Interact(InteractState interactState)
     {
         if (interactState == InteractState.Attack && Origin.TheTeam == Team.Player)
@@ -21,6 +24,10 @@ public class AttackMarker : Marker
                     GameController.Current.FinishMove(Origin);
                 }
             }
+        }
+        else if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
+        {
+            Origin.MoveOrder(ParentPos);
         }
         else if (interactState == InteractState.None)
         {

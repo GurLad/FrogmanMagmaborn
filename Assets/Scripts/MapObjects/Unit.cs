@@ -9,8 +9,8 @@ using AttackFrom = System.Collections.Generic.List<UnityEngine.Vector2Int>;
 public class Unit : MapObject
 {
     [Header("Basic info")]
-    public Marker MovementMarker;
-    public Marker AttackMarker;
+    public MoveMarker MovementMarker;
+    public AttackMarker AttackMarker;
     public Team TheTeam;
     public string Name;
     public string Class;
@@ -136,18 +136,14 @@ public class Unit : MapObject
                 MovementMarker.PalettedSprite.Palette = (int)TheTeam;
                 if (TheTeam == Team.Player && !Moved)
                 {
-                    int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-                    List<Vector2Int> attackFrom = new List<Vector2Int>();
-                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
+                    MarkDangerArea(Pos.x, Pos.y, Movement, false);
                     GameController.Current.InteractState = InteractState.Move;
                     GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                     GameController.Current.Selected = this;
                 }
                 else if (TheTeam != Team.Player)
                 {
-                    int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-                    List<Vector2Int> attackFrom = new List<Vector2Int>();
-                    MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
+                    MarkDangerArea(Pos.x, Pos.y, Movement, true);
                     GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                 }
                 break;
@@ -159,62 +155,117 @@ public class Unit : MapObject
                 break;
         }
     }
-    private int[,] GetDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
+    private DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
-        FindMovement(x, y, range, checkedTiles, attackFrom, ignoreAllies);
-        attackFrom = attackFrom.Distinct().ToList();
-        foreach (Vector2Int pos in attackFrom)
-        {
-            GetDangerAreaPart(pos.x, pos.y, Weapon.Range, checkedTiles);
-        }
-        return checkedTiles;
+        return DangerArea.Generate(this, x, y, range, includePassThroughMoves);
     }
-    public int[,] GetDangerArea()
+    private DangerArea GetDangerArea(bool includePassThroughMoves = false)
     {
-        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        List<Vector2Int> attackFrom = new List<Vector2Int>();
-        return GetDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom);
-    }
-    public int[,] GetMovement(bool ignoreAllies = false)
-    {
-        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        List<Vector2Int> attackFrom = new List<Vector2Int>();
-        FindMovement(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, ignoreAllies);
-        return checkedTiles;
+        return GetDangerArea(Pos.x, Pos.y, Movement, includePassThroughMoves);
     }
 
-    private void MarkDangerArea(int x, int y, int range, int[,] checkedTiles, List<Vector2Int> attackFrom, bool ignoreAllies = false)
+    private void MarkDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
-        GetDangerArea(x, y, range, checkedTiles, attackFrom, ignoreAllies);
-        for (int i = 0; i < checkedTiles.GetLength(0); i++)
+        void GenerateMoveMarker(int i, int j)
         {
-            for (int j = 0; j < checkedTiles.GetLength(1); j++)
+            MoveMarker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<MoveMarker>();
+            movementMarker.Pos = new Vector2Int(i, j);
+            movementMarker.Origin = this;
+            movementMarker.ShowArmorIcon();
+            movementMarker.gameObject.SetActive(true);
+        }
+
+        void GenerateAttackMarker(int i, int j, DangerArea dangerArea)
+        {
+            AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+            attackMarker.Pos = new Vector2Int(i, j);
+            attackMarker.Origin = this;
+            attackMarker.ParentPos = dangerArea[i, j].Parent.Pos;
+            attackMarker.gameObject.SetActive(true);
+        }
+
+        MovementMarker.PalettedSprite.Palette = (int)TheTeam;
+        DangerArea dangerArea = GetDangerArea(x, y, range, includePassThroughMoves);
+        for (int i = 0; i < GameController.Current.MapSize.x; i++)
+        {
+            for (int j = 0; j < GameController.Current.MapSize.y; j++)
             {
-                if (checkedTiles[i, j] > 0)
+                switch (dangerArea[i, j].Type)
                 {
-                    Marker movementMarker = Instantiate(MovementMarker.gameObject).GetComponent<Marker>();
-                    movementMarker.Pos = new Vector2Int(i, j);
-                    movementMarker.Origin = this;
-                    movementMarker.ShowArmorIcon();
-                    movementMarker.gameObject.SetActive(true);
-                }
-                else if (checkedTiles[i, j] < 0)
-                {
-                    Marker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<Marker>();
-                    attackMarker.Pos = new Vector2Int(i, j);
-                    attackMarker.Origin = this;
-                    attackMarker.gameObject.SetActive(true);
+                    case DangerArea.TileDataType.Inaccessible:
+                        break;
+                    case DangerArea.TileDataType.Move:
+                        GenerateMoveMarker(i, j);
+                        break;
+                    case DangerArea.TileDataType.PassThrough:
+                        if (!includePassThroughMoves)
+                        {
+                            throw new System.Exception("Pass through tiles found when ignoring pass throughs");
+                        }
+                        else
+                        {
+                            GenerateMoveMarker(i, j);
+                        }
+                        break;
+                    case DangerArea.TileDataType.Attack:
+                        GenerateAttackMarker(i, j, dangerArea);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
     }
 
+    public void MoveOrder(Vector2Int Pos)
+    {
+        GameController.Current.RemoveMarkers();
+        MapAnimationsController.Current.OnFinishAnimation = () =>
+        {
+            MarkAttack();
+            GameController.Current.ShowPointerMarker(this, 3);
+            GameController.Current.InteractState = InteractState.Attack;
+        };
+        MoveTo(Pos);
+    }
+
+    public List<Vector2Int> FindPath(Vector2Int targetPos)
+    {
+        DangerArea dangerArea = GetDangerArea(true); // Cannot rely on given one, as will probably not ignore allies.
+        // Recover path (slightly different from the AI one, find a way to merge them?)
+        List<Vector2Int> path = new List<Vector2Int>();
+        int counter = 0;
+        do
+        {
+            if (counter++ > 50)
+            {
+                throw new System.Exception("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path));
+            }
+            path.Add(targetPos);
+            Vector2Int currentBest = Vector2Int.zero;
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if (i == 0 || j == 0)
+                    {
+                        if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
+                            dangerArea[targetPos.x + i, targetPos.y + j].Value >= dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value)
+                        {
+                            currentBest = new Vector2Int(i, j);
+                        }
+                    }
+                }
+            }
+            targetPos += currentBest;
+        } while (targetPos != Pos);
+        path.Reverse();
+        return path;
+    }
+
     public void MarkDangerArea()
     {
-        int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        List<Vector2Int> attackFrom = new List<Vector2Int>();
-        MovementMarker.PalettedSprite.Palette = (int)TheTeam;
-        MarkDangerArea(Pos.x, Pos.y, Movement, checkedTiles, attackFrom, true);
+        MarkDangerArea(Pos.x, Pos.y, Movement, true);
     }
 
     public void MarkAttack(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
@@ -333,14 +384,12 @@ public class Unit : MapObject
                     break;
                 }
                 // If that failed, find the closest enemy.
-                int[,] checkedTiles = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-                List<Vector2Int> attackFrom = new List<Vector2Int>();
-                int[,] fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, checkedTiles, attackFrom, true);
-                enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y] != 0).ToList();
+                DangerArea fullDangerArea = GetDangerArea(Pos.x, Pos.y, 50, true);
+                enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y].Value != 0).ToList();
                 if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
                 {
                     Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
-                    RetreatAI(GetDangerArea(Pos.x, Pos.y, 50, new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], new List<Vector2Int>(), false));
+                    RetreatAI(fullDangerArea);
                     return;
                 }
                 Unit target = enemyUnits[0];
@@ -372,12 +421,11 @@ public class Unit : MapObject
                 }
                 break;
             case AIType.Guard:
-                // This is the only AI that can used ranged attacks (because I have no plans for ranged mobile enemies before the Guards)
-                int[,] dangerArea = GetDangerArea();
+                DangerArea dangerArea = GetDangerArea();
                 enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
                 foreach (Unit unit in enemyUnits)
                 {
-                    if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
+                    if (dangerArea[unit.Pos.x, unit.Pos.y].Type == DangerArea.TileDataType.Attack)
                     {
                         Fight(unit);
                         return;
@@ -397,11 +445,11 @@ public class Unit : MapObject
     /// <returns>True if found and attacked a unit, false if did nothing.</returns>
     private bool TryHoldAI(List<Unit> enemyUnits)
     {
-        int[,] dangerArea = GetDangerArea();
+        DangerArea dangerArea = GetDangerArea();
         enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
         foreach (Unit unit in enemyUnits)
         {
-            if (dangerArea[unit.Pos.x, unit.Pos.y] != 0)
+            if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
             {
                 Vector2Int currentBest = new Vector2Int(-1, -1);
                 for (int i = -Weapon.Range; i <= Weapon.Range; i++)
@@ -412,7 +460,7 @@ public class Unit : MapObject
                         {
                             if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
                                 unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y &&
-                                dangerArea[unit.Pos.x + i, unit.Pos.y + j] > 0)
+                                dangerArea[unit.Pos.x + i, unit.Pos.y + j].Value > 0)
                             {
                                 // This is probably the longest, messiest if I've ever written. Let's hope it works.
                                 if (currentBest.x < 0 ||
@@ -436,7 +484,7 @@ public class Unit : MapObject
         }
         return false;
     }
-    private void RetreatAI(int[,] fullDangerArea)
+    private void RetreatAI(DangerArea fullDangerArea)
     {
         Vector2Int minPoint = -Vector2Int.one;
         for (int x = 0; x < GameController.Current.MapSize.x; x++)
@@ -445,9 +493,9 @@ public class Unit : MapObject
             {
                 if (x == 0 || y == 0 || x == GameController.Current.MapSize.x - 1 || y == GameController.Current.MapSize.y - 1)
                 {
-                    if (fullDangerArea[x, y] > 0)
+                    if (fullDangerArea[x, y].Type == DangerArea.TileDataType.Move)
                     {
-                        if (minPoint == -Vector2Int.one || fullDangerArea[minPoint.x, minPoint.y] <= 0 || fullDangerArea[minPoint.x, minPoint.y] < fullDangerArea[x, y])
+                        if (minPoint == -Vector2Int.one || fullDangerArea[minPoint.x, minPoint.y].Value < fullDangerArea[x, y].Value)
                         {
                             minPoint = new Vector2Int(x, y);
                         }
@@ -476,13 +524,12 @@ public class Unit : MapObject
         }
         MoveTo(target);
     }
-    private Vector2Int ClosestMoveablePointToTarget(Vector2Int target, int[,] fullDangerArea)
+    private Vector2Int ClosestMoveablePointToTarget(Vector2Int target, DangerArea fullDangerArea)
     {
-        List<Vector2Int> attackFrom = new List<Vector2Int>();
-        int[,] trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement, trueDangerArea = new int[GameController.Current.MapSize.x, GameController.Current.MapSize.y], attackFrom);
+        DangerArea trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement);
         Vector2Int currentMoveTarget = new Vector2Int(target.x, target.y);
         GameController.Current.RemoveMarkers();
-        while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y] <= 0)
+        while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y].Type != DangerArea.TileDataType.Move)
         {
             Vector2Int min = currentMoveTarget;
             for (int i = -Weapon.Range; i <= Weapon.Range; i++)
@@ -491,8 +538,8 @@ public class Unit : MapObject
                 {
                     if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range &&
                         GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
-                        fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j] > 0 &&
-                        fullDangerArea[min.x, min.y] < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j])
+                        fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value > 0 &&
+                        fullDangerArea[min.x, min.y].Value < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value)
                     {
                         min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
                     }
@@ -542,16 +589,19 @@ public class Unit : MapObject
         //    "; Final calculation: " + Priorities.GetTotalPriority(unit));
         return Priorities.GetTotalPriority(unit);
     }
-    private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, int[,] fullMoveRange)
+    private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, DangerArea fullMoveRange)
     {
         int min = int.MaxValue;
         for (int i = -Weapon.Range; i <= Weapon.Range; i++)
         {
             for (int j = -Weapon.Range; j <= Weapon.Range; j++)
             {
-                if ((Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range && Mathf.Abs(i) + Mathf.Abs(j) > 0) && GameController.Current.IsValidPos(pos.x + i, pos.y + j) && fullMoveRange[pos.x + i, pos.y + j] > 0 && min > movement - fullMoveRange[pos.x + i, pos.y + j])
+                if ((Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range && Mathf.Abs(i) + Mathf.Abs(j) > 0) &&
+                    GameController.Current.IsValidPos(pos.x + i, pos.y + j) &&
+                    fullMoveRange[pos.x + i, pos.y + j].Value > 0 &&
+                    min > movement - fullMoveRange[pos.x + i, pos.y + j].Value)
                 {
-                    min = movement - fullMoveRange[pos.x + i, pos.y + j];
+                    min = movement - fullMoveRange[pos.x + i, pos.y + j].Value;
                 }
             }
         }
@@ -639,8 +689,8 @@ public class Unit : MapObject
     }
     public void Load(string json)
     {
-        Marker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
-        Marker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
+        MoveMarker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
+        AttackMarker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
         JsonUtility.FromJsonOverwrite(json, this);
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
@@ -661,7 +711,7 @@ public class Unit : MapObject
             set => data[x, y] = value;
         }
 
-        public DangerArea(Unit unit)
+        private DangerArea(Unit unit)
         {
             this.unit = unit;
             data = new TileData[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
@@ -670,10 +720,28 @@ public class Unit : MapObject
                 for (int y = 0; y < GameController.Current.MapSize.y; y++)
                 {
                     data[x, y] = new TileData();
+                    data[x, y].Pos = new Vector2Int(x, y);
                 }
             }
         }
 
+        public static DangerArea Generate(Unit unit, int x, int y, int range, bool includePassThroughMoves)
+        {
+            DangerArea dangerArea = new DangerArea(unit);
+            AttackFrom attackFrom = dangerArea.FindMovement(x, y, range);
+            if (!includePassThroughMoves) // Remove all pass through tiles
+            {
+                attackFrom.RemoveAll(a => dangerArea[a.x, a.y].Type == TileDataType.PassThrough);
+                dangerArea.ClearPassThroughs();
+            }
+            else // Merely low priority
+            {
+                attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
+            }
+            Debug.Log(attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type));
+            attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+            return dangerArea;
+        }
 
         private AttackFrom FindMovement(int x, int y, int range)
         {
@@ -683,6 +751,7 @@ public class Unit : MapObject
                 {
                     return;
                 }
+                bool added = false;
                 for (int i = -1; i <= 1; i++)
                 {
                     for (int j = -1; j <= 1; j++)
@@ -703,10 +772,19 @@ public class Unit : MapObject
                                 else if (!unit.TheTeam.IsEnemy(atPos.TheTeam)) // Ally - can pass through
                                 {
                                     MarkMovementTile(x + i, y + j, range, TileDataType.PassThrough);
+                                    if (!added) // In case PassThroughs are ignores
+                                    {
+                                        attackFrom.Add(new Vector2Int(x, y));
+                                        added = true;
+                                    }
                                 }
                                 else // Enemy - can be attacked from here
                                 {
-                                    attackFrom.Add(new Vector2Int(x, y));
+                                    if (!added)
+                                    {
+                                        attackFrom.Add(new Vector2Int(x, y));
+                                        added = true;
+                                    }
                                     continue;
                                 }
                                 // If Move or PassThrough, continue moving
@@ -780,11 +858,27 @@ public class Unit : MapObject
             this[x, y].Value = range + 1;
         }
 
+        private void ClearPassThroughs()
+        {
+            for (int x = 0; x < GameController.Current.MapSize.x; x++)
+            {
+                for (int y = 0; y < GameController.Current.MapSize.y; y++)
+                {
+                    if (data[x, y].Type == TileDataType.PassThrough)
+                    {
+                        data[x, y].Type = TileDataType.Inaccessible;
+                        data[x, y].Value = 0;
+                    }
+                }
+            }
+        }
+
         public class TileData
         {
             public int Value = 0;
             public TileDataType Type = TileDataType.Inaccessible;
             public TileData Parent = null;
+            public Vector2Int Pos;
         }
     }
 }

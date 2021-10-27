@@ -197,39 +197,12 @@ public class MapAnimationsController : MidBattleScreen
             return;
         }
         currentUnit = unit;
-        int[,] checkedTiles = unit.GetMovement(true); // Cannot rely on given one, as will probably not ignore allies.
-        // Recover path (slightly different from the AI one, find a way to merge them?)
         if (path.Count > 0)
         {
             Debug.LogWarning("Path isn't empty!");
             path.Clear();
         }
-        int counter = 0;
-        do
-        {
-            if (counter++ > 50)
-            {
-                throw new System.Exception("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path));
-            }
-            path.Add(targetPos);
-            Vector2Int currentBest = Vector2Int.zero;
-            for (int i = -1; i <= 1; i++)
-            {
-                for (int j = -1; j <= 1; j++)
-                {
-                    if (i == 0 || j == 0)
-                    {
-                        if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
-                            checkedTiles[targetPos.x + i, targetPos.y + j] >= checkedTiles[targetPos.x + currentBest.x, targetPos.y + currentBest.y])
-                        {
-                            currentBest = new Vector2Int(i, j);
-                        }
-                    }
-                }
-            }
-            targetPos += currentBest;
-        } while (targetPos != unit.Pos);
-        path.Reverse();
+        path = unit.FindPath(targetPos);
         // Start animation
         unitSpriteRenderer = unit.gameObject.GetComponent<SpriteRenderer>();
         StartAnimation(AnimationType.Movement);
