@@ -247,7 +247,7 @@ public class Unit : MapObject
             {
                 for (int j = -1; j <= 1; j++)
                 {
-                    if (i == 0 || j == 0)
+                    if ((i != 0 && j == 0) || (j != 0 && i == 0))
                     {
                         if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
                             dangerArea[targetPos.x + i, targetPos.y + j].Value >= dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value)
@@ -256,6 +256,10 @@ public class Unit : MapObject
                         }
                     }
                 }
+            }
+            if (currentBest == Vector2Int.zero)
+            {
+                throw new System.Exception("Path recovery failed! Path: " + string.Join(", ", path));
             }
             targetPos += currentBest;
         } while (targetPos != Pos);
@@ -738,8 +742,9 @@ public class Unit : MapObject
             {
                 attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
             }
-            Debug.Log(attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type));
+            Debug.Log(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
             attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+            Debug.Log(dangerArea.ToString());
             return dangerArea;
         }
 
@@ -747,31 +752,33 @@ public class Unit : MapObject
         {
             void Inner(int x, int y, int range, AttackFrom attackFrom) // Recursion
             {
-                if (this[x, y].Value > range) // Found a better path
-                {
-                    return;
-                }
                 bool added = false;
                 for (int i = -1; i <= 1; i++)
                 {
                     for (int j = -1; j <= 1; j++)
                     {
-                        if (i == 0 || j == 0) // Check cross shape
+                        if ((i != 0 && j == 0) || (j != 0 && i == 0)) // Check cross shape
                         {
                             if (OutOfBounds(x + i, y + j)) // Out of bounds
                             {
                                 continue;
                             }
-                            if ((range -= GameController.Current.Map[x + i, y + j].GetMovementCost(unit)) >= 0) // Isn't blocked by terrain
+                            string posName = "Pos: " + (x + i) + ", " + (y + j) + "; ";
+                            int cost = GameController.Current.Map[x + i, y + j].GetMovementCost(unit);
+                            if (range - cost >= 0) // Isn't blocked by terrain
                             {
+                                if (this[x + i, y + j].Value > range - cost) // Found a better/same path, pointless
+                                {
+                                    continue;
+                                }
                                 Unit atPos = GameController.Current.FindUnitAtPos(x + i, y + j);
                                 if (atPos == null) // Empty space - can move
                                 {
-                                    MarkMovementTile(x + i, y + j, range, TileDataType.Move);
+                                    MarkMovementTile(x + i, y + j, range - cost, TileDataType.Move);
                                 }
                                 else if (!unit.TheTeam.IsEnemy(atPos.TheTeam)) // Ally - can pass through
                                 {
-                                    MarkMovementTile(x + i, y + j, range, TileDataType.PassThrough);
+                                    MarkMovementTile(x + i, y + j, range - cost, TileDataType.PassThrough);
                                     if (!added) // In case PassThroughs are ignores
                                     {
                                         attackFrom.Add(new Vector2Int(x, y));
@@ -788,7 +795,7 @@ public class Unit : MapObject
                                     continue;
                                 }
                                 // If Move or PassThrough, continue moving
-                                Inner(x + i, y + j, range, attackFrom);
+                                Inner(x + i, y + j, range - cost, attackFrom);
                             }
                             else // Blocked by terrain - can attack from here
                             {
@@ -817,7 +824,7 @@ public class Unit : MapObject
                 {
                     for (int j = -1; j <= 1; j++)
                     {
-                        if (i == 0 || j == 0)
+                        if ((i != 0 && j == 0) || (j != 0 && i == 0))
                         {
                             if (OutOfBounds(x + i, y + j))
                             {
@@ -871,6 +878,20 @@ public class Unit : MapObject
                     }
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            for (int y = 0; y < GameController.Current.MapSize.y; y++)
+            {
+                for (int x = 0; x < GameController.Current.MapSize.x; x++)
+                {
+                    result += this[x, y].Value;
+                }
+                result += "\n";
+            }
+            return result;
         }
 
         public class TileData
