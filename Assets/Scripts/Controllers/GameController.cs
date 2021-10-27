@@ -227,9 +227,7 @@ public class GameController : MonoBehaviour
     {
         if (MidBattleScreen.HasCurrent) // For ConversationPlayer
         {
-            UIUnitInfoPanel.gameObject.SetActive(false);
-            UIFightPanel.gameObject.SetActive(false);
-            Cursor.gameObject.SetActive(false);
+            HideUI();
             return;
         }
         if (CheckGameState() != GameState.Normal)
@@ -239,7 +237,10 @@ public class GameController : MonoBehaviour
         // Interact/UI code
         if (interactable)
         {
-            Cursor.gameObject.SetActive(true);
+            if (!Cursor.gameObject.activeSelf)
+            {
+                ShowUI();
+            }
             if (cursorMoveDelay <= 0)
             {
                 if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(Control.Axis.Y)) >= 0.5f)
@@ -565,6 +566,7 @@ public class GameController : MonoBehaviour
     {
         UITileInfoPanel.gameObject.SetActive(false);
         UIUnitInfoPanel.gameObject.SetActive(false);
+        UIFightPanel.gameObject.SetActive(false);
         Cursor.gameObject.SetActive(false);
     }
     private void EnemyAI()

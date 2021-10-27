@@ -742,9 +742,9 @@ public class Unit : MapObject
             {
                 attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
             }
-            Debug.Log(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
+            //Debug.Log(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
             attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
-            Debug.Log(dangerArea.ToString());
+            //Debug.Log(dangerArea.ToString());
             return dangerArea;
         }
 
@@ -799,7 +799,7 @@ public class Unit : MapObject
                             }
                             else // Blocked by terrain - can attack from here
                             {
-                                attackFrom.Add(new Vector2Int(x + i, y + j));
+                                attackFrom.Add(new Vector2Int(x, y));
                             }
                         }
                     }
