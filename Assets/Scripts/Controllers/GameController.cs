@@ -714,7 +714,7 @@ public class GameController : MonoBehaviour
             if (PlayerUnits.Contains(unit))
             {
                 PlayerUnits.Remove(unit);
-                DeadPlayerUnits.Add(unit.name);
+                DeadPlayerUnits.Add(unit.Name);
             }
             Destroy(unit.gameObject);
         }

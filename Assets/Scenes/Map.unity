@@ -289,6 +289,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1cd7f8f70669ad34ba812cf0aa1d0c89, type: 3}
   - {fileID: 4900000, guid: 52baf96785e5ccb47b37c043203ba265, type: 3}
   - {fileID: 4900000, guid: 729856066c6eb264ebb45a018a55cf64, type: 3}
+  - {fileID: 4900000, guid: ae0ce3ace0861914f9dd1bbdccb6bb75, type: 3}
   - {fileID: 4900000, guid: 8c56347450e3e244581871aef92d1cfb, type: 3}
   - {fileID: 4900000, guid: f203e19ab3ce2fc42948bdaae468ac1a, type: 3}
   - {fileID: 4900000, guid: 701cb10db094e7f4ca6a1090eff6183c, type: 3}
@@ -307,15 +308,15 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 9294e01bc19e4a2428484513845d1dcb, type: 3}
   - {fileID: 4900000, guid: b5841d0f526a62644923376010b7cba8, type: 3}
   - {fileID: 4900000, guid: f9b23b91b1d6e29409d86ca247fc3d75, type: 3}
+  - {fileID: 4900000, guid: aa904e878a0e2cd4592593335cea5d63, type: 3}
+  - {fileID: 4900000, guid: f1f8d26e525dc6a4aa42572da27630f4, type: 3}
+  - {fileID: 4900000, guid: 19d3c8eb5060f9c40bc732818cad868c, type: 3}
   - {fileID: 4900000, guid: 3d4d9abd2dddbd04b8e198000dffd274, type: 3}
   - {fileID: 4900000, guid: cebcf8d52042a5649a2eed7aa7e1c828, type: 3}
   - {fileID: 4900000, guid: fda2fd312c4c27d4d9ca18f4843bd5f4, type: 3}
   - {fileID: 4900000, guid: a9f9e3ba8d985fa43b5956d370bc92af, type: 3}
   - {fileID: 4900000, guid: dc5ea34fc8492ca45b735594efd9d805, type: 3}
   - {fileID: 4900000, guid: 3e35a5b7c9f3adc41ba4636dbe387534, type: 3}
-  - {fileID: 4900000, guid: 1a7854919801fd346bf653dba23a8bf6, type: 3}
-  - {fileID: 4900000, guid: 2d8b8df215eb39c4280ce5891fb1108d, type: 3}
-  - {fileID: 4900000, guid: 3a496a95f805c3248a9238155045b575, type: 3}
   - {fileID: 4900000, guid: ee1601535e68456428568dd54c4a20dd, type: 3}
   - {fileID: 4900000, guid: 2e1f1aafa70edea4baf56c9157bb27eb, type: 3}
   - {fileID: 4900000, guid: 2e1bd13240f38e944b95eb816fdca56e, type: 3}
@@ -331,7 +332,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 82c4f2220d1f58441ac4dc021cec2556, type: 3}
   - {fileID: 4900000, guid: ab2413dfeeaf6494aa09f684ac61a829, type: 3}
   - {fileID: 4900000, guid: f28b282f1945dcd4a93c440fa3debc9d, type: 3}
-  - {fileID: 4900000, guid: 54b0d073a8569ed4795ed05ffedf1fdc, type: 3}
+  - {fileID: 4900000, guid: c09cea95d2815e344a35f14e16dfa829, type: 3}
+  - {fileID: 4900000, guid: 03c616438e31acc4d8ecd81f917a2427, type: 3}
   - {fileID: 4900000, guid: 8201e01b99bd42945adb649501f352de, type: 3}
   - {fileID: 4900000, guid: c3ae171760113854d9f3a64836ff991f, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
@@ -18342,13 +18344,12 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 6
+  DebugEndgameLevel: 3
   DebugUnits:
   - Frogman
   - Firbell
   - Xirveros
-  - Memerian
-  DebugUnlimitedMove: 0
+  DebugUnlimitedMove: 1
   DebugOPPlayers: 0
   CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
