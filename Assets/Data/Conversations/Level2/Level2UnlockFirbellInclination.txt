@@ -1,12 +1,13 @@
 priority:4
 unique:T
 ~
-roomNumber:3
+roomNumber:2
 hasCharacter:Firbell
 hasKnowledge:InclinationFrogman
 ~
 ~
 :play:BeforeBattle
+:loadUnits::player
 :if:firstTime:{
 Firbell: Frogman?
 Frogman: Yes?
@@ -16,12 +17,20 @@ Firbell: Hm. Intriguing.
 But let us focus on the battle for now, shall we?
 }
 :else:{
-Firbell: Oh. It is a Lich again.
-Frogman: Indeed.
+Firbell: Frogman?
+Frogman: Yes?
 Firbell: We have failed last time.
 :call:Unlock
 :markDone:
 }
+:addUnit:Xirveros
+:loadUnits::player
+Xirveros: Frog! Bell!
+Firbell: Do not call me that, Xirveros.
+Frogman: Huh? Why-
+:loadUnits:
+Firbell: Forget it, Frogman.\a There are monsters here.\a Let us slay every last one of them.
+Frogman: Sure...
 ~
 :play:AfterBattle
 Firbell: Well, that was quite well done.

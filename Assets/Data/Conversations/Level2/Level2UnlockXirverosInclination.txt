@@ -1,15 +1,17 @@
 priority:4
 unique:T
 ~
-roomNumber:3
+roomNumber:2
 hasCharacter:Xirveros
 hasKnowledge:InclinationFrogman
 ~
 ~
 :play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits:
 :if:firstTime:{
 Xirveros: Frog!
-Frogman: Yes, Xirveros? What now?
+Frogman: Oh, hello, Xirveros.\a What now?
 Xirveros: Know Frog song? Need more song!
 Frogman: No, not really.
 Xirveros: I shall observe frog! Write frog song!

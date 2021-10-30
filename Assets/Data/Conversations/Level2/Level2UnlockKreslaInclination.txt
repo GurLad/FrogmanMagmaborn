@@ -1,12 +1,14 @@
 priority:4
 unique:T
 ~
-roomNumber:3
+roomNumber:2
 hasCharacter:Kresla
 hasKnowledge:InclinationFrogman
+furthestLevel:>2
 ~
 ~
 :play:BeforeBattle
+:loadUnits::player
 :if:firstTime:{
 Kresla: Hey, Frogman!
 Frogman: Yes?
@@ -16,16 +18,21 @@ Kresla: No, no, nothing like that.
 I meant focusing on my skill, like you.\a I couldn't help but notice you've changed your\a own focus lately.
 Frogman: Ah. All right, I guess.
 Kresla: What happened to your enthusiasm?
-Never mind, let's just defeat this Lich.
 }
 :else:{
-Kresla: Another lich? I never got this far this
-many times before you arrived, Frogman!
-Frogman: Thanks...?
+Kresla: Frogman.
+Frogman: Yes?
+Kresla: I don't know.
+Frogman: Wow.
 :call:Unlock
-Kresla: Now, let's go kill another lich!
 :markDone:
 }
+:addUnit:Xirveros
+:loadUnits::player
+Kresla||L: Oh, look! Xirveros is here!
+Xirveros: Frog! Sla!\a Monsters!
+:loadUnits:
+Frogman: More monters? Ah...
 ~
 :play:AfterBattle
 Kresla: Well, that was quite intense! Let's do it again sometime!
