@@ -17,6 +17,8 @@ public class OpeningCutscene : Trigger
     public Text CreditsObject;
     public GameObject PressStart;
     public GameObject IntroObject;
+    [HideInInspector]
+    public System.Action OnFinishFadeOut;
     private bool fadeOut;
     private State state;
     private int currentPart;
@@ -35,6 +37,11 @@ public class OpeningCutscene : Trigger
         }
         lastCheckedCurrent = transition.Current;
         count = 0;
+        OnFinishFadeOut = () =>
+        {
+            IntroObject.SetActive(true);
+            Destroy(this);
+        };
     }
 
     private void Start()
@@ -58,8 +65,7 @@ public class OpeningCutscene : Trigger
                 if (count >= HoldTime)
                 {
                     gameObject.SetActive(false);
-                    IntroObject.SetActive(true);
-                    Destroy(this);
+                    OnFinishFadeOut();
                 }
             }
             else if (lastCheckedCurrent != transition.Current)
@@ -81,7 +87,7 @@ public class OpeningCutscene : Trigger
                 }
                 for (int i = 0; i < ImageParts.Count; i++)
                 {
-                    PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i];
+                    PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i].Clone();
                     ImageParts[i].gameObject.SetActive(true);
                     ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
                 }
@@ -190,6 +196,17 @@ public class OpeningCutscene : Trigger
         transition = PaletteController.Current.TransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
         ImageParts[currentPart].gameObject.SetActive(true);
         lastCheckedCurrent = transition.Current;
+    }
+    public void Restore()
+    {
+        fadeOut = false;
+        enabled = false;
+        gameObject.SetActive(true);
+        for (int i = 0; i < ImageParts.Count; i++)
+        {
+            PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i].Clone();
+            ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
+        }
     }
 }
 

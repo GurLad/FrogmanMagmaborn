@@ -57,7 +57,7 @@ public class PaletteController : MonoBehaviour
         {
             transition.Source.Reset();
         }
-        transition.Target = target;
+        transition.Target = target.Clone();
         transition.Speed = speed;
         transition.Background = background;
         transition.Reverse = reverse;
@@ -84,7 +84,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            Colors[i] = copyFrom[i];
+            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
         }
     }
     public void Reset()
@@ -93,6 +93,10 @@ public class Palette
         {
             Colors[i] = Color.black;
         }
+    }
+    public Palette Clone()
+    {
+        return new Palette(this);
     }
 }
 
@@ -105,6 +109,7 @@ public class PaletteTransition : MonoBehaviour
     public bool Background;
     public bool Reverse;
     private float count = 0;
+    private List<PalettedSprite> toUpdate = new List<PalettedSprite>();
     public void Start()
     {
         if (!Background)
@@ -147,6 +152,11 @@ public class PaletteTransition : MonoBehaviour
                     Source.Colors[3].a = 0;
                 }
             }
+            toUpdate.ForEach(a => a.UpdatePalette());
         }
+    }
+    public void AddPalettedSprite(PalettedSprite sprite)
+    {
+        toUpdate.Add(sprite);
     }
 }

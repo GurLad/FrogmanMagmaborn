@@ -17,8 +17,6 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     public List<IAdvancedSpriteSheetAnimationListener> Listeners = new List<IAdvancedSpriteSheetAnimationListener>();
     public SpriteRenderer Renderer;
     private static float fixedBaseSpeed = 2;
-    private static float fixedCount;
-    private static int fixedFrame;
     private float speed;
     private bool loop;
     private float count = 0;
@@ -47,40 +45,48 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     }
     private void Update()
     {
-        if (Active)
+        void UpdateFrame(int nextFrame)
         {
-            count += Time.deltaTime * speed;
-            if (count >= 1)
+            currentFrame = nextFrame;
+            if (currentFrame >= Animations[currentAnimation].Frames.Count)
             {
-                count--;
-                currentFrame++;
-                if (currentFrame >= Animations[currentAnimation].Frames.Count)
+                if (loop)
                 {
-                    if (loop)
-                    {
-                        currentFrame = 0;
-                    }
-                    else
-                    {
-                        Active = false;
-                        Listeners.ForEach(a => a.FinishedAnimation(currentAnimation, Animations[currentAnimation].Name));
-                        return;
-                    }
-                    Listeners.ForEach(a => a.FinishedAnimation(currentAnimation, Animations[currentAnimation].Name));
+                    currentFrame = 0;
                 }
                 else
                 {
-                    Listeners.ForEach(a => a.ChangedFrame(currentAnimation, Animations[currentAnimation].Name, currentFrame));
+                    Active = false;
+                    Listeners.ForEach(a => a.FinishedAnimation(currentAnimation, Animations[currentAnimation].Name));
+                    return;
                 }
-                Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
-                if (FixedSpeed)
-                {
-                    fixedFrame = currentFrame;
-                }
+                Listeners.ForEach(a => a.FinishedAnimation(currentAnimation, Animations[currentAnimation].Name));
             }
+            else
+            {
+                Listeners.ForEach(a => a.ChangedFrame(currentAnimation, Animations[currentAnimation].Name, currentFrame));
+            }
+            Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
+        }
+
+        if (Active)
+        {
             if (FixedSpeed)
             {
-                fixedCount = count;
+                int fixedFrame = (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count;
+                if (fixedFrame != currentFrame)
+                {
+                    UpdateFrame(fixedFrame);
+                }
+            }
+            else
+            {
+                count += Time.deltaTime * speed;
+                if (count >= 1)
+                {
+                    count--;
+                    UpdateFrame(currentFrame + 1);
+                }
             }
         }
     }
@@ -98,8 +104,8 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentAnimation = animation;
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
-        count = FixedSpeed ? fixedCount : 0;
-        currentFrame = FixedSpeed ? fixedFrame : 0;
+        count = 0;
+        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
@@ -123,8 +129,8 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         currentAnimation = newID;
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
-        count = FixedSpeed ? fixedCount : 0;
-        currentFrame = FixedSpeed ? fixedFrame : 0;
+        count = 0;
+        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
@@ -142,8 +148,8 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-        count = FixedSpeed ? fixedCount : 0;
-        currentFrame = FixedSpeed ? fixedFrame : 0;
+        count = 0;
+        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         Renderer.sprite = Animations[currentAnimation].Frames[currentFrame];
     }
