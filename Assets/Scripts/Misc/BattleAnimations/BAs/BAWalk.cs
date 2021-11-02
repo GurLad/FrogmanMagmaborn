@@ -25,6 +25,7 @@ public class BAWalk : BattleAnimation
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
             // Fix looking left for backstabs (teleport)
+            ThisCombatant.MoveInFront(OtherCombatant);
             ThisCombatant.LookingLeft = !OtherCombatant.LookingLeft;
             ThisCombatant.Animation.Activate("Walk");
             currentPos = ThisCombatant.Object.transform.position;

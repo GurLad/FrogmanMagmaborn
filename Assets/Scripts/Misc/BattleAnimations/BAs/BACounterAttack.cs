@@ -18,9 +18,7 @@ public class BACounterAttack : BattleAnimation
             Finish();
             return;
         }
-        float temp = OtherCombatant.Object.transform.position.z;
-        OtherCombatant.Object.transform.position += new Vector3(0, 0, ThisCombatant.Object.transform.position.z - temp);
-        ThisCombatant.Object.transform.position -= new Vector3(0, 0, ThisCombatant.Object.transform.position.z - temp);
+        ThisCombatant.MoveInFront(OtherCombatant);
         ThisCombatant.Object.transform.position = new Vector3(OtherCombatant.Object.transform.position.x + ThisCombatant.LookingLeftSign, ThisCombatant.Object.transform.position.y, ThisCombatant.Object.transform.position.z);
         if (ThisCombatant.Animation.HasAnimation("CounterStart"))
         {

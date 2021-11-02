@@ -4,7 +4,9 @@ unique:T
 roomNumber:2
 hasCharacter:Xirveros
 hasKnowledge:InclinationFrogman
+charactersAlive:>0
 ~
+charactersAlive:=2
 ~
 :play:BeforeBattle
 :addUnit:Xirveros

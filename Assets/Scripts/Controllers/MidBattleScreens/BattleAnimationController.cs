@@ -420,6 +420,16 @@ public class BattleAnimationController : MidBattleScreen
             }
             UIHealthbar.SetValue(Unit.Health);
         }
+
+        public void MoveInFront(CombatantData other)
+        {
+            if (Object.transform.position.z > other.Object.transform.position.z)
+            {
+                float temp = other.Object.transform.position.z;
+                other.Object.transform.position += new Vector3(0, 0, Object.transform.position.z - temp);
+                Object.transform.position -= new Vector3(0, 0, Object.transform.position.z - temp);
+            }
+        }
     }
 }
 

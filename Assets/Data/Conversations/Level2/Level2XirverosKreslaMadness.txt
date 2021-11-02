@@ -2,8 +2,9 @@ priority:1
 unique:T
 ~ Requirements
 roomNumber:2
+hasCharacter:Kresla
 ~ Demands
-# Nothinig
+charactersAlive:=2
 ~ Before battle
 :play:BeforeBattle
 :addUnit:Xirveros
