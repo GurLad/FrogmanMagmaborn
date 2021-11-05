@@ -31,14 +31,16 @@ Firbell: How can you smell without a-
 }
 :else:{
 :if:hasCharacter:Kresla{
-Kresla: Hi there! I've never seen you before!\a Where are you from?
-Alfred: Alros.\a Used to be Abenzon kingdom, some said.\a But I wasn't born that time.
-Kresla: Alros? You mean Althres?\a Oh, I'm from there too!
-A few centuries - or millennia - later, however.
-Alfred: Really? What's your name?
-Kresla: Right, I keep forgetting, don't I? Name's Kresla.
-Alfred: Ha! Think I'm a fool, eh?\a Queen of some Resy kingdom, born in Alros?\a You're lucky the Guards're here,\a or I'd killed you.
-Kresla: What? Oh, you're like Xirveros!\a From his time, I mean!\a Wait, how can you tell-
+Alfred: Name's Alfred. Who're-
+Kresla||L: Hi there! I've never seen you before!\a Where are you from?
+Alfred: ...Alezis.
+Kresla: Um, I've never heard of it.
+Alfred: Pah. You heard about Guard name?\a Bronzing?
+Kresla: Wait, Bronzing? I'm from there!
+Alfred: Ha! Fool!\a That's Guard name.\a They try erasing our history.\a Our names!\a We mustn't forget!\a Do not listen!
+Kresla: Uh, look, when I come from, there are no "Guards".\a Bronzing is an independant country.\a But now that you mention it, Alezis never appeared in any history I know of.\a Interesting! So these Guards did erase your history!
+Alfred: What?! You...\a Pah. They're coming.\a Get ready.
+Kresla: How can you- 
 :setFlag:AlfredKresla
 }
 :else:{
@@ -135,6 +137,7 @@ Alfred: They took them both.\a I was sent to retrieve.\a They killed me, the foo
 Frogman: I... see.
 Alfred: I'll be watching you, Frogman.\a You better not be lying.
 Frogman: I am not.\a ...I hope.
+:setFlag:AlfredRing
 
 ~ PostAlfredDead
 :loadMap:Part2RestArea
