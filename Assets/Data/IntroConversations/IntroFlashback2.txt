@@ -8,7 +8,7 @@ hasFlag:Flashback1
 :play:BeforeBattle
 Frogman: Ah... I'm back...
 Wait, something...\a Another memory...
-:showCG:TavernCG
+:showCG:Tavern
 :play:ForgottenMemories
 :setSingleSpeaker:R
 Zip: Frogman. She's here.
@@ -22,12 +22,12 @@ Zip: ...\a You're the boss, boss.\a I'll let her in.
 DeharFB|Kebera|R: Hello, Frogman. Thank you for having an audience with me.
 FrogmanMan|Frogman: Greetings, Kebera. Please, have a seat.
 DeharFB|Kebera: Thank you.\a Could I have something to drink, please?
-FrogmanMan|Frogman: Of course. Zip, bring her the cup of wine, please.
-Zip||L: I have one right here, boss.
+FrogmanMan|Frogman: Of course. Zip, bring her the cup of wine.
+Zip||L: I have one right here. There you go, Kebera.
 DeharFB|Kebera: ...Thank you, Zip.
 FrogmanMan|Frogman: I hope you do not mind having him here.\a Treat him as my shadow.
 DeharFB|Kebera: I see.
-FrogmanMan|Frogman: So. Let's get to buissness. What do you want?
+FrogmanMan|Frogman: So. Let's get to business. What do you want?
 DeharFB|Kebera: Let me start from the beginning. My name is-
 FrogmanMan|Frogman: I know who you are. Your request?
 DeharFB|Kebera: I'll be blunt then.
@@ -37,11 +37,13 @@ DeharFB|Kebera: Unfortunately, I cannot disclose it to anyone but you,\a Frogman
 FrogmanMan|Frogman: Unacceptable. Zip will hear everything I will.
 DeharFB|Kebera: She is willing to pay quite handsomely for this, Frogman.
 FrogmanMan|Frogman: I don't care. It's both of us, or nothing.
-DeharFB|Kebera: ...I see. Is there a way to change your mind?
+DeharFB|Kebera: ...Is there any way to change your mind?
 FrogmanMan|Frogman: No.\a If that is all, I think we're done here.\a Zip, show her out.
 DeharFB|Kebera: There is no need, Frogman.\a Thank you for your hospitality.
-Zip||R: ...\a I told you she's trouble.
-FrogmanMan|Frogman: You were right. Oh well.\a I doubt she'll be back.
+Zip||R: ...
+I told you she's trouble.
+FrogmanMan|Frogman: You were right. She was testing us.\a Me.\a Let's tail her. Ready to go?
+Zip||R: Always, boss.
 :hideCG:
 :play:BeforeBattle
 :setSingleSpeaker:L
