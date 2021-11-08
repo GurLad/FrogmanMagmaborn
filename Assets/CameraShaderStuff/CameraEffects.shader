@@ -16,6 +16,22 @@
 
         Pass
         {
+			CGINCLUDE
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+			
+			fixed4 renderPos(v2f i, float2 pixelPos, float sizeMod, float sizeX, float sizeY, sampler2D _RenderTex)
+			{
+				float2 finalPos = float2(floor(pixelPos.x / sizeMod) + 0.5f, floor(pixelPos.y / sizeMod) + 0.5f);
+				float2 fixedRelative = float2(finalPos.x / sizeX, finalPos.y / sizeY);
+				return tex2D(_RenderTex, fixedRelative);
+			}
+			
+			ENDCG
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -26,12 +42,6 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
-            };
-
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
             };
 
             v2f vert (appdata v)
@@ -49,7 +59,7 @@
 			float _Stretch;
 			float _Filter;
 
-            fixed4 frag(v2f i) : SV_Target
+            fixed4 frag(v2f ii) : SV_Target
             {
                 // Find screen size
                 float2 screenSize = float2(_ScreenParams.x, _ScreenParams.y);
@@ -64,7 +74,7 @@
 					sizeMod = min(floor(screenSize.x / _SizeX), floor(screenSize.y / _SizeY));
 				}
 				// Find pixel pos
-				float2 pixelPos = float2(i.uv.x * screenSize.x - floor((screenSize.x - _SizeX * sizeMod) / 2), i.uv.y * screenSize.y - floor((screenSize.y - _SizeY * sizeMod) / 2));
+				float2 pixelPos = float2(ii.uv.x * screenSize.x - floor((screenSize.x - _SizeX * sizeMod) / 2), ii.uv.y * screenSize.y - floor((screenSize.y - _SizeY * sizeMod) / 2));
 				float2 finalPos = float2(floor(pixelPos.x / sizeMod) + 0.5f, floor(pixelPos.y / sizeMod) + 0.5f);
 				// If in range, get same pixel from RenderTex
 				if (finalPos.x >= 0 && finalPos.x < _SizeX && finalPos.y >= 0 && finalPos.y < _SizeY)
@@ -72,7 +82,8 @@
 					if (_Filter)
 					{
 						// Find how close it's to the center of the pixel
-						float2 relativeToCenter = float2(pixelPos.x % (floor(pixelPos.x / sizeMod) * sizeMod) - (sizeMod - 1) / 2, pixelPos.y % (floor(pixelPos.y / sizeMod) * sizeMod) - (sizeMod - 1) / 2);
+						float2 relativeToCenter;
+						relativeToCenter = float2((pixelPos.x + sizeMod) % (floor(pixelPos.x / sizeMod + 1) * sizeMod) - (sizeMod) / 2, (pixelPos.y + sizeMod) % (floor(pixelPos.y / sizeMod + 1) * sizeMod) - (sizeMod) / 2);
 						// Weigh each nearby pixel, and find the most common colour
 						float colourWeights[9];
 						fixed4 colours[9];
@@ -86,11 +97,15 @@
 						{
 							for (int j = -1; j <= 1; j++)
 							{
-								float weight = min(1, 1 - min(1, sqrt(pow(relativeToCenter.x / sizeMod - i, 2) + pow(relativeToCenter.y / sizeMod - j, 2)) * 2));
-								if (weight > 0)
+								float weight = min(1, 1 - min(1, sqrt(pow(relativeToCenter.x / sizeMod, 2) + pow(relativeToCenter.y / sizeMod - j, 2)) * 2));
+								if (i == 0 && j == 0)
 								{
-									float2 fixedRelative = float2(floor((pixelPos.x + i) / sizeMod) + 0.5f, floor((pixelPos.y + j) / sizeMod) + 0.5f);
-									fixed4 colour = tex2D(_RenderTex, fixedRelative);
+									weight += 0.02f;
+								}
+								if (1)
+								{
+									float2 modifiedPixelPos = float2(pixelPos.x + i, pixelPos.y + j);
+									fixed4 colour = renderPos(ii, modifiedPixelPos, sizeMod, _SizeX, _SizeY, _RenderTex);
 									for (k = 0; k < 9; k++)
 									{
 										if (all(colours[k].rgb == colour.rgb))
@@ -125,9 +140,7 @@
 					}
 					else
 					{
-						// Find relative pos in RenderTex
-						float2 fixedRelative = float2(finalPos.x / _SizeX, finalPos.y / _SizeY);
-						return tex2D(_RenderTex, fixedRelative);
+						return renderPos(ii, pixelPos, sizeMod, _SizeX, _SizeY, _RenderTex);
 					}
 				}
                 return fixed4(0,0,0,1);
