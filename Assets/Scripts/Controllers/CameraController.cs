@@ -32,13 +32,12 @@ public class CameraController : MonoBehaviour
     public int MaxResolutionMultiplier;
     public Vector2Int ReferenceResolution;
     public AudioClip ScreenShakeSFX;
+    public Camera PixelPerfectCamera;
     [HideInInspector]
     public int CurrentMultiplier = 0;
-    private PixelPerfectCamera pixelPerfectCamera;
     private void Awake()
     {
         Current = this;
-        pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
         FullScreen = SavedData.Load("Fullscreen", 1, SaveMode.Global) == 1;
         if (FullScreen)
         {
@@ -53,17 +52,7 @@ public class CameraController : MonoBehaviour
     public void UpdateMode(CameraMode mode)
     {
         Mode = mode;
-        switch (mode) // Add windowed with pixel ratio of X (unity doesn't let you change the pixel ratio of PixelPerfectCamera for some reason)
-        {
-            case CameraMode.PixelPerfect:
-                pixelPerfectCamera.stretchFill = false;
-                break;
-            case CameraMode.Stretch:
-                pixelPerfectCamera.stretchFill = true;
-                break;
-            default:
-                break;
-        }
+        // TBA
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
     }
     public void ChangeSize(int increaseAmount = 0)

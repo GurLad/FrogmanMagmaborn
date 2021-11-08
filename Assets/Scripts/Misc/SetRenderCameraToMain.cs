@@ -5,9 +5,9 @@ using UnityEngine;
 public class SetRenderCameraToMain : MonoBehaviour
 {
     private Camera main;
-    private void Awake()
+    private void Start()
     {
-        main = Camera.main;
+        main = CameraController.Current.PixelPerfectCamera;
         GetComponent<Canvas>().worldCamera = main;
     }
     private void FixedUpdate()
