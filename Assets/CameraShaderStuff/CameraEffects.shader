@@ -90,21 +90,20 @@
 						int k;
 						for (k = 0; k < 9; k++)
 						{
-							colours[k] = fixed4(0,0,0,1);
+							colours[k] = fixed4(0,0,0,0);
 							colourWeights[k] = 0;
 						}
 						for (int i = -1; i <= 1; i++)
 						{
 							for (int j = -1; j <= 1; j++)
 							{
-								float weight = min(1, 1 - min(1, sqrt(pow(relativeToCenter.x / sizeMod, 2) + pow(relativeToCenter.y / sizeMod - j, 2)) * 2));
-								if (i == 0 && j == 0)
+								float2 normalized;
+								//float size = sqrt(pow(i, 2) + pow(j, 2));
+								normalized = float2(i, j) * 1.0f;// * size;
+								float weight = min(1, 1 - min(1, sqrt(pow(normalized.x - (relativeToCenter.x) / sizeMod, 2) + pow(normalized.y - (relativeToCenter.y) / sizeMod, 2)) * 0.9f));
+								if (weight > 0)
 								{
-									weight += 0.02f;
-								}
-								if (1)
-								{
-									float2 modifiedPixelPos = float2(pixelPos.x + i, pixelPos.y + j);
+									float2 modifiedPixelPos = float2(pixelPos.x + sizeMod * i, pixelPos.y + sizeMod * j);
 									fixed4 colour = renderPos(ii, modifiedPixelPos, sizeMod, _SizeX, _SizeY, _RenderTex);
 									for (k = 0; k < 9; k++)
 									{
@@ -113,7 +112,7 @@
 											colourWeights[k] += weight;
 											break;
 										}
-										else if (all(colours[k].rgb == fixed4(0,0,0,1).rgb))
+										else if (colourWeights[k] == 0)
 										{
 											colours[k] = colour;
 											colourWeights[k] += weight;
@@ -127,13 +126,14 @@
 						float maxValue = 0;
 						for (k = 0; k < 9; k++)
 						{
-							if (all(colours[k].rgb == fixed4(0,0,0,1).rgb))
+							if (colourWeights[k] == 0)
 							{
 								break;
 							}
 							else if (colourWeights[k] > maxValue)
 							{
 								max = colours[k];
+								maxValue = colourWeights[k];
 							}
 						}
 						return max;
