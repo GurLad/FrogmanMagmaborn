@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 50669688}
   - component: {fileID: 50669687}
   - component: {fileID: 50669686}
+  - component: {fileID: 50669691}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -214,7 +215,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 976863668}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -245,6 +246,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &50669691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50669685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0cc907e93c1404bb42b618878573e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &976863667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,12 +352,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3917e3aa982594419baa4f8a1789a3a, type: 3}
---- !u!20 &976863668 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8617805528308825080, guid: b3917e3aa982594419baa4f8a1789a3a,
-    type: 3}
-  m_PrefabInstance: {fileID: 976863667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1059336309
 GameObject:
   m_ObjectHideFlags: 0

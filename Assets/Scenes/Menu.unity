@@ -2584,12 +2584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 679631410}
   Enable: 1
---- !u!20 &674519451 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8617805528308825080, guid: b3917e3aa982594419baa4f8a1789a3a,
-    type: 3}
-  m_PrefabInstance: {fileID: 298176833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &679631410
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,8 +6251,9 @@ MonoBehaviour:
       ChoiceValue: 0
     - Name: Order/Chaos
       InternalName: TormentOrderChaos
-      Description: 'I : Your units start with +2 levels, but can''t level-up.'
-      AltDescription: 'II: Your units get +1 stat each level, but can''t choose level-ups.'
+      Description: 'I : Your units start with +1 levels, but get -1 stats per level.'
+      AltDescription: 'II: Your units start with -1 levels, but get +1 stats per
+        level.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3
@@ -7144,6 +7139,7 @@ GameObject:
   - component: {fileID: 1899062596}
   - component: {fileID: 1899062595}
   - component: {fileID: 1899062594}
+  - component: {fileID: 1899062598}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7201,7 +7197,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 674519451}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -7242,6 +7238,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1899062598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899062593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0cc907e93c1404bb42b618878573e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2049609995 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 832186918215127003, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,

@@ -61,7 +61,7 @@ public static class GameCalculations
     {
         get
         {
-            return KnowledgeController.TormentPower("OrderChaos") == TormentPowerState.II ? 1 : (KnowledgeController.GetUpgradeActive(HardcodedKnowledge.LevelUpChoice) ? 3 : 2);
+            return KnowledgeController.GetUpgradeActive(HardcodedKnowledge.LevelUpChoice) ? 3 : 2;
         }
     }
 
@@ -89,7 +89,7 @@ public static class GameCalculations
             switch (KnowledgeController.TormentPower("OrderChaos"))
             {
                 case TormentPowerState.I:
-                    baseNum = 0;
+                    baseNum = 2;
                     break;
                 case TormentPowerState.II:
                     baseNum = 4;
@@ -174,9 +174,18 @@ public static class GameCalculations
             {
                 level += difficulty == Difficulty.Normal ? 2 : 1;
             }
-            if (KnowledgeController.TormentPower("OrderChaos") == TormentPowerState.I) // It would be more efficent to include this in the default, but less future-proof
+            switch (KnowledgeController.TormentPower("OrderChaos"))
             {
-                level += 2;
+                case TormentPowerState.None:
+                    break;
+                case TormentPowerState.I:
+                    level++;
+                    break;
+                case TormentPowerState.II:
+                    level--;
+                    break;
+                default:
+                    break;
             }
         }
         unit.Level = level;
