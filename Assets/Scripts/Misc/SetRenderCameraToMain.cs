@@ -9,6 +9,10 @@ public class SetRenderCameraToMain : MonoBehaviour
     {
         main = CameraController.Current.PixelPerfectCamera;
         GetComponent<Canvas>().worldCamera = main;
+        if (GameController.Current == null)
+        {
+            Destroy(this);
+        }
     }
     private void FixedUpdate()
     {

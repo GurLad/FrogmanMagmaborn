@@ -822,7 +822,6 @@ public class GameController : MonoBehaviour
         AssignUnitMapAnimation(unit, classData);
         unit.Stats += unit.AutoLevel(level);
         unit.Init();
-        Debug.Log(unit.Name + ", when dies: " + unit.DeathQuote);
         return unit;
     }
     public Unit CreateEnemyUnit(string name, int level, Team team, bool canReplace)

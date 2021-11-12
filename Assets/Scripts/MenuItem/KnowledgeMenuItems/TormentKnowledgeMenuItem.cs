@@ -39,12 +39,12 @@ public class TormentKnowledgeMenuItem : KnowledgeMenuItem
     public override void OnMenuDone()
     {
         base.OnMenuDone();
-        // A good way to count each Torment Power
-        Debug.Log(Upgrade.Name + " is dead");
-        if (Upgrade.ChoiceValue == 1 || Upgrade.ChoiceValue == 2)
-        {
-            SavedData.Append("Knowledge", "TormentPowerCount", 1);
-            Debug.Log("Add to count, current: " + SavedData.Load<int>("Knowledge", "TormentPowerCount"));
-        }
+        // A good way to count each Torment Power (irrelevant - that feature was scrapped)
+        //Debug.Log(Upgrade.Name + " is dead");
+        //if (Upgrade.ChoiceValue == 1 || Upgrade.ChoiceValue == 2)
+        //{
+        //    SavedData.Append("Knowledge", "TormentPowerCount", 1);
+        //    Debug.Log("Add to count, current: " + SavedData.Load<int>("Knowledge", "TormentPowerCount"));
+        //}
     }
 }
