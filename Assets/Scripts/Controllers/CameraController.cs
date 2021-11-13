@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 
 public class CameraController : MonoBehaviour
 {
-    public enum CameraMode { PixelPerfect, Stretch }
+    public enum CameraMode { Default, Filter, Stretch }
     public static CameraController Current;
     public static bool FullScreen
     {
@@ -33,26 +33,25 @@ public class CameraController : MonoBehaviour
     public Vector2Int ReferenceResolution;
     public AudioClip ScreenShakeSFX;
     public Camera PixelPerfectCamera;
+    public Material PixelPerfectMaterial;
     [HideInInspector]
     public int CurrentMultiplier = 0;
     private void Awake()
     {
         Current = this;
         FullScreen = SavedData.Load("Fullscreen", 1, SaveMode.Global) == 1;
-        if (FullScreen)
-        {
-            UpdateMode((CameraMode)SavedData.Load("CameraMode", 0, SaveMode.Global));
-        }
-        else
+        if (!FullScreen)
         {
             CurrentMultiplier = SavedData.Load("ScreenSize", 0, SaveMode.Global);
             ChangeSize(0);
         }
+        UpdateMode((CameraMode)SavedData.Load("CameraMode", 0, SaveMode.Global));
     }
     public void UpdateMode(CameraMode mode)
     {
         Mode = mode;
-        // TBA
+        PixelPerfectMaterial.SetInt("_Filter", (int)(mode & CameraMode.Filter));
+        PixelPerfectMaterial.SetInt("_Stretch", (int)(mode & CameraMode.Stretch));
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
     }
     public void ChangeSize(int increaseAmount = 0)

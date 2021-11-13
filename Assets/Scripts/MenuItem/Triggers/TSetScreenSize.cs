@@ -25,6 +25,6 @@ public class TSetScreenSize : Trigger
     }
     private void UpdateText()
     {
-        Text.text = "Size: X" + (camera.CurrentMultiplier + 1);
+        Text.text = "X" + (camera.CurrentMultiplier + 1);
     }
 }

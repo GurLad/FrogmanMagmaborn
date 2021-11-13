@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TSetFullscreen : Trigger
 {
     public MenuController Menu;
-    public MenuItem CameraMode;
+    public MenuItem SetStretch;
     public MenuItem ScreenSize;
     private Text Text;
     private void Start()
@@ -22,18 +22,18 @@ public class TSetFullscreen : Trigger
     }
     private void UpdateText()
     {
-        Text.text = CameraController.FullScreen ? "Fullscreen" : "Windowed";
+        Text.text = CameraController.FullScreen ? "On" : " Off";
         if (CameraController.FullScreen)
         {
-            Menu.MenuItems[1] = CameraMode;
-            CameraMode.gameObject.SetActive(true);
-            ScreenSize.gameObject.SetActive(false);
+            Menu.MenuItems[1] = SetStretch;
+            SetStretch.transform.parent.gameObject.SetActive(true);
+            ScreenSize.transform.parent.gameObject.SetActive(false);
         }
         else
         {
             Menu.MenuItems[1] = ScreenSize;
-            ScreenSize.gameObject.SetActive(true);
-            CameraMode.gameObject.SetActive(false);
+            ScreenSize.transform.parent.gameObject.SetActive(true);
+            SetStretch.transform.parent.gameObject.SetActive(false);
             CameraController.Current.ChangeSize(0);
         }
     }

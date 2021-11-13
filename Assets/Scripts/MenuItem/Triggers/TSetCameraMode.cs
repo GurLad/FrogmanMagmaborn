@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TSetCameraMode : Trigger
 {
+    public CameraController.CameraMode CameraMode;
     private Text Text;
     private CameraController camera
     {
@@ -20,11 +21,11 @@ public class TSetCameraMode : Trigger
     }
     public override void Activate()
     {
-        camera.UpdateMode(camera.Mode == CameraController.CameraMode.PixelPerfect ? CameraController.CameraMode.Stretch : CameraController.CameraMode.PixelPerfect);
+        camera.UpdateMode(camera.Mode ^ CameraMode);
         UpdateText();
     }
     private void UpdateText()
     {
-        Text.text = camera.Mode.ToString();
+        Text.text = (camera.Mode & CameraMode) != CameraController.CameraMode.Default ? "On" : " Off";
     }
 }
