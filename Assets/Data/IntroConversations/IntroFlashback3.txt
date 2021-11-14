@@ -25,13 +25,18 @@ Huh?\a Where did she go?
 Zip: Don't know, boss. She just-
 :screenShake:
 Argh!
+:setSingleSpeaker:L
 FrogmanMan|Frogman: Zip?! Are you-
 :screenShake:
+:setSpeaker:L:DeharFB|Kebera
+:setSpeaker:R:FrogmanMan|Frogman
 Oof!
-DeharFB|Kebera|R: Well. That was disappointedly easy.\a Makes me wonder whether you're fit for the job.
+DeharFB|Kebera|L: Well. That was disappointedly easy.\a Makes me wonder whether you're fit for the job.
 FrogmanMan|Frogman: Urgh... What are-
-???|???: Hey! Who's there?!
-DeharFB|Kebera|R: Hmph. Annoying witnesses. Till we meet again, Frogman.
+FBWitness|???: Oi! Everything okay back there?
+DeharFB|Kebera|R: Hmph. You never can be truly alone in this city, can you?\a Oh well. You get to live another day, Frogman.
+:setSingleSpeaker:L
+FrogmanMan|Frogman: Ah...
 :hideCG:
 :play:BeforeBattle
 :setSingleSpeaker:L
