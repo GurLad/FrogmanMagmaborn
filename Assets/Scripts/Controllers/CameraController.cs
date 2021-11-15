@@ -53,6 +53,7 @@ public class CameraController : MonoBehaviour
         PixelPerfectMaterial.SetInt("_Filter", (int)(mode & CameraMode.Filter));
         PixelPerfectMaterial.SetInt("_Stretch", (int)(mode & CameraMode.Stretch));
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
+        SavedData.SaveAll(SaveMode.Global);
     }
     public void ChangeSize(int increaseAmount = 0)
     {
@@ -60,6 +61,7 @@ public class CameraController : MonoBehaviour
         CurrentMultiplier %= MaxResolutionMultiplier;
         Screen.SetResolution(ReferenceResolution.x * (CurrentMultiplier + 1), ReferenceResolution.y * (CurrentMultiplier + 1), false);
         SavedData.Save("ScreenSize", CurrentMultiplier, SaveMode.Global);
+        SavedData.SaveAll(SaveMode.Global);
     }
     public void ScreenShake(float strength, float duration)
     {
