@@ -11,14 +11,17 @@ roomNumber:6
 :play:BeforeBattle
 Memerian|???: Hey. You there. Who are you?
 Frogman||L: My name is Frogman. Who might you be?
-Memerian: TBA
+Memerian: I'm Memerian.
+Frogman: Memerian? I think Xeplogi mentioned you.
+Memerian: Did he know? I hope you didn't listen to the fool.
+Frogman: Um, not really.
 # Memerian is afraid to talk about Torment in public, and rightly so.
 :if:charactersAlive:<2{
-Memerian: Anyway. Frogman, were you sent here by Torment?
+Memerian: Good. So, Frogman. I'll get straight to the point.\a Were you sent here by Torment?
 Frogman: Wait... you know Torment?!
 }
 :else:{
-Memerian: Anyway. Frogman, may we speak in private?
+Memerian: Good. Anyway. Frogman, may we speak in private?
 Frogman: What for?
 Memerian: Let's call them... the divine Tori.
 Frogman: Who?\a Wait, you mean Tor-
@@ -33,15 +36,16 @@ Kresla: Who?
 Xirveros: Tori? No! No Tori!
 }
 }
-
 :play:GuardTheme
 :loadUnits:
 :addGenericCharacter:Guard1:
 Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
+Memerian: Ugh. Meddlesome Guards. We'll speak again soon, Frogman.
 
 ~ After battle
 :play:AfterBattle
 Frogman: Whew. We-
+:play:Trustworthy
 Torment: Not so fast, heh!
 Frogman: Torment?!
 Torment: Yes, it's me!\a You've reached the end of the beta!

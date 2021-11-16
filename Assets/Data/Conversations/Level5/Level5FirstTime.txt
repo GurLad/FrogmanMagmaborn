@@ -7,6 +7,75 @@ roomNumber:5
 mapID:Level5-1
 ~
 :play:BeforeBattle2
+:if:firstTime:{
+:call:PreFirst
+}
+:else:{
+:call:PreRepeat
+}
+
+~ Post-battle
+Frogman: Everyone, this way!\a Let's get out of here!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:SafeAndSound
+:if:hasCharacter:Xeplogi{
+Xeplogi: Hold!\a Where do you come from, monster friends?\a Are you Tori minions sent to serve me?
+Frogman: What? No, we're fellow Magmaborn.
+Xeplogi: What?
+Frogman: When you died, you had a crystal with you - an emblem,\a you might say, correct?
+Xeplogi: Are you talking about the holy Tori relic?
+Frogman: Yes, whatever. Anyway, this allowed you to be reborn as a-
+Xeplogi: And serve the glorious Tori in his holy crusade against\a Memerian!
+Frogman: I- you know what, never mind.\a Yes, we're Tori followers.\a Happy now?
+Xeplogi: Indeed! Let us march on!
+Frogman: *sigh*
+:if:hasCharacter:Firbell{
+Firbell: Frogman.
+Frogman: Yes?
+Firbell: Are you sure that siding with this lunatic is a good idea?
+Frogman: He's a Magmaborn, like us.\a We should all help each other,\a regardless of our conditions.
+Firbell: ...Very well. I will trust you on this.\a But these humans... Why are we fighting them?
+Frogman: They attacked us.\a Do we need another reason?
+Firbell: Yet they are sentinet beings, like us.\a Should we not join forces, as you yourself said?
+Frogman: Xeplogi didn't attack us.
+Firbell: We do appear as monsters.
+What if they were sent here by Irenhold?\a We must inform them I am here.
+Frogman: So this is what it's all about, eh?
+Firbell: It would be dishonorable to fight without a formal-
+Frogman: No, I get it. We'll try talking to them then.\a But I doubt they'll listen.
+Firbell: Very well. Thank you, Frogman.
+:setFlag:FirbellGuards1
+# TBA: Add a similar conversation outside FirstTime, and a follow-up one
+}
+}
+:else:{
+Frogman||L: Xeplogi didn't make it, huh?
+:if:hasCharacter:Kresla{
+Kresla: No. He was a weird one. I wonder what's his story.\a Who's this Tori?\a How is it possible that he has never seen a\a Magmaborn before? Where did he come from? When?\a So many questions!
+Frogman: Yes, well, I'm sure we'll meet him again one day.
+}
+:else:{
+:if:hasCharacter:Xirveros{
+Xirveros: Ooze dead? No! Me like ooze.\a Me write ooze song!
+Frogman: No, please don't-
+Xirveros: An ooze was here    \w@
+Everyone could hear \w@
+He liked to scream  \w@
+Smelled like cream  \w@
+Over and over       \w@
+Over and over       \w@
+Frogman: ...Wow.
+}
+:else:{
+Oh well.
+}
+}
+:setFlag:MetXeplogi
+
+# === Functions ====
+
+~ PreFist
 :loadUnits::player
 Frogman: Huh?\a Structures?\a I've never seen any here before.
 # TODO: Seperate properly
@@ -58,62 +127,22 @@ Guard2: CHAAAAAAAAARGE!
 Xeplogi|???: Oh, now you've done it!\a Talking demons! Let us join forces!
 Xeplogi||R: Know that the Great Xeplogi is on your side!
 Frogman: ...I'm beginning to regret this...
-~ Post-battle
-Frogman: Everyone, this way!\a Let's get out of here!
-:loadMap:Part2RestArea
-:loadUnits:Part2RestArea
-:play:SafeAndSound
-:if:hasCharacter:Xeplogi{
-Xeplogi: Hold!\a Where do you come from, monster friends?\a Are you Tori minions sent to serve me?
-Frogman: What? No, we're fellow Magmaborn.
-Xeplogi: What?
-Frogman: When you died, you had a crystal with you - an emblem,\a you might say, correct?
-Xeplogi: Are you talking about the holy Tori relic?
-Frogman: Yes, whatever. Anyway, this allowed you to be reborn as a-
-Xeplogi: And serve the glorious Tori in his holy crusade against\a Memerian!
-Frogman: I- you know what, never mind.\a Yes, we're Tori followers.\a Happy now?
-Xeplogi: Indeed! Let us march on!
-Frogman: *sigh*
-:if:hasCharacter:Firbell{
-Firbell: Frogman.
-Frogman: Yes?
-Firbell: Are you sure that siding with this lunatic is a good idea?
-Frogman: He's a Magmaborn, like us.\a We should all help each other,\a regardless of our conditions.
-Firbell: ...Very well. I will trust you on this.\a But these humans... Why are we fighting them?
-Frogman: They attacked us.\a Do we need another reason?
-Firbell: Yet they are sentinet beings, like us.\a Should we not join forces, as you yourself said?
-Frogman: Xeplogi didn't attack us.
-Firbell: We do appear as monsters.
-What if they were sent here by Irenhold?\a We must inform them I am here.
-Frogman: So this is what it's all about, eh?
-Firbell: It would be dishonorable to fight without a formal-
-Frogman: No, I get it. We'll try talking to them then.\a But I doubt they'll listen.
-Firbell: Very well. Thank you, Frogman.
-:setFlag:FirbellGuards1
-# TBA: Add a similar conversation outside FirstTime, and a follow-up one
-}
-}
-:else:{
-Frogman||L: Xeplogi didn't make it, huh?
-:if:charactersAlive:>0{
-:if:hasCharacter:Kresla{
-Kresla: No. He was a weird one. I wonder what's his story.\a Who's this Tori?\a How is it possible that he has never seen a\a Magmaborn before? Where did he come from? When?\a So many questions!
-Frogman: Yes, well, I'm sure we'll meet him again one day.
-}
-:else:{
-:if:hasCharacter:Xirveros{
-Xirveros: Ooze dead? No! Me like ooze.\a Me write ooze song!
-Frogman: No, please don't-
-Xirveros: An ooze was here    \w@
-Everyone could hear \w@
-He liked to scream  \w@
-Smelled like cream  \w@
-Over and over       \w@
-Over and over       \w@
-Frogman: ...Wow.
-}
-:else:{
-Frogman||L: Oh well.
-}
-}
-:setFlag:MetXeplogi
+
+~ PreRepeat
+:loadUnits::player
+Frogman: Structures again, huh? That must mean-
+:addUnit:Xeplogi
+:loadUnits::player
+Xeplogi|???|R: Hold! Who goes there?!
+Frogman: It's Frogman-
+Xeplogi|???: You! How can you speak?
+What manner of black magic is this?!\a Were you sent here by Memerian?!
+Frogman: What? No, it's us-
+Xeplogi|???: Your trickery cannot fool me, foul demon!\a I, the humble servant of the glorious Tori,\a am the only person worthy enough to be reborn,\a sent to defeat the evil Memerian and\a her nasty minions!
+Frogman: ...Xeplogi. It's me. We're back.\a Did you forget us so quickly?
+Xeplogi|???: The time for chatter is up! Prepare to be-
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
+:loadUnits:
+Guard1: TBA
