@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class TResumeConversation : Trigger
 {
+    public bool SoftResume = false;
+
     public override void Activate()
     {
-        ConversationPlayer.Current.Resume();
+        if (SoftResume)
+        {
+            ConversationPlayer.Current.SoftResume();
+        }
+        else
+        {
+            ConversationPlayer.Current.Resume();
+        }
     }
 }

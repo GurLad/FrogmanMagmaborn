@@ -23,6 +23,7 @@ public class ConversationPlayer : MidBattleScreen
     public GameObject Arrow;
     public MenuController ChoiceMenu;
     public MenuController InfoDialogue;
+    public MenuController SkipDialogue;
     public CGController CGController;
     [Header("Palette stuff")]
     public PalettedSprite TextHolderPalette;
@@ -52,6 +53,7 @@ public class ConversationPlayer : MidBattleScreen
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
     private List<string> lines;
     private string[] previousLineParts;
+    private bool skipping;
     private void Awake()
     {
         Current = this;
@@ -65,6 +67,18 @@ public class ConversationPlayer : MidBattleScreen
     {
         if (origin != null)
         {
+            if (skipping)
+            {
+                if (++currentLine >= lines.Count)
+                {
+                    FinishConversation();
+                }
+                else
+                {
+                    StartLine(currentLine);
+                }
+                return;
+            }
             switch (state)
             {
                 case CurrentState.Writing:
@@ -149,6 +163,11 @@ public class ConversationPlayer : MidBattleScreen
                             StartLine(currentLine);
                         }
                     }
+                    else if (Control.GetButtonDown(Control.CB.Start))
+                    {
+                        Pause(false);
+                        SkipDialogue.Begin();
+                    }
                     break;
                 default:
                     break;
@@ -201,24 +220,43 @@ public class ConversationPlayer : MidBattleScreen
         lines = origin.PostBattleLines;
         StartLine(0);
     }
-    public void Pause()
+    public void Pause(bool resetSpeakers = true)
     {
         gameObject.SetActive(false);
         MidBattleScreen.Set(this, false);
-        SetSinglePortrait(true);
-        currentSpeakerIsLeft = false;
+        if (resetSpeakers)
+        {
+            SetSinglePortrait(true);
+            currentSpeakerIsLeft = false;
+        }
     }
+    /// <summary>
+    /// Resumes the conversations & plays the next line
+    /// </summary>
+    /// <param name="mod">Skip mod lines (0 for repeat last line, 1 for play next, 2 or more for skip lines)</param>
     public void Resume(int mod = 1)
     {
-        MidBattleScreen.Set(this, true);
-        gameObject.SetActive(true);
-        enabled = true;
+        SoftResume();
         if (currentLine + mod >= lines.Count)
         {
             FinishConversation();
             return;
         }
         StartLine(currentLine + mod);
+    }
+    /// <summary>
+    /// Resumes the conversation without modifying its state (aka after menus)
+    /// </summary>
+    public void SoftResume()
+    {
+        MidBattleScreen.Set(this, true);
+        gameObject.SetActive(true);
+        enabled = true;
+    }
+    public void Skip()
+    {
+        skipping = true;
+        Resume();
     }
     /// <summary>
     /// Checks whether the wait requiremenet was met.
@@ -608,6 +646,7 @@ public class ConversationPlayer : MidBattleScreen
         SetSinglePortrait(true);
         currentSpeakerIsLeft = false;
         previousLineParts = null;
+        skipping = false;
         if (GameController.Current == null)
         {
             // Intro conversations
