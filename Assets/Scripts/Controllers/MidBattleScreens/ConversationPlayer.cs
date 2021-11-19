@@ -163,7 +163,7 @@ public class ConversationPlayer : MidBattleScreen
                             StartLine(currentLine);
                         }
                     }
-                    else if (Control.GetButtonDown(Control.CB.Start))
+                    else if (Control.GetButtonDown(Control.CB.Start) && SkipDialogue != null)
                     {
                         Pause(false);
                         SkipDialogue.Begin();

@@ -347,7 +347,7 @@ public class GameController : MonoBehaviour
                 } while (units.Find(a => a.TheTeam == current) == null);
                 Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
                 StartPhase(current);
-                if (CheckPlayerWin(Objective.Survive))
+                if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
                     // Win
                     ConversationPlayer.Current.PlayPostBattle();

@@ -10,11 +10,17 @@ charactersAlive:<2
 :play:BeforeBattle2
 :addUnit:Alfred
 :loadUnits:
-Frogman: Hello Alfred.
+:setSingleSpeaker:L
+Frogman: Guards again? Ah...
 Alfred: Hello.
-Frogman: ...
+Frogman: Ah! Uh, hello, Alfred.
 Alfred: ...
 ~ After battle
+Frogman: Everyone, run!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:SafeAndSound
+Frogman||L: Ah... Safe at last...
 
 # === Functions ====
 
