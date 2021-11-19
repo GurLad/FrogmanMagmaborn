@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73f82a2062757d41be64a1e093fc32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoftResume: 0
 --- !u!1 &3922073824386487165
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,22 +670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 0
   palette: 1
---- !u!114 &2155099221179785438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6216289273591954494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58cae73272a2ccc4eb439a92739c8769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FileName: ConversationData
-  DataName: ChoiceResult
-  SaveMode: 0
-  Data: 0
 --- !u!1 &6418106605832500950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1076,7 @@ MonoBehaviour:
   Arrow: {fileID: 7897415132713421935}
   ChoiceMenu: {fileID: 478964156336454672}
   InfoDialogue: {fileID: 0}
+  SkipDialogue: {fileID: 0}
   CGController: {fileID: 4789963763846025884}
   TextHolderPalette: {fileID: 7897415132966238607}
   NameHolderPalette: {fileID: 4608584692451056817}
@@ -1150,27 +1136,30 @@ MonoBehaviour:
     BGImage2: {fileID: 0}
     FGImage1: {fileID: 0}
     FGImage2: {fileID: 0}
+  - Name: Tavern
+    BGPalette1:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    BGPalette2:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    FGPalette1: 0
+    FGPalette2: 0
+    BGImage1: {fileID: 21300000, guid: 435b125b7dae19a43b937acbb569b522, type: 3}
+    BGImage2: {fileID: 0}
+    FGImage1: {fileID: 0}
+    FGImage2: {fileID: 0}
   Container: {fileID: 6418106605832500950}
   BG1: {fileID: 4404179156170646512}
   BG2: {fileID: 2888281809002813468}
   FG1: {fileID: 52530863522801321}
   FG2: {fileID: 631480102442508152}
---- !u!114 &4121997848975088612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7991729255139347551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58cae73272a2ccc4eb439a92739c8769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FileName: ConversationData
-  DataName: ChoiceResult
-  SaveMode: 0
-  Data: 1
 --- !u!1001 &6757712536418939877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1358,6 +1347,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467eff0380184ad4e8fa5a04cfa4ee2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2155099221179785438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216289273591954494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cae73272a2ccc4eb439a92739c8769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: ConversationData
+  DataName: ChoiceResult
+  SaveMode: 0
+  Data: 0
 --- !u!1001 &7306200880558965636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1545,6 +1550,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467eff0380184ad4e8fa5a04cfa4ee2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4121997848975088612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991729255139347551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cae73272a2ccc4eb439a92739c8769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: ConversationData
+  DataName: ChoiceResult
+  SaveMode: 0
+  Data: 1
 --- !u!1001 &7789118285110871963
 PrefabInstance:
   m_ObjectHideFlags: 0

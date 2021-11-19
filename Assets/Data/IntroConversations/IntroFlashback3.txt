@@ -7,29 +7,28 @@ hasFlag:Flashback2
 ~ Before battle
 :play:BeforeBattle
 Frogman: Nnrgh... Back again...\a It's always the same, over and...\a Wait... A memory...
-:showCG:Street
+:showCG:Alley
 :play:ForgottenMemories
 FrogmanMan|Frogman|L: (She's going towards a dead end.)
 Zip: (Yep. Shall we corner her there?)
 FrogmanMan|Frogman: (Yes.)
 ...
-:showCG:Alley
 DeharFB|Kebera|R: Would you care to show yourselves,\a or are you still pretending to sneak about?
 FrogmanMan|Frogman: ...I want you out of my city, Kebera.\a Dead or alive.
 DeharFB|Kebera|R: Do you now? And how, exactly,\a do you plan on making me leave?
-FrogmanMan|Frogman: You're cornered. And alone. Zip and I are well known for a reason.\a Give up, and you might yet live.
+FrogmanMan|Frogman: You're cornered. And alone.\a Zip and I are well known for a reason.\a Give up, and you might yet live.
 DeharFB|Kebera|R: So sure of yourself, are you?\a Daring to threaten me?\a But that won't save you now,\a Frogman.\a Time to meet your maker.
 FrogmanMan|Frogman: Wrong answer. Zip, feather-
 :setSingleSpeaker:L
 Huh?\a Where did she go?
-Zip: Don't know, boss. She just-
+Zip||R: Don't know, boss. She just-
 :screenShake:
 Argh!
 :setSingleSpeaker:L
 FrogmanMan|Frogman: Zip?! Are you-
 :screenShake:
-:setSpeaker:L:DeharFB|Kebera
-:setSpeaker:R:FrogmanMan|Frogman
+:setSpeaker:DeharFB|Kebera|L
+:setSpeaker:FrogmanMan|Frogman|R
 Oof!
 DeharFB|Kebera|L: Well. That was disappointedly easy.\a Makes me wonder whether you're fit for the job.
 FrogmanMan|Frogman: Urgh... What are-
@@ -40,7 +39,8 @@ FrogmanMan|Frogman: Ah...
 :hideCG:
 :play:BeforeBattle
 :setSingleSpeaker:L
-Frogman: Ouch. I still remember... She wasn't truly human, was she?\a Kebera...
+Frogman: Urgh! Zip...\a He didn't...
+Kebera...
 :setFlag:Flashback3
 
 ~ After battle

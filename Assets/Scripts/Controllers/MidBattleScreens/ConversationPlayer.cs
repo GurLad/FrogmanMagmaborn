@@ -386,6 +386,11 @@ public class ConversationPlayer : MidBattleScreen
                     SetSinglePortrait(left);
                     currentSpeakerIsLeft = !left;
                     break;
+                case "setSpeaker":
+                    // Params: string speaker
+                    // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)
+                    SetSpeakerFromText(parts[2]);
+                    break;
                 case "showCG":
                     // Params: string name
                     // Removes the previous CG (if any), then shows the requested CG until manually removed
@@ -572,30 +577,8 @@ public class ConversationPlayer : MidBattleScreen
         }
         if (line.IndexOf(':') != -1)
         {
-            string[] parts = line.Split(':')[0].Split('|');
-            Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
-            if (parts.Length > 1 && parts[1] != "")
-            {
-                Name.text = parts[1];
-            }
-            else
-            {
-                Name.text = portrait.Name;
-            }
-            bool left = parts.Length > 2 ? parts[2] == "L" : !currentSpeakerIsLeft;
-            if (left)
-            {
-                PortraitL.Portrait = portrait;
-                speakerL = Name.text;
-                SetSpeaker(true);
-            }
-            else
-            {
-                PortraitR.Portrait = portrait;
-                speakerR = Name.text;
-                SetSpeaker(false);
-            }    
-            voice = portrait.Voice;
+            string portraitText = line.Split(':')[0];
+            SetSpeakerFromText(portraitText);
         }
         if (line.Contains("[")) // Variable name (like button name)
         {
@@ -738,6 +721,34 @@ public class ConversationPlayer : MidBattleScreen
     private bool LineAddition(string trueLine)
     {
         return /*trueLine.IndexOf('\n') < 0 &&*/ currentLine >= 1;
+    }
+    private void SetSpeakerFromText(string speakerText)
+    {
+        // Format: name|displayName|L/R
+        string[] parts = speakerText.Split('|');
+        Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
+        if (parts.Length > 1 && parts[1] != "")
+        {
+            Name.text = parts[1];
+        }
+        else
+        {
+            Name.text = portrait.Name;
+        }
+        bool left = parts.Length > 2 ? parts[2] == "L" : !currentSpeakerIsLeft;
+        if (left)
+        {
+            PortraitL.Portrait = portrait;
+            speakerL = Name.text;
+            SetSpeaker(true);
+        }
+        else
+        {
+            PortraitR.Portrait = portrait;
+            speakerR = Name.text;
+            SetSpeaker(false);
+        }
+        voice = portrait.Voice;
     }
     private void SetSpeaker(bool left)
     {
