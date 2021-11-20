@@ -1,4 +1,4 @@
-Frogman Gaiden Beta - Version 0.3 (??/09/2021)
+Frogman Magmaborn Beta - Version 0.3 (21/11/2021)
 
 Changelog:
 
@@ -8,25 +8,34 @@ New content & features:
 	 +Added Torment Powers - a new mechanic!
 	 +Added level 6!
 	 +Added two playable characters!
-	*+Added flashback scenes (note to self: still need to be written)!
+	*+Added flashback scenes!
 	 +Added a lot of conversations. There are now over 50 conversations in the game!
 	 +Added two new monster classes (some goblins & gargoyles will randomly change to the new ones).
 	 +Added mid-map events, and a new objective for level 5.
 	 +Added unique character death quotes to all playable characters.
 	 +Added some portraits.
 	*+Added more maps to all previous levels.
+	*+Added an optional upscaling shader.
+	 +Added credits.
+	*+Added text speed option & dialogue skipping.
 
 Improvements:
 	 +Improved conversation UI, and all previous conversations.
 	 +Improved battle UI.
 	 +Improved map UI.
-	*+Improved stats UI - you can now press Select for help (note to self: add true stats explanation).
+	*+Improved stats UI - you can now press Select for help.
 	 +Improved Knowledge menu.
+	 +Improved almost all portraits.
 	 +Improved & added musics.
+	 +Improved main menu & intro animations.
+	 +Improved the Lich's battle animations.
+	*+Improved change controls UI.
 	 +Reworked how difficulties work.
 	 +Reworked level 5.
 	 +Rebalanced Goblins.
 	 +Renamed Kepluigi to Xeplogi.
+	 +Renamed the game to Frogman Magmaborn.
+	 +Slightly modified level 4 - should be less punishing if Firbell/Kresla died.
 	 
 Bug fixes:
 	 +Fixed retreat AI.
@@ -35,4 +44,6 @@ Bug fixes:
 	 +Fixed viewing enemy range behaviour.
 	*+Fixed palettes in level 4.
 	*+Fixed hit% displaying 99 instead of 100.
-	 +Fixed New Knowledge dialouge (again).
+	 +Fixed New Knowledge dialogue (again).
+	*+Fixed softlock when last enemy retreats.
+	*+Fixed rare animation desyncing.
