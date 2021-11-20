@@ -15,5 +15,6 @@ public abstract class AGameControllerListener : MonoBehaviour, IGameControllerLi
     }
 
     public abstract void OnBeginPlayerTurn(List<Unit> units);
-    public abstract void OnEndMap(List<Unit> units, bool playerWon);
+    public abstract void OnEndLevel(List<Unit> units, bool playerWon);
+    public abstract void OnPlayerWin(List<Unit> units);
 }

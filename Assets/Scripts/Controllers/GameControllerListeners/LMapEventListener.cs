@@ -24,8 +24,13 @@ public class LMapEventListener : AGameControllerListener
         }
     }
 
-    public override void OnEndMap(List<Unit> units, bool playerWon)
+    public override void OnEndLevel(List<Unit> units, bool playerWon)
     {
         Destroy(this);
+    }
+
+    public override void OnPlayerWin(List<Unit> units)
+    {
+        // Do nothing
     }
 }

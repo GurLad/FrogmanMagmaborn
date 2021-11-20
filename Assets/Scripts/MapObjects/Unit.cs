@@ -180,7 +180,7 @@ public class Unit : MapObject
             AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
             attackMarker.Pos = new Vector2Int(i, j);
             attackMarker.Origin = this;
-            attackMarker.ParentPos = dangerArea[i, j].Parent.Pos;
+            attackMarker.DangerArea = dangerArea;
             attackMarker.gameObject.SetActive(true);
         }
 
@@ -703,7 +703,7 @@ public class Unit : MapObject
         moved = false;
     }
 
-    private class DangerArea
+    public class DangerArea
     {
         public enum TileDataType { Inaccessible, Move, PassThrough, Attack }
 
@@ -893,6 +893,57 @@ public class Unit : MapObject
                 result += "\n";
             }
             return result;
+        }
+
+        /// <summary>
+        /// Gets the best place to attack the target position from (for auto-attack & AI)
+        /// </summary>
+        /// <param name="target">The target position (will automatically detect the unit if there is one)</param>
+        /// <param name="distanceWeight">Negative for prioritizing attacking from far places (enemies), positive for least distance walked (player)</param>
+        /// <returns></returns>
+        public Vector2Int GetBestPosToAttackTargetFrom(Vector2Int target, float distanceWeight = 1) // Different from the other one, as it doesn't take into acount the unit at that pos
+        {
+            if (this[target.x, target.y].Value != 0)
+            {
+                Vector2Int currentBest = new Vector2Int(-1, -1);
+                float currentBestWeight = -1;
+                Unit targetUnit = GameController.Current.FindUnitAtPos(target.x, target.y);
+                for (int i = -unit.Weapon.Range; i <= unit.Weapon.Range; i++)
+                {
+                    for (int j = -unit.Weapon.Range; j <= unit.Weapon.Range; j++)
+                    {
+                        if (Mathf.Abs(i) + Mathf.Abs(j) <= unit.Weapon.Range)
+                        {
+                            if (!OutOfBounds(target.x + i, target.y + j) &&
+                                this[target.x + i, target.y + j].Type == TileDataType.Move)
+                            {
+                                float weight = 50; // Make sure it's positive
+                                weight += GameController.Current.Map[target.x + i, target.y + j].ArmorModifier * 10;
+                                weight += this[target.x + i, target.y + j].Value * distanceWeight;
+                                if (targetUnit != null)
+                                {
+                                    weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
+                                }
+                                Debug.Log("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
+                                if (weight > currentBestWeight)
+                                {
+                                    currentBest = new Vector2Int(target.x + i, target.y + j);
+                                    currentBestWeight = weight;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (currentBest == new Vector2Int(-1, -1))
+                {
+                    throw new System.Exception(unit + " couldn't find a favorable place to attack pos " + target);
+                }
+                return currentBest;
+            }
+            else
+            {
+                throw new System.Exception(unit + " cannot even attack pos " + target);
+            }
         }
 
         public class TileData

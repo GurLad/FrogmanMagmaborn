@@ -9,8 +9,13 @@ public class LGameCalculationsListener : AGameControllerListener
         GameCalculations.EndTurnEvents(units);
     }
 
-    public override void OnEndMap(List<Unit> units, bool playerWon)
+    public override void OnEndLevel(List<Unit> units, bool playerWon)
     {
-        GameCalculations.EndMapEvents(units);
+        GameCalculations.EndLevelEvents(units);
+    }
+
+    public override void OnPlayerWin(List<Unit> units)
+    {
+        GameCalculations.PlayerWinEvents(units);
     }
 }

@@ -320,7 +320,7 @@ public class GameController : MonoBehaviour
                 // Win
                 RemoveMarkers();
                 InteractState = InteractState.None; // To prevent weird corner cases.
-                ConversationPlayer.Current.PlayPostBattle();
+                PlayPostBattle();
                 return GameState.SideWon;
             }
             if (!GameCalculations.PermaDeath) // "Kill" player units when perma-death is off
@@ -354,7 +354,7 @@ public class GameController : MonoBehaviour
                 if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
                     // Win
-                    ConversationPlayer.Current.PlayPostBattle();
+                    PlayPostBattle();
                     return GameState.SideWon;
                 }
                 if (showTurnAnimation)
@@ -369,7 +369,7 @@ public class GameController : MonoBehaviour
             else if (CheckPlayerWin(Objective.Escape))
             {
                 // Win
-                ConversationPlayer.Current.PlayPostBattle();
+                PlayPostBattle();
                 return GameState.SideWon;
             }
             checkEndTurn = false;
@@ -739,9 +739,14 @@ public class GameController : MonoBehaviour
         }
         deadUnitDeathQuote = unit.DeathQuote; // Since I need to wait for the battle animation to finish first
     }
+    private void PlayPostBattle()
+    {
+        NotifyListeners(a => a.OnPlayerWin(units));
+        ConversationPlayer.Current.PlayPostBattle();
+    }
     public void Win()
     {
-        NotifyListeners(a => a.OnEndMap(units, true));
+        NotifyListeners(a => a.OnEndLevel(units, true));
         LevelNumber++;
         currentKnowledge++;
         SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
@@ -1069,7 +1074,7 @@ public class GameController : MonoBehaviour
     }
     public void Lose()
     {
-        NotifyListeners(a => a.OnEndMap(units, false));
+        NotifyListeners(a => a.OnEndLevel(units, false));
         SetPalettesFromMetadata(LevelMetadataController[0]); // Fix Torment palette
         NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);

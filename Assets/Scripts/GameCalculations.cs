@@ -33,12 +33,12 @@ public static class GameCalculations
 
         public static bool GetUpgradeActive(string name)
         {
-            return SavedData.Load<int>("Knowledge", "Upgrade" + name) == 1;
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name, -1) == 1;
         }
 
         public static bool FoundKnowledge(string name)
         {
-            return SavedData.Load<int>("Knowledge", "Upgrade" + name) >= 0;
+            return SavedData.Load<int>("Knowledge", "Upgrade" + name, -1) >= 0;
         }
 
         public static int GetInclination(string characterName)
@@ -140,7 +140,12 @@ public static class GameCalculations
         }
     }
 
-    public static void EndMapEvents(List<Unit> units)
+    public static void EndLevelEvents(List<Unit> units)
+    {
+
+    }
+
+    public static void PlayerWinEvents(List<Unit> units)
     {
         switch (KnowledgeController.TormentPower("WrathMercy"))
         {

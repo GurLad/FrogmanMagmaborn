@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackMarker : Marker
 {
     [HideInInspector]
-    public Vector2Int ParentPos;
+    public Unit.DangerArea DangerArea;
 
     public override void Interact(InteractState interactState)
     {
@@ -27,7 +27,7 @@ public class AttackMarker : Marker
         }
         else if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
         {
-            Origin.MoveOrder(ParentPos);
+            Origin.MoveOrder(DangerArea.GetBestPosToAttackTargetFrom(Pos));
         }
         else if (interactState == InteractState.None)
         {
