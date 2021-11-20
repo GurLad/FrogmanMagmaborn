@@ -510,6 +510,7 @@ public class Unit : MapObject
         if (minPoint == -Vector2Int.one)
         {
             Debug.Log(this + " can't move :(");
+            MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
             MoveTo(Pos);
             return;
         }

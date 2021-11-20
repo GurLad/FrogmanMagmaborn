@@ -258,9 +258,13 @@ public static class GameCalculations
 
     public static int GetMovementCost(this Tile tile, Unit unit)
     {
-        if (unit.Flies || (unit.TheTeam == Team.Player && KnowledgeController.TormentPower("SpeedSafety") == TormentPowerState.I))
+        if (unit.Flies)
         {
             return tile.High ? tile.MovementCost : 1;
+        }
+        else if (unit.TheTeam == Team.Player && KnowledgeController.TormentPower("SpeedSafety") == TormentPowerState.I)
+        {
+            return (tile.High || tile.MovementCost > 5) ? tile.MovementCost : 1;
         }
         else
         {

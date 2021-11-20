@@ -560,6 +560,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 82c4f2220d1f58441ac4dc021cec2556, type: 3}
   - {fileID: 4900000, guid: ab2413dfeeaf6494aa09f684ac61a829, type: 3}
   - {fileID: 4900000, guid: f28b282f1945dcd4a93c440fa3debc9d, type: 3}
+  - {fileID: 4900000, guid: ada1878dc56b2d249bf2dac80f6c9c60, type: 3}
   - {fileID: 4900000, guid: c09cea95d2815e344a35f14e16dfa829, type: 3}
   - {fileID: 4900000, guid: 03c616438e31acc4d8ecd81f917a2427, type: 3}
   - {fileID: 4900000, guid: 25d3da6bf5b6faa4d91a5f562cd0b395, type: 3}
@@ -18774,6 +18775,50 @@ MonoBehaviour:
         SurvivalWeight: 0
         CautionLevel: 1
     MusicName: Unbreakable
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.84705883, b: 0.5176471, a: 1}
+        - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Don't
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Trust
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.40784314, g: 0.28235295, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0, a: 0}
+      Name: Jack
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: TheCloneVats
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21467,25 +21512,62 @@ MonoBehaviour:
   - Name: TestingArea
     LevelNumber: 8
     Units:
-    - Pos: {x: 7, y: 8}
+    - Pos: {x: 6, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 10}
       Team: 2
-      Level: 8
-      Class: Wizard
+      Level: 0
+      Class: Lancer
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 5}
+    - Pos: {x: 8, y: 1}
       Team: 1
-      Level: 8
-      Class: Wizard
+      Level: 0
+      Class: Goblin
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - '~
+
+      turn:>2
+
+      ~
+
+      ~
+
+      Frogman: Hi!'
     Tileset: Dungeon
-    Objective: 0
-    ObjectiveData: Rout
-    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|0|3|0|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|0|0|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|0|0|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Objective: 2
+    ObjectiveData: 6:6
+    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|0|3|0|0|0|0|0|0|0;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;1|0|2|1|0|0|0|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|0|0|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
   - Name: TormentRoom0
     LevelNumber: 4
     Units:

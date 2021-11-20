@@ -37,6 +37,7 @@ public class ConversationPlayer : MidBattleScreen
     public System.Action OnFinishConversation;
     [SerializeField]
     private bool startActive = true;
+    private float speed;
     private CurrentState state;
     private ConversationData origin;
     private CharacterVoice voice;
@@ -100,7 +101,7 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     else
                     {
-                        count += Time.deltaTime * LettersPerSecond;
+                        count += Time.deltaTime * speed;
                         if (count >= 1)
                         {
                             if (++currentChar < targetLine.Length)
@@ -192,6 +193,7 @@ public class ConversationPlayer : MidBattleScreen
             }
         }
         lines = origin.Lines;
+        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0);
     }
     public void PlayOneShot(string text)
@@ -203,6 +205,7 @@ public class ConversationPlayer : MidBattleScreen
         }
         // Load new lines
         lines = new List<string>(text.Split('\n'));
+        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0);
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
@@ -218,6 +221,7 @@ public class ConversationPlayer : MidBattleScreen
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         lines = origin.PostBattleLines;
+        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0);
     }
     public void Pause(bool resetSpeakers = true)
@@ -274,6 +278,7 @@ public class ConversationPlayer : MidBattleScreen
     }
     private void StartLine(int num)
     {
+        Debug.Log("Text speed: " + (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1) + ", speed: " + speed + ", LPS: " + LettersPerSecond);
         if (num >= lines.Count)
         {
             FinishConversation();

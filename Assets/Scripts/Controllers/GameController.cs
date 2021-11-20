@@ -337,23 +337,34 @@ public class GameController : MonoBehaviour
             {
                 RemoveMarkers();
                 Team current = currentPhase;
+                if (units.Count == 0)
+                {
+                    throw new System.Exception("No units?");
+                }
                 do
                 {
                     current = (Team)(((int)current + 1) % 3);
                     if (current == currentPhase)
                     {
-                        throw new System.Exception("Infinite loop in EndTurn - no living units, probably");
+                        Debug.Log("Only one team is alive - " + current);
                     }
                 } while (units.Find(a => a.TheTeam == current) == null);
                 Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
-                StartPhase(current);
+                bool showTurnAnimation = StartPhase(current);
                 if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
                     // Win
                     ConversationPlayer.Current.PlayPostBattle();
                     return GameState.SideWon;
                 }
-                TurnAnimation.ShowTurn(currentPhase);
+                if (showTurnAnimation)
+                {
+                    TurnAnimation.ShowTurn(currentPhase);
+                }
+                else
+                {
+                    ConversationPlayer.Current.OnFinishConversation = () => TurnAnimation.ShowTurn(currentPhase);
+                }
             }
             else if (CheckPlayerWin(Objective.Escape))
             {
@@ -580,9 +591,12 @@ public class GameController : MonoBehaviour
                 // AI
                 if (currentEnemy == null)
                 {
-                    StartPhase((Team)(((int)currentPhase + 1) % 3));
+                    checkEndTurn = true;
                 }
-                currentEnemy.AI(units);
+                else
+                {
+                    currentEnemy.AI(units);
+                }
             }
             else
             {
@@ -650,7 +664,12 @@ public class GameController : MonoBehaviour
     {
         return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
     }
-    public void StartPhase(Team team)
+    /// <summary>
+    /// Starts the given team's phase. If it's the player's (aka team 0), also advance the turn.
+    /// </summary>
+    /// <param name="team"></param>
+    /// <returns>Whether to display the begin turn animation - true if display, false otherwise</returns>
+    public bool StartPhase(Team team)
     {
         currentPhase = team;
         enemyMoveDelayCount = 0;
@@ -691,7 +710,7 @@ public class GameController : MonoBehaviour
             Turn++;
             NotifyListeners(a => a.OnBeginPlayerTurn(units));
         }
-        CheckConveresationWait(); // Wait for turn events
+        return !CheckConveresationWait() && !MidBattleScreen.HasCurrent; // Wait for turn events
     }
     public void TransitionToMidBattleScreen(MidBattleScreen screen)
     {
