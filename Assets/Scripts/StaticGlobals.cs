@@ -62,4 +62,12 @@ public static class StaticGlobals
     {
         return GameController.Current.LevelNumber <= 6 ? origin != target : ((origin == Team.Player && target != Team.Player) || (target == Team.Player && origin != Team.Player));
     }
+    public static int TileSize(this Vector2Int vector2Int)
+    {
+        return Mathf.Abs(vector2Int.x) + Mathf.Abs(vector2Int.y);
+    }
+    public static int TileDist(this Vector2Int one, Vector2Int two)
+    {
+        return Mathf.Abs(one.x - two.x) + Mathf.Abs(one.y - two.y);
+    }
 }

@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
     public bool DebugStartAtEndgame;
     public int DebugEndgameLevel;
+    public int DebugExtraLevels;
     public List<string> DebugUnits;
     public bool DebugUnlimitedMove;
     public bool DebugOPPlayers;
@@ -210,6 +211,13 @@ public class GameController : MonoBehaviour
                 foreach (Unit unit in PlayerUnits)
                 {
                     unit.Stats += unit.AutoLevel(50);
+                }
+            }
+            if (DebugExtraLevels > 0)
+            {
+                foreach (Unit unit in PlayerUnits)
+                {
+                    unit.Stats += unit.AutoLevel(DebugExtraLevels);
                 }
             }
         }

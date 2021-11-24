@@ -455,31 +455,7 @@ public class Unit : MapObject
         {
             if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
             {
-                Vector2Int currentBest = new Vector2Int(-1, -1);
-                for (int i = -Weapon.Range; i <= Weapon.Range; i++)
-                {
-                    for (int j = -Weapon.Range; j <= Weapon.Range; j++)
-                    {
-                        if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range)
-                        {
-                            if (unit.Pos.x + i >= 0 && unit.Pos.x + i < GameController.Current.MapSize.x &&
-                                unit.Pos.y + j >= 0 && unit.Pos.y + j < GameController.Current.MapSize.y &&
-                                dangerArea[unit.Pos.x + i, unit.Pos.y + j].Value > 0)
-                            {
-                                // This is probably the longest, messiest if I've ever written. Let's hope it works.
-                                if (currentBest.x < 0 ||
-                                    ((!unit.CanAttackPos(unit.Pos.x + i, unit.Pos.y + j) || unit.CanAttackPos(currentBest.x, currentBest.y)) &&
-                                    (GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier < GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier ||
-                                    (GameController.Current.Map[currentBest.x, currentBest.y].ArmorModifier == GameController.Current.Map[unit.Pos.x + i, unit.Pos.y + j].ArmorModifier &&
-                                     Vector2Int.Distance(currentBest, Pos) > Vector2Int.Distance(new Vector2Int(unit.Pos.x + i, unit.Pos.y + j), Pos)))) ||
-                                    (!unit.CanAttackPos(unit.Pos.x + i, unit.Pos.y + j) && unit.CanAttackPos(currentBest.x, currentBest.y)))
-                                {
-                                    currentBest = new Vector2Int(unit.Pos.x + i, unit.Pos.y + j);
-                                }
-                            }
-                        }
-                    }
-                }
+                Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(unit.Pos, -1);
                 Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                 MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
@@ -620,13 +596,31 @@ public class Unit : MapObject
     {
         return other != null && CanAttackPos(other.Pos);
     }
-    public bool CanAttackPos(Vector2Int pos)
+    private bool CanAttackPos(Vector2Int pos)
     {
-        return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - pos.x) + Mathf.Abs(Pos.y - pos.y));
+        return CanAttackPos(pos.x, pos.y, Pos.x, Pos.y);
     }
-    public bool CanAttackPos(int x, int y)
+    private bool CanAttackPos(int x, int y)
     {
-        return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - x) + Mathf.Abs(Pos.y - y));
+        return CanAttackPos(x, y, Pos.x, Pos.y);
+    }
+    private bool CanAttackPos(Vector2Int pos, Vector2Int fromPos)
+    {
+        return CanAttackPos(pos.x, pos.y, fromPos.x, fromPos.y);
+    }
+    private bool CanAttackPos(int x, int y, int fromX, int fromY)
+    {
+        //return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - x) + Mathf.Abs(Pos.y - y));
+        Vector2Int difference = new Vector2Int(fromX - x, fromY - y);
+        int differenceSize = difference.TileSize();
+        if (differenceSize <= 1)
+        {
+            return !Statue && Weapon.Range >= differenceSize;
+        }
+        else
+        {
+            return DangerArea.Generate(this, fromX, fromY, 0, false)[x, y].Type == DangerArea.TileDataType.Attack;
+        }
     }
     public string AttackPreview(Unit other, int padding = 2, bool canAttack = true)
     {
@@ -733,7 +727,17 @@ public class Unit : MapObject
         public static DangerArea Generate(Unit unit, int x, int y, int range, bool includePassThroughMoves)
         {
             DangerArea dangerArea = new DangerArea(unit);
-            AttackFrom attackFrom = dangerArea.FindMovement(x, y, range);
+            AttackFrom attackFrom;
+            if (range > 0)
+            {
+                attackFrom = dangerArea.FindMovement(x, y, range);
+            }
+            else
+            {
+                dangerArea.MarkMovementTile(x, y, 0, TileDataType.Move);
+                attackFrom = new AttackFrom();
+                attackFrom.Add(new Vector2Int(x, y));
+            }
             if (!includePassThroughMoves) // Remove all pass through tiles
             {
                 attackFrom.RemoveAll(a => dangerArea[a.x, a.y].Type == TileDataType.PassThrough);
@@ -917,6 +921,11 @@ public class Unit : MapObject
                             if (!OutOfBounds(target.x + i, target.y + j) &&
                                 this[target.x + i, target.y + j].Type == TileDataType.Move)
                             {
+                                if (!unit.CanAttackPos(target.x, target.y, target.x + i, target.y + j))
+                                {
+                                    Debug.Log(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
+                                    continue;
+                                }
                                 float weight = 50; // Make sure it's positive
                                 weight += GameController.Current.Map[target.x + i, target.y + j].ArmorModifier * 10;
                                 weight += this[target.x + i, target.y + j].Value * distanceWeight;
