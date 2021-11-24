@@ -38,6 +38,7 @@ public class UnitClassData : MonoBehaviour
 public class UnitData
 {
     public string Name;
+    public string DisplayName;
     public string Class;
     public Inclination Inclination;
     public UnitClassData.GrowthsStruct Growths;

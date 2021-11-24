@@ -565,6 +565,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 03c616438e31acc4d8ecd81f917a2427, type: 3}
   - {fileID: 4900000, guid: 25d3da6bf5b6faa4d91a5f562cd0b395, type: 3}
   - {fileID: 4900000, guid: e4abf37800528dc42bef9ab932ab9acb, type: 3}
+  - {fileID: 4900000, guid: 61a4dd999bdace94297885ef184590e0, type: 3}
   Path: Conversations
 --- !u!1 &40213440
 GameObject:
@@ -11210,6 +11211,7 @@ MonoBehaviour:
   AttackMarker: {fileID: 268952389}
   TheTeam: 0
   Name: Frogman
+  DisplayName: 
   Class: Frogman
   AIType: 0
   Flies: 0
@@ -15253,6 +15255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitDatas:
   - Name: Frogman
+    DisplayName: Frogman
     Class: Frogman
     Inclination: 2
     Growths:
@@ -15263,6 +15266,7 @@ MonoBehaviour:
 
       :lose:'
   - Name: Firbell
+    DisplayName: Firbell
     Class: Skeleton
     Inclination: 0
     Growths:
@@ -15271,6 +15275,7 @@ MonoBehaviour:
 
       Firbell: I''ve... let you... do...'
   - Name: Xirveros
+    DisplayName: Xirveros
     Class: Goblin
     Inclination: 1
     Growths:
@@ -15279,6 +15284,7 @@ MonoBehaviour:
 
       Xirveros: Frog...'
   - Name: Kresla
+    DisplayName: Kresla
     Class: Gargoyle
     Inclination: 1
     Growths:
@@ -15287,6 +15293,7 @@ MonoBehaviour:
 
       Kresla: ''Tis but... a flesh... wound...'
   - Name: Xeplogi
+    DisplayName: Xeplogi
     Class: Ooze
     Inclination: 0
     Growths:
@@ -15296,6 +15303,7 @@ MonoBehaviour:
       Xeplogi: I-impossible! How could I...\a the
       great Xeplogi...\a be bested...\a by such...'
   - Name: Memerian
+    DisplayName: Memerian
     Class: Golem
     Inclination: 0
     Growths:
@@ -15304,6 +15312,7 @@ MonoBehaviour:
 
       Memerian: Hell! I''m... outta here...'
   - Name: Alfred
+    DisplayName: Alfred
     Class: Slither
     Inclination: 2
     Growths:
@@ -15311,6 +15320,25 @@ MonoBehaviour:
     DeathQuote: ':play:DeadAlly
 
       Alfred: No... Just... one... more...'
+  - Name: Dehar
+    DisplayName: Dehar
+    Class: Lich
+    Inclination: 2
+    Growths:
+      Values: 020000000100000003000000010000000300000004000000
+    DeathQuote: ':play:DeadAlly
+
+      Dehar: No, I can''t die yet... Frogman, I''ll
+      return after the battle.
+
+      :pseudoKill:Dehar'
+  - Name: Dehar_
+    DisplayName: Dehar
+    Class: Wizard
+    Inclination: 2
+    Growths:
+      Values: 020000000100000003000000010000000300000004000000
+    DeathQuote: 'Dehar_: Took you... long enough...'
   ClassDatas:
   - Name: Frogman
     Flies: 0
@@ -21775,6 +21803,20 @@ MonoBehaviour:
       Team: 2
       Level: 7
       Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 9}
+      Team: 0
+      Level: 0
+      Class: Dehar_
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 9}
+      Team: 0
+      Level: 0
+      Class: Dehar
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0

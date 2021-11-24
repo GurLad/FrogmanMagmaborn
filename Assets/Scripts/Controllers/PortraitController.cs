@@ -101,6 +101,19 @@ public class Portrait
     [Range(0, 3)]
     public int AccentColor;
     public CharacterVoice Voice;
+    [SerializeField]
+    private string DisplayName = "";
+    public string TheDisplayName // Unity and properties...
+    {
+        get
+        {
+            return DisplayName != "" ? DisplayName : Name;
+        }
+        set
+        {
+            DisplayName = value;
+        }
+    }
     public Portrait()
     {
         BackgroundColor = new Palette();
@@ -111,7 +124,7 @@ public class Portrait
     }
     public override string ToString()
     {
-        return '"' + Name + '"';
+        return '"' + TheDisplayName + '"';
     }
 }
 

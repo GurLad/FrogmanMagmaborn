@@ -13,6 +13,7 @@ public class Unit : MapObject
     public AttackMarker AttackMarker;
     public Team TheTeam;
     public string Name;
+    public string DisplayName;
     public string Class;
     public AIType AIType;
     [Header("Stats")]
@@ -116,7 +117,7 @@ public class Unit : MapObject
                 break;
             case PortraitLoadingMode.Generic:
                 Icon = PortraitController.Current.FindGenericPortrait();
-                Name = Icon.Name;
+                Name = Icon.TheDisplayName;
                 break;
             default:
                 break;
@@ -125,7 +126,7 @@ public class Unit : MapObject
     public void SetIcon(Portrait icon, bool changeName = true)
     {
         Icon = icon;
-        Name = icon.Name;
+        Name = icon.TheDisplayName;
     }
     public override void Interact(InteractState interactState)
     {
@@ -668,7 +669,7 @@ public class Unit : MapObject
     }
     public override string ToString()
     {
-        return (Icon?.Name == TheTeam.Name() ? Class : Name) ?? Name;
+        return (Icon?.Name == TheTeam.Name() ? Class : DisplayName) ?? DisplayName;
     }
     public void ChangeInclination(Inclination target)
     {

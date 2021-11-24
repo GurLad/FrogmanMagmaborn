@@ -738,7 +738,7 @@ public class ConversationPlayer : MidBattleScreen
         }
         else
         {
-            Name.text = portrait.Name;
+            Name.text = portrait.TheDisplayName;
         }
         bool left = parts.Length > 2 ? parts[2] == "L" : !currentSpeakerIsLeft;
         if (left)

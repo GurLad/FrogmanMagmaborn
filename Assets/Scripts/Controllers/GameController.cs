@@ -843,6 +843,7 @@ public class GameController : MonoBehaviour
         unit.TheTeam = Team.Player;
         UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
         unit.Class = unitData.Class;
+        unit.DisplayName = unitData.DisplayName;
         ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         unit.Stats = new Stats();
         unit.Stats.Growths = unitData.Growths.Values;
