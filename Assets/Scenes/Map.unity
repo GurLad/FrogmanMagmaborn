@@ -18306,13 +18306,12 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 8
-  DebugExtraLevels: 1
+  DebugEndgameLevel: 4
+  DebugExtraLevels: 0
   DebugUnits:
   - Frogman
-  - Firbell
+  - Kresla
   - Xirveros
-  - Memerian
   DebugUnlimitedMove: 0
   DebugOPPlayers: 0
   CameraBlackScreen: {fileID: 1626109149}
@@ -22060,10 +22059,8 @@ MonoBehaviour:
     Objective: 3
     ObjectiveData: 6
     MapString: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
-  BaseTile: {fileID: 1597157554}
-  TilesetsContainer: {fileID: 720465191}
-  mapData:
-    Tiles: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
+  - Name: TormentRoom2
+    LevelNumber: 4
     Units:
     - Pos: {x: 8, y: 7}
       Team: 0
@@ -22086,84 +22083,199 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 1, y: 12}
+    - Pos: {x: 14, y: 12}
       Team: 2
       Level: 3
       Class: Fear
       AIType: 0
       ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 7}
-      Team: 2
-      Level: 3
-      Class: Pain
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 2}
-      Team: 2
-      Level: 3
-      Class: Despair
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 2}
-      Team: 2
-      Level: 3
-      Class: Fear
-      AIType: 0
-      ReinforcementTurn: 2
       Statue: 0
     - Pos: {x: 15, y: 7}
       Team: 2
       Level: 3
       Class: Pain
       AIType: 0
-      ReinforcementTurn: 2
+      ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 14, y: 12}
+    - Pos: {x: 14, y: 2}
       Team: 2
       Level: 3
       Class: Despair
       AIType: 0
-      ReinforcementTurn: 2
+      ReinforcementTurn: 0
       Statue: 0
     - Pos: {x: 1, y: 2}
       Team: 2
       Level: 3
       Class: Fear
       AIType: 0
-      ReinforcementTurn: 4
+      ReinforcementTurn: 2
       Statue: 0
     - Pos: {x: 0, y: 7}
       Team: 2
       Level: 3
       Class: Pain
       AIType: 0
-      ReinforcementTurn: 4
+      ReinforcementTurn: 2
       Statue: 0
     - Pos: {x: 1, y: 12}
       Team: 2
       Level: 3
       Class: Despair
       AIType: 0
-      ReinforcementTurn: 4
+      ReinforcementTurn: 2
       Statue: 0
-    - Pos: {x: 14, y: 12}
+    - Pos: {x: 14, y: 2}
       Team: 2
       Level: 3
       Class: Fear
       AIType: 0
-      ReinforcementTurn: 6
+      ReinforcementTurn: 4
       Statue: 0
     - Pos: {x: 15, y: 7}
       Team: 2
       Level: 3
       Class: Pain
       AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
       ReinforcementTurn: 6
       Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    MapEvents: []
+    Tileset: Torment
+    Objective: 3
+    ObjectiveData: 6
+    MapString: 0|6|18|2|1|21|6|4|18|2|1|21|6|18|2;21|8|4|18|2|0|7|14|19|2|0|6|5|20|2;0|1|8|4|10|10|19|3|7|10|10|5|20|3|0;6|18|3|16|3|0|16|2|16|2|1|16|3|6|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|14|10|5|10|10|19|3|7|10|10|4|10|14|20;21|0|0|16|2|21|16|3|16|2|21|16|2|0|21;0|15|2|16|3|6|4|12|5|18|3|16|2|15|2;0|17|2|16|3|8|5|14|4|20|3|16|2|17|2;0|21|0|16|2|0|16|3|16|2|0|16|2|0|0;6|12|10|4|10|10|19|3|7|10|10|5|10|12|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|20|3|16|3|21|16|2|16|2|1|16|3|8|20;0|1|6|5|10|10|19|3|7|10|10|4|18|3|21;0|6|5|20|2|21|7|12|19|2|21|8|4|18|2;0|8|20|2|1|0|8|4|20|2|1|0|8|20|2
+  BaseTile: {fileID: 1597157554}
+  TilesetsContainer: {fileID: 720465191}
+  mapData:
+    Tiles: 0|6|18|2|1|21|6|4|18|2|1|21|6|18|2;21|8|4|18|2|0|7|14|19|2|0|6|5|20|2;0|1|8|4|10|10|19|3|7|10|10|5|20|3|0;6|18|3|16|3|0|16|2|16|2|1|16|3|6|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|14|10|5|10|10|19|3|7|10|10|4|10|14|20;21|0|0|16|2|21|16|3|16|2|21|16|2|0|21;0|15|2|16|3|6|4|12|5|18|3|16|2|15|2;0|17|2|16|3|8|5|14|4|20|3|16|2|17|2;0|21|0|16|2|0|16|3|16|2|0|16|2|0|0;6|12|10|4|10|10|19|3|7|10|10|5|10|12|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|20|3|16|3|21|16|2|16|2|1|16|3|8|20;0|1|6|5|10|10|19|3|7|10|10|4|18|3|21;0|6|5|20|2|21|7|12|19|2|21|8|4|18|2;0|8|20|2|1|0|8|4|20|2|1|0|8|20|2
+    Units:
+    - Pos: {x: 8, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
     - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 2
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 15, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 14, y: 12}
+      Team: 2
+      Level: 3
+      Class: Despair
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 12}
+      Team: 2
+      Level: 3
+      Class: Fear
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 2
+      Level: 3
+      Class: Pain
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 1, y: 2}
       Team: 2
       Level: 3
       Class: Despair
@@ -22174,7 +22286,7 @@ MonoBehaviour:
     Tileset: Torment
     LevelNumber: 4
     Objective: Survive:6
-    Name: TormentRoom1
+    Name: TormentRoom2
 --- !u!1 &1914107660
 GameObject:
   m_ObjectHideFlags: 0
