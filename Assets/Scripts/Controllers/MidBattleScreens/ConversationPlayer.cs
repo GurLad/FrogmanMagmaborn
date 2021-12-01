@@ -278,7 +278,6 @@ public class ConversationPlayer : MidBattleScreen
     }
     private void StartLine(int num)
     {
-        Debug.Log("Text speed: " + (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1) + ", speed: " + speed + ", LPS: " + LettersPerSecond);
         if (num >= lines.Count)
         {
             FinishConversation();

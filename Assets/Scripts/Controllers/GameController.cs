@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
                 {
-                    Unit unit = CreateUnit();
+                    Unit unit = CreateEmptyUnit();
                     unit.Load(playerUnits[i]);
                     unit.name = "Unit" + unit.Name;
                     Debug.Log("Loading " + unit.Name);
@@ -825,7 +825,7 @@ public class GameController : MonoBehaviour
         // Play conversation
         ConversationPlayer.Current.Play(conversation);
     }
-    private Unit CreateUnit()
+    private Unit CreateEmptyUnit()
     {
         Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
         unit.Name = "TEMP";
@@ -833,36 +833,9 @@ public class GameController : MonoBehaviour
         unit.gameObject.SetActive(true);
         return unit;
     }
-    public Unit CreatePlayerUnit(string name, int level = -1)
+    private Unit CreateUnit(string name, int level, Team team, bool canReplace)
     {
-        level = level >= 0 ? level : LevelNumber;
-        Unit unit = CreateUnit();
-        unit.Name = name;
-        unit.name = "Unit" + name;
-        unit.Level = level;
-        unit.TheTeam = Team.Player;
-        UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
-        unit.Class = unitData.Class;
-        unit.DisplayName = unitData.DisplayName;
-        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
-        unit.Stats = new Stats();
-        unit.Stats.Growths = unitData.Growths.Values;
-        unit.Flies = classData.Flies;
-        unit.Weapon = classData.Weapon;
-        unit.DeathQuote = unitData.DeathQuote;
-        unit.Inclination = unitData.Inclination;
-        unit.LoadInclination();
-        AssignUnitMapAnimation(unit, classData);
-        unit.Stats += unit.AutoLevel(level);
-        unit.Init();
-        return unit;
-    }
-    public Unit CreateEnemyUnit(string name, int level, Team team, bool canReplace)
-    {
-        Unit unit = CreateUnit();
-        unit.TheTeam = team;
-        unit.Name = name;
-        unit.name = "Unit" + name;
+        // Find replacement, fix level
         if (canReplace)
         {
             UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
@@ -871,17 +844,53 @@ public class GameController : MonoBehaviour
                 name = replacement.Get();
             }
         }
-        unit.Class = name;
-        ClassData classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
-        unit.Stats.Growths = classData.Growths.Values;
-        unit.Flies = classData.Flies;
-        unit.Inclination = classData.Inclination;
+        level = level >= 0 ? level : LevelNumber;
+        // Generate basic unit
+        Unit unit = CreateEmptyUnit();
+        unit.Name = name;
+        unit.name = "Unit" + name;
         unit.Level = level;
+        unit.TheTeam = team;
         unit.Stats += unit.AutoLevel(level);
+        // Find ClassData, and determine whether to use it or UnitData (based on PortraitLoadingMode)
+        ClassData classData;
+        switch (LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
+        {
+            case PortraitLoadingMode.Name:
+                UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
+                unit.Class = unitData.Class;
+                unit.DisplayName = unitData.DisplayName;
+                classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+                unit.Stats = new Stats();
+                unit.Stats.Growths = unitData.Growths.Values;
+                unit.DeathQuote = unitData.DeathQuote;
+                unit.Inclination = unitData.Inclination;
+                unit.LoadInclination();
+                break;
+            case PortraitLoadingMode.Team:
+            case PortraitLoadingMode.Generic:
+                unit.Class = name;
+                classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+                unit.Stats = new Stats();
+                unit.Stats.Growths = classData.Growths.Values;
+                unit.Inclination = classData.Inclination;
+                break;
+            default:
+                throw new System.Exception("Impossible!");
+        }
+        // Use ClassData for class-specific stuff (flies, weapon...)
+        unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
+        unit.Stats += unit.AutoLevel(level);
+        // Load sprite, priorities, init
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
+        unit.Init();
         return unit;
+    }
+    public Unit CreatePlayerUnit(string name)
+    {
+        return CreateUnit(name, -1, Team.Player, false);
     }
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)
     {
@@ -1001,7 +1010,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    unit = CreatePlayerUnit(name, unitData.Level);
+                    unit = CreateUnit(name, unitData.Level, Team.Player, false);
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = unitData.Pos;
                     PlayerUnits.Add(unit);
@@ -1017,7 +1026,7 @@ public class GameController : MonoBehaviour
             }
             else // Enemy units
             {
-                Unit unit = CreateEnemyUnit(name, unitData.Level, team, !unitData.Statue);
+                Unit unit = CreateUnit(name, unitData.Level, team, !unitData.Statue);
                 unit.ReinforcementTurn = unitData.ReinforcementTurn;
                 unit.Statue = unitData.Statue;
                 unit.AIType = unitData.AIType;

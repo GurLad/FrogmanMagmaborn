@@ -82,7 +82,6 @@ public class StatusScreenHelpPanel : MonoBehaviour
         {
             if (PanelInfos[current].AllowStatsHelp && Control.GetButtonDown(Control.CB.A))
             {
-                Debug.Log("A");
                 StatsHelp.Activate(Controller, Canvas);
                 return;
             }

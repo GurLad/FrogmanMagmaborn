@@ -117,7 +117,7 @@ public class Unit : MapObject
                 break;
             case PortraitLoadingMode.Generic:
                 Icon = PortraitController.Current.FindGenericPortrait();
-                Name = Icon.TheDisplayName;
+                DisplayName = Name = Icon.TheDisplayName;
                 break;
             default:
                 break;
