@@ -23,7 +23,7 @@ public abstract class MapObject : MonoBehaviour
         Pos = new Vector2Int((int)transform.position.x, -(int)transform.position.y);
         if (GameController.Current.MapObjects.Contains(this)) // This shouldn't happen - it's becaus of the weird "no Start" bug on units created with CreatePlayerUnit.
         {
-            Debug.LogWarning("MapObjects already contains " + name + "!");
+            Bugger.Warning("MapObjects already contains " + name + "!");
             return;
         }
         GameController.Current.MapObjects.Add(this);
@@ -32,7 +32,7 @@ public abstract class MapObject : MonoBehaviour
     {
         if (!GameController.Current.MapObjects.Contains(this)) // This shouldn't happen - MapObjects are supposed to remove themselves
         {
-            Debug.LogWarning("MapObjects doesn't contain " + name + "!");
+            Bugger.Warning("MapObjects doesn't contain " + name + "!");
             return;
         }
         GameController.Current.MapObjects.Remove(this);

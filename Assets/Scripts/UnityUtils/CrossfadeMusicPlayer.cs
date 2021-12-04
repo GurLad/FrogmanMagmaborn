@@ -54,7 +54,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         CrossfadeMusicPlayerObject target = Tracks.Find(a => a.Name == name);
         if (target == null)
         {
-            throw new System.Exception("No matching audio clip! (" + name + ")");
+            throw Bugger.Error("No matching audio clip! (" + name + ")");
         }
         if (mainAudioSource.clip == target.AudioClip)
         {
@@ -124,7 +124,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             CrossfadeMusicPlayerObject target = Tracks.Find(a => a.Name == Playing);
             if (target == null)
             {
-                throw new System.Exception("No main track for the intro! (" + Playing + ")");
+                throw Bugger.Error("No main track for the intro! (" + Playing + ")");
             }
             mainAudioSource.clip = target.AudioClip;
             mainAudioSource.Play();

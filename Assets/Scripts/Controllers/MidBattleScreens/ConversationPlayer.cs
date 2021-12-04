@@ -327,7 +327,7 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     else
                     {
-                        throw new System.Exception("No matching unit! (" + parts[2] + ")");
+                        throw Bugger.Error("No matching unit! (" + parts[2] + ")");
                     }
                     break;
                 case "setBattleQuote":
@@ -342,17 +342,17 @@ public class ConversationPlayer : MidBattleScreen
                         }
                         else
                         {
-                            throw new System.Exception("No matching function! (" + parts[3] + ")");
+                            throw Bugger.Error("No matching function! (" + parts[3] + ")");
                         }
                     }
                     else
                     {
-                        throw new System.Exception("No matching unit! (" + parts[2] + ")");
+                        throw Bugger.Error("No matching unit! (" + parts[2] + ")");
                     }
                     break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
-                    Team team = parts[2].ToTeam() ?? throw new System.Exception("No team!");
+                    Team team = parts[2].ToTeam() ?? throw Bugger.Error("No team!");
                     GameController.Current.AssignAIToTeam(team, parts[3].ToAIType());
                     break;
                 case "lose":
@@ -441,7 +441,7 @@ public class ConversationPlayer : MidBattleScreen
                     SetSpeaker(true);
                     if (parts.Length != 5)
                     {
-                        throw new System.Exception("Currently, choices of more than 2 options aren't supported.");
+                        throw Bugger.Error("Currently, choices of more than 2 options aren't supported.");
                     }
                     ChoiceMenu.MenuItems[0].Text = parts[3];
                     ChoiceMenu.MenuItems[1].Text = parts[4];
@@ -506,7 +506,7 @@ public class ConversationPlayer : MidBattleScreen
                         StartLine(0);
                         return;
                     }
-                    throw new System.Exception("No matching function! (" + parts[2] + ")");
+                    throw Bugger.Error("No matching function! (" + parts[2] + ")");
                 case "callOther":
                     // Store current lines & position
                     functionStack.Push(new FunctionStackObject(num, lines));
@@ -518,7 +518,7 @@ public class ConversationPlayer : MidBattleScreen
                         StartLine(0);
                         return;
                     }
-                    throw new System.Exception("No matching conversation! (" + parts[2] + ")");
+                    throw Bugger.Error("No matching conversation! (" + parts[2] + ")");
                 case "wait":
                     // Params: string[] requirement
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
@@ -531,7 +531,7 @@ public class ConversationPlayer : MidBattleScreen
                 case "return":
                     if (functionStack.Count == 0)
                     {
-                        throw new System.Exception("Nothing to return from!");
+                        throw Bugger.Error("Nothing to return from!");
                     }
                     FunctionStackObject function = functionStack.Pop();
                     lines = function.Lines;
@@ -586,12 +586,12 @@ public class ConversationPlayer : MidBattleScreen
         }
         if (line.Contains("[")) // Variable name (like button name)
         {
-            Debug.Log(line);
+            Bugger.Info(line);
             line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
             line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
             line = line.Replace("[StartButton]", Control.DisplayShortButtonName("Start"));
             line = line.Replace("[Name]", Name.text);
-            Debug.Log(line);
+            Bugger.Info(line);
         }
         line = line.Replace(@"\a", "\a");
         // Find the line break
@@ -703,13 +703,13 @@ public class ConversationPlayer : MidBattleScreen
             int length = i + 1 + nextLength - cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a');
             if (length > lineWidth)
             {
-                //Debug.Log("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
+                //ErrorController.Info("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
                 line = line.Substring(0, line.LastIndexOf('\n') + 1) + cutLine.Substring(0, i) + '\n' + cutLine.Substring(i + 1);
                 i = 0;
                 cutLine = line.Substring(line.LastIndexOf('\n') + 1);
             }
         }
-        //Debug.Log(line);
+        //ErrorController.Info(line);
         return line;
     }
     private int SkipBlock(int currentLine)

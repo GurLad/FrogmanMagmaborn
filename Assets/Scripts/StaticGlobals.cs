@@ -42,7 +42,7 @@ public static class StaticGlobals
             "charge" => AIType.Charge,
             "guard" => AIType.Guard,
             "hold" => AIType.Hold,
-            _ => throw new System.Exception("No matching AI type! (" + aiName + ")")
+            _ => throw Bugger.Error("No matching AI type! (" + aiName + ")")
         };
     }
     public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)

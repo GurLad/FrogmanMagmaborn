@@ -189,7 +189,7 @@ public class MapAnimationsController : MidBattleScreen
         // Check if an animation is even needed
         if (OnFinishAnimation == null)
         {
-            throw new System.Exception("No OnFinishAnimation command - probably animated before assigning it.");
+            throw Bugger.Error("No OnFinishAnimation command - probably animated before assigning it.", false);
         }
         if (unit.Pos == targetPos)
         {
@@ -199,7 +199,7 @@ public class MapAnimationsController : MidBattleScreen
         currentUnit = unit;
         if (path.Count > 0)
         {
-            Debug.LogWarning("Path isn't empty!");
+            Bugger.Warning("Path isn't empty!");
             path.Clear();
         }
         path = unit.FindPath(targetPos);
@@ -225,7 +225,7 @@ public class MapAnimationsController : MidBattleScreen
     {
         if (count != 0)
         {
-            Debug.LogWarning("Count isn't zero - it's " + count);
+            Bugger.Warning("Count isn't zero - it's " + count);
         }
         StartAnimation(AnimationType.Delay);
     }

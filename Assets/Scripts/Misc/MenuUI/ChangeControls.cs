@@ -52,7 +52,7 @@ public class ChangeControls : MonoBehaviour
     }
     private void UpdateDisplay()
     {
-        //Debug.Log("Key: " + ((Keys)currentKey) + ", save name: " + GetKeySaveName() + ", display button: " + Control.DisplayButtonName(GetKeySaveName()));
+        //ErrorController.Info("Key: " + ((Keys)currentKey) + ", save name: " + GetKeySaveName() + ", display button: " + Control.DisplayButtonName(GetKeySaveName()));
         Text.text = "Press " + ((Keys)currentKey).ToString() + "\n" + Descriptions[currentKey] + "\nCurrent: " + Control.DisplayShortButtonName(GetKeySaveName());
     }
     private string GetKeySaveName()

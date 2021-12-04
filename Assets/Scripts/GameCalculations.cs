@@ -249,7 +249,7 @@ public static class GameCalculations
         int inclination = KnowledgeController.GetInclination(unit.Name);
         if (inclination > 0)
         {
-            Debug.Log("Changing inclination!");
+            Bugger.Info("Changing inclination!");
             unit.ChangeInclination((Inclination)(inclination - 1));
         }
     }

@@ -19,7 +19,7 @@ public class PartTitleAnimation : MidBattleScreen
     {
         if (titles.Count > TitleParts.Count)
         {
-            throw new System.Exception("More titles than the animation can support! Sent " + titles.Count + " > " + TitleParts.Count);
+            throw Bugger.Error("More titles than the animation can support! Sent " + titles.Count + " > " + TitleParts.Count);
         }
         for (int i = 0; i < titles.Count; i++)
         {

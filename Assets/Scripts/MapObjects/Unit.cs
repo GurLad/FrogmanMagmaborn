@@ -85,10 +85,10 @@ public class Unit : MapObject
     public void Init()
     {
         palette = GetComponent<PalettedSprite>();
-        if (palette == null)
-        {
-            throw new System.Exception("No palette (Init)!");
-        }
+        //if (palette == null)
+        //{
+        //    throw new System.Exception("No palette (Init)!");
+        //}
         palette.Awake();
         //Start(); // There is a very weird bug - units created with CreatePlayerUnit don't activate their Start function. This is a bad workaround.
     }
@@ -96,10 +96,10 @@ public class Unit : MapObject
     {
         base.Start();
         palette = palette ?? GetComponent<PalettedSprite>();
-        if (palette == null)
-        {
-            throw new System.Exception("No palette (Start)!");
-        }
+        //if (palette == null)
+        //{
+        //    throw new System.Exception("No palette (Start)!");
+        //}
         LoadIcon();
         Moved = Statue;
         Health = Stats.MaxHP;
@@ -201,7 +201,7 @@ public class Unit : MapObject
                     case DangerArea.TileDataType.PassThrough:
                         if (!includePassThroughMoves)
                         {
-                            throw new System.Exception("Pass through tiles found when ignoring pass throughs");
+                            throw Bugger.Error("Pass through tiles found when ignoring pass throughs", false);
                         }
                         else
                         {
@@ -240,7 +240,7 @@ public class Unit : MapObject
         {
             if (counter++ > 50)
             {
-                throw new System.Exception("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path));
+                throw Bugger.Error("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path), false);
             }
             path.Add(targetPos);
             Vector2Int currentBest = Vector2Int.zero;
@@ -260,7 +260,7 @@ public class Unit : MapObject
             }
             if (currentBest == Vector2Int.zero)
             {
-                throw new System.Exception("Path recovery failed! Path: " + string.Join(", ", path));
+                throw Bugger.Error("Path recovery failed! Path: " + string.Join(", ", path), false);
             }
             targetPos += currentBest;
         } while (targetPos != Pos);
@@ -393,7 +393,7 @@ public class Unit : MapObject
                 enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y].Value != 0).ToList();
                 if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
                 {
-                    Debug.Log(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
+                    Bugger.Info(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
                     RetreatAI(fullDangerArea);
                     return;
                 }
@@ -457,7 +457,7 @@ public class Unit : MapObject
             if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
             {
                 Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(unit.Pos, -1);
-                Debug.Log(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
+                Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                 MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
                 return true;
@@ -486,7 +486,7 @@ public class Unit : MapObject
         }
         if (minPoint == -Vector2Int.one)
         {
-            Debug.Log(this + " can't move :(");
+            Bugger.Info(this + " can't move :(");
             MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
             MoveTo(Pos);
             return;
@@ -529,7 +529,7 @@ public class Unit : MapObject
             }
             if (min == currentMoveTarget)
             {
-                throw new System.Exception("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget + ", attacker: " + ToString() + ", target: " + target);
+                throw Bugger.Error("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget + ", attacker: " + ToString() + ", target: " + target, false);
             }
             currentMoveTarget = min;
         }
@@ -564,7 +564,7 @@ public class Unit : MapObject
             }
         }
         // Otherwise, time to calculate true weight!
-        //Debug.Log(ToString() + " AI values against " + unit.ToString() + " are: " + 
+        //ErrorController.Info(ToString() + " AI values against " + unit.ToString() + " are: " + 
         //    "Damage (" + Priorities.TrueDamageWeight + "): " + Priorities.TrueDamageValue(unit) +
         //    ", Relative Damage (" + Priorities.RelativeDamageWeight + "): " + Priorities.RelativeDamageValue(unit) +
         //    ", Survival (" + Priorities.SurvivalWeight + "): " + Priorities.SurvivalValue(unit) +
@@ -589,7 +589,7 @@ public class Unit : MapObject
         }
         if (min > movement)
         {
-            Debug.LogWarning("Can't reach target position: " + pos + ", unit: " + ToString() + " at pos " + Pos);
+            Bugger.Warning("Can't reach target position: " + pos + ", unit: " + ToString() + " at pos " + Pos);
         }
         return min;
     }
@@ -651,7 +651,7 @@ public class Unit : MapObject
         int a, b;
         if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
         {
-            Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
+            Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
             unit.Health -= this.GetDamage(unit);
             // Kill?
             if (unit.Health <= 0)
@@ -663,7 +663,7 @@ public class Unit : MapObject
         }
         else
         {
-            Debug.Log(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
+            Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
             return false;
         }
     }
@@ -748,9 +748,9 @@ public class Unit : MapObject
             {
                 attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
             }
-            //Debug.Log(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
+            //ErrorController.Info(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
             attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
-            //Debug.Log(dangerArea.ToString());
+            //ErrorController.Info(dangerArea.ToString());
             return dangerArea;
         }
 
@@ -815,7 +815,7 @@ public class Unit : MapObject
             AttackFrom attackFrom = new AttackFrom();
             if (OutOfBounds(x, y))
             {
-                throw new System.Exception("Checking movement of an out-of-bounds unit!");
+                throw Bugger.Error("Checking movement of an out-of-bounds unit!", false);
             }
             MarkMovementTile(x, y, range, TileDataType.Move);
             Inner(x, y, range, attackFrom);
@@ -924,7 +924,7 @@ public class Unit : MapObject
                             {
                                 if (!unit.CanAttackPos(target.x, target.y, target.x + i, target.y + j))
                                 {
-                                    Debug.Log(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
+                                    Bugger.Info(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
                                     continue;
                                 }
                                 float weight = 50; // Make sure it's positive
@@ -934,7 +934,7 @@ public class Unit : MapObject
                                 {
                                     weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
                                 }
-                                Debug.Log("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
+                                Bugger.Info("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
                                 if (weight > currentBestWeight)
                                 {
                                     currentBest = new Vector2Int(target.x + i, target.y + j);
@@ -946,13 +946,13 @@ public class Unit : MapObject
                 }
                 if (currentBest == new Vector2Int(-1, -1))
                 {
-                    throw new System.Exception(unit + " couldn't find a favorable place to attack pos " + target);
+                    throw Bugger.Error(unit + " couldn't find a favorable place to attack pos " + target, false);
                 }
                 return currentBest;
             }
             else
             {
-                throw new System.Exception(unit + " cannot even attack pos " + target);
+                throw Bugger.Error(unit + " cannot even attack pos " + target, false);
             }
         }
 
@@ -1005,20 +1005,20 @@ public class AIPriorities
         {
             if (((CautionLevel & AICautionLevel.NoDamage) != 0) && (thisUnit.GetDamage(unit) <= 0 || thisUnit.GetHitChance(unit) <= 0))
             {
-                //Debug.Log("Shouldn't try attack " + unit + " (No damage)");
+                //ErrorController.Info("Shouldn't try attack " + unit + " (No damage)");
                 return false;
             }
             if (((CautionLevel & AICautionLevel.Suicide) != 0) && (SurvivalValue(unit) >= 0))
             {
-                //Debug.Log("Shouldn't try attack " + unit + " (Suicide)");
+                //ErrorController.Info("Shouldn't try attack " + unit + " (Suicide)");
                 return false;
             }
             if (((CautionLevel & AICautionLevel.LittleDamage) != 0) && (GetAIDamageValue(unit) <= 0))
             {
-                //Debug.Log("Shouldn't try attack " + unit + " (Little damage)");
+                //ErrorController.Info("Shouldn't try attack " + unit + " (Little damage)");
                 return false;
             }
-            //Debug.Log("Should try attack " + unit);
+            //ErrorController.Info("Should try attack " + unit);
             return true;
         }
     }

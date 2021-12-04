@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour
         {
             if (playerUnitsCache == null)
             {
-                Debug.Log("Loading player units...");
+                Bugger.Info("Loading player units...");
                 playerUnitsCache = new List<Unit>();
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
                     Unit unit = CreateEmptyUnit();
                     unit.Load(playerUnits[i]);
                     unit.name = "Unit" + unit.Name;
-                    Debug.Log("Loading " + unit.Name);
+                    Bugger.Info("Loading " + unit.Name);
                     AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
@@ -347,17 +347,17 @@ public class GameController : MonoBehaviour
                 Team current = currentPhase;
                 if (units.Count == 0)
                 {
-                    throw new System.Exception("No units?");
+                    throw Bugger.Crash("No units?");
                 }
                 do
                 {
                     current = (Team)(((int)current + 1) % 3);
                     if (current == currentPhase)
                     {
-                        Debug.Log("Only one team is alive - " + current);
+                        Bugger.Info("Only one team is alive - " + current);
                     }
                 } while (units.Find(a => a.TheTeam == current) == null);
-                Debug.Log("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
+                Bugger.Info("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
                 bool showTurnAnimation = StartPhase(current);
                 if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
@@ -730,7 +730,7 @@ public class GameController : MonoBehaviour
     {
         if (!GameCalculations.PermaDeath && unit.TheTeam == Team.Player && unit.Name != StaticGlobals.MAIN_CHARACTER_NAME) // No perma-death
         {
-            Debug.Log("Pseudo-killed " + unit.Name);
+            Bugger.Info("Pseudo-killed " + unit.Name);
             unit.Statue = true;
             unit.ReinforcementTurn = int.MaxValue;
             unit.PreviousPos = unit.Pos;
@@ -786,19 +786,23 @@ public class GameController : MonoBehaviour
         SavedData.Save("PlayerDatas", saveData);
         for (int i = 0; i < playerCharacters.Count; i++)
         {
-            Debug.Log(playerCharacters[i].Save());
+            Bugger.Info(playerCharacters[i].Save());
         }
     }
     public void CreateLevel()
     {
         List<Unit> playerCharacters = PlayerUnits;
         // Select conversation
-        Debug.Log(string.Join(", ", playerCharacters));
+        Bugger.Info(string.Join(", ", playerCharacters));
         ConversationData conversation = ConversationController.Current.SelectConversation();
         // Select room
         List<Map> options = MapController.Maps.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
+        if (options.Count <= 0)
+        {
+            throw Bugger.Crash("Zero possible maps!");
+        }
         selectedMap = options[UnityEngine.Random.Range(0, options.Count)];
-        Debug.Log("Selected room: " + selectedMap.Name);
+        Bugger.Info("Selected room: " + selectedMap.Name);
         // Clear previous level
         if (currentMapObject != null)
         {
@@ -876,7 +880,7 @@ public class GameController : MonoBehaviour
                 unit.Inclination = classData.Inclination;
                 break;
             default:
-                throw new System.Exception("Impossible!");
+                throw Bugger.Error("Impossible!", false);
         }
         // Use ClassData for class-specific stuff (flies, weapon...)
         unit.Flies = classData.Flies;
@@ -912,7 +916,7 @@ public class GameController : MonoBehaviour
             map = MapController.Maps.Find(a => a.Name == mapName);
             if (map == null)
             {
-                throw new System.Exception("No matching map! (" + mapName + ")");
+                throw Bugger.Error("No matching map! (" + mapName + ")");
             }
         }
         return map;
@@ -1016,7 +1020,7 @@ public class GameController : MonoBehaviour
                     PlayerUnits.Add(unit);
                     if (name != StaticGlobals.MAIN_CHARACTER_NAME)
                     {
-                        Debug.LogWarning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");
+                        Bugger.Warning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");
                     }
                     else
                     {
@@ -1127,7 +1131,7 @@ public class GameController : MonoBehaviour
     }
     public int FindMinMaxPosUnit(Team? team, bool x, bool max)
     {
-        Debug.Log("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
+        Bugger.Info("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
         int minMax = max ? -1 : (x ? MapSize.x : MapSize.y);
         List<Unit> targets = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
         foreach (Unit unit in targets)
@@ -1137,7 +1141,7 @@ public class GameController : MonoBehaviour
                 minMax = x ? unit.Pos.x : unit.Pos.y;
             }
         }
-        Debug.Log("Result: " + minMax);
+        Bugger.Info("Result: " + minMax);
         return minMax;
     }
     public Unit GetNamedUnit(string name)
@@ -1188,7 +1192,7 @@ public class GameController : MonoBehaviour
             case Objective.Survive:
                 return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
             default:
-                throw new System.Exception("No objective!");
+                throw Bugger.Error("No objective!");
         }
     }
     private bool CheckPlayerWin(Objective toCheck)

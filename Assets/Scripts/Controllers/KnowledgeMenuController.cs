@@ -73,7 +73,7 @@ public class KnowledgeMenuController : MonoBehaviour
                         item = Instantiate(BaseMenuItem, menu.transform).AddComponent<DifficultyKnowledgeMenuItem>();
                         break;
                     default:
-                        throw new System.Exception("No type?");
+                        throw Bugger.Error("No type?", false);
                 }
                 // A very bad code for finding the indicators
                 item.Indicators = new List<GameObject>();
@@ -175,7 +175,7 @@ public class KnowledgeMenuController : MonoBehaviour
     {
         if (value <= 0)
         {
-            Debug.LogWarning("Using SetUpgradeChoiceValue to set availability is a bad idea");
+            Bugger.Warning("Using SetUpgradeChoiceValue to set availability is a bad idea");
         }
         upgrade.ChoiceValue = value;
         upgrade.Save();

@@ -120,7 +120,7 @@ public class AdvancedSpriteSheetAnimation : MonoBehaviour
         int newID = Animations.FindIndex(a => a.Name == animationName);
         if (newID < 0)
         {
-            throw new System.Exception("No matching animation!");
+            throw Bugger.Error("No matching animation! (" + animationName + ")");
         }
         if (!forceRestart && currentAnimation == newID)
         {

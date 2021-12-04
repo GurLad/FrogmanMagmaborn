@@ -85,7 +85,7 @@ public class ConversationData : System.IComparable<ConversationData>
     {
         if (Done) // Failsafe
         {
-            Debug.LogWarning("Checking requirements of a done conversation? (" + ID + ")");
+            Bugger.Warning("Checking requirements of a done conversation? (" + ID + ")");
             return false;
         }
         foreach (var requirement in Requirements)
@@ -194,7 +194,7 @@ public class ConversationData : System.IComparable<ConversationData>
             default:
                 break;
         }
-        throw new System.Exception("No/wrong sign!");
+        throw Bugger.Error("No/wrong sign! " + comparisonType + " should be >/</=");
     }
 
     public int CompareTo(ConversationData other)

@@ -53,9 +53,9 @@ public class BattleAnimationController : MidBattleScreen
         Attacker.LookingLeft = true;
         Defender.LookingLeft = false;
         Tile attackerTile = GameController.Current.Map[Attacker.Unit.Pos.x, Attacker.Unit.Pos.y];
-        AttackerBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && attackerTile.Name == a.Tile).Background.SetActive(true);
+        LoadBattleBackground(attackerTile, true);
         Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
-        DefenderBattleBackgrounds.Find(a => a.TileSet == GameController.Current.Set.Name && defenderTile.Name == a.Tile).Background.SetActive(true);
+        LoadBattleBackground(defenderTile, false);
         bool meleeAttack = Vector2.Distance(Attacker.Unit.Pos, Defender.Unit.Pos) <= 1;
         if (!meleeAttack)
         {
@@ -66,7 +66,7 @@ public class BattleAnimationController : MidBattleScreen
         // Set init pos
         Attacker.InitPos = Attacker.Object.transform.position.x;
         Defender.InitPos = Defender.Object.transform.position.x;
-        Debug.Log(Attacker.InitPos + ", " + Defender.InitPos);
+        Bugger.Info(Attacker.InitPos + ", " + Defender.InitPos);
         // Attacker move
         bool adjacent = FarAttack(Attacker, Defender, meleeAttack);
         // Defender move
@@ -82,6 +82,19 @@ public class BattleAnimationController : MidBattleScreen
             FarAttack(Defender, Attacker, meleeAttack);
         }
         UpdateDisplay();
+    }
+
+    private void LoadBattleBackground(Tile tile, bool attacker)
+    {
+        BattleBackground battleBackground = (attacker ? AttackerBattleBackgrounds : DefenderBattleBackgrounds).Find(a => a.TileSet == GameController.Current.Set.Name && tile.Name == a.Tile);
+        if (battleBackground != null)
+        {
+            battleBackground.Background.SetActive(true);
+        }
+        else
+        {
+            throw Bugger.Error("No battle background for tile " + tile.Name + "!");
+        }
     }
 
     /// <summary>
@@ -108,7 +121,7 @@ public class BattleAnimationController : MidBattleScreen
                 animationParts.Enqueue(() => BeginAnimation<BATeleportBack>(attacker, defender));
                 return false;
             default:
-                throw new System.Exception("Impossible");
+                throw Bugger.Error("Impossible", false);
         }
     }
 
@@ -224,7 +237,7 @@ public class BattleAnimationController : MidBattleScreen
                 Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
                 if (file != null)
                 {
-                    Debug.Log(animationName.Name + ", " + file.name);
+                    Bugger.Info(animationName.Name + ", " + file.name);
                     SpriteSheetData newData = new SpriteSheetData();
                     newData.SpriteSheet = file;
                     newData.NumberOfFrames = (int)file.rect.width / (int)file.rect.height;
@@ -235,7 +248,7 @@ public class BattleAnimationController : MidBattleScreen
                 }
                 else
                 {
-                    Debug.LogWarning("No animation file for " + ClassAnimations[i].Name + "'s " + animationName.Name + " animation");
+                    Bugger.Warning("No animation file for " + ClassAnimations[i].Name + "'s " + animationName.Name + " animation");
                 }
             }
             ClassAnimations[i].Animation = animation;

@@ -54,7 +54,7 @@ public class PortraitController : MonoBehaviour
         {
             List<string> splitTags = new List<string>(tags.Split(','));
             genericPortraits = GenericPortraits.FindAll(a => splitTags.All(b => a.Tags.Contains(b)));
-            //Debug.Log("Tags are " + tags + ", found " + string.Join(", ", genericPortraits));
+            //ErrorController.Info("Tags are " + tags + ", found " + string.Join(", ", genericPortraits));
         }
         else
         {

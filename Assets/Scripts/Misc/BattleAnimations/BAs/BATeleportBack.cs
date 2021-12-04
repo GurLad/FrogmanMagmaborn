@@ -30,7 +30,7 @@ public class BATeleportBack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit)) // If can't, they never teleported to the target, so they don't need to come back
         {
-            Debug.Log("Tele");
+            Bugger.Info("Tele");
             ThisCombatant.Animation.Activate("TeleportStart");
         }
         else

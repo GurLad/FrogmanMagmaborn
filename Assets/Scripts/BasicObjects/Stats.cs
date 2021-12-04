@@ -118,7 +118,7 @@ public class Stats
         }
         if (a.Growths != b.Growths)
         {
-            Debug.LogWarning("Adding stats with different growths. This is probably a bug");
+            Bugger.Warning("Adding stats with different growths. This is probably a bug");
         }
         stats.Growths = a.Growths;
         return stats;
@@ -258,7 +258,7 @@ public class Stats
             default:
                 break;
         }
-        throw new System.Exception("ID of a nonexistent stat!");
+        throw Bugger.Error("ID of a nonexistent stat!", false);
     }
     /*
      * Calculations:
