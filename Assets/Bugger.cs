@@ -69,7 +69,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
     {
         Text.text = text + "\n\n" + Text.text;
         Status.sprite = StatusTypes[statusType];
-        if (show)
+        if (show && GameCalculations.Debug)
         {
             gameObject.SetActive(true);
         }

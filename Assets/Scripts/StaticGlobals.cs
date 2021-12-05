@@ -35,14 +35,14 @@ public static class StaticGlobals
             _ => null
         };
     }
-    public static AIType ToAIType(this string aiName)
+    public static AIType? ToAIType(this string aiName)
     {
         return aiName.ToLower() switch
         {
             "charge" => AIType.Charge,
             "guard" => AIType.Guard,
             "hold" => AIType.Hold,
-            _ => throw Bugger.Error("No matching AI type! (" + aiName + ")")
+            _ => null
         };
     }
     public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)

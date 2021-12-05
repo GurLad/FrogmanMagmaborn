@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using CAT = ConversationPlayer.CommandArgumentType;
 
 public class ConversationPlayer : MidBattleScreen
 {
-    public enum CurrentState { Writing, Waiting, Sleep }
+    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't mroe than 10 types
+    private enum CurrentState { Writing, Waiting, Sleep }
+
     public new static ConversationPlayer Current;
     [Header("Stats")]
     public float LettersPerSecond;
@@ -293,74 +296,87 @@ public class ConversationPlayer : MidBattleScreen
         if (line[0] == ':') // Command
         {
             string[] parts = line.Split(':');
+            string[] args = parts.Length > 2 ? new string[parts.Length - 2] : new string[0];
+            if (args.Length > 0)
+            {
+                parts.CopyTo(args, 2);
+            }
             switch (parts[1])
             {
                 // Level (gameplay) commands
 
                 case "addUnit":
                     // Params: string name
-                    GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(parts[2]));
+                    AssertCommand("addUnit", args, CAT.String);
+                    GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(args[0]));
                     break;
                 case "loadUnits":
                     // Params: string mapName = chosenMap, Team team = allTeams
+                    AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam);
                     if (parts.Length < 4)
                     {
-                        GameController.Current.LoadLevelUnits(parts[2]);
+                        GameController.Current.LoadLevelUnits(args[0]);
                     }
                     else
                     {
-                        GameController.Current.LoadLevelUnits(parts[2], parts[3].ToTeam());
+                        GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam());
                     }
                     break;
                 case "loadMap":
                     // Params: string mapName = chosenMap
-                    GameController.Current.LoadMap(parts[2]);
+                    AssertCommand("loadMap", args, CAT.OpString);
+                    GameController.Current.LoadMap(args[0]);
                     break;
                 case "setTeam":
                     // Params: string unitName, Team changeTo
                     // Changes a unit's team
-                    Unit target = GameController.Current.GetNamedUnit(parts[2]);
+                    AssertCommand("setTeam", args, CAT.String, CAT.Team);
+                    Unit target = GameController.Current.GetNamedUnit(args[0]);
                     if (target != null)
                     {
-                        target.TheTeam = parts[3].ToTeam() ?? target.TheTeam;
+                        target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
                         target.Moved = target.Moved;
                     }
                     else
                     {
-                        throw Bugger.Error("No matching unit! (" + parts[2] + ")");
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
                 case "setBattleQuote":
                     // Params: string unitName, string functionName
                     // Set a unit's battle quote (aka add boss battle quote). Must use a function.
-                    Unit target1 = GameController.Current.GetNamedUnit(parts[2]);
+                    AssertCommand("setBattleQuote", args, CAT.String, CAT.String);
+                    Unit target1 = GameController.Current.GetNamedUnit(args[0]);
                     if (target1 != null)
                     {
-                        if (origin.Functions.ContainsKey(parts[3]))
+                        if (origin.Functions.ContainsKey(args[1]))
                         {
-                            target1.BattleQuote = string.Join("\n", origin.Functions[parts[3]]);
+                            target1.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
                         }
                         else
                         {
-                            throw Bugger.Error("No matching function! (" + parts[3] + ")");
+                            throw Bugger.Error("No matching function! (" + args[1] + ")");
                         }
                     }
                     else
                     {
-                        throw Bugger.Error("No matching unit! (" + parts[2] + ")");
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
-                    Team team = parts[2].ToTeam() ?? throw Bugger.Error("No team!");
-                    GameController.Current.AssignAIToTeam(team, parts[3].ToAIType());
+                    AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
+                    Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
+                    GameController.Current.AssignAIToTeam(team, args[1].ToAIType());
                     break;
                 case "lose":
                     // Params: none
+                    AssertCommand("lose", args);
                     GameController.Current.Lose();
                     return;
                 case "win":
                     // Params: none
+                    AssertCommand("win", args);
                     GameController.Current.Win();
                     return;
 
@@ -368,49 +384,58 @@ public class ConversationPlayer : MidBattleScreen
 
                 case "play":
                     // Params: string name, bool keepTimestamp = false
-                    CrossfadeMusicPlayer.Current.Play(parts[2], parts.Length > 3 ? (parts[3] == "T") : false);
+                    AssertCommand("play", args, CAT.String, CAT.Bool);
+                    CrossfadeMusicPlayer.Current.Play(args[0], parts.Length > 3 ? (args[1] == "T") : false);
                     break;
                 case "playIntro":
                     // Params: string name
-                    CrossfadeMusicPlayer.Current.PlayIntro(parts[2], false);
+                    AssertCommand("playIntro", args, CAT.String);
+                    CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
                     break;
                 case "addGenericCharacter":
                     // Params: string internalName, string forceTags = none
-                    // Add to TempPortraits with parts[2] internal name and parts[3] tags
-                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], PortraitController.Current.FindGenericPortrait(parts[3]));
+                    // Add to TempPortraits with args[0] internal name and args[1] tags
+                    AssertCommand("addGenericCharacter", args, CAT.String, CAT.OpString);
+                    PortraitController.Current.GeneratedGenericPortraits.Add(args[0], PortraitController.Current.FindGenericPortrait(args[1]));
                     break;
                 case "getGenericCharacter":
                     // Params: string internalName, Team fromTeam = null
-                    PortraitController.Current.GeneratedGenericPortraits.Add(parts[2], GameController.Current.GetGenericPortrait(parts.Length > 3 ? parts[3].ToTeam() : null));
+                    AssertCommand("getGenericCharacter", args, CAT.String, CAT.OpTeam);
+                    PortraitController.Current.GeneratedGenericPortraits.Add(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
                     break;
                 case "setSingleSpeaker":
                     // Params: bool left = true
                     // Removes all speakers and makes sure the next is on the left/right
-                    bool left = parts.Length > 2 ? parts[2] == "L" : true;
+                    AssertCommand("setSingleSpeaker", args, CAT.OpBool);
+                    bool left = parts.Length > 2 ? args[0] == "L" : true;
                     SetSinglePortrait(left);
                     currentSpeakerIsLeft = !left;
                     break;
                 case "setSpeaker":
                     // Params: string speaker
                     // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)
-                    SetSpeakerFromText(parts[2]);
+                    AssertCommand("setSpeaker", args, CAT.String);
+                    SetSpeakerFromText(args[0]);
                     break;
                 case "showCG":
                     // Params: string name
                     // Removes the previous CG (if any), then shows the requested CG until manually removed
+                    AssertCommand("showCG", args, CAT.String);
                     CGController.HideCG(); // Reset saved palettes, just in case
-                    CGController.ShowCG(parts[2]);
+                    CGController.ShowCG(args[0]);
                     break;
                 case "hideCG":
-                    // Params: string name
+                    // Params: none
                     // Removes the previous CG (if any)
+                    AssertCommand("hideCG", args);
                     CGController.HideCG();
                     break;
                 case "screenShake":
                     // Params: float strength = 1, float duration = 1
                     // Shakes the screen for duartion time with strength amount
-                    float strength = parts.Length > 2 ? float.Parse(parts[2] != "" ? parts[2] : "0.5") : 0.5f;
-                    float duration = parts.Length > 3 ? float.Parse(parts[3] != "" ? parts[3] : "0.5") : 0.5f;
+                    AssertCommand("screenShake", args, CAT.Float, CAT.Float);
+                    float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
+                    float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
                     CameraController.Current.ScreenShake(strength, duration);
                     break;
 
@@ -418,33 +443,36 @@ public class ConversationPlayer : MidBattleScreen
 
                 case "showInfoDialogue":
                     // Args: title
+                    AssertCommand("showInfoDialogue", args, CAT.String);
                     Pause();
-                    InfoDialogue.Text.text = parts[2];
+                    InfoDialogue.Text.text = args[0];
                     InfoDialogue.Begin();
                     return;
                 case "showPartTitle":
                     // Args: subtitle, title
+                    AssertCommand("showPartTitle", args, CAT.String, CAT.String);
                     Pause();
                     PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
-                    partTitle.Begin(new List<string>(new string[] { parts[2], parts[3] }));
+                    partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
                     GameController.Current.TransitionToMidBattleScreen(partTitle);
                     return;
                 case "showChoice":
                     // Args: choosingCharacterName, option1, option2
+                    AssertCommand("showChoice", args, CAT.String, CAT.String, CAT.String);
                     Pause();
                     gameObject.SetActive(true);
                     enabled = false;
                     Text.text = "";
                     Arrow.SetActive(false);
-                    PortraitL.Portrait = PortraitController.Current.FindPortrait(Name.text = parts[2]);
+                    PortraitL.Portrait = PortraitController.Current.FindPortrait(Name.text = args[0]);
                     SetSinglePortrait(true);
                     SetSpeaker(true);
                     if (parts.Length != 5)
                     {
                         throw Bugger.Error("Currently, choices of more than 2 options aren't supported.");
                     }
-                    ChoiceMenu.MenuItems[0].Text = parts[3];
-                    ChoiceMenu.MenuItems[1].Text = parts[4];
+                    ChoiceMenu.MenuItems[0].Text = args[1];
+                    ChoiceMenu.MenuItems[1].Text = args[2];
                     // To prevent people from thinking a choice is "correct"
                     ChoiceMenu.SelectItem(Random.Range(0, 2));
                     ChoiceMenu.Begin();
@@ -453,17 +481,21 @@ public class ConversationPlayer : MidBattleScreen
                 // Global commands
 
                 case "unlockKnowledge":
-                    GameCalculations.UnlockKnowledge(parts[2]);
+                    AssertCommand("unlockKnowledge", args, CAT.String);
+                    GameCalculations.UnlockKnowledge(args[0]);
                     break;
                 case "setFlag":
-                    SavedData.Save("ConversationData", "Flag" + parts[2], 1);
+                    AssertCommand("setFlag", args, CAT.String);
+                    SavedData.Save("ConversationData", "Flag" + args[0], 1);
                     break;
                 case "setTempFlag":
                     // Params: name
-                    GameController.Current.TempFlags.Add(parts[2]);
+                    AssertCommand("setTempFlag", args, CAT.String);
+                    GameController.Current.TempFlags.Add(args[0]);
                     break;
                 case "markDone":
                     // Params: none
+                    AssertCommand("markDone", args);
                     origin.Choose(true);
                     break;
 
@@ -479,6 +511,7 @@ public class ConversationPlayer : MidBattleScreen
                      * }
                      * Firbell: Will anyway happen
                      */
+                    // A bit too complex to assert for now
                     string requirement = line.Substring(line.IndexOf(':', 1) + 1);
                     requirement = requirement.Substring(0, requirement.IndexOf('{'));
                     if (!origin.MeetsRequirement(requirement))
@@ -494,33 +527,37 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "else":
                     // Reaching an else outside an if means that it wasn't taken, so just skip the block.
+                    // A bit too complex to assert for now
                     num = SkipBlock(num);
                     break;
                 case "call":
+                    AssertCommand("call", args, CAT.String);
                     // Store current lines & position
                     functionStack.Push(new FunctionStackObject(num, lines));
                     // Load new lines
-                    if (origin.Functions.ContainsKey(parts[2]))
+                    if (origin.Functions.ContainsKey(args[0]))
                     {
-                        lines = origin.Functions[parts[2]];
+                        lines = origin.Functions[args[0]];
                         StartLine(0);
                         return;
                     }
-                    throw Bugger.Error("No matching function! (" + parts[2] + ")");
+                    throw Bugger.Error("No matching function! (" + args[0] + ")");
                 case "callOther":
+                    AssertCommand("callOther", args, CAT.String);
                     // Store current lines & position
                     functionStack.Push(new FunctionStackObject(num, lines));
                     // Load new conversation
-                    ConversationData conversation = ConversationController.Current.SelectConversationByID(parts[2]);
+                    ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
                     if (conversation != null)
                     {
                         lines = postBattle ? conversation.PostBattleLines : conversation.Lines;
                         StartLine(0);
                         return;
                     }
-                    throw Bugger.Error("No matching conversation! (" + parts[2] + ")");
+                    throw Bugger.Error("No matching conversation! (" + args[0] + ")");
                 case "wait":
                     // Params: string[] requirement
+                    // A bit too complex to assert for now
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
                     if (!postBattle)
@@ -529,6 +566,7 @@ public class ConversationPlayer : MidBattleScreen
                     }
                     return;
                 case "return":
+                    AssertCommand("return", args);
                     if (functionStack.Count == 0)
                     {
                         throw Bugger.Error("Nothing to return from!");
@@ -539,21 +577,23 @@ public class ConversationPlayer : MidBattleScreen
                     return;
                 case "finishConversation":
                     // Params: none
+                    AssertCommand("finishConversation", args);
                     FinishConversation();
                     return;
 
                 // Tutorial commands
 
                 case "tutorialForceButton":
+                    // Not asserting tutorials for now
                     TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
-                    forceButton.Move = System.Enum.TryParse(parts[2], out forceButton.Button);
+                    forceButton.Move = System.Enum.TryParse(args[0], out forceButton.Button);
                     if (parts.Length > 3)
                     {
-                        string[] pos = parts[3].Split(',');
+                        string[] pos = args[1].Split(',');
                         forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
                         if (parts.Length > 4)
                         {
-                            forceButton.WrongLine = int.Parse(parts[4]);
+                            forceButton.WrongLine = int.Parse(args[2]);
                         }
                     }
                     TutorialGameController.Current.CurrentForceButton = forceButton;
@@ -561,10 +601,12 @@ public class ConversationPlayer : MidBattleScreen
                     Pause();
                     return;
                 case "tutorialShowMarker":
-                    string[] markerPos = parts[2].Split(',');
+                    // Not asserting tutorials for now
+                    string[] markerPos = args[0].Split(',');
                     TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
                     break;
                 case "tutorialFinish":
+                    // Not asserting tutorials for now
                     SavedData.SaveAll(SaveMode.Slot);
                     SceneController.LoadScene("Map");
                     return;
@@ -800,6 +842,44 @@ public class ConversationPlayer : MidBattleScreen
         //playingVoice = true;
         float voiceMod = ((letter - 'm') / 13) * VoiceMod;
         SoundController.PlaySound(VoiceTypes[(int)voice.VoiceType], voice.Pitch + voiceMod);
+    }
+    private void AssertCommand(string commandName, string[] args, params CAT[] commandArguments)
+    {
+        if (GameCalculations.Debug)
+        {
+            string errorMessage = "Incorrect arguemnts: " + commandName + " requires " + string.Join(":", commandArguments).Replace("Op", "(optional) ") + " arguments - " + string.Join(":", args) + " is incompatible";
+            if (args.Length > commandArguments.Length || (args.Length < commandArguments.Length && (int)commandArguments[args.Length] < 10))
+            {
+                throw Bugger.Error(errorMessage);
+            }
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (!MatchesCommandType(args[i], (CAT)((int)commandArguments[i] % 10)))
+                {
+                    throw Bugger.Error(errorMessage);
+                }
+            }
+        }
+    }
+    private bool MatchesCommandType(string part, CAT command)
+    {
+        switch (command)
+        {
+            case CAT.String:
+                return true;
+            case CAT.Int:
+                return int.TryParse(part, out _);
+            case CAT.Float:
+                return float.TryParse(part, out _);
+            case CAT.Bool:
+                return part.ToUpper() == "T" || part.ToUpper() == "F";
+            case CAT.Team:
+                return true; // Non-existant team is all teams
+            case CAT.AIType:
+                return part.ToAIType() != null;
+            default:
+                throw Bugger.Error("There's no command of type " + command + "!");
+        }
     }
 
     private class FunctionStackObject

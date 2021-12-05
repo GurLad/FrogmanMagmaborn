@@ -81,6 +81,14 @@ public static class GameCalculations
         }
     }
 
+    public static bool Debug
+    {
+        get
+        {
+            return true;
+        }
+    }
+
     public static int StatsPerLevel(Team team, string unitName)
     {
         int baseNum = 3;
