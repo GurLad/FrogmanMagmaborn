@@ -17,17 +17,19 @@ public class LevelMetadataController : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
         // Load metadatas json
-        string json = FrogForgeImporter.LoadFile<TextAsset>("LevelMetadata.json").text;
+        string json = FrogForgeImporter.LoadTextFile("LevelMetadata.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("LevelMetadatas"), this);
         // Find default
         DefaultMetadata = LevelMetadatas[0];
         LevelMetadatas.RemoveAt(0);
         // Dirty
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 }

@@ -14,7 +14,7 @@ public class ConversationData : System.IComparable<ConversationData>
     private int priority;
     private bool unique;
 
-    public ConversationData(TextAsset sourceFile) : this(sourceFile.text, sourceFile.name) { }
+    public ConversationData(TextFile sourceFile) : this(sourceFile.Text, sourceFile.Name) { }
 
     public ConversationData(string text, string altID = "Temp")
     {

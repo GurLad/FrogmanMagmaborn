@@ -69,21 +69,23 @@ public class CGController : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
         // Load json
-        string json = FrogForgeImporter.LoadFile<TextAsset>("CGs.json").text;
+        string json = FrogForgeImporter.LoadTextFile("CGs.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("CGs"), this);
         // Load sprites
         for (int i = 0; i < CGs.Count; i++)
         {
-            CGs[i].BGImage1 = FrogForgeImporter.LoadFile<Sprite>("Images/CGs/" + CGs[i].Name + "/BG1.png");
-            CGs[i].BGImage2 = FrogForgeImporter.LoadFile<Sprite>("Images/CGs/" + CGs[i].Name + "/BG2.png");
-            CGs[i].FGImage1 = FrogForgeImporter.LoadFile<Sprite>("Images/CGs/" + CGs[i].Name + "/FG1.png");
-            CGs[i].FGImage2 = FrogForgeImporter.LoadFile<Sprite>("Images/CGs/" + CGs[i].Name + "/FG2.png");
+            CGs[i].BGImage1 = FrogForgeImporter.LoadSpriteFile("Images/CGs/" + CGs[i].Name + "/BG1.png");
+            CGs[i].BGImage2 = FrogForgeImporter.LoadSpriteFile("Images/CGs/" + CGs[i].Name + "/BG2.png");
+            CGs[i].FGImage1 = FrogForgeImporter.LoadSpriteFile("Images/CGs/" + CGs[i].Name + "/FG1.png");
+            CGs[i].FGImage2 = FrogForgeImporter.LoadSpriteFile("Images/CGs/" + CGs[i].Name + "/FG2.png");
         }
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 }

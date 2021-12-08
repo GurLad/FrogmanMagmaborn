@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
     [SerializeField]
     private MapData mapData;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoadTilesets()
     {
         // Clear previous data
@@ -30,7 +30,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             toDestroy.RemoveAt(0);
         }
         // Load jsons
-        string json = FrogForgeImporter.LoadFile<TextAsset>("Tilesets.json").text;
+        string json = FrogForgeImporter.LoadTextFile("Tilesets.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Tilesets"), this);
         // Generate objects & load sprites
         for (int i = 0; i < Tilesets.Count; i++)
@@ -40,24 +40,25 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             Tilesets[i].GenerateObjects(BaseTile, container);
             for (int j = 0; j < Tilesets[i].TileObjects.Count; j++)
             {
-                Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/Tilesets/" + Tilesets[i].Name + "/" + j + ".png");
+                Sprite file = FrogForgeImporter.LoadSpriteFile("Images/Tilesets/" + Tilesets[i].Name + "/" + j + ".png");
                 FrogForgeImporter.LoadSpriteOrAnimationToObject(Tilesets[i].TileObjects[j].gameObject, file, 16);
             }
         }
-    }
-#endif
-
 #if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
+    }
+
     public void AutoLoadMaps()
     {
         // Clear previous data
         Maps.Clear();
         // Load jsons
-        string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/Maps" });
+        string[] fileNames = FrogForgeImporter.GetAllFilesAtPath("Maps");
         foreach (string fileName in fileNames)
         {
-            TextAsset file = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
-            JsonUtility.FromJsonOverwrite(file.text.ForgeJsonToUnity("mapData"), this);
+            TextFile file = FrogForgeImporter.LoadTextFile(fileName);
+            JsonUtility.FromJsonOverwrite(file.Text.ForgeJsonToUnity("mapData"), this);
             Map map = new Map();
             // Level numer
             map.LevelNumber = mapData.LevelNumber;
@@ -77,7 +78,9 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             map.Name = mapData.Name;
             Maps.Add(map);
         }
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 

@@ -63,28 +63,30 @@ public class PortraitController : MonoBehaviour
         // Select portrait
         return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
     }
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
         // Load jsons
-        string json = FrogForgeImporter.LoadFile<TextAsset>("Portraits.json").text;
+        string json = FrogForgeImporter.LoadTextFile("Portraits.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Portraits"), this);
-        json = FrogForgeImporter.LoadFile<TextAsset>("GenericPortraits.json").text;
+        json = FrogForgeImporter.LoadTextFile("GenericPortraits.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("GenericPortraits"), this);
-        json = FrogForgeImporter.LoadFile<TextAsset>("GenericPortraitsGlobalData.json").text;
+        json = FrogForgeImporter.LoadTextFile("GenericPortraitsGlobalData.json").Text;
         JsonUtility.FromJsonOverwrite(json, this);
         // Load sprites
         for (int i = 0; i < Portraits.Count; i++)
         {
-            Portraits[i].Foreground = FrogForgeImporter.LoadFile<Sprite>("Images/Portraits/" + Portraits[i].Name + "/F.png");
-            Portraits[i].Background = FrogForgeImporter.LoadFile<Sprite>("Images/Portraits/" + Portraits[i].Name + "/B.png");
+            Portraits[i].Foreground = FrogForgeImporter.LoadSpriteFile("Images/Portraits/" + Portraits[i].Name + "/F.png");
+            Portraits[i].Background = FrogForgeImporter.LoadSpriteFile("Images/Portraits/" + Portraits[i].Name + "/B.png");
         }
         for (int i = 0; i < GenericPortraits.Count; i++)
         {
-            GenericPortraits[i].Foreground = FrogForgeImporter.LoadFile<Sprite>("Images/GenericPortraits/" + GenericPortraits[i].Name + "/F.png");
-            GenericPortraits[i].Background = FrogForgeImporter.LoadFile<Sprite>("Images/GenericPortraits/" + GenericPortraits[i].Name + "/B.png");
+            GenericPortraits[i].Foreground = FrogForgeImporter.LoadSpriteFile("Images/GenericPortraits/" + GenericPortraits[i].Name + "/F.png");
+            GenericPortraits[i].Background = FrogForgeImporter.LoadSpriteFile("Images/GenericPortraits/" + GenericPortraits[i].Name + "/B.png");
         }
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 }

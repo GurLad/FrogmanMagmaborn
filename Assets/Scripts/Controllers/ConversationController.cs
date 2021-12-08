@@ -6,7 +6,7 @@ using UnityEngine;
 public class ConversationController : MonoBehaviour
 {
     public static ConversationController Current;
-    public List<TextAsset> Conversations;
+    public List<TextFile> Conversations;
     [Header("Editor loader")]
     public string Path = "Conversations";
     private List<ConversationData> options;
@@ -14,7 +14,7 @@ public class ConversationController : MonoBehaviour
     {
         Current = this;
         options = new List<ConversationData>();
-        foreach (TextAsset conversation in Conversations)
+        foreach (TextFile conversation in Conversations)
         {
             options.Add(new ConversationData(conversation));
         }
@@ -46,17 +46,19 @@ public class ConversationController : MonoBehaviour
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
-#if UNITY_EDITOR 
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
         Conversations.Clear();
-        string[] fileNames = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + Path });
+        string[] fileNames = FrogForgeImporter.GetAllFilesAtPath(Path); // UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + Path });
         foreach (string fileName in fileNames)
         {
-            TextAsset file = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(fileName));
+            TextFile file = FrogForgeImporter.LoadTextFile(fileName);
             Conversations.Add(file);
         }
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 }

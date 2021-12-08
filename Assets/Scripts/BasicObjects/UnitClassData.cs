@@ -8,20 +8,22 @@ public class UnitClassData : MonoBehaviour
     public List<ClassData> ClassDatas;
     public AdvancedSpriteSheetAnimation BaseAnimation;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
         // Load classes json
-        string json = FrogForgeImporter.LoadFile<TextAsset>("Classes.json").text;
+        string json = FrogForgeImporter.LoadTextFile("Classes.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassDatas"), this);
         // Load classes animations
         for (int i = 0; i < ClassDatas.Count; i++)
         {
-            ClassDatas[i].MapSprite = FrogForgeImporter.LoadFile<Sprite>("Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
+            ClassDatas[i].MapSprite = FrogForgeImporter.LoadSpriteFile("Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
         }
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
         // Load units json
-        json = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/Units.json").text;
+        json = FrogForgeImporter.LoadTextFile("Assets/Data/Units.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("UnitDatas"), this);
     }
 #endif

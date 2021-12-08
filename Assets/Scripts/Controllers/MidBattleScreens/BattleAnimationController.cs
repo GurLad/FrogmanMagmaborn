@@ -199,7 +199,7 @@ public class BattleAnimationController : MidBattleScreen
         return result;
     }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoadAnimations()
     {
         // Clear previous
@@ -225,7 +225,7 @@ public class BattleAnimationController : MidBattleScreen
             toDestroy.RemoveAt(0);
         }
         // Now load new
-        string json = FrogForgeImporter.LoadFile<TextAsset>("Classes.json").text;
+        string json = FrogForgeImporter.LoadTextFile("Classes.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("ClassAnimations"), this);
         for (int i = 0; i < ClassAnimations.Count; i++)
         {
@@ -234,7 +234,7 @@ public class BattleAnimationController : MidBattleScreen
             animation.gameObject.name = ClassAnimations[i].Name;
             foreach (BattleBackgroundData animationName in ClassAnimations[i].BattleAnimations)
             {
-                Sprite file = FrogForgeImporter.LoadFile<Sprite>("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
+                Sprite file = FrogForgeImporter.LoadSpriteFile("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
                 if (file != null)
                 {
                     Bugger.Info(animationName.Name + ", " + file.name);
@@ -257,7 +257,7 @@ public class BattleAnimationController : MidBattleScreen
             if (FrogForgeImporter.CheckFileExists<Sprite>(projectileLocation))
             {
                 GameObject projectileObject = Instantiate(BaseProjectile, BaseProjectile.transform.parent);
-                Sprite projectileSprite = FrogForgeImporter.LoadFile<Sprite>(projectileLocation);
+                Sprite projectileSprite = FrogForgeImporter.LoadSpriteFile(projectileLocation);
                 FrogForgeImporter.LoadSpriteOrAnimationToObject(projectileObject, projectileSprite, 8);
                 projectileObject.transform.position += new Vector3(ClassAnimations[i].ProjectilePos.x, -ClassAnimations[i].ProjectilePos.y, 0) / 16;
                 projectileObject.name = ClassAnimations[i].Name;
@@ -266,7 +266,9 @@ public class BattleAnimationController : MidBattleScreen
 
         }
         // Set dirty
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 
     public void AutoLoadBackgrounds()
@@ -290,7 +292,7 @@ public class BattleAnimationController : MidBattleScreen
         }
         // Now load new
         TilesetsData tilesets = new TilesetsData();
-        string json = FrogForgeImporter.LoadFile<TextAsset>("Tilesets.json").text;
+        string json = FrogForgeImporter.LoadTextFile("Tilesets.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Tilesets"), tilesets);
         foreach (TilesetData tileset in tilesets.Tilesets)
         {
@@ -307,7 +309,7 @@ public class BattleAnimationController : MidBattleScreen
                 container.name = battleBackground.Name;
                 if (FrogForgeImporter.CheckFileExists<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "1.png"))
                 {
-                    Sprite sprite = FrogForgeImporter.LoadFile<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "1.png");
+                    Sprite sprite = FrogForgeImporter.LoadSpriteFile("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "1.png");
                     GameObject layer1 = new GameObject();
                     FrogForgeImporter.LoadSpriteOrAnimationToObject(layer1, sprite, 128);
                     layer1.transform.parent = container;
@@ -319,7 +321,7 @@ public class BattleAnimationController : MidBattleScreen
                 }
                 if (FrogForgeImporter.CheckFileExists<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "2.png"))
                 {
-                    Sprite sprite = FrogForgeImporter.LoadFile<Sprite>("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "2.png");
+                    Sprite sprite = FrogForgeImporter.LoadSpriteFile("Images/BattleBackgrounds/" + tileset.Name + "/" + battleBackground.Name + "2.png");
                     GameObject layer2 = new GameObject();
                     FrogForgeImporter.LoadSpriteOrAnimationToObject(layer2, sprite, 128);
                     layer2.transform.parent = container;
@@ -339,7 +341,9 @@ public class BattleAnimationController : MidBattleScreen
             }
         }
         // Set dirty
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 #endif
 
