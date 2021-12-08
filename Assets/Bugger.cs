@@ -34,7 +34,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
             Debug.Log("No bugger! Anyway, " + text);
             return;
         }
-        current.ShowText("INFO: " + text.ToColoredString(3), 0, show);
+        current.ShowText(("INFO: " + text).ToColoredString(3), 0, show);
 #if UNITY_EDITOR
         Debug.Log(text);
 #endif
@@ -47,7 +47,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
             Debug.LogWarning("No bugger! Anyway, " + text);
             return;
         }
-        current.ShowText("WARNING: " + text.ToColoredString(2), 0, show);
+        current.ShowText(("WARNING: " + text).ToColoredString(2), 0, show);
 #if UNITY_EDITOR
         Debug.LogWarning(text);
 #endif
@@ -55,13 +55,13 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
 
     public static System.Exception Error(string text, bool show = true)
     {
-        current.ShowText("ERROR: " + text.ToColoredString(1), 1, show);
+        current.ShowText(("ERROR: " + text).ToColoredString(1), 1, show);
         return new System.Exception(text);
     }
 
     public static System.Exception Crash(string text, bool show = true)
     {
-        current.ShowText("FATAL ERROR: " + text.ToColoredString(1, 2), 2, show);
+        current.ShowText(("FATAL ERROR: " + text).ToColoredString(1, 2), 2, show);
         return new System.Exception(text);
     }
 

@@ -296,11 +296,17 @@ public class ConversationPlayer : MidBattleScreen
         if (line[0] == ':') // Command
         {
             string[] parts = line.Split(':');
-            string[] args = parts.Length > 2 ? new string[parts.Length - 2] : new string[0];
+            // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
+            string[] args = parts.Length > 2 ? (parts[parts.Length - 1] == "" ? new string[parts.Length - 2] : new string[parts.Length - 1]) : new string[1];
             if (args.Length > 0)
             {
-                parts.CopyTo(args, 2);
+                // Array copy doesn't work for some reason?
+                for (int i = 0; i < args.Length; i++)
+                {
+                    args[i] = (i + 2 < parts.Length) ? parts[i + 2] : "";
+                }
             }
+            Bugger.Info("Args: " + '"' + string.Join(":", args) + '"');
             switch (parts[1])
             {
                 // Level (gameplay) commands
@@ -367,7 +373,7 @@ public class ConversationPlayer : MidBattleScreen
                     // Params: Team team, AIType ai
                     AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
                     Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
-                    GameController.Current.AssignAIToTeam(team, args[1].ToAIType());
+                    GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.Error("Impossible - I just validated..."));
                     break;
                 case "lose":
                     // Params: none
@@ -384,7 +390,7 @@ public class ConversationPlayer : MidBattleScreen
 
                 case "play":
                     // Params: string name, bool keepTimestamp = false
-                    AssertCommand("play", args, CAT.String, CAT.Bool);
+                    AssertCommand("play", args, CAT.String, CAT.OpBool);
                     CrossfadeMusicPlayer.Current.Play(args[0], parts.Length > 3 ? (args[1] == "T") : false);
                     break;
                 case "playIntro":
@@ -532,11 +538,11 @@ public class ConversationPlayer : MidBattleScreen
                     break;
                 case "call":
                     AssertCommand("call", args, CAT.String);
-                    // Store current lines & position
-                    functionStack.Push(new FunctionStackObject(num, lines));
-                    // Load new lines
                     if (origin.Functions.ContainsKey(args[0]))
                     {
+                        // Store current lines & position
+                        functionStack.Push(new FunctionStackObject(num, lines));
+                        // Load new lines
                         lines = origin.Functions[args[0]];
                         StartLine(0);
                         return;
@@ -847,12 +853,13 @@ public class ConversationPlayer : MidBattleScreen
     {
         if (GameCalculations.Debug)
         {
-            string errorMessage = "Incorrect arguemnts: " + commandName + " requires " + string.Join(":", commandArguments).Replace("Op", "(optional) ") + " arguments - " + string.Join(":", args) + " is incompatible";
-            if (args.Length > commandArguments.Length || (args.Length < commandArguments.Length && (int)commandArguments[args.Length] < 10))
+            string errorMessage = "Incorrect arguemnts: " + commandName + " requires " + string.Join(":", commandArguments).Replace("Op", "(optional)") + " arguments - " + string.Join(":", args) + " is incompatible";
+            // Since args always contains "" at the end, the last argument doesn't really exist
+            if ((args.Length - 1) > commandArguments.Length || ((args.Length - 1) < commandArguments.Length && (int)commandArguments[args.Length - 1] < 10))
             {
                 throw Bugger.Error(errorMessage);
             }
-            for (int i = 0; i < args.Length; i++)
+            for (int i = 0; i < args.Length - 1; i++)
             {
                 if (!MatchesCommandType(args[i], (CAT)((int)commandArguments[i] % 10)))
                 {

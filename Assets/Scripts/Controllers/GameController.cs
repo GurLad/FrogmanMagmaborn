@@ -862,9 +862,17 @@ public class GameController : MonoBehaviour
         {
             case PortraitLoadingMode.Name:
                 UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
+                if (unitData == null)
+                {
+                    throw Bugger.Error("No matching unit! (" + unit.Name + ")");
+                }
                 unit.Class = unitData.Class;
                 unit.DisplayName = unitData.DisplayName;
                 classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+                if (classData == null)
+                {
+                    throw Bugger.Error("No matching class! (" + unit.Class + ")");
+                }
                 unit.Stats = new Stats();
                 unit.Stats.Growths = unitData.Growths.Values;
                 unit.DeathQuote = unitData.DeathQuote;
@@ -875,6 +883,10 @@ public class GameController : MonoBehaviour
             case PortraitLoadingMode.Generic:
                 unit.Class = name;
                 classData = UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+                if (classData == null)
+                {
+                    throw Bugger.Error("No matching class! (" + unit.Class + ")");
+                }
                 unit.Stats = new Stats();
                 unit.Stats.Growths = classData.Growths.Values;
                 unit.Inclination = classData.Inclination;

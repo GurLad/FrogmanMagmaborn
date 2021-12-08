@@ -32,6 +32,10 @@ public class CGController : MonoBehaviour
         previousBG1Palette = PaletteController.Current.BackgroundPalettes[0];
         previousBG2Palette = PaletteController.Current.BackgroundPalettes[1];
         CG toShow = CGs.Find(a => a.Name == name);
+        if (toShow == null)
+        {
+            throw Bugger.Error("No matching CG! (" + name + ")");
+        }
         LoadImage(BG1, toShow.BGImage1);
         LoadImage(BG2, toShow.BGImage2);
         LoadImage(FG1, toShow.FGImage1);

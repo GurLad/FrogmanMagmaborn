@@ -2,14 +2,23 @@ priority:21
 unique:F
 ~ Requirements
 ~ Demands
-mapID:aaa
 ~ Before battle
+:loadMap
+:loadUnits:Boss2-0:monster
 :play:BeforeBattle
 Frogman: I am error.
+:loadMap:Boss2-0
+:loadMap:bla
+:loadUnits:Boss2-0:monster
+:loadUnits:::
+:loadUnits:Boss2-0:
+:loadUnits::::
+:loadUnits::guard
+:loadUnits:aaa:
+:loadUnits:Level2-0::yay
 :call:bla
 :addUnit:sdkjlfdlskf
 :showCG:haha
-:loadMap:blabla
 ~ After battle
 :play:AfterBattle
 # Name: Text.
