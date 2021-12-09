@@ -49,11 +49,13 @@ public class ConversationController : MonoBehaviour
 #if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
+        Bugger.Info("Loading conversations from " + Path);
         Conversations.Clear();
         string[] fileNames = FrogForgeImporter.GetAllFilesAtPath(Path); // UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + Path });
+        Bugger.Info("They are " + string.Join(", ", fileNames));
         foreach (string fileName in fileNames)
         {
-            TextFile file = FrogForgeImporter.LoadTextFile(fileName);
+            TextFile file = FrogForgeImporter.LoadTextFile(fileName, true);
             Conversations.Add(file);
         }
 #if UNITY_EDITOR

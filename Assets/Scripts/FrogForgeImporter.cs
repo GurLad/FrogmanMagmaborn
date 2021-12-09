@@ -20,8 +20,9 @@ public class FrogForgeImporter : MonoBehaviour
 
     private void Awake()
     {
-#if MODDABLE_BUILD
-        DataPath = Application.dataPath + @"\Data\";
+#if MODDABLE_BUILD && !UNITY_EDITOR
+        DataPath = Application.dataPath.Replace("Frogman Magmaborn_Data", "") + @"\Data\";
+        Bugger.Info("Working! " + DataPath);
         ConversationController?.AutoLoad();
         UnitClassData?.AutoLoad();
         BattleAnimationController?.AutoLoadAnimations();
@@ -95,10 +96,10 @@ public class FrogForgeImporter : MonoBehaviour
 #endif
     }
 
-    public static TextFile LoadTextFile(string path)
+    public static TextFile LoadTextFile(string path, bool includesPath = false)
     {
 #if MODDABLE_BUILD
-        return new TextFile(File.ReadAllText(DataPath + path), path.Substring(path.LastIndexOf(@"\") + 1));
+        return new TextFile(File.ReadAllText((includesPath ? "" : DataPath) + path), path.Substring(path.LastIndexOf(@"\") + 1));
 #elif UNITY_EDITOR
         return new TextFile(UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/" + path));
 #endif

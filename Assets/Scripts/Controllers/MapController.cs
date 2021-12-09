@@ -57,7 +57,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         string[] fileNames = FrogForgeImporter.GetAllFilesAtPath("Maps");
         foreach (string fileName in fileNames)
         {
-            TextFile file = FrogForgeImporter.LoadTextFile(fileName);
+            TextFile file = FrogForgeImporter.LoadTextFile(fileName, true);
             JsonUtility.FromJsonOverwrite(file.Text.ForgeJsonToUnity("mapData"), this);
             Map map = new Map();
             // Level numer
