@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class TextFile
 {
-    public string Text { get; }
-    public string Name { get; }
+    public string Text;
+    public string Name;
 
     public TextFile(string text, string name)
     {

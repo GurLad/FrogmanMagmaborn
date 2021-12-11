@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 //#define MODDABLE_BUILD // Because Visual Studio doesn't work properly otherwise...
 
@@ -117,7 +118,7 @@ public class FrogForgeImporter : MonoBehaviour
     public static string[] GetAllFilesAtPath(string path)
     {
 #if MODDABLE_BUILD
-        return Directory.GetFiles(DataPath + path, "*.*", SearchOption.AllDirectories);
+        return Directory.GetFiles(DataPath + path, "*.*", SearchOption.AllDirectories).Where(a => !a.EndsWith(".meta")).ToArray();
 #elif UNITY_EDITOR
         string[] GUIDs = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + path });
         for (int i = 0; i < GUIDs.Length; i++)

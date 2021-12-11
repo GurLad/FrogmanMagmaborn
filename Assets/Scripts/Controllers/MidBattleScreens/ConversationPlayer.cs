@@ -879,7 +879,7 @@ public class ConversationPlayer : MidBattleScreen
             case CAT.Float:
                 return float.TryParse(part, out _);
             case CAT.Bool:
-                return part.ToUpper() == "T" || part.ToUpper() == "F";
+                return part.ToUpper() == "T" || part.ToUpper() == "F" || part.ToUpper() == "L" || part.ToUpper() == "R";
             case CAT.Team:
                 return true; // Non-existant team is all teams
             case CAT.AIType:

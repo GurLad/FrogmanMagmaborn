@@ -23,7 +23,7 @@ public class UnitClassData : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(gameObject);
 #endif
         // Load units json
-        json = FrogForgeImporter.LoadTextFile("Assets/Data/Units.json").Text;
+        json = FrogForgeImporter.LoadTextFile("Units.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("UnitDatas"), this);
     }
 #endif
