@@ -6254,6 +6254,103 @@ MonoBehaviour:
   MovementCost: 99
   ArmorModifier: 0
   High: 1
+--- !u!1001 &626328138
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2123345130763740281, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Battle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740281, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123345130763740282, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271508741166884629, guid: d2eceafa8fc026244beb7baca568c3b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2eceafa8fc026244beb7baca568c3b0, type: 3}
+--- !u!1 &626328139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2123345130763740281, guid: d2eceafa8fc026244beb7baca568c3b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 626328138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &626328140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2123345128646521715, guid: d2eceafa8fc026244beb7baca568c3b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 626328138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61b04673b26e084eaa125bbca75ab70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &633572483
 GameObject:
   m_ObjectHideFlags: 0
@@ -18234,7 +18331,7 @@ MonoBehaviour:
   UIAttackerPanel: {fileID: 1409916836}
   UIDefenderPanel: {fileID: 2146978961}
   TurnAnimation: {fileID: 1556140462}
-  Battle: {fileID: 2123345130763740281, guid: d2eceafa8fc026244beb7baca568c3b0, type: 3}
+  Battle: {fileID: 626328139}
   StatusScreen: {fileID: 1866344048309540548, guid: 2d523648b6b0c434196856ef46682162,
     type: 3}
   LevelUpScreen: {fileID: 3249702334795491544, guid: 47915748ebb688f46937de8b2681a7c8,
@@ -18247,7 +18344,7 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 7
   DebugExtraLevels: 0
   DebugUnits:
@@ -24671,6 +24768,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 462264a2a0c695647aaf7b8f54ff65c5, type: 3}
+--- !u!114 &7267162194476288097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7267162193386645213, guid: 462264a2a0c695647aaf7b8f54ff65c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7267162194476288096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c818f50eaeeb62478086189c7bc7e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7394452989637654968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24755,6 +24864,11 @@ PrefabInstance:
       objectReference: {fileID: 1606634284}
     - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
         type: 3}
+      propertyPath: PortraitController
+      value: 
+      objectReference: {fileID: 7267162194476288097}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
       propertyPath: ConversationController
       value: 
       objectReference: {fileID: 39958775}
@@ -24763,6 +24877,11 @@ PrefabInstance:
       propertyPath: LevelMetadataController
       value: 
       objectReference: {fileID: 1902908238}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
+      propertyPath: BattleAnimationController
+      value: 
+      objectReference: {fileID: 626328140}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec6a9467a08e2d49a679b076976f611, type: 3}
 --- !u!1001 &7673689191678269548

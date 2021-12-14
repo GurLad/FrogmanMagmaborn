@@ -73,7 +73,7 @@ public class FrogForgeImporter : MonoBehaviour
 
             if (File.Exists(filePath))
             {
-                FileData = File.ReadAllBytes(DataPath + filePath);
+                FileData = File.ReadAllBytes(filePath);
                 Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
                 if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
                 {
@@ -88,10 +88,10 @@ public class FrogForgeImporter : MonoBehaviour
                     return NewSprite;
                 }
             }
-            return null;                     // Return null if load failed
+            return null;
         }
 
-        return LoadNewSprite(path);
+        return LoadNewSprite(DataPath + path);
 #elif UNITY_EDITOR
         return UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/" + path);
 #endif
