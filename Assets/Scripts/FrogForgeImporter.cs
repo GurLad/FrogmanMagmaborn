@@ -83,7 +83,7 @@ public class FrogForgeImporter : MonoBehaviour
 
                     Texture2D SpriteTexture = Tex2D;
                     SpriteTexture.filterMode = FilterMode.Point;
-                    Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), 16, 0, SpriteMeshType.Tight);
+                    Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0.5f, 0.5f), 16, 0, SpriteMeshType.Tight);
 
                     return NewSprite;
                 }
