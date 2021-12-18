@@ -62,7 +62,9 @@ public class FrogForgeImporter : MonoBehaviour
 
     public static Sprite LoadSpriteFile(string path)
     {
-#if MODDABLE_BUILD
+#if UNITY_EDITOR
+        return UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/" + path);
+#elif MODDABLE_BUILD
         Sprite LoadNewSprite(string filePath) // From https://forum.unity.com/threads/generating-sprites-dynamically-from-png-or-jpeg-files-in-c.343735/
         {
             // Load a PNG or JPG file from disk to a Texture2D
@@ -92,40 +94,38 @@ public class FrogForgeImporter : MonoBehaviour
         }
 
         return LoadNewSprite(DataPath + path);
-#elif UNITY_EDITOR
-        return UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Data/" + path);
 #endif
     }
 
     public static TextFile LoadTextFile(string path, bool includesPath = false)
     {
-#if MODDABLE_BUILD
-        return new TextFile(File.ReadAllText((includesPath ? "" : DataPath) + path), path.Substring(path.LastIndexOf(@"\") + 1));
-#elif UNITY_EDITOR
+#if UNITY_EDITOR
         return new TextFile(UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/" + path));
+#elif MODDABLE_BUILD
+        return new TextFile(File.ReadAllText((includesPath ? "" : DataPath) + path), path.Substring(path.LastIndexOf(@"\") + 1));
 #endif
     }
 
     public static bool CheckFileExists<T>(string path) where T : Object // For the future moddable version
     {
-#if MODDABLE_BUILD
-        return File.Exists(DataPath + path);
-#elif UNITY_EDITOR
+#if UNITY_EDITOR
         return UnityEditor.AssetDatabase.LoadAssetAtPath<T>("Assets/Data/" + path) != null;
+#elif MODDABLE_BUILD
+        return File.Exists(DataPath + path);
 #endif
     }
 
     public static string[] GetAllFilesAtPath(string path)
     {
-#if MODDABLE_BUILD
-        return Directory.GetFiles(DataPath + path, "*.*", SearchOption.AllDirectories).Where(a => !a.EndsWith(".meta")).ToArray();
-#elif UNITY_EDITOR
+#if UNITY_EDITOR
         string[] GUIDs = UnityEditor.AssetDatabase.FindAssets("t:TextAsset", new[] { "Assets/Data/" + path });
         for (int i = 0; i < GUIDs.Length; i++)
         {
             GUIDs[i] = UnityEditor.AssetDatabase.GUIDToAssetPath(GUIDs[i]).Replace("Assets/Data/", "");
         }
         return GUIDs;
+#elif MODDABLE_BUILD
+        return Directory.GetFiles(DataPath + path, "*.*", SearchOption.AllDirectories).Where(a => !a.EndsWith(".meta")).ToArray();
 #endif
     }
 }

@@ -31,5 +31,6 @@ public class PortraitHolder : MonoBehaviour
     {
         foregroundPalette = Foreground.GetComponent<PalettedSprite>();
         backgroundPalette = Background.GetComponent<PalettedSprite>();
+        backgroundPalette.ForceSilentSetPalette(BackgroundPalleteID);
     }
 }

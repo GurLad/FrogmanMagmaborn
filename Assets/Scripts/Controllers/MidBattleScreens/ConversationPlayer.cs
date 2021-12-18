@@ -62,10 +62,11 @@ public class ConversationPlayer : MidBattleScreen
     {
         Current = this;
         gameObject.SetActive(startActive);
+        PortraitR.gameObject.SetActive(false);
+        PortraitL.gameObject.SetActive(false);
     }
     private void Start()
     {
-        PortraitR.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -306,7 +307,6 @@ public class ConversationPlayer : MidBattleScreen
                     args[i] = (i + 2 < parts.Length) ? parts[i + 2] : "";
                 }
             }
-            Bugger.Info("Args: " + '"' + string.Join(":", args) + '"');
             switch (parts[1])
             {
                 // Level (gameplay) commands
