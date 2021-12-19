@@ -27,10 +27,13 @@ public class PortraitHolder : MonoBehaviour
             return _portrait;
         }
     }
-    private void Awake()
+    public void Awake()
     {
+        GetComponent<PalettedSprite>().Awake();
         foregroundPalette = Foreground.GetComponent<PalettedSprite>();
+        foregroundPalette.Awake();
         backgroundPalette = Background.GetComponent<PalettedSprite>();
-        backgroundPalette.ForceSilentSetPalette(BackgroundPalleteID);
+        backgroundPalette.Awake();
+        backgroundPalette.Palette = BackgroundPalleteID;
     }
 }

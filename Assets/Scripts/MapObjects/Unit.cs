@@ -280,7 +280,7 @@ public class Unit : MapObject
         {
             for (int j = Pos.y - Weapon.Range; j <= Pos.y + Weapon.Range; j++)
             {
-                if (dangerArea[i, j].Value != 0)
+                if (GameController.Current.IsValidPos(i, j) && dangerArea[i, j].Value != 0)
                 {
                     AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
                     attackMarker.Pos = new Vector2Int(i, j);
