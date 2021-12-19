@@ -273,44 +273,58 @@ public class Unit : MapObject
         MarkDangerArea(Pos.x, Pos.y, Movement, true);
     }
 
-    public void MarkAttack(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
+    public void MarkAttack() //(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
     {
-        if (range == -1)
+        DangerArea dangerArea = DangerArea.Generate(this, Pos.x, Pos.y, 0, false);
+        for (int i = Pos.x - Weapon.Range; i <= Pos.x + Weapon.Range; i++)
         {
-            range = Weapon.Range + 1;
-            x = Pos.x;
-            y = Pos.y;
-        }
-        checkedTiles = checkedTiles ?? new bool[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
-        if (checkedTiles[x, y] || !GameController.Current.Map[x, y].Passable)
-        {
-            return;
-        }
-        else
-        {
-            AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
-            attackMarker.Pos = new Vector2Int(x, y);
-            attackMarker.Origin = this;
-            attackMarker.gameObject.SetActive(true);
-        }
-        checkedTiles[x, y] = true;
-        if (range - 1 > 0)
-        {
-            for (int i = -1; i <= 1; i++)
+            for (int j = Pos.y - Weapon.Range; j <= Pos.y + Weapon.Range; j++)
             {
-                for (int j = -1; j <= 1; j++)
+                if (dangerArea[i, j].Value != 0)
                 {
-                    if (i == 0 || j == 0)
-                    {
-                        if (!GameController.Current.IsValidPos(x + i,y + j))
-                        {
-                            continue;
-                        }
-                        MarkAttack(x + i, y + j, range - 1, checkedTiles);
-                    }
+                    AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+                    attackMarker.Pos = new Vector2Int(i, j);
+                    attackMarker.Origin = this;
+                    attackMarker.gameObject.SetActive(true);
                 }
             }
         }
+        //if (range == -1)
+        //{
+        //    range = Weapon.Range + 1;
+        //    x = Pos.x;
+        //    y = Pos.y;
+        //}
+        //checkedTiles = checkedTiles ?? new bool[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
+        //if (checkedTiles[x, y] || !GameController.Current.Map[x, y].Passable)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+        //    attackMarker.Pos = new Vector2Int(x, y);
+        //    attackMarker.Origin = this;
+        //    attackMarker.gameObject.SetActive(true);
+        //}
+        //checkedTiles[x, y] = true;
+        //if (range - 1 > 0)
+        //{
+        //    for (int i = -1; i <= 1; i++)
+        //    {
+        //        for (int j = -1; j <= 1; j++)
+        //        {
+        //            if (i == 0 || j == 0)
+        //            {
+        //                if (!GameController.Current.IsValidPos(x + i,y + j))
+        //                {
+        //                    continue;
+        //                }
+        //                MarkAttack(x + i, y + j, range - 1, checkedTiles);
+        //            }
+        //        }
+        //    }
+        //}
     }
     public void MoveTo(Vector2Int pos, bool immediate = false)
     {

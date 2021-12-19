@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class TextFile
 {
+    [Multiline]
     public string Text;
     public string Name;
 

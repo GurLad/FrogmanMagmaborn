@@ -62,11 +62,11 @@ public class MiniBattleStatsPanel : MonoBehaviour
         Panel.Palette = (int)origin.TheTeam;
         if (displayAttack) // Show battle preview
         {
-            Info.text = origin.Name + "\n" + origin.AttackPreview(target, 2, canAttack);
+            Info.text = origin.ToString() + "\n" + origin.AttackPreview(target, 2, canAttack);
         }
         else // Show unit name & Inclination
         {
-            Info.text = origin.Name + "\n\n\nHP :" + origin.Health;
+            Info.text = origin.ToString() + "\n\n\nHP :" + origin.Health;
         }
         if (Inclination != null)
         {
