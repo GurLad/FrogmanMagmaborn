@@ -20,6 +20,7 @@ public class Unit : MapObject
     public bool Flies;
     public Stats Stats;
     public Inclination Inclination;
+    public SkillSet Skills;
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;

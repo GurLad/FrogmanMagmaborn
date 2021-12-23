@@ -178,6 +178,26 @@ public static class GameCalculations
 
     // Unit extension methods
 
+    public static void LoadSkills(this Unit unit)
+    {
+        if (unit.TheTeam == Team.Player)
+        {
+            switch (KnowledgeController.TormentPower("SpeedSafety"))
+            {
+                case TormentPowerState.None:
+                    break;
+                case TormentPowerState.I:
+                    unit.Skills.AddSkill(Skill.Acrobat);
+                    break;
+                case TormentPowerState.II:
+                    unit.Skills.AddSkill(Skill.NaturalCover);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     public static Stats AutoLevel(this Unit unit, int level)
     {
         Difficulty difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
@@ -275,7 +295,7 @@ public static class GameCalculations
         {
             return tile.High ? tile.MovementCost : 1;
         }
-        else if (unit.TheTeam == Team.Player && KnowledgeController.TormentPower("SpeedSafety") == TormentPowerState.I)
+        else if (unit.Skills.HasSkill(Skill.Acrobat))
         {
             return (tile.High || tile.MovementCost > 5) ? tile.MovementCost : 1;
         }
@@ -288,6 +308,6 @@ public static class GameCalculations
     public static int GetArmorModifier(this Tile tile, Unit unit)
     {
         return (unit.Flies && !tile.High) ? 0 :
-            (unit.TheTeam == Team.Player && KnowledgeController.TormentPower("SpeedSafety") == TormentPowerState.II) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier;
+            (unit.Skills.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier);
     }
 }

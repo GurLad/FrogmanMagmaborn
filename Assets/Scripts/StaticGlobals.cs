@@ -16,6 +16,7 @@ public enum PortraitLoadingMode { Name, Team, Generic }
 public enum Objective { Rout, Boss, Escape, Survive }
 public enum GameState { Normal, SideWon, ShowingEvent }
 public enum BattleAnimationMode { Walk, Projectile, Teleport }
+public enum Skill { Acrobat, NaturalCover, Charisma, Shade, HitAndRun, FinishingTouch }
 
 public static class StaticGlobals
 {

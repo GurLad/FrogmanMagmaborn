@@ -887,7 +887,655 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec750c79fc4c494885d7981b66afd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Conversations: []
+  Conversations:
+  - Text: 'priority:6
+
+      unique:T
+
+      ~
+
+      ~
+
+      ~
+
+      :play:BeforeBattle
+
+      Frogman:
+      Huh?!\a Where am I?
+
+      What... is this place?
+
+      Wait...\a Who am
+      I?\a What is going on?!
+
+      ???: Hey! You there!'
+    Name: Intro1
+  - Text: 'priority:5
+
+      unique:T
+
+      ~
+
+      ~
+
+      ~
+
+      :play:BeforeBattle
+
+      Frogman:
+      Ah...! I''m... dead...?\a Oh... Right...
+
+      This is so confusing...
+
+      At
+      least I have time to prepare...
+
+      ~
+
+      ???: Hey! Over here!'
+    Name: Intro2
+  - Text: 'priority:5
+
+      unique:T
+
+      ~
+
+      hasKnowledge:InclinationBuff
+
+      ~
+
+      ~
+
+      :play:BeforeBattle
+
+      Frogman:
+      Ah... Not again...
+
+      Maybe I should change my strategy.\a Fight like
+      Firbell or Kresla.\a Hm...
+
+      :unlockKnowledge:InclinationFrogman
+
+      :showInfoDialogue:New
+      knowledge!
+
+      ~
+
+      ???: Hey! Over here!'
+    Name: Intro3
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      ~ Demands
+
+      ~
+      Before battle
+
+      :play:BeforeBattle
+
+      Frogman: Urgh... My head...\a
+      Wait... I remember... something?
+
+      :showCG:Castle
+
+      :play:ForgottenMemories
+
+      FrogmanMan||L:
+      Whew, we''re safe.
+
+      Zip: At last... That was quite a run, boss.
+
+      FrogmanMan:
+      I know, but we''ve finally lost them.
+
+      Zip: I still don''t know how you
+      do it, boss.
+
+      FrogmanMan: Which part? Infiltrating the most well-guarded
+      castle in\a the region, stealing all the valuables,\a or getting away with
+      it?
+
+      Zip: Ha! Ever the humble one, eh?
+
+      FrogmanMan: Heh. Well,
+      enough with the pleasantries.\a Status report.
+
+      Zip: Let me see...\a
+      We have seven silver plates, thirteen forks-
+
+      FrogmanMan: Skip the trinkets
+      for now. Highlights?
+
+      Zip: Right. Three Abezy paintings.
+
+      FrogmanMan:
+      Abezy? Where did the lord get them?
+
+      Zip: Don''t know, boss.\a They seem
+      pretty new, however.
+
+      FrogmanMan: They''re probably fake then.\a Next?
+
+      Zip:
+      Uh... There''s the diamond necklace we found.
+
+      FrogmanMan: Right, that
+      one. It will be hard finding a buyer,\a but it''s worth it.
+
+      Zip: Probably.
+      What else... Ah, the muskets.
+
+      FrogmanMan: We never found the gunpowder
+      and bullets, did we?
+
+      Zip: No, boss. Frankly, I don''t think he had any.
+
+      Probably
+      only kept them to impress guests.
+
+      FrogmanMan: Yes. Too bad. They''re
+      useless then.
+
+      Zip: We might find someone willing-
+
+      FrogmanMan:
+      Too risky.\a Well, it''s still a good haul.\a Let''s go back.
+
+      Zip: Sure
+      thing, boss.
+
+      :hideCG:
+
+      :play:BeforeBattle
+
+      :setSingleSpeaker:L
+
+      Frogman:
+      Ah... I was... a thief?\a I... better keep that to myself.\a And Zip... who
+      were you?
+
+      :setFlag:Flashback1
+
+
+      ~ After battle
+
+      # Name:
+      Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: IntroFlashback1
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      furthestLevel:>2
+
+      hasFlag:Flashback1
+
+      ~
+      Demands
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: Ah...
+      I''m back...
+
+      Wait, something...\a Another memory...
+
+      :showCG:Tavern
+
+      :play:ForgottenMemories
+
+      :setSpeaker:FrogmanMan|Frogman|R
+
+      Zip:
+      Frogman. She''s here.
+
+      FrogmanMan: Already? Oh well, nothing to be done
+      about it.\a Let her in.
+
+      Zip: I don''t like her, boss. It smells like
+      a trap.
+
+      FrogmanMan: I know. But she is alone, and she''s foreign -\a
+      she only arrived in the city yesterday.
+
+      Zip: Still, I don''t think it''s
+      wise.\a She asked specifically for you, boss.\a These are always trouble.
+
+      FrogmanMan:
+      Relax, Zip. We''re well known as the best thieves in the\a region for a reason.
+
+      We
+      shouldn''t fear some upstart from Straberod,\a even if she''s probably going
+      to try killing\a me.
+
+      Zip: ...\a You''re the boss, boss.\a I''ll let
+      her in.
+
+      DeharFB||L: Hello, Frogman. Thank you for having an audience
+      with me.
+
+      FrogmanMan: Greetings, Kebera. Please, have a seat.
+
+      DeharFB:
+      Thank you.
+
+      FrogmanMan: This is my collegue, Zip.
+
+      Zip||R: ...
+
+      FrogmanMan||R:
+      I hope you do not mind having him here.\a Treat him as my shadow.
+
+      DeharFB:
+      I see.
+
+      FrogmanMan: So. Let''s get to business. What do you want?
+
+      DeharFB:
+      Let me start from the beginning. My name is-
+
+      FrogmanMan: I know who
+      you are. Your request?
+
+      DeharFB: I''ll be blunt then.
+
+      I was sent
+      here on behalf of the governor of Straberod.\a She offers you a mission.
+
+      FrogmanMan:
+      Which is?
+
+      DeharFB: Unfortunately, I cannot disclose it to anyone but
+      you,\a Frogman.\a Those are my instructions.
+
+      FrogmanMan: Unacceptable.
+      Zip will hear everything I will.
+
+      DeharFB: She is willing to pay quite
+      handsomely for this, Frogman.
+
+      FrogmanMan: I don''t care. It''s both
+      of us, or nothing.
+
+      DeharFB: ...Is there any way to change your mind?
+
+      FrogmanMan:
+      No.\a If that is all, I think we''re done here.\a Zip, show her out.
+
+      DeharFB:
+      There is no need, Frogman.\a Thank you for your hospitality.
+
+      Zip||L:
+      ...
+
+      I told you she''s trouble.
+
+      FrogmanMan: You were right. She
+      was testing us.\a Me.\a Let''s tail her. Ready to go?
+
+      Zip: Always, boss.
+
+      :hideCG:
+
+      :play:BeforeBattle
+
+      :setSingleSpeaker:L
+
+      Frogman:
+      Huh?\a Urgh... These memories are so confusing...
+
+      :setFlag:Flashback2
+
+
+      ~
+      After battle
+
+      # Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      #
+      Name: Text.
+
+'
+    Name: IntroFlashback2
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      furthestLevel:>4
+
+      hasFlag:Flashback2
+
+      ~
+      Demands
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: Nnrgh...
+      Back again...\a It''s always the same, over and...\a Wait... A memory...
+
+      :showCG:Alley
+
+      :play:ForgottenMemories
+
+      FrogmanMan||L:
+      (She''s going towards a dead end.)
+
+      Zip: (Yep. Shall we corner her there?)
+
+      FrogmanMan:
+      (Yes.)
+
+      ...
+
+      DeharFB||R: Would you care to show yourselves,\a or
+      are you still pretending to sneak about?
+
+      FrogmanMan: ...I want you out
+      of my city, Kebera.\a Dead or alive.
+
+      DeharFB||R: Do you now? And how,
+      exactly,\a do you plan on making me leave?
+
+      FrogmanMan: You''re cornered.
+      And alone.\a Zip and I are well known for a reason.\a Give up, and you might
+      yet live.
+
+      DeharFB||R: So sure of yourself, are you?\a Daring to threaten
+      me?\a But that won''t save you now,\a Frogman.\a Time to meet your maker.
+
+      FrogmanMan:
+      Wrong answer. Zip, feather-
+
+      :setSingleSpeaker:L
+
+      Huh?\a Where
+      did she go?
+
+      Zip||R: Don''t know, boss. She just-
+
+      :screenShake:
+
+      Argh!
+
+      :setSingleSpeaker:L
+
+      FrogmanMan:
+      Zip?! Are you-
+
+      :screenShake:
+
+      :setSpeaker:DeharFB||L
+
+      :setSpeaker:FrogmanMan||R
+
+      Oof!
+
+      DeharFB||L:
+      Well. That was disappointedly easy.\a Makes me wonder whether you''re fit for
+      the job.
+
+      FrogmanMan: Urgh... What are-
+
+      FBWitness: Oi! Everything
+      okay back there?
+
+      DeharFB||R: Hmph. You never can be truly alone in this
+      city, can you?\a Oh well. You get to live another day, Frogman.
+
+      :setSingleSpeaker:L
+
+      FrogmanMan:
+      Ah...
+
+      :hideCG:
+
+      :play:BeforeBattle
+
+      :setSingleSpeaker:L
+
+      Frogman:
+      Urgh! Zip...\a He didn''t...
+
+      Kebera...
+
+      :setFlag:Flashback3
+
+
+      ~
+      After battle
+
+      # Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      #
+      Name: Text.
+
+'
+    Name: IntroFlashback3
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      furthestLevel:>6
+
+      hasFlag:Flashback3
+
+      ~
+      Demands
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: TBA
+
+      #
+      Load village background image
+
+      :showCG:Port
+
+      :play:ForgottenMemories
+
+      #
+      Frogman and Zip try to flee the city through the river, and secure a small
+      boat. The captain is Dehar in disguise.
+
+      :hideCG:
+
+      :play:BeforeBattle
+
+      Frogman:
+      TBA
+
+      :setFlag:Flashback4
+
+
+      ~ After battle
+
+      # Name: Text.
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: IntroFlashback4
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      furthestLevel:>8
+
+      hasFlag:Flashback4
+
+      ~
+      Demands
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: TBA
+
+      #
+      Load village background image
+
+      :showCG:River
+
+      :play:ForgottenMemories
+
+      #
+      After getting far enough from the city, Dehar kills Zip, gives Frogman the
+      MagmaEmblem, and kills him as well.
+
+      :hideCG:
+
+      :play:BeforeBattle
+
+      Frogman:
+      TBA
+
+      :setFlag:Flashback5
+
+
+      ~ After battle
+
+      # Name: Text.
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: IntroFlashback5
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~
+
+      ~
+
+      ~
+
+      :play:BeforeBattle
+
+      Frogman:
+      Ah...! Not again!
+
+      *sigh* Here we go again...
+
+      ~
+
+      # Start
+      immediatly
+
+'
+    Name: IntroGeneric1
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      hasFlag:Torment1FirstTimeFail
+
+      !hasFlag:TormentHasHurtHelp
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      :play:Trustworthy
+
+      Torment:
+      Hello there, Frogman.
+
+      Frogman: Ahh! What are you doing here?!
+
+      Torment:
+      I''m everywhere! Ha ha!\a Anyway, I couldn''t help but notice\a that you appear
+      to have some... difficulties.\a Heh.
+
+      Frogman: ...
+
+      Torment:
+      As fun as it is to watch you fail over and over again,\a how about we spice
+      things up, eh?
+
+      Frogman: What are you talking about?
+
+      Torment:
+      Show some patience, please. Ha!\a As I was saying...
+
+      I still have some
+      power here.\a You will know it soon enough... Heh heh.
+
+      :unlockKnowledge:TormentHurtHelp
+
+      :setFlag:TormentHasHurtHelp
+
+      :showInfoDialogue:New
+      knowledge!
+
+      Frogman: ...
+
+      :play:BeforeBattle
+
+      ~ After
+      battle
+
+'
+    Name: IntroTormentFail
   Path: IntroConversations
 --- !u!1 &187171024
 GameObject:

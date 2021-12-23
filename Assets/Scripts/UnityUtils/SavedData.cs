@@ -22,10 +22,10 @@ public static class SavedData
     {
         get
         {
-#if MODDABLE_BUILD
+#if MODDABLE_BUILD && !UNITY_EDITOR
             return "Mod";
 #else
-                return "";
+            return "";
 #endif
         }
     }

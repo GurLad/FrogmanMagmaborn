@@ -898,9 +898,10 @@ public class GameController : MonoBehaviour
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
         unit.Stats += unit.AutoLevel(level);
-        // Load sprite, priorities, init
+        // Load sprite, priorities, skills, init
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
+        unit.LoadSkills();
         unit.Init();
         return unit;
     }
