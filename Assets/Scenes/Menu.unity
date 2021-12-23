@@ -406,11 +406,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 44633940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7585826b68823ef4b98f3d6a94e79e72, type: 3}
+  m_Script: {fileID: 11500000, guid: e73f82a2062757d41be64a1e093fc32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Map
-  Immediate: 0
+  SoftResume: 0
 --- !u!114 &44633943 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8787433540391826384, guid: be17dd5609ef6f74fac86f48d61a47c2,
@@ -900,15 +899,19 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
+      :introShowCutscene:
+
       Frogman:
       Huh?!\a Where am I?
 
       What... is this place?
 
-      Wait...\a Who am
-      I?\a What is going on?!
+      Wait...\a Who am I?\a
+      What is going on?!
 
-      ???: Hey! You there!'
+      ???: Hey! You there!
+
+      :introShowTutorial:'
     Name: Intro1
   - Text: 'priority:5
 
@@ -922,6 +925,8 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
+      :introShowCutscene:
+
       Frogman:
       Ah...! I''m... dead...?\a Oh... Right...
 
@@ -930,9 +935,12 @@ MonoBehaviour:
       At
       least I have time to prepare...
 
-      ~
+      :introShowUpgradeMenu:
 
-      ???: Hey! Over here!'
+      ???: Hey!
+      Over here!
+
+      :introShowTutorial:'
     Name: Intro2
   - Text: 'priority:5
 
@@ -948,20 +956,24 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
+      :introShowCutscene:
+
       Frogman:
       Ah... Not again...
 
-      Maybe I should change my strategy.\a Fight like
-      Firbell or Kresla.\a Hm...
+      Maybe I should change my strategy.\a Fight like Firbell
+      or Kresla.\a Hm...
 
       :unlockKnowledge:InclinationFrogman
 
       :showInfoDialogue:New
       knowledge!
 
-      ~
+      :introShowUpgradeMenu:
 
-      ???: Hey! Over here!'
+      ???: Hey! Over here!
+
+      :introShowTutorial:'
     Name: Intro3
   - Text: 'priority:4
 
@@ -976,8 +988,10 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: Urgh... My head...\a
-      Wait... I remember... something?
+      :introShowCutscene:
+
+      Frogman:
+      Urgh... My head...\a Wait... I remember... something?
 
       :showCG:Castle
 
@@ -1059,11 +1073,15 @@ MonoBehaviour:
 
       :setFlag:Flashback1
 
+      :introShowUpgradeMenu:
 
-      ~ After battle
+      :introShowTutorial:
 
-      # Name:
-      Text.
+
+      ~
+      After battle
+
+      # Name: Text.
 
 
       # === Functions ====
@@ -1071,7 +1089,8 @@ MonoBehaviour:
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback1
@@ -1092,8 +1111,10 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: Ah...
-      I''m back...
+      :introShowCutscene:
+
+      Frogman:
+      Ah... I''m back...
 
       Wait, something...\a Another memory...
 
@@ -1203,6 +1224,10 @@ MonoBehaviour:
 
       :setFlag:Flashback2
 
+      :introShowUpgradeMenu:
+
+      :introShowTutorial:
+
 
       ~
       After battle
@@ -1237,8 +1262,10 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: Nnrgh...
-      Back again...\a It''s always the same, over and...\a Wait... A memory...
+      :introShowCutscene:
+
+      Frogman:
+      Nnrgh... Back again...\a It''s always the same, over and...\a Wait... A memory...
 
       :showCG:Alley
 
@@ -1327,6 +1354,10 @@ MonoBehaviour:
 
       :setFlag:Flashback3
 
+      :introShowUpgradeMenu:
+
+      :introShowTutorial:
+
 
       ~
       After battle
@@ -1361,10 +1392,12 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: TBA
+      :introShowCutscene:
 
-      #
-      Load village background image
+      Frogman:
+      TBA
+
+      # Load village background image
 
       :showCG:Port
 
@@ -1383,19 +1416,24 @@ MonoBehaviour:
 
       :setFlag:Flashback4
 
+      :introShowUpgradeMenu:
 
-      ~ After battle
+      :introShowTutorial:
+
+
+      ~
+      After battle
 
       # Name: Text.
 
 
-      #
-      === Functions ====
+      # === Functions ====
 
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback4
@@ -1416,10 +1454,12 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: TBA
+      :introShowCutscene:
 
-      #
-      Load village background image
+      Frogman:
+      TBA
+
+      # Load village background image
 
       :showCG:River
 
@@ -1438,19 +1478,24 @@ MonoBehaviour:
 
       :setFlag:Flashback5
 
+      :introShowUpgradeMenu:
 
-      ~ After battle
+      :introShowTutorial:
+
+
+      ~
+      After battle
 
       # Name: Text.
 
 
-      #
-      === Functions ====
+      # === Functions ====
 
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback5
@@ -1466,15 +1511,16 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
+      :introShowCutscene:
+
       Frogman:
       Ah...! Not again!
 
       *sigh* Here we go again...
 
-      ~
+      :introShowUpgradeMenu:
 
-      # Start
-      immediatly
+      :introShowTutorial:
 
 '
     Name: IntroGeneric1
@@ -1495,6 +1541,10 @@ MonoBehaviour:
 
       ~ Before battle
 
+      :play:BeforeBattle
+
+      :introShowCutscene:
+
       :play:Trustworthy
 
       Torment:
@@ -1508,17 +1558,17 @@ MonoBehaviour:
 
       Frogman: ...
 
-      Torment:
-      As fun as it is to watch you fail over and over again,\a how about we spice
-      things up, eh?
+      Torment: As
+      fun as it is to watch you fail over and over again,\a how about we spice things
+      up, eh?
 
       Frogman: What are you talking about?
 
-      Torment:
-      Show some patience, please. Ha!\a As I was saying...
+      Torment: Show some
+      patience, please. Ha!\a As I was saying...
 
-      I still have some
-      power here.\a You will know it soon enough... Heh heh.
+      I still have some power here.\a
+      You will know it soon enough... Heh heh.
 
       :unlockKnowledge:TormentHurtHelp
 
@@ -1531,8 +1581,9 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      ~ After
-      battle
+      :introShowUpgradeMenu:
+
+      :introShowTutorial:
 
 '
     Name: IntroTormentFail
@@ -4418,6 +4469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7897415133705611575, guid: 418b964e45a35c440a8d44cd2ba54949,
         type: 3}
+      propertyPath: Intro
+      value: 
+      objectReference: {fileID: 1469240638}
+    - target: {fileID: 7897415133705611575, guid: 418b964e45a35c440a8d44cd2ba54949,
+        type: 3}
       propertyPath: Tutorial
       value: 
       objectReference: {fileID: 44633943}
@@ -7122,7 +7178,6 @@ MonoBehaviour:
   HoldTime: 0.85
   CreditsObject: {fileID: 770784414}
   PressStart: {fileID: 35769310}
-  IntroObject: {fileID: 1469240636}
 --- !u!1001 &2140982262
 PrefabInstance:
   m_ObjectHideFlags: 0

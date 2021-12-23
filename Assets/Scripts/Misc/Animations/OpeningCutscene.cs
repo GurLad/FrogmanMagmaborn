@@ -16,7 +16,6 @@ public class OpeningCutscene : Trigger
     [Header("Objects")]
     public Text CreditsObject;
     public GameObject PressStart;
-    public GameObject IntroObject;
     [HideInInspector]
     public System.Action OnFinishFadeOut;
     private bool fadeOut;
@@ -39,7 +38,7 @@ public class OpeningCutscene : Trigger
         count = 0;
         OnFinishFadeOut = () =>
         {
-            IntroObject.SetActive(true);
+            ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation());
             Destroy(this);
         };
     }

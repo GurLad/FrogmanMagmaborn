@@ -4,6 +4,7 @@ unique:T
 ~ Demands
 ~ Before battle
 :play:BeforeBattle
+:introShowCutscene:
 Frogman: Urgh... My head...\a Wait... I remember... something?
 :showCG:Castle
 :play:ForgottenMemories
@@ -35,6 +36,8 @@ Zip: Sure thing, boss.
 :setSingleSpeaker:L
 Frogman: Ah... I was... a thief?\a I... better keep that to myself.\a And Zip... who were you?
 :setFlag:Flashback1
+:introShowUpgradeMenu:
+:introShowTutorial:
 
 ~ After battle
 # Name: Text.

@@ -6,6 +6,8 @@ hasFlag:Torment1FirstTimeFail
 ~ Demands
 # Nothinig
 ~ Before battle
+:play:BeforeBattle
+:introShowCutscene:
 :play:Trustworthy
 Torment: Hello there, Frogman.
 Frogman: Ahh! What are you doing here?!
@@ -20,4 +22,5 @@ I still have some power here.\a You will know it soon enough... Heh heh.
 :showInfoDialogue:New knowledge!
 Frogman: ...
 :play:BeforeBattle
-~ After battle
+:introShowUpgradeMenu:
+:introShowTutorial:

@@ -6,6 +6,7 @@ hasFlag:Flashback2
 ~ Demands
 ~ Before battle
 :play:BeforeBattle
+:introShowCutscene:
 Frogman: Nnrgh... Back again...\a It's always the same, over and...\a Wait... A memory...
 :showCG:Alley
 :play:ForgottenMemories
@@ -42,6 +43,8 @@ FrogmanMan: Ah...
 Frogman: Urgh! Zip...\a He didn't...
 Kebera...
 :setFlag:Flashback3
+:introShowUpgradeMenu:
+:introShowTutorial:
 
 ~ After battle
 # Name: Text.

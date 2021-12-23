@@ -36,6 +36,7 @@ public class ConversationPlayer : MidBattleScreen
     [Header("Main menu only")]
     public GameObject Knowledge;
     public MenuController Tutorial;
+    public Intro Intro;
     [HideInInspector]
     public System.Action OnFinishConversation;
     [SerializeField]
@@ -593,6 +594,10 @@ public class ConversationPlayer : MidBattleScreen
 
                 case "tutorialForceButton":
                     // Not asserting tutorials for now
+                    if (TutorialGameController.Current == null)
+                    {
+                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                    }
                     TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
                     forceButton.Move = System.Enum.TryParse(args[0], out forceButton.Button);
                     if (parts.Length > 3)
@@ -610,16 +615,57 @@ public class ConversationPlayer : MidBattleScreen
                     return;
                 case "tutorialShowMarker":
                     // Not asserting tutorials for now
+                    if (TutorialGameController.Current == null)
+                    {
+                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                    }
                     string[] markerPos = args[0].Split(',');
                     TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
                     break;
                 case "tutorialFinish":
                     // Not asserting tutorials for now
+                    if (TutorialGameController.Current == null)
+                    {
+                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                    }
                     SavedData.SaveAll(SaveMode.Slot);
                     SceneController.LoadScene("Map");
                     return;
                 default:
                     break;
+
+                // Main menu commands
+
+                case "introShowCutscene":
+                    // Params: none
+                    if (Intro == null)
+                    {
+                        throw Bugger.Error("Don't use intro commands outside the intro");
+                    }
+                    AssertCommand("introShowCutscene", args);
+                    Pause();
+                    Intro.gameObject.SetActive(true);
+                    return;
+                case "introShowUpgradeMenu":
+                    // Params: none
+                    if (Knowledge == null)
+                    {
+                        throw Bugger.Error("Don't use intro commands outside the intro");
+                    }
+                    AssertCommand("introShowUpgradeMenu", args);
+                    Pause();
+                    Knowledge.SetActive(true);
+                    return;
+                case "introShowTutorial":
+                    // Params: none
+                    if (Tutorial == null)
+                    {
+                        throw Bugger.Error("Don't use intro commands outside the intro");
+                    }
+                    AssertCommand("introShowTutorial", args);
+                    Pause();
+                    Tutorial.Begin();
+                    return;
             }
             StartLine(num + 1);
             return;
@@ -687,23 +733,9 @@ public class ConversationPlayer : MidBattleScreen
         if (GameController.Current == null)
         {
             // Intro conversations
-            if (postBattle || origin.PostBattleLines.Count <= 0)
-            {
-                origin.Choose(true);
-                SavedData.SaveAll(SaveMode.Slot);
-                if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
-                {
-                    Tutorial.Begin();
-                }
-                else
-                {
-                    SceneController.LoadScene("Map");
-                }
-            }
-            else
-            {
-                Knowledge.SetActive(true);
-            }
+            origin.Choose(true);
+            SavedData.SaveAll(SaveMode.Slot);
+            SceneController.LoadScene("Map");
             return;
         }
         else

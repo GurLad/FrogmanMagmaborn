@@ -43,7 +43,7 @@ public class Intro : MonoBehaviour
             if (transition == null)
             {
                 Destroy(this);
-                ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation());
+                ConversationPlayer.Current.Resume();
                 return;
             }
             if (lastCheckedCurrent != transition.Current)

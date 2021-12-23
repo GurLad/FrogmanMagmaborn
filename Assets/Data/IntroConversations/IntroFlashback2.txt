@@ -6,6 +6,7 @@ hasFlag:Flashback1
 ~ Demands
 ~ Before battle
 :play:BeforeBattle
+:introShowCutscene:
 Frogman: Ah... I'm back...
 Wait, something...\a Another memory...
 :showCG:Tavern
@@ -48,6 +49,8 @@ Zip: Always, boss.
 :setSingleSpeaker:L
 Frogman: Huh?\a Urgh... These memories are so confusing...
 :setFlag:Flashback2
+:introShowUpgradeMenu:
+:introShowTutorial:
 
 ~ After battle
 # Name: Text.
