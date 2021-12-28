@@ -7,6 +7,9 @@ public class LevelMetadata
 {
     public TeamData[] TeamDatas = new TeamData[3];
     public string MusicName;
+    public Palette Palette4;
+    public bool[] Alliances;
+    public List<UnitReplacement> UnitReplacements;
 
     public LevelMetadata()
     {
@@ -29,5 +32,26 @@ public class LevelMetadata
         public bool PlayerControlled; // Functionality TBA
         public PortraitLoadingMode PortraitLoadingMode;
         public AIPriorities AI;
+    }
+
+
+    [System.Serializable]
+    public class UnitReplacement
+    {
+        public string Name;
+        public List<string> ReplacedBy;
+
+        public void Init()
+        {
+            if (!ReplacedBy.Contains(Name))
+            {
+                ReplacedBy.Add(Name);
+            }
+        }
+
+        public string Get()
+        {
+            return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
+        }
     }
 }

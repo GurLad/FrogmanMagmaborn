@@ -61,7 +61,7 @@ public static class StaticGlobals
     }
     public static bool IsEnemy(this Team origin, Team target) // Very quick & dirty - add to LevelMetadataEditor
     {
-        return GameController.Current.LevelNumber <= 6 ? origin != target : ((origin == Team.Player && target != Team.Player) || (target == Team.Player && origin != Team.Player));
+        return origin != target && !GameController.Current.LevelMetadata.Alliances[Mathf.Abs((int)origin | (int)target) - 1];
     }
     public static int TileSize(this Vector2Int vector2Int)
     {

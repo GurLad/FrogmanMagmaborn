@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     [Header("Map data")]
     public Vector2Int MapSize = new Vector2Int(16, 15);
     public float TileSize;
-    public List<UnitReplacement> UnitReplacements;
     [Header("UI")]
     public RectTransform UITileInfoPanel;
     public Text UITileInfo;
@@ -180,8 +179,6 @@ public class GameController : MonoBehaviour
         main = Camera.main;
         // Init maps
         MapController.Maps.ForEach(a => a.Init());
-        // Init unit replacements
-        UnitReplacements.ForEach(a => a.Init());
         // Init markers
         MoveMarker.Init();
         AttackMarker.Init();
@@ -815,6 +812,8 @@ public class GameController : MonoBehaviour
         Turn = 1;
         // Set palettes
         SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
+        // Init unit replacements
+        LevelMetadata.UnitReplacements.ForEach(a => a.Init());
         // Room-specific behaviours
         if (selectedMap.Objective == Objective.Escape)
         {
@@ -842,7 +841,7 @@ public class GameController : MonoBehaviour
         // Find replacement, fix level
         if (canReplace)
         {
-            UnitReplacement replacement = UnitReplacements.Find(a => a.Class == name);
+            LevelMetadata.UnitReplacement replacement = LevelMetadata.UnitReplacements.Find(a => a.Name == name);
             if (replacement != null)
             {
                 name = replacement.Get();
@@ -1235,22 +1234,6 @@ public class GameController : MonoBehaviour
         {
             PaletteController.Current.SpritePalettes[i] = metadata.TeamDatas[i].Palette;
         }
-    }
-
-    [System.Serializable]
-    public class UnitReplacement
-    {
-        public string Class;
-        public List<string> ReplacedBy;
-
-        public void Init()
-        {
-            ReplacedBy.Add(Class);
-        }
-
-        public string Get()
-        {
-            return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
-        }
+        PaletteController.Current.SpritePalettes[3] = metadata.Palette4;
     }
 }
