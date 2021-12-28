@@ -136,14 +136,14 @@ public class Unit : MapObject
             case InteractState.None:
                 GameController.Current.RemoveMarkers();
                 MovementMarker.PalettedSprite.Palette = (int)TheTeam;
-                if (TheTeam == Team.Player && !Moved)
+                if (TheTeam == GameController.Current.CurrentPhase && !Moved)
                 {
                     MarkDangerArea(Pos.x, Pos.y, Movement, false);
                     GameController.Current.InteractState = InteractState.Move;
                     GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                     GameController.Current.Selected = this;
                 }
-                else if (TheTeam != Team.Player)
+                else if (TheTeam != GameController.Current.CurrentPhase)
                 {
                     MarkDangerArea(Pos.x, Pos.y, Movement, true);
                     GameController.Current.ShowPointerMarker(this, (int)TheTeam);
@@ -333,7 +333,7 @@ public class Unit : MapObject
         PreviousPos = Pos;
         if (!immediate)
         {
-            if (TheTeam != Team.Player && pos == Pos) // Only delay when enemies stay in place
+            if (!TheTeam.PlayerControlled() && pos == Pos) // Only delay when enemies stay in place
             {
                 MapAnimationsController.Current.AnimateDelay();
             }
@@ -383,7 +383,7 @@ public class Unit : MapObject
             ConversationPlayer.Current.PlayOneShot(BattleQuote != "" ? BattleQuote : unit.BattleQuote);
             unit.BattleQuote = BattleQuote = "";
         }
-        else if (TheTeam == Team.Player) // The player know who they're attacking, no need for a delay.
+        else if (TheTeam.PlayerControlled()) // The player know who they're attacking, no need for a delay.
         {
             ActualFight(unit);
         }

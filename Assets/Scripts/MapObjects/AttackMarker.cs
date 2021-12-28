@@ -9,7 +9,7 @@ public class AttackMarker : Marker
 
     public override void Interact(InteractState interactState)
     {
-        if (interactState == InteractState.Attack && Origin.TheTeam == Team.Player)
+        if (interactState == InteractState.Attack && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
             Unit unit = GameController.Current.FindUnitAtPos(Pos.x, Pos.y);
             if (unit != null)
@@ -25,7 +25,7 @@ public class AttackMarker : Marker
                 }
             }
         }
-        else if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
+        else if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
             Origin.MoveOrder(DangerArea.GetBestPosToAttackTargetFrom(Pos));
         }

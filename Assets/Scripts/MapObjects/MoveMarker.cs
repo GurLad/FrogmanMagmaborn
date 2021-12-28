@@ -6,7 +6,7 @@ public class MoveMarker : Marker
 {
     public override void Interact(InteractState interactState)
     {
-        if (interactState == InteractState.Move && Origin.TheTeam == Team.Player)
+        if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
             Origin.MoveOrder(Pos);
         }

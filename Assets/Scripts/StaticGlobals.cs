@@ -59,9 +59,13 @@ public static class StaticGlobals
         T temp = gameObject.GetComponent<T>();
         return temp != null ? temp : gameObject.AddComponent<T>();
     }
-    public static bool IsEnemy(this Team origin, Team target) // Very quick & dirty - add to LevelMetadataEditor
+    public static bool IsEnemy(this Team origin, Team target)
     {
         return origin != target && !GameController.Current.LevelMetadata.Alliances[Mathf.Abs((int)origin | (int)target) - 1];
+    }
+    public static bool PlayerControlled(this Team origin)
+    {
+        return GameController.Current.LevelMetadata.TeamDatas[(int)origin].PlayerControlled;
     }
     public static int TileSize(this Vector2Int vector2Int)
     {

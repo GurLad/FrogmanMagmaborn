@@ -68,9 +68,10 @@ public class GameController : MonoBehaviour
     public List<string> DeadPlayerUnits; // Count for stats - maybe move to a different class? Listeners? GameController should probably have listeners anyway.
     [HideInInspector]
     public List<string> TempFlags = new List<string>();
+    [HideInInspector]
+    public Team CurrentPhase = Team.Player;
     protected Difficulty difficulty;
     private List<IGameControllerListener> listeners = new List<IGameControllerListener>();
-    private Team currentPhase = Team.Player;
     private float cursorMoveDelay;
     private float enemyMoveDelayCount;
     private Vector2Int previousPos = new Vector2Int(-1, -1);
@@ -338,10 +339,10 @@ public class GameController : MonoBehaviour
         }
         if (checkEndTurn)
         {
-            if (units.Find(a => a.TheTeam == currentPhase && !a.Moved) == null)
+            if (units.Find(a => a.TheTeam == CurrentPhase && !a.Moved) == null)
             {
                 RemoveMarkers();
-                Team current = currentPhase;
+                Team current = CurrentPhase;
                 if (units.Count == 0)
                 {
                     throw Bugger.Crash("No units?");
@@ -349,7 +350,7 @@ public class GameController : MonoBehaviour
                 do
                 {
                     current = (Team)(((int)current + 1) % 3);
-                    if (current == currentPhase)
+                    if (current == CurrentPhase)
                     {
                         Bugger.Info("Only one team is alive - " + current);
                     }
@@ -364,11 +365,11 @@ public class GameController : MonoBehaviour
                 }
                 if (showTurnAnimation)
                 {
-                    TurnAnimation.ShowTurn(currentPhase);
+                    TurnAnimation.ShowTurn(CurrentPhase);
                 }
                 else
                 {
-                    ConversationPlayer.Current.OnFinishConversation = () => TurnAnimation.ShowTurn(currentPhase);
+                    ConversationPlayer.Current.OnFinishConversation = () => TurnAnimation.ShowTurn(CurrentPhase);
                 }
             }
             else if (CheckPlayerWin(Objective.Escape))
@@ -383,7 +384,7 @@ public class GameController : MonoBehaviour
     }
     public void ManuallyEndTurn()
     {
-        units.FindAll(a => a.TheTeam == currentPhase && !a.Moved).ForEach(a => a.Moved = true);
+        units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).ForEach(a => a.Moved = true);
         checkEndTurn = true;
     }
     protected virtual void HandleAButton()
@@ -437,7 +438,7 @@ public class GameController : MonoBehaviour
                     List<Unit> trueUnits = units;
                     for (int i = 0; i < trueUnits.Count; i++)
                     {
-                        if (foundSelected && trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                        if (foundSelected && trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                         {
                             cursorPos = trueUnits[i].Pos;
                             foundSelected = false;
@@ -452,7 +453,7 @@ public class GameController : MonoBehaviour
                     {
                         for (int i = 0; i < trueUnits.Count; i++)
                         {
-                            if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                            if (trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                             {
                                 cursorPos = trueUnits[i].Pos;
                                 break;
@@ -465,7 +466,7 @@ public class GameController : MonoBehaviour
                     List<Unit> trueUnits = units;
                     for (int i = 0; i < trueUnits.Count; i++)
                     {
-                        if (trueUnits[i].TheTeam == Team.Player && trueUnits[i].Moved == false)
+                        if (trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                         {
                             cursorPos = trueUnits[i].Pos;
                             break;
@@ -588,11 +589,11 @@ public class GameController : MonoBehaviour
     private void EnemyAI()
     {
         // Enemy AI. TBA: Change to check which team is player controlled and which is computer controlled.
-        if (currentPhase != Team.Player)
+        if (!CurrentPhase.PlayerControlled())
         {
             if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
             {
-                Unit currentEnemy = units.Find(a => a.TheTeam == currentPhase && !a.Moved);
+                Unit currentEnemy = units.Find(a => a.TheTeam == CurrentPhase && !a.Moved);
                 // AI
                 if (currentEnemy == null)
                 {
@@ -676,14 +677,14 @@ public class GameController : MonoBehaviour
     /// <returns>Whether to display the begin turn animation - true if display, false otherwise</returns>
     public bool StartPhase(Team team)
     {
-        currentPhase = team;
+        CurrentPhase = team;
         enemyMoveDelayCount = 0;
         foreach (var item in units)
         {
             item.Moved = false;
-            if (item.TheTeam != Team.Player && item.ReinforcementTurn > 0)
+            if (item.ReinforcementTurn > 0)
             {
-                if (team == Team.Player)
+                if (team == Team.Player && item.ReinforcementTurn < int.MaxValue)
                 {
                     item.ReinforcementTurn--;
                 }
@@ -709,7 +710,7 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-        interactable = team == Team.Player;
+        interactable = team.PlayerControlled();
         if (team == Team.Player)
         {
             Turn++;
@@ -1027,8 +1028,15 @@ public class GameController : MonoBehaviour
                 else
                 {
                     unit = CreateUnit(name, unitData.Level, Team.Player, false);
-                    unit.Health = unit.Stats.MaxHP;
+                    unit.ReinforcementTurn = unitData.ReinforcementTurn;
+                    unit.Statue = unitData.Statue;
+                    unit.AIType = unitData.AIType;
                     unit.Pos = unitData.Pos;
+                    if (unit.ReinforcementTurn > 0 && !unit.Statue)
+                    {
+                        unit.PreviousPos = unit.Pos;
+                        unit.Pos = Vector2Int.one * -1;
+                    }
                     PlayerUnits.Add(unit);
                     if (name != StaticGlobals.MAIN_CHARACTER_NAME)
                     {
@@ -1056,12 +1064,12 @@ public class GameController : MonoBehaviour
             }
         }
         enemyCount = -1;
-        currentPhase = Team.Player;
+        CurrentPhase = Team.Player;
         //interactable = true;
     }
     public void ShowDangerArea()
     {
-        units.FindAll(a => a.TheTeam != Team.Player && !a.Moved).ForEach(a => a.MarkDangerArea());
+        units.FindAll(a => a.TheTeam != CurrentPhase && !a.Moved).ForEach(a => a.MarkDangerArea());
     }
     public string GetPauseObjectiveText()
     {
@@ -1089,7 +1097,7 @@ public class GameController : MonoBehaviour
             case Objective.Boss:
                 return "Defeat\n" + selectedMap.ObjectiveData;
             case Objective.Escape:
-                return "Frogman\nto mark";
+                return StaticGlobals.MAIN_CHARACTER_NAME + "\nto mark";
             case Objective.Survive:
                 return "Survive\n" + (int.Parse(selectedMap.ObjectiveData) - Turn + 1) + " turns";
             default:
@@ -1117,7 +1125,7 @@ public class GameController : MonoBehaviour
     }
     public int LeftToMove()
     {
-        return units.FindAll(a => a.TheTeam == Team.Player && !a.Moved).Count;
+        return units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).Count;
     }
     public int GameSpeed()
     {
