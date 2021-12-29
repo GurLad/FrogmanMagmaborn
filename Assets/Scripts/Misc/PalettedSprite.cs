@@ -24,9 +24,14 @@ public class PalettedSprite : MonoBehaviour
     private bool ui;
     private SpriteRenderer renderer;
     private Image image;
+    private bool initialized = false;
 
     public void Awake()
     {
+        if (initialized)
+        {
+            return;
+        }
         if (!enabled)
         {
             // This is so weird. Probably related to the "no Start" bug on units created with CreatePlayerUnit?
@@ -41,6 +46,7 @@ public class PalettedSprite : MonoBehaviour
         {
             (image = GetComponent<Image>()).material = Instantiate(Resources.Load<Material>("Palette"));
         }
+        initialized = true;
     }
 
     private void Start()
@@ -50,6 +56,10 @@ public class PalettedSprite : MonoBehaviour
 
     public void UpdatePalette()
     {
+        if (!initialized)
+        {
+            throw Bugger.Error("Uninitialized PalettedSprite - this is a Frogman Magmaborn error. Please report to the devs.");
+        }
         if (!ui)
         {
             for (int i = 0; i < 4; i++)

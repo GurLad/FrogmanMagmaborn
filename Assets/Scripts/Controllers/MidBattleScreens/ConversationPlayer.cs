@@ -67,9 +67,7 @@ public class ConversationPlayer : MidBattleScreen
         PortraitR.gameObject.SetActive(false);
         PortraitL.Awake();
         PortraitL.gameObject.SetActive(false);
-    }
-    private void Start()
-    {
+        CGController.Init();
     }
     private void Update()
     {
@@ -727,6 +725,7 @@ public class ConversationPlayer : MidBattleScreen
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         SetSinglePortrait(true);
+        CGController.HideCG();
         currentSpeakerIsLeft = false;
         previousLineParts = null;
         skipping = false;

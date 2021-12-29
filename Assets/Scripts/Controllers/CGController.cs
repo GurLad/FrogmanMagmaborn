@@ -22,8 +22,12 @@ public class CGController : MonoBehaviour
         CGs.Add(cg);
     }
 
-    private void Awake()
+    public void Init()
     {
+        BG1.Awake();
+        BG2.Awake();
+        FG1.Awake();
+        FG2.Awake();
         Container.SetActive(false);
     }
 
