@@ -33,8 +33,8 @@ public class CGController : MonoBehaviour
 
     public void ShowCG(string name)
     {
-        previousBG1Palette = PaletteController.Current.BackgroundPalettes[0];
-        previousBG2Palette = PaletteController.Current.BackgroundPalettes[1];
+        previousBG1Palette = PaletteController.Current.BackgroundPalettes[0].Clone();
+        previousBG2Palette = PaletteController.Current.BackgroundPalettes[1].Clone();
         CG toShow = CGs.Find(a => a.Name == name);
         if (toShow == null)
         {
@@ -44,8 +44,8 @@ public class CGController : MonoBehaviour
         LoadImage(BG2, toShow.BGImage2);
         LoadImage(FG1, toShow.FGImage1);
         LoadImage(FG2, toShow.FGImage2);
-        PaletteController.Current.BackgroundPalettes[0] = toShow.BGPalette1;
-        PaletteController.Current.BackgroundPalettes[1] = toShow.BGPalette2;
+        PaletteController.Current.BackgroundPalettes[0] = toShow.BGPalette1.Clone();
+        PaletteController.Current.BackgroundPalettes[1] = toShow.BGPalette2.Clone();
         BG1.Palette = 0;
         BG2.Palette = 1;
         FG1.Palette = toShow.FGPalette1;
@@ -55,9 +55,13 @@ public class CGController : MonoBehaviour
 
     public void HideCG()
     {
-        PaletteController.Current.BackgroundPalettes[0] = previousBG1Palette ?? PaletteController.Current.BackgroundPalettes[0];
-        PaletteController.Current.BackgroundPalettes[1] = previousBG2Palette ?? PaletteController.Current.BackgroundPalettes[1];
-        Container.SetActive(false);
+        if (Container.activeSelf)
+        {
+            PaletteController.Current.BackgroundPalettes[0] = previousBG1Palette ?? PaletteController.Current.BackgroundPalettes[0];
+            PaletteController.Current.BackgroundPalettes[1] = previousBG2Palette ?? PaletteController.Current.BackgroundPalettes[1];
+            previousBG1Palette = previousBG2Palette = null;
+            Container.SetActive(false);
+        }
     }
 
     private void LoadImage(PalettedSprite display, Sprite image)
