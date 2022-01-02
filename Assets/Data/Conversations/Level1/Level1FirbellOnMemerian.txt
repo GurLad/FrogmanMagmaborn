@@ -1,0 +1,30 @@
+priority:5
+unique:T
+~
+roomNumber:1
+hasFlag:FirbellSawMemerian
+~
+hasCharacter:Firbell
+~
+:play:BeforeBattle
+Firbell: Hello, Frogman.
+Frogman: Oh, hi, Firbell.
+Firbell: That golem we met last time... Memerian...\a I feel like I know her.
+Frogman: Really?
+Firbell: Yes, but it does not make any sense...\a What is wrong with me?
+Frogman: Firbell? Are you okay?
+:play:Trustworthy
+Torment: Nope. She's got a bad case of faulty memory erasure.\a Heh.
+Frogman: Torment?!
+Torment: Missed me? Ha!\a Don't worry, I'll leave again soon.\a Heh.
+Frogman: What are you doing this time?!
+Torment: Fixing my past mistakes, of course! I can't have the...\a normal Magmaborn remembering my previous champions, right?\a Ha ha ha!
+Frogman: You... erased Firbell's memeory?
+Torment: Nothing so drastic. Only a small portion of it! Heh!\a But do not trouble your feeble mind -\a both of you shall forget all of that soon.
+Frogman: You can erase memories?!
+Torment: ...I forget how slow you are sometimes.\a Yes, Frogman.\a I can erase memories. Ha!\a But you must die first. After all,\a touching the memories of the living would be so...\a rude, wouldn't you agree?\a Heh heh heh!
+:screenShake:
+Frogman: Urk!
+:lose:
+~
+:play:AfterBattle

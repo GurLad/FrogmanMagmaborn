@@ -10,10 +10,21 @@ roomNumber:6
 :loadUnits::player
 :play:BeforeBattle
 Memerian|???: Hey. You there. Who are you?
+:if:hasCharacter:Firbell{
+:setFlag:FirbellSawMemerian
+Firbell||L: You... You seem familiar...
+Frogman||L: Firbell? Who is that?
+Memerian: ...My name is Memerian,
+and I've never seen this skeleton before in my life.
+Firbell||L: I... Forgive me, I must be mistaken...
+Frogman||L: Uh... Okay. My name is Frogmam, and this is Firbell.\a Wait, Memerian? I think Xeplogi mentioned you.
+}
+:else:{
 Frogman||L: My name is Frogman. Who might you be?
 Memerian: I'm Memerian.
 Frogman: Memerian? I think Xeplogi mentioned you.
-Memerian: Did he know? I hope you didn't listen to the fool.
+}
+Memerian: Did he now? I hope you didn't listen to the fool.
 Frogman: Um, not really.
 # Memerian is afraid to talk about Torment in public, and rightly so.
 :if:charactersAlive:<2{

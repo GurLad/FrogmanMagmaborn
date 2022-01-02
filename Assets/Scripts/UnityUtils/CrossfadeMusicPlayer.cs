@@ -56,7 +56,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         {
             throw Bugger.Error("No matching audio clip! (" + name + ")");
         }
-        if (mainAudioSource.clip == target.AudioClip)
+        if (Playing == name)
         {
             return;
         }
@@ -81,6 +81,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     public void PlayIntro(string name, bool? keepTimestamp = null)
     {
         Play(name + "Intro", keepTimestamp);
+        Playing = Playing.Replace("Intro", "");
         playingIntro = true;
         seconderyAudioSource.loop = false;
     }
@@ -120,7 +121,6 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         }
         if (playingIntro && !mainAudioSource.isPlaying)
         {
-            Playing = Playing.Replace("Intro", "");
             CrossfadeMusicPlayerObject target = Tracks.Find(a => a.Name == Playing);
             if (target == null)
             {

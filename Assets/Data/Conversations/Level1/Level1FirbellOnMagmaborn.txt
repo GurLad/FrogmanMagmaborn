@@ -1,0 +1,34 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:1
+numRuns:>2
+~ Demands
+hasCharacter:Firbell
+~ Before battle
+:play:BeforeBattle
+Frogman: Oh. Hello, Firbell.
+Firbell: Hello, Frogman. We meet again.
+Frogman: Yes.\a Do you know how many Magmaborn are there?
+Fribell: Well, I usually fight either alone or with Xirveros.\a However, I have also found a Kresla a few times.
+Frogman: Yes, I met her too.\a She's a bit... talkative.
+Firbell: More than a bit.\a Anyway, there was also a golem...\a Her name was...\a Huh.\a I cannot seem to remember her name.
+Frogman: Uh... How well did you know her?
+Firbell: I...\a I think we fought together...\a But it does not make any sense...\a My mind is...
+Frogman: Firbell?
+Firbell: ...\a Where were we, Frogman?
+Frogman: Um, talking about-
+:loadUnits::monster
+Firbell: Frogman. There are monsters here.\a This is no time for idle chatter.
+Frogman: What? When did they arrive?
+Firbell: It matters not. Ready your bow.
+:setFlag:FirbellFrogmanOtherMagmaborn
+:markDone:
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
