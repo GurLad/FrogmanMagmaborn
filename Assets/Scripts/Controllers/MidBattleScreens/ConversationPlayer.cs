@@ -318,15 +318,19 @@ public class ConversationPlayer : MidBattleScreen
                     GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(args[0]));
                     break;
                 case "loadUnits":
-                    // Params: string mapName = chosenMap, Team team = allTeams
-                    AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam);
+                    // Params: string mapName = chosenMap, Team team = allTeams, bool keepPrevious = false
+                    AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam, CAT.OpBool);
                     if (parts.Length < 4)
                     {
                         GameController.Current.LoadLevelUnits(args[0]);
                     }
-                    else
+                    else if (parts.Length < 5)
                     {
                         GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam());
+                    }
+                    else
+                    {
+                        GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam(), args[2] == "T");
                     }
                     break;
                 case "loadMap":
@@ -440,7 +444,7 @@ public class ConversationPlayer : MidBattleScreen
                 case "screenShake":
                     // Params: float strength = 1, float duration = 1
                     // Shakes the screen for duartion time with strength amount
-                    AssertCommand("screenShake", args, CAT.Float, CAT.Float);
+                    AssertCommand("screenShake", args, CAT.OpFloat, CAT.OpFloat);
                     float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
                     float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
                     CameraController.Current.ScreenShake(strength, duration);
@@ -751,7 +755,7 @@ public class ConversationPlayer : MidBattleScreen
             else
             {
                 CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
-                GameController.Current.AssignGenericPortraitsToUnits();
+                GameController.Current.BeginBattle();
                 if (origin.PostBattleLines.Count <= 0)
                 {
                     origin.Choose(true);

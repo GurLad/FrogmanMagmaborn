@@ -1214,7 +1214,7 @@ MonoBehaviour:
 
       roomNumber:1
 
-      numRuns:>3
+      numRuns:>2
 
       ~
       Demands
@@ -1225,50 +1225,50 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
+      :loadUnits::player
+
       Frogman:
       Oh. Hello, Firbell.
 
-      Firbell: Hello.
-
-      Frogman: I wanted to talk
-      to you about Xirveros.\a He''s clearly quite insane.\a How can we truly trust
-      him?
-
-      Firbell: ...What did you just imply?
-
-      Frogman: Just that
-      maybe trusting an utter madman with our lives\a isn''t the brightest idea.
-
-      And
-      we could just ignore him, or even kill-
-
-      Firbell: Frogman. Stop that
-      at once, before I kill you myself.
-
-      Frogman: What? Why? Listen, I know-
-
-      Firbell:
-      You do not know.\a He was both my mentor and only companion\a for an incredibly
-      long time.\a He was given the utmost honour a commoner ever could by my\a own
-      royal family.\a Show him disrespect,\a and you insult both me and my entire
-      lineage.\a Do not go down that path.
-
-      Frogman: Is that a threat?
-
-      Firbell:
-      It very much is.
-
-      Frogman: I... see.
-
-      Firbell: ...
+      Firbell: Hello, Frogman. We meet again.
 
       Frogman:
-      Uh.\a Let''s just kill these monsters or something, yeah?
+      Yes.\a Do you know how many Magmaborn are there?
 
-      Firbell: Very
-      well.\a And do not bring that up ever again.
+      Firbell: Well, I usually
+      fight either alone or with Xirveros.\a However, I have also found a Kresla
+      a few times.
 
-      :setFlag:FirbellFrogmanCrazyMagmaborn
+      Frogman: Yes, I met her too.\a She''s a bit... talkative.
+
+      Firbell:
+      More than a bit.\a Anyway, there was also a golem...\a Her name was...\a Huh.\a
+      I cannot seem to remember her name.
+
+      Frogman: Uh... How well did you
+      know her?
+
+      Firbell: I...\a I think we fought together...\a But it does
+      not make any sense...\a My mind is...
+
+      Frogman: Firbell?
+
+      Firbell:
+      ...\a Where were we, Frogman?
+
+      Frogman: Um, talking about-
+
+      :loadUnits::monster:T
+
+      Firbell:
+      Frogman. There are monsters here.\a This is no time for idle chatter.
+
+      Frogman:
+      What? When did they arrive?
+
+      Firbell: It matters not. Ready your bow.
+
+      :setFlag:FirbellFrogmanOtherMagmaborn
 
       :markDone:
 
@@ -1289,7 +1289,80 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level1FirbellOnXirveros
+    Name: Level1FirbellOnMagmaborn
+  - Text: 'priority:5
+
+      unique:T
+
+      ~
+
+      roomNumber:1
+
+      hasFlag:FirbellSawMemerian
+
+      ~
+
+      hasCharacter:Firbell
+
+      ~
+
+      :play:BeforeBattle
+
+      Firbell:
+      Hello, Frogman.
+
+      Frogman: Oh, hi, Firbell.
+
+      Firbell: That golem
+      we met last time... Memerian...\a I feel like I know her.
+
+      Frogman: Really?
+
+      Firbell:
+      Yes, but it does not make any sense...\a What is wrong with me?
+
+      Frogman:
+      Firbell? Are you okay?
+
+      :play:Trustworthy
+
+      Torment: Nope. She''s
+      got a bad case of faulty memory erasure.\a Heh.
+
+      Frogman: Torment?!
+
+      Torment:
+      Missed me? Ha!\a Don''t worry, I''ll leave again soon.\a Heh.
+
+      Frogman:
+      What are you doing this time?!
+
+      Torment: Fixing my past mistakes, of
+      course! I can''t have the...\a normal Magmaborn remembering my previous champions,
+      right?\a Ha ha ha!
+
+      Frogman: You... erased Firbell''s memeory?
+
+      Torment:
+      Nothing so drastic. Only a small portion of it! Heh!\a But do not trouble your
+      feeble mind -\a both of you shall forget all of that soon.
+
+      Frogman:
+      You can erase memories?!
+
+      Torment: ...I forget how slow you are sometimes.\a
+      Yes, Frogman.\a I can erase memories. Ha!\a But you must die first. After all,\a
+      touching the memories of the living would be so...\a rude, wouldn''t you agree?\a
+      Heh heh heh!
+
+      :screenShake:
+
+      Frogman: Urk!
+
+      :markDone:
+
+      :lose:'
+    Name: Level1FirbellOnMemerian
   - Text: 'priority:4
 
       unique:T
@@ -5447,21 +5520,48 @@ MonoBehaviour:
       Memerian|???:
       Hey. You there. Who are you?
 
-      Frogman||L: My name is Frogman. Who might
-      you be?
+      :if:hasCharacter:Firbell{
+
+      :setFlag:FirbellSawMemerian
+
+      Firbell||L:
+      You... You seem familiar...
+
+      Frogman||L: Firbell? Who is that?
+
+      Memerian:
+      ...My name is Memerian,
+
+      and I''ve never seen this skeleton before in
+      my life.
+
+      Firbell||L: I... Forgive me, I must be mistaken...
+
+      Frogman||L:
+      Uh... Okay. My name is Frogmam, and this is Firbell.\a Wait, Memerian? I think
+      Xeplogi mentioned you.
+
+      }
+
+      :else:{
+
+      Frogman||L: My name is
+      Frogman. Who might you be?
 
       Memerian: I''m Memerian.
 
-      Frogman: Memerian? I think Xeplogi
-      mentioned you.
+      Frogman:
+      Memerian? I think Xeplogi mentioned you.
 
-      Memerian: Did he know? I hope you didn''t listen to the
-      fool.
+      }
+
+      Memerian: Did he now?
+      I hope you didn''t listen to the fool.
 
       Frogman: Um, not really.
 
-      # Memerian is afraid to talk about
-      Torment in public, and rightly so.
+      #
+      Memerian is afraid to talk about Torment in public, and rightly so.
 
       :if:charactersAlive:<2{
 
@@ -5606,43 +5706,51 @@ MonoBehaviour:
       Memerian:
       Just Memerian will do, thanks.
 
-      Xeplogi: The source of all evil! The
-      archnemesis of Tori!\a A devilish monster! A-
+      :if:hasCharacter:Firbell{
 
-      Frogman||L: I get it,
-      Xeplogi.
+      :setFlag:FirbellSawMemerian
 
-      # Memerian is afraid to talk about Torment in public, and rightly
-      so.
+      Firbell||L:
+      ...Memerian?
+
+      }
+
+      Xeplogi||L: The source of all evil! The archnemesis
+      of Tori!\a A devilish monster! A-
+
+      Frogman||L: I get it, Xeplogi.
+
+      #
+      Memerian is afraid to talk about Torment in public, and rightly so.
 
       :if:charactersAlive:<2{
 
-      Memerian: Anyway. Frogman, were you
-      sent here by Torment?
+      Memerian:
+      Anyway. Frogman, were you sent here by Torment?
 
-      Frogman: Wait... you know Torment?!
+      Frogman: Wait... you
+      know Torment?!
 
       }
 
       :else:{
 
-      Memerian:
-      Anyway. Frogman, may we speak in private?
+      Memerian: Anyway. Frogman, may
+      we speak in private?
 
       Frogman: What for?
 
+      Memerian: Let''s call
+      them... the divine Tori.
+
+      Frogman: Who?\a Wait, you mean Tor-
+
       Memerian:
-      Let''s call them... the divine Tori.
-
-      Frogman: Who?\a Wait, you mean
-      Tor-
-
-      Memerian: Yes.
+      Yes.
 
       :if:hasCharacter:Firbell{
 
-      Firbell:
-      Who are you talking about?
+      Firbell: Who are you talking about?
 
       }
 
@@ -6032,55 +6140,6 @@ MonoBehaviour:
 
 '
     Name: Level7FirstTime
-  - Text: 'priority:22
-
-      unique:F
-
-      ~ Requirements
-
-      ~ Demands
-
-      #
-      Nothinig
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      :showCG:John
-
-      :setSpeaker:Frogman||R
-
-      :setSpeaker:Firbell||L
-
-      Yay
-
-      :showCG:Alley
-
-      Nay
-
-      :hideCG:
-
-      :loadMap:
-
-      ~
-      After battle
-
-      :play:AfterBattle
-
-      # Name: Text.
-
-
-      # === Functions
-      ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Test
   Path: Conversations
 --- !u!1 &52382287
 GameObject:

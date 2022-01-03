@@ -968,27 +968,35 @@ public class GameController : MonoBehaviour
             listener.Init(mapEvent);
         }
     }
-    public void LoadLevelUnits(string roomName = "", Team? ofTeam = null)
+    public void LoadLevelUnits(string roomName = "", Team? ofTeam = null, bool keepPrevious = false)
     {
         Map room = LoadMapData(roomName);
-        // Clear previous level
-        if (currentUnitsObject != null)
+        List<Unit> playerCharacters;
+        if (!keepPrevious)
         {
-            PlayersSave();
-            DestroyImmediate(currentUnitsObject.gameObject);
-            playerUnitsCache = null;
-        }
-        currentUnitsObject = new GameObject("UnitsObject").transform;
-        currentUnitsObject.parent = transform;
-        List<Unit> playerCharacters = PlayerUnits.Where(a => a != null).ToList();
-        if ((ofTeam ?? Team.Player) != Team.Player)
-        {
-            // "Remove" player units
-            foreach (Unit player in playerCharacters)
+            // Clear previous level
+            if (currentUnitsObject != null)
             {
-                player.Pos = Vector2Int.one * -1;
-                player.transform.parent = currentUnitsObject;
+                PlayersSave();
+                DestroyImmediate(currentUnitsObject.gameObject);
+                playerUnitsCache = null;
             }
+            currentUnitsObject = new GameObject("UnitsObject").transform;
+            currentUnitsObject.parent = transform;
+            playerCharacters = PlayerUnits.Where(a => a != null).ToList();
+            if ((ofTeam ?? Team.Player) != Team.Player)
+            {
+                // "Remove" player units
+                foreach (Unit player in playerCharacters)
+                {
+                    player.Pos = Vector2Int.one * -1;
+                    player.transform.parent = currentUnitsObject;
+                }
+            }
+        }
+        else
+        {
+            playerCharacters = PlayerUnits.Where(a => a != null).ToList();
         }
         // Units
         List<MapController.UnitPlacementData> unitDatas = room.Units;
@@ -1123,6 +1131,24 @@ public class GameController : MonoBehaviour
         SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("GameOver");
     }
+    /// <summary>
+    /// Called once the pre-battle conversation ends
+    /// </summary>
+    public void BeginBattle()
+    {
+        AssignGenericPortraitsToUnits();
+        // Stats - increase the maps count of player units
+        units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
+    }
+    private void AssignGenericPortraitsToUnits(Team? team = null)
+    {
+        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
+        List<Portrait> portraits = PortraitController.Current.GeneratedGenericPortraits.Values.ToList();
+        for (int i = 0; i < portraits.Count && i < targetUnits.Count; i++)
+        {
+            targetUnits[i].SetIcon(portraits[i]);
+        }
+    }
     public int LeftToMove()
     {
         return units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).Count;
@@ -1172,15 +1198,6 @@ public class GameController : MonoBehaviour
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
         return targetUnits[0].Icon;
-    }
-    public void AssignGenericPortraitsToUnits(Team? team = null)
-    {
-        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
-        List<Portrait> portraits = PortraitController.Current.GeneratedGenericPortraits.Values.ToList();
-        for (int i = 0; i < portraits.Count && i < targetUnits.Count; i++)
-        {
-            targetUnits[i].SetIcon(portraits[i]);
-        }
     }
     public void AssignAIToTeam(Team team, AIType ai)
     {

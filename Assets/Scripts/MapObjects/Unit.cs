@@ -377,6 +377,15 @@ public class Unit : MapObject
                 };
             }
         }
+        // Stats - increase battle count if either unit is a player
+        if (TheTeam.PlayerControlled())
+        {
+            SavedData.Append("Statistics", ToString() + "BattleCount", 1);
+        }
+        else if (unit.TheTeam.PlayerControlled())
+        {
+            SavedData.Append("Statistics", unit.ToString() + "BattleCount", 1);
+        }
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
             ConversationPlayer.Current.OnFinishConversation = () => ActualFight(unit);
@@ -672,6 +681,15 @@ public class Unit : MapObject
             // Kill?
             if (unit.Health <= 0)
             {
+                // Stats - increase kill count if it's a player unit, increase death count if a player unit was killed
+                if (TheTeam.PlayerControlled())
+                {
+                    SavedData.Append("Statistics", ToString() + "KillCount", 1);
+                }
+                else if (unit.TheTeam.PlayerControlled())
+                {
+                    SavedData.Append("Statistics", unit.ToString() + "DeathCount", 1);
+                }
                 GameController.Current.KillUnit(unit);
                 return null;
             }
