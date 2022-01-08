@@ -58,7 +58,7 @@ public static class SavedData
         {
             if (value < 0 || value > MaxNumSlots)
             {
-                throw new SavedDataException("Using an invalid slot (" + value + "). Must be negative and below " + MaxNumSlots);
+                throw new SavedDataException("Using an invalid slot (" + value + "). Must be positive and below " + MaxNumSlots);
             }
             if (value != saveSlot)
             {
@@ -298,6 +298,15 @@ public static class SavedData
                 }
             }
         }
+    }
+    /// <summary>
+    /// Frogman Magmaborn specific - creates the files all save slots have.
+    /// </summary>
+    public static void CreateSaveSlotFiles()
+    {
+        CreateFile("Knowledge", SaveFileType.File);
+        CreateFile("ConversationData", SaveFileType.File);
+        CreateFile("Statistics", SaveFileType.File);
     }
 
     private static void CheckDatanameValid(string dataName)

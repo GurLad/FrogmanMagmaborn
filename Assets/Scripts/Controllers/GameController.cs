@@ -224,6 +224,7 @@ public class GameController : MonoBehaviour
             LevelNumber = 1;
             playerUnitsCache = new List<Unit>();
         }
+        NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
         CreateLevel();
     }
     /// <summary>
@@ -1126,8 +1127,8 @@ public class GameController : MonoBehaviour
     {
         NotifyListeners(a => a.OnEndLevel(units, false));
         SetPalettesFromMetadata(LevelMetadataController[0]); // Fix Torment palette
-        NumRuns++; // To prevent abuse, like the knowledge
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
+        SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
         SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("GameOver");
     }
