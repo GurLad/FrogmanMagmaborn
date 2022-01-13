@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using CAT = ConversationPlayer.CommandArgumentType;
 
-public class ConversationPlayer : MidBattleScreen
+public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConversationPlayer>
 {
     public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't mroe than 10 types
     private enum CurrentState { Writing, Waiting, Sleep }
@@ -204,16 +204,16 @@ public class ConversationPlayer : MidBattleScreen
     public void PlayOneShot(string text)
     {
         // Store current lines & position
-        if (currentLine < lines.Count)
+        if (currentLine < (lines?.Count ?? 0))
         {
             functionStack.Push(new FunctionStackObject(currentLine, lines));
         }
         // Load new lines
         lines = new List<string>(text.Split('\n'));
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
-        StartLine(0);
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
+        StartLine(0);
     }
     public void PlayPostBattle()
     {
@@ -926,6 +926,17 @@ public class ConversationPlayer : MidBattleScreen
         }
     }
 
+    public SuspendDataConversationPlayer SaveToSuspendData()
+    {
+        return new SuspendDataConversationPlayer(origin, postBattle);
+    }
+
+    public void LoadFromSuspendData(SuspendDataConversationPlayer data)
+    {
+        origin = new ConversationData(data.Origin);
+        postBattle = data.PostBattle;
+    }
+
     private class FunctionStackObject
     {
         public int LineNumber;
@@ -936,5 +947,18 @@ public class ConversationPlayer : MidBattleScreen
             LineNumber = lineNumber;
             Lines = lines;
         }
+    }
+}
+
+[System.Serializable]
+public class SuspendDataConversationPlayer // People cannot suspend in the middle of a conversation
+{
+    public ConversationData Origin;
+    public bool PostBattle;
+
+    public SuspendDataConversationPlayer(ConversationData origin, bool postBattle)
+    {
+        Origin = origin;
+        PostBattle = postBattle;
     }
 }

@@ -6129,6 +6129,7 @@ MonoBehaviour:
 
 '
     Name: Level7FirstTime
+  IgnoreDoneConversations: 1
   Path: Conversations
 --- !u!1 &52382287
 GameObject:
@@ -16057,6 +16058,10 @@ MonoBehaviour:
   Level: 0
   BattleQuote: 
   DeathQuote: 
+  Health: 0
+  ReinforcementTurn: 0
+  Statue: 0
+  moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24167,6 +24172,7 @@ GameObject:
   - component: {fileID: 1902908237}
   - component: {fileID: 1902908238}
   - component: {fileID: 1902908239}
+  - component: {fileID: 1902908240}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -28485,6 +28491,39 @@ MonoBehaviour:
     LevelNumber: 4
     Objective: Survive:6
     Name: TormentRoom2
+--- !u!114 &1902908240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902908234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503546eb7ccc535469d9d21876a4d2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SuspendDataConversationPlayer:
+    PostBattle: 0
+  SuspendDataGameController:
+    LevelNumber: 0
+    Turn: 0
+    DeadPlayerUnits: []
+    TempFlags: []
+    Difficulty: 0
+    CurrentPhase: 0
+    CurrentKnowledge: 0
+    EnemyCount: 0
+    SelectedMap:
+      Name: 
+      LevelNumber: 0
+      Units: []
+      MapEvents: []
+      Tileset: 
+      Objective: 0
+      ObjectiveData: 
+      MapString: 
+    Units: []
 --- !u!1 &1903779648
 GameObject:
   m_ObjectHideFlags: 0

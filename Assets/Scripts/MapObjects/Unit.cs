@@ -36,16 +36,13 @@ public class Unit : MapObject
     [System.NonSerialized]
     public Portrait Icon;
     [HideInInspector]
-    [System.NonSerialized]
     public int Health;
     [HideInInspector]
     [System.NonSerialized]
     public Vector2Int PreviousPos;
     [HideInInspector]
-    [System.NonSerialized]
     public int ReinforcementTurn;
     [HideInInspector]
-    [System.NonSerialized]
     public bool Statue;
     public int BattleStatsStr { get { return Stats.Strength + Weapon.Damage; } }
     public int BattleStatsEnd { get { return Stats.MaxHP; } }
@@ -54,6 +51,7 @@ public class Unit : MapObject
     public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
     public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
     private PalettedSprite palette;
+    [SerializeField]
     private bool moved;
     public bool Moved
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class MapObject : MonoBehaviour
 {
+    [SerializeField]
     private Vector2Int pos;
     public Vector2Int Pos
     {

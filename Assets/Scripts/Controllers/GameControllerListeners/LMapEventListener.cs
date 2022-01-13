@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LMapEventListener : AGameControllerListener
 {
+    public string EventData;
     private ConversationData targetEvent;
 
     public void Init(string eventData)
     {
-        targetEvent = new ConversationData(eventData);
+        targetEvent = new ConversationData(EventData = eventData);
     }
 
     public override void OnBeginPlayerTurn(List<Unit> units)

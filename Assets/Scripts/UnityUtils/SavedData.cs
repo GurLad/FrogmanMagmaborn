@@ -307,6 +307,7 @@ public static class SavedData
         CreateFile("Knowledge", SaveFileType.File);
         CreateFile("ConversationData", SaveFileType.File);
         CreateFile("Statistics", SaveFileType.File);
+        CreateFile("SuspendData", SaveFileType.File);
     }
 
     private static void CheckDatanameValid(string dataName)

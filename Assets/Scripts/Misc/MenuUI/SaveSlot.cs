@@ -9,6 +9,7 @@ public class SaveSlot : MonoBehaviour
     public Image MVP;
     public int MaxSlots;
     public Trigger StartTrigger;
+    public Trigger LoadSuspendDataTrigger;
     private int currentSlot;
     private int previousSign;
 
@@ -21,6 +22,15 @@ public class SaveSlot : MonoBehaviour
     {
         if (Control.GetButtonDown(Control.CB.Start) || Control.GetButtonDown(Control.CB.A))
         {
+            SavedData.Save("NewGame", 0);
+            if (SavedData.Load("HasSuspendData", 0) != 0)
+            {
+                LoadSuspendDataTrigger.Activate();
+            }
+            else
+            {
+                StartTrigger.Activate();
+            }
             StartTrigger.Activate();
             gameObject.SetActive(false);
             return;
@@ -39,10 +49,21 @@ public class SaveSlot : MonoBehaviour
         SavedData.CreateSaveSlotFiles();
         SavedData.Save("DefaultSaveSlot", currentSlot, SaveMode.Global);
         // Display the new slot's data
-        Text.text = "-- Slot " + (currentSlot + 1) + " --\n" + 
-                    "Runs: " + SavedData.Load<int>("NumRuns") + "\n" +
-                    "Best: " + SavedData.Load<int>("FurthestLevel") + "\n" + 
-                    "Time: " + SecondsToTime(SavedData.Load<float>("PlayTime"));
+        if (SavedData.Load("NewGame", 1) != 1)
+        {
+            Text.text = "-- Slot " + (currentSlot + 1) + " --\n" +
+                        "Runs: " + SavedData.Load<int>("NumRuns") + "\n" +
+                        "Best: " + SavedData.Load<int>("FurthestLevel") + "\n" +
+                        "Time: " + SecondsToTime(SavedData.Load<float>("PlayTime"));
+            if (SavedData.Load("HasSuspendData", 0) != 0)
+            {
+                Text.text = Text.text.ToColoredString(2);
+            }
+        }
+        else
+        {
+            Text.text = "-- Slot " + (currentSlot + 1) + " --\n\n" + "  New Game ";
+        }
         // MVP display TBA - requires LevelMetadata, ClassData & UnitData in the main menu...
         MVP.gameObject.SetActive(false);
     }

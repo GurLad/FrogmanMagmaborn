@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameController>
 {
     public static readonly Vector2Int MAP_SIZE = new Vector2Int(16, 15);
     public static GameController Current;
@@ -98,6 +98,7 @@ public class GameController : MonoBehaviour
                     Unit unit = CreateEmptyUnit();
                     unit.Load(playerUnits[i]);
                     unit.name = "Unit" + unit.Name;
+                    unit.Health = unit.Stats.MaxHP;
                     Bugger.Info("Loading " + unit.Name);
                     AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
@@ -184,48 +185,57 @@ public class GameController : MonoBehaviour
         MoveMarker.Init();
         AttackMarker.Init();
     }
+
     private void Start()
     {
-        difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
         playerUnitsCache = new List<Unit>();
-        if (DebugStartAtEndgame)
+        if (SavedData.Load("HasSuspendData", 0) != 0) // Has suspended data
         {
-            LevelNumber = DebugEndgameLevel;
-            playerUnitsCache = new List<Unit>();
-            foreach (string unit in DebugUnits)
-            {
-                PlayerUnits.Add(CreatePlayerUnit(unit));
-            }
-            if (DebugUnlimitedMove)
-            {
-                foreach (Unit unit in PlayerUnits)
-                {
-                    unit.Movement = 50;
-                    unit.Flies = true;
-                }
-            }
-            if (DebugOPPlayers)
-            {
-                foreach (Unit unit in PlayerUnits)
-                {
-                    unit.Stats += unit.AutoLevel(50);
-                }
-            }
-            if (DebugExtraLevels > 0)
-            {
-                foreach (Unit unit in PlayerUnits)
-                {
-                    unit.Stats += unit.AutoLevel(DebugExtraLevels);
-                }
-            }
+            SuspendController.Current.LoadFromSuspendData();
+            TurnAnimation.ShowTurn(CurrentPhase);
         }
         else
         {
-            LevelNumber = 1;
-            playerUnitsCache = new List<Unit>();
+            difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
+            if (DebugStartAtEndgame)
+            {
+                LevelNumber = DebugEndgameLevel;
+                playerUnitsCache = new List<Unit>();
+                foreach (string unit in DebugUnits)
+                {
+                    PlayerUnits.Add(CreatePlayerUnit(unit));
+                }
+                if (DebugUnlimitedMove)
+                {
+                    foreach (Unit unit in PlayerUnits)
+                    {
+                        unit.Movement = 50;
+                        unit.Flies = true;
+                    }
+                }
+                if (DebugOPPlayers)
+                {
+                    foreach (Unit unit in PlayerUnits)
+                    {
+                        unit.Stats += unit.AutoLevel(50);
+                    }
+                }
+                if (DebugExtraLevels > 0)
+                {
+                    foreach (Unit unit in PlayerUnits)
+                    {
+                        unit.Stats += unit.AutoLevel(DebugExtraLevels);
+                    }
+                }
+            }
+            else
+            {
+                LevelNumber = 1;
+                playerUnitsCache = new List<Unit>();
+            }
+            NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
+            CreateLevel();
         }
-        NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
-        CreateLevel();
     }
     /// <summary>
     /// Used for player control.
@@ -383,15 +393,18 @@ public class GameController : MonoBehaviour
         }
         return GameState.Normal;
     }
+
     public void ManuallyEndTurn()
     {
         units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).ForEach(a => a.Moved = true);
         checkEndTurn = true;
     }
+
     protected virtual void HandleAButton()
     {
         InteractWithTile(cursorPos.x, cursorPos.y);
     }
+
     protected virtual void HandleBButton()
     {
         switch (InteractState)
@@ -426,6 +439,7 @@ public class GameController : MonoBehaviour
                 break;
         }
     }
+
     protected virtual void HandleSelectButton()
     {
         switch (InteractState)
@@ -484,6 +498,7 @@ public class GameController : MonoBehaviour
                 break;
         }
     }
+
     protected virtual void HandleStartButton()
     {
         // Only works in None
@@ -501,6 +516,7 @@ public class GameController : MonoBehaviour
                 break;
         }
     }
+
     protected virtual void CheckDifficulty()
     {
         if (difficulty == Difficulty.NotSet) // Set during the first level, so the player will have played/skipped the tutorial before selecting difficulty
@@ -528,6 +544,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
     private void ShowUI()
     {
         UITileInfoPanel.gameObject.SetActive(true);
@@ -580,6 +597,7 @@ public class GameController : MonoBehaviour
         UITileInfoPanel.anchorMax = anchor;
         UITileInfoPanel.pivot = anchor;
     }
+
     private void HideUI()
     {
         UITileInfoPanel.gameObject.SetActive(false);
@@ -587,6 +605,7 @@ public class GameController : MonoBehaviour
         UIFightPanel.gameObject.SetActive(false);
         Cursor.gameObject.SetActive(false);
     }
+
     private void EnemyAI()
     {
         // Enemy AI. TBA: Change to check which team is player controlled and which is computer controlled.
@@ -611,27 +630,33 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
     private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
     {
         MiniBattleStatsPanel panel = reverse ? UIDefenderPanel : UIAttackerPanel;
         panel.DisplayBattleForecast(origin, target, reverse);
     }
+
     public void InteractWithTile(int x, int y)
     {
         MapObjectsAtPos(x, y).ForEach(a => a.Interact(InteractState));
     }
+
     public bool MarkerAtPos<T>(int x, int y) where T : Marker
     {
         return MapObjects.Find(a => a.Pos.x == x && a.Pos.y == y && a is T) == null;
     }
+
     public bool MarkerAtPos<T>(Vector2Int pos) where T : Marker
     {
         return MarkerAtPos<T>(pos.x, pos.y);
     }
+
     private List<MapObject> MapObjectsAtPos(int x, int y)
     {
         return MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y);
     }
+
     private List<MapObject> MapObjectsAtPos(Vector2Int pos)
     {
         return MapObjectsAtPos(pos.x, pos.y);
@@ -651,11 +676,13 @@ public class GameController : MonoBehaviour
         }
         return false;
     }
+
     public void FinishMove(Unit unit)
     {
         unit.Moved = true;
         FinishMoveDead();
     }
+
     public void FinishMoveDead()
     {
         RemoveMarkers();
@@ -667,6 +694,7 @@ public class GameController : MonoBehaviour
         }
         CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
     }
+
     public Unit FindUnitAtPos(int x, int y)
     {
         return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
@@ -719,12 +747,14 @@ public class GameController : MonoBehaviour
         }
         return !CheckConveresationWait() && !MidBattleScreen.HasCurrent; // Wait for turn events
     }
+
     public void TransitionToMidBattleScreen(MidBattleScreen screen)
     {
         transform.parent.gameObject.SetActive(false);
         MidBattleScreen.Set(screen, true);
         CameraBlackScreen.SetActive(true);
     }
+
     public void KillUnit(Unit unit)
     {
         if (!GameCalculations.PermaDeath && unit.TheTeam == Team.Player && unit.Name != StaticGlobals.MAIN_CHARACTER_NAME) // No perma-death
@@ -746,11 +776,13 @@ public class GameController : MonoBehaviour
         }
         deadUnitDeathQuote = unit.DeathQuote; // Since I need to wait for the battle animation to finish first
     }
+
     private void PlayPostBattle()
     {
         NotifyListeners(a => a.OnPlayerWin(units));
         ConversationPlayer.Current.PlayPostBattle();
     }
+
     public void Win()
     {
         NotifyListeners(a => a.OnEndLevel(units, true));
@@ -761,6 +793,7 @@ public class GameController : MonoBehaviour
         interactable = true;
         PlayersLevelUp();
     }
+
     private void PlayersLevelUp()
     {
         List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
@@ -768,11 +801,13 @@ public class GameController : MonoBehaviour
         foreach (Unit character in playerCharacters)
         {
             character.Level++;
+            character.Moved = false;
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
         levelUpController.Players = playerCharacters;
         TransitionToMidBattleScreen(levelUpController);
     }
+
     public void PlayersSave()
     {
         // Save player characters
@@ -788,6 +823,7 @@ public class GameController : MonoBehaviour
             Bugger.Info(playerCharacters[i].Save());
         }
     }
+
     public void CreateLevel()
     {
         List<Unit> playerCharacters = PlayerUnits;
@@ -830,6 +866,7 @@ public class GameController : MonoBehaviour
         // Play conversation
         ConversationPlayer.Current.Play(conversation);
     }
+
     private Unit CreateEmptyUnit()
     {
         Unit unit = Instantiate(BaseUnit.gameObject, currentUnitsObject).GetComponent<Unit>();
@@ -838,6 +875,7 @@ public class GameController : MonoBehaviour
         unit.gameObject.SetActive(true);
         return unit;
     }
+
     private Unit CreateUnit(string name, int level, Team team, bool canReplace)
     {
         // Find replacement, fix level
@@ -906,10 +944,12 @@ public class GameController : MonoBehaviour
         unit.Init();
         return unit;
     }
+
     public Unit CreatePlayerUnit(string name)
     {
         return CreateUnit(name, -1, Team.Player, false);
     }
+
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)
     {
         AdvancedSpriteSheetAnimation animation = Instantiate(UnitClassData.BaseAnimation, unit.transform);
@@ -918,6 +958,7 @@ public class GameController : MonoBehaviour
         animation.Start();
         animation.Activate(0);
     }
+
     private Map LoadMapData(string mapName = "")
     {
         Map map;
@@ -935,9 +976,14 @@ public class GameController : MonoBehaviour
         }
         return map;
     }
+
     public void LoadMap(string mapName = "")
     {
-        Map map = LoadMapData(mapName);
+        LoadMap(LoadMapData(mapName));
+    }
+
+    public void LoadMap(Map map)
+    {
         // Clear previous level
         if (currentMapObject != null)
         {
@@ -969,6 +1015,7 @@ public class GameController : MonoBehaviour
             listener.Init(mapEvent);
         }
     }
+
     public void LoadLevelUnits(string roomName = "", Team? ofTeam = null, bool keepPrevious = false)
     {
         Map room = LoadMapData(roomName);
@@ -1076,10 +1123,12 @@ public class GameController : MonoBehaviour
         CurrentPhase = Team.Player;
         //interactable = true;
     }
+
     public void ShowDangerArea()
     {
         units.FindAll(a => a.TheTeam != CurrentPhase && !a.Moved).ForEach(a => a.MarkDangerArea());
     }
+
     public string GetPauseObjectiveText()
     {
         switch (selectedMap.Objective)
@@ -1097,6 +1146,7 @@ public class GameController : MonoBehaviour
         }
         return "";
     }
+
     public string GetInfoObjectiveText()
     {
         switch (selectedMap.Objective)
@@ -1114,6 +1164,7 @@ public class GameController : MonoBehaviour
         }
         return "";
     }
+
     public void ShowPointerMarker(Unit origin, int paletteID)
     {
         PointerMarker pointerMarker = Instantiate(PointerMarker.gameObject).GetComponent<PointerMarker>();
@@ -1123,6 +1174,7 @@ public class GameController : MonoBehaviour
         pointerMarker.PalettedSprite.Palette = paletteID;
         pointerMarker.gameObject.SetActive(true);
     }
+
     public void Lose()
     {
         NotifyListeners(a => a.OnEndLevel(units, false));
@@ -1141,6 +1193,7 @@ public class GameController : MonoBehaviour
         // Stats - increase the maps count of player units
         units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
     }
+
     private void AssignGenericPortraitsToUnits(Team? team = null)
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
@@ -1150,18 +1203,22 @@ public class GameController : MonoBehaviour
             targetUnits[i].SetIcon(portraits[i]);
         }
     }
+
     public int LeftToMove()
     {
         return units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).Count;
     }
+
     public int GameSpeed()
     {
         return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ Control.GetButton(Control.CB.B)) ? 2 : 1;
     }
+
     public bool IsValidPos(int x, int y)
     {
         return x >= 0 && y >= 0 && x < MapSize.x && y < MapSize.y;
     }
+
     public bool IsValidPos(Vector2Int pos)
     {
         return IsValidPos(pos.x, pos.y);
@@ -1171,11 +1228,13 @@ public class GameController : MonoBehaviour
     {
         return GetNamedUnit(name) != null;
     }
+
     public int CountUnitsAlive(Team? team)
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
         return targetUnits.Count;
     }
+
     public int FindMinMaxPosUnit(Team? team, bool x, bool max)
     {
         Bugger.Info("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
@@ -1191,32 +1250,39 @@ public class GameController : MonoBehaviour
         Bugger.Info("Result: " + minMax);
         return minMax;
     }
+
     public Unit GetNamedUnit(string name)
     {
         return units.Find(a => a.ToString() == name);
     }
+
     public Portrait GetGenericPortrait(Team? team = null)
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
         return targetUnits[0].Icon;
     }
+
     public void AssignAIToTeam(Team team, AIType ai)
     {
         List<Unit> targetUnit = units.FindAll(a => a.TheTeam == team);
         targetUnit.ForEach(a => a.AIType = ai);
     }
+
     public void AddListener(IGameControllerListener listener)
     {
         listeners.Add(listener);
     }
+
     public void RemoveListener(IGameControllerListener listener)
     {
         listeners.Remove(listener);
     }
+
     private void NotifyListeners(System.Action<IGameControllerListener> action)
     {
         listeners.ForEach(a => action(a));
     }
+
     private bool CheckPlayerWin()
     {
         switch (selectedMap.Objective)
@@ -1233,6 +1299,7 @@ public class GameController : MonoBehaviour
                 throw Bugger.Error("No objective!");
         }
     }
+
     private bool CheckPlayerWin(Objective toCheck)
     {
         if (toCheck != selectedMap.Objective)
@@ -1254,6 +1321,7 @@ public class GameController : MonoBehaviour
         }
         return false;
     }
+
     private void SetPalettesFromMetadata(LevelMetadata metadata)
     {
         for (int i = 0; i < 3; i++)
@@ -1262,4 +1330,71 @@ public class GameController : MonoBehaviour
         }
         PaletteController.Current.SpritePalettes[3] = metadata.Palette4;
     }
+
+    public SuspendDataGameController SaveToSuspendData()
+    {
+        SuspendDataGameController suspendData = new SuspendDataGameController();
+        suspendData.LevelNumber = LevelNumber;
+        suspendData.Turn = Turn;
+        suspendData.DeadPlayerUnits = DeadPlayerUnits;
+        suspendData.TempFlags = TempFlags;
+        suspendData.Difficulty = difficulty;
+        suspendData.CurrentPhase = CurrentPhase;
+        suspendData.CurrentKnowledge = currentKnowledge;
+        suspendData.EnemyCount = enemyCount;
+        suspendData.SelectedMap = selectedMap;
+        // Only add the remaining MapEvents
+        suspendData.SelectedMap.MapEvents = listeners.FindAll(a => a is LMapEventListener).ConvertAll(a => ((LMapEventListener)a).EventData);
+        suspendData.Units = units.ConvertAll(a => a.Save());
+        return suspendData;
+    }
+
+    public void LoadFromSuspendData(SuspendDataGameController data)
+    {
+        LevelNumber = data.LevelNumber;
+        SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
+        Turn = data.Turn;
+        DeadPlayerUnits = data.DeadPlayerUnits;
+        TempFlags = data.TempFlags;
+        difficulty = data.Difficulty;
+        CurrentPhase = data.CurrentPhase;
+        currentKnowledge = data.CurrentKnowledge;
+        enemyCount = data.EnemyCount;
+        selectedMap = data.SelectedMap;
+        selectedMap.Init();
+        LoadMap(selectedMap);
+        foreach (string unitJSON in data.Units)
+        {
+            Unit unit = CreateEmptyUnit();
+            unit.Load(unitJSON);
+            unit.Init();
+            unit.name = "Unit" + unit.Name;
+            unit.Moved = unit.Moved;
+            unit.Pos = unit.Pos;
+            Bugger.Info("Loading " + unit.Name);
+            AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
+            unit.gameObject.SetActive(true);
+            if (unit.TheTeam == Team.Player)
+            {
+                playerUnitsCache.Add(unit);
+            }
+        }
+        // Hide the conversation player - terrible workaround
+        ConversationPlayer.Current.PlayOneShot("");
+    }
+}
+
+[System.Serializable]
+public class SuspendDataGameController
+{
+    public int LevelNumber;
+    public int Turn;
+    public List<string> DeadPlayerUnits;
+    public List<string> TempFlags;
+    public Difficulty Difficulty;
+    public Team CurrentPhase;
+    public int CurrentKnowledge;
+    public int EnemyCount;
+    public Map SelectedMap;
+    public List<string> Units;
 }

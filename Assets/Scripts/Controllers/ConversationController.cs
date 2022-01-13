@@ -7,6 +7,7 @@ public class ConversationController : MonoBehaviour
 {
     public static ConversationController Current;
     public List<TextFile> Conversations;
+    public bool IgnoreDoneConversations = true;
     [Header("Editor loader")]
     public string Path = "Conversations";
     private List<ConversationData> options;
@@ -18,7 +19,10 @@ public class ConversationController : MonoBehaviour
         {
             options.Add(new ConversationData(conversation));
         }
-        options = options.FindAll(a => !a.Done);
+        if (IgnoreDoneConversations)
+        {
+            options = options.FindAll(a => !a.Done);
+        }
     }
     public ConversationData SelectConversation()
     {

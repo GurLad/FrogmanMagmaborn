@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ConversationData : System.IComparable<ConversationData>
 {
     public List<string> Requirements { get; } = new List<string>(); // Can add a class for that as well, but seems a bit of an overkill.
@@ -11,13 +12,22 @@ public class ConversationData : System.IComparable<ConversationData>
     public Dictionary<string, List<string>> Functions;
     public bool Done { get; private set; }
     public string ID { get; private set; } = null;
+    // For suspend data
+    [SerializeField]
+    private string sourceText;
+    [SerializeField]
+    private string sourceID;
     private int priority;
     private bool unique;
 
     public ConversationData(TextFile sourceFile) : this(sourceFile.Text, sourceFile.Name) { }
 
+    public ConversationData(ConversationData data) : this(data.sourceText, data.sourceID) { }
+
     public ConversationData(string text, string altID = "Temp")
     {
+        sourceText = text;
+        sourceID = altID;
         // I know that using JSON is techincally better, but I want to be able to create events using a simple text editor, so splits are simple.
         string source = text.Replace("\r", "").Replace('~', '\a').Replace(@"\w", "~");
         string[] parts = source.Split('\a');
