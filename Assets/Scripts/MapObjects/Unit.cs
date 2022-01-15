@@ -50,7 +50,10 @@ public class Unit : MapObject
     public int BattleStatsArm { get { return Stats.Armor; } }
     public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
     public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
+    [SerializeField]
+    private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
+    private bool started;
     [SerializeField]
     private bool moved;
     public bool Moved
@@ -81,7 +84,7 @@ public class Unit : MapObject
     {
         Priorities = new AIPriorities(this);
     }
-    public void Init()
+    public void Init(bool callStart = false)
     {
         palette = GetComponent<PalettedSprite>();
         //if (palette == null)
@@ -90,9 +93,18 @@ public class Unit : MapObject
         //}
         palette.Awake();
         //Start(); // There is a very weird bug - units created with CreatePlayerUnit don't activate their Start function. This is a bad workaround.
+        if (callStart)
+        {
+            Start();
+        }
     }
     protected override void Start()
     {
+        if (started)
+        {
+            return;
+        }
+        started = true;
         base.Start();
         palette = palette ?? GetComponent<PalettedSprite>();
         //if (palette == null)
@@ -105,7 +117,7 @@ public class Unit : MapObject
     }
     private void LoadIcon()
     {
-        switch (GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode)
+        switch (portraitMode == PortraitLoadingMode.None ? (portraitMode = GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode) : portraitMode)
         {
             case PortraitLoadingMode.Name:
                 Icon = PortraitController.Current.FindPortrait(Name);
@@ -119,7 +131,7 @@ public class Unit : MapObject
                 DisplayName = Name = Icon.TheDisplayName;
                 break;
             default:
-                break;
+                throw Bugger.Error("Invalid portrait loading mode!");
         }
     }
     public void SetIcon(Portrait icon, bool changeName = true)
@@ -719,7 +731,7 @@ public class Unit : MapObject
     {
         return JsonUtility.ToJson(this);
     }
-    public void Load(string json)
+    public void Load(string json, bool resetMoved = false)
     {
         MoveMarker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
         AttackMarker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
@@ -727,7 +739,7 @@ public class Unit : MapObject
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
         LoadIcon();
-        moved = false;
+        moved = !resetMoved && moved;
     }
 
     public class DangerArea

@@ -38,8 +38,15 @@ public class OpeningCutscene : Trigger
         count = 0;
         OnFinishFadeOut = () =>
         {
-            ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation());
-            Destroy(this);
+            if (SavedData.Load("HasSuspendData", 0) != 0)
+            {
+                SceneController.LoadScene("Map");
+            }
+            else
+            {
+                ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation());
+                Destroy(this);
+            }
         };
     }
 

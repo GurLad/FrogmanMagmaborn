@@ -9,7 +9,6 @@ public class SaveSlot : MonoBehaviour
     public Image MVP;
     public int MaxSlots;
     public Trigger StartTrigger;
-    public Trigger LoadSuspendDataTrigger;
     private int currentSlot;
     private int previousSign;
 
@@ -23,14 +22,6 @@ public class SaveSlot : MonoBehaviour
         if (Control.GetButtonDown(Control.CB.Start) || Control.GetButtonDown(Control.CB.A))
         {
             SavedData.Save("NewGame", 0);
-            if (SavedData.Load("HasSuspendData", 0) != 0)
-            {
-                LoadSuspendDataTrigger.Activate();
-            }
-            else
-            {
-                StartTrigger.Activate();
-            }
             StartTrigger.Activate();
             gameObject.SetActive(false);
             return;

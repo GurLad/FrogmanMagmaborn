@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 for (int i = 0; i < playerUnits.Length - 1; i++)
                 {
                     Unit unit = CreateEmptyUnit();
-                    unit.Load(playerUnits[i]);
+                    unit.Load(playerUnits[i], true);
                     unit.name = "Unit" + unit.Name;
                     unit.Health = unit.Stats.MaxHP;
                     Bugger.Info("Loading " + unit.Name);
@@ -1363,14 +1363,20 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         selectedMap = data.SelectedMap;
         selectedMap.Init();
         LoadMap(selectedMap);
+        currentUnitsObject = new GameObject("UnitsObject").transform;
+        currentUnitsObject.parent = transform;
         foreach (string unitJSON in data.Units)
         {
             Unit unit = CreateEmptyUnit();
             unit.Load(unitJSON);
-            unit.Init();
+            Vector2Int tempPos = unit.Pos;
+            bool tempMoved = unit.Moved;
+            int tempHealth = unit.Health;
+            unit.Init(true);
             unit.name = "Unit" + unit.Name;
-            unit.Moved = unit.Moved;
-            unit.Pos = unit.Pos;
+            unit.Pos = tempPos;
+            unit.Moved = tempMoved;
+            unit.Health = tempHealth;
             Bugger.Info("Loading " + unit.Name);
             AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
             unit.gameObject.SetActive(true);
