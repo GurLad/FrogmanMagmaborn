@@ -8,7 +8,12 @@ hasCharacter:Firbell
 # Currently, the Firbell/Kresla maps are character specific. I need to change that.
 ~
 # TBA: Add a conversation if someone loses in the first battle
+:if:firstTime{
 :call:PreFirst
+}
+:else:{
+:call:PreRepeat
+}
 ~
 :call:PostFirst
 
@@ -26,16 +31,55 @@ Frogman: No...
 Firbell|???: Quite common. I will explain all in time.\a However, as you have probably noticed,\a we are surrounded by monsters.
 Frogman: Monsters?!
 Firbell|???: Yes. I do not have time to explain. Ready your bow.
-Frogman: My b-bow?\a Right, I have a bow...
-Firbell||L: My name is Firbell, by the way.
+Frogman: My b-bow?\a Right, I have a bow...\a Wait, what's your name?!
+Firbell||L: Firbell.\a Now, let us begin!
+
+~ PreRepeat
+:play:BeforeBattle
+:loadUnits:player
+Firbell: ...Frogman. You are back.
+Frogman: Ahhh!\a You!
+Firbell: Yes. It is me again.\a You died rather quickly last time.
+Frogman: What do you mean?! I'm dead! How am I here?!
+Firbell: I told you.\a You were already dead before.
+Frogman: I-\a Uh, right.\a So I'm immortal?!
+Firbell: Quite so.\a But it is still preferable not to get killed\a if you can help it.
+Frogman: I-I see...
+:loadUnits:monster:T
+Firbell: Frogman. The monsters are back.\a Ready your bow.\a And try to stay alive this time.
+Frogman: O-okay...
 
 ~ PostFirst
+:if:!hasCharacter:Firbell{
+:play:BeforeBattle
+Frogman: Firbell... She died...
+:if:!hasFlag:Level1Fail{
+:play:Trustworthy
+Torment|???: Yes, she did. Because of YOU!
+Frogman: Huh?! Who're you?!
+Torment|???: Nobody important. Heh.\a But you failed me, Frogman.\a Firbell Wasn't supposed to die here.
+Frogman: What are you talking about?
+Torment|???: Do not concern your little mind about it, Frogman.\a You will forget it all soon enough. Ha ha!\a Just don't make me do this again, please.
+:screenShake:
+Frogman: Ahhh!
+:setFlag:Level1Fail
+:lose:
+}
+:else:{
+Torment|???: Seriously? You killed her again?
+Frogman: Huh?! Who're you?!
+Torment|???: I tire of this nonsense.\a Try again!
+:screenShake:
+Frogman: Oof!
+:setFlag:Level1Fail
+:lose:
+}
 :play:AfterBattle
 Frogman: We've won... What were those things?
 Firbell: Dead people. Like us.
 Frogman: What do you mean? They were mindless beasts!
 Firbell: Yes. We retain our mind using Emblems.\a You have one on you as well.
-:showImage:Emblem
+#:showCG:Emblem
 Frogman: Huh? You mean this crystal thing?
 Firbell: Yes, of course.
 I have one too, as do all sapient beings here.

@@ -56,9 +56,10 @@ Torment|Tori: Well, that was the tutorial!\a You will figure out the rest on you
 Try pressing [BButton] on units to view their info,\a or [StartButton] to pause.
 Frogman: Who are you talking to?!
 Torment|Tori: Right, I should probably wipe Frogman's memory before you\a begin.
-Frogman: Stop ignoring me!
-Torment|Tori: And... Done!
-Frogman: Where am I? Who are you?
-Torment|???: Ha ha ha!\a Goodbye, and good luck!\a Have fun!
+:screenShake:
+Frogman: Ark!
+:loadUnits:guard
+:setSingleSpeaker:
+Torment|Tori: Ha ha ha!\a Goodbye, and good luck!\a Have fun!
 :setFlag:TutorialFinish
 :tutorialFinish:
