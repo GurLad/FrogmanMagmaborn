@@ -38,7 +38,6 @@ public class Unit : MapObject
     [HideInInspector]
     public int Health;
     [HideInInspector]
-    [System.NonSerialized]
     public Vector2Int PreviousPos;
     [HideInInspector]
     public int ReinforcementTurn;
