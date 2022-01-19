@@ -665,9 +665,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         throw Bugger.Error("Don't use intro commands outside the intro");
                     }
                     AssertCommand("introShowTutorial", args);
-                    Pause();
-                    Tutorial.Begin();
-                    return;
+                    if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
+                    {
+                        Pause();
+                        Tutorial.Begin();
+                        return;
+                    }
+                    break;
             }
             StartLine(num + 1);
             return;

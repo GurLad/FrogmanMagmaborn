@@ -1750,13 +1750,15 @@ MonoBehaviour:
 
 '
     Name: IntroGeneric1
-  - Text: 'priority:5
+  - Text: 'priority:6
 
       unique:T
 
       ~
 
       furthestLevel:<2
+
+      numRuns:>0
 
       ~
 
@@ -1835,7 +1837,7 @@ MonoBehaviour:
 
 '
     Name: IntroTormentFail
-  IgnoreDoneConversations: 1
+  IgnoreDoneConversations: 0
   Path: Conversations\Intro
 --- !u!1 &187171024
 GameObject:

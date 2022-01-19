@@ -52,10 +52,7 @@ public class ConversationData : System.IComparable<ConversationData>
         }
         // Check unique & id
         ID = ID ?? altID;
-        if (unique && SavedData.Load<int>("ConversationData", "ID" + ID) == 2)
-        {
-            Done = true;
-        }
+        UpdateDone();
         // Requirements, demands, text and everything else
         Requirements = new List<string>(parts[1].Split('\n'));
         Requirements.RemoveAt(0);
@@ -220,6 +217,11 @@ public class ConversationData : System.IComparable<ConversationData>
             return true;
         }
         return false;
+    }
+
+    public void UpdateDone()
+    {
+        Done = unique && SavedData.Load<int>("ConversationData", "ID" + ID) == 2;
     }
 
     public override string ToString()

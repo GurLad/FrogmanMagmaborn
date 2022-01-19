@@ -26,6 +26,10 @@ public class ConversationController : MonoBehaviour
     }
     public ConversationData SelectConversation()
     {
+        if (!IgnoreDoneConversations)
+        {
+            options.ForEach(a => a.UpdateDone());
+        }
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
         currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway

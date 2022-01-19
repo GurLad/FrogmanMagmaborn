@@ -5,6 +5,7 @@ id:MeetFirbell
 roomNumber:1
 ~
 hasCharacter:Firbell
+mapID:SpawnPoint3
 # Currently, the Firbell/Kresla maps are character specific. I need to change that.
 ~
 # TBA: Add a conversation if someone loses in the first battle
@@ -12,6 +13,7 @@ hasCharacter:Firbell
 :call:PreFirst
 }
 :else:{
+:loadUnits::player
 :call:PreRepeat
 }
 ~
@@ -36,7 +38,6 @@ Firbell||L: Firbell.\a Now, let us begin!
 
 ~ PreRepeat
 :play:BeforeBattle
-:loadUnits:player
 Firbell: ...Frogman. You are back.
 Frogman: Ahhh!\a You!
 Firbell: Yes. It is me again.\a You died rather quickly last time.
@@ -45,7 +46,7 @@ Firbell: I told you.\a You were already dead before.
 Frogman: I-\a Uh, right.\a So I'm immortal?!
 Firbell: Quite so.\a But it is still preferable not to get killed\a if you can help it.
 Frogman: I-I see...
-:loadUnits:monster:T
+:loadUnits::monster:T
 Firbell: Frogman. The monsters are back.\a Ready your bow.\a And try to stay alive this time.
 Frogman: O-okay...
 
@@ -57,7 +58,7 @@ Frogman: Firbell... She died...
 :play:Trustworthy
 Torment|???: Yes, she did. Because of YOU!
 Frogman: Huh?! Who're you?!
-Torment|???: Nobody important. Heh.\a But you failed me, Frogman.\a Firbell Wasn't supposed to die here.
+Torment|???: Nobody important. Heh.\a But you failed me, Frogman.\a Firbell wasn't supposed to die here.
 Frogman: What are you talking about?
 Torment|???: Do not concern your little mind about it, Frogman.\a You will forget it all soon enough. Ha ha!\a Just don't make me do this again, please.
 :screenShake:

@@ -5,6 +5,7 @@ unique:F
 ~
 # No demands
 ~
+:loadUnits:
 :play:ToriTheme
 Torment|???: Welcome, welcome!\a This is Frogman Magmaborn!
 Frogman: Huh? Who are you?
@@ -58,7 +59,7 @@ Frogman: Who are you talking to?!
 Torment|Tori: Right, I should probably wipe Frogman's memory before you\a begin.
 :screenShake:
 Frogman: Ark!
-:loadUnits:guard
+:loadUnits::guard
 :setSingleSpeaker:
 Torment|Tori: Ha ha ha!\a Goodbye, and good luck!\a Have fun!
 :setFlag:TutorialFinish

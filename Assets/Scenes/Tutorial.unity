@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989840f04d30be34e8c9256bba97178d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
   Origin: {fileID: 0}
   PalettedSprite: {fileID: 28154508}
 --- !u!1 &39958773
@@ -280,8 +281,179 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Conversations:
-  - {fileID: 4900000, guid: 71f4c5146c2d6aa4884fa15e07cf1571, type: 3}
-  Path: Conversations
+  - Text: 'priority:1
+
+      unique:F
+
+      ~
+
+      # No requiremenets
+
+      ~
+
+      #
+      No demands
+
+      ~
+
+      :loadUnits:
+
+      :play:ToriTheme
+
+      Torment|???:
+      Welcome, welcome!\a This is Frogman Magmaborn!
+
+      Frogman: Huh? Who are
+      you?
+
+      Torment|???: I am... uh...\a Tori! Yes, Tori! Heh!\a I will teach
+      you how to play!
+
+      Frogman: Play? What are you talking about?!
+
+      Torment|Tori:
+      I''m not talking to you, Frogman, but to YOU!\a Yes, you! In front of the screen!
+
+      Frogman:
+      What?!
+
+      Torment|Tori: Oh, shut up already!\a Anyway, you play all the
+      green units,\a like Frogman here.
+
+      Torment|Tori|L: Try selecting him
+      by pressing [AButton].
+
+      :tutorialShowMarker:5,4
+
+      :tutorialForceButton:A:5,4:-2
+
+      Torment|Tori|L:
+      Excellent! You see those green squares?\a Those are places Frogman can move
+      to.
+
+      Frogman: Do I have a say in this?
+
+      Torment|Tori: Of course
+      not! Ha ha!
+
+      Frogman: Well, I refuse to move for you!
+
+      Torment|Tori:
+      Oh, really? Let''s see you try that!
+
+      Torment|Tori|L: Move away from
+      the goblin.
+
+      :tutorialShowMarker:4,6
+
+      :tutorialForceButton:A:4,6:-2
+
+      Frogman||R:
+      Ahhh!
+
+      Torment|Tori: Ha ha ha! What a fool! As if you are free...
+
+      But
+      running away is no solution!\a You must fight your enemies!
+
+      Frogman:
+      Why are they my enemies?
+
+      Torment|Tori: I''m not going to spoil the story
+      here...\a But it''s not like you have a choice! Heh!
+
+      Torment|Tori|L:
+      Start by undoing your last move with [BButton].
+
+      :tutorialForceButton:B
+
+      Torment|Tori|L:
+      Incredible! Now move near the goblin!
+
+      :tutorialShowMarker:8,6
+
+      :tutorialForceButton:A:8,6:-2
+
+      Frogman||R:
+      But I like goblins!
+
+      Torment|Tori: Then you''re an even bigger fool!
+      Heh heh!\a Anyway, do you see those gray squares?\a These are the places you
+      can attack!\a The red characters are your enemies -\a you must kill them all!\a
+      At least, most of the time. Heh.
+
+      Frogman: What squares? And I don''t
+      want to fight!
+
+      Torment|Tori: I''m not talking to you, Frogman!
+
+      Torment|Tori|L:
+      Just attack this Goblin already.
+
+      :tutorialShowMarker:8,8
+
+      :tutorialForceButton:A:8,8:-2
+
+      Torment|Tori:
+      Yes! YES! Bring the PAIN!\a Um, I mean, you are great at following orders!
+
+      Frogman:
+      Thank you...\a As if I have a choice...
+
+      Torment|Tori: Stop that! Anyway,
+      the goblin will now attack you.\a Good luck!
+
+      Frogman: What?!
+
+      :wait:!unitAlive:Goblin
+
+      Torment|Tori:
+      Wow! Incredible! Sublime! Excellent!\a You slew this goblin with amazing skill!
+
+      Frogman:
+      But now I''m hurt!
+
+      Torment|Tori: Oh, get over it. You can''t heal anyway.
+
+      Frogman:
+      What?!\a I''m doomed to stay injured forever?!
+
+      Torment|Tori: Yes! Heh!
+      This is how this game works!\a At least, until you finish the level...\a Or
+      get a certain ability...
+
+      Frogman: You keep saying nonsense!
+
+      Torment|Tori:
+      Well, that was the tutorial!\a You will figure out the rest on your own. Heh.
+
+      Try
+      pressing [BButton] on units to view their info,\a or [StartButton] to pause.
+
+      Frogman:
+      Who are you talking to?!
+
+      Torment|Tori: Right, I should probably wipe
+      Frogman''s memory before you\a begin.
+
+      :screenShake:
+
+      Frogman:
+      Ark!
+
+      :loadUnits::guard
+
+      :setSingleSpeaker:
+
+      Torment|Tori:
+      Ha ha ha!\a Goodbye, and good luck!\a Have fun!
+
+      :setFlag:TutorialFinish
+
+      :tutorialFinish:'
+    Name: Tutorial
+  IgnoreDoneConversations: 1
+  Path: Conversations\Tutorial
 --- !u!1 &55543059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,8 +2272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f860abf6e376a14d9e87b7be49d6475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
   Origin: {fileID: 0}
-  ParentPos: {x: 0, y: 0}
 --- !u!212 &268952390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6459,6 +6631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitDatas:
   - Name: Frogman
+    DisplayName: Frogman
     Class: Frogman
     Inclination: 2
     Growths:
@@ -8265,6 +8438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecc03c4e3699414299b031bd777199b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
   Origin: {fileID: 0}
 --- !u!114 &883054805
 MonoBehaviour:
@@ -10781,10 +10955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a6366bd5bd8694f96f83a87dc1cf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
   MovementMarker: {fileID: 883054804}
   AttackMarker: {fileID: 268952389}
   TheTeam: 0
   Name: Frogman
+  DisplayName: 
   Class: Frogman
   AIType: 0
   Flies: 0
@@ -10792,6 +10968,8 @@ MonoBehaviour:
     Growths: 010000000100000001000000010000000100000001000000
     statValues: 040000000400000004000000040000000400000004000000
   Inclination: 0
+  Skills:
+    skills: 
   MaxAcceptableHitRisk: 50
   Priorities:
     TrueDamageWeight: 0
@@ -10807,6 +10985,12 @@ MonoBehaviour:
   Level: 0
   BattleQuote: 
   DeathQuote: 
+  Health: 0
+  PreviousPos: {x: 0, y: 0}
+  ReinforcementTurn: 0
+  Statue: 0
+  portraitMode: 3
+  moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16661,7 +16845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapSize: {x: 16, y: 15}
   TileSize: 1
-  UnitReplacements: []
   UITileInfoPanel: {fileID: 136851799}
   UITileInfo: {fileID: 1251508931}
   UIUnitInfoPanel: {fileID: 314948340}
@@ -16685,6 +16868,7 @@ MonoBehaviour:
   MapController: {fileID: 1902908238}
   DebugStartAtEndgame: 0
   DebugEndgameLevel: 0
+  DebugExtraLevels: 0
   DebugUnits: []
   DebugUnlimitedMove: 0
   DebugOPPlayers: 0
@@ -16743,6 +16927,14 @@ MonoBehaviour:
         SurvivalWeight: 0
         CautionLevel: 0
     MusicName: 
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0, g: 0, b: 0, a: 1}
+    Alliances: 
+    UnitReplacements: []
   Set:
     Name: 
     Palette1:
@@ -16765,6 +16957,7 @@ MonoBehaviour:
   Turn: 0
   DeadPlayerUnits: []
   TempFlags: []
+  CurrentPhase: 0
   MarkerCursor: {fileID: 2004507419}
   WaitingForForceButton: 0
 --- !u!4 &1902908236
@@ -17204,6 +17397,14 @@ MonoBehaviour:
         SurvivalWeight: 0.5
         CautionLevel: 3
     MusicName: 
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      - {r: 1, g: 0, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements: []
   LevelMetadatas:
   - TeamDatas:
     - Palette:
@@ -17249,6 +17450,14 @@ MonoBehaviour:
         SurvivalWeight: 0
         CautionLevel: 0
     MusicName: ToriTheme
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      - {r: 1, g: 0, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements: []
 --- !u!1 &1948964100
 GameObject:
   m_ObjectHideFlags: 0
