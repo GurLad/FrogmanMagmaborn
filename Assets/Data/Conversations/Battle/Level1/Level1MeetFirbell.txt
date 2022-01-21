@@ -10,6 +10,7 @@ mapID:SpawnPoint3
 ~
 # TBA: Add a conversation if someone loses in the first battle
 :if:firstTime{
+:loadUnits:
 :call:PreFirst
 }
 :else:{
@@ -35,10 +36,12 @@ Frogman: Monsters?!
 Firbell|???: Yes. I do not have time to explain. Ready your bow.
 Frogman: My b-bow?\a Right, I have a bow...\a Wait, what's your name?!
 Firbell||L: Firbell.\a Now, let us begin!
+:setDeathQuote:Firbell:FirbellFirstDeath
+:setDeathQuote:Frogman:FrogmanFirstDeath
 
 ~ PreRepeat
 :play:BeforeBattle
-Firbell: ...Frogman. You are back.
+Firbell: ...You are back.
 Frogman: Ahhh!\a You!
 Firbell: Yes. It is me again.\a You died rather quickly last time.
 Frogman: What do you mean?! I'm dead! How am I here?!
@@ -46,35 +49,23 @@ Firbell: I told you.\a You were already dead before.
 Frogman: I-\a Uh, right.\a So I'm immortal?!
 Firbell: Quite so.\a But it is still preferable not to get killed\a if you can help it.
 Frogman: I-I see...
+Firbell: Do you remember your name already?
+Frogman: I... Wait, yes, I do.\a I was called...\a Frogman.
+Firbell: ...That is no name.
 :loadUnits::monster:T
-Firbell: Frogman. The monsters are back.\a Ready your bow.\a And try to stay alive this time.
+But we are out of time, Frogman.\a The monsters are back.\a Ready your bow.\a And try to stay alive this time.
 Frogman: O-okay...
 
 ~ PostFirst
 :if:!hasCharacter:Firbell{
-:play:BeforeBattle
-Frogman: Firbell... She died...
-:if:!hasFlag:Level1Fail{
-:play:Trustworthy
-Torment|???: Yes, she did. Because of YOU!
-Frogman: Huh?! Who're you?!
-Torment|???: Nobody important. Heh.\a But you failed me, Frogman.\a Firbell wasn't supposed to die here.
-Frogman: What are you talking about?
-Torment|???: Do not concern your little mind about it, Frogman.\a You will forget it all soon enough. Ha ha!\a Just don't make me do this again, please.
-:screenShake:
-Frogman: Ahhh!
-:setFlag:Level1Fail
-:lose:
+:play:AfterBattle
+Frogman: Oh no... Firbell is dead...\a What am I to do?\a But what she said...\a Are we truly immortal?\a Why?\a And what were these monsters?
+...
+I'm talking to myself here. I should get out of here...
+I guess I'll just pick a random direction.
+:showPartTitle:Part 1:Monster
 }
 :else:{
-Torment|???: Seriously? You killed her again?
-Frogman: Huh?! Who're you?!
-Torment|???: I tire of this nonsense.\a Try again!
-:screenShake:
-Frogman: Oof!
-:setFlag:Level1Fail
-:lose:
-}
 :play:AfterBattle
 Frogman: We've won... What were those things?
 Firbell: Dead people. Like us.
@@ -100,4 +91,21 @@ We all remember our name when we are first Born.
 Frogman: Born?
 Firbell: Revive from the Magma.\a You are a strange case, Frogman.
 Let us leave this place before more monsters show up.
+:setDeathQuote:Firbell:FirbellFirstDeath
 :showPartTitle:Part 1:Monster
+}
+
+~ FirbellFirstDeath
+Firbell: Ugh... Frogman, I will not...\a make it...
+Frogman: Huh? Firbell?! No! Hang on, I'll-
+Firbell: Fret not...\a We are... immortal...
+Frogman: What?!
+Firbell: See you...\a soon...
+Frogman: She... She just disappeared?!\a What is this place?!
+
+~ FrogmanFirstDeath
+Frogman: I-I can't...\a I don't want to...\a die...
+:lose:
+
+~ FirbellNormalDeath
+Firbell: Ugh... I will... be back...

@@ -21,30 +21,26 @@ Firbell: Let us give these beasts a sound thrashing,\a and then we will be able 
 Xirveros: Rocktime Time!
 }
 :else:{
-:if:hasCharacter:Kresla{
-Frogman: Uh... Who's the goblin with the rock?
-Kresla: This is Xirveros, a mad wizard.
-Xirveros: Me named Xirveros.
-Kresla: According to Firbell, he used to be a royal wizard in\a Irenhold, born centuries before her...
-Xirveros: I like frogs. Frogs like me back.
-Frogman: Ok... Sure...
-Kresla: ...who created the very first Magma Emblem.\a He eventually died and was reborn here-
-Frogman: Kresla?
-Kresla: Yes?
-Frogman: Monsters.
-Kresla: Right.
+Frogman: Oh no. More monsters.\a Huh? A goblin with a... rock on his head?
+Xirveros: Hello! Me named Xirveros.\a You are?
+Frogman: I... I don't remember...
+Xirveros: You look like frog. A man-frog. A Frogman!
+Frogman: Frogman... Wait, I was actually called that.\a But I don't remember why...\a Well, we should-
+Xirveros: Heh heh! Me not remember too!
+Frogman: Uh.
+Xirveros: I remember being wizard. Might wizard!\a Proud kingdom. Irenhold.\a For Irenhold!
+Frogman: Xirveros.
+Xirveros: We were two. Me and princess. From Irenhold too!\a But you are not.
+Frogman: Sure. Um, look, there are monsters and-
+Xirveros: What her name? Fir... Firbal? Firgell?
+Frogman: Wait, Firbell?\a A princess?
+Xirveros: Yes! Firbell! You know not names?
+Frogman: What?\a Never mind, what about the monsters?
+Xirveros: We fight, frog! It's rocktime time!
+Frogman: Good. Let's-
+Xirveros: ROCK!!!
 }
-:else:{
-Frogman: I'm alone again... With all these beasts...\a Huh? A goblin with a... rock on his head?
-Xirveros: Hello! Me named Xirveros.
-Frogman: My name is Frogman. You have a Magma Emblem too?
-Xirveros: I have rock. Lucky rock! My rock!
-Frogman: Ok... Sure...
-Xirveros: I like frogs. Frogs like me back.
-Frogman: Uh...\a If you say so...\a Shall we defeat the monsters?
-Xirveros: Rocktime Time!
-}
-}
+
 ~
 :play:AfterBattle
 :if:hasCharacter:Xirveros{
@@ -69,51 +65,28 @@ Let us leave this place before more monsters show up.
 Frogman: ...and before he starts singing again.
 }
 :else:{
-:if:hasCharacter:Kresla{
-Kresla: Where were we? Xirveros' history, right?\a After centuries of wandering alone,\a Firbell died, becoming the second ever Magmaborn.
-Xirveros: I like rocks. This lucky rock. Mine!
-Frogman: Okay...\a Frankly, he doesn't seem like a mighty wizard.\a No offense, Xirveros.
-Xirveros: Only defense!
-Kresla: According to Firbell, he went mad one day.\a It was long before I was born,\a and I can no longer ask here.\a So many mysteries...
-Xirveros: Ohh! I have song! I shall sing!
-Frogman: Is this really nes-
-Xirveros: I was a great wizard   \w@
-I never ate a lizard   \w@
+:if:hadCharacter:Firbell{
+Frogman: Firbell... She didn't make it...
+}
+:else:{
+Frogman: Whew. We appear to be safe for now. Let's get-
+}
+Xirveros: Ohh! We won!\a I have song! I shall sing!
+Frogman: Wait, what?
+Xirveros: I was a great wizard \w@
+I never ate a lizard \w@
 I like rocks           \w@
 Yet hate locks         \w@
 I never liked blue     \w@
 Smiles will betray you \w@
 Rivers flow to-
-Frogman: I think I'll just leave now.
-Kresla: Wait! I haven't finished my story!\a Hey, come back!
-Xirveros: Me like frog! Follow frog!
-Frogman: *sigh*
-}
-:else:{
-:if:hadCharacter:Firbell{
-Frogman: Firbell... She didn't make it...
-}
-:else:{
-:if:hadCharacter:Kresla{
-Frogman: Kresla... She didn't make it...
-}
-:else:{
-Frogman: Whew. We appear to be safe for now. Let's get-
-}
-}
-Xirveros: Ohh! I have song! I shall sing!
-Frogman: Is this really nes-
-Xirveros: I was a great wizard \w@
-I never ate a lizard \w@
-I like-
-Frgoamn: You?\a Wizard?\a Seriously?
-Xirveros: Yes! From Irenhold!
-Frogman: Oh, the same place as Firbell.
-Xirveros: Of course - me named Xirveros.\a No more power. Nor mind. He he!
-Frogman: I... I think I'll just leave now.
-Xirveros: Me like frog! Follow frog!
-Frogman: Please don't...
-}
+Frogman: Xirveros. Please stop.\a This is hurting my ears.
+Xirveros: Oof. You not like Xirveros?
+Frogman: No, it's just that you're... How should I say...
+Xirveros: I like frog. Frog like me back?
+Frogman: I... Ugh, fine.
+Xirveros: Yes! Me follow frog!\a We go together!
+Frogman: If you insist...
 }
 }
 :else:{
@@ -131,10 +104,6 @@ Let us leave this place before more monsters show up.
 Frogman: Yes.
 }
 :else:{
-:if:hasCharacter:Kresla{
-# TBA
+Frogman: Ah... Xirveros died...\a I'm alone again...\a He was clearly mad, but...\a Was he truly a wizard? Hm..
 }
-:else:{
-Frogman: Ah... Everyone is dead...
-I guess I'll have to continue on my own.\a Xirveros... What happened to you?
 }

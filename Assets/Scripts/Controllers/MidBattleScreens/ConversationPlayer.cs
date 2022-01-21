@@ -374,6 +374,27 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
+                case "setDeathQuote":
+                    // Params: string unitName, string functionName
+                    // Set a unit's death quote (retains bewtween chapters). Must use a function.
+                    AssertCommand("setDeathQuote", args, CAT.String, CAT.String);
+                    Unit target2 = GameController.Current.GetNamedUnit(args[0]);
+                    if (target2 != null)
+                    {
+                        if (origin.Functions.ContainsKey(args[1]))
+                        {
+                            target2.DeathQuote = string.Join("\n", origin.Functions[args[1]]);
+                        }
+                        else
+                        {
+                            throw Bugger.Error("No matching function! (" + args[1] + ")");
+                        }
+                    }
+                    else
+                    {
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                    }
+                    break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
                     AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
