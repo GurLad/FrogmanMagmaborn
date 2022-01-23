@@ -55,6 +55,7 @@ Firbell: ...That is no name.
 :loadUnits::monster:T
 But we are out of time, Frogman.\a The monsters are back.\a Ready your bow.\a And try to stay alive this time.
 Frogman: O-okay...
+:setFlag:ToldFirbellName
 
 ~ PostFirst
 :if:!hasCharacter:Firbell{
@@ -83,6 +84,10 @@ Firbell: Of course I do. You will as well, soon enough.
 I am princess Firbell of Irenhold,\a daughter of queen Kirmella and heir to the\a throne.
 Frogman: Uh...\a Isn't it more likely someone else inherited the\a throne when you died?
 Firbell: ...I am sorry, did you say something, frog?
+:if:hasFlag:ToldFirbellName{
+Never mind, we should leave this place before\a more monsters show up.
+}
+:else:{
 By the way, you haven't told me your name yet.
 Frogman: I... don't remember it.\a But I do remember being called...
 Frogman.
@@ -91,7 +96,8 @@ We all remember our name when we are first Born.
 Frogman: Born?
 Firbell: Revive from the Magma.\a You are a strange case, Frogman.
 Let us leave this place before more monsters show up.
-:setDeathQuote:Firbell:FirbellFirstDeath
+}
+:setDeathQuote:Firbell:FirbellNormalDeath
 :showPartTitle:Part 1:Monster
 }
 

@@ -1,0 +1,56 @@
+priority:5
+unique:T
+id:MeetXirveros
+~
+roomNumber:2
+charactersAlive:=0
+~
+charactersAlive:=1
+~
+:play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits:
+Frogman: Oh no. More monsters.\a Huh? A goblin with a... rock on his head?
+Xirveros: Hello! Me named Xirveros.\a You are?
+Frogman: I... I don't remember...
+Xirveros: You look like frog. A man-frog. A Frogman!
+Frogman: Frogman... Wait, I was actually called that.\a But I don't remember why...\a Well, we should-
+Xirveros: Heh heh! Me not remember too!
+Frogman: Uh.
+Xirveros: I remember being wizard. Might wizard!\a Proud kingdom. Irenhold.\a For Irenhold!
+Frogman: Xirveros.
+Xirveros: We were two. Me and princess. From Irenhold too!\a But you are not.
+Frogman: Sure. Um, look, there are monsters and-
+Xirveros: What her name? Fir... Firbal? Firgell?
+Frogman: Wait, Firbell?\a A princess?
+Xirveros: Yes! Firbell! You know not names?
+Frogman: What?\a Never mind, what about the monsters?
+Xirveros: We fight, frog! It's rocktime time!
+Frogman: Good. Let's-
+Xirveros: ROCK!!!
+:markDone:
+
+~
+:play:AfterBattle
+:if:hasCharacter:Xirveros{
+Frogman: Whew. We appear to be safe for now. Let's get-
+Xirveros: Ohh! We won!\a I have song! I shall sing!
+Frogman: Wait, what?
+Xirveros: I was a great wizard \w@
+I never ate a lizard \w@
+I like rocks           \w@
+Yet hate locks         \w@
+I never liked blue     \w@
+Smiles will betray you \w@
+Rivers flow to-
+Frogman: Xirveros. Please stop.\a This is hurting my ears.
+Xirveros: Oof. You not like Xirveros?
+Frogman: No, it's just that you're... How should I say...
+Xirveros: I like frog. Frog like me back?
+Frogman: I... Ugh, fine.
+Xirveros: Yes! Me follow frog!\a We go together!
+Frogman: If you insist...
+}
+:else:{
+Frogman: Ah... Xirveros died...\a I'm alone again...\a He was clearly mad, but...\a Was he truly a wizard? Hm..
+}

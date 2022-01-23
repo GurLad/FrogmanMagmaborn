@@ -1,0 +1,41 @@
+priority:5
+unique:T
+~
+roomNumber:2
+hasCharacter:Firbell
+!hasFlag:FinishedFirbellXirveros
+~
+charactersAlive:=2
+~
+:play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits::player
+:if:hasFlag:MetXirverosFirbell{
+# AKA met, but Firbell died so she couldn't tell his backstory
+Firbell: Hello, Xirveros.
+Xirveros: Hello!
+Frogman: Him again?
+Firbell: I did not get to tell you more about him last time, did I?
+Frogman: No, only that he was a wizard of Irenhold.
+Firbell: He was much more than that.\a He made the first Magma Emblem,\a and gave Irenhold's royal family mine -\a the one on my crown.
+}
+:else:{
+Frogman: ...Xirveros.
+Xirveros: Hello!
+Firbell||R: You know Xirveros, Frogman?
+Frogman: Yes, I've seen him once or twice before.\a He's utterly mad.
+Firbell: Perhaps he is now, but he used to be much more than that.\a He made the first Magma Emblem,\a and gave Irenhold's royal family mine -\a the one on my crown.
+}
+Xirveros: I like rocks. This lucky rock. Mine!
+Firbell: The rock on his head is his own Magma Emblem.
+Frogman: Okay...\a Frankly, he doesn't seem like a mighty wizard.\a No offense, Xirveros.
+Xirveros: Only defense!
+Firbell: Well, as you can see, he went mad one day.\a I do not know what happened.\a But he was my mentor when I first arrived,\a and I would not have survived without him.
+Frogman: I... see.
+:loadUnits::monster:T
+Xirveros: Oh no! Monsters are here!
+Firbell: It seems our time is up, Frogman.\a Let us behead a few fiends, shall we?
+:markDone:
+
+~
+:play:AfterBattle

@@ -24,6 +24,7 @@ public class TutorialGameController : GameController
     {
         base.Awake();
         Current = this;
+        NumRuns--; // Fix tutroial counting as a run
     }
     protected override void Update()
     {

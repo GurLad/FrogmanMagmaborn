@@ -3,14 +3,14 @@ unique:T
 id:MeetXirveros
 ~
 roomNumber:2
-hasCharacter:Firbell
+charactersAlive:>0
+# Must be Firbell
 ~
 charactersAlive:=2
 ~
 :play:BeforeBattle
 :addUnit:Xirveros
 :loadUnits:
-:if:hasCharacter:Firbell{
 Frogman: Uh... Who's the goblin with the rock?
 Firbell: This is Xirveros the wizard.
 Xirveros: Me named Xirveros.
@@ -19,27 +19,8 @@ Xirveros: I like frogs. Frogs like me back.
 Frogman: Ok... Sure...
 Firbell: Let us give these beasts a sound thrashing,\a and then we will be able to talk properly.
 Xirveros: Rocktime Time!
-}
-:else:{
-Frogman: Oh no. More monsters.\a Huh? A goblin with a... rock on his head?
-Xirveros: Hello! Me named Xirveros.\a You are?
-Frogman: I... I don't remember...
-Xirveros: You look like frog. A man-frog. A Frogman!
-Frogman: Frogman... Wait, I was actually called that.\a But I don't remember why...\a Well, we should-
-Xirveros: Heh heh! Me not remember too!
-Frogman: Uh.
-Xirveros: I remember being wizard. Might wizard!\a Proud kingdom. Irenhold.\a For Irenhold!
-Frogman: Xirveros.
-Xirveros: We were two. Me and princess. From Irenhold too!\a But you are not.
-Frogman: Sure. Um, look, there are monsters and-
-Xirveros: What her name? Fir... Firbal? Firgell?
-Frogman: Wait, Firbell?\a A princess?
-Xirveros: Yes! Firbell! You know not names?
-Frogman: What?\a Never mind, what about the monsters?
-Xirveros: We fight, frog! It's rocktime time!
-Frogman: Good. Let's-
-Xirveros: ROCK!!!
-}
+:setFlag:MetXirverosFirbell
+:markDone:
 
 ~
 :play:AfterBattle
@@ -63,14 +44,11 @@ Rivers flow to-
 Firbell: Right, that is enough, Xirveros.
 Let us leave this place before more monsters show up.
 Frogman: ...and before he starts singing again.
+:setFlag:FinishedFirbellXirveros
 }
 :else:{
-:if:hadCharacter:Firbell{
+# hadCharacter:Firbell
 Frogman: Firbell... She didn't make it...
-}
-:else:{
-Frogman: Whew. We appear to be safe for now. Let's get-
-}
 Xirveros: Ohh! We won!\a I have song! I shall sing!
 Frogman: Wait, what?
 Xirveros: I was a great wizard \w@
