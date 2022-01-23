@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 //#define MODDABLE_BUILD // Because Visual Studio doesn't work properly otherwise...
 
+#if MODDABLE_BUILD || UNITY_EDITOR
 public class FrogForgeImporter : MonoBehaviour
 {
 #if MODDABLE_BUILD
@@ -129,3 +130,4 @@ public class FrogForgeImporter : MonoBehaviour
 #endif
     }
 }
+#endif
