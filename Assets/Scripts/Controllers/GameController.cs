@@ -692,7 +692,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             CheckGameState();
         }
-        CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
     }
 
     public Unit FindUnitAtPos(int x, int y)

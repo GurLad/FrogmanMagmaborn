@@ -5286,8 +5286,8 @@ MonoBehaviour:
 
       :play:Trickster:T
 
-      Torment: What did Torment
-      say to the frog?
+      What did Torment say
+      to the frog?
 
       Frogman: What?! Even you?!
 
@@ -5489,8 +5489,7 @@ MonoBehaviour:
 
       ~ Before battle
 
-      # Set Torment met
-      flags
+      # Set Torment met flags
 
       :if:hasCharacter:Firbell{
 
@@ -5519,6 +5518,8 @@ MonoBehaviour:
 
       :loadUnits:InitTormentRoom
 
+      :loadMap:InitTormentRoom
+
       Frogman:
       Kresla?! What are you doing here?
 
@@ -5537,6 +5538,8 @@ MonoBehaviour:
 
       :loadUnits:InitTormentRoom
 
+      :loadMap:InitTormentRoom
+
       Frogman:
       Firbell?! What are you doing here?
 
@@ -5549,21 +5552,17 @@ MonoBehaviour:
 
       }
 
-      
 
-      ~ After
-      battle
+      ~ After battle
 
-      
 
-      # === Functions ====
+      #
+      === Functions ====
 
-      
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: TormentBase
@@ -20461,7 +20460,7 @@ MonoBehaviour:
       Values: 040000000300000002000000010000000200000002000000
     DeathQuote: ':play:DeadAlly
 
-      Firbell: I''ve... let you... do...'
+      Firbell: No... I have... let...'
   - Name: Xirveros
     DisplayName: Xirveros
     Class: Goblin
@@ -20507,7 +20506,7 @@ MonoBehaviour:
       Values: 020000000200000001000000030000000200000004000000
     DeathQuote: ':play:DeadAlly
 
-      Alfred: No... Just... one... more...'
+      Alfred: No... I... go on...'
   - Name: Dehar
     DisplayName: Dehar
     Class: Lich

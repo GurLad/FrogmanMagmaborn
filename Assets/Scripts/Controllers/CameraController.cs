@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
     {
         Mode = mode;
         PixelPerfectMaterial.SetInt("_Filter", (int)(mode & CameraMode.Filter));
-        PixelPerfectMaterial.SetInt("_Stretch", (int)(mode & CameraMode.Stretch));
+        PixelPerfectMaterial.SetInt("_Stretch", !FullScreen ? 1 : (int)(mode & CameraMode.Stretch));
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
         SavedData.SaveAll(SaveMode.Global);
     }
