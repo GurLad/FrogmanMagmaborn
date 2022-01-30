@@ -1879,7 +1879,7 @@ MonoBehaviour:
 
       hasCharacter:Firbell
 
-      mapID:SpawnPoint3
+      mapID:SpawnPoint5
 
       #
       Currently, the Firbell/Kresla maps are character specific. I need to change
@@ -25660,6 +25660,92 @@ MonoBehaviour:
     Objective: 0
     ObjectiveData: Rout
     MapString: 7|10|0|0|0|0|0|0|0|0|0|0|0|4|27;5|11|0|0|0|0|0|0|0|0|0|0|0|5|8;0|0|0|0|0|0|0|0|0|3|6|9|1|1|0;0|0|0|0|0|0|0|0|0|5|2|27|9|1|0;0|0|0|0|1|3|9|1|0|1|1|5|7|9|0;0|1|3|6|6|15|17|9|0|1|0|0|5|27|9;0|3|7|7|27|7|7|11|0|0|0|0|0|5|11;3|27|7|7|7|7|10|1|0|0|0|0|0|0|0;4|27|18|17|27|15|24|9|1|0|0|0|0|0|0;4|18|26|7|8|7|20|24|6|9|0|0|0|0|0;4|13|7|10|1|4|7|13|7|2|9|0|0|0|0;4|13|7|10|1|4|7|13|7|27|10|0|0|0|3;5|20|24|7|6|7|18|26|7|27|11|0|0|0|4;0|5|20|17|27|15|26|7|7|10|1|0|0|0|5;0|0|5|8|8|8|8|8|8|11|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+  - Name: SpawnPoint5
+    LevelNumber: 1
+    Units:
+    - Pos: {x: 8, y: 3}
+      Team: 0
+      Level: 1
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 3}
+      Team: 0
+      Level: 1
+      Class: Firbell
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 6}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 3}
+      Team: 1
+      Level: 0
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 9}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Magma
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 26|11|0|0|0|0|0|0|0|1|5|8|8|14|7;11|0|0|3|6|9|0|0|0|1|1|0|0|5|27;0|0|3|7|27|11|0|3|9|1|0|0|0|0|5;0|1|4|7|10|1|1|5|2|9|0|0|0|0|1;0|3|2|27|2|9|1|1|4|10|0|0|0|0|0;3|12|7|7|7|12|9|0|5|11|0|0|0|0|0;4|19|17|7|15|25|10|0|0|0|0|0|0|0|0;4|13|7|8|7|13|10|0|0|0|0|3|9|0|0;4|13|10|1|4|13|10|0|0|0|1|4|11|0|0;4|13|7|6|27|13|10|0|0|1|3|10|1|0|0;4|19|17|7|15|25|10|0|0|3|27|11|1|1|3;5|14|27|8|7|14|10|1|1|5|11|0|0|3|12;0|5|2|1|2|27|11|0|0|0|0|0|0|5|20;0|0|4|6|8|11|0|0|0|0|0|0|0|0|5;0|0|5|11|0|0|0|0|0|0|0|0|0|0|0;0|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+  - Name: SpawnPoint6
+    LevelNumber: 1
+    Units:
+    - Pos: {x: 5, y: 10}
+      Team: 0
+      Level: 1
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 1}
+      Team: 0
+      Level: 1
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 11}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 6}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 2}
+      Team: 1
+      Level: 0
+      Class: Gargoyle
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Magma
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;6|9|0|0|0|0|0|3|6|6|6|6|6|9|0;17|11|0|0|0|0|3|18|21|16|21|16|21|24|9;11|1|0|0|0|0|4|19|26|7|14|7|20|25|10;0|1|1|0|0|0|5|14|27|7|8|27|7|13|10;0|1|3|9|1|1|1|4|7|10|1|4|15|25|10;0|1|4|10|0|0|3|12|7|7|6|7|7|13|10;0|3|27|11|0|0|4|19|24|27|27|7|18|25|10;0|5|11|0|0|0|5|20|23|17|8|15|23|26|11;0|0|0|0|0|0|0|5|8|11|1|5|8|11|0;0|0|0|3|9|0|0|0|0|0|0|1|0|0|0;0|0|0|5|11|0|0|0|0|0|0|1|0|0|0;0|0|0|0|0|0|0|0|0|0|3|9|0|0|0;0|0|0|0|0|0|3|9|1|1|5|11|0|0|0;0|0|3|9|1|1|5|11|0|0|0|0|0|0|0;0|0|5|11|0|0|0|0|0|0|0|0|0|0|0
   - Name: Level2-0-A
     LevelNumber: 2
     Units:
