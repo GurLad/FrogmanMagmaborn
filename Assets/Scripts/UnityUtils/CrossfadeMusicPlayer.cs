@@ -14,16 +14,32 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     public static CrossfadeMusicPlayer Current;
     public List<CrossfadeMusicPlayerObject> Tracks;
     public float FadeSpeed;
-    [Range(0,1)]
-    public float Volume = 1;
     public bool PlayOnStart;
     public bool KeepTimestamp;
+    [SerializeField]
+    [Range(0, 1)]
+    private float volume;
+    public float Volume
+    {
+        get
+        {
+            return volume;
+        }
+        set
+        {
+            volume = value * baseVolume;
+            mainAudioSource.volume = Volume;
+        }
+    }
+    [HideInInspector]
     public string Playing;
     private AudioSource mainAudioSource;
     private AudioSource seconderyAudioSource;
     private float count;
     private bool playingIntro;
     private bool playingBattle;
+    private float baseVolume;
+
     private void Awake()
     {
         if (Current != null)
@@ -39,6 +55,8 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         mainAudioSource = gameObject.AddComponent<AudioSource>();
         seconderyAudioSource = gameObject.AddComponent<AudioSource>();
         mainAudioSource.loop = seconderyAudioSource.loop = true;
+        baseVolume = Volume;
+        Volume = SavedData.Load("MusicOn", 1, SaveMode.Global);
         mainAudioSource.volume = Volume;
         seconderyAudioSource.volume = 0;
         if (PlayOnStart)
@@ -49,6 +67,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         }
         GetComponent<SoundController>().Init();
     }
+
     public void Play(string name, bool? keepTimestamp = null)
     {
         if (Playing == name)
@@ -79,6 +98,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         }
         seconderyAudioSource.Play();
     }
+
     public void PlayIntro(string name, bool? keepTimestamp = null)
     {
         Play(name + "Intro", keepTimestamp);
@@ -86,6 +106,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         playingIntro = true;
         seconderyAudioSource.loop = false;
     }
+
     public void SwitchBattleMode(bool on)
     {
         if (on)
@@ -99,6 +120,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         }
         playingBattle = true;
     }
+
     private void Update()
     {
         if (seconderyAudioSource.clip != null)

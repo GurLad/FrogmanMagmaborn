@@ -13,11 +13,12 @@ public class SoundController : MonoBehaviour
         }
         set
         {
-            volume = value;
+            volume = value * baseVolume;
             for (int i = 0; i < audioSources.Count; i++)
             {
-                audioSources[i].volume = value;
+                audioSources[i].volume = Volume;
             }
+            fixedPitchSource.volume = Volume;
         }
     }
     [SerializeField]
@@ -25,6 +26,7 @@ public class SoundController : MonoBehaviour
     private float volume;
     private List<AudioSource> audioSources = new List<AudioSource>();
     private AudioSource fixedPitchSource;
+    private float baseVolume;
 
     public void Init()
     {
@@ -35,7 +37,8 @@ public class SoundController : MonoBehaviour
         fixedPitchSource = gameObject.AddComponent<AudioSource>();
         fixedPitchSource.pitch = 1;
         soundController = this;
-        Volume = volume;
+        baseVolume = Volume;
+        Volume = SavedData.Load("SFXOn", 1, SaveMode.Global) * baseVolume;
     }
 
     public static void PlaySound(AudioClip audioClip, bool stop = false)
@@ -74,6 +77,11 @@ public class SoundController : MonoBehaviour
         }
         audioSource.pitch = pitch;
         audioSource.PlayOneShot(audioClip);
+    }
+
+    public static void SetVolume(float value)
+    {
+        soundController.Volume = soundController.baseVolume * value;
     }
 
     public void EditorPlaySound(AudioClip audioClip, float pitch)

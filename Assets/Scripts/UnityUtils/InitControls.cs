@@ -30,5 +30,10 @@ public class InitControls : MonoBehaviour
                 InitStart.text = InitStart.text.Replace("Start", "Enter");
             }
         }
+        if (!SavedData.HasKey("MusicOn", SaveMode.Global))
+        {
+            SavedData.Save("MusicOn", 1, SaveMode.Global);
+            SavedData.Save("SFXOn", 1, SaveMode.Global);
+        }
     }
 }
