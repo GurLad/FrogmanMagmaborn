@@ -1139,7 +1139,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             case Objective.Escape:
                 return "Escape!";
             case Objective.Survive:
-                return "Survive " + selectedMap.ObjectiveData + " turn";
+                return "Reach turn " + (int.Parse(selectedMap.ObjectiveData) + 1);
             default:
                 break;
         }

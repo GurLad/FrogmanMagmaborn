@@ -8,6 +8,7 @@ hasCharacter:Kresla
 # Currently, the Firbell/Kresla maps are character specific. I need to change that.
 ~
 :play:BeforeBattle
+:if:firstTime:{
 Kresla|???: I've never seen you before!\a More than that, I've never seen your KIND before!\a You must be new here!
 Frogman: Who are you? Where's Firbell?
 Kresla|???: Right, of course, where are my manners?
@@ -18,8 +19,16 @@ Kresla: Oh well. Let me know once you do!\a Oh, you asked me something, didn't y
 Frogman: Yes, where is Firbell?
 Never mind, we are surrounded by monsters,\a let's deal with them first.
 Kresla: Yes, yes, the boring monsters first.
+}
+:else:{
+Kresla: Oh! Hello again, Frogman!
+Frogman: TBA
+:markDone:
+}
+
 ~
 :play:AfterBattle
+:if:hasCharacter:Kresla{
 Kresla: Now that's taken care of, where were we?\a Right, Firbell. You're very new, aren't you?
 Frogman: Yes, I am.
 Kresla: And a new monster type, to boot!\a This is quite the discovery!\a If only I could tell my fellow scholars...
@@ -32,3 +41,7 @@ Frogman: Ah, that makes sense. Shall we leave now?
 Kresla: Did I tell you about Firbell's kingdom? That was my first discovery here! You see, where she comes from...
 Frogman: Right. I'm leaving.
 Kresla: ...she still thinks... Huh? Wait for me!
+}
+:else:{
+Frogman: TBA
+}

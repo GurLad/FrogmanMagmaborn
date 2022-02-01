@@ -413,7 +413,7 @@ public class Unit : MapObject
     }
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && !a.Moved && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
         switch (AIType)
         {
             case AIType.Charge:
