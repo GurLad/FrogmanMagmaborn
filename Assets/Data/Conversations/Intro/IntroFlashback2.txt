@@ -11,19 +11,21 @@ Frogman: Ah... I'm back...
 Wait, something...\a Another memory...
 :showCG:Tavern
 :play:ForgottenMemories
-:setSpeaker:FrogmanMan|Frogman|R
-Zip: Frogman. She's here.
+:setSpeaker:FrogmanMan||R
+Zip: Frogman. She's coming.
 FrogmanMan: Already? Oh well, nothing to be done about it.\a Let her in.
-Zip: I don't like her, boss. It smells like a trap.
-FrogmanMan: I know. But she is alone, and she's foreign -\a she only arrived in the city yesterday.
-Zip: Still, I don't think it's wise.\a She asked specifically for you, boss.\a These are always trouble.
-FrogmanMan: Relax, Zip. We're well known as the best thieves in the\a region for a reason.
-We shouldn't fear some upstart from Straberod,\a even if she's probably going to try killing\a me.
+Zip: I don't like it, Frogman. She smells fishy.\a And not the tasty kind.
+FrogmanMan: She's alone and foreign.\a There's not much she can do to us.\a Besides, we can't be seen to be afraid of her.\a It would harm our reputation.
+Zip: Your reputation, you mean.
+FrogmanMan: I know you despise this stuff, but it protects us. I mean,\a who would want to mess with the legendary Frogman?
+Zip: All the people who want to kill you now?\a Like her?
+FBWitness||L: *knock*
+FrogmanMan: We're out of time, Zip. Just let her in, please.\a I'll deal with her.
 Zip: ...\a You're the boss, boss.\a I'll let her in.
 DeharFB||L: Hello, Frogman. Thank you for having an audience with me.
 FrogmanMan: Greetings, Kebera. Please, have a seat.
 DeharFB: Thank you.
-FrogmanMan: This is my collegue, Zip.
+FrogmanMan: This is my colleague, Zip.
 Zip||R: ...
 FrogmanMan||R: I hope you do not mind having him here.\a Treat him as my shadow.
 DeharFB: I see.
@@ -32,7 +34,9 @@ DeharFB: Let me start from the beginning. My name is-
 FrogmanMan: I know who you are. Your request?
 DeharFB: I'll be blunt then.
 I was sent here on behalf of the governor of Straberod.\a She offers you a mission.
-FrogmanMan: Which is?
+FrogmanMan: In the middle of the war?
+DeharFB: Yes. The mission is quite vital for it.
+FrogmanMan: I don't care much for Straberod, but let's hear it.
 DeharFB: Unfortunately, I cannot disclose it to anyone but you,\a Frogman.\a Those are my instructions.
 FrogmanMan: Unacceptable. Zip will hear everything I will.
 DeharFB: She is willing to pay quite handsomely for this, Frogman.
@@ -43,7 +47,7 @@ DeharFB: There is no need, Frogman.\a Thank you for your hospitality.
 Zip||L: ...
 I told you she's trouble.
 FrogmanMan: You were right. She was testing us.\a Me.\a Let's tail her. Ready to go?
-Zip: Always, boss.
+Zip: Always.
 :hideCG:
 :play:BeforeBattle
 :setSingleSpeaker:L

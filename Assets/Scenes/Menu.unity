@@ -1116,8 +1116,8 @@ MonoBehaviour:
 
       What... is this place?
 
-      Wait...\a Who am I?\a
-      What is going on?!
+      Wait...\a Who am
+      I?\a What is going on?!
 
       ???: Hey! You there!
 
@@ -1147,8 +1147,8 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
-      ???: Hey!
-      Over here!
+      ???:
+      Hey! Over here!
 
       :introShowTutorial:'
     Name: Intro2
@@ -1171,8 +1171,8 @@ MonoBehaviour:
       Frogman:
       Ah... Not again...
 
-      Maybe I should change my strategy.\a Fight like Firbell
-      or Kresla.\a Hm...
+      Maybe I should change my strategy.\a Fight like
+      Firbell or Kresla.\a Hm...
 
       :unlockKnowledge:InclinationFrogman
 
@@ -1208,68 +1208,55 @@ MonoBehaviour:
       :play:ForgottenMemories
 
       FrogmanMan||L:
-      Whew, we''re safe.
+      Huff... This should be... far enough...
 
-      Zip: At last... That was quite a run, boss.
+      Zip: Ha... Ha... Tired already...
+      old man?
 
-      FrogmanMan:
-      I know, but we''ve finally lost them.
+      FrogmanMan: Ha! This is... nothing...
 
-      Zip: I still don''t know how you
-      do it, boss.
+      Zip: Heh.\a Well,
+      I think we''re safe. Let''s rest a bit, eh?
 
-      FrogmanMan: Which part? Infiltrating the most well-guarded
-      castle in\a the region, stealing all the valuables,\a or getting away with
-      it?
+      FrogmanMan: Yeah.\a But
+      first, what''s our status?
 
-      Zip: Ha! Ever the humble one, eh?
-
-      FrogmanMan: Heh. Well,
-      enough with the pleasantries.\a Status report.
-
-      Zip: Let me see...\a
-      We have seven silver plates, thirteen forks-
-
-      FrogmanMan: Skip the trinkets
-      for now. Highlights?
-
-      Zip: Right. Three Abezy paintings.
+      Zip: Oh, give me a break!
 
       FrogmanMan:
-      Abezy? Where did the lord get them?
+      ...
 
-      Zip: Don''t know, boss.\a They seem
-      pretty new, however.
+      Zip: Fine, fine. Well, let me see.\a We infiltrated a well-guarded
+      castle,\a stole a lot of valuables,\a and managed to get away undetected.\a
+      Almost.
 
-      FrogmanMan: They''re probably fake then.\a Next?
+      FrogmanMan: Yeah... Those pesky dogs...\a Well, at least we
+      managed to get away.\a But I meant the valuables - what have we got?
 
       Zip:
-      Uh... There''s the diamond necklace we found.
+      Let me see... Some jewellery, plates, a small frog idol...\a You want it for
+      yourself, don''t you, Frogman?
 
-      FrogmanMan: Right, that
-      one. It will be hard finding a buyer,\a but it''s worth it.
+      FrogmanMan: You can keep it, thanks.\a
+      What else?
 
-      Zip: Probably.
-      What else... Ah, the muskets.
-
-      FrogmanMan: We never found the gunpowder
-      and bullets, did we?
-
-      Zip: No, boss. Frankly, I don''t think he had any.
-
-      Probably
-      only kept them to impress guests.
-
-      FrogmanMan: Yes. Too bad. They''re
-      useless then.
-
-      Zip: We might find someone willing-
+      Zip: Uh... Two muskets, but no powder or bullets.
 
       FrogmanMan:
-      Too risky.\a Well, it''s still a good haul.\a Let''s go back.
+      Ah. We should probably hide them here then.\a They would draw too much attention.
 
-      Zip: Sure
-      thing, boss.
+      Zip:
+      Yeah. Too bad. I would''ve loved to see one in action.
+
+      FrogmanMan: If
+      the rumours about the war in Straberod are true,\a you probably don''t want
+      that.
+
+      Zip: I know, I know. Still,\a throwing these away is a shame.
+      Oh well.\a Let''s catch some shuteye, eh?
+
+      FrogmanMan: Yes. It was quite
+      the day...
 
       :hideCG:
 
@@ -1288,22 +1275,19 @@ MonoBehaviour:
       :introShowTutorial:
 
 
-
       ~
       After battle
 
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback1
@@ -1335,47 +1319,53 @@ MonoBehaviour:
 
       :play:ForgottenMemories
 
-      :setSpeaker:FrogmanMan|Frogman|R
+      :setSpeaker:FrogmanMan||R
 
       Zip:
-      Frogman. She''s here.
+      Frogman. She''s coming.
 
-      FrogmanMan: Already? Oh well, nothing to be done
-      about it.\a Let her in.
+      FrogmanMan: Already? Oh well, nothing to be
+      done about it.\a Let her in.
 
-      Zip: I don''t like her, boss. It smells like
-      a trap.
+      Zip: I don''t like it, Frogman. She smells
+      fishy.\a And not the tasty kind.
 
-      FrogmanMan: I know. But she is alone, and she''s foreign -\a
-      she only arrived in the city yesterday.
+      FrogmanMan: She''s alone and foreign.\a
+      There''s not much she can do to us.\a Besides, we can''t be seen to be afraid
+      of her.\a It would harm our reputation.
 
-      Zip: Still, I don''t think it''s
-      wise.\a She asked specifically for you, boss.\a These are always trouble.
+      Zip: Your reputation, you mean.
 
       FrogmanMan:
-      Relax, Zip. We''re well known as the best thieves in the\a region for a reason.
+      I know you despise this stuff, but it protects us. I mean,\a who would want
+      to mess with the legendary Frogman?
 
-      We
-      shouldn''t fear some upstart from Straberod,\a even if she''s probably going
-      to try killing\a me.
+      Zip: All the people who want to
+      kill you now?\a Like her?
 
-      Zip: ...\a You''re the boss, boss.\a I''ll let
-      her in.
+      FBWitness||L: *knock*
 
-      DeharFB||L: Hello, Frogman. Thank you for having an audience
-      with me.
+      FrogmanMan: We''re
+      out of time, Zip. Just let her in, please.\a I''ll deal with her.
 
-      FrogmanMan: Greetings, Kebera. Please, have a seat.
+      Zip:
+      ...\a You''re the boss, boss.\a I''ll let her in.
 
-      DeharFB:
-      Thank you.
+      DeharFB||L: Hello,
+      Frogman. Thank you for having an audience with me.
 
-      FrogmanMan: This is my collegue, Zip.
+      FrogmanMan: Greetings,
+      Kebera. Please, have a seat.
+
+      DeharFB: Thank you.
+
+      FrogmanMan:
+      This is my colleague, Zip.
 
       Zip||R: ...
 
-      FrogmanMan||R:
-      I hope you do not mind having him here.\a Treat him as my shadow.
+      FrogmanMan||R: I hope
+      you do not mind having him here.\a Treat him as my shadow.
 
       DeharFB:
       I see.
@@ -1394,37 +1384,43 @@ MonoBehaviour:
       here on behalf of the governor of Straberod.\a She offers you a mission.
 
       FrogmanMan:
-      Which is?
+      In the middle of the war?
 
-      DeharFB: Unfortunately, I cannot disclose it to anyone but
-      you,\a Frogman.\a Those are my instructions.
+      DeharFB: Yes. The mission is quite vital for
+      it.
 
-      FrogmanMan: Unacceptable.
-      Zip will hear everything I will.
-
-      DeharFB: She is willing to pay quite
-      handsomely for this, Frogman.
-
-      FrogmanMan: I don''t care. It''s both
-      of us, or nothing.
-
-      DeharFB: ...Is there any way to change your mind?
-
-      FrogmanMan:
-      No.\a If that is all, I think we''re done here.\a Zip, show her out.
+      FrogmanMan: I don''t care much for Straberod, but let''s hear it.
 
       DeharFB:
-      There is no need, Frogman.\a Thank you for your hospitality.
+      Unfortunately, I cannot disclose it to anyone but you,\a Frogman.\a Those are
+      my instructions.
 
-      Zip||L:
-      ...
+      FrogmanMan: Unacceptable. Zip will hear everything
+      I will.
 
-      I told you she''s trouble.
+      DeharFB: She is willing to pay quite handsomely for this, Frogman.
 
-      FrogmanMan: You were right. She
-      was testing us.\a Me.\a Let''s tail her. Ready to go?
+      FrogmanMan:
+      I don''t care. It''s both of us, or nothing.
 
-      Zip: Always, boss.
+      DeharFB: ...Is there any
+      way to change your mind?
+
+      FrogmanMan: No.\a If that is all, I think we''re
+      done here.\a Zip, show her out.
+
+      DeharFB: There is no need, Frogman.\a
+      Thank you for your hospitality.
+
+      Zip||L: ...
+
+      I told you she''s
+      trouble.
+
+      FrogmanMan: You were right. She was testing us.\a Me.\a Let''s
+      tail her. Ready to go?
+
+      Zip: Always.
 
       :hideCG:
 
@@ -1442,22 +1438,19 @@ MonoBehaviour:
       :introShowTutorial:
 
 
-
       ~
       After battle
 
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback2
@@ -1549,13 +1542,21 @@ MonoBehaviour:
       FBWitness: Oi! Everything
       okay back there?
 
-      DeharFB||R: Hmph. You never can be truly alone in this
-      city, can you?\a Oh well. You get to live another day, Frogman.
+      FrogmanMan: He- mpft!
+
+      DeharFB||R: Keep quite!
+
+      Urgh.
+      You never can be truly alone in this city, can you?\a Oh well. You get to live
+      another day, Frogman.
+
+      But I better not see you ever again in this city.\a
+      It is mine now, got it?\a Great. Goodbye, Frogman.\a May we never meet again.
 
       :setSingleSpeaker:L
 
       FrogmanMan:
-      Ah...
+      Ah...\a Zip...\a Zip?\a No, talk to me, Zip...\a Zip!
 
       :hideCG:
 
@@ -1564,9 +1565,10 @@ MonoBehaviour:
       :setSingleSpeaker:L
 
       Frogman:
-      Urgh! Zip...\a He didn''t...
+      Urgh! Zip...\a He didn''t...\a She killed...
 
-      Kebera...
+      Kebera...\a You will die
+      for this.
 
       :setFlag:Flashback3
 
@@ -1575,22 +1577,19 @@ MonoBehaviour:
       :introShowTutorial:
 
 
-
       ~
       After battle
 
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback3
@@ -1639,18 +1638,18 @@ MonoBehaviour:
 
       :introShowTutorial:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1704,18 +1703,18 @@ MonoBehaviour:
 
       :introShowTutorial:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1806,17 +1805,17 @@ MonoBehaviour:
 
       Frogman: ...
 
-      Torment: As
-      fun as it is to watch you fail over and over again,\a how about we spice things
-      up, eh?
+      Torment:
+      As fun as it is to watch you fail over and over again,\a how about we spice
+      things up, eh?
 
       Frogman: What are you talking about?
 
-      Torment: Show some
-      patience, please. Ha!\a As I was saying...
+      Torment:
+      Show some patience, please. Ha!\a As I was saying...
 
-      I still have some power here.\a
-      You will know it soon enough... Heh heh.
+      I still have some
+      power here.\a You will know it soon enough... Heh heh.
 
       :unlockKnowledge:TormentHurtHelp
 
