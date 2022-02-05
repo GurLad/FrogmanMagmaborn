@@ -1116,10 +1116,12 @@ MonoBehaviour:
 
       What... is this place?
 
-      Wait...\a Who am
-      I?\a What is going on?!
+      Wait...\a Who am I?\a
+      What is going on?!
 
       ???: Hey! You there!
+
+      :markDone:
 
       :introShowTutorial:'
     Name: Intro1
@@ -1147,8 +1149,10 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
-      ???:
-      Hey! Over here!
+      ???: Hey!
+      Over here!
+
+      :markDone:
 
       :introShowTutorial:'
     Name: Intro2
@@ -1171,8 +1175,8 @@ MonoBehaviour:
       Frogman:
       Ah... Not again...
 
-      Maybe I should change my strategy.\a Fight like
-      Firbell or Kresla.\a Hm...
+      Maybe I should change my strategy.\a Fight like Firbell
+      or Kresla.\a Hm...
 
       :unlockKnowledge:InclinationFrogman
 
@@ -1182,6 +1186,8 @@ MonoBehaviour:
       :introShowUpgradeMenu:
 
       ???: Hey! Over here!
+
+      :markDone:
 
       :introShowTutorial:'
     Name: Intro3
@@ -1271,6 +1277,8 @@ MonoBehaviour:
       :setFlag:Flashback1
 
       :introShowUpgradeMenu:
+
+      :markDone:
 
       :introShowTutorial:
 
@@ -1435,6 +1443,8 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
+      :markDone:
+
       :introShowTutorial:
 
 
@@ -1574,6 +1584,8 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
+      :markDone:
+
       :introShowTutorial:
 
 
@@ -1636,25 +1648,24 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
+      :markDone:
+
       :introShowTutorial:
 
-      
 
       ~
       After battle
 
       # Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback4
@@ -1701,25 +1712,24 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
+      :markDone:
+
       :introShowTutorial:
 
-      
 
       ~
       After battle
 
       # Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback5
@@ -1743,6 +1753,8 @@ MonoBehaviour:
       *sigh* Here we go again...
 
       :introShowUpgradeMenu:
+
+      :markDone:
 
       :introShowTutorial:
 
@@ -1768,6 +1780,8 @@ MonoBehaviour:
 
       Frogman:
       Ahhh! I''m dead!\a How can I...\a What''s goind on in here?!
+
+      :markDone:
 
       :introShowTutorial:'
     Name: IntroLostFirstBattle
@@ -1805,17 +1819,17 @@ MonoBehaviour:
 
       Frogman: ...
 
-      Torment:
-      As fun as it is to watch you fail over and over again,\a how about we spice
-      things up, eh?
+      Torment: As
+      fun as it is to watch you fail over and over again,\a how about we spice things
+      up, eh?
 
       Frogman: What are you talking about?
 
-      Torment:
-      Show some patience, please. Ha!\a As I was saying...
+      Torment: Show some
+      patience, please. Ha!\a As I was saying...
 
-      I still have some
-      power here.\a You will know it soon enough... Heh heh.
+      I still have some power here.\a
+      You will know it soon enough... Heh heh.
 
       :unlockKnowledge:TormentHurtHelp
 
@@ -1829,6 +1843,8 @@ MonoBehaviour:
       :play:BeforeBattle
 
       :introShowUpgradeMenu:
+
+      :markDone:
 
       :introShowTutorial:
 
