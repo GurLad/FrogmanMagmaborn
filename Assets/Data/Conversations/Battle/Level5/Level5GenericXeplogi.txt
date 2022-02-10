@@ -1,0 +1,28 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:5
+charactersAlive:>1
+~ Demands
+# Nothinig
+~ Before battle
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Xeplogi
+:loadUnits:
+:setSingleSpeaker:L
+Frogman: The Guards are here already?\a Oh no!
+Xeplogi: Hold! Who goes there?!
+Frogman: Servants of the divine Tori,\a sent here to vanquish Memerian.
+Xeplogi: Really?! Then let us join forces, friends!
+~ After battle
+Frogman: Everyone, run!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:SafeAndSound
+Frogman||L: Ah... Safe at last...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

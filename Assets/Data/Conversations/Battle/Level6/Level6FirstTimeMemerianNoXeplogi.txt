@@ -1,0 +1,71 @@
+priority:5
+unique:F
+~ Requirements
+roomNumber:6
+!hasCharacter:Xeplogi
+~ Demands
+# TBA: Add room tags, and force a room built for Memerian and Keplogi
+~ Before battle
+:addUnit:Memerian
+:loadUnits::player
+:play:BeforeBattle
+Memerian|???: Hey. You there. Who are you?
+:if:hasCharacter:Firbell{
+:setFlag:FirbellSawMemerian
+Firbell||L: You... You seem familiar...
+Frogman||L: Firbell? Who is that?
+Memerian: ...My name is Memerian,
+and I've never seen this skeleton before in my life.
+Firbell||L: I... Forgive me, I must be mistaken...
+Frogman||L: Uh... Okay. My name is Frogmam, and this is Firbell.\a Wait, Memerian? I think Xeplogi mentioned you.
+}
+:else:{
+Frogman||L: My name is Frogman. Who might you be?
+Memerian: I'm Memerian.
+Frogman: Memerian? I think Xeplogi mentioned you.
+}
+Memerian: Did he now? I hope you didn't listen to the fool.
+Frogman: Um, not really.
+# Memerian is afraid to talk about Torment in public, and rightly so.
+:if:charactersAlive:<2{
+Memerian: Good. So, Frogman. I'll get straight to the point.\a Were you sent here by Torment?
+Frogman: Wait... you know Torment?!
+}
+:else:{
+Memerian: Good. Anyway. Frogman, may we speak in private?
+Frogman: What for?
+Memerian: Let's call them... the divine Tori.
+Frogman: Who?\a Wait, you mean Tor-
+Memerian: Yes.
+:if:hasCharacter:Firbell{
+Firbell: Who are you talking about?
+}
+:if:hasCharacter:Kresla{
+Kresla: Who?
+}
+:if:hasCharacter:Xirveros{
+Xirveros: Tori? No! No Tori!
+}
+}
+:play:GuardTheme
+:loadUnits:
+:addGenericCharacter:Guard1:
+Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
+Memerian: Ugh. Meddlesome Guards. We'll speak again soon, Frogman.
+
+~ After battle
+:play:AfterBattle
+Frogman: Whew. We-
+:play:Trustworthy
+Torment: Not so fast, heh!
+Frogman: Torment?!
+Torment: Yes, it's me!\a You've reached the end of the beta!
+Frogman: What beta?
+Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!
+You can still play more runs to view more conversations
+and unlock upgrades, but you'll have to die now.
+Ha ha!
+:showPartTitle:End of:Beta
+:lose:
+
+# === Functions ====

@@ -1,0 +1,28 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:5
+charactersAlive:<2
+~ Demands
+# Nothinig
+~ Before battle
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits:
+:setSingleSpeaker:L
+Frogman: Guards again? Ah...
+Alfred: Hello.
+Frogman: Ah! Uh, hello, Alfred.
+Alfred: ...
+~ After battle
+Frogman: Everyone, run!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:SafeAndSound
+Frogman||L: Ah... Safe at last...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
