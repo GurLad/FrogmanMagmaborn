@@ -812,7 +812,7 @@ public class Unit : MapObject
                 {
                     for (int j = 0; j < GameController.Current.MapSize.y; j++)
                     {
-                        if (dangerArea[i, j].Value > 0 || !GameController.Current.Map[x + i, y + j].Passable)
+                        if (dangerArea[i, j].Value > 0 || !GameController.Current.Map[i, j].Passable)
                         {
                             continue;
                         }

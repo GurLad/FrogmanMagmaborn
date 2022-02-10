@@ -25088,8 +25088,8 @@ MonoBehaviour:
         - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
         - {r: 1, g: 1, b: 1, a: 0}
       Name: Trust
-      PlayerControlled: 1
-      PortraitLoadingMode: 2
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
       AI:
         TrueDamageWeight: 1
         RelativeDamageWeight: 0
@@ -29220,7 +29220,7 @@ MonoBehaviour:
       Fashima_: They''re still alive?\a
       Fine, I''ll do it myself.
 
-      :addSkill:Fashima_:siegeWeapon'
+      :addSkill:Fashima:siegeWeapon'
     - '~
 
       turn:>2
@@ -29349,66 +29349,37 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 10}
-      Team: 2
-      Level: 0
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 1}
+    - Pos: {x: 13, y: 12}
       Team: 1
-      Level: 0
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 5}
-      Team: 2
-      Level: 7
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 9}
-      Team: 0
-      Level: 0
-      Class: Dehar_
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 9}
-      Team: 0
-      Level: 0
-      Class: Dehar
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 7}
-      Team: 1
-      Level: 0
-      Class: Ooze
-      AIType: 0
+      Level: 16
+      Class: Fashima_
+      AIType: 2
       ReinforcementTurn: 0
       Statue: 0
     MapEvents:
     - '~
 
-      turn:>2
+      turn:>1
 
       ~
 
       ~
 
-      Frogman: Hi!'
+      Frogman: Hi!
+
+      Fashima_: Die!
+
+      :addSkill:Fashima:siegeWeapon
+
+'
     Tileset: Dungeon
     Objective: 2
     ObjectiveData: 6:6
-    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|1|3|0|0|0|0|0|0|0;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;1|0|2|2|2|2|1|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|3|1|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|1|3|0|0|0|0|0|0|0;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;1|0|2|2|2|2|1|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|3|1|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|1|0|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
   mapData:
-    Tiles: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|1|3|0|0|0|0|0|0|0;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;1|0|2|2|2|2|1|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|3|1|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Tiles: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|0|3|0|0|0|2|2|2|2|2;2|2|2|1|0|0|0|0|0|0|2|2|2|2|2;2|2|2|1|0|3|1|3|0|0|0|0|0|0|0;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;1|0|2|2|2|2|1|0|3|0|0|2|2|2|2;2|2|2|1|0|0|0|0|0|0|0|2|2|2|2;2|2|2|1|0|3|1|3|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|0|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|1|0|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
     Units:
     - Pos: {x: 6, y: 7}
       Team: 0
@@ -29438,51 +29409,22 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 10}
-      Team: 2
-      Level: 0
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 1}
+    - Pos: {x: 13, y: 12}
       Team: 1
-      Level: 0
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 5}
-      Team: 2
-      Level: 7
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 9}
-      Team: 0
-      Level: 0
-      Class: Dehar_
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 9}
-      Team: 0
-      Level: 0
-      Class: Dehar
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 7}
-      Team: 1
-      Level: 0
-      Class: Ooze
-      AIType: 0
+      Level: 16
+      Class: Fashima_
+      AIType: 2
       ReinforcementTurn: 0
       Statue: 0
     MapEvents:
-    - Requirements: turn:>2
-      Event: 'Frogman: Hi!'
+    - Requirements: turn:>1
+      Event: 'Frogman: Hi!
+
+        Fashima_: Die!
+
+        :addSkill:Fashima:siegeWeapon
+
+'
     Tileset: Dungeon
     LevelNumber: 8
     Objective: Escape:6:6

@@ -56,12 +56,18 @@ public class BattleAnimationController : MidBattleScreen
         LoadBattleBackground(attackerTile, true);
         Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
         LoadBattleBackground(defenderTile, false);
-        bool meleeAttack = Vector2.Distance(Attacker.Unit.Pos, Defender.Unit.Pos) <= 1;
+        bool meleeAttack = Attacker.Unit.Pos.TileDist(Defender.Unit.Pos) <= 1;
         if (!meleeAttack)
         {
             // Move combatants slightly
             Attacker.Object.transform.position += new Vector3(Attacker.LookingLeftSign, 0, 0);
             Defender.Object.transform.position += new Vector3(Defender.LookingLeftSign, 0, 0);
+        }
+        if (attacker.HasSkill(Skill.SiegeWeapon) &&
+            Attacker.ClassAnimationData.BattleAnimationModeRanged == BattleAnimationMode.Teleport &&
+            Attacker.Unit.Pos.TileDist(Defender.Unit.Pos) > 2) // Very specific siege weapon animation
+        {
+            Attacker.Object.transform.position += new Vector3(Attacker.LookingLeftSign * 20, 0, 0);
         }
         // Set init pos
         Attacker.InitPos = Attacker.Object.transform.position.x;

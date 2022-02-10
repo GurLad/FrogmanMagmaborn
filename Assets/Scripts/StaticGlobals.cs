@@ -51,8 +51,8 @@ public static class StaticGlobals
         return skillName.ToLower() switch
         {
             "acrobat" => Skill.Acrobat,
-            "naturalCover" => Skill.NaturalCover,
-            "siegeWeapon" => Skill.SiegeWeapon,
+            "naturalcover" => Skill.NaturalCover,
+            "siegeweapon" => Skill.SiegeWeapon,
             _ => null
         };
     }

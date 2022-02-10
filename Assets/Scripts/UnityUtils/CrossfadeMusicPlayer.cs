@@ -79,7 +79,6 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         {
             throw Bugger.Error("No matching audio clip! (" + name + ")");
         }
-        Bugger.Info("Will now play " + name);
         seconderyAudioSource.loop = true;
         playingIntro = false;
         playingBattle = false;
