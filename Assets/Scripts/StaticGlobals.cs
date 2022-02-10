@@ -16,7 +16,7 @@ public enum PortraitLoadingMode { Name, Team, Generic, None }
 public enum Objective { Rout, Boss, Escape, Survive }
 public enum GameState { Normal, SideWon, ShowingEvent }
 public enum BattleAnimationMode { Walk, Projectile, Teleport }
-public enum Skill { Acrobat, NaturalCover, Charisma, Shade, HitAndRun, FinishingTouch }
+public enum Skill { Acrobat, NaturalCover, SiegeWeapon } // Charisma, Shade, HitAndRun, FinishingTouch }
 
 public static class StaticGlobals
 {
@@ -43,6 +43,16 @@ public static class StaticGlobals
             "charge" => AIType.Charge,
             "guard" => AIType.Guard,
             "hold" => AIType.Hold,
+            _ => null
+        };
+    }
+    public static Skill? ToSkill(this string skillName)
+    {
+        return skillName.ToLower() switch
+        {
+            "acrobat" => Skill.Acrobat,
+            "naturalCover" => Skill.NaturalCover,
+            "siegeWeapon" => Skill.SiegeWeapon,
             _ => null
         };
     }

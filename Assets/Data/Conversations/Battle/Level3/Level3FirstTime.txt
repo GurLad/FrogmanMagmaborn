@@ -5,8 +5,13 @@ roomNumber:3
 ~ Demands
 ~ Before battle
 :if:!firstTime:{
+:if:charactersAlive:<1{
+:call:PreAlone
+}
+:else:{
 :call:PreAfterFail
 :finishConversation:
+}
 }
 :if:hasCharacter:Firbell{
 :call:PreFirbell
@@ -118,10 +123,9 @@ Frogman: Sure, there might be tough enemies ahead.
 But we're immortal, so we might as well fight them.
 Firbell: We could just survive as long as we can.\a This is what I have done thus far.
 Frogman: I'm sorry, but that sounds pointless.
-Firbell: Do you want to end up like Xirveros?\a Because that was what he did.
-Frogman: Huh. Good to know.\a But I'm not Xirveros.\a I must go ahead anyway.\a Are you coming?
-Firbell: What?! Did you not listen to a word-
-And there he goes again. The fool...
+I cannot accept a life of endless,\a pointless survival.\a There must be more here.\a Maybe even a way out.
+Firbell: Getting out of here is impossible.\a But if you insist on seeing it for yourself, fine.
+# TBA - improve
 
 ~ PostKresla
 Kresla: Oh.\a It just disintegrated.\a What a shame.

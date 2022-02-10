@@ -395,6 +395,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
+                case "addSkill":
+                    // Params: string unitName, string skillName
+                    // Adds a skill to a unit.
+                    AssertCommand("addSkill", args, CAT.String, CAT.String);
+                    Unit target3 = GameController.Current.GetNamedUnit(args[0]);
+                    if (target3 != null)
+                    {
+                        target3.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
+                    }
+                    else
+                    {
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                    }
+                    break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
                     AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);

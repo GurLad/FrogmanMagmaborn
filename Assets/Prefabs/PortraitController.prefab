@@ -216,18 +216,18 @@ MonoBehaviour:
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0.72156864, b: 0, a: 1}
-      - {r: 0, g: 0.47058824, b: 0, a: 1}
-      - {r: 0, g: 0.34509805, b: 0, a: 1}
-    ForegroundColorID: 2
-    AccentColor: 2
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 3
     Voice:
       VoiceType: 2
       Pitch: 1.6
     DisplayName: Dehar
-  - Name: DeharFB
-    Background: {fileID: 21300000, guid: ee413f10566a21d4d8ea91580356bdcf, type: 3}
-    Foreground: {fileID: 21300000, guid: b701180f80e09f74286ae837039b86d9, type: 3}
+  - Name: Kebera
+    Background: {fileID: 21300000, guid: 95648850fae6e9b4f92163086cc83f97, type: 3}
+    Foreground: {fileID: 21300000, guid: 52592fc8cf2ec0149ab337ccdd4cc4f6, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
@@ -240,24 +240,9 @@ MonoBehaviour:
       VoiceType: 2
       Pitch: 1.6
     DisplayName: Kebera
-  - Name: DeharDisguise
-    Background: {fileID: 21300000, guid: 7d049e0db60a0d54597f9a1c0b0228c9, type: 3}
-    Foreground: {fileID: 21300000, guid: 3758f601c1baa3d47be965dc0e8ec9d9, type: 3}
-    BackgroundColor:
-      Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
-    ForegroundColorID: 0
-    AccentColor: 3
-    Voice:
-      VoiceType: 2
-      Pitch: 1.6
-    DisplayName: DeharDisguise
-  - Name: Dehar_
-    Background: {fileID: 21300000, guid: 3a50e1aee2d0a824b9281eae7cf6ae15, type: 3}
-    Foreground: {fileID: 21300000, guid: 4c1ceed042652fd4b937801da5d94988, type: 3}
+  - Name: Fashima_
+    Background: {fileID: 21300000, guid: 69ee4bb687dbd6241b8d589cca9c834b, type: 3}
+    Foreground: {fileID: 21300000, guid: 707313720c0db7f41b029dbe5615b4e4, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
@@ -269,22 +254,22 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
-    DisplayName: Dehar
-  - Name: Bodder
-    Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
-    Foreground: {fileID: 21300000, guid: f8c1441e0307f7246ab3e3ae54613a05, type: 3}
+    DisplayName: Fashima
+  - Name: Fashima
+    Background: {fileID: 21300000, guid: e23beeaf41bdf01438d38c4b6d17c6a6, type: 3}
+    Foreground: {fileID: 21300000, guid: 6985d5af7744dd34c80fc7e5f9d39d04, type: 3}
     BackgroundColor:
       Colors:
       - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.9882353, g: 0.84705883, b: 0.5176471, a: 1}
-      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
-      - {r: 0.89411765, g: 0.3764706, b: 0.09411765, a: 1}
-    ForegroundColorID: 0
-    AccentColor: 1
+      - {r: 0, g: 0.72156864, b: 0, a: 1}
+      - {r: 0, g: 0.47058824, b: 0, a: 1}
+      - {r: 0, g: 0.34509805, b: 0, a: 1}
+    ForegroundColorID: 2
+    AccentColor: 2
     Voice:
-      VoiceType: 0
-      Pitch: 1
-    DisplayName: Bodder
+      VoiceType: 2
+      Pitch: 1.6
+    DisplayName: Fashima
   - Name: FBWitness
     Background: {fileID: 21300000, guid: f5b1da1ff3990b54187b60eab8d0aa39, type: 3}
     Foreground: {fileID: 21300000, guid: 8c292af261b0b2142bc16ee09870447e, type: 3}
@@ -300,6 +285,21 @@ MonoBehaviour:
       VoiceType: 0
       Pitch: 0.8
     DisplayName: ???
+  - Name: Bodder
+    Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
+    Foreground: {fileID: 21300000, guid: f8c1441e0307f7246ab3e3ae54613a05, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.9882353, g: 0.84705883, b: 0.5176471, a: 1}
+      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
+      - {r: 0.89411765, g: 0.3764706, b: 0.09411765, a: 1}
+    ForegroundColorID: 0
+    AccentColor: 1
+    Voice:
+      VoiceType: 0
+      Pitch: 1
+    DisplayName: Bodder
   - Name: Brens
     Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
     Foreground: {fileID: 21300000, guid: 977489b3899f54b45a7217d3e8246dcf, type: 3}
@@ -315,6 +315,21 @@ MonoBehaviour:
       VoiceType: 0
       Pitch: 1
     DisplayName: Brens
+  - Name: Lanherdt
+    Background: {fileID: 21300000, guid: a8ca2acdfd7083f4fa4c56e94f8db2f7, type: 3}
+    Foreground: {fileID: 21300000, guid: 28f9fc04aa2422e41aa65af6d1c2a335, type: 3}
+    BackgroundColor:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.9882353, g: 0.8784314, b: 0.7058824, a: 1}
+      - {r: 0.9882353, g: 0.84705883, b: 0.5176471, a: 1}
+      - {r: 0.9882353, g: 0.72156864, b: 0, a: 1}
+    ForegroundColorID: 3
+    AccentColor: 0
+    Voice:
+      VoiceType: 0
+      Pitch: 1
+    DisplayName: Lanherdt
   GenericPortraits:
   - tags: female,young
     VoiceType: 1

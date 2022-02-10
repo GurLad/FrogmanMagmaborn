@@ -187,10 +187,10 @@ public static class GameCalculations
                 case TormentPowerState.None:
                     break;
                 case TormentPowerState.I:
-                    unit.Skills.AddSkill(Skill.Acrobat);
+                    unit.AddSkill(Skill.Acrobat);
                     break;
                 case TormentPowerState.II:
-                    unit.Skills.AddSkill(Skill.NaturalCover);
+                    unit.AddSkill(Skill.NaturalCover);
                     break;
                 default:
                     break;
@@ -295,7 +295,7 @@ public static class GameCalculations
         {
             return tile.High ? tile.MovementCost : 1;
         }
-        else if (unit.Skills.HasSkill(Skill.Acrobat))
+        else if (unit.HasSkill(Skill.Acrobat))
         {
             return (tile.High || tile.MovementCost > 5) ? tile.MovementCost : 1;
         }
@@ -308,6 +308,6 @@ public static class GameCalculations
     public static int GetArmorModifier(this Tile tile, Unit unit)
     {
         return (unit.Flies && !tile.High) ? 0 :
-            (unit.Skills.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier);
+            (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier);
     }
 }

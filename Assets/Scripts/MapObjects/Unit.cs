@@ -20,7 +20,6 @@ public class Unit : MapObject
     public bool Flies;
     public Stats Stats;
     public Inclination Inclination;
-    public SkillSet Skills;
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;
@@ -53,6 +52,7 @@ public class Unit : MapObject
     private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
     private bool started;
+    private SkillSet skills = new SkillSet();
     [SerializeField]
     private bool moved;
     public bool Moved
@@ -726,6 +726,14 @@ public class Unit : MapObject
             Stats.Growths[i]++;
         }
     }
+    public void AddSkill(Skill skill)
+    {
+        skills.AddSkill(skill);
+    }
+    public bool HasSkill(Skill skill)
+    {
+        return skills.HasSkill(skill);
+    }
     public string Save()
     {
         return JsonUtility.ToJson(this);
@@ -791,9 +799,30 @@ public class Unit : MapObject
             {
                 attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
             }
-            //ErrorController.Info(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
-            attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
-            //ErrorController.Info(dangerArea.ToString());
+
+            //Bugger.Info(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
+
+            if (!unit.HasSkill(Skill.SiegeWeapon)) // Infinite range instead of 3-10
+            {
+                attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+            }
+            else
+            {
+                for (int i = 0; i < GameController.Current.MapSize.x; i++)
+                {
+                    for (int j = 0; j < GameController.Current.MapSize.y; j++)
+                    {
+                        if (dangerArea[i, j].Value > 0 || !GameController.Current.Map[x + i, y + j].Passable)
+                        {
+                            continue;
+                        }
+                        dangerArea[i, j].Type = TileDataType.Attack;
+                        dangerArea[i, j].Value = -1;
+                    }
+                }
+            }
+
+            //Bugger.Info(dangerArea.ToString());
             return dangerArea;
         }
 
@@ -885,7 +914,6 @@ public class Unit : MapObject
                             }
                             this[x + i, y + j].Type = TileDataType.Attack;
                             this[x + i, y + j].Value = -(range + 1);
-                            this[x + i, y + j].Parent = parent;
                             if (range - 1 > 0)
                             {
                                 Inner(x + i, y + j, range - 1, parent);
@@ -1003,7 +1031,6 @@ public class Unit : MapObject
         {
             public int Value = 0;
             public TileDataType Type = TileDataType.Inaccessible;
-            public TileData Parent = null;
             public Vector2Int Pos;
         }
     }
