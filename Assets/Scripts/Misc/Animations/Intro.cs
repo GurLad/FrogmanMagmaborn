@@ -20,7 +20,7 @@ public class Intro : MonoBehaviour
     {
         for (int i = 0; i < BaseBackgrounds.Length; i++)
         {
-            PaletteController.Current.BackgroundPalettes[i] = BaseBackgrounds[i];
+            PaletteController.Current.BackgroundPalettes[i].CopyFrom(BaseBackgrounds[i]);
         }
     }
     private void Update()
@@ -33,7 +33,7 @@ public class Intro : MonoBehaviour
                 Camera.position = new Vector3(Camera.position.x, transform.position.y, Camera.position.z);
                 finishedMove = true;
                 Palette palette = new Palette(PaletteController.Current.SpritePalettes[0]);
-                palette.Colors[3] = palette.Colors[2];
+                palette[3] = palette[2];
                 transition = PaletteController.Current.TransitionTo(false, 0, palette, TransitionSpeed);
                 Frogman.SetActive(true);
             }

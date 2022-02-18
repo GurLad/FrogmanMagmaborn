@@ -40,11 +40,11 @@ public class PalettedSprite : MonoBehaviour
         ui = (renderer = GetComponent<SpriteRenderer>()) == null;
         if (!ui)
         {
-            renderer.material = Resources.Load<Material>("Palette");
+            renderer.sharedMaterial = PaletteController.Current.GetMaterial(Background, palette);
         }
         else
         {
-            (image = GetComponent<Image>()).material = Instantiate(Resources.Load<Material>("Palette"));
+            (image = GetComponent<Image>()).material = PaletteController.Current.GetMaterial(Background, palette);
         }
         initialized = true;
     }
@@ -64,14 +64,14 @@ public class PalettedSprite : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                renderer.material.SetColor("_Color" + (i + 1) + "out", Background ? PaletteController.Current.BackgroundPalettes[Palette][i] : PaletteController.Current.SpritePalettes[Palette][i]);
+                renderer.sharedMaterial = PaletteController.Current.GetMaterial(Background, palette);
             }
         }
         else
         {
             for (int i = 0; i < 4; i++)
             {
-                image.material.SetColor("_Color" + (i + 1) + "out", Background ? PaletteController.Current.BackgroundPalettes[Palette][i] : PaletteController.Current.SpritePalettes[Palette][i]);
+                image.material = PaletteController.Current.GetMaterial(Background, palette);
             }
         }
     }

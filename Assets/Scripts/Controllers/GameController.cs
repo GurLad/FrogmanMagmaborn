@@ -990,8 +990,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         // Load map
         Set = MapController.Tilesets.Find(a => a.Name == map.Tileset);
-        PaletteController.Current.BackgroundPalettes[0] = Set.Palette1;
-        PaletteController.Current.BackgroundPalettes[1] = Set.Palette2;
+        PaletteController.Current.BackgroundPalettes[0].CopyFrom(Set.Palette1);
+        PaletteController.Current.BackgroundPalettes[1].CopyFrom(Set.Palette2);
         // Create map
         currentMapObject = new GameObject("MapObject").transform;
         currentMapObject.parent = transform;

@@ -144,8 +144,8 @@ public class Tileset
     {
         for (int i = 0; i < 4; i++)
         {
-            Palette1.Colors[i] = Color.black;
-            Palette2.Colors[i] = Color.black;
+            Palette1.colors[i] = Color.black;
+            Palette2.colors[i] = Color.black;
         }
     }
 

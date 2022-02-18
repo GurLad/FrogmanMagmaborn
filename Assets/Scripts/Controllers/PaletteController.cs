@@ -16,24 +16,13 @@ public class PaletteController : MonoBehaviour
         }
         private set => current = value;
     }
-    public Palette[] BackgroundPalettes = new Palette[4];
-    public Palette[] SpritePalettes = new Palette[4];
+    public Palette[] BackgroundPalettes { get; private set; } = new Palette[4];
+    public Palette[] SpritePalettes { get; private set; } = new Palette[4];
+    [SerializeField]
+    private Material[] spriteMaterials = new Material[4];
+    [SerializeField]
+    private Material[] backgroundMaterials = new Material[4];
     private static PaletteController current;
-
-    private void Reset()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            BackgroundPalettes[i].Colors[0] = Color.black;
-            BackgroundPalettes[i].Colors[1] = Color.white;
-            BackgroundPalettes[i].Colors[2] = Color.gray;
-            BackgroundPalettes[i].Colors[3] = Color.black;
-            SpritePalettes[i].Colors[0] = Color.black;
-            SpritePalettes[i].Colors[1] = Color.white;
-            SpritePalettes[i].Colors[2] = Color.gray;
-            SpritePalettes[i].Colors[3] = new Color(1,0,1,0);
-        }
-    }
 
     private void Awake()
     {
@@ -47,6 +36,11 @@ public class PaletteController : MonoBehaviour
             current = this;
         }
         DontDestroyOnLoad(gameObject);
+        for (int i = 0; i < 4; i++)
+        {
+            BackgroundPalettes[i] = new PaletteWithMaterial(GetMaterial(true, i));
+            SpritePalettes[i] = new PaletteWithMaterial(GetMaterial(false, i));
+        }
     }
 
     public PaletteTransition TransitionTo(bool background, int id, Palette target, float speed, bool fromCurrent = false, bool reverse = false)
@@ -63,40 +57,80 @@ public class PaletteController : MonoBehaviour
         transition.Reverse = reverse;
         return transition;
     }
+
+    public Material GetMaterial(bool background, int id)
+    {
+        return background ? backgroundMaterials[id] : spriteMaterials[id];
+    }
+
+    private class PaletteWithMaterial : Palette
+    {
+        private Material linkedMaterial;
+        public override Color this[int i]
+        {
+            get => base[i];
+            set
+            {
+                base[i] = value;
+                linkedMaterial.SetColor("_Color" + (i + 1) + "out", this[i]);
+            }
+        }
+
+        public PaletteWithMaterial(Material material) : base()
+        {
+            linkedMaterial = material;
+        }
+    }
 }
 
 [System.Serializable]
 public class Palette
 {
-    public Color[] Colors = new Color[4];
-    public Color this[int i]
+    private Color[] colors = new Color[4];
+    public virtual Color this[int i]
     {
         get
         {
-            return Colors[i];
+            return colors[i];
+        }
+        set
+        {
+            colors[i] = value;
         }
     }
+
     public Palette()
     {
         Reset();
     }
+
     public Palette(Palette copyFrom)
     {
         for (int i = 0; i < 4; i++)
         {
-            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
+            colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
         }
     }
+
     public void Reset()
     {
         for (int i = 0; i < 4; i++)
         {
-            Colors[i] = Color.black;
+            colors[i] = Color.black;
         }
     }
+
     public Palette Clone()
     {
         return new Palette(this);
+    }
+
+    public void CopyFrom(Palette palette)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            this[i] = palette[i];
+        }
     }
 }
 
@@ -114,7 +148,7 @@ public class PaletteTransition : MonoBehaviour
     {
         if (!Background)
         {
-            Source.Colors[3].a = 0;
+            Source[3] = Color.clear;
         }
     }
     private void Update()
@@ -132,24 +166,24 @@ public class PaletteTransition : MonoBehaviour
             {
                 for (int i = 2; i > 0; i--)
                 {
-                    Source.Colors[i + 1] = Source[i];
+                    Source[i + 1] = Source[i];
                 }
-                Source.Colors[1] = Target[Current--];
+                Source[1] = Target[Current--];
                 if (!Background)
                 {
-                    Source.Colors[3].a = 0;
+                    Source[3] = Color.clear;
                 }
             }
             else
             {
                 for (int i = 2; i < 4; i++)
                 {
-                    Source.Colors[i - 1] = Source[i];
+                    Source[i - 1] = Source[i];
                 }
-                Source.Colors[3] = Target[4 - (Current--)];
+                Source[3] = Target[4 - (Current--)];
                 if (!Background)
                 {
-                    Source.Colors[3].a = 0;
+                    Source[3] = Color.clear;
                 }
             }
             toUpdate.ForEach(a => a.UpdatePalette());

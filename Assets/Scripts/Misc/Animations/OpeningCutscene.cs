@@ -58,7 +58,7 @@ public class OpeningCutscene : Trigger
         creditsReverse = new Palette();
         for (int i = 1; i < 4; i++)
         {
-            creditsReverse.Colors[i] = CreditsColor[4 - i];
+            creditsReverse[i] = CreditsColor[4 - i];
         }
     }
     private void Update()
@@ -93,7 +93,7 @@ public class OpeningCutscene : Trigger
                 }
                 for (int i = 0; i < ImageParts.Count; i++)
                 {
-                    PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i].Clone();
+                    PaletteController.Current.BackgroundPalettes[i].CopyFrom(ImagePalettes[i].Clone());
                     ImageParts[i].gameObject.SetActive(true);
                     ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
                 }
@@ -210,7 +210,7 @@ public class OpeningCutscene : Trigger
         gameObject.SetActive(true);
         for (int i = 0; i < ImageParts.Count; i++)
         {
-            PaletteController.Current.BackgroundPalettes[i] = ImagePalettes[i].Clone();
+            PaletteController.Current.BackgroundPalettes[i].CopyFrom(ImagePalettes[i].Clone());
             ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
         }
     }

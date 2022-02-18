@@ -15,7 +15,7 @@ public class PortraitHolder : MonoBehaviour
     {
         set
         {
-            PaletteController.Current.BackgroundPalettes[BackgroundPalleteID] = value.BackgroundColor;
+            PaletteController.Current.BackgroundPalettes[BackgroundPalleteID].CopyFrom(value.BackgroundColor);
             Background.sprite = value.Background;
             backgroundPalette.UpdatePalette();
             Foreground.sprite = value.Foreground;
