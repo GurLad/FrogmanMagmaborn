@@ -24,6 +24,15 @@ public class LevelMetadata
         }
     }
 
+    public void SetPalettesFromMetadata()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            PaletteController.Current.SpritePalettes[i].CopyFrom(TeamDatas[i].Palette);
+        }
+        PaletteController.Current.SpritePalettes[3].CopyFrom(Palette4);
+    }
+
     [System.Serializable]
     public class TeamData
     {

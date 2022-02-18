@@ -43,45 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595f2b45a2524624b87abece7b0253b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundPalettes:
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.86274517, g: 0, b: 0.8313726, a: 1}
-    - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
-    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.9568628, g: 0.81568635, b: 0.7058824, a: 1}
-    - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
-    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 1, g: 1, b: 1, a: 1}
-    - {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - {r: 0, g: 0, b: 0, a: 1}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 1, g: 1, b: 1, a: 1}
-    - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
-    - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
-  SpritePalettes:
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.34509805, g: 0.9725491, b: 0.6117647, a: 1}
-    - {r: 0, g: 0.34509805, b: 0, a: 1}
-    - {r: 1, g: 0, b: 1, a: 0}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.98823535, g: 0.47058827, b: 0.34509805, a: 1}
-    - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
-    - {r: 1, g: 0, b: 1, a: 0}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.21960786, g: 0.75294125, b: 0.98823535, a: 1}
-    - {r: 0, g: 0, b: 0.98823535, a: 1}
-    - {r: 1, g: 0, b: 1, a: 0}
-  - Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 1, g: 1, b: 1, a: 1}
-    - {r: 0.47058827, g: 0.5019608, b: 0.5176471, a: 1}
-    - {r: 1, g: 0, b: 1, a: 0}
+  spriteMaterials:
+  - {fileID: 2100000, guid: 23fde2aefb995fb448f6ded123c8b779, type: 2}
+  - {fileID: 2100000, guid: 5b9ef949bc8333746b93fc5eb44fd265, type: 2}
+  - {fileID: 2100000, guid: f387b90c85b7b9344ae6f1ec388cb66e, type: 2}
+  - {fileID: 2100000, guid: 8aab2d906ab74d8409ad0402d74dd114, type: 2}
+  backgroundMaterials:
+  - {fileID: 2100000, guid: 3916ab1f219081544ad3df88004ebcaf, type: 2}
+  - {fileID: 2100000, guid: 2a0d058e4c9a2b34299fd2a6dbc36ba3, type: 2}
+  - {fileID: 2100000, guid: 2c604d0f05675f2448d974dae05cd0c2, type: 2}
+  - {fileID: 2100000, guid: ef28aa7a5a0a0824dbf9109f6983f57e, type: 2}

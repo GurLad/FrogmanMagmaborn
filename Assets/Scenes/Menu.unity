@@ -1359,76 +1359,76 @@ MonoBehaviour:
       Zip:
       ...\a You''re the boss, boss.\a I''ll let her in.
 
-      DeharFB||L: Hello,
+      Kebera||L: Hello,
       Frogman. Thank you for having an audience with me.
 
       FrogmanMan: Greetings,
       Kebera. Please, have a seat.
 
-      DeharFB: Thank you.
+      Kebera: Thank you.
 
-      FrogmanMan:
-      This is my colleague, Zip.
+      FrogmanMan: This
+      is my colleague, Zip.
 
       Zip||R: ...
 
-      FrogmanMan||R: I hope
-      you do not mind having him here.\a Treat him as my shadow.
+      FrogmanMan||R: I hope you do
+      not mind having him here.\a Treat him as my shadow.
 
-      DeharFB:
-      I see.
-
-      FrogmanMan: So. Let''s get to business. What do you want?
-
-      DeharFB:
-      Let me start from the beginning. My name is-
-
-      FrogmanMan: I know who
-      you are. Your request?
-
-      DeharFB: I''ll be blunt then.
-
-      I was sent
-      here on behalf of the governor of Straberod.\a She offers you a mission.
+      Kebera: I see.
 
       FrogmanMan:
-      In the middle of the war?
+      So. Let''s get to business. What do you want?
 
-      DeharFB: Yes. The mission is quite vital for
-      it.
+      Kebera: Let me start from
+      the beginning. My name is-
 
-      FrogmanMan: I don''t care much for Straberod, but let''s hear it.
+      FrogmanMan: I know who you are. Your request?
 
-      DeharFB:
-      Unfortunately, I cannot disclose it to anyone but you,\a Frogman.\a Those are
-      my instructions.
+      Kebera:
+      I''ll be blunt then.
 
-      FrogmanMan: Unacceptable. Zip will hear everything
-      I will.
+      I was sent here on behalf of the governor of Straberod.\a
+      She offers you a mission.
 
-      DeharFB: She is willing to pay quite handsomely for this, Frogman.
+      FrogmanMan: In the middle of the war?
+
+      Kebera:
+      Yes. The mission is quite vital for it.
+
+      FrogmanMan: I don''t care much
+      for Straberod, but let''s hear it.
+
+      Kebera: Unfortunately, I cannot disclose
+      it to anyone but you,\a Frogman.\a Those are my instructions.
 
       FrogmanMan:
-      I don''t care. It''s both of us, or nothing.
+      Unacceptable. Zip will hear everything I will.
 
-      DeharFB: ...Is there any
-      way to change your mind?
+      Kebera: She is willing
+      to pay quite handsomely for this, Frogman.
 
-      FrogmanMan: No.\a If that is all, I think we''re
-      done here.\a Zip, show her out.
+      FrogmanMan: I don''t care.
+      It''s both of us, or nothing.
 
-      DeharFB: There is no need, Frogman.\a
-      Thank you for your hospitality.
+      Kebera: ...Is there any way to change
+      your mind?
+
+      FrogmanMan: No.\a If that is all, I think we''re done here.\a
+      Zip, show her out.
+
+      Kebera: There is no need, Frogman.\a Thank you for
+      your hospitality.
 
       Zip||L: ...
 
-      I told you she''s
-      trouble.
+      I told you she''s trouble.
 
-      FrogmanMan: You were right. She was testing us.\a Me.\a Let''s
-      tail her. Ready to go?
+      FrogmanMan:
+      You were right. She was testing us.\a Me.\a Let''s tail her. Ready to go?
 
-      Zip: Always.
+      Zip:
+      Always.
 
       :hideCG:
 
@@ -1500,20 +1500,20 @@ MonoBehaviour:
 
       ...
 
-      DeharFB||R: Would you care to show yourselves,\a or
+      Kebera||R: Would you care to show yourselves,\a or
       are you still pretending to sneak about?
 
       FrogmanMan: ...I want you out
       of my city, Kebera.\a Dead or alive.
 
-      DeharFB||R: Do you now? And how,
+      Kebera||R: Do you now? And how,
       exactly,\a do you plan on making me leave?
 
       FrogmanMan: You''re cornered.
       And alone.\a Zip and I are well known for a reason.\a Give up, and you might
       yet live.
 
-      DeharFB||R: So sure of yourself, are you?\a Daring to threaten
+      Kebera||R: So sure of yourself, are you?\a Daring to threaten
       me?\a But that won''t save you now,\a Frogman.\a Time to meet your maker.
 
       FrogmanMan:
@@ -1543,7 +1543,7 @@ MonoBehaviour:
 
       Oof!
 
-      DeharFB||L:
+      Kebera||L:
       Well. That was disappointedly easy.\a Makes me wonder whether you''re fit for
       the job.
 
@@ -1554,7 +1554,7 @@ MonoBehaviour:
 
       FrogmanMan: He- mpft!
 
-      DeharFB||R: Keep quite!
+      Kebera||R: Keep quite!
 
       Urgh.
       You never can be truly alone in this city, can you?\a Oh well. You get to live
@@ -6774,6 +6774,11 @@ PrefabInstance:
       propertyPath: ConversationController
       value: 
       objectReference: {fileID: 150707142}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
+      propertyPath: LevelMetadataController
+      value: 
+      objectReference: {fileID: 2116681589}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec6a9467a08e2d49a679b076976f611, type: 3}
 --- !u!213 &1575047333
@@ -8356,6 +8361,594 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075668816}
   m_CullTransparentMesh: 1
+--- !u!1 &2116681588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116681590}
+  - component: {fileID: 2116681589}
+  m_Layer: 0
+  m_Name: LevelMetadata
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2116681589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116681588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65dd8ab3e8a65b40b7fe1eb478ce5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMetadata:
+    TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: 
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  LevelMetadatas:
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: MagmaFlows
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: Dungeon
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: ToTheDeath
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0, g: 0.972549, b: 0.9882353, a: 1}
+        - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Torment
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    MusicName: Tormentor
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: EnterTheGuards
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
+        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: OverAndOver
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
+        - {r: 0, g: 0.34509805, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.627451, b: 0.28235295, a: 1}
+        - {r: 0.54901963, g: 0.09411765, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Magi
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 1
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
+        - {r: 0, g: 0, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 1
+        SurvivalWeight: 0
+        CautionLevel: 1
+    MusicName: Unbreakable
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000001
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.84705883, b: 0.5176471, a: 1}
+        - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Don't
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.9882353, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Trust
+      PlayerControlled: 0
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.8627451, g: 0.72156864, b: 0.9882353, a: 1}
+        - {r: 0.40784314, g: 0.28235295, b: 0.9882353, a: 1}
+        - {r: 1, g: 1, b: 1, a: 0}
+      Name: Jack
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: TheCloneVats
+    Palette4:
+      Colors:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.7372549, g: 0.972549, b: 0.09411765, a: 1}
+      - {r: 0, g: 0.47058824, b: 0, a: 1}
+      - {r: 1, g: 1, b: 1, a: 0}
+    Alliances: 000001
+    UnitReplacements:
+    - Name: Ooze
+      ReplacedBy:
+      - Lich
+      - Wizard
+      - Frogman
+      - Worker
+--- !u!4 &2116681590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116681588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139715938
 GameObject:
   m_ObjectHideFlags: 0
@@ -8443,6 +9036,7 @@ MonoBehaviour:
   HoldTime: 0.85
   CreditsObject: {fileID: 770784414}
   PressStart: {fileID: 35769310}
+  LevelMetadataController: {fileID: 2116681589}
 --- !u!1001 &2140982262
 PrefabInstance:
   m_ObjectHideFlags: 0

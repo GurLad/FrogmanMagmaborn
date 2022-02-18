@@ -72,13 +72,14 @@ public class PaletteController : MonoBehaviour
             set
             {
                 base[i] = value;
-                linkedMaterial.SetColor("_Color" + (i + 1) + "out", this[i]);
+                linkedMaterial?.SetColor("_Color" + (i + 1) + "out", this[i]);
             }
         }
 
         public PaletteWithMaterial(Material material) : base()
         {
             linkedMaterial = material;
+            Reset();
         }
     }
 }
@@ -86,16 +87,17 @@ public class PaletteController : MonoBehaviour
 [System.Serializable]
 public class Palette
 {
-    private Color[] colors = new Color[4];
+    [SerializeField]
+    private Color[] Colors = new Color[4];
     public virtual Color this[int i]
     {
         get
         {
-            return colors[i];
+            return Colors[i];
         }
         set
         {
-            colors[i] = value;
+            Colors[i] = value;
         }
     }
 
@@ -108,7 +110,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
+            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
         }
     }
 
@@ -116,7 +118,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            colors[i] = Color.black;
+            this[i] = Color.black;
         }
     }
 

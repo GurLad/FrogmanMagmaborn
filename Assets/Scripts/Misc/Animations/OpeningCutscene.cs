@@ -16,6 +16,7 @@ public class OpeningCutscene : Trigger
     [Header("Objects")]
     public Text CreditsObject;
     public GameObject PressStart;
+    public LevelMetadataController LevelMetadataController;
     [HideInInspector]
     public System.Action OnFinishFadeOut;
     private bool fadeOut;
@@ -52,6 +53,7 @@ public class OpeningCutscene : Trigger
 
     private void Start()
     {
+        LevelMetadataController[0].SetPalettesFromMetadata();
         transition = PaletteController.Current.TransitionTo(true, 0, CreditsColor, Speed);
         CreditsObject.text = Credits[0];
         state = State.TextShowing;

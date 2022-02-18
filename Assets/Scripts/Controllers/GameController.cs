@@ -848,7 +848,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         Turn = 1;
         // Set palettes
-        SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
+        (LevelMetadata = LevelMetadataController[LevelNumber]).SetPalettesFromMetadata();
         // Init unit replacements
         LevelMetadata.UnitReplacements.ForEach(a => a.Init());
         // Room-specific behaviours
@@ -1177,7 +1177,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void Lose()
     {
         NotifyListeners(a => a.OnEndLevel(units, false));
-        SetPalettesFromMetadata(LevelMetadataController[0]); // Fix Torment palette
+        LevelMetadataController[0].SetPalettesFromMetadata(); // Fix Torment palette
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
         SavedData.SaveAll(SaveMode.Slot);
@@ -1321,15 +1321,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return false;
     }
 
-    private void SetPalettesFromMetadata(LevelMetadata metadata)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            PaletteController.Current.SpritePalettes[i] = metadata.TeamDatas[i].Palette;
-        }
-        PaletteController.Current.SpritePalettes[3] = metadata.Palette4;
-    }
-
     public SuspendDataGameController SaveToSuspendData()
     {
         SuspendDataGameController suspendData = new SuspendDataGameController();
@@ -1351,7 +1342,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void LoadFromSuspendData(SuspendDataGameController data)
     {
         LevelNumber = data.LevelNumber;
-        SetPalettesFromMetadata(LevelMetadata = LevelMetadataController[LevelNumber]);
+        (LevelMetadata = LevelMetadataController[LevelNumber]).SetPalettesFromMetadata();
         Turn = data.Turn;
         DeadPlayerUnits = data.DeadPlayerUnits;
         TempFlags = data.TempFlags;
