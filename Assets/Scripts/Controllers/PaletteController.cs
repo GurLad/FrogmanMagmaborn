@@ -19,9 +19,9 @@ public class PaletteController : MonoBehaviour
     public Palette[] BackgroundPalettes { get; private set; } = new Palette[4];
     public Palette[] SpritePalettes { get; private set; } = new Palette[4];
     [SerializeField]
-    private Material[] spriteMaterials = new Material[4];
-    [SerializeField]
     private Material[] backgroundMaterials = new Material[4];
+    [SerializeField]
+    private Material[] spriteMaterials = new Material[4];
     private static PaletteController current;
 
     private void Awake()
@@ -38,7 +38,9 @@ public class PaletteController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         for (int i = 0; i < 4; i++)
         {
+            backgroundMaterials[i] = Instantiate(backgroundMaterials[i]);
             BackgroundPalettes[i] = new PaletteWithMaterial(GetMaterial(true, i));
+            spriteMaterials[i] = Instantiate(spriteMaterials[i]);
             SpritePalettes[i] = new PaletteWithMaterial(GetMaterial(false, i));
         }
     }

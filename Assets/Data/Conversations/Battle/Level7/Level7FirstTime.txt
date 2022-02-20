@@ -5,10 +5,40 @@ roomNumber:7
 ~ Demands
 # Nothinig
 ~ Before battle
-:play:BeforeBattle
-Fashima_: Bla.
-Brens: Bla.
-Frogman: Fight!
+# Need to think of a plausible excuse why did the Magmaborn only find the huge underground fortress when standing 2 meters away.
+:play:GuardTheme2
+:setSingleSpeaker:R
+:loadUnits::monster
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:loadUnits::guard:T
+Brens: Fashima!
+Fashima_: What is it now, Brens?
+Brens: Is it true? That there's another new Magmaborn?!
+Fashima_: Yes.\a Took you long enough to realize that.
+Brens: You knew? Why didn't you say anything?!\a It's your job to prevent such incidents!
+Fashima_: Isn't it your job to take care of the city,\a instead of pestering me?
+Brens: Don't change the subject!\a Are they dangerous?\a Will they try escaping?!
+Fashima_: I don't know.
+Brens: You don't know?!
+Fashima_: Yes, I don't know.\a I'm not made of answers, you know.
+Brens: Argh! This is a disaster!
+Fashima_: Calm down, old man. Everything's under control.
+Brens: Old man?! You know that I'm younger than-\a Ugh, I've had enough!\a Keep an eye on the wall while I'm gone.
+:killUnit:Brens
+:setSingleSpeaker:L
+Fashime_: ...Good riddance.
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: Oh my! A huge underground fortress!
+Guard1: Magmaborn? Here?!\a Quick, sound the alarm!\a Alert Fashima!
+Lieutenant: Right away!
+:setSpeaker:Fashima_||L
+Lieutenant: Fashima! We're under attack by Magmaborn!
+Fashima_: What impeccable timing.\a Well, everyone, you know what to do.\a Defend me at all costs.
+Lieutenant: Yes, sir!
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.
