@@ -9,17 +9,6 @@ public class SetRenderCameraToMain : MonoBehaviour
     {
         main = CameraController.Current.PixelPerfectCamera;
         GetComponent<Canvas>().worldCamera = main;
-        if (GameController.Current == null)
-        {
-            Destroy(this);
-        }
-    }
-    private void FixedUpdate()
-    {
-        if (GameController.Current.CameraBlackScreen.activeSelf)
-        {
-            GameController.Current.CameraBlackScreen.SetActive(false);
-            Destroy(this);
-        }
+        Destroy(this);
     }
 }

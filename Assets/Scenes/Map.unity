@@ -6693,7 +6693,7 @@ MonoBehaviour:
 
       Frogman: What-
 
-      :flash:
+      :showPartTitle:Testy:Test
 
       -Happened?
 
@@ -21846,12 +21846,6 @@ MonoBehaviour:
   MovementCost: 1
   ArmorModifier: 0
   High: 0
---- !u!1 &1626109149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8617805530085685082, guid: b3917e3aa982594419baa4f8a1789a3a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8617805528485790599}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1626392204
 GameObject:
   m_ObjectHideFlags: 0
@@ -25280,7 +25274,6 @@ MonoBehaviour:
   - Xirveros
   DebugUnlimitedMove: 0
   DebugOPPlayers: 0
-  CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}

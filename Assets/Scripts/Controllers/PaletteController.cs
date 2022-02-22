@@ -67,29 +67,32 @@ public class PaletteController : MonoBehaviour
 
     public void Fade(bool fadeIn, System.Action postFadeAction, int speed = 10)
     {
+        Time.timeScale = 0;
         for (int i = 0; i < 4; i++)
         {
             if (fadeIn)
             {
-                TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
                 if (i == 3)
                 {
+                    TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false).OnEnd = () => Time.timeScale = 1;
                     TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false).OnEnd = postFadeAction;
                 }
                 else
                 {
+                    TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
                     TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false);
                 }
             }
             else
             {
-                TransitionTo(true, i, new Palette(), speed, true, true);
                 if (i == 3)
                 {
+                    TransitionTo(true, i, new Palette(), speed, true, true).OnEnd = () => Time.timeScale = 1;
                     TransitionTo(false, i, new Palette(), speed, true, true).OnEnd = postFadeAction;
                 }
                 else
                 {
+                    TransitionTo(true, i, new Palette(), speed, true, true);
                     TransitionTo(false, i, new Palette(), speed, true, true);
                 }
             }
@@ -223,7 +226,7 @@ public class PaletteTransition : MonoBehaviour
     }
     private void Update()
     {
-        count += Time.deltaTime * Speed;
+        count += Time.unscaledDeltaTime * Speed;
         if (count >= 1)
         {
             if (Current <= 0)

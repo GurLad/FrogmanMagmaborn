@@ -364,9 +364,9 @@ public class Unit : MapObject
             {
                 CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
                 BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
-                GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
                 battleAnimationController.transform.parent.gameObject.SetActive(true);
                 battleAnimationController.StartBattle(this, target);
+                GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
                 GameController.Current.FinishMove(this);
             }
             else // Map animations

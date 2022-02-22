@@ -39,7 +39,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public bool DebugUnlimitedMove;
     public bool DebugOPPlayers;
     [Header("Objects")]
-    public GameObject CameraBlackScreen; // Fixes an annoying UI bug
     public GameObject Cursor;
     public GameObject Canvas;
     public Unit BaseUnit;
@@ -247,7 +246,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             HideUI();
             return;
         }
-        if (CheckGameState() != GameState.Normal)
+        if (Time.timeScale == 0 || CheckGameState() != GameState.Normal)
         {
             return;
         }
@@ -416,8 +415,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     if (selected != null)
                     {
                         StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
-                        TransitionToMidBattleScreen(statusScreenController);
                         statusScreenController.Show(selected);
+                        TransitionToMidBattleScreen(statusScreenController);
                     }
                     else
                     {
@@ -688,7 +687,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         RemoveMarkers();
         InteractState = InteractState.None;
         checkEndTurn = true;
-        if (!MidBattleScreen.HasCurrent) // Prevent the extra frame of waiting
+        if (!MidBattleScreen.HasCurrent && Time.timeScale > 0) // Prevent the extra frame of waiting
         {
             CheckGameState();
         }
@@ -747,11 +746,29 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return !CheckConveresationWait() && !MidBattleScreen.HasCurrent; // Wait for turn events
     }
 
-    public void TransitionToMidBattleScreen(MidBattleScreen screen)
+    public void TransitionToMidBattleScreen(MidBattleScreen screen, bool fadeTransition = true)
     {
-        transform.parent.gameObject.SetActive(false);
-        MidBattleScreen.Set(screen, true);
-        CameraBlackScreen.SetActive(true);
+        // Pause the game so nothing accidently breaks
+        enabled = false;
+        screen.enabled = false;
+        screen.transform.parent.gameObject.SetActive(false);
+        // Prepare the actions
+        PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
+        System.Action postFadeIn = () =>
+        {
+            screen.enabled = true;
+        };
+        System.Action postFadeOut = () =>
+        {
+            transform.parent.gameObject.SetActive(false);
+            enabled = true;
+            screen.transform.parent.gameObject.SetActive(true);
+            MidBattleScreen.Set(screen, true);
+            PaletteController.Current.LoadState(state);
+            PaletteController.Current.Fade(true, postFadeIn, 10 * GameSpeed());
+        };
+        // Begin the fade
+        PaletteController.Current.Fade(false, postFadeOut, 10 * GameSpeed());
     }
 
     public void KillUnit(Unit unit)
