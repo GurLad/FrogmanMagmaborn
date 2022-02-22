@@ -409,6 +409,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
+                case "killUnit":
+                    // Params: string unitName
+                    // Kills a unit.
+                    AssertCommand("killUnit", args, CAT.String);
+                    Unit target4 = GameController.Current.GetNamedUnit(args[0]);
+                    if (target4 != null)
+                    {
+                        GameController.Current.KillUnit(target4);
+                    }
+                    else
+                    {
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                    }
+                    break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
                     AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
@@ -707,6 +721,15 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         return;
                     }
                     break;
+
+
+                ///sadsadsadsa
+                ///
+                case "flash":
+                    Pause();
+                    PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
+                    PaletteController.Current.Fade(false, () => { PaletteController.Current.LoadState(state); PaletteController.Current.Fade(true, () => Resume()); });
+                    return;
             }
             StartLine(num + 1);
             return;

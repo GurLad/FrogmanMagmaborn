@@ -65,6 +65,71 @@ public class PaletteController : MonoBehaviour
         return background ? backgroundMaterials[id] : spriteMaterials[id];
     }
 
+    public void Fade(bool fadeIn, System.Action postFadeAction, int speed = 10)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (fadeIn)
+            {
+                TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
+                if (i == 3)
+                {
+                    TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false).OnEnd = postFadeAction;
+                }
+                else
+                {
+                    TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false);
+                }
+            }
+            else
+            {
+                TransitionTo(true, i, new Palette(), speed, true, true);
+                if (i == 3)
+                {
+                    TransitionTo(false, i, new Palette(), speed, true, true).OnEnd = postFadeAction;
+                }
+                else
+                {
+                    TransitionTo(false, i, new Palette(), speed, true, true);
+                }
+            }
+        }
+    }
+
+    public PaletteControllerState SaveState()
+    {
+        return new PaletteControllerState(this);
+    }
+
+    public void LoadState(PaletteControllerState state)
+    {
+        state.LoadTo(this);
+    }
+
+    public class PaletteControllerState
+    {
+        private Palette[] BackgroundPalettes { get; set; } = new Palette[4];
+        private Palette[] SpritePalettes { get; set; } = new Palette[4];
+
+        public PaletteControllerState(PaletteController paletteController)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                BackgroundPalettes[i] = paletteController.BackgroundPalettes[i].Clone();
+                SpritePalettes[i] = paletteController.SpritePalettes[i].Clone();
+            }
+        }
+
+        public void LoadTo(PaletteController paletteController)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                paletteController.BackgroundPalettes[i].CopyFrom(BackgroundPalettes[i]);
+                paletteController.SpritePalettes[i].CopyFrom(SpritePalettes[i]);
+            }
+        }
+    }
+
     private class PaletteWithMaterial : Palette
     {
         private Material linkedMaterial;
@@ -112,7 +177,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b);
+            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b, copyFrom[i].a);
         }
     }
 
@@ -146,6 +211,7 @@ public class PaletteTransition : MonoBehaviour
     public int Current = 3;
     public bool Background;
     public bool Reverse;
+    public System.Action OnEnd;
     private float count = 0;
     private List<PalettedSprite> toUpdate = new List<PalettedSprite>();
     public void Start()
@@ -163,6 +229,7 @@ public class PaletteTransition : MonoBehaviour
             if (Current <= 0)
             {
                 Destroy(this);
+                OnEnd?.Invoke();
                 return;
             }
             count -= 1;
@@ -173,6 +240,10 @@ public class PaletteTransition : MonoBehaviour
                     Source[i + 1] = Source[i];
                 }
                 Source[1] = Target[Current--];
+                if (!Background && Source[1].a < 1)
+                {
+                    Source[1] = Color.black;
+                }
                 if (!Background)
                 {
                     Source[3] = Color.clear;
@@ -185,6 +256,10 @@ public class PaletteTransition : MonoBehaviour
                     Source[i - 1] = Source[i];
                 }
                 Source[3] = Target[4 - (Current--)];
+                if (!Background && Source[2].a < 1)
+                {
+                    Source[2] = Color.black;
+                }
                 if (!Background)
                 {
                     Source[3] = Color.clear;
