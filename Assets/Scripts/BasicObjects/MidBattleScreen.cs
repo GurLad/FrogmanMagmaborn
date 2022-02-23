@@ -26,18 +26,45 @@ public abstract class MidBattleScreen : MonoBehaviour
         }
         Current = on ? caller : null;
     }
-    public static void CurrentQuit()
+    public static void CurrentQuit(bool fadeTransition = true)
     {
-        Current.Quit();
+        Current.Quit(fadeTransition);
     }
     public bool IsCurrent()
     {
         return MidBattleScreen.Current == this;
     }
-    public void Quit()
+    public void Quit(bool fadeTransition = true, System.Action postQuitAction = null)
     {
-        Set(this, false);
-        GameController.Current.transform.parent.gameObject.SetActive(true);
-        Destroy(transform.parent.gameObject);
+        if (!fadeTransition)
+        {
+            Set(this, false);
+            GameController.Current.transform.parent.gameObject.SetActive(true);
+            Destroy(transform.parent.gameObject);
+            postQuitAction?.Invoke();
+        }
+        else
+        {
+            // Pause the game so nothing accidently breaks
+            enabled = false;
+            GameController.Current.enabled = false;
+            // Prepare the actions
+            PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
+            System.Action postFadeIn = () =>
+            {
+                GameController.Current.enabled = true;
+                postQuitAction?.Invoke();
+            };
+            System.Action postFadeOut = () =>
+            {
+                Destroy(transform.parent.gameObject);
+                GameController.Current.transform.parent.gameObject.SetActive(true);
+                Set(this, false);
+                PaletteController.Current.LoadState(state);
+                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed());
+            };
+            // Begin the fade
+            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed());
+        }
     }
 }

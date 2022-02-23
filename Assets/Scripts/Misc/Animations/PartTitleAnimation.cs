@@ -62,8 +62,7 @@ public class PartTitleAnimation : MidBattleScreen
             }
             else
             {
-                Quit();
-                ConversationPlayer.Current.Resume();
+                Quit(true, () => ConversationPlayer.Current.Resume());
             }
         }
     }

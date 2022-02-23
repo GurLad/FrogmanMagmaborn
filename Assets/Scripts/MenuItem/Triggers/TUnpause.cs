@@ -6,6 +6,6 @@ public class TUnpause : Trigger
 {
     public override void Activate()
     {
-        MidBattleScreen.CurrentQuit();
+        MidBattleScreen.CurrentQuit(false);
     }
 }
