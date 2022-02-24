@@ -67,7 +67,6 @@ public class PaletteController : MonoBehaviour
 
     public void Fade(bool fadeIn, System.Action postFadeAction, int speed = 10)
     {
-        speed /= 10;
         Time.timeScale = 0;
         for (int i = 0; i < 4; i++)
         {

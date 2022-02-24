@@ -15,15 +15,15 @@ public class LevelUpController : MidBattleScreen
     [Header("Help")]
     public Text HelpDisplay;
     public DisplayStatsHelp StatsHelp;
-    [HideInInspector]
-    public List<Unit> Players;
+    private List<Unit> players;
     private int numOptions;
     private int currentUnitID = -1;
     private List<LevelUpObject> levelUpObjects;
     private int selected;
     private int previousSign;
-    private void Start()
+    public void Init(List<Unit> players)
     {
+        this.players = players;
         HelpDisplay.text = HelpDisplay.text.Replace("Select", Control.DisplayShortButtonName(Control.CB.Select));
         numOptions = GameCalculations.NumLevelUpOptions;
         levelUpObjects = new List<LevelUpObject>();
@@ -39,7 +39,7 @@ public class LevelUpController : MidBattleScreen
     public void NextUnit()
     {
         currentUnitID++;
-        if (currentUnitID >= Players.Count)
+        if (currentUnitID >= players.Count)
         {
             Set(this, false);
             ConversationPlayer.Current.Play(GameController.Current.CreateLevel());
@@ -48,7 +48,7 @@ public class LevelUpController : MidBattleScreen
             Quit(true, () => ConversationPlayer.Current.SoftResume());
             return;
         }
-        Unit unit = Players[currentUnitID];
+        Unit unit = players[currentUnitID];
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(unit.Name);
         UnitInfo.text = "\n" + unit.Name + "\n\n\nLevel:" + unit.Level + "\n\n";
         for (int i = 0; i < numOptions; i++)
@@ -79,7 +79,7 @@ public class LevelUpController : MidBattleScreen
         }
         else if (Control.GetButtonDown(Control.CB.A))
         {
-            Players[currentUnitID].Stats += levelUpObjects[selected].Stats;
+            players[currentUnitID].Stats += levelUpObjects[selected].Stats;
             NextUnit();
         }
         else if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
@@ -88,7 +88,7 @@ public class LevelUpController : MidBattleScreen
             selected += -Control.GetAxisInt(Control.Axis.Y) + numOptions;
             selected %= numOptions;
             levelUpObjects[selected].PalettedSprite.Palette = 0;
-            StatInfo.Display(Players[currentUnitID], levelUpObjects[selected].Stats);
+            StatInfo.Display(players[currentUnitID], levelUpObjects[selected].Stats);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }

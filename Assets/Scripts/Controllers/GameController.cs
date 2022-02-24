@@ -820,7 +820,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             character.Moved = false;
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
-        levelUpController.Players = playerCharacters;
+        levelUpController.Init(playerCharacters);
         TransitionToMidBattleScreen(levelUpController);
     }
 
