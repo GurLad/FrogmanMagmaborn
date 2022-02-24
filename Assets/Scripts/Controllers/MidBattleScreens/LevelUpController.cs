@@ -41,8 +41,11 @@ public class LevelUpController : MidBattleScreen
         currentUnitID++;
         if (currentUnitID >= Players.Count)
         {
-            Quit();
-            GameController.Current.CreateLevel();
+            Set(this, false);
+            ConversationPlayer.Current.Play(GameController.Current.CreateLevel());
+            ConversationPlayer.Current.Pause();
+            Set(this, true);
+            Quit(true, () => ConversationPlayer.Current.SoftResume());
             return;
         }
         Unit unit = Players[currentUnitID];

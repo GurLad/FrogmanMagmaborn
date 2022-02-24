@@ -233,7 +233,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 playerUnitsCache = new List<Unit>();
             }
             NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
-            CreateLevel();
+            ConversationPlayer.Current.Play(CreateLevel());
         }
     }
     /// <summary>
@@ -839,8 +839,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             Bugger.Info(playerCharacters[i].Save());
         }
     }
-
-    public void CreateLevel()
+    /// <summary>
+    /// Creates a new level - selects a conversation & map, setts the palettes, inits stuff...
+    /// Doesn't play the selected conversation, returning it instead, to allow other mid-battle screens (aka level up) to close before playing.
+    /// </summary>
+    /// <returns>The selected conversation</returns>
+    public ConversationData CreateLevel()
     {
         List<Unit> playerCharacters = PlayerUnits;
         // Select conversation
@@ -880,7 +884,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             EscapeMarker.gameObject.SetActive(false);
         }
         // Play conversation
-        ConversationPlayer.Current.Play(conversation);
+        return conversation;
     }
 
     private Unit CreateEmptyUnit()
