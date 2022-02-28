@@ -45,7 +45,7 @@ public class LevelUpController : MidBattleScreen
             ConversationPlayer.Current.Play(GameController.Current.CreateLevel());
             ConversationPlayer.Current.Pause();
             Set(this, true);
-            Quit(true, () => ConversationPlayer.Current.SoftResume());
+            Quit(true, () => ConversationPlayer.Current.Resume(0));
             return;
         }
         Unit unit = players[currentUnitID];

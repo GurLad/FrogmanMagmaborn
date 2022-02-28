@@ -49,18 +49,6 @@ Xeplogi: Trying to turn Frogman to your side? Ha!\a Frogman will never help the 
 
 ~ After battle
 :play:AfterBattle
-Frogman: Whew. We-
-:play:Trustworthy
-Torment: Not so fast, heh!
-Frogman: Torment?!
-Torment: Yes, it's me!\a You've reached the end of the beta!
-Frogman: What beta?
-Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!
-You can still play more runs to view more conversations
-and unlock upgrades, but you'll have to die now.
-Ha ha!
-:showPartTitle:End of:Beta
-:lose:
 Frogman: Whew. That was... tough.
 :if:hasCharacter:Xeplogi{
 Xeplogi: Yes! At long last, I have vanquished the evil Memerian!\a Memerian is gone!
@@ -83,17 +71,38 @@ Xeplogi: ...
 }
 :else:{
 :if:hasCharacter:Memerian{
-Memerian: It doesn't get any easier from here on out.
-Frogman: What do you mean?
+Memerian: So. You're here for the fortress, aren't you?
+Frogman: Yes. Have you been there?
+Memerian: I have. Multiple times, in fact.
+Frogman: Really?!\a What's in there?
+Memerian: Guards. Hordes of them. All intent on destroying you.
+:if:hasCharacter:Firbell{
+Firbell: Why do they hate us so?
+Memerian: They hate all monsters. In fact,\a from what I've gathered,\a all they do is kill monsters.
+:if:hasCharacter:Alfred{
+Alfred||R: ...And people. Living ones.\a Think they'll spare the dead?\a Pah!
+}
+:if:!hasFlag:FirbellTalkedWithGuards{
+Firbell: But can we not talk to them?\a Explain that we are unlike the rest,\a and mean no harm?
+Memerian: No harm? Please. We've just killed a couple of them.
+Firbell: I...\a I see your point.\a Still, I must try at the very least.
+}
+}
+:if:hasCharacter:Kresla{
+Kresla: So did you see where are they coming from?\a They must live up there!
+Memerian: They do. And no, I never managed to find out where the ycome from.
+# TBA
+
 # Memerian alone tells about Torment
 :if:charactersAlive:=1{
 Memerian: I used to help Torment as well, just like you.
 Frogman: Really?!
 Memerian: Yes. We had a... falling out eventually.\a But I see he has found a replacement already.
 Frogman: What happened?
-Memerian: I realized it wasn't worth it.
+Memerian: I realized it was impossible.
 Frogman: What was?
-Memerian: Getting out of here.
+Memerian: Getting out of here.\a That fortress? It's imperentrable.
+
 I didn't have much of a life back there.\a The real world.\a And being immortal suited me just fine.
 Frogman: Really? Then why were you fighting the Guards?
 # TBA
