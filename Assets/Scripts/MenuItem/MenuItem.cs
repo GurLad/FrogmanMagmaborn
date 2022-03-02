@@ -18,22 +18,25 @@ public class MenuItem : MonoBehaviour
         }
     }
     private Text text;
+    private PalettedText palettedText;
     private List<Trigger> triggers;
     private void Awake()
     {
         text = GetComponent<Text>();
+        palettedText = GetComponent<PalettedText>();
+        palettedText.Awake();
         triggers = new List<Trigger>(GetComponents<Trigger>());
         Unselect();
     }
     public virtual void Select()
     {
         Indicators.ForEach(a => a.SetActive(true));
-        text.color = PaletteController.Current.SpritePalettes[0][1];
+        palettedText.Palette = 0;
     }
     public virtual void Unselect()
     {
         Indicators.ForEach(a => a.SetActive(false));
-        text.color = PaletteController.Current.SpritePalettes[3][1];
+        palettedText.Palette = 3;
     }
     public virtual void Activate()
     {

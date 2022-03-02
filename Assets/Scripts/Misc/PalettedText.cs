@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PalettedText : MonoBehaviour
 {
+    public Text Text;
     public int Palette
     {
         get
@@ -21,11 +22,14 @@ public class PalettedText : MonoBehaviour
     [Range(0, 3)]
     private int palette = 3;
     private bool initialized = false;
-    private Text text;
 
-    private void Awake()
+    public void Awake()
     {
-        (text = GetComponent<Text>()).material = PaletteController.Current.GetTextMaterial();
+        if (initialized)
+        {
+            return;
+        }
+        (Text = GetComponent<Text>()).material = PaletteController.Current.GetTextMaterial();
         initialized = true;
         Palette = Palette;
     }
@@ -38,6 +42,6 @@ public class PalettedText : MonoBehaviour
         }
         Color temp;
         ColorUtility.TryParseHtmlString("#" + Palette + "00000", out temp);
-        text.color = temp;
+        Text.color = temp;
     }
 }

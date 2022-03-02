@@ -416,7 +416,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
                         statusScreenController.Show(selected);
-                        TransitionToMidBattleScreen(statusScreenController);
+                        statusScreenController.TransitionToThis();
                     }
                     else
                     {
@@ -746,31 +746,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return !CheckConveresationWait() && !MidBattleScreen.HasCurrent; // Wait for turn events
     }
 
-    public void TransitionToMidBattleScreen(MidBattleScreen screen, bool fadeTransition = true)
-    {
-        // Pause the game so nothing accidently breaks
-        enabled = false;
-        screen.enabled = false;
-        screen.transform.parent.gameObject.SetActive(false);
-        // Prepare the actions
-        PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
-        System.Action postFadeIn = () =>
-        {
-            screen.enabled = true;
-        };
-        System.Action postFadeOut = () =>
-        {
-            transform.parent.gameObject.SetActive(false);
-            enabled = true;
-            screen.transform.parent.gameObject.SetActive(true);
-            MidBattleScreen.Set(screen, true);
-            PaletteController.Current.LoadState(state);
-            PaletteController.Current.Fade(true, postFadeIn, 10 * GameSpeed());
-        };
-        // Begin the fade
-        PaletteController.Current.Fade(false, postFadeOut, 10 * GameSpeed());
-    }
-
     public void KillUnit(Unit unit)
     {
         if (!GameCalculations.PermaDeath && unit.TheTeam == Team.Player && unit.Name != StaticGlobals.MAIN_CHARACTER_NAME) // No perma-death
@@ -821,7 +796,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
         levelUpController.Init(playerCharacters);
-        TransitionToMidBattleScreen(levelUpController);
+        levelUpController.TransitionToThis();
     }
 
     public void PlayersSave()
@@ -1229,9 +1204,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).Count;
     }
 
-    public int GameSpeed()
+    public int GameSpeed(bool includeInputModifier = true)
     {
-        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ Control.GetButton(Control.CB.B)) ? 2 : 1;
+        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ (includeInputModifier ? false : Control.GetButton(Control.CB.B))) ? 2 : 1;
     }
 
     public bool IsValidPos(int x, int y)

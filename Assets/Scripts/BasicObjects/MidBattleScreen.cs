@@ -34,7 +34,7 @@ public abstract class MidBattleScreen : MonoBehaviour
     {
         return MidBattleScreen.Current == this;
     }
-    public void Quit(bool fadeTransition = true, System.Action postQuitAction = null)
+    public void Quit(bool fadeTransition = true, System.Action postQuitAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
     {
         if (!fadeTransition)
         {
@@ -60,11 +60,45 @@ public abstract class MidBattleScreen : MonoBehaviour
                 Destroy(transform.parent.gameObject);
                 GameController.Current.transform.parent.gameObject.SetActive(true);
                 Set(this, false);
-                PaletteController.Current.LoadState(state);
-                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed());
+                PaletteController.Current.LoadState(postFadeOutState ?? state);
+                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed(false));
             };
             // Begin the fade
-            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed());
+            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed(false));
+        }
+    }
+    public void TransitionToThis(bool fadeTransition = true, System.Action postTransitionAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
+    {
+        if (!fadeTransition)
+        {
+            Set(this, true);
+            transform.parent.gameObject.SetActive(true);
+            GameController.Current.transform.parent.gameObject.SetActive(false);
+            postTransitionAction?.Invoke();
+        }
+        else
+        {
+            // Pause the game so nothing accidently breaks
+            GameController.Current.enabled = false;
+            enabled = false;
+            transform.parent.gameObject.SetActive(false);
+            // Prepare the actions
+            PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
+            System.Action postFadeIn = () =>
+            {
+                enabled = true;
+            };
+            System.Action postFadeOut = () =>
+            {
+                GameController.Current.transform.parent.gameObject.SetActive(false);
+                GameController.Current.enabled = true;
+                transform.parent.gameObject.SetActive(true);
+                Set(this, true);
+                PaletteController.Current.LoadState(postFadeOutState ?? state);
+                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed(false));
+            };
+            // Begin the fade
+            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed(false));
         }
     }
 }

@@ -513,8 +513,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     AssertCommand("showPartTitle", args, CAT.String, CAT.String);
                     Pause();
                     PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
+                    var currentState = PaletteController.Current.SaveState();
                     partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
-                    GameController.Current.TransitionToMidBattleScreen(partTitle);
+                    var postFadeOutState = PaletteController.Current.SaveState();
+                    PaletteController.Current.LoadState(currentState);
+                    partTitle.TransitionToThis(true, null, postFadeOutState);
                     return;
                 case "showChoice":
                     // Args: choosingCharacterName, option1, option2

@@ -107,6 +107,10 @@ public class ConversationData : System.IComparable<ConversationData>
 
     public bool MeetsRequirement(string requirement)
     {
+        if (requirement.Length < 1)
+        {
+            return true;
+        }
         if (requirement[0] == '!')
         {
             return !CheckRequirements(requirement.Substring(1));

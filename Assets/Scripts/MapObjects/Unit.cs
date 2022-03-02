@@ -366,7 +366,7 @@ public class Unit : MapObject
                 BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
                 battleAnimationController.transform.parent.gameObject.SetActive(true);
                 battleAnimationController.StartBattle(this, target);
-                GameController.Current.TransitionToMidBattleScreen(battleAnimationController);
+                battleAnimationController.TransitionToThis();
                 GameController.Current.FinishMove(this);
             }
             else // Map animations

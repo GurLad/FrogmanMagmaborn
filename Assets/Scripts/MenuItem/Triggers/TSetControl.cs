@@ -9,7 +9,8 @@ public class TSetControl : Trigger
     public enum Keys { Left, Right, Up, Down, A, B, Select, Start }
     public Keys Key;
     public MenuController Source;
-    private Text Text;
+    private Text text;
+    private PalettedText palettedText;
     private bool waitingForInput = false;
     private bool waitAFrame = false;
     private System.Action postWaitAction;
@@ -18,7 +19,8 @@ public class TSetControl : Trigger
 
     private void Start()
     {
-        Text = GetComponent<Text>();
+        text = GetComponent<Text>();
+        palettedText = GetComponent<PalettedText>();
         UpdateText(true);
     }
 
@@ -74,11 +76,11 @@ public class TSetControl : Trigger
 
     private void UpdateText(bool firstTime = false)
     {
-        Text.text = waitingForInput ? "Press" : Control.DisplayShortButtonName(GetKeySaveName());
+        text.text = waitingForInput ? "Press" : Control.DisplayShortButtonName(GetKeySaveName());
         taken[(int)Key] = waitingForInput ? KeyCode.None : Control.GetKeyCode(GetKeySaveName());
         if (!firstTime)
         {
-            Text.color = PaletteController.Current.SpritePalettes[waitingForInput ? 2 : 0][1];
+            palettedText.Palette = waitingForInput ? 2 : 0;
         }
     }
 
