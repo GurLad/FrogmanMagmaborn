@@ -61,7 +61,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
 
     public static System.Exception Crash(string text, bool show = true)
     {
-        current.ShowText(("FATAL ERROR: " + text).ToColoredString(1, 2), 2, show);
+        current.ShowText(("FATAL ERROR: " + text).ToColoredString(1), 2, show);
         return new System.Exception(text);
     }
 

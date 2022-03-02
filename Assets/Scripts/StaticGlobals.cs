@@ -56,9 +56,9 @@ public static class StaticGlobals
             _ => null
         };
     }
-    public static string ToColoredString(this string str, int paletteID, int colorIndex = 1)
+    public static string ToColoredString(this string str, int paletteID)
     {
-        return "<color=#" + ColorUtility.ToHtmlStringRGB(PaletteController.Current.SpritePalettes[paletteID][colorIndex]) + ">" + str + "</color>";
+        return "<color=#" + paletteID + "00000>" + str + "</color>";
     }
     public static string ForgeJsonToUnity(this string json, string propertyName)
     {

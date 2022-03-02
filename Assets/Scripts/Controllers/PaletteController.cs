@@ -22,6 +22,8 @@ public class PaletteController : MonoBehaviour
     private Material[] backgroundMaterials = new Material[4];
     [SerializeField]
     private Material[] spriteMaterials = new Material[4];
+    [SerializeField]
+    private Material textMaterial;
     private static PaletteController current;
 
     private void Awake()
@@ -41,7 +43,7 @@ public class PaletteController : MonoBehaviour
             backgroundMaterials[i] = Instantiate(backgroundMaterials[i]);
             BackgroundPalettes[i] = new PaletteWithMaterial(GetMaterial(true, i));
             spriteMaterials[i] = Instantiate(spriteMaterials[i]);
-            SpritePalettes[i] = new PaletteWithMaterial(GetMaterial(false, i));
+            SpritePalettes[i] = new SpritePaletteWithMaterial(GetMaterial(false, i), textMaterial, i);
         }
     }
 
@@ -63,6 +65,11 @@ public class PaletteController : MonoBehaviour
     public Material GetMaterial(bool background, int id)
     {
         return background ? backgroundMaterials[id] : spriteMaterials[id];
+    }
+
+    public Material GetTextMaterial()
+    {
+        return textMaterial;
     }
 
     public void Fade(bool fadeIn, System.Action postFadeAction, int speed = 10)
@@ -136,6 +143,7 @@ public class PaletteController : MonoBehaviour
     private class PaletteWithMaterial : Palette
     {
         private Material linkedMaterial;
+
         public override Color this[int i]
         {
             get => base[i];
@@ -149,6 +157,32 @@ public class PaletteController : MonoBehaviour
         public PaletteWithMaterial(Material material) : base()
         {
             linkedMaterial = material;
+            Reset();
+        }
+    }
+
+    private class SpritePaletteWithMaterial : PaletteWithMaterial // Also affects the TextMaterial
+    {
+        private Material linkedTextMaterial;
+        private int id;
+
+        public override Color this[int i]
+        {
+            get => base[i];
+            set
+            {
+                base[i] = value;
+                if (i == 1) // All text is considered sprite letters, which use palette 1
+                {
+                    linkedTextMaterial?.SetColor("_Color" + (id + 1) + "out", this[1]);
+                }
+            }
+        }
+
+        public SpritePaletteWithMaterial(Material material, Material textMaterial, int id) : base(material)
+        {
+            linkedTextMaterial = textMaterial;
+            this.id = id;
             Reset();
         }
     }
