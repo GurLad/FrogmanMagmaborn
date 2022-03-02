@@ -14,7 +14,7 @@ public class OpeningCutscene : Trigger
     public float Speed;
     public float HoldTime;
     [Header("Objects")]
-    public Text CreditsObject;
+    public PalettedText CreditsObject;
     public GameObject PressStart;
     public LevelMetadataController LevelMetadataController;
     [HideInInspector]
@@ -26,6 +26,7 @@ public class OpeningCutscene : Trigger
     private PaletteTransition transition;
     private Palette creditsReverse;
     private float count;
+    private bool firstFrame = true;
 
     public override void Activate()
     {
@@ -54,9 +55,7 @@ public class OpeningCutscene : Trigger
     private void Start()
     {
         LevelMetadataController[0].SetPalettesFromMetadata();
-        transition = PaletteController.Current.TransitionTo(true, 0, CreditsColor, Speed);
-        CreditsObject.text = Credits[0];
-        state = State.TextShowing;
+        CreditsObject.Text.text = "";
         creditsReverse = new Palette();
         for (int i = 1; i < 4; i++)
         {
@@ -65,6 +64,15 @@ public class OpeningCutscene : Trigger
     }
     private void Update()
     {
+        if (firstFrame)
+        {
+            firstFrame = false;
+            transition = PaletteController.Current.TransitionTo(false, 0, CreditsColor, Speed);
+            CreditsObject.Text.text = Credits[0];
+            CreditsObject.Palette = 0;
+            state = State.TextShowing;
+            return;
+        }
         if (fadeOut)
         {
             if (transition == null)
@@ -104,6 +112,7 @@ public class OpeningCutscene : Trigger
                 if (CreditsObject != null)
                 {
                     Destroy(CreditsObject.gameObject);
+                    LevelMetadataController[0].SetPalettesFromMetadata();
                 }
                 return;
             }
@@ -119,7 +128,7 @@ public class OpeningCutscene : Trigger
                         }
                         else if (lastCheckedCurrent != transition.Current)
                         {
-                            CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
+                            //CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
                             lastCheckedCurrent = transition.Current;
                         }
                         break;
@@ -141,6 +150,7 @@ public class OpeningCutscene : Trigger
                             {
                                 currentPart = 0;
                                 Destroy(CreditsObject.gameObject);
+                                LevelMetadataController[0].SetPalettesFromMetadata();
                                 ShowCurrentImage();
                                 state = State.ImageShowing;
                             }
@@ -152,7 +162,7 @@ public class OpeningCutscene : Trigger
                         }
                         else if (lastCheckedCurrent != transition.Current)
                         {
-                            CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
+                            //CreditsObject.color = PaletteController.Current.BackgroundPalettes[0][1];
                             lastCheckedCurrent = transition.Current;
                         }
                         break;
@@ -194,9 +204,9 @@ public class OpeningCutscene : Trigger
     }
     private void ShowCurrentCredit()
     {
-        transition = PaletteController.Current.TransitionTo(true, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed);
-        CreditsObject.text = Credits[currentPart / 2];
-        CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
+        transition = PaletteController.Current.TransitionTo(false, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
+        CreditsObject.Text.text = Credits[currentPart / 2];
+        //CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
         lastCheckedCurrent = transition.Current;
     }
     private void ShowCurrentImage()

@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!213 &37797821
 Sprite:
@@ -3473,6 +3474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1001 &614624176
 PrefabInstance:
@@ -3732,6 +3734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &693472257
 GameObject:
@@ -3917,6 +3920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!213 &791161559
 Sprite:
@@ -5096,6 +5100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1031242474
 GameObject:
@@ -5195,6 +5200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1001 &1074869794
 PrefabInstance:
@@ -5844,6 +5850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1398115630
 GameObject:
@@ -6509,9 +6516,9 @@ MonoBehaviour:
   BaseBackgrounds:
   - Colors:
     - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
     - {r: 0.86274517, g: 0, b: 0.8313726, a: 1}
     - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
-    - {r: 0.98823535, g: 0.21960786, b: 0, a: 1}
   - Colors:
     - {r: 0, g: 0, b: 0, a: 1}
     - {r: 0.9568628, g: 0.81568635, b: 0.7058824, a: 1}
@@ -7654,6 +7661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1647725148
 GameObject:
@@ -7761,6 +7769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1707785813
 GameObject:
@@ -7946,6 +7955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1753484201
 GameObject:
@@ -8041,6 +8051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &1824631761
 GameObject:
@@ -8298,6 +8309,7 @@ GameObject:
   - component: {fileID: 2052533817}
   - component: {fileID: 2052533819}
   - component: {fileID: 2052533818}
+  - component: {fileID: 2052533820}
   m_Layer: 5
   m_Name: Disc-O-Key
   m_TagString: Untagged
@@ -8366,6 +8378,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052533816}
   m_CullTransparentMesh: 1
+--- !u!114 &2052533820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052533816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: {fileID: 0}
+  palette: 3
 --- !u!1 &2073650854
 GameObject:
   m_ObjectHideFlags: 0
@@ -8528,6 +8554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 0}
   palette: 3
 --- !u!1 &2116681588
 GameObject:
@@ -9202,7 +9229,7 @@ MonoBehaviour:
     - {r: 0, g: 0, b: 0.7686275, a: 1}
   Speed: 5
   HoldTime: 0.85
-  CreditsObject: {fileID: 770784414}
+  CreditsObject: {fileID: 770784416}
   PressStart: {fileID: 35769310}
   LevelMetadataController: {fileID: 2116681589}
 --- !u!1001 &2140982262
