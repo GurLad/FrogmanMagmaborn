@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 112909810403259526}
   - component: {fileID: 112909810403259520}
   - component: {fileID: 112909810403259527}
+  - component: {fileID: 4538067975176368946}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -217,6 +218,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Monsters
+--- !u!114 &4538067975176368946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112909810403259525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!1 &112909810455973513
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +242,7 @@ GameObject:
   - component: {fileID: 112909810455973514}
   - component: {fileID: 112909810455973524}
   - component: {fileID: 112909810455973515}
+  - component: {fileID: 2790125455458405082}
   m_Layer: 5
   m_Name: Subtitle
   m_TagString: Untagged
@@ -296,6 +311,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Part 1
+--- !u!114 &2790125455458405082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112909810455973513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!1 &112909811045203277
 GameObject:
   m_ObjectHideFlags: 0

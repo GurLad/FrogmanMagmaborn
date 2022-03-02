@@ -6675,6 +6675,7 @@ GameObject:
   - component: {fileID: 56271734}
   - component: {fileID: 56271736}
   - component: {fileID: 56271735}
+  - component: {fileID: 56271737}
   m_Layer: 5
   m_Name: TurnInfo
   m_TagString: Untagged
@@ -6743,6 +6744,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56271733}
   m_CullTransparentMesh: 0
+--- !u!114 &56271737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56271733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!1 &82594881
 GameObject:
   m_ObjectHideFlags: 0
@@ -11057,6 +11071,7 @@ GameObject:
   - component: {fileID: 600656164}
   - component: {fileID: 600656167}
   - component: {fileID: 600656166}
+  - component: {fileID: 600656165}
   m_Layer: 5
   m_Name: UnitInfo
   m_TagString: Untagged
@@ -11083,6 +11098,19 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -4}
   m_SizeDelta: {x: -8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &600656165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600656163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!114 &600656166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15815,6 +15843,7 @@ GameObject:
   - component: {fileID: 984771634}
   - component: {fileID: 984771636}
   - component: {fileID: 984771635}
+  - component: {fileID: 984771637}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -15883,6 +15912,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984771633}
   m_CullTransparentMesh: 0
+--- !u!114 &984771637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984771633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!1 &1006956640
 GameObject:
   m_ObjectHideFlags: 0
@@ -18135,6 +18177,7 @@ GameObject:
   - component: {fileID: 1251508930}
   - component: {fileID: 1251508932}
   - component: {fileID: 1251508931}
+  - component: {fileID: 1251508933}
   m_Layer: 5
   m_Name: TileInfo
   m_TagString: Untagged
@@ -18207,6 +18250,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251508929}
   m_CullTransparentMesh: 0
+--- !u!114 &1251508933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251508929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!213 &1262703197
 Sprite:
   m_ObjectHideFlags: 0
@@ -24535,7 +24591,7 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 6
+  DebugEndgameLevel: 8
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman
@@ -30738,6 +30794,7 @@ GameObject:
   - component: {fileID: 2009373747}
   - component: {fileID: 2009373750}
   - component: {fileID: 2009373749}
+  - component: {fileID: 2009373748}
   m_Layer: 5
   m_Name: UnitInfo
   m_TagString: Untagged
@@ -30764,6 +30821,19 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -4}
   m_SizeDelta: {x: -8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2009373748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009373746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!114 &2009373749
 MonoBehaviour:
   m_ObjectHideFlags: 0

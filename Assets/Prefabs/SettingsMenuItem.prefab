@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5156720476288025778}
   - component: {fileID: 5156720476288025776}
   - component: {fileID: 5156720476288025777}
+  - component: {fileID: 2822935355892423760}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Game Speed
+--- !u!114 &2822935355892423760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156720476288025779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: 3
 --- !u!1 &5156720476882127953
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,23 +130,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -24}
   m_SizeDelta: {x: -16, y: 8}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1829881140569651972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484500768500485156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c4db851b214bb44bfc7a0306cd193c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FileName: 
-  DataName: 
-  SaveMode: 0
-  DisplayLabel: {fileID: 5484500768500485158}
-  Values: []
 --- !u!1001 &5156720476808315903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,3 +278,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1829881140569651972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484500768500485156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30c4db851b214bb44bfc7a0306cd193c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: 
+  DataName: 
+  SaveMode: 0
+  DisplayLabel: {fileID: 5484500768500485158}
+  Values: []
