@@ -11,4 +11,9 @@ Frogman: Let's get out of here! Now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:SafeAndSound
+:if:charactersAlive:>0{
 Frogman||L: We're safe... For now...
+}
+:else:{
+Frogman||L: I'm safe... For now...
+}

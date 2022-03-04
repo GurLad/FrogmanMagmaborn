@@ -38,6 +38,7 @@ public class PaletteController : MonoBehaviour
             current = this;
         }
         DontDestroyOnLoad(gameObject);
+        textMaterial = Instantiate(textMaterial);
         for (int i = 0; i < 4; i++)
         {
             backgroundMaterials[i] = Instantiate(backgroundMaterials[i]);

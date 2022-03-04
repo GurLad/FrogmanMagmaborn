@@ -225,6 +225,7 @@ public class OpeningCutscene : Trigger
             PaletteController.Current.BackgroundPalettes[i].CopyFrom(ImagePalettes[i].Clone());
             ImageParts[i].GetComponent<PalettedSprite>().UpdatePalette();
         }
+        LevelMetadataController[0].SetPalettesFromMetadata();
     }
 }
 

@@ -15,11 +15,11 @@ public class FullCreditsMenu : Trigger
     public Palette Logo1Palette;
     public Palette Logo2Palette;
     [Header("Objects")]
-    public Text Upper;
-    public Text Lower;
+    public PalettedText Upper;
+    public PalettedText Lower;
     public PalettedSprite Logo1;
     public PalettedSprite Logo2;
-    public Text LogoText;
+    public PalettedText LogoText;
     public OpeningCutscene OpeningObject;
     public MenuController MenuObject;
     private State state;
@@ -28,21 +28,39 @@ public class FullCreditsMenu : Trigger
     private PaletteTransition transition;
     private bool currentUpper;
     private float count;
-    private Text targetText
+    private Palette creditsReverse;
+    private PalettedText targetText
     {
         get
         {
             return currentUpper ? Upper : Lower;
         }
     }
+    private PalettedText notTargetText
+    {
+        get
+        {
+            return !currentUpper ? Upper : Lower;
+        }
+    }
 
     public void Begin()
     {
+        creditsReverse = new Palette();
+        for (int i = 1; i < 4; i++)
+        {
+            creditsReverse[i] = CreditsColor[4 - i];
+        }
         currentUpper = true;
-        targetText.text = Credits[0];
+        PaletteController.Current.SpritePalettes[3][1] = CreditsColor[1];
+        Upper.Awake();
+        Lower.Awake();
+        LogoText.Awake();
+        targetText.Text.text = Credits[0];
+        targetText.Palette = 2;
         Logo1.gameObject.SetActive(false);
         Logo2.gameObject.SetActive(false);
-        LogoText.text = Lower.text = "";
+        LogoText.Text.text = Lower.Text.text = "";
         count = 0;
         currentPart = 0;
         lastCheckedCurrent = 0;
@@ -77,7 +95,7 @@ public class FullCreditsMenu : Trigger
                     }
                     else if (lastCheckedCurrent != transition.Current)
                     {
-                        targetText.color = PaletteController.Current.BackgroundPalettes[2][1];
+                        //targetText.color = PaletteController.Current.BackgroundPalettes[2][1];
                         lastCheckedCurrent = transition.Current;
                     }
                     break;
@@ -87,9 +105,19 @@ public class FullCreditsMenu : Trigger
                     {
                         count -= HoldTime;
                         currentPart++;
-                        ShowCurrentCredit();
-                        state = State.TextHiding;
                         currentUpper = !currentUpper;
+                        if (targetText.Text.text != "")
+                        {
+                            ShowCurrentCredit();
+                            state = State.TextHiding;
+                        }
+                        else
+                        {
+                            currentPart++;
+                            targetText.Text.text = Credits[currentPart / 2];
+                            ShowCurrentCredit();
+                            state = State.TextShowing;
+                        }
                     }
                     break;
                 case State.TextHiding:
@@ -99,12 +127,13 @@ public class FullCreditsMenu : Trigger
                         if (currentPart >= Credits.Count * 2)
                         {
                             currentPart = 0;
-                            Upper.text = Lower.text = "";
+                            Upper.Text.text = Lower.Text.text = "";
                             ShowLogoImage();
                             state = State.ImageShowing;
                         }
                         else
                         {
+                            targetText.Text.text = Credits[currentPart / 2];
                             ShowCurrentCredit();
                             state = State.TextShowing;
                         }
@@ -113,12 +142,12 @@ public class FullCreditsMenu : Trigger
                     {
                         if (currentPart + 1 < Credits.Count * 2)
                         {
-                            targetText.color = PaletteController.Current.BackgroundPalettes[2][1];
+                            //targetText.color = PaletteController.Current.BackgroundPalettes[2][1];
                         }
                         else
                         {
-                            Upper.color = PaletteController.Current.BackgroundPalettes[2][1];
-                            Lower.color = PaletteController.Current.BackgroundPalettes[2][1];
+                            //Upper.color = PaletteController.Current.BackgroundPalettes[2][1];
+                            //Lower.color = PaletteController.Current.BackgroundPalettes[2][1];
                         }
                         lastCheckedCurrent = transition.Current;
                     }
@@ -131,7 +160,6 @@ public class FullCreditsMenu : Trigger
                     }
                     else if (lastCheckedCurrent != transition.Current)
                     {
-                        LogoText.color = PaletteController.Current.BackgroundPalettes[2][1];
                         lastCheckedCurrent = transition.Current;
                     }
                     break;
@@ -145,9 +173,9 @@ public class FullCreditsMenu : Trigger
 
     private void ShowCurrentCredit()
     {
-        transition = PaletteController.Current.TransitionTo(true, 2, currentPart % 2 == 0 ? CreditsColor : new Palette(), Speed, currentPart % 2 != 0, currentPart % 2 != 0);
-        targetText.text = Credits[currentPart / 2];
-        targetText.color = currentPart % 2 == 0 ? Color.black : Color.white;
+        transition = PaletteController.Current.TransitionTo(false, 2, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
+        targetText.Palette = 2;
+        notTargetText.Palette = currentPart + 1 < Credits.Count * 2 ? 3 : 2;
         lastCheckedCurrent = transition.Current;
     }
 
@@ -159,9 +187,9 @@ public class FullCreditsMenu : Trigger
         transition = PaletteController.Current.TransitionTo(true, 1, Logo2Palette, Speed);
         transition.AddPalettedSprite(Logo2);
         Logo2.gameObject.SetActive(true);
-        transition = PaletteController.Current.TransitionTo(true, 2, CreditsColor, Speed);
-        LogoText.text = "Disc-O-Key";
-        LogoText.color = Color.black;
+        transition = PaletteController.Current.TransitionTo(false, 3, CreditsColor, Speed);
+        LogoText.Text.text = "Disc-O-Key";
+        LogoText.Palette = 3;
         lastCheckedCurrent = transition.Current;
     }
 
