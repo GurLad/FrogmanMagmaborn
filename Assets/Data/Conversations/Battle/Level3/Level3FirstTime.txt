@@ -45,42 +45,57 @@ roomNumber:3
 
 ~ PreFirbell
 :play:BeforeBattle
-Frogman: Well, those monsters weren't that-
-:play:ToTheDeath
-Firbell: Oh no. Frogman, we need to turn back.\a Now.
-Frogman: Huh? Why?
-Firbell: Do you see that monster there?\a It is a Lich.
-One of the strongest monsters around here,\a capable of devastating Black Magic.
-Frogman: Magic? Never seen that before here.
-Firbell: Because magic requires magic crystals,\a which are exceedingly rare,\a especially here.
-Frogman: Aren't our Magma Emblems crystals?
-Firbell: Yes, but not magic crystals.\a They cannnot be used for normal magic.
-Frogman: Oh.
-Firbell: The Lich will not attack us unless provoked,\a so we should leave-
-Frogman: Why leave? Let's defeat it.
-It's a better goal than endlessly wandering around,\a don't you think?
-Firbell: Are you crazy?! It is much too powerful!
+:showCG:FortressPreview
+Frogman: Wow.\a Firbell, what is that thing?
+Firbell: What are you- Oh.\a You mean the Fortress.
+Frogman: Fortress?
+Firbell: Xirveros told me about it, back before he went mad.\a He told me to stay away from it.
+Frogman: Do you know why?
+Firbell: Yes. It is guarded by many strong monsters.
+Frogman: I see. Let's try going there.
+Firbell: Why would we? It is quite dangerous.
+Frogman: It's a better goal than endlessly wandering around,\a don't you think?
+Firbell: I would rather stay alive.
 Frogman: It's not like dying costs us anything...
 Firbell: No, but-
 Frogman: Then let's go!
-Firbell: What are you doing?!\a ...
-I can't just let you go on your own!
-Oh well, time to slay a few fiends.
+Firbell: ...This is a bad idea...
+:hideCG:
+:play:ToTheDeath
+Frogman: Uh, Firbell? What is that monster over there?
+Is it one of those so-called strong monsters?
+Firbell: Indeed. This one is a lich.
+One of the strongest monsters around here,\a capable of devastating magic.
+Frogman: Magic? Never seen that before here.
+Firbell: Because magic requires magic crystals,\a which are exceedingly rare,\a especially here.
+Frogman: Aren't our Magma Emblems crystals?
+Firbell: Yes, but not magic crystals.\a They cannot be used for normal magic.
+Frogman: Oh.
+Firbell: Are you certain you wish to fight it?
+Frogman: Yes. Are you with me?
+Firbell: Ah, you leave me no choice...\a I can't just let you go on your own.\a Oh well, time to slay a few fiends.
 
 ~ PreKresla
 :play:BeforeBattle
-Frogman: Well, those monsters weren't that-
-:play:ToTheDeath
-Kresla: Frogman? I hate to say this, but we must run.\a Now!
-Frogman: Huh? Why?
-Kresla: Do you see that monster there? It's a Lich! A mighty undead wizard!
-Frogman: Wizard? Never seen any before here.
+:showCG:FortressPreview
+Frogman: Wow.\a Kresla, what is that thing?
+Kresla: Ah, sharp eye! This is the greatest mystery in here!\a Firbell called it the Fortress,\a but refused to elaborate.\a I'd love to explore it one day!
+Frogman: Why haven't you?
+Kresla: It's not so simple.
+That place is guarded by many strong monsters -\a mostly liches.\a I could never defeat them alone.
+Frogman: Liches?
+Kresla: Mighty undead wizards! Ones actually capable of magic,\a unlike Xirveros.
 Kresla: I've actually only seen wizards here!\a Although, only dead liches, but still.\a I don't know why they disappeared -\a but I will find out one day! I do have a few-
 Frogman: Kresla. About the Lich.
 Kresla: Right, right. Firbell told me -\a before she stopped talking to me, that is -\a that magic is done through unique crystals.
 Since the lich has one, it can wield magic!\a But every time I get close to study one,\a it kills me.
-Frogman: Well, that was before my time, right?
-Kresla: Obviously. Are you thinking what I am?
+Here, I'll show. Follow me!
+Frogman: Wait, where are you going?
+Kresla: To the Fortress!
+:hideCG:
+:play:ToTheDeath
+Frogman: Is that the lich?
+Kresla: Indeed! Fancy fighting it?
 Frogman: Yes, let's defeat it.
 It's a better goal than endlessly wandering around.
 Kresla: Oh! I like your style!\a I WILL find out your secret, lich!
@@ -88,9 +103,22 @@ Frogman: Let's go!
 
 ~ PreXirveros
 :play:BeforeBattle
-Frogman: Well, those monsters weren't that-
+:showCG:FortressPreview
+Frogman: Wow.\a Xirveros, what is that thing?
+Xirveros: That Fortress. Bad Fortress!
+Frogman: Why bad?
+Xirveros: People there. Monsters there. They there!
+Frogman: Wait, people?
+Xirveros: Blue people! Green people! Red people!
+Frogman: Sure...\a Let's go there then.
+Xirveros: Go? Go go? Go go go?
+Frogman: ...I'm going, Xirveros. Are you coming?
+Xirveros: Frog crazy!
+...
+Follow frog!
+:hideCG:
 :play:ToTheDeath
-Xirveros: Frog? Bad monster here. Very bad.
+Frog? Bad monster here. Very bad.
 Frogman: What monster?
 Xirveros: Bad monster!\a Scary monster!\a Magic monster!
 Frogman: Magic? Never seen that before here.
@@ -102,10 +130,14 @@ Follow frog!
 
 ~ PreAlone
 :play:BeforeBattle
-Frogman: I'm all alone again...
+:showCG:FortressPreview
+Frogman: I'm all alone again... Wait, what is that thing?
+Wow. It's a huge underground fortress!
+I guess I'll go there.
 # TBA: add Kresla or Firbell (de[ending on who died)
+:hideCG:
 :play:ToTheDeath
-Frogman: Fine. I'll do this myself.
+Frogman: What is this-\a Ugh, I'm talking to myself.\a I need to stop that.
 
 ~ PreAfterFail
 :play:ToTheDeath
@@ -140,7 +172,7 @@ Frogman: How do you know that?
 Kresla: Through trial and error, of course!\a The deeper you go, the stronger the monsters become,\a like the Lich.
 That's why people like me tend to stay near where we're Born.
 Frogman: I didn't expect that from you, the fearless scholar.
-Kresla: Unforunatly, bravery alone isn't enough to beat stronger\a monsters, like the Lich.\a But with our powers combined,\a we can be unstopable!
+Kresla: Unforunatly, bravery alone isn't enough to beat stronger\a monsters, like the Lich.\a But with our powers combined,\a we can be unstoppable!
 Frogman: Yes. So let's go.
 
 ~ PostXirveros
