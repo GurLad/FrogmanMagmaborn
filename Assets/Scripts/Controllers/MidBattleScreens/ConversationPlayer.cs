@@ -565,8 +565,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     ChoiceMenu.MenuItems[0].Text = args[1];
                     ChoiceMenu.MenuItems[1].Text = args[2];
                     // To prevent people from thinking a choice is "correct"
-                    ChoiceMenu.SelectItem(Random.Range(0, 2));
                     ChoiceMenu.Begin();
+                    ChoiceMenu.SelectItem(Random.Range(0, 2));
                     return;
 
                 // Global commands

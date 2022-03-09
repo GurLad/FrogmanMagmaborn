@@ -1204,9 +1204,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return units.FindAll(a => a.TheTeam == CurrentPhase && !a.Moved).Count;
     }
 
-    public int GameSpeed(bool includeInputModifier = true)
+    public int GameSpeed()
     {
-        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ (includeInputModifier ? false : Control.GetButton(Control.CB.B))) ? 2 : 1;
+        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ Control.GetButton(Control.CB.B)) ? 2 : 1;
     }
 
     public bool IsValidPos(int x, int y)

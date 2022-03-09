@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PalettedText : MonoBehaviour
 {
+    [HideInInspector]
     public Text Text;
     public int Palette
     {
