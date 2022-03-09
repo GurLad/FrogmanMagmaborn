@@ -85,11 +85,11 @@ Kresla: It's not so simple.
 That place is guarded by many strong monsters -\a mostly liches.\a I could never defeat them alone.
 Frogman: Liches?
 Kresla: Mighty undead wizards! Ones actually capable of magic,\a unlike Xirveros.
-Kresla: I've actually only seen wizards here!\a Although, only dead liches, but still.\a I don't know why they disappeared -\a but I will find out one day! I do have a few-
+I've never seen wizards when I was alive,\a but this place is filled with them!\a Only dead ones, but still.\a I don't know why they disappeared -\a but I will find out one day!\a I do have a few-
 Frogman: Kresla. About the Lich.
 Kresla: Right, right. Firbell told me -\a before she stopped talking to me, that is -\a that magic is done through unique crystals.
 Since the lich has one, it can wield magic!\a But every time I get close to study one,\a it kills me.
-Here, I'll show. Follow me!
+Here, let me show you. Follow me!
 Frogman: Wait, where are you going?
 Kresla: To the Fortress!
 :hideCG:
@@ -113,9 +113,7 @@ Xirveros: Blue people! Green people! Red people!
 Frogman: Sure...\a Let's go there then.
 Xirveros: Go? Go go? Go go go?
 Frogman: ...I'm going, Xirveros. Are you coming?
-Xirveros: Frog crazy!
-...
-Follow frog!
+Xirveros: Me go after frog!
 :hideCG:
 :play:ToTheDeath
 Frog? Bad monster here. Very bad.
@@ -148,32 +146,31 @@ Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:SafeAndSound
-Firbell: Frogman, wait. We should not go that far.
-Frogman: Huh? Why not?
-Firbell: The deeper you go, the stronger the monsters become.\a Like that Lich we just fought.\a We should stick close to where we were Born.
-Frogman: Sure, there might be tough enemies ahead.
-But we're immortal, so we might as well fight them.
-Firbell: We could just survive as long as we can.\a This is what I have done thus far.
-Frogman: I'm sorry, but that sounds pointless.
-I cannot accept a life of endless,\a pointless survival.\a There must be more here.\a Maybe even a way out.
-Firbell: Getting out of here is impossible.\a But if you insist on seeing it for yourself, fine.
-# TBA - improve
+Firbell: Frogman, wait.
+Frogman: What is it, Firbell?
+Firbell: Are you sure you want to go on?
+Frogman: Yes. Aren't you curious what's in the Fortress?\a Or why is it so heavily guarded?
+Firbell: I admit that I am.\a However, I do not want to end up like Xirveros.
+Frogman: What's he got to do with it?
+Firbell: He used to go to the Fortress all the time.\a Before he went mad.
+Frogman: Huh. Good to know.
+But I cannot accept a life of endless, pointless survival.\a Don't you want to find a way to leave this place?
+Firbell: I do. Getting back to Irenhold...\a Yes, I must do my best to return.\a Very well, Frogman. Let us go.
+Frogman: That's the spirit.
 
 ~ PostKresla
 Kresla: Oh.\a It just disintegrated.\a What a shame.
 Frogman: Kresla, we need to get out of here now!
-Kresla: No, wait!
+Kresla: Right!
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom:player
 :play:SafeAndSound
-Frogman! Wait up!
-Before you go on, you should know that there will be\a tougher enemies ahead.
-Frogman: How do you know that?
-Kresla: Through trial and error, of course!\a The deeper you go, the stronger the monsters become,\a like the Lich.
-That's why people like me tend to stay near where we're Born.
-Frogman: I didn't expect that from you, the fearless scholar.
-Kresla: Unforunatly, bravery alone isn't enough to beat stronger\a monsters, like the Lich.\a But with our powers combined,\a we can be unstoppable!
-Frogman: Yes. So let's go.
+Wow! I cannot believe we did it!\a We actually beat a lich!
+Frogman: Yes. Although the Fortress is still pretty far away...
+Kresla: Still, this is uncharted territory!\a I can't wait to find out what's out there!\a The source of magic?\a Aliens?\a More types of monsters? Maybe even some humans!\a I mean, someone had to build that fortress! Or could it be a tribe of magmaborn? Perhaps an underground civilization! Could dwarves actually be real? No, those are fairy tales... Then again, so is magic. You can never be sure anymore, eh, Frogman?
+Frogman: Uh, y-yes, of course.
+Kresla: There's so much to discover! Frogman, are you coming?
+With our powers combined, we can be unstoppable!
 
 ~ PostXirveros
 Frogman: That was tough. Let's get out of here now!
@@ -193,3 +190,4 @@ Frogman: Why do I even bother? Let's just go.
 ~ PostGeneric
 Frogman: That was tough! I'm sorry, everyone.
 I'll just have to go on without you.
+:play:SafeAndSound
