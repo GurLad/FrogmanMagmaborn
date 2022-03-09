@@ -11,8 +11,14 @@ public class CGController : MonoBehaviour
     public PalettedSprite BG2;
     public PalettedSprite FG1;
     public PalettedSprite FG2;
-    private Palette previousBG1Palette = null;
-    private Palette previousBG2Palette = null;
+    public bool Active
+    {
+        get
+        {
+            return Container.activeSelf;
+        }
+    }
+    private PaletteController.PaletteControllerState previousState = null;
 
     private void Reset()
     {
@@ -31,10 +37,9 @@ public class CGController : MonoBehaviour
         Container.SetActive(false);
     }
 
-    public void ShowCG(string name)
+    public void FadeInCG(string name, PaletteController.PaletteControllerState currentState = null)
     {
-        previousBG1Palette = PaletteController.Current.BackgroundPalettes[0].Clone();
-        previousBG2Palette = PaletteController.Current.BackgroundPalettes[1].Clone();
+        previousState = currentState ?? previousState;
         CG toShow = CGs.Find(a => a.Name == name);
         if (toShow == null)
         {
@@ -44,6 +49,7 @@ public class CGController : MonoBehaviour
         LoadImage(BG2, toShow.BGImage2);
         LoadImage(FG1, toShow.FGImage1);
         LoadImage(FG2, toShow.FGImage2);
+        PaletteController.Current.LoadState(previousState);
         PaletteController.Current.BackgroundPalettes[0].CopyFrom(toShow.BGPalette1.Clone());
         PaletteController.Current.BackgroundPalettes[1].CopyFrom(toShow.BGPalette2.Clone());
         BG1.Palette = 0;
@@ -51,16 +57,23 @@ public class CGController : MonoBehaviour
         FG1.Palette = toShow.FGPalette1;
         FG2.Palette = toShow.FGPalette2;
         Container.SetActive(true);
+        PaletteController.Current.Fade(true, () => ConversationPlayer.Current.Wait(1));
     }
 
-    public void HideCG()
+    public void FadeOutCG(System.Action postFadeOutAction)
     {
-        if (Container.activeSelf)
+        if (Active)
         {
-            PaletteController.Current.BackgroundPalettes[0].CopyFrom(previousBG1Palette ?? PaletteController.Current.BackgroundPalettes[0]);
-            PaletteController.Current.BackgroundPalettes[1].CopyFrom(previousBG2Palette ?? PaletteController.Current.BackgroundPalettes[1]);
-            previousBG1Palette = previousBG2Palette = null;
-            Container.SetActive(false);
+            PaletteController.Current.Fade(false, () =>
+            {
+                PaletteController.Current.LoadState(previousState ?? PaletteController.Current.SaveState());
+                Container.SetActive(false);
+                postFadeOutAction?.Invoke();
+            });
+        }
+        else
+        {
+            throw Bugger.Error("Frogman Magmaborn error - fading out a CG when there is none. Please report to the dev.");
         }
     }
 

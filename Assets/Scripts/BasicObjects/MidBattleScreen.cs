@@ -61,10 +61,10 @@ public abstract class MidBattleScreen : MonoBehaviour
                 GameController.Current.transform.parent.gameObject.SetActive(true);
                 Set(this, false);
                 PaletteController.Current.LoadState(postFadeOutState ?? state);
-                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed(false));
+                PaletteController.Current.Fade(true, postFadeIn);
             };
             // Begin the fade
-            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed(false));
+            PaletteController.Current.Fade(false, postFadeOut);
         }
     }
     public void TransitionToThis(bool fadeTransition = true, System.Action postTransitionAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
@@ -95,10 +95,10 @@ public abstract class MidBattleScreen : MonoBehaviour
                 transform.parent.gameObject.SetActive(true);
                 Set(this, true);
                 PaletteController.Current.LoadState(postFadeOutState ?? state);
-                PaletteController.Current.Fade(true, postFadeIn, 10 * GameController.Current.GameSpeed(false));
+                PaletteController.Current.Fade(true, postFadeIn);
             };
             // Begin the fade
-            PaletteController.Current.Fade(false, postFadeOut, 10 * GameController.Current.GameSpeed(false));
+            PaletteController.Current.Fade(false, postFadeOut);
         }
     }
 }

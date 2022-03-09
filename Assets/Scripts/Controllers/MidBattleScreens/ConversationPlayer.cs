@@ -8,7 +8,7 @@ using CAT = ConversationPlayer.CommandArgumentType;
 public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConversationPlayer>
 {
     public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't mroe than 10 types
-    private enum CurrentState { Writing, Waiting, Sleep }
+    private enum CurrentState { Writing, Waiting, Sleep, Hold }
 
     public new static ConversationPlayer Current;
     [Header("Stats")]
@@ -18,6 +18,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     public float VoiceMod;
     public float PunctuationDelay;
     [Header("Objects")]
+    public GameObject AllObjectsHolder;
     public RectTransform NameHolder;
     public Text Name;
     public Text Text;
@@ -175,6 +176,14 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         SkipDialogue.Begin();
                     }
                     break;
+                case CurrentState.Hold:
+                    count -= Time.deltaTime;
+                    if (count <= 0)
+                    {
+                        AllObjectsHolder.SetActive(true);
+                        StartLine(currentLine + 1);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -238,6 +247,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             SetSinglePortrait(true);
             currentSpeakerIsLeft = false;
         }
+    }
+    public void Wait(float seconds)
+    {
+        SoftResume();
+        AllObjectsHolder.SetActive(false);
+        state = CurrentState.Hold;
+        count = seconds;
     }
     /// <summary>
     /// Resumes the conversations & plays the next line
@@ -481,15 +497,27 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     // Params: string name
                     // Removes the previous CG (if any), then shows the requested CG until manually removed
                     AssertCommand("showCG", args, CAT.String);
-                    CGController.HideCG(); // Reset saved palettes, just in case
-                    CGController.ShowCG(args[0]);
-                    break;
+                    Pause();
+                    if (CGController.Active)
+                    {
+                        CGController.FadeOutCG(() => CGController.FadeInCG(args[0]));
+                    }
+                    else
+                    {
+                        PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
+                        PaletteController.Current.Fade(false, () => CGController.FadeInCG(args[0], currentPaletteState));
+                    }
+                    return;
                 case "hideCG":
                     // Params: none
                     // Removes the previous CG (if any)
                     AssertCommand("hideCG", args);
-                    CGController.HideCG();
-                    break;
+                    if (CGController.Active)
+                    {
+                        Pause();
+                        CGController.FadeOutCG(() => PaletteController.Current.Fade(true, () => Resume()));
+                    }
+                    return;
                 case "screenShake":
                     // Params: float strength = 1, float duration = 1
                     // Shakes the screen for duartion time with strength amount
@@ -724,15 +752,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         return;
                     }
                     break;
-
-
-                ///sadsadsadsa
-                ///
-                case "flash":
-                    Pause();
-                    PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
-                    PaletteController.Current.Fade(false, () => { PaletteController.Current.LoadState(state); PaletteController.Current.Fade(true, () => Resume()); });
-                    return;
             }
             StartLine(num + 1);
             return;
@@ -788,13 +807,19 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             StartLine(function.LineNumber + 1);
             return;
         }
+        // If there's a CG, hide it first
+        if (CGController.Active)
+        {
+            Pause();
+            CGController.FadeOutCG(() => PaletteController.Current.Fade(true, () => Resume()));
+            return;
+        }
         // Finish conversation
         lines.Clear();
         MidBattleScreen.Set(this, false);
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         SetSinglePortrait(true);
-        CGController.HideCG();
         currentSpeakerIsLeft = false;
         previousLineParts = null;
         skipping = false;

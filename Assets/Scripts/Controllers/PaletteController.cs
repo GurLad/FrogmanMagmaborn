@@ -73,9 +73,10 @@ public class PaletteController : MonoBehaviour
         return textMaterial;
     }
 
-    public void Fade(bool fadeIn, System.Action postFadeAction, int speed = 10)
+    public void Fade(bool fadeIn, System.Action postFadeAction, float speed = 15)
     {
         Time.timeScale = 0;
+        //speed *= GameController.Current.GameSpeed(false);
         for (int i = 0; i < 4; i++)
         {
             if (fadeIn)

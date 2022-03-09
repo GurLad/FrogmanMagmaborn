@@ -6,13 +6,20 @@ unique:F
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
+:setSpeaker:Firbell||R
 Frogman: Testing
-:showPartTitle:Testy:Test
-the
+:showCG:FortressPreview
+:setSpeaker:Firbell||R
+Frogman: the
 :showCG:Alley
-best
+:setSpeaker:Firbell||R
+Frogman: best
 :hideCG:
-test.
+:setSpeaker:Firbell||R
+Frogman: test.
+:showCG:John
+:showCG:Tavern
+:showCG:Castle
 ~ After battle
 :play:AfterBattle
 # Name: Text.
