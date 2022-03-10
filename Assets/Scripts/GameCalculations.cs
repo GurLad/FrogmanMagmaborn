@@ -89,6 +89,19 @@ public static class GameCalculations
         }
     }
 
+    public static bool TransitionsOn
+    {
+        get
+        {
+            return SavedData.Load("TransitionsOn", 0, SaveMode.Global) == 1;
+        }
+    }
+
+    public static int GameSpeed(bool affectedByInput = true)
+    {
+        return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ (affectedByInput && Control.GetButton(Control.CB.B))) ? 2 : 1;
+    }
+
     public static int StatsPerLevel(Team team, string unitName)
     {
         int baseNum = 3;

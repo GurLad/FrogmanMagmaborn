@@ -54,7 +54,7 @@ public class MapAnimationsController : MidBattleScreen
             case AnimationType.None:
                 break;
             case AnimationType.Movement:
-                Time.timeScale = GameController.Current.GameSpeed(); // Double speed
+                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
                 count += Time.deltaTime;
                 if (count >= 1 / WalkSpeed)
                 {
@@ -70,7 +70,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Battle:
-                Time.timeScale = GameController.Current.GameSpeed(); // Double speed
+                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
                 count += Time.deltaTime;
                 float percent = count * BattleSpeed;
                 switch (battleState)
@@ -153,7 +153,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Delay:
-                Time.timeScale = GameController.Current.GameSpeed(); // Double speed
+                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
                 count += Time.deltaTime;
                 if (count >= DelayTime)
                 {

@@ -29,11 +29,12 @@ public class InitControls : MonoBehaviour
                 InitB.gameObject.SetActive(true);
                 InitStart.text = InitStart.text.Replace("Start", "Enter");
             }
-        }
-        if (!SavedData.HasKey("MusicOn", SaveMode.Global))
-        {
             SavedData.Save("MusicOn", 1, SaveMode.Global);
             SavedData.Save("SFXOn", 1, SaveMode.Global);
+        }
+        if (!SavedData.HasKey("TransitionsOn", SaveMode.Global))
+        {
+            SavedData.Save("TransitionsOn", 1, SaveMode.Global);
         }
     }
 }

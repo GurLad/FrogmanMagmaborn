@@ -139,7 +139,7 @@ public class BattleAnimationController : MidBattleScreen
 
     private void Update()
     {
-        Time.timeScale = GameController.Current.GameSpeed(); // Speed up
+        Time.timeScale = GameCalculations.GameSpeed(); // Speed up
         if (currentAnimation == null)
         {
             if (animationParts.Count > 0)

@@ -75,36 +75,43 @@ public class PaletteController : MonoBehaviour
 
     public void Fade(bool fadeIn, System.Action postFadeAction, float speed = 15)
     {
-        Time.timeScale = 0;
-        //speed *= GameController.Current.GameSpeed(false);
-        for (int i = 0; i < 4; i++)
+        if (GameCalculations.TransitionsOn)
         {
-            if (fadeIn)
+            Time.timeScale = 0;
+            speed *= GameCalculations.GameSpeed(false);
+            for (int i = 0; i < 4; i++)
             {
-                if (i == 3)
+                if (fadeIn)
                 {
-                    TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false).OnEnd = () => Time.timeScale = 1;
-                    TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false).OnEnd = postFadeAction;
+                    if (i == 3)
+                    {
+                        TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false).OnEnd = () => Time.timeScale = 1;
+                        TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false).OnEnd = postFadeAction;
+                    }
+                    else
+                    {
+                        TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
+                        TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false);
+                    }
                 }
                 else
                 {
-                    TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
-                    TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false);
+                    if (i == 3)
+                    {
+                        TransitionTo(true, i, new Palette(), speed, true, true).OnEnd = () => Time.timeScale = 1;
+                        TransitionTo(false, i, new Palette(), speed, true, true).OnEnd = postFadeAction;
+                    }
+                    else
+                    {
+                        TransitionTo(true, i, new Palette(), speed, true, true);
+                        TransitionTo(false, i, new Palette(), speed, true, true);
+                    }
                 }
             }
-            else
-            {
-                if (i == 3)
-                {
-                    TransitionTo(true, i, new Palette(), speed, true, true).OnEnd = () => Time.timeScale = 1;
-                    TransitionTo(false, i, new Palette(), speed, true, true).OnEnd = postFadeAction;
-                }
-                else
-                {
-                    TransitionTo(true, i, new Palette(), speed, true, true);
-                    TransitionTo(false, i, new Palette(), speed, true, true);
-                }
-            }
+        }
+        else
+        {
+            postFadeAction?.Invoke();
         }
     }
 
