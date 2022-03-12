@@ -3,9 +3,8 @@ unique:T
 ~ Requirements
 roomNumber:7
 ~ Demands
-# Nothinig
+hasCharacter:Fashima_
 ~ Before battle
-# Need to think of a plausible excuse why did the Magmaborn only find the huge underground fortress when standing 2 meters away.
 :play:GuardTheme2
 :setSingleSpeaker:R
 :loadUnits::monster
@@ -38,6 +37,7 @@ Lieutenant: Right away!
 Lieutenant: Fashima! We're under attack by Magmaborn!
 Fashima_: What impeccable timing.\a Well, everyone, you know what to do.\a Defend me at all costs.
 Lieutenant: Yes, sir!
+:markDone:
 
 ~ After battle
 :play:AfterBattle

@@ -1,0 +1,21 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:7
+!hasFlag:FashimaDied
+~ Demands
+hasCharacter:Fashima_
+~ Before battle
+:play:GuardTheme2
+Fashima_: Bla.
+:killUnit:Brens
+Frogman: Bla.
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

@@ -1,0 +1,27 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:if:hasFlag:BrensDied{
+:killUnit:Brens
+Lan: Bla.
+}
+:else:{
+Lan: Bla.
+:killUnit:Brens
+}
+Frogman: Bla.
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
