@@ -30,20 +30,47 @@ Fashime_: ...Good riddance.
 :play:BeforeBattle2
 :loadUnits::player:T
 :setSingleSpeaker:L
-Frogman: Oh my! A huge underground fortress!
+Frogman: We're finally here...\a Wow, this place is crawling with Guards.
+:call:Reaction
+:setSingleSpeaker:R
 Guard1: Magmaborn? Here?!\a Quick, sound the alarm!\a Alert Fashima!
 Lieutenant: Right away!
 :setSpeaker:Fashima_||L
 Lieutenant: Fashima! We're under attack by Magmaborn!
 Fashima_: What impeccable timing.\a Well, everyone, you know what to do.\a Defend me at all costs.
-Lieutenant: Yes, sir!
+Lieutenant: Yes, your honor!
 :markDone:
 
 ~ After battle
 :play:AfterBattle
-# Name: Text.
+Frogman: Wow! We beat Fashima! Yay!
+:play:Trustworthy
+Torment: Yay indeed!\a Now, you shall die!
+:showPartTitle:End of:Demo
+:lose:
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ Reaction
+:if:hasCharacter:Firbell{
+Firbell||R: They are protecting the Fortress. TBA
+}
+:if:hasCharacter:Kresla{
+Kresla||R: I've never seen so many Guards in one place!\a Whatever it is that they're protecting,\a it must be extremely valuable!
+}
+:if:hasCharacter:Xirveros{
+Xirveros||R: Rocks! Lots of lots of rocks. So many lovely rocks!
+}
+:if:hasCharacter:Xeplogi{
+Xeplogi||R: TBA
+}
+:if:hasCharacter:Alfred{
+Alfred||R: The crystals.\a The Guards.\a Just like it used to be.\a But this time, they'll die, not me.\a My friends...\a My family...\a Today, I will avenge you, at long last!
+}
+:if:hasCharacter:Memerian{
+Memerian||R: Just wait 'till you get inside.
+Frogman: Inside? Wait, you've been inside the Fortress?!
+Memerian: Yes, multiple times. But it's pointless -\a that place is one hell of a maze.\a I could never get anywhere before they killed me.
+Frogman: A maze, huh? Maybe together we could find the way.
+Memerian: Ha! I highly doubt that.
+}

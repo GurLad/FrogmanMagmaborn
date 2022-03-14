@@ -1,0 +1,48 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+Lan: Hey.
+Lieutenant: ...
+Lan: Hey, you.
+Lieutenant: Me?
+Lan: Yes, you.\a Am I great?
+Lieutenant: Uh... sure?
+Lan: Heh heh. Yes, I'm great.\a So, so great.\a Right?
+Lieutenant: Y-yes?
+Lan: Ha! Look at you, flustered like that!\a You just can't handle my greatness, can you?
+Lieutenant: A-
+Lan: I understand you, poor fellow.\a My greatness is just so great,\a it's almost unbearable at times! Ha ha ha!
+Lieutenant: O-of course, sir.
+Lan: Sir? No, that won't do. That won't do at all!\a You should call me great sir!
+Lieutenant: Yes, si- uh, great sir!
+Lan: See? Much better now!
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: Back again... Wait, who's the wizard there?\a This isn't Fashima.
+Lan: It's me! The great Lan!
+Frogman: ...Right.
+
+~ After battle
+:play:AfterBattle
+Frogman: Wow! We beat Fashima! Yay!
+:play:Trustworthy
+Torment: Yay indeed!\a Now, you shall die!
+:showPartTitle:End of:Demo
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
