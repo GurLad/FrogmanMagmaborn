@@ -121,7 +121,7 @@ public class Portrait
         BackgroundColor = new Palette();
         for (int i = 0; i < 4; i++)
         {
-            BackgroundColor[i] = Color.black;
+            BackgroundColor[i] = CompletePalette.BlackColor;
         }
     }
     public override string ToString()

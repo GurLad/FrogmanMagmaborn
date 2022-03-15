@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8933563264054145365}
   - component: {fileID: 8933563264054145366}
+  - component: {fileID: 309140872182172023}
   m_Layer: 0
   m_Name: PaletteController
   m_TagString: Untagged
@@ -54,3 +55,135 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f387b90c85b7b9344ae6f1ec388cb66e, type: 2}
   - {fileID: 2100000, guid: 8aab2d906ab74d8409ad0402d74dd114, type: 2}
   textMaterial: {fileID: 2100000, guid: 7a3f75e42321003438051b62ed003783, type: 2}
+--- !u!114 &309140872182172023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933563264054145367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd4b5e7b1b293b4e8c23093e00fe46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paletteTexture: {fileID: 2800000, guid: 55b9c0b70ead2664ebcd74de5e13fbd0, type: 3}
+  blackColor: 55
+  transparentColor: 56
+  brightnessJump: 14
+  colors:
+    colors:
+    - serializedVersion: 2
+      rgba: 4294967295
+    - serializedVersion: 2
+      rgba: 4294764708
+    - serializedVersion: 2
+      rgba: 4294752444
+    - serializedVersion: 2
+      rgba: 4294752476
+    - serializedVersion: 2
+      rgba: 4294752508
+    - serializedVersion: 2
+      rgba: 4292919540
+    - serializedVersion: 2
+      rgba: 4290040052
+    - serializedVersion: 2
+      rgba: 4290044156
+    - serializedVersion: 2
+      rgba: 4286896380
+    - serializedVersion: 2
+      rgba: 4286118108
+    - serializedVersion: 2
+      rgba: 4286118072
+    - serializedVersion: 2
+      rgba: 4292407472
+    - serializedVersion: 2
+      rgba: 4294768640
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4294768892
+    - serializedVersion: 2
+      rgba: 4294754360
+    - serializedVersion: 2
+      rgba: 4294740072
+    - serializedVersion: 2
+      rgba: 4294736028
+    - serializedVersion: 2
+      rgba: 4294736124
+    - serializedVersion: 2
+      rgba: 4288436476
+    - serializedVersion: 2
+      rgba: 4283988220
+    - serializedVersion: 2
+      rgba: 4282949884
+    - serializedVersion: 2
+      rgba: 4278237436
+    - serializedVersion: 2
+      rgba: 4279826620
+    - serializedVersion: 2
+      rgba: 4284012632
+    - serializedVersion: 2
+      rgba: 4288477272
+    - serializedVersion: 2
+      rgba: 4293191680
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4291084476
+    - serializedVersion: 2
+      rgba: 4294735872
+    - serializedVersion: 2
+      rgba: 4294739968
+    - serializedVersion: 2
+      rgba: 4294723688
+    - serializedVersion: 2
+      rgba: 4292083932
+    - serializedVersion: 2
+      rgba: 4284481764
+    - serializedVersion: 2
+      rgba: 4278204668
+    - serializedVersion: 2
+      rgba: 4279787748
+    - serializedVersion: 2
+      rgba: 4278223020
+    - serializedVersion: 2
+      rgba: 4278237184
+    - serializedVersion: 2
+      rgba: 4278233088
+    - serializedVersion: 2
+      rgba: 4282951680
+    - serializedVersion: 2
+      rgba: 4287924224
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 4286873720
+    - serializedVersion: 2
+      rgba: 4294705152
+    - serializedVersion: 2
+      rgba: 4291035136
+    - serializedVersion: 2
+      rgba: 4291045440
+    - serializedVersion: 2
+      rgba: 4287365268
+    - serializedVersion: 2
+      rgba: 4280811692
+    - serializedVersion: 2
+      rgba: 4278194348
+    - serializedVersion: 2
+      rgba: 4278196364
+    - serializedVersion: 2
+      rgba: 4278202448
+    - serializedVersion: 2
+      rgba: 4278220800
+    - serializedVersion: 2
+      rgba: 4278216704
+    - serializedVersion: 2
+      rgba: 4278212608
+    - serializedVersion: 2
+      rgba: 4283973632
+    - serializedVersion: 2
+      rgba: 4278190080
+    - serializedVersion: 2
+      rgba: 0

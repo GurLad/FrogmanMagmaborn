@@ -152,14 +152,15 @@ public class PaletteController : MonoBehaviour
     private class PaletteWithMaterial : Palette
     {
         private Material linkedMaterial;
+        private Color32[] colors;
 
-        public override Color this[int i]
+        public override int this[int i]
         {
             get => base[i];
             set
             {
                 base[i] = value;
-                linkedMaterial?.SetColor("_Color" + (i + 1) + "out", this[i]);
+                linkedMaterial?.SetColor("_Color" + (i + 1) + "out", CompletePalette.Colors[this[i]]);
             }
         }
 
@@ -175,7 +176,7 @@ public class PaletteController : MonoBehaviour
         private Material linkedTextMaterial;
         private int id;
 
-        public override Color this[int i]
+        public override int this[int i]
         {
             get => base[i];
             set
@@ -183,7 +184,7 @@ public class PaletteController : MonoBehaviour
                 base[i] = value;
                 if (i == 1) // All text is considered sprite letters, which use palette 1
                 {
-                    linkedTextMaterial?.SetColor("_Color" + (id + 1) + "out", this[1]);
+                    linkedTextMaterial?.SetColor("_Color" + (id + 1) + "out", CompletePalette.Colors[this[1]]);
                 }
             }
         }
@@ -201,8 +202,8 @@ public class PaletteController : MonoBehaviour
 public class Palette
 {
     [SerializeField]
-    private Color[] Colors = new Color[4];
-    public virtual Color this[int i]
+    private int[] Colors = new int[4];
+    public virtual int this[int i]
     {
         get
         {
@@ -223,7 +224,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            Colors[i] = new Color(copyFrom[i].r, copyFrom[i].g, copyFrom[i].b, copyFrom[i].a);
+            Colors[i] = copyFrom[i];
         }
     }
 
@@ -231,7 +232,7 @@ public class Palette
     {
         for (int i = 0; i < 4; i++)
         {
-            this[i] = Color.black;
+            this[i] = CompletePalette.BlackColor;
         }
     }
 
@@ -264,7 +265,7 @@ public class PaletteTransition : MonoBehaviour
     {
         if (!Background)
         {
-            Source[3] = Color.clear;
+            Source[3] = CompletePalette.TransparentColor;
         }
     }
     private void Update()
@@ -286,13 +287,13 @@ public class PaletteTransition : MonoBehaviour
                     Source[i + 1] = Source[i];
                 }
                 Source[1] = Target[Current--];
-                if (!Background && Source[1].a < 1)
+                if (!Background && Source[1] == CompletePalette.TransparentColor)
                 {
-                    Source[1] = Color.black;
+                    Source[1] = CompletePalette.BlackColor;
                 }
                 if (!Background)
                 {
-                    Source[3] = Color.clear;
+                    Source[3] = CompletePalette.TransparentColor;
                 }
             }
             else
@@ -302,13 +303,13 @@ public class PaletteTransition : MonoBehaviour
                     Source[i - 1] = Source[i];
                 }
                 Source[3] = Target[4 - (Current--)];
-                if (!Background && Source[2].a < 1)
+                if (!Background && Source[2] == CompletePalette.TransparentColor)
                 {
-                    Source[2] = Color.black;
+                    Source[2] = CompletePalette.BlackColor;
                 }
                 if (!Background)
                 {
-                    Source[3] = Color.clear;
+                    Source[3] = CompletePalette.TransparentColor;
                 }
             }
             toUpdate.ForEach(a => a.UpdatePalette());

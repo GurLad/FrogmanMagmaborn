@@ -17,7 +17,7 @@ public class LevelMetadata
         {
             TeamDatas[i] = new TeamData();
             TeamDatas[i].Palette = new Palette();
-            TeamDatas[i].Palette[3] = Color.clear;
+            TeamDatas[i].Palette[3] = CompletePalette.TransparentColor;
             TeamDatas[i].Name = ((Team)i).ToString();
             TeamDatas[i].PortraitLoadingMode = (PortraitLoadingMode)i;
             TeamDatas[i].PlayerControlled = i == 0;

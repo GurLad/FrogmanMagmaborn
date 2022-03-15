@@ -20,6 +20,20 @@ public class PaletteDrawer : PropertyDrawer
         //}
 
 
+        //EditorGUI.BeginProperty(rect, label, property);
+        //SerializedProperty list = property.FindPropertyRelative("Colors");
+        //Rect posRect = new Rect(rect);
+        //posRect.width = rect.width / 4;
+        //posRect.height = 20;
+
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    list.GetArrayElementAtIndex(i).colorValue = EditorGUI.ColorField(posRect, list.GetArrayElementAtIndex(i).colorValue);
+        //    posRect.x += posRect.width;
+        //}
+
+        //EditorGUI.EndProperty();
+
         EditorGUI.BeginProperty(rect, label, property);
         SerializedProperty list = property.FindPropertyRelative("Colors");
         Rect posRect = new Rect(rect);
@@ -28,12 +42,11 @@ public class PaletteDrawer : PropertyDrawer
 
         for (int i = 0; i < 4; i++)
         {
-            list.GetArrayElementAtIndex(i).colorValue = EditorGUI.ColorField(posRect, list.GetArrayElementAtIndex(i).colorValue);
+            list.GetArrayElementAtIndex(i).intValue = EditorGUI.IntField(posRect, list.GetArrayElementAtIndex(i).intValue);
             posRect.x += posRect.width;
         }
 
         EditorGUI.EndProperty();
-
 
         //var positionProperty = property.FindPropertyRelative("Position");
         //var normalProperty = property.FindPropertyRelative("NormalRotation");

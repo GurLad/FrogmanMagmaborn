@@ -144,8 +144,8 @@ public class Tileset
     {
         for (int i = 0; i < 4; i++)
         {
-            Palette1[i] = Color.black;
-            Palette2[i] = Color.black;
+            Palette1[i] = CompletePalette.BlackColor;
+            Palette2[i] = CompletePalette.BlackColor;
         }
     }
 
