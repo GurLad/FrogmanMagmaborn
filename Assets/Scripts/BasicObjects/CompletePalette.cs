@@ -42,6 +42,20 @@ public class CompletePalette : MonoBehaviour
         transparentColor = tempColors.Length;
         UnityEditor.EditorUtility.SetDirty(gameObject);
     }
+
+    [ContextMenu("Generate Frog Forge string")]
+    public void GenerateFrogForgeString()
+    {
+        string result = "";
+        for (int i = 0; i < colors.Length; i++)
+        {
+            // Convert RGBA to ARGB
+            string temp = ColorUtility.ToHtmlStringRGBA(colors[i]);
+            temp = temp.Substring(6) + temp.Substring(0, 6);
+            result += "System.Drawing.ColorTranslator.FromHtml(" + '"' + "#" + temp + '"' + "),\n";
+        }
+        Debug.Log(result.Substring(0, result.Length - 2));
+    }
 #endif
 
     [System.Serializable]
@@ -60,6 +74,8 @@ public class CompletePalette : MonoBehaviour
                 return new Color32(colors[i].r, colors[i].g, colors[i].b, colors[i].a);
             }
         }
+
+        public int Length { get => colors.Length; }
 
         public Color32CopyArray(Color32[] colors) // Should clone the colors, but I'm lazy and people should be unable to access this anyway
         {
