@@ -56,6 +56,18 @@ public class CompletePalette : MonoBehaviour
         }
         Debug.Log(result.Substring(0, result.Length - 2));
     }
+
+    [ContextMenu("Generate Frogman Magmaborn inspector string")]
+    public void GenerateFrogmanMagmabornString()
+    {
+        string result = "";
+        for (int i = 0; i < colors.Length; i++)
+        {
+            // Just use "new Color" since "TryParse" is annoying
+            result += "new Color32(" + colors[i].r + ", " + colors[i].g + ", " + colors[i].b + ", " + colors[i].a + "),\n";
+        }
+        Debug.Log(result.Substring(0, result.Length - 2));
+    }
 #endif
 
     [System.Serializable]
