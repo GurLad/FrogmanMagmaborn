@@ -48,7 +48,7 @@ public class PaletteController : MonoBehaviour
         }
     }
 
-    public PaletteTransition TransitionTo(bool background, int id, Palette target, float speed, bool fromCurrent = false, bool reverse = false)
+    public PaletteTransition PaletteTransitionTo(bool background, int id, Palette target, float speed, bool fromCurrent = false, bool reverse = false)
     {
         PaletteTransition transition = gameObject.AddComponent<PaletteTransition>();
         transition.Source = background ? BackgroundPalettes[id] : SpritePalettes[id];
@@ -73,38 +73,38 @@ public class PaletteController : MonoBehaviour
         return textMaterial;
     }
 
-    public void Fade(bool fadeIn, System.Action postFadeAction, float speed = 15)
+    public void Fade(bool fadeIn, System.Action postFadeAction, float speed = 30)
     {
         if (GameCalculations.TransitionsOn)
         {
             Time.timeScale = 0;
-            speed *= GameCalculations.GameSpeed(false);
+            //speed *= GameCalculations.GameSpeed(false);
             for (int i = 0; i < 4; i++)
             {
                 if (fadeIn)
                 {
                     if (i == 3)
                     {
-                        TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false).OnEnd = () => Time.timeScale = 1;
-                        TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false).OnEnd = postFadeAction;
+                        FadePaletteTransitionTo(true, true, i, BackgroundPalettes[i].Clone(), speed).OnEnd = () => Time.timeScale = 1;
+                        FadePaletteTransitionTo(true, false, i, SpritePalettes[i].Clone(), speed).OnEnd = postFadeAction;
                     }
                     else
                     {
-                        TransitionTo(true, i, BackgroundPalettes[i].Clone(), speed, false);
-                        TransitionTo(false, i, SpritePalettes[i].Clone(), speed, false);
+                        FadePaletteTransitionTo(true, true, i, BackgroundPalettes[i].Clone(), speed);
+                        FadePaletteTransitionTo(true, false, i, SpritePalettes[i].Clone(), speed);
                     }
                 }
                 else
                 {
                     if (i == 3)
                     {
-                        TransitionTo(true, i, new Palette(), speed, true, true).OnEnd = () => Time.timeScale = 1;
-                        TransitionTo(false, i, new Palette(), speed, true, true).OnEnd = postFadeAction;
+                        FadePaletteTransitionTo(false, true, i, BackgroundPalettes[i].Clone(), speed).OnEnd = () => Time.timeScale = 1;
+                        FadePaletteTransitionTo(false, false, i, SpritePalettes[i].Clone(), speed).OnEnd = postFadeAction;
                     }
                     else
                     {
-                        TransitionTo(true, i, new Palette(), speed, true, true);
-                        TransitionTo(false, i, new Palette(), speed, true, true);
+                        FadePaletteTransitionTo(false, true, i, BackgroundPalettes[i].Clone(), speed);
+                        FadePaletteTransitionTo(false, false, i, SpritePalettes[i].Clone(), speed);
                     }
                 }
             }
@@ -113,6 +113,16 @@ public class PaletteController : MonoBehaviour
         {
             postFadeAction?.Invoke();
         }
+    }
+
+    private FadePaletteTransition FadePaletteTransitionTo(bool fadeIn, bool background, int id, Palette target, float speed)
+    {
+        FadePaletteTransition transition = gameObject.AddComponent<FadePaletteTransition>();
+        transition.Source = background ? BackgroundPalettes[id] : SpritePalettes[id];
+        transition.Target = target.Clone();
+        transition.Speed = speed;
+        transition.FadeIn = fadeIn;
+        return transition;
     }
 
     public PaletteControllerState SaveState()
@@ -267,7 +277,7 @@ public class PaletteTransition : MonoBehaviour
     public bool Reverse;
     public System.Action OnEnd;
     private float count = 0;
-    private List<PalettedSprite> toUpdate = new List<PalettedSprite>();
+
     public void Start()
     {
         if (!Background)
@@ -275,6 +285,7 @@ public class PaletteTransition : MonoBehaviour
             Source[3] = CompletePalette.TransparentColor;
         }
     }
+
     private void Update()
     {
         count += Time.unscaledDeltaTime * Speed;
@@ -319,11 +330,51 @@ public class PaletteTransition : MonoBehaviour
                     Source[3] = CompletePalette.TransparentColor;
                 }
             }
-            toUpdate.ForEach(a => a.UpdatePalette());
         }
     }
-    public void AddPalettedSprite(PalettedSprite sprite)
+}
+
+public class FadePaletteTransition : MonoBehaviour
+{
+    public float Speed;
+    public Palette Source;
+    public Palette Target;
+    public int Indicator = CompletePalette.TransparentColor;
+    public bool FadeIn;
+    public System.Action OnEnd;
+    private float count = 0;
+
+    private void Start()
     {
-        toUpdate.Add(sprite);
+        for (int i = 0; i < 4; i++)
+        {
+            if (Source[i] < CompletePalette.TransparentColor)
+            {
+                Source[i] = FadeIn ? CompletePalette.BlackColor : Target[i];
+            }
+        }
+    }
+
+    private void Update()
+    {
+        count += Time.unscaledDeltaTime * Speed;
+        if (count >= 1)
+        {
+            if (Indicator <= 0)
+            {
+                Destroy(this);
+                OnEnd?.Invoke();
+                return;
+            }
+            count -= 1;
+            Indicator -= CompletePalette.BrightnessJump;
+            for (int i = 0; i < 4; i++)
+            {
+                if (Source[i] < CompletePalette.TransparentColor)
+                {
+                    Source[i] = FadeIn ? Mathf.Min(Target[i] + Indicator, CompletePalette.BlackColor) : Mathf.Min(Target[i] + CompletePalette.TransparentColor - Indicator, CompletePalette.BlackColor);
+                }
+            }
+        }
     }
 }

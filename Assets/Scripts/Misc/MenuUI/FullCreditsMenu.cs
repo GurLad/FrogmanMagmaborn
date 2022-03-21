@@ -173,7 +173,7 @@ public class FullCreditsMenu : Trigger
 
     private void ShowCurrentCredit()
     {
-        transition = PaletteController.Current.TransitionTo(false, 2, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
+        transition = PaletteController.Current.PaletteTransitionTo(false, 2, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
         targetText.Palette = 2;
         notTargetText.Palette = currentPart + 1 < Credits.Count * 2 ? 3 : 2;
         lastCheckedCurrent = transition.Current;
@@ -181,13 +181,11 @@ public class FullCreditsMenu : Trigger
 
     private void ShowLogoImage()
     {
-        transition = PaletteController.Current.TransitionTo(true, 0, Logo1Palette, Speed);
-        transition.AddPalettedSprite(Logo1);
+        transition = PaletteController.Current.PaletteTransitionTo(true, 0, Logo1Palette, Speed);
         Logo1.gameObject.SetActive(true);
-        transition = PaletteController.Current.TransitionTo(true, 1, Logo2Palette, Speed);
-        transition.AddPalettedSprite(Logo2);
+        transition = PaletteController.Current.PaletteTransitionTo(true, 1, Logo2Palette, Speed);
         Logo2.gameObject.SetActive(true);
-        transition = PaletteController.Current.TransitionTo(false, 3, CreditsColor, Speed);
+        transition = PaletteController.Current.PaletteTransitionTo(false, 3, CreditsColor, Speed);
         LogoText.Text.text = "Disc-O-Key";
         LogoText.Palette = 3;
         lastCheckedCurrent = transition.Current;

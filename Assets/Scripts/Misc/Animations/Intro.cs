@@ -34,7 +34,7 @@ public class Intro : MonoBehaviour
                 finishedMove = true;
                 Palette palette = new Palette(PaletteController.Current.SpritePalettes[0]);
                 palette[3] = palette[2];
-                transition = PaletteController.Current.TransitionTo(false, 0, palette, TransitionSpeed);
+                transition = PaletteController.Current.PaletteTransitionTo(false, 0, palette, TransitionSpeed);
                 Frogman.SetActive(true);
             }
         }

@@ -34,7 +34,7 @@ public class OpeningCutscene : Trigger
         transition = null;
         for (int i = 0; i < ImageParts.Count; i++)
         {
-            transition = PaletteController.Current.TransitionTo(true, i, new Palette(), Speed, true, true);
+            transition = PaletteController.Current.PaletteTransitionTo(true, i, new Palette(), Speed, true, true);
         }
         lastCheckedCurrent = transition.Current;
         count = 0;
@@ -67,7 +67,7 @@ public class OpeningCutscene : Trigger
         if (firstFrame)
         {
             firstFrame = false;
-            transition = PaletteController.Current.TransitionTo(false, 0, CreditsColor, Speed);
+            transition = PaletteController.Current.PaletteTransitionTo(false, 0, CreditsColor, Speed);
             CreditsObject.Text.text = Credits[0];
             CreditsObject.Palette = 0;
             state = State.TextShowing;
@@ -204,14 +204,14 @@ public class OpeningCutscene : Trigger
     }
     private void ShowCurrentCredit()
     {
-        transition = PaletteController.Current.TransitionTo(false, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
+        transition = PaletteController.Current.PaletteTransitionTo(false, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
         CreditsObject.Text.text = Credits[currentPart / 2];
         //CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
         lastCheckedCurrent = transition.Current;
     }
     private void ShowCurrentImage()
     {
-        transition = PaletteController.Current.TransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
+        transition = PaletteController.Current.PaletteTransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
         ImageParts[currentPart].gameObject.SetActive(true);
         lastCheckedCurrent = transition.Current;
     }

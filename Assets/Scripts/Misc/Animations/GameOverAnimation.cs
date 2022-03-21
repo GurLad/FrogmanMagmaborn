@@ -16,7 +16,7 @@ public class GameOverAnimation : MonoBehaviour
     private PaletteTransition transition;
     private void Start()
     {
-        transition = PaletteController.Current.TransitionTo(true, 0, GameOverPalette, Speed);
+        transition = PaletteController.Current.PaletteTransitionTo(true, 0, GameOverPalette, Speed);
         CrossfadeMusicPlayer.Current.Play("GameOver", false);
     }
     private void Update()
@@ -37,7 +37,7 @@ public class GameOverAnimation : MonoBehaviour
                 }
                 else
                 {
-                    transition = PaletteController.Current.TransitionTo(true, 0, new Palette(), Speed, true, true);
+                    transition = PaletteController.Current.PaletteTransitionTo(true, 0, new Palette(), Speed, true, true);
                     finishedOne = true;
                 }
             }
