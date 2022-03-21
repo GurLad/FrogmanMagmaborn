@@ -42,7 +42,8 @@ public class PaletteDrawer : PropertyDrawer
 
         for (int i = 0; i < 4; i++)
         {
-            list.GetArrayElementAtIndex(i).intValue = EditorGUI.IntField(posRect, list.GetArrayElementAtIndex(i).intValue);
+            SerializedProperty id = list.GetArrayElementAtIndex(i).FindPropertyRelative("id");
+            id.intValue = EditorGUI.IntField(posRect, id.intValue);
             posRect.x += posRect.width;
         }
 

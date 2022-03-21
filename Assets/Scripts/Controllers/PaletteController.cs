@@ -202,30 +202,31 @@ public class PaletteController : MonoBehaviour
 public class Palette
 {
     [SerializeField]
-    private int[] Colors = new int[4];
+    private PaletteColorObject[] Colors = new PaletteColorObject[4];
     public virtual int this[int i]
     {
         get
         {
-            return Colors[i];
+            return Colors[i].id;
         }
         set
         {
-            Colors[i] = value;
+            Colors[i].id = value;
         }
     }
 
     public Palette()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            Colors[i] = new PaletteColorObject();
+        }
         Reset();
     }
 
-    public Palette(Palette copyFrom)
+    public Palette(Palette copyFrom) : this()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            Colors[i] = copyFrom[i];
-        }
+        CopyFrom(copyFrom);
     }
 
     public void Reset()
@@ -247,6 +248,12 @@ public class Palette
         {
             this[i] = palette[i];
         }
+    }
+
+    [System.Serializable]
+    private class PaletteColorObject
+    {
+        public int id;
     }
 }
 
