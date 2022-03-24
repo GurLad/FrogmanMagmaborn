@@ -73,7 +73,17 @@ public class PaletteController : MonoBehaviour
         return textMaterial;
     }
 
-    public void Fade(bool fadeIn, System.Action postFadeAction, float speed = 30)
+    public void FadeIn(System.Action postFadeAction, float speed = 30)
+    {
+        Fade(true, postFadeAction, speed);
+    }
+
+    public void FadeOut(System.Action postFadeAction, float speed = 30)
+    {
+        Fade(false, postFadeAction, speed);
+    }
+
+    private void Fade(bool fadeIn, System.Action postFadeAction, float speed)
     {
         if (GameCalculations.TransitionsOn)
         {
@@ -81,31 +91,15 @@ public class PaletteController : MonoBehaviour
             //speed *= GameCalculations.GameSpeed(false);
             for (int i = 0; i < 4; i++)
             {
-                if (fadeIn)
+                if (i == 3)
                 {
-                    if (i == 3)
-                    {
-                        FadePaletteTransitionTo(true, true, i, BackgroundPalettes[i].Clone(), speed).OnEnd = () => Time.timeScale = 1;
-                        FadePaletteTransitionTo(true, false, i, SpritePalettes[i].Clone(), speed).OnEnd = postFadeAction;
-                    }
-                    else
-                    {
-                        FadePaletteTransitionTo(true, true, i, BackgroundPalettes[i].Clone(), speed);
-                        FadePaletteTransitionTo(true, false, i, SpritePalettes[i].Clone(), speed);
-                    }
+                    FadePaletteTransitionTo(fadeIn, true, i, BackgroundPalettes[i].Clone(), speed).OnEnd = () => Time.timeScale = 1;
+                    FadePaletteTransitionTo(fadeIn, false, i, SpritePalettes[i].Clone(), speed).OnEnd = postFadeAction;
                 }
                 else
                 {
-                    if (i == 3)
-                    {
-                        FadePaletteTransitionTo(false, true, i, BackgroundPalettes[i].Clone(), speed).OnEnd = () => Time.timeScale = 1;
-                        FadePaletteTransitionTo(false, false, i, SpritePalettes[i].Clone(), speed).OnEnd = postFadeAction;
-                    }
-                    else
-                    {
-                        FadePaletteTransitionTo(false, true, i, BackgroundPalettes[i].Clone(), speed);
-                        FadePaletteTransitionTo(false, false, i, SpritePalettes[i].Clone(), speed);
-                    }
+                    FadePaletteTransitionTo(fadeIn, true, i, BackgroundPalettes[i].Clone(), speed);
+                    FadePaletteTransitionTo(fadeIn, false, i, SpritePalettes[i].Clone(), speed);
                 }
             }
         }

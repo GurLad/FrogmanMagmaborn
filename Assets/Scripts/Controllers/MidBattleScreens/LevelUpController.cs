@@ -41,11 +41,19 @@ public class LevelUpController : MidBattleScreen
         currentUnitID++;
         if (currentUnitID >= players.Count)
         {
-            Set(this, false);
-            ConversationPlayer.Current.Play(GameController.Current.CreateLevel());
-            ConversationPlayer.Current.Pause();
-            Set(this, true);
-            Quit(true, () => ConversationPlayer.Current.Resume(0));
+            // Pause the game so nothing accidently breaks
+            enabled = false;
+            GameController.Current.enabled = false;
+            // Prepare the actions
+            System.Action postFadeOut = () =>
+            {
+                Destroy(transform.parent.gameObject);
+                GameController.Current.transform.parent.gameObject.SetActive(true);
+                Set(this, false);
+                ConversationPlayer.Current.Play(GameController.Current.CreateLevel(), true);
+            };
+            // Begin the fade
+            PaletteController.Current.FadeOut(postFadeOut);
             return;
         }
         Unit unit = players[currentUnitID];

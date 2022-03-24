@@ -57,14 +57,14 @@ public class CGController : MonoBehaviour
         FG1.Palette = toShow.FGPalette1;
         FG2.Palette = toShow.FGPalette2;
         Container.SetActive(true);
-        PaletteController.Current.Fade(true, () => ConversationPlayer.Current.Wait(1));
+        PaletteController.Current.FadeIn(() => ConversationPlayer.Current.Wait(1));
     }
 
     public void FadeOutCG(System.Action postFadeOutAction)
     {
         if (Active)
         {
-            PaletteController.Current.Fade(false, () =>
+            PaletteController.Current.FadeOut(() =>
             {
                 PaletteController.Current.LoadState(previousState ?? PaletteController.Current.SaveState());
                 Container.SetActive(false);

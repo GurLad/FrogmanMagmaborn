@@ -7,8 +7,9 @@ using CAT = ConversationPlayer.CommandArgumentType;
 
 public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConversationPlayer>
 {
-    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't mroe than 10 types
+    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't more than 10 types
     private enum CurrentState { Writing, Waiting, Sleep, Hold }
+    private enum StartLineResult { None = 0, LoadMap = 1, LoadUnits = 2, Fade = 4, MidBattleScreen = 8, FinishLevel = 16, FinishConversation = 32, Wait = 64 }
 
     public new static ConversationPlayer Current;
     [Header("Stats")]
@@ -189,26 +190,31 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
         }
     }
-    public void Play(ConversationData conversation)
+    public void Play(ConversationData conversation, bool shouldFadeIn = true)
     {
         postBattle = false;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         origin = conversation;
+        lines = origin.Lines;
+        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
+        StartLineResult result = StartLine(0);
         if (GameController.Current != null)
         {
-            if (origin.Lines.Find(a => a.Contains(":loadUnits")) == null)
-            {
-                GameController.Current.LoadLevelUnits();
-            }
-            if (origin.Lines.Find(a => a.Contains(":loadMap")) == null)
+            if ((result & StartLineResult.LoadMap) == 0)
             {
                 GameController.Current.LoadMap();
             }
+            if ((result & StartLineResult.LoadUnits) == 0)
+            {
+                GameController.Current.LoadLevelUnits();
+            }
         }
-        lines = origin.Lines;
-        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
-        StartLine(0);
+        if (shouldFadeIn && (result & StartLineResult.Fade) == 0)
+        {
+            Pause();
+            PaletteController.Current.FadeIn(() => Resume(0));
+        }
     }
     public void PlayOneShot(string text)
     {
@@ -297,19 +303,19 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         return false;
     }
-    private void StartLine(int num)
+    private StartLineResult StartLine(int num)
     {
+        StartLineResult result = StartLineResult.None;
         if (num >= lines.Count)
         {
             FinishConversation();
-            return;
+            return result | StartLineResult.FinishConversation;
         }
         currentLine = num;
         string line = lines[currentLine];
         if (line.Length <= 0) // Empty line
         {
-            StartLine(num + 1);
-            return;
+            return result | StartLine(num + 1);
         }
         if (line[0] == ':') // Command
         {
@@ -348,11 +354,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     {
                         GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam(), args[2] == "T");
                     }
+                    result |= StartLineResult.LoadUnits;
                     break;
                 case "loadMap":
                     // Params: string mapName = chosenMap
                     AssertCommand("loadMap", args, CAT.OpString);
                     GameController.Current.LoadMap(args[0]);
+                    result |= StartLineResult.LoadMap;
                     break;
                 case "setTeam":
                     // Params: string unitName, Team changeTo
@@ -449,12 +457,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     // Params: none
                     AssertCommand("lose", args);
                     GameController.Current.Lose();
-                    return;
+                    return result | StartLineResult.FinishLevel;
                 case "win":
                     // Params: none
                     AssertCommand("win", args);
                     GameController.Current.Win();
-                    return;
+                    return result | StartLineResult.FinishLevel;
 
                 // Conversation (graphics, music etc.) commands
 
@@ -505,9 +513,9 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     else
                     {
                         PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
-                        PaletteController.Current.Fade(false, () => CGController.FadeInCG(args[0], currentPaletteState));
+                        PaletteController.Current.FadeOut(() => CGController.FadeInCG(args[0], currentPaletteState));
                     }
-                    return;
+                    return result | StartLineResult.Fade;
                 case "hideCG":
                     // Params: none
                     // Removes the previous CG (if any)
@@ -515,9 +523,9 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     if (CGController.Active)
                     {
                         Pause();
-                        CGController.FadeOutCG(() => PaletteController.Current.Fade(true, () => Resume()));
+                        CGController.FadeOutCG(() => PaletteController.Current.FadeIn(() => Resume()));
                     }
-                    return;
+                    return result | StartLineResult.Fade;
                 case "screenShake":
                     // Params: float strength = 1, float duration = 1
                     // Shakes the screen for duartion time with strength amount
@@ -535,7 +543,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     Pause();
                     InfoDialogue.Text.text = args[0];
                     InfoDialogue.Begin();
-                    return;
+                    return result | StartLineResult.MidBattleScreen;
                 case "showPartTitle":
                     // Args: subtitle, title
                     AssertCommand("showPartTitle", args, CAT.String, CAT.String);
@@ -546,7 +554,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     var postFadeOutState = PaletteController.Current.SaveState();
                     PaletteController.Current.LoadState(currentState);
                     partTitle.TransitionToThis(true, null, postFadeOutState);
-                    return;
+                    return result | StartLineResult.MidBattleScreen;
                 case "showChoice":
                     // Args: choosingCharacterName, option1, option2
                     AssertCommand("showChoice", args, CAT.String, CAT.String, CAT.String);
@@ -567,7 +575,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     // To prevent people from thinking a choice is "correct"
                     ChoiceMenu.Begin();
                     ChoiceMenu.SelectItem(Random.Range(0, 2));
-                    return;
+                    return result | StartLineResult.MidBattleScreen;
 
                 // Global commands
 
@@ -611,8 +619,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // If found an else, do that content.
                         if (lines[num + 1].Contains(":else:"))
                         {
-                            StartLine(num + 2);
-                            return;
+                            return result | StartLine(num + 2);
                         }
                     }
                     break;
@@ -629,8 +636,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         functionStack.Push(new FunctionStackObject(num, lines));
                         // Load new lines
                         lines = origin.Functions[args[0]];
-                        StartLine(0);
-                        return;
+                        return result | StartLine(0);
                     }
                     throw Bugger.Error("No matching function! (" + args[0] + ")");
                 case "callOther":
@@ -642,8 +648,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     if (conversation != null)
                     {
                         lines = postBattle ? conversation.PostBattleLines : conversation.Lines;
-                        StartLine(0);
-                        return;
+                        return result | StartLine(0);
                     }
                     throw Bugger.Error("No matching conversation! (" + args[0] + ")");
                 case "wait":
@@ -655,7 +660,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     {
                         CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
                     }
-                    return;
+                    return result | StartLineResult.Wait;
                 case "return":
                     AssertCommand("return", args);
                     if (functionStack.Count == 0)
@@ -664,13 +669,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     FunctionStackObject function = functionStack.Pop();
                     lines = function.Lines;
-                    StartLine(function.LineNumber + 1);
-                    return;
+                    return result | StartLine(function.LineNumber + 1);
                 case "finishConversation":
                     // Params: none
                     AssertCommand("finishConversation", args);
                     FinishConversation();
-                    return;
+                    return result | StartLineResult.FinishConversation;
 
                 // Tutorial commands
 
@@ -694,7 +698,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     TutorialGameController.Current.CurrentForceButton = forceButton;
                     TutorialGameController.Current.WaitingForForceButton = true;
                     Pause();
-                    return;
+                    return result | StartLineResult.Wait;
                 case "tutorialShowMarker":
                     // Not asserting tutorials for now
                     if (TutorialGameController.Current == null)
@@ -712,7 +716,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     SavedData.SaveAll(SaveMode.Slot);
                     SceneController.LoadScene("Map");
-                    return;
+                    return result | StartLineResult.FinishLevel;
                 default:
                     break;
 
@@ -727,7 +731,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     AssertCommand("introShowCutscene", args);
                     Pause();
                     Intro.gameObject.SetActive(true);
-                    return;
+                    return result | StartLineResult.MidBattleScreen;
                 case "introShowUpgradeMenu":
                     // Params: none
                     if (Knowledge == null)
@@ -737,7 +741,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     AssertCommand("introShowUpgradeMenu", args);
                     Pause();
                     Knowledge.SetActive(true);
-                    return;
+                    return result | StartLineResult.MidBattleScreen;
                 case "introShowTutorial":
                     // Params: none
                     if (Tutorial == null)
@@ -749,17 +753,15 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     {
                         Pause();
                         Tutorial.Begin();
-                        return;
+                        return result | StartLineResult.MidBattleScreen;
                     }
                     break;
             }
-            StartLine(num + 1);
-            return;
+            return result | StartLine(num + 1);
         }
         else if (line[0] == '#' || line[0] == '}') // Comment, like this one :) Or end of if block
         {
-            StartLine(num + 1);
-            return;
+            return result | StartLine(num + 1);
         }
         if (line.IndexOf(':') != -1)
         {
@@ -796,6 +798,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         count = 0;
         state = CurrentState.Writing;
         Arrow.SetActive(false);
+        return result;
     }
     private void FinishConversation()
     {
@@ -811,7 +814,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         if (CGController.Active)
         {
             Pause();
-            CGController.FadeOutCG(() => PaletteController.Current.Fade(true, () => Resume()));
+            CGController.FadeOutCG(() => PaletteController.Current.FadeIn(() => Resume()));
             return;
         }
         // Finish conversation

@@ -56,16 +56,16 @@ MonoBehaviour:
   - Name: John
     BGPalette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.34509805, g: 0.84705883, b: 0.34509805, a: 1}
-      - {r: 0, g: 0.65882355, b: 0.28235295, a: 1}
-      - {r: 0, g: 0.34509805, b: 0, a: 1}
+      - id: 13
+      - id: 24
+      - id: 39
+      - id: 53
     BGPalette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.6431373, g: 0.9098039, b: 0.9882353, a: 1}
-      - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
-      - {r: 0, g: 0, b: 0.9882353, a: 1}
+      - id: 13
+      - id: 1
+      - id: 15
+      - id: 43
     FGPalette1: 3
     FGPalette2: 1
     BGImage1: {fileID: 21300000, guid: 3304cba05ca82f242b558d5065dc947b, type: 3}
@@ -75,16 +75,16 @@ MonoBehaviour:
   - Name: Castle
     BGPalette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     BGPalette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     FGPalette1: 0
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: f663e5b775c071c48a442c1361032726, type: 3}
@@ -94,16 +94,16 @@ MonoBehaviour:
   - Name: Tavern
     BGPalette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     BGPalette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     FGPalette1: 0
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: 435b125b7dae19a43b937acbb569b522, type: 3}
@@ -113,16 +113,16 @@ MonoBehaviour:
   - Name: Alley
     BGPalette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     BGPalette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     FGPalette1: 0
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: b3298a953aee0bd4090f356fac927bbf, type: 3}
@@ -132,16 +132,16 @@ MonoBehaviour:
   - Name: FortressPreview
     BGPalette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     BGPalette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.7372549, g: 0.7529412, b: 0.76862746, a: 1}
-      - {r: 0.47058824, g: 0.5019608, b: 0.5176471, a: 1}
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
     FGPalette1: 0
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: 93bab0828aa7069428ffec5f8793b926, type: 3}
