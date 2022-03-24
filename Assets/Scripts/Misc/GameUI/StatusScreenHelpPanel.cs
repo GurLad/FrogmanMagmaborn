@@ -59,7 +59,7 @@ public class StatusScreenHelpPanel : MonoBehaviour
 
     private void Update()
     {
-        if (!Controller.IsCurrent())
+        if (!Controller.IsCurrent() || !Controller.enabled)
         {
             return;
         }
@@ -68,6 +68,7 @@ public class StatusScreenHelpPanel : MonoBehaviour
             if (!showingInfo)
             {
                 MidBattleScreen.CurrentQuit();
+                return;
             }
             else
             {
