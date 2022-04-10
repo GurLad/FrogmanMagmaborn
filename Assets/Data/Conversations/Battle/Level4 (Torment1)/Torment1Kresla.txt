@@ -9,6 +9,7 @@ hasCharacter:Kresla
 :callOther:TormentBase
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
+:if:firstTime:{
 :play:Trustworthy
 Torment: Hello, hello! Back so soon? Heh!
 Frogman: Unfortunately...
@@ -30,6 +31,10 @@ But worry not, you have the honor of being my...\a chosen one! Heh!
 Frogman: Argh...
 Torment: Cry later - now is the time to FIGHT!
 :loadUnits:
+}
+:else:{
+# TBA
+}
 
 ~ After battle
 Frogman: Torment... Enough of this!

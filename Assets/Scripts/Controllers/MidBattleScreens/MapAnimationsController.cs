@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MapAnimationsController : MidBattleScreen
 {
-    public enum AnimationType { None, Movement, Battle, Delay }
+    public enum AnimationType { None, Movement, Battle, Delay, Push, Pull }
     private enum BattleAnimationState { AttackerAttacking, AttackerFinishingAttack, AttackerDelay, DefenderAttacking, DefenderFinishingAttack, DefenderDelay }
+    private enum PushPullAnimationState { Approach, Move, Retreat }
+
     public static MapAnimationsController Current;
     [Header("Movement animation")]
     public float WalkSpeed;
@@ -18,6 +20,10 @@ public class MapAnimationsController : MidBattleScreen
     public float BattleMoveDistance;
     public AdvancedSpriteSheetAnimation BattleMissAnimation;
     public RectTransform BattleBasePanelPosition;
+    [Header("Push & pull animations")]
+    public float PushPullApproachDistance;
+    public float PushPullApproachRetreatSpeed;
+    public float PushPullMoveSpeed;
     [Header("SFX")]
     public AudioClip HitSFX;
     public AudioClip MissSFX;
@@ -37,25 +43,29 @@ public class MapAnimationsController : MidBattleScreen
     private BattleAnimationState battleState;
     private MiniBattleStatsPanel attackerPanel;
     private MiniBattleStatsPanel defenderPanel;
+    private AdvancedSpriteSheetAnimation missAnimation;
+    // Battle, push & pull animations vars
     private Unit attacker;
     private Unit defender;
     private Vector3 attackerBasePos;
     private Vector3 defenderBasePos;
     private Vector3 battleDirection;
-    private AdvancedSpriteSheetAnimation missAnimation;
+    // Push & pull animations vars
+    private PushPullAnimationState pushPullState;
     private void Awake()
     {
         Current = this;
     }
     private void Update()
     {
+        Time.timeScale = GameCalculations.GameSpeed(); // Double speed
+        count += Time.deltaTime;
+        float percent;
         switch (CurrentAnimation)
         {
             case AnimationType.None:
                 break;
             case AnimationType.Movement:
-                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
-                count += Time.deltaTime;
                 if (count >= 1 / WalkSpeed)
                 {
                     count -= 1 / WalkSpeed;
@@ -70,9 +80,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Battle:
-                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
-                count += Time.deltaTime;
-                float percent = count * BattleSpeed;
+                percent = Mathf.Min(1, count * BattleSpeed);
                 switch (battleState)
                 {
                     case BattleAnimationState.AttackerAttacking:
@@ -153,22 +161,100 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Delay:
-                Time.timeScale = GameCalculations.GameSpeed(); // Double speed
-                count += Time.deltaTime;
                 if (count >= DelayTime)
                 {
                     EndAnimation();
+                }
+                break;
+            case AnimationType.Push:
+                switch (pushPullState)
+                {
+                    case PushPullAnimationState.Approach:
+                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        UnitApproachPos(attacker, attackerBasePos, battleDirection, PushPullApproachDistance, percent);
+                        if (count >= 1 / PushPullApproachRetreatSpeed)
+                        {
+                            count -= 1 / PushPullApproachRetreatSpeed;
+                            pushPullState = PushPullAnimationState.Move;
+                        }
+                        break;
+                    case PushPullAnimationState.Move:
+                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, PushPullApproachDistance, percent);
+                        percent = Mathf.Min(1, count * PushPullMoveSpeed);
+                        UnitApproachPos(defender, defenderBasePos, battleDirection, 1, percent);
+                        if (count >= 1 / PushPullMoveSpeed)
+                        {
+                            // Assume direction is valid (aka up/down/left/right)
+                            defender.Pos += new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
+                            pushPullState = PushPullAnimationState.Retreat;
+                        }
+                        break;
+                    case PushPullAnimationState.Retreat:
+                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, PushPullApproachDistance, percent);
+                        if (count >= 1 / PushPullApproachRetreatSpeed)
+                        {
+                            EndAnimation();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case AnimationType.Pull:
+                switch (pushPullState)
+                {
+                    case PushPullAnimationState.Approach:
+                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        UnitApproachPos(attacker, attackerBasePos, battleDirection, PushPullApproachDistance, percent);
+                        if (count >= 1 / PushPullApproachRetreatSpeed)
+                        {
+                            count -= 1 / PushPullApproachRetreatSpeed;
+                            pushPullState = PushPullAnimationState.Move;
+                        }
+                        break;
+                    case PushPullAnimationState.Move:
+                        percent = Mathf.Min(1, count * PushPullMoveSpeed);
+                        UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, 1, percent);
+                        UnitApproachPos(defender, defenderBasePos, -battleDirection, 1, percent);
+                        if (count >= 1 / PushPullMoveSpeed)
+                        {
+                            // Assume direction is valid (aka up/down/left/right)
+                            defender.Pos -= new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
+                            attacker.Pos -= new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
+                            count -= 1 / PushPullMoveSpeed;
+                            pushPullState = PushPullAnimationState.Retreat;
+                        }
+                        break;
+                    case PushPullAnimationState.Retreat:
+                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        UnitApproachPos(attacker, attackerBasePos + battleDirection * (PushPullApproachDistance - 1), -battleDirection, PushPullApproachDistance, percent);
+                        if (count >= 1 / PushPullApproachRetreatSpeed)
+                        {
+                            EndAnimation();
+                        }
+                        break;
+                    default:
+                        break;
                 }
                 break;
             default:
                 break;
         }
     }
+
+    private void UnitApproachPos(Unit unit, Vector3 unitBasePos, Vector3 direction, float moveDistance, float percent)
+    {
+        unit.transform.position = unitBasePos + direction * moveDistance * Mathf.Min(1, percent);
+    }
+
     private void StartAnimation(AnimationType type)
     {
         CurrentAnimation = type;
         MidBattleScreen.Set(this, true);
     }
+
     private void EndAnimation()
     {
         CurrentAnimation = AnimationType.None;
@@ -184,6 +270,7 @@ public class MapAnimationsController : MidBattleScreen
             tempAction?.Invoke();
         }
     }
+
     public void AnimateMovement(Unit unit, Vector2Int targetPos)
     {
         // Check if an animation is even needed
@@ -207,6 +294,7 @@ public class MapAnimationsController : MidBattleScreen
         unitSpriteRenderer = unit.gameObject.GetComponent<SpriteRenderer>();
         StartAnimation(AnimationType.Movement);
     }
+
     public void AnimateBattle(Unit attacking, Unit defending)
     {
         attacker = attacking;
@@ -221,6 +309,7 @@ public class MapAnimationsController : MidBattleScreen
         FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
         StartAnimation(AnimationType.Battle);
     }
+
     public void AnimateDelay()
     {
         if (count != 0)

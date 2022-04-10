@@ -11,6 +11,7 @@ hasFlag:MetAlfred
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
+:if:firstTime:{
 :play:Trustworthy
 Frogman: Torment.
 Torment: Why, hello there too, Frogman! I'm fine, thanks for asking.\a Heh.
@@ -29,6 +30,11 @@ Torment: He used to just be an angry kid, like you. Heh heh.\a Then he took it a
 SUFFERING!\a Ha ha ha!\a Now all he does is fight and kill,\a trying to inflict the Guards the pain they inflicted him.
 Frogman: I am not... Not like that...
 Torment: Sure, you tell yourself that. Heh!\a But it all comes back to pain.\a To ME! HA HA HA!
+}
+:else:{
+# TBA
+}
+
 ~ After battle
 :play:Trickster
 Frogman: Oof... Please, no more...

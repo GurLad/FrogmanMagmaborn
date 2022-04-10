@@ -10,6 +10,7 @@ hasCharacter:Firbell
 :callOther:TormentBase
 :play:BeforeBattle
 :loadMap:InitTormentRoom
+:if:firstTime:{
 :loadUnits:InitTormentRoom:player
 Firbell: Frogman... Why is it so empty here?
 After the lich, we...
@@ -37,6 +38,11 @@ Irenhold is GONE! HA HA HA!
 Frogman: No...
 Torment: Oh, stop pretending to care. Heh.\a As fun as it was to gloat, it's that time again.\a Time to DIE!
 :loadUnits:
+}
+:else:{
+# TBA
+}
+
 ~ After battle
 :play:Trickster
 Frogman: You... Monster...
