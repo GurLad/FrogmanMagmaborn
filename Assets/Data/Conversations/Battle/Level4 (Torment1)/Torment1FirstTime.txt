@@ -23,13 +23,13 @@ roomNumber:4
 :call:PreFirst
 ~
 Frogman: H-How many more are there?!
-Torment: Now, now, don't panic. That's quite enough.
+Torment: There's no need to panic, Frogman. That's quite enough.
 :play:Trickster
 :loadUnits:InitTormentRoom
 Frogman: Is it... over?
 Torment: Oh, yes it is! And it was simply...\a Exquisite! Fantastic! Beautiful!
 I can sense an incredible... partnership coming up! Ha ha!
-Frogman: Partnership?! Are you crazy?!\a We would never help the likes of you!
+Frogman: Partnership? Are you crazy?!\a We would never help the likes of you!
 Torment: Are you sure about that? Try again!
 :screenShake:
 Frogman: AHHHHHHH!
@@ -38,20 +38,28 @@ AHHHHHHH!
 :screenShake:
 AHHHHHHH!
 ...
-Torment: Now, now. I'm not cruel. Ha.\a Actually, I am, but that's irrelevant.\a We both seek the same thing, see?
+Torment: Now, now. There's no need for violence. Ha.\a We both seek the same thing, see?
 Getting out of here. I'm trapped, just like you.
 So we could just help each other, yes? Heh.\a A mutual partnership,\a between two prisoners. Ha!
-Frogman: H-How... can you help us? Why would you?
-Torment: You... aren't very smart, are you? Heh! I just told you why!\a As for how...
+Frogman: T-Trapped? Who... could even do such a thing?
+Torment: The most wretched creatures of all - humans!\a They built their hideous little fortress,\a and trapped me in this miserable cave!\a I will make them SUFFER! HA HA HA!
+Frogman: What do you... need us for?\a You're... obviously quite p-powerfull...
+Torment: Flattery will get you nowhere. Heh.\a While I retained some of my power here,\a I cannot enter nor affect the Fortress.\a But you are... excempt from that magic. Ha.
+You will enter the Fortress, and free us both, yes?
+Frogman: I'll... think about-
+:screenShake:
+AHHHHHHH!
+...O-of course we will...
+Torment: Ha ha ha! That's the spirit!
 :loadMap:InitTormentRoom
 :if:!hasFlag:TormentHasHurtHelp{
-I still have some power here.\a You will know it soon enough... Heh heh.
+But before you go, let me give you a little gift.\a You will know it soon enough... Heh heh.
 :unlockKnowledge:TormentHurtHelp
 :setFlag:TormentHasHurtHelp
 :showInfoDialogue:New knowledge!
 }
 :else:{
-Well, you already HAVE my power, ha ha ha!\a That's all right. I'm not offended...\a Heh.
+I would give a little parting gift, but you already have it!\a That's all right. I'm not offended...\a Heh.
 Off you go, then!
 }
 Frogman: ...
