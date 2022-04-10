@@ -27306,9 +27306,9 @@ MonoBehaviour:
   BattleMoveDistance: 0.3
   BattleMissAnimation: {fileID: 1243427138}
   BattleBasePanelPosition: {fileID: 633572484}
-  PushPullApproachDistance: 0
-  PushPullApproachRetreatSpeed: 0
-  PushPullMoveSpeed: 0
+  PushPullApproachDistance: 0.3
+  PushPullApproachRetreatSpeed: 2
+  PushPullMoveSpeed: 2
   HitSFX: {fileID: 8300000, guid: 40ca7dc105582aa4ba1b6fc405e01827, type: 3}
   MissSFX: {fileID: 8300000, guid: 734204ac8fd74b440a2794ce4507d642, type: 3}
   NoDamageSFX: {fileID: 8300000, guid: ce86335980fa1e843b15b5c2478efefd, type: 3}

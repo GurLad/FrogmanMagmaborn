@@ -52,6 +52,7 @@ public class MapAnimationsController : MidBattleScreen
     private Vector3 battleDirection;
     // Push & pull animations vars
     private PushPullAnimationState pushPullState;
+    private Vector2Int pushPullPosModifier;
     private void Awake()
     {
         Current = this;
@@ -84,7 +85,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             case AnimationType.Battle:
-                percent = Mathf.Min(1, count * BattleSpeed);
+                percent = count * BattleSpeed;
                 switch (battleState)
                 {
                     case BattleAnimationState.AttackerAttacking:
@@ -174,7 +175,7 @@ public class MapAnimationsController : MidBattleScreen
                 switch (pushPullState)
                 {
                     case PushPullAnimationState.Approach:
-                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        percent = count * PushPullApproachRetreatSpeed;
                         UnitApproachPos(attacker, attackerBasePos, battleDirection, PushPullApproachDistance, percent);
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
@@ -183,19 +184,19 @@ public class MapAnimationsController : MidBattleScreen
                         }
                         break;
                     case PushPullAnimationState.Move:
-                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        percent = count * PushPullApproachRetreatSpeed;
                         UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, PushPullApproachDistance, percent);
-                        percent = Mathf.Min(1, count * PushPullMoveSpeed);
+                        percent = count * PushPullMoveSpeed;
                         UnitApproachPos(defender, defenderBasePos, battleDirection, 1, percent);
                         if (count >= 1 / PushPullMoveSpeed)
                         {
                             // Assume direction is valid (aka up/down/left/right)
-                            defender.Pos += new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
+                            defender.Pos += pushPullPosModifier;
                             pushPullState = PushPullAnimationState.Retreat;
                         }
                         break;
                     case PushPullAnimationState.Retreat:
-                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        percent = count * PushPullApproachRetreatSpeed;
                         UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, PushPullApproachDistance, percent);
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
@@ -210,7 +211,7 @@ public class MapAnimationsController : MidBattleScreen
                 switch (pushPullState)
                 {
                     case PushPullAnimationState.Approach:
-                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        percent = count * PushPullApproachRetreatSpeed;
                         UnitApproachPos(attacker, attackerBasePos, battleDirection, PushPullApproachDistance, percent);
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
@@ -219,23 +220,23 @@ public class MapAnimationsController : MidBattleScreen
                         }
                         break;
                     case PushPullAnimationState.Move:
-                        percent = Mathf.Min(1, count * PushPullMoveSpeed);
+                        percent = count * PushPullMoveSpeed;
                         UnitApproachPos(attacker, attackerBasePos + battleDirection * PushPullApproachDistance, -battleDirection, 1, percent);
                         UnitApproachPos(defender, defenderBasePos, -battleDirection, 1, percent);
                         if (count >= 1 / PushPullMoveSpeed)
                         {
                             // Assume direction is valid (aka up/down/left/right)
-                            defender.Pos -= new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
-                            attacker.Pos -= new Vector2Int((int)battleDirection.x, (int)battleDirection.y);
+                            defender.Pos += pushPullPosModifier;
                             count -= 1 / PushPullMoveSpeed;
                             pushPullState = PushPullAnimationState.Retreat;
                         }
                         break;
                     case PushPullAnimationState.Retreat:
-                        percent = Mathf.Min(1, count * PushPullApproachRetreatSpeed);
+                        percent = count * PushPullApproachRetreatSpeed;
                         UnitApproachPos(attacker, attackerBasePos + battleDirection * (PushPullApproachDistance - 1), -battleDirection, PushPullApproachDistance, percent);
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
+                            attacker.Pos += pushPullPosModifier;
                             EndAnimation();
                         }
                         break;
@@ -312,6 +313,19 @@ public class MapAnimationsController : MidBattleScreen
         FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
         FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
         StartAnimation(AnimationType.Battle);
+    }
+
+    public void AnimatePushPull(Unit attacking, Unit defending, bool push)
+    {
+        attacker = attacking;
+        defender = defending;
+        attackerBasePos = attacker.transform.position;
+        defenderBasePos = defender.transform.position;
+        battleDirection = (defenderBasePos - attackerBasePos).normalized;
+        pushPullState = PushPullAnimationState.Approach;
+        pushPullPosModifier = (attacker.Pos - defender.Pos) * (push ? -1 : 1);
+        FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
+        StartAnimation(push ? AnimationType.Push : AnimationType.Pull);
     }
 
     public void AnimateDelay()

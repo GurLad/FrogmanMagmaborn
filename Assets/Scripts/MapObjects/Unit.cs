@@ -411,6 +411,18 @@ public class Unit : MapObject
             MapAnimationsController.Current.AnimateDelay();
         }
     }
+    public void Push(Unit unit)
+    {
+        GameController.Current.RemoveMarkers();
+        MapAnimationsController.Current.AnimatePushPull(this, unit, true);
+        MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+    }
+    public void Pull(Unit unit)
+    {
+        GameController.Current.RemoveMarkers();
+        MapAnimationsController.Current.AnimatePushPull(this, unit, false);
+        MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+    }
     public void AI(List<Unit> units)
     {
         List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.

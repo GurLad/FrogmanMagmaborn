@@ -23,6 +23,14 @@ public class AttackMarker : Marker
                 {
                     GameController.Current.FinishMove(Origin);
                 }
+                else if (Origin.HasSkill(Skill.Push) && unit.Pos.TileDist(Origin.Pos) <= 1)
+                {
+                    Origin.Push(unit);
+                }
+                else if (Origin.HasSkill(Skill.Pull) && unit.Pos.TileDist(Origin.Pos) <= 1)
+                {
+                    Origin.Pull(unit);
+                }
             }
         }
         else if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
