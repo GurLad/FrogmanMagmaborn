@@ -6,8 +6,10 @@ unique:F
 ~ Before battle
 :play:BeforeBattle
 :loadMap:
-:showCG:Tavern
-Frogman: Wow.
+Frogman: Wow. I can push.
+:addSkill:Frogman:push
+:addSkill:Kresla:pull
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.

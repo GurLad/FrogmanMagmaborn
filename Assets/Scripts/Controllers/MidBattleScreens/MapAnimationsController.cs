@@ -58,6 +58,10 @@ public class MapAnimationsController : MidBattleScreen
     }
     private void Update()
     {
+        if (CurrentAnimation == AnimationType.None)
+        {
+            return;
+        }
         Time.timeScale = GameCalculations.GameSpeed(); // Double speed
         count += Time.deltaTime;
         float percent;
@@ -240,7 +244,7 @@ public class MapAnimationsController : MidBattleScreen
                 }
                 break;
             default:
-                break;
+                throw Bugger.Crash("Frogman Magmaborn bug - non-existent map animation!");
         }
     }
 

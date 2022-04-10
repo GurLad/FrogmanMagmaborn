@@ -46,6 +46,29 @@ public class MiniBattleStatsPanel : MonoBehaviour
                 }
             }
         }
+        else if (target != null && origin != null &&
+                !origin.TheTeam.IsEnemy(target.TheTeam) &&
+                ((reverse ? target : origin).HasSkill(Skill.Push) || (reverse ? target : origin).HasSkill(Skill.Pull)) &&
+                (GameController.Current.InteractState == InteractState.Move || origin.Pos.TileDist(target.Pos) <= 1))
+        { 
+            // If origin has push/pull, use that as an ally action
+            if (reverse)
+            {
+                Panel.Palette = (int)origin.TheTeam;
+                string pushPull = target.HasSkill(Skill.Push) ? "Push" : "Pull";
+                Info.text = "\n  " + pushPull + "\n" + new string(' ', (8 - origin.ToString().Length) / 2) + origin;
+                Panel.gameObject.SetActive(true);
+                if (Inclination != null)
+                {
+                    Inclination.gameObject.SetActive(false);
+                }
+                return;
+            }
+            else
+            {
+                target = origin;
+            }
+        }
         // Check if selecting nothing
         bool display = !reverse || (origin != null && origin.TheTeam.IsEnemy(target.TheTeam));
         if (!display)
