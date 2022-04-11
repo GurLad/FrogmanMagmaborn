@@ -23,7 +23,7 @@ public class BattleStatsPanel : MonoBehaviour
         if (mod != null)
         {
             Str.text += "+" + mod.Strength;
-            End.text += "+" + mod.Endurance * 2;
+            End.text += "+" + mod.MaxHP;
             Pir.text += "+" + mod.Pierce;
             Arm.text += "+" + mod.Armor;
             Pre.text += "+" + mod.Precision * 10;

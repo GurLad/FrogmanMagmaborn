@@ -46,7 +46,7 @@ public class OpeningCutscene : Trigger
             }
             else
             {
-                ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation());
+                ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation(), false);
                 Destroy(this);
             }
         };

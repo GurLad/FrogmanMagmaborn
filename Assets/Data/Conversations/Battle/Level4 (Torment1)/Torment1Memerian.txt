@@ -1,0 +1,44 @@
+priority:2
+unique:T
+~ Requirements
+roomNumber:4
+#hasFlag:MetMemerian
+~ Demands
+# Nothinig
+~ Before battle
+# TBA: Add !firstTime dialouge
+:callOther:TormentBase
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:if:firstTime:{
+:play:Trustworthy
+Frogman: TBA
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+TBA
+}
+:else:{
+# TBA
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+
+}
+
+~ After battle
+:play:Trickster
+Frogman: TBA
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: TBA
+:unlockKnowledge:TormentPushPull
+:showInfoDialogue:New knowledge!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

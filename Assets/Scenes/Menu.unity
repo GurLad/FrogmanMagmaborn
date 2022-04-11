@@ -1286,19 +1286,22 @@ MonoBehaviour:
       :introShowTutorial:
 
 
+
       ~
       After battle
 
       # Name: Text.
 
 
+
       # === Functions ====
 
 
-      ~ Sample
 
-      #
-      Name: Text.
+      ~
+      Sample
+
+      # Name: Text.
 
 '
     Name: IntroFlashback1
@@ -1451,19 +1454,22 @@ MonoBehaviour:
       :introShowTutorial:
 
 
+
       ~
       After battle
 
       # Name: Text.
 
 
+
       # === Functions ====
 
 
-      ~ Sample
 
-      #
-      Name: Text.
+      ~
+      Sample
+
+      # Name: Text.
 
 '
     Name: IntroFlashback2
@@ -1592,19 +1598,22 @@ MonoBehaviour:
       :introShowTutorial:
 
 
+
       ~
       After battle
 
       # Name: Text.
 
 
+
       # === Functions ====
 
 
-      ~ Sample
 
-      #
-      Name: Text.
+      ~
+      Sample
+
+      # Name: Text.
 
 '
     Name: IntroFlashback3
@@ -1637,6 +1646,7 @@ MonoBehaviour:
       :play:ForgottenMemories
 
 
+
       :hideCG:
 
       :play:BeforeBattle
@@ -1653,19 +1663,22 @@ MonoBehaviour:
       :introShowTutorial:
 
 
+
       ~
       After battle
 
       # Name: Text.
 
 
+
       # === Functions ====
 
 
-      ~ Sample
 
-      #
-      Name: Text.
+      ~
+      Sample
+
+      # Name: Text.
 
 '
     Name: IntroFlashback4
@@ -1698,6 +1711,7 @@ MonoBehaviour:
       :play:ForgottenMemories
 
 
+
       :hideCG:
 
       :play:BeforeBattle
@@ -1714,19 +1728,22 @@ MonoBehaviour:
       :introShowTutorial:
 
 
+
       ~
       After battle
 
       # Name: Text.
 
 
+
       # === Functions ====
 
 
-      ~ Sample
 
-      #
-      Name: Text.
+      ~
+      Sample
+
+      # Name: Text.
 
 '
     Name: IntroFlashback5
@@ -7606,7 +7623,7 @@ MonoBehaviour:
     NumChoices: 3
     Type: 2
     Upgrades:
-    - Name: Hurt/Help
+    - Name: Hurt /Help
       InternalName: TormentHurtHelp
       Description: 'I : Enemies take 1 non-lethal damage each player turn.'
       AltDescription: 'II: Your units heal 1 damage each player turn.'
@@ -7614,7 +7631,7 @@ MonoBehaviour:
       DefaultState: -1
       NumChoices: 3
       ChoiceValue: 0
-    - Name: Life/Death
+    - Name: Life /Death
       InternalName: TormentLifeDeath
       Description: 'I : Your units revive after each battle.'
       AltDescription: 'II: Frogman gets +1 stat every level for each dead player.'
@@ -7642,12 +7659,12 @@ MonoBehaviour:
     - Name: Honor/Glory
       InternalName: TormentHonorGlory
       Description: 'I : Minimum damage is 1 and minimum hit is 50% (all units).'
-      AltDescription: 'II: All damage is doubled.'
+      AltDescription: 'II: All HP is halved.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3
       ChoiceValue: 0
-    - Name: Push/Pull
+    - Name: Push /Pull
       InternalName: TormentPushPull
       Description: 'I : Your units can push allies by targeting them.'
       AltDescription: 'II: Your units can pull allies by targeting them.'
@@ -7658,8 +7675,8 @@ MonoBehaviour:
     - Name: Anger/Calm
       InternalName: TormentAngerCalm
       Description: 'I : Your units always attack first, but take double damage.'
-      AltDescription: 'II: Your units always attack last, but take half damage (rounded
-        up).'
+      AltDescription: 'II: Your units always attack last, but take half damage, rounded
+        up.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3

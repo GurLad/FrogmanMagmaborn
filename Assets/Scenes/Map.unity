@@ -4456,21 +4456,30 @@ MonoBehaviour:
 
       # TBA
 
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      :loadUnits:
+
+
       }
 
 
-      ~ After battle
+      ~
+      After battle
 
       :play:Trickster
 
-      Frogman:
-      Oof... Please, no more...
+      Frogman: Oof... Please, no more...
 
-      Torment: Ooh, begging, are you? Heh!\a You''re
-      right though, you''re nothing like Alfred.\a He''d never beg! Ha ha!
+      Torment:
+      Ooh, begging, are you? Heh!\a You''re right though, you''re nothing like Alfred.\a
+      He''d never beg! Ha ha!
 
-      Frogman: 
-      Ah...
+      Frogman: Ah...
 
       :loadMap:InitTormentRoom
 
@@ -4485,7 +4494,7 @@ MonoBehaviour:
       What, did someone eat your tongue? Ha!\a Here, have some of my power.\a My
       UNLIMITED power! Heh heh heh!
 
-      :unlockKnowledge:TormentWrathMercy
+      :unlockKnowledge:TormentAngerCalm
 
       :showInfoDialogue:New
       knowledge!
@@ -5351,6 +5360,99 @@ MonoBehaviour:
 
 '
     Name: Torment1Kresla
+  - Text: 'priority:2
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:4
+
+      #hasFlag:MetMemerian
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      # TBA: Add !firstTime
+      dialouge
+
+      :callOther:TormentBase
+
+      :play:BeforeBattle
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      :if:firstTime:{
+
+      :play:Trustworthy
+
+      Frogman:
+      TBA
+
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      :loadUnits:
+
+      TBA
+
+      }
+
+      :else:{
+
+      #
+      TBA
+
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      :loadUnits:
+
+
+      }
+
+
+      ~
+      After battle
+
+      :play:Trickster
+
+      Frogman: TBA
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      Torment:
+      TBA
+
+      :unlockKnowledge:TormentPushPull
+
+      :showInfoDialogue:New knowledge!
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Torment1Memerian
   - Text: 'priority:1
 
       unique:T
@@ -5584,7 +5686,7 @@ MonoBehaviour:
       can keep your mind. For now.\n:unlockKnowledge:TormentOrderChaos\n:showInfoDialogue:New
       knowledge!\n:loadUnits:InitTormentRoom:Player\n:if:hasCharacter:Xirveros{\nFrogman:
       ...Xirveros?\nXirveros: ...Ah... Arrrg... Br... Tor... Ment... \nFrogman: I'm
-      sorry, Xirveros. I didn't know...\nXirveros: Blafs... Roo... Frog...\n}\n:else:{\nFrogman
+      sorry, Xirveros. I didn't know...\nXirveros: Blafs... Roo... Frog...\n}\n:else:{\nFrogman:
       Xirveros...\n}"
     Name: Torment1Xirveros
   - Text: 'priority:-1
@@ -6285,44 +6387,47 @@ MonoBehaviour:
       Memerian:
       Ugh. Meddlesome Guards. We''ll speak again soon, Frogman.
 
+      :setFlag:MetMemerian
 
-      ~ After battle
+
+      ~
+      After battle
 
       :play:AfterBattle
 
-      Frogman:
-      Whew. We-
+      Frogman: Whew. We-
 
       :play:Trustworthy
 
-      Torment: Not so fast, heh!
+      Torment:
+      Not so fast, heh!
 
-      Frogman:
-      Torment?!
+      Frogman: Torment?!
 
-      Torment: Yes, it''s me!\a You''ve reached the end of the beta!
+      Torment: Yes, it''s me!\a
+      You''ve reached the end of the beta!
 
-      Frogman:
-      What beta?
+      Frogman: What beta?
 
-      Torment: I''m not talking to you, Frogman, but-\a You know
-      what? Never mind.\a Anyway, this is the end of the beta!
+      Torment:
+      I''m not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway,
+      this is the end of the beta!
 
-      You can still
-      play more runs to view more conversations
+      You can still play more runs to view more
+      conversations
 
-      and unlock upgrades, but you''ll
-      have to die now.
+      and unlock upgrades, but you''ll have to die now.
 
-      Ha ha!
+      Ha
+      ha!
 
       :showPartTitle:End of:Beta
 
       :lose:
 
 
-      #
-      === Functions ====
+      # === Functions
+      ====
 
 '
     Name: Level6FirstTimeMemerianNoXeplogi
@@ -6354,8 +6459,8 @@ MonoBehaviour:
       YOU! I''ve finally found you!\a The demon who has plagued my life and trapped
       me here!\a In the name of the divinie Tori-
 
-      Memerian|???: Hey. You
-      there. Who are you?\a And what are you doing with Xeplogi the mad?
+      Memerian|???: Hey. You there.
+      Who are you?\a And what are you doing with Xeplogi the mad?
 
       Xeplogi:
       The mad?! Have you no shame, fiend?! I shall-
@@ -6397,13 +6502,13 @@ MonoBehaviour:
 
       :else:{
 
-      Memerian: Anyway. Frogman,
-      may we speak in private?
+      Memerian: Anyway. Frogman, may
+      we speak in private?
 
       Frogman: What for?
 
-      Memerian: Let''s
-      call them... the divine Tori.
+      Memerian: Let''s call
+      them... the divine Tori.
 
       Frogman: Who?\a Wait, you mean Tor-
 
@@ -6412,50 +6517,51 @@ MonoBehaviour:
 
       :if:hasCharacter:Firbell{
 
-      Firbell: Who are you talking
-      about?
+      Firbell: Who are you talking about?
 
       }
 
       :if:hasCharacter:Kresla{
 
-      Kresla: Who?
+      Kresla:
+      Who?
 
       }
 
       :if:hasCharacter:Xirveros{
 
-      Xirveros:
-      Tori? No! No Tori!
+      Xirveros: Tori? No!
+      No Tori!
 
       }
 
       }
 
-      Xeplogi||L: Do not listen to
-      her words of trickery!\a She-
+      Xeplogi||L: Do not listen to her words of
+      trickery!\a She-
 
-      Memerian: Will you shut Xeplogi up, or
-      shall I?
+      Memerian: Will you shut Xeplogi up, or shall I?
 
-      Xeplogi: Trying to turn Frogman to your side? Ha!\a Frogman
-      will never help the likes of you!
+      Xeplogi:
+      Trying to turn Frogman to your side? Ha!\a Frogman will never help the likes
+      of you!
 
       :call:Choice
 
-      
+      :setFlag:MetMemerian
 
-      ~ After
-      battle
+
+      ~ After battle
 
       :play:AfterBattle
 
-      Frogman: Whew. That was... tough.
+      Frogman:
+      Whew. That was... tough.
 
       :if:hasCharacter:Xeplogi{
 
-      Xeplogi:
-      Yes! At long last, I have vanquished the evil Memerian!\a Memerian is gone!
+      Xeplogi: Yes!
+      At long last, I have vanquished the evil Memerian!\a Memerian is gone!
 
       Frogman:
       Yes, she is.
@@ -6465,24 +6571,24 @@ MonoBehaviour:
       Frogman:
       Uh, Xeplogi. Hate to break it to you, but...
 
-      Xeplogi: Tori! She''s
-      dead! I am free!\a I am FREE!\a TORI!
+      Xeplogi: Tori! She''s dead!
+      I am free!\a I am FREE!\a TORI!
 
-      Frogman: Xeplogi. Tori isn''t
-      real.
+      Frogman: Xeplogi. Tori isn''t real.
 
-      Xeplogi: S-silence, you heretic! Tori is real,\a and h-he''ll
-      reward me any minute now!\a ...\a Tori?!
+      Xeplogi:
+      S-silence, you heretic! Tori is real,\a and h-he''ll reward me any minute now!\a
+      ...\a Tori?!
 
       Frogman: ...
 
-      Xeplogi:
-      T-Tori! I... She''s... How can this be...
+      Xeplogi: T-Tori! I... She''s... How
+      can this be...
 
       :if:hasCharacter:Firbell{
 
-      Firbell:
-      ...Let us give him a moment alone to recover.
+      Firbell: ...Let us give
+      him a moment alone to recover.
 
       Frogman: Yes.
 
@@ -6507,24 +6613,24 @@ MonoBehaviour:
       Memerian:
       So. You''re here for the fortress, aren''t you?
 
-      Frogman: Yes. Have
-      you been there?
+      Frogman: Yes. Have you
+      been there?
 
       Memerian: I have. Multiple times, in fact.
 
       Frogman:
       Really?!\a What''s in there?
 
-      Memerian: Guards. Hordes of them. All
-      intent on destroying you.
+      Memerian: Guards. Hordes of them. All intent
+      on destroying you.
 
       :if:hasCharacter:Firbell{
 
-      Firbell:
-      Why do they hate us so?
+      Firbell: Why do
+      they hate us so?
 
-      Memerian: They hate all monsters. In fact,\a
-      from what I''ve gathered,\a all they do is kill monsters.
+      Memerian: They hate all monsters. In fact,\a from what
+      I''ve gathered,\a all they do is kill monsters.
 
       :if:hasCharacter:Alfred{
 
@@ -6539,11 +6645,10 @@ MonoBehaviour:
       But can we not talk to them?\a Explain that we are unlike the rest,\a and mean
       no harm?
 
-      Memerian: No harm? Please. We''ve just killed a couple of
-      them.
+      Memerian: No harm? Please. We''ve just killed a couple of them.
 
-      Firbell: I...\a I see your point.\a Still, I must try at the
-      very least.
+      Firbell:
+      I...\a I see your point.\a Still, I must try at the very least.
 
       }
 
@@ -6560,7 +6665,6 @@ MonoBehaviour:
       #
       TBA
 
-      
 
       # Memerian alone tells about Torment
 
@@ -6585,39 +6689,36 @@ MonoBehaviour:
       Memerian: Getting out of here.\a
       That fortress? It''s imperentrable.
 
-      
 
-      I didn''t have much of
-      a life back there.\a The real world.\a And being immortal suited me just fine.
+      I didn''t have much of a life back
+      there.\a The real world.\a And being immortal suited me just fine.
 
       Frogman:
       Really? Then why were you fighting the Guards?
 
       # TBA
 
-      
 
-      #
-      === Functions ====
+      # === Functions
+      ====
 
-      
 
       ~ Choice
 
-      :showChoice:Frogman:Trust
-      Xeplogi:Trust Memerian
+      :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 
       :if:chose:0{
 
-      Frogman||L: I trust Xeplogi.
+      Frogman||L:
+      I trust Xeplogi.
 
-      If
-      he claims you''re evil, there must be a reason.
+      If he claims you''re evil, there must be a reason.
 
-      Memerian: ...Seriously?\a
-      What is wrong with you people?
+      Memerian:
+      ...Seriously?\a What is wrong with you people?
 
-      Xeplogi: Ha! Your time is up, Memerian!
+      Xeplogi: Ha! Your time
+      is up, Memerian!
 
       :play:GuardTheme
 
@@ -6641,8 +6742,8 @@ MonoBehaviour:
       Sorry, Xeplogi, but you''re obviously insane.\a I''ve never heard of this Tori,\a
       and I''d like to hear Memerian out.
 
-      Xeplogi: You... you traitor! I
-      shall destroy you!
+      Xeplogi: You... you traitor! I shall
+      destroy you!
 
       Memerian: Don''t mind him.\a He''s always like that.
 
@@ -6665,8 +6766,8 @@ MonoBehaviour:
 
       Xeplogi: Crazy? Me?!
 
-      Guard1:
-      We have no time for foolishness!\a Everyone, charge!
+      Guard1: We
+      have no time for foolishness!\a Everyone, charge!
 
       Xeplogi: You will
       regret this!\a For Tori!
@@ -7355,49 +7456,6 @@ MonoBehaviour:
 
 '
     Name: Level7LanFirstTime
-  - Text: 'priority:21
-
-      unique:F
-
-      ~ Requirements
-
-      ~ Demands
-
-      #
-      Nothinig
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      :loadMap:
-
-      Frogman:
-      Wow. I can push.
-
-      :addSkill:Frogman:push
-
-      :addSkill:Kresla:pull
-
-
-      ~
-      After battle
-
-      :play:AfterBattle
-
-      # Name: Text.
-
-
-      # === Functions
-      ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Test
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &56271733
@@ -18379,6 +18437,8 @@ MonoBehaviour:
   ReinforcementTurn: 0
   Statue: 0
   portraitMode: 3
+  skills:
+    skills: 
   moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:
@@ -27171,7 +27231,7 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 1
-  DebugEndgameLevel: 8
+  DebugEndgameLevel: 4
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman

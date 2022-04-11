@@ -33,19 +33,24 @@ Torment: Sure, you tell yourself that. Heh!\a But it all comes back to pain.\a T
 }
 :else:{
 # TBA
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+
 }
 
 ~ After battle
 :play:Trickster
 Frogman: Oof... Please, no more...
 Torment: Ooh, begging, are you? Heh!\a You're right though, you're nothing like Alfred.\a He'd never beg! Ha ha!
-Frogman:  Ah...
+Frogman: Ah...
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
 Torment: There, everything's fine now. No need to cry. Heh.
 Frogman: ...
 Torment: What, did someone eat your tongue? Ha!\a Here, have some of my power.\a My UNLIMITED power! Heh heh heh!
-:unlockKnowledge:TormentWrathMercy
+:unlockKnowledge:TormentAngerCalm
 :showInfoDialogue:New knowledge!
 
 # === Functions ====

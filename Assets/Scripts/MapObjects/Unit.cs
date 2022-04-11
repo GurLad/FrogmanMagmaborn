@@ -52,6 +52,7 @@ public class Unit : MapObject
     private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
     private bool started;
+    [SerializeField]
     private SkillSet skills = new SkillSet();
     [SerializeField]
     private bool moved;
@@ -398,7 +399,7 @@ public class Unit : MapObject
         }
         // Determine who attacks first
         Unit attacker, defender;
-        if ((unit.HasSkill(Skill.Vantage) && !HasSkill(Skill.Vantage)) || (HasSkill(Skill.AntiVantage) && !unit.HasSkill(Skill.AntiVantage)))
+        if (unit.CanAttack(this) && ((unit.HasSkill(Skill.Vantage) && !HasSkill(Skill.Vantage)) || (HasSkill(Skill.AntiVantage) && !unit.HasSkill(Skill.AntiVantage))))
         {
             attacker = unit;
             defender = this;

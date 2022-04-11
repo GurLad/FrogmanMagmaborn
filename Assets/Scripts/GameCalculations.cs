@@ -294,7 +294,7 @@ public static class GameCalculations
             int value = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
             if (defender.HasSkill(Skill.Dragonskin))
             {
-                value = Mathf.CeilToInt(value / 2);
+                value = Mathf.CeilToInt(value / 2.0f);
             }
             else if (defender.HasSkill(Skill.AntiDragonskin))
             {

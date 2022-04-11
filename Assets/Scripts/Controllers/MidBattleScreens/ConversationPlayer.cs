@@ -308,8 +308,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         StartLineResult result = StartLineResult.None;
         if (num >= lines.Count)
         {
-            FinishConversation();
-            return result | StartLineResult.FinishConversation;
+            return result | FinishConversation();
         }
         currentLine = num;
         string line = lines[currentLine];
@@ -800,22 +799,21 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         Arrow.SetActive(false);
         return result;
     }
-    private void FinishConversation()
+    private StartLineResult FinishConversation()
     {
         // Check if this is the last part
         if (functionStack.Count > 0)
         {
             FunctionStackObject function = functionStack.Pop();
             lines = function.Lines;
-            StartLine(function.LineNumber + 1);
-            return;
+            return StartLine(function.LineNumber + 1);
         }
         // If there's a CG, hide it first
         if (CGController.Active)
         {
             Pause();
             CGController.FadeOutCG(() => PaletteController.Current.FadeIn(() => Resume()));
-            return;
+            return StartLineResult.Fade;
         }
         // Finish conversation
         lines.Clear();
@@ -832,7 +830,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             origin.Choose(true);
             SavedData.SaveAll(SaveMode.Slot);
             SceneController.LoadScene("Map");
-            return;
+            return StartLineResult.FinishConversation;
         }
         else
         {
@@ -864,6 +862,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         System.Action action = OnFinishConversation;
         action?.Invoke();
         OnFinishConversation = null;
+        return StartLineResult.FinishConversation;
     }
     private string TrueLine(string line)
     {
