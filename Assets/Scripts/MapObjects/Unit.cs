@@ -358,21 +358,21 @@ public class Unit : MapObject
     }
     public void Fight(Unit unit)
     {
-        void ActualFight(Unit target)
+        void ActualFight(Unit attacker, Unit defender)
         {
             if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
             {
                 CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
                 BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
                 battleAnimationController.transform.parent.gameObject.SetActive(true);
-                battleAnimationController.StartBattle(this, target);
+                battleAnimationController.StartBattle(attacker, defender);
                 battleAnimationController.TransitionToThis();
                 GameController.Current.FinishMove(this);
             }
             else // Map animations
             {
                 GameController.Current.RemoveMarkers();
-                MapAnimationsController.Current.AnimateBattle(this, target);
+                MapAnimationsController.Current.AnimateBattle(attacker, defender);
                 MapAnimationsController.Current.OnFinishAnimation = () =>
                 {
                     if (this != null)
@@ -386,6 +386,7 @@ public class Unit : MapObject
                 };
             }
         }
+
         // Stats - increase battle count if either unit is a player
         if (TheTeam.PlayerControlled())
         {
@@ -395,19 +396,32 @@ public class Unit : MapObject
         {
             SavedData.Append("Statistics", unit.ToString() + "BattleCount", 1);
         }
+        // Determine who attacks first
+        Unit attacker, defender;
+        if ((unit.HasSkill(Skill.Vantage) && !HasSkill(Skill.Vantage)) || (HasSkill(Skill.AntiVantage) && !unit.HasSkill(Skill.AntiVantage)))
+        {
+            attacker = unit;
+            defender = this;
+        }
+        else
+        {
+            attacker = this;
+            defender = unit;
+        }
+        // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
-            ConversationPlayer.Current.OnFinishConversation = () => ActualFight(unit);
+            ConversationPlayer.Current.OnFinishConversation = () => ActualFight(attacker, defender);
             ConversationPlayer.Current.PlayOneShot(BattleQuote != "" ? BattleQuote : unit.BattleQuote);
             unit.BattleQuote = BattleQuote = "";
         }
         else if (TheTeam.PlayerControlled()) // The player know who they're attacking, no need for a delay.
         {
-            ActualFight(unit);
+            ActualFight(attacker, defender);
         }
         else // If an enemy attacks, however, a delay is needed in order to show the target.
         {
-            MapAnimationsController.Current.OnFinishAnimation = () => ActualFight(unit);
+            MapAnimationsController.Current.OnFinishAnimation = () => ActualFight(attacker, defender);
             MapAnimationsController.Current.AnimateDelay();
         }
     }

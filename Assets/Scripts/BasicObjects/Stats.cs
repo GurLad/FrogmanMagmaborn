@@ -76,7 +76,7 @@ public class Stats
     {
         get
         {
-            return Endurance * 2;
+            return this.GetMaxHP();
         }
     }
     public int this[int index]

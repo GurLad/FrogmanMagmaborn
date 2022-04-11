@@ -168,25 +168,25 @@ public static class GameCalculations
 
     public static void PlayerWinEvents(List<Unit> units)
     {
-        switch (KnowledgeController.TormentPower("WrathMercy"))
-        {
-            case TormentPowerState.None:
-                break;
-            case TormentPowerState.I:
-                if (units.Find(a => a.TheTeam != Team.Player) == null)
-                {
-                    units.ForEach(a => a.Stats.Strength++);
-                }
-                break;
-            case TormentPowerState.II:
-                if (units.Find(a => a.TheTeam != Team.Player) != null)
-                {
-                    units.ForEach(a => a.Stats.Endurance++);
-                }
-                break;
-            default:
-                break;
-        }
+        //switch (KnowledgeController.TormentPower("WrathMercy"))
+        //{
+        //    case TormentPowerState.None:
+        //        break;
+        //    case TormentPowerState.I:
+        //        if (units.Find(a => a.TheTeam != Team.Player) == null)
+        //        {
+        //            units.ForEach(a => a.Stats.Strength++);
+        //        }
+        //        break;
+        //    case TormentPowerState.II:
+        //        if (units.Find(a => a.TheTeam != Team.Player) != null)
+        //        {
+        //            units.ForEach(a => a.Stats.Endurance++);
+        //        }
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     // Unit extension methods
@@ -204,6 +204,34 @@ public static class GameCalculations
                     break;
                 case TormentPowerState.II:
                     unit.AddSkill(Skill.NaturalCover);
+                    break;
+                default:
+                    break;
+            }
+            switch (KnowledgeController.TormentPower("PushPull"))
+            {
+                case TormentPowerState.None:
+                    break;
+                case TormentPowerState.I:
+                    unit.AddSkill(Skill.Push);
+                    break;
+                case TormentPowerState.II:
+                    unit.AddSkill(Skill.Pull);
+                    break;
+                default:
+                    break;
+            }
+            switch (KnowledgeController.TormentPower("AngerCalm"))
+            {
+                case TormentPowerState.None:
+                    break;
+                case TormentPowerState.I:
+                    unit.AddSkill(Skill.Vantage);
+                    unit.AddSkill(Skill.AntiDragonskin);
+                    break;
+                case TormentPowerState.II:
+                    unit.AddSkill(Skill.AntiVantage);
+                    unit.AddSkill(Skill.Dragonskin);
                     break;
                 default:
                     break;
@@ -264,12 +292,20 @@ public static class GameCalculations
         int Damage(Unit attacker, Unit defender)
         {
             int value = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
+            if (defender.HasSkill(Skill.Dragonskin))
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+            else if (defender.HasSkill(Skill.AntiDragonskin))
+            {
+                value *= 2;
+            }
             switch (KnowledgeController.TormentPower("HonorGlory"))
             {
                 case TormentPowerState.I:
                     return Mathf.Max(1, value);
                 case TormentPowerState.II:
-                    return value * 2;
+                    //return value * 2;
                 case TormentPowerState.None:
                 default:
                     return value;
@@ -283,6 +319,12 @@ public static class GameCalculations
             return damage;
         }
         return Damage(attacker, defender);
+    }
+
+
+    public static int GetMaxHP(this Stats stats)
+    {
+        return stats.Endurance * (KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.II ? 1 : 2);
     }
 
     public static void LoadInclination(this Unit unit)

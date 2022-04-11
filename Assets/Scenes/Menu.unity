@@ -7655,11 +7655,11 @@ MonoBehaviour:
       DefaultState: -1
       NumChoices: 3
       ChoiceValue: 0
-    - Name: Wrath/Mercy
-      InternalName: TormentWrathMercy
-      Description: 'I : Your units gain +1 Str after battle if all enemies are dead.'
-      AltDescription: 'II: Your units gain +1 End after battle if some enemies are
-        alive.'
+    - Name: Anger/Calm
+      InternalName: TormentAngerCalm
+      Description: 'I : Your units always attack first, but take double damage.'
+      AltDescription: 'II: Your units always attack last, but take half damage (rounded
+        up).'
       Cost: 3
       DefaultState: -1
       NumChoices: 3
