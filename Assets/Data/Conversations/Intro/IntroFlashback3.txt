@@ -23,14 +23,16 @@ FrogmanMan: Wrong answer. Zip, feather-
 :setSingleSpeaker:L
 Huh?\a Where did she go?
 Zip||R: Don't know, boss. She just-
+:play:Silence
 :screenShake:
 Argh!
 :setSingleSpeaker:L
 FrogmanMan: Zip?! Are you-
 :screenShake:
-:setSpeaker:DeharFB||L
+:setSpeaker:Kebera||L
 :setSpeaker:FrogmanMan||R
 Oof!
+:play:ShatteredDream
 Kebera||L: Well. That was disappointedly easy.\a Makes me wonder whether you're fit for the job.
 FrogmanMan: Urgh... What are-
 FBWitness: Oi! Everything okay back there?
@@ -41,7 +43,7 @@ But I better not see you ever again in this city.\a It is mine now, got it?\a Gr
 :setSingleSpeaker:L
 FrogmanMan: Ah...\a Zip...\a Zip?\a No, talk to me, Zip...\a Zip!
 :hideCG:
-:play:BeforeBattle
+#:play:BeforeBattle
 :setSingleSpeaker:L
 Frogman: Urgh! Zip...\a He didn't...\a She killed...
 Kebera...\a You will die for this.
