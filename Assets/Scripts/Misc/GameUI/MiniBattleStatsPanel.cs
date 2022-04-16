@@ -48,9 +48,8 @@ public class MiniBattleStatsPanel : MonoBehaviour
         }
         else if (target != null && origin != null &&
                 !origin.TheTeam.IsEnemy(target.TheTeam) &&
-                ((reverse ? target : origin).HasSkill(Skill.Push) || (reverse ? target : origin).HasSkill(Skill.Pull)) &&
-                (GameController.Current.InteractState == InteractState.Move || origin.Pos.TileDist(target.Pos) <= 1))
-        { 
+                ((reverse ? target : origin).CanPush(!reverse ? target : origin) || (reverse ? target : origin).CanPull(!reverse ? target : origin)))
+        {
             // If origin has push/pull, use that as an ally action
             if (reverse)
             {

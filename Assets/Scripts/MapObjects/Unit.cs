@@ -426,6 +426,22 @@ public class Unit : MapObject
             MapAnimationsController.Current.AnimateDelay();
         }
     }
+    public bool CanPush(Unit unit)
+    {
+        Vector2Int truePos = -(Pos - unit.Pos) + unit.Pos;
+        return
+            HasSkill(Skill.Push) && unit.Pos.TileDist(Pos) <= 1 &&
+            GameController.Current.IsValidPos(truePos.x, truePos.y) && GameController.Current.Map[truePos.x, truePos.y].GetMovementCost(unit) <= unit.Movement &&
+            !GameController.Current.FindUnitAtPos(truePos.x, truePos.y);
+    }
+    public bool CanPull(Unit unit)
+    {
+        Vector2Int truePos = (Pos - unit.Pos) + Pos;
+        return
+            HasSkill(Skill.Pull) && unit.Pos.TileDist(Pos) <= 1 &&
+            GameController.Current.IsValidPos(truePos.x, truePos.y) && GameController.Current.Map[truePos.x, truePos.y].GetMovementCost(this) <= Movement &&
+            !GameController.Current.FindUnitAtPos(truePos.x, truePos.y);
+    }
     public void Push(Unit unit)
     {
         GameController.Current.RemoveMarkers();
