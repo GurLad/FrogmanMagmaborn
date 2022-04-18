@@ -1044,7 +1044,7 @@ public class Unit : MapObject
                                 float weight = 50; // Make sure it's positive
                                 weight += GameController.Current.Map[target.x + i, target.y + j].ArmorModifier * 10;
                                 weight += this[target.x + i, target.y + j].Value * distanceWeight;
-                                if (targetUnit != null)
+                                if (targetUnit != null && targetUnit.TheTeam.IsEnemy(unit.TheTeam))
                                 {
                                     weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
                                 }
