@@ -32,6 +32,10 @@ Torment: HA HA HA! Well, I'd love to stay and chat,\a but there are minions to f
 :loadUnits:
 }
 :else:{
+:if:!hasFlag:TormentCharacterPowerFail{
+:setFlag:TormentCharacterPowerFail
+}
+
 # TBA
 }
 

@@ -33,6 +33,10 @@ Torment: No, no, don't talk. Just FIGHT!
 :loadUnits:
 }
 :else:{
+:if:!hasFlag:TormentCharacterPowerFail{
+:setFlag:TormentCharacterPowerFail
+}
+
 # TBA
 }
 

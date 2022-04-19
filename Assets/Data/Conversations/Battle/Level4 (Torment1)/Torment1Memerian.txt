@@ -21,6 +21,10 @@ Frogman: TBA
 TBA
 }
 :else:{
+:if:!hasFlag:TormentCharacterPowerFail{
+:setFlag:TormentCharacterPowerFail
+}
+
 # TBA
 :playIntro:Tormentor
 :loadMap:

@@ -23,7 +23,7 @@ Torment: Missed me, Frogman? Heh heh!
 Frogman: Why do you keep doing this to my friends?
 Torment: Friends?! HA HA HA! That's so precious, coming from you!\a Why, are you the one keeping them alive?\a Protecting them?\a Preserving their sanity? Heh heh!
 Frogman: At least I'm not trying to kill them!\a And Xirveros is far from sane!
-Torment: But this isn't about him, is it?\a He deserved it! Ha ha!
+Torment: But this isn't about him, is it?\a He deserved it! Ha ha!\a This is about Firbell here!
 :play:Trickster:T
 Frogman: What are you talking about?
 Torment: Didn't you figure it out? What a fool. Heh!\a Firbell's mind is so fragile,\a you'd have cracked it a dozen times if not for me!\a Ha ha ha!
@@ -33,14 +33,33 @@ Frogman: Her family? What happened to them?
 :playIntro:Tormentor
 :loadMap:
 :screenShake:
-Torment: They're all gone!\a Dead!\a Forgotten!
-Irenhold is GONE! HA HA HA!
+Torment: They're all gone!\a Dead!\a Forgotten!\a Irenhold is GONE! HA HA HA!
 Frogman: No...
 Torment: Oh, stop pretending to care. Heh.\a As fun as it was to gloat, it's that time again.\a Time to DIE!
 :loadUnits:
 }
 :else:{
-# TBA
+:if:!hasFlag:TormentCharacterPowerFail{
+:setFlag:TormentCharacterPowerFail
+}
+:loadUnits:InitTormentRoom
+:play:Trustworthy
+Torment||R: Frogman. I'm disappointed.
+Frogman: What?
+Torment: You died in the middle of our conversations.\a That's quite rude, you know. Heh.
+Frogman: What are you talking about?
+:play:Trickster:T
+Torment: Firbell! I'm talking about Firbell!\a Or at least, I was.
+Frogman: Oh, I remember that conversation now.\a You told me that Irenhold is gone.
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+Torment: EXACTLY! HA HA HA! Ha. ...Ugh.\a You've completely ruined my dramatic speech, Frogman.
+Frogman: Your speech? Is that the only thing you care about?!
+Torment: Of course! What else? Your pathetic little lives?\a They don't matter.\a You don't matter.\a Only I do! Ha ha ha!
+Frogman: You-
+Torment: Save that thought for later. It's time to fight now!
+:loadUnits:
 }
 
 ~ After battle

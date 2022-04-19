@@ -32,6 +32,10 @@ Frogman: I am not... Not like that...
 Torment: Sure, you tell yourself that. Heh!\a But it all comes back to pain.\a To ME! HA HA HA!
 }
 :else:{
+:if:!hasFlag:TormentCharacterPowerFail{
+:setFlag:TormentCharacterPowerFail
+}
+
 # TBA
 :playIntro:Tormentor
 :loadMap:
