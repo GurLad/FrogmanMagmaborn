@@ -1,0 +1,43 @@
+priority:5
+unique:T
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:loadUnits::monster
+:loadUnits::guard:T
+# TBA: improve
+Brens: Lan.
+Lan: Yes, Brens?
+Brens: I wanted to check out on you. How're you doing?
+Lan: Great! I'm doing great!
+Brens: That's nice to hear. Stuff about Fashima.
+Lan: Lan not caring about Fashima.
+Brens: Brens disturbed by it. Hints about Lan's loss
+Lan: Lan exploding, mimicks Brens.
+Brens: Gets angry, storms out.
+Gurad1: Magmaborn are here.
+:killUnit:Brens
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: TBA
+
+~ After battle
+:setFlag:LanLost1
+:play:AfterBattle
+Frogman: Wow! We beat Fashima! Yay!
+:play:Trustworthy
+Torment: Yay indeed!\a Now, you shall die!
+:showPartTitle:End of:Demo
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

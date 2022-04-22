@@ -1,0 +1,53 @@
+priority:4
+unique:T
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+hasFlag:LanLost2
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+Lan: Hey. You there.
+Lieutenant: Me?
+Lan: Yes, you.\a Who's the best Magi?
+Lieutenant: What?
+Lan: The best. Magi. Who is it?
+Lieutenant: Is this some sort of a trick question, master?
+Lan: Tricks? Who do you think I am, soldier? Fashima?!\a Do I sound like this?
+Fashima|Lan|L: You're so stupid, soldier. Like, the worst.\a And I'm better than you.\a So, so much better than you.\a You're simply pathetic.
+Lieutenant: I didn't mean-
+Lan: Oh, so you didn't mean to, eh? I don't care what you meant!\a Your opinions mean nothing anyway!
+Lieutenant: Then why did you ask-
+Lan: Just shut up! My, the people I have to deal with...
+Guard1: S-sorry to interrupt, Lan, but, um...
+Lan: Yes? Out with it, soldier!
+Guard1: The M-Magmaborn are approaching...
+Lan: They're here already?! That's-\a good. Excellent.\a Look alive, soldiers!\a Let's show these monsters what's what!
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: Ugh. Lan.
+Frogman|Lan: Ugh. Lan.
+Frogman: ...Wow. What a clever diguise.
+Frogman|Lan: ...Wow. What a clever diguise.
+Frogman: ...
+Frogman|Lan: ...
+
+~ After battle
+:play:AfterBattle
+Frogman: Wow! We beat Fashima! Yay!
+:play:Trustworthy
+Torment: Yay indeed!\a Now, you shall die!
+:showPartTitle:End of:Demo
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

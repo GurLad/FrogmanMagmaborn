@@ -1,5 +1,5 @@
-priority:-1
-unique:F
+priority:5
+unique:T
 ~ Requirements
 roomNumber:7
 hasFlag:FashimaDied
@@ -12,6 +12,7 @@ hasCharacter:Lan
 :loadUnits::monster
 :loadUnits::guard:T
 :killUnit:Brens
+# TBA: Change
 Lan: Hey.
 Lieutenant: ...
 Lan: Hey, you.
@@ -35,6 +36,7 @@ Lan: It's me! The great Lan!
 Frogman: ...Right.
 
 ~ After battle
+:setFlag:LanLost1
 :play:AfterBattle
 Frogman: Wow! We beat Fashima! Yay!
 :play:Trustworthy
