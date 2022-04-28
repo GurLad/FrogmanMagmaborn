@@ -20,7 +20,7 @@ public class StatusScreenController : MidBattleScreen
         Name.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP + "\nLevel:" + unit.Level;
         Stats.text = unit.Stats.ToString(6);
         Weapon.text = unit.Weapon.ToString();
-        Status.text = "Team:" + unit.TheTeam.Name().PadRight(7) + (unit.TheTeam != Team.Player ? ("\nA.I.:" + unit.AIType.ToString().PadRight(7)) : "\n") + "\nCond:" + unit.State().PadRight(7);
+        Status.text = "Team:" + unit.TheTeam.Name().PadRight(7) + (!unit.TheTeam.PlayerControlled() ? ("\nA.I.:" + unit.AIType.ToString().PadRight(7)) : "\n") + "\nCond:" + unit.State().PadRight(7);
         BattleStats.Display(unit);
         Inclination.Display(unit);
         Icon.Portrait = unit.Icon;

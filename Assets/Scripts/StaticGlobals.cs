@@ -20,7 +20,8 @@ public enum Skill { Acrobat, NaturalCover, SiegeWeapon, Push, Pull, Vantage, Ant
 
 public static class StaticGlobals
 {
-    public const string MAIN_CHARACTER_NAME = "Frogman";
+    public static string MainCharacterName = "Frogman";
+    public static Team MainPlayerTeam = Team.Player;
     // Extension methods
     public static string Name(this Team team)
     {
@@ -82,6 +83,10 @@ public static class StaticGlobals
     public static bool PlayerControlled(this Team origin)
     {
         return GameController.Current.LevelMetadata.TeamDatas[(int)origin].PlayerControlled;
+    }
+    public static bool IsMainPlayerTeam(this Team origin)
+    {
+        return origin == MainPlayerTeam;
     }
     public static int TileSize(this Vector2Int vector2Int)
     {

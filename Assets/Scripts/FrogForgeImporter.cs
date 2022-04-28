@@ -19,6 +19,7 @@ public class FrogForgeImporter : MonoBehaviour
     public CGController CGController;
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
+    public StaticGlobalsLoader StaticGlobalsLoader;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class FrogForgeImporter : MonoBehaviour
         LevelMetadataController?.AutoLoad();
         MapController?.AutoLoadMaps();
         MapController?.AutoLoadTilesets();
+        StaticGlobalsLoader?.AutoLoad();
 #endif
     }
 

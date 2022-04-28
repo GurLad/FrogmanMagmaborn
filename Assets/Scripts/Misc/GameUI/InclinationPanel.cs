@@ -21,7 +21,7 @@ public class InclinationPanel : MonoBehaviour
         SetIcon(Growth1, (int)unit.Inclination, 0);
         SetIcon(Growth2, (int)unit.Inclination, 1);
         GetComponent<PalettedSprite>().Palette = ((int)unit.Inclination + 1) % 3;
-        if (unit.TheTeam == Team.Player)
+        if (unit.TheTeam.IsMainPlayerTeam())
         {
             Text.text += "+2     against same type.";
             SetIcon(Bonus, (int)unit.Inclination, 0);

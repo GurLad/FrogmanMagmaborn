@@ -62,7 +62,7 @@ public class LevelUpController : MidBattleScreen
         for (int i = 0; i < numOptions; i++)
         {
             Stats current;
-            int numStats = GameCalculations.StatsPerLevel(Team.Player, unit.Name);
+            int numStats = GameCalculations.StatsPerLevel(unit.TheTeam, unit.Name);
             do
             {
                 current = unit.Stats.GetLevelUp(numStats);

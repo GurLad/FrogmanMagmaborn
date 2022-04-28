@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     [HideInInspector]
     public List<string> TempFlags = new List<string>();
     [HideInInspector]
-    public Team CurrentPhase = Team.Player;
+    public Team CurrentPhase = GameCalculations.FirstTurnTeam;
     protected Difficulty difficulty;
     private List<IGameControllerListener> listeners = new List<IGameControllerListener>();
     private float cursorMoveDelay;
@@ -157,7 +157,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         get
         {
-            return units.Find(a => a.Name == StaticGlobals.MAIN_CHARACTER_NAME);
+            return units.Find(a => a.Name == StaticGlobals.MainCharacterName);
         }
     }
     private Vector2Int _escapePos;
@@ -341,10 +341,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
             if (!GameCalculations.PermaDeath) // "Kill" player units when perma-death is off
             {
-                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam == Team.Player && a.Statue);
+                List<Unit> playerDeadUnits = units.FindAll(a => a.TheTeam.IsMainPlayerTeam() && a.Statue);
                 playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
             }
-            enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
+            enemyCount = units.FindAll(a => !a.TheTeam.IsMainPlayerTeam()).Count;
             deadUnitDeathQuote = null;
         }
         if (checkEndTurn)
@@ -533,7 +533,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     foreach (Unit unit in units)
                     {
-                        if (unit.TheTeam == Team.Player)
+                        if (unit.TheTeam.IsMainPlayerTeam())
                         {
                             unit.Stats = unit.Stats.GetLevel0Stat() + unit.AutoLevel(unit.Level);
                             unit.Health = unit.Stats.MaxHP;
@@ -562,7 +562,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         if (enemyCount == -1)
         {
-            enemyCount = units.FindAll(a => a.TheTeam != Team.Player).Count;
+            enemyCount = units.FindAll(a => !a.TheTeam.IsMainPlayerTeam()).Count;
         }
         if (unit != null)
         {
@@ -711,7 +711,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             item.Moved = false;
             if (item.ReinforcementTurn > 0)
             {
-                if (team == Team.Player && item.ReinforcementTurn < int.MaxValue)
+                if (team == GameCalculations.FirstTurnTeam && item.ReinforcementTurn < int.MaxValue)
                 {
                     item.ReinforcementTurn--;
                 }
@@ -738,7 +738,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
         }
         interactable = team.PlayerControlled();
-        if (team == Team.Player)
+        if (team == GameCalculations.FirstTurnTeam)
         {
             Turn++;
             NotifyListeners(a => a.OnBeginPlayerTurn(units));
@@ -748,7 +748,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void KillUnit(Unit unit)
     {
-        if (!GameCalculations.PermaDeath && unit.TheTeam == Team.Player && unit.Name != StaticGlobals.MAIN_CHARACTER_NAME) // No perma-death
+        if (!GameCalculations.PermaDeath && unit.TheTeam.IsMainPlayerTeam() && unit.Name != StaticGlobals.MainCharacterName) // No perma-death
         {
             Bugger.Info("Pseudo-killed " + unit.Name);
             unit.Statue = true;
@@ -787,7 +787,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     private void PlayersLevelUp()
     {
-        List<Unit> playerCharacters = units.Where(a => a.TheTeam == Team.Player).ToList();
+        List<Unit> playerCharacters = units.Where(a => a.TheTeam.IsMainPlayerTeam()).ToList();
         // Custom level-up system
         foreach (Unit character in playerCharacters)
         {
@@ -804,7 +804,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         // Save player characters
         List<Unit> playerCharacters = PlayerUnits;
         playerCharacters.ForEach(a => a.Statue = false); // Revive "dead" units on Easy
-        playerCharacters.Sort((a, b) => a.Name == StaticGlobals.MAIN_CHARACTER_NAME ? -1 : (b.Name == StaticGlobals.MAIN_CHARACTER_NAME ? 1 : 0));
+        playerCharacters.Sort((a, b) => a.Name == StaticGlobals.MainCharacterName ? -1 : (b.Name == StaticGlobals.MainCharacterName ? 1 : 0));
         playerCharacters = playerCharacters.ToList();
         string saveData = "";
         playerCharacters.ForEach(a => saveData += a.Save() + "\n");
@@ -942,7 +942,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public Unit CreatePlayerUnit(string name)
     {
-        return CreateUnit(name, -1, Team.Player, false);
+        return CreateUnit(name, -1, StaticGlobals.MainPlayerTeam, false);
     }
 
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)
@@ -1027,7 +1027,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             currentUnitsObject = new GameObject("UnitsObject").transform;
             currentUnitsObject.parent = transform;
             playerCharacters = PlayerUnits.Where(a => a != null).ToList();
-            if ((ofTeam ?? Team.Player) != Team.Player)
+            if (!(ofTeam ?? StaticGlobals.MainPlayerTeam).IsMainPlayerTeam())
             {
                 // "Remove" player units
                 foreach (Unit player in playerCharacters)
@@ -1053,7 +1053,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 continue;
             }
             string name = unitData.Class;
-            if (team == Team.Player)
+            if (team.IsMainPlayerTeam())
             {
                 Unit unit;
                 if (name == "P")
@@ -1067,7 +1067,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     }
                     continue;
                 }
-                else if (name == StaticGlobals.MAIN_CHARACTER_NAME && playerCharacters.Count > 0)
+                else if (name == StaticGlobals.MainCharacterName && playerCharacters.Count > 0)
                 {
                     unit = playerCharacters[0];
                     unit.transform.parent = currentUnitsObject;
@@ -1078,7 +1078,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 }
                 else
                 {
-                    unit = CreateUnit(name, unitData.Level, Team.Player, false);
+                    unit = CreateUnit(name, unitData.Level, StaticGlobals.MainPlayerTeam, false);
                     unit.ReinforcementTurn = unitData.ReinforcementTurn;
                     unit.Statue = unitData.Statue;
                     unit.AIType = unitData.AIType;
@@ -1089,7 +1089,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                         unit.Pos = Vector2Int.one * -1;
                     }
                     PlayerUnits.Add(unit);
-                    if (name != StaticGlobals.MAIN_CHARACTER_NAME)
+                    if (name != StaticGlobals.MainCharacterName)
                     {
                         Bugger.Warning("Please refrain from hard placing units in maps. Use P and addUnit event instead.");
                     }
@@ -1115,7 +1115,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
         }
         enemyCount = -1;
-        CurrentPhase = Team.Player;
+        CurrentPhase = GameCalculations.FirstTurnTeam;
         //interactable = true;
     }
 
@@ -1151,7 +1151,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             case Objective.Boss:
                 return "Defeat\n" + selectedMap.ObjectiveData;
             case Objective.Escape:
-                return StaticGlobals.MAIN_CHARACTER_NAME + "\nto mark";
+                return StaticGlobals.MainCharacterName + "\nto mark";
             case Objective.Survive:
                 return "Survive\n" + (int.Parse(selectedMap.ObjectiveData) - Turn + 1) + " turns";
             default:
@@ -1278,13 +1278,13 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         switch (selectedMap.Objective)
         {
             case Objective.Rout:
-                return units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
+                return units.FindAll(a => !a.TheTeam.IsMainPlayerTeam() && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Boss:
                 return !CheckUnitAlive(selectedMap.ObjectiveData);
             case Objective.Escape:
                 return frogman.Pos == escapePos;
             case Objective.Survive:
-                return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => a.TheTeam != Team.Player && a.ReinforcementTurn <= 0).Count == 0;
+                return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => !a.TheTeam.IsMainPlayerTeam() && a.ReinforcementTurn <= 0).Count == 0;
             default:
                 throw Bugger.Error("No objective!");
         }
@@ -1361,7 +1361,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             Bugger.Info("Loading " + unit.Name);
             AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
             unit.gameObject.SetActive(true);
-            if (unit.TheTeam == Team.Player)
+            if (unit.TheTeam.IsMainPlayerTeam())
             {
                 playerUnitsCache.Add(unit);
             }

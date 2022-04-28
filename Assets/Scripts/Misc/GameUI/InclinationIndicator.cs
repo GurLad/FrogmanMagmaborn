@@ -21,7 +21,7 @@ public class InclinationIndicator : MonoBehaviour
     }
     public void Display(Unit unit, Unit target)
     {
-        if (unit.TheTeam == Team.Player && unit.EffectiveAgainst(target))
+        if (unit.TheTeam.IsMainPlayerTeam() && unit.EffectiveAgainst(target))
         {
             SetIcon(Icon, (int)unit.Inclination, 0);
         }

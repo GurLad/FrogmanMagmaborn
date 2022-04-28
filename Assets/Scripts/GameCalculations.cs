@@ -97,6 +97,14 @@ public static class GameCalculations
         }
     }
 
+    public static Team FirstTurnTeam
+    {
+        get
+        {
+            return Team.Player; // Temp - I need to think of a better way to set this (LevelMetadata perhaps?)
+        }
+    }
+
     public static int GameSpeed(bool affectedByInput = true)
     {
         return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ (affectedByInput && Control.GetButton(Control.CB.B))) ? 2 : 1;
@@ -105,7 +113,7 @@ public static class GameCalculations
     public static int StatsPerLevel(Team team, string unitName)
     {
         int baseNum = 3;
-        if (team == Team.Player)
+        if (team.IsMainPlayerTeam())
         {
             switch (KnowledgeController.TormentPower("OrderChaos"))
             {
@@ -119,7 +127,7 @@ public static class GameCalculations
                     baseNum = 3;
                     break;
             }
-            if (unitName == StaticGlobals.MAIN_CHARACTER_NAME && KnowledgeController.TormentPower("LifeDeath") == TormentPowerState.II)
+            if (unitName == StaticGlobals.MainCharacterName && KnowledgeController.TormentPower("LifeDeath") == TormentPowerState.II)
             {
                 baseNum += GameController.Current.DeadPlayerUnits.Count;
             }
@@ -151,10 +159,10 @@ public static class GameCalculations
             case TormentPowerState.None:
                 break;
             case TormentPowerState.I:
-                units.ForEach(a => a.Health -= (a.TheTeam != Team.Player && !a.Moved && a.Health > 1) ? 1 : 0);
+                units.ForEach(a => a.Health -= (!a.TheTeam.IsMainPlayerTeam() && !a.Moved && a.Health > 1) ? 1 : 0);
                 break;
             case TormentPowerState.II:
-                units.ForEach(a => a.Health += (a.TheTeam == Team.Player && a.Health < a.Stats.MaxHP) ? 1 : 0);
+                units.ForEach(a => a.Health += (a.TheTeam.IsMainPlayerTeam() && a.Health < a.Stats.MaxHP) ? 1 : 0);
                 break;
             default:
                 break;
@@ -193,7 +201,7 @@ public static class GameCalculations
 
     public static void LoadSkills(this Unit unit)
     {
-        if (unit.TheTeam == Team.Player)
+        if (unit.TheTeam.IsMainPlayerTeam())
         {
             switch (KnowledgeController.TormentPower("SpeedSafety"))
             {
@@ -242,7 +250,7 @@ public static class GameCalculations
     public static Stats AutoLevel(this Unit unit, int level)
     {
         Difficulty difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
-        if (unit.TheTeam == Team.Player)
+        if (unit.TheTeam.IsMainPlayerTeam())
         {
             if (difficulty != Difficulty.Insane && difficulty != Difficulty.NotSet)
             {
@@ -264,12 +272,12 @@ public static class GameCalculations
         }
         unit.Level = level;
         Stats temp = unit.Stats.GetMultipleLevelUps(level); // StatsPerLevel modifiers would be broken if they affected auto-levels
-        if (unit.TheTeam == Team.Monster) // It wouldn't make sense for Torment to buff Guards, although might be too easy this way.
-        {
-            // Based on freedback from Dan, I'm removing the drawback - better making the game too easy, than making people not use Torment Powers.
-            // Alternative: the Torment Power penalty only works on hard, or as an unlockable challange mode.
-            //temp += unit.Stats.GetLevelUp(KnowledgeController.TotalTormentPowers);
-        }
+        //if (unit.TheTeam == Team.Monster) // It wouldn't make sense for Torment to buff Guards, although might be too easy this way.
+        //{
+        //    // Based on freedback from Dan, I'm removing the drawback - better making the game too easy, than making people not use Torment Powers.
+        //    // Alternative: the Torment Power penalty only works on hard, or as an unlockable challange mode.
+        //    //temp += unit.Stats.GetLevelUp(KnowledgeController.TotalTormentPowers);
+        //}
         return temp;
     }
 
@@ -339,7 +347,7 @@ public static class GameCalculations
 
     public static bool EffectiveAgainst(this Unit attacker, Unit defender) // Might change effectiveness to triangle
     {
-        return attacker.TheTeam == Team.Player && defender != null && attacker.TheTeam.IsEnemy(defender.TheTeam) && attacker.Inclination == defender.Inclination && HasInclinationUpgrade;
+        return attacker.TheTeam.IsMainPlayerTeam() && defender != null && attacker.TheTeam.IsEnemy(defender.TheTeam) && attacker.Inclination == defender.Inclination && HasInclinationUpgrade;
     }
 
     // Tile extension methods

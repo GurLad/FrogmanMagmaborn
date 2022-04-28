@@ -18,15 +18,20 @@ public enum SaveMode { Slot, Global }
 
 public static class SavedData
 {
-    private static string prefix // To prevent moddable builds from modifying the game's saved data
+    private static string _prefix = "";
+    public static string Prefix // To prevent moddable builds from modifying the game's saved data
     {
         get
         {
 #if MODDABLE_BUILD && !UNITY_EDITOR
-            return "Mod";
+            return "Mod" + _prefix;
 #else
-            return "";
+            return _prefix;
 #endif
+        }
+        set
+        {
+            _prefix = value;
         }
     }
     /// <summary>
@@ -247,7 +252,7 @@ public static class SavedData
         {
             saveSlot = saveSlot >= 0 ? saveSlot : SaveSlot;
             SlotFile.Save(saveSlot);
-            PlayerPrefs.SetString(prefix + "AllFiles" + saveSlot, string.Join(";", SaveFiles.Values));
+            PlayerPrefs.SetString(Prefix + "AllFiles" + saveSlot, string.Join(";", SaveFiles.Values));
             foreach (SaveFile file in SaveFiles.Values)
             {
                 file.Save(saveSlot);
@@ -271,7 +276,7 @@ public static class SavedData
             saveSlot = saveSlot >= 0 ? saveSlot : SaveSlot;
             SlotFile.Load(saveSlot);
             // Find the target files
-            string[] temp = PlayerPrefs.GetString(prefix + "AllFiles" + saveSlot).Split(';');
+            string[] temp = PlayerPrefs.GetString(Prefix + "AllFiles" + saveSlot).Split(';');
             List<string[]> files = new List<string[]>();
             foreach (var item in temp)
             {
@@ -355,9 +360,9 @@ public static class SavedData
                     PlayerPrefsSaveDictionary(FloatValues, PlayerPrefs.SetFloat, slot);
                     break;
                 case SaveFileType.File:
-                    if (!System.IO.Directory.Exists(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot))
+                    if (!System.IO.Directory.Exists(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot))
                     {
-                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot);
+                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot);
                     }
                     FileSaveDictionary(StringValues, slot);
                     FileSaveDictionary(IntValues, slot);
@@ -374,12 +379,12 @@ public static class SavedData
             string allKeys = "";
             foreach (string key in dictionary.Keys)
             {
-                saveFunction(prefix + slot + Name + key, dictionary[key]);
+                saveFunction(Prefix + slot + Name + key, dictionary[key]);
                 allKeys += key + ";";
             }
             if (allKeys.Length > 0)
             {
-                PlayerPrefs.SetString(prefix + "AllKeys" + slot + Name + typeof(T).Name, allKeys.Substring(0, allKeys.Length - 1));
+                PlayerPrefs.SetString(Prefix + "AllKeys" + slot + Name + typeof(T).Name, allKeys.Substring(0, allKeys.Length - 1));
             }
         }
 
@@ -394,7 +399,7 @@ public static class SavedData
             // Save file
             if (result.Length > 0)
             {
-                System.IO.File.WriteAllText(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data", result.Substring(0, result.Length - 1));
+                System.IO.File.WriteAllText(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data", result.Substring(0, result.Length - 1));
             }
         }
 
@@ -408,9 +413,9 @@ public static class SavedData
                     PlayerPrefsLoadDictionary(FloatValues, PlayerPrefs.GetFloat, slot);
                     break;
                 case SaveFileType.File:
-                    if (!System.IO.Directory.Exists(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot))
+                    if (!System.IO.Directory.Exists(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot))
                     {
-                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot);
+                        System.IO.Directory.CreateDirectory(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot);
                     }
                     FileLoadDictionary(StringValues, slot);
                     FileLoadDictionary(IntValues, slot);
@@ -425,14 +430,14 @@ public static class SavedData
         private void PlayerPrefsLoadDictionary<T>(Dictionary<string, T> dictionary, Func<string, T> loadFunction, int slot)
         {
             dictionary.Clear();
-            string[] allKeys = PlayerPrefs.GetString(prefix + "AllKeys" + slot + Name + typeof(T).Name).Split(';');
+            string[] allKeys = PlayerPrefs.GetString(Prefix + "AllKeys" + slot + Name + typeof(T).Name).Split(';');
             foreach (string key in allKeys)
             {
                 if (key == "")
                 {
                     continue;
                 }
-                dictionary.Add(key, loadFunction(prefix + slot + Name + key));
+                dictionary.Add(key, loadFunction(Prefix + slot + Name + key));
             }
         }
 
@@ -440,11 +445,11 @@ public static class SavedData
         {
             dictionary.Clear();
             // Load file
-            if (!System.IO.File.Exists(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data"))
+            if (!System.IO.File.Exists(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data"))
             {
                 return;
             }
-            string result = System.IO.File.ReadAllText(Application.persistentDataPath + (prefix != "" ? ("/" + prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data");
+            string result = System.IO.File.ReadAllText(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data");
             // Dictionary FromString
             if (result == "")
             {
