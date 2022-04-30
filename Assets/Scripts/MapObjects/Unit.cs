@@ -588,27 +588,43 @@ public class Unit : MapObject
         DangerArea trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement);
         Vector2Int currentMoveTarget = new Vector2Int(target.x, target.y);
         GameController.Current.RemoveMarkers();
+        Bugger.Info("Begin " + this);
+        // This is problematic, because here's how the algorithm works for 1 range:
+        //  - Start at the target pos
+        //  - In each iteration, try all 4 directions. The one with the highest remaining mov (aka min mov required to reach) is the new target
+        //  - If we can reach the target this turn, do so and end the loop
+        // However, in >1 range, there might be locations you can only acces diagonaly, ex (T is target, X is low wall, - is nothing):
+        // - X
+        // X T
+        // So we must check Weapon.Range instead of just the 4 adjacent squares.
+        // But then there's a problem - the algorithm prefers the target with the highest amount of remaining mov.
+        // Which means it won't use the full move, and move slower than 1 range units, in most situations if we check Weapon.Range
+        // So we use Weapon.Range for only the first iteration, to fix the above situation...
+        // ...and then change to 1 range checking to utilize the full movement.
+        int range = Weapon.Range;
         while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y].Type != DangerArea.TileDataType.Move)
         {
             Vector2Int min = currentMoveTarget;
-            for (int i = -Weapon.Range; i <= Weapon.Range; i++)
+            for (int i = -range; i <= range; i++)
             {
-                for (int j = -Weapon.Range; j <= Weapon.Range; j++)
+                for (int j = -range; j <= range; j++)
                 {
-                    if (Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range &&
+                    if (Mathf.Abs(i) + Mathf.Abs(j) <= range && Mathf.Abs(i) + Mathf.Abs(j) > 0 &&
                         GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
                         fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value > 0 &&
                         fullDangerArea[min.x, min.y].Value < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value)
                     {
                         min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
+                        Bugger.Info("Updated min to " + min + ", value: " + fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value);
                     }
                 }
             }
             if (min == currentMoveTarget)
             {
-                throw Bugger.Error("Path not found... to a target with a verified path! This should be impossible... Pos: " + currentMoveTarget + ", attacker: " + ToString() + ", target: " + target, false);
+                throw Bugger.Error("Path not found... to a target with a verified path! This should be impossible... Pos: " + Pos + ", attacker: " + ToString() + ", target: " + target, false);
             }
             currentMoveTarget = min;
+            range = 1;
         }
         return currentMoveTarget;
     }
@@ -657,6 +673,7 @@ public class Unit : MapObject
             {
                 if ((Mathf.Abs(i) + Mathf.Abs(j) <= Weapon.Range && Mathf.Abs(i) + Mathf.Abs(j) > 0) &&
                     GameController.Current.IsValidPos(pos.x + i, pos.y + j) &&
+                    CanAttackPos(pos.x, pos.y, pos.x + i, pos.y + j) &&
                     fullMoveRange[pos.x + i, pos.y + j].Value > 0 &&
                     min > movement - fullMoveRange[pos.x + i, pos.y + j].Value)
                 {

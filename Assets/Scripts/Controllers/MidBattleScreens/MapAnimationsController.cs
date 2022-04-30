@@ -180,6 +180,7 @@ public class MapAnimationsController : MidBattleScreen
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
                             count -= 1 / PushPullApproachRetreatSpeed;
+                            SoundController.PlaySound(HitSFX, 1);
                             pushPullState = PushPullAnimationState.Move;
                         }
                         break;
@@ -216,6 +217,7 @@ public class MapAnimationsController : MidBattleScreen
                         if (count >= 1 / PushPullApproachRetreatSpeed)
                         {
                             count -= 1 / PushPullApproachRetreatSpeed;
+                            SoundController.PlaySound(HitSFX, 1);
                             pushPullState = PushPullAnimationState.Move;
                         }
                         break;

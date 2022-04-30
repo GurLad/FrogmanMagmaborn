@@ -7,6 +7,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
 {
     public Sprite[] StatusTypes;
     [Header("Objects")]
+    public GameObject BuggerObject;
     public Text Text;
     public Image Status;
     private static Bugger current;
@@ -19,12 +20,20 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
             return;
         }
         current = this;
-        gameObject.SetActive(false);
+        BuggerObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (GameCalculations.Debug && Input.GetKeyUp(KeyCode.F10))
+        {
+            BuggerObject.SetActive(!BuggerObject.activeSelf);
+        }
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        BuggerObject.SetActive(false);
     }
 
     public static void Info(string text, bool show = false)
@@ -76,7 +85,7 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
         Status.sprite = StatusTypes[statusType];
         if (show && GameCalculations.Debug)
         {
-            gameObject.SetActive(true);
+            BuggerObject.SetActive(true);
         }
     }
 }

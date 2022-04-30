@@ -195,6 +195,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 291d8284fc7ea1740aa72c415c62ce4c, type: 3}
   - {fileID: 21300000, guid: f8275722717c72e4d9fc3166470242f8, type: 3}
   - {fileID: 21300000, guid: aa3986327f2eca24fa08fb7988dd3200, type: 3}
+  BuggerObject: {fileID: 7673689191053531699}
   Text: {fileID: 7673689191926408850}
   Status: {fileID: 7673689192735154188}
 --- !u!1 &7673689191926408848
@@ -396,7 +397,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7673689191154767618}
+      - m_Target: {fileID: 7673689191053531699}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
