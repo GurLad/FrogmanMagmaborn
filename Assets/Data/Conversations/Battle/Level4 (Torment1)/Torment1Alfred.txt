@@ -13,6 +13,7 @@ hasFlag:MetAlfred
 :loadUnits:InitTormentRoom
 :if:firstTime:{
 :play:Trustworthy
+:setSpeaker:Torment||R
 Frogman: Torment.
 Torment: Why, hello there too, Frogman! I'm fine, thanks for asking.\a Heh.
 Frogman: Can we just get to fighting?\a I'm not in the mood for your nonsense.
@@ -35,13 +36,22 @@ Torment: Sure, you tell yourself that. Heh!\a But it all comes back to pain.\a T
 :if:!hasFlag:TormentCharacterPowerFail{
 :setFlag:TormentCharacterPowerFail
 }
-
-# TBA
+:setSpeaker:Torment||R
+Frogman: Torment!
+Torment: What is it, my dear Frogman?
+Frogman: Can we please stop with these... games?\a You keep killing us for no reason whatsoever!
+Torment: No reason? Why, your suffering fuels my power!\a Isn't that reason enough?
+Frogman: Aren't we supposed to be your champions?!\a Your way out of this prison?\a You should treat us with more respect!
+:play:Trickster:T
+Torment: Respect is something you earn on the battlefield.\a Fighting, and dying, for me.\a Although you seem more adept at the latter... Heh.
+Frogman: I-
 :playIntro:Tormentor
 :loadMap:
 :screenShake:
+Torment: I wasn't finished, Frogman. You are so... angry.\a That is good. Heh.\a Now, channel this anger to fight, like Alfred does!\a Ha ha ha!
 :loadUnits:
-
+:setSingleSpeaker:L
+Frogman: Grrr...
 }
 
 ~ After battle

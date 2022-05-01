@@ -14,7 +14,7 @@ hasCharacter:Xirveros
 Frogman: It's you again!
 :play:Trustworthy
 Torment: It IS me again, heh heh!
-And you have Xirveros with you, I see!\a An obediant dog once again. Ha!
+And you have Xirveros with you, I see!\a An obedient dog once again. Ha!
 Frogman: What is Xirveros to do with anything?
 Torment: What isn't Xirveros to do with? Ha ha!\a Didn't he ever tell you?
 Frogman: Tell me what?
@@ -33,11 +33,29 @@ Torment: No, no, don't talk. Just FIGHT!
 :loadUnits:
 }
 :else:{
+Frogman: Torment...
+Torment: Frogman. Are you undermining me, or simply stupid?
+Frogman: What?
 :if:!hasFlag:TormentCharacterPowerFail{
 :setFlag:TormentCharacterPowerFail
+Torment: You died quite foolishly last time. Heh.\a It felt almost... on purpose, don't you think?
+:else:{
+Torment: You died quite foolishly last time. Heh.\a And it wasn't even your first time.
+It felt almost... on purpose, don't you think?
 }
-
-# TBA
+Frogman: N-no, it definitely wasn't.
+Torment: Oh, so you admit to being a fool, then?
+Frogman: I am not a fool!
+:play:Trickster:T
+Torment: You're either a traitor or a fool - make up your mind!\a Ha ha ha!
+Frogman: This doesn't even make sense!
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+Torment: Oh? You claim that I'M the problem here?\a What insolence! Should I break your mind, then?\a Like Xirveros? Hm?
+Frogman: I-
+Torment: Ponder this question while you fight, Frogman.\a And try to win this time.\a Otherwise, I might get... paranoid.\a Heh heh heh.
+:loadUnits:
 }
 
 ~ After battle

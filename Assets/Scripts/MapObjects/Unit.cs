@@ -612,7 +612,8 @@ public class Unit : MapObject
                     if (Mathf.Abs(i) + Mathf.Abs(j) <= range && Mathf.Abs(i) + Mathf.Abs(j) > 0 &&
                         GameController.Current.IsValidPos(currentMoveTarget.x + i, currentMoveTarget.y + j) &&
                         fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value > 0 &&
-                        fullDangerArea[min.x, min.y].Value < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value)
+                        fullDangerArea[min.x, min.y].Value < fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value &&
+                        (range <= 1 || CanAttackPos(target, new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j))))
                     {
                         min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
                         Bugger.Info("Updated min to " + min + ", value: " + fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value);
