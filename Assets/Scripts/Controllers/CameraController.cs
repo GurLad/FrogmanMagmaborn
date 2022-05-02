@@ -34,11 +34,13 @@ public class CameraController : MonoBehaviour
     public AudioClip ScreenShakeSFX;
     public Camera PixelPerfectCamera;
     public Material PixelPerfectMaterial;
+    public PPTScript PPTScript;
     [HideInInspector]
     public int CurrentMultiplier = 0;
     private void Awake()
     {
         Current = this;
+        PPTScript.Material = PixelPerfectMaterial = Instantiate(PixelPerfectMaterial);
         FullScreen = SavedData.Load("Fullscreen", 1, SaveMode.Global) == 1;
         if (!FullScreen)
         {

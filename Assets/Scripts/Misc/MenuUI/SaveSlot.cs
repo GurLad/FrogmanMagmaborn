@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class SaveSlot : MonoBehaviour
 {
     public Text Text;
-    public Image MVP;
+    public PalettedSprite MVP;
     public int MaxSlots;
     public Trigger StartTrigger;
+    public UnitClassData UnitClassData;
+    public List<GameObject> ContinueOnlyObjects;
     private int currentSlot;
     private int previousSign;
+    private AdvancedSpriteSheetAnimation animation = null;
 
     private void Start()
     {
+        MVP.Palette = (int)StaticGlobals.MainPlayerTeam;
         Select(SavedData.Load("DefaultSaveSlot", 0, SaveMode.Global));
     }
 
@@ -50,17 +54,57 @@ public class SaveSlot : MonoBehaviour
             {
                 Text.text = Text.text.ToColoredString(2);
             }
+            // MVP display
+            AssignUnitMapAnimation(GetMVP());
+            // TBA - give the MVP a background depending on the current part (ex. magma floor for part 1, tiles for part 2, Fortress tile for 3)
+            ContinueOnlyObjects.ForEach(a => a.SetActive(true));
         }
         else
         {
             Text.text = "-- Slot " + (currentSlot + 1) + " --\n\n" + "  New Game ";
+            ContinueOnlyObjects.ForEach(a => a.SetActive(false));
         }
-        // MVP display TBA - requires LevelMetadata, ClassData & UnitData in the main menu...
-        MVP.gameObject.SetActive(false);
     }
 
     private string SecondsToTime(float seconds)
     {
         return Mathf.FloorToInt(seconds / 3600).ToString().PadLeft(3, '0') + ":" + Mathf.FloorToInt((seconds / 60) % 60).ToString().PadLeft(2, '0');
+    }
+
+    private ClassData GetMVP()
+    {
+        UnitData target = UnitClassData.UnitDatas[0];
+        int targetValue = int.MinValue;
+        foreach (UnitData unit in UnitClassData.UnitDatas)
+        {
+            int mapCount, battleCount, killCount, deathCount, mvpValue;
+            if ((mapCount = SavedData.Load<int>("Statistics", unit.Name + "MapsCount", 0)) > 0)
+            {
+                battleCount = SavedData.Load<int>("Statistics", unit.Name + "BattleCount", 0);
+                killCount = SavedData.Load<int>("Statistics", unit.Name + "KillCount", 0);
+                deathCount = SavedData.Load<int>("Statistics", unit.Name + "DeathCount", 0);
+                mvpValue = GameCalculations.MVPValue(mapCount, battleCount, killCount, deathCount);
+                Bugger.Info(unit.Name + " - M: " + mapCount + ", B: " + battleCount + ", K: " + killCount + ", D: " + deathCount + ", total: " + mvpValue);
+                if (mvpValue > targetValue)
+                {
+                    target = unit;
+                    targetValue = mvpValue;
+                }
+            }
+        }
+        return UnitClassData.ClassDatas.Find(a => a.Name == target.Class);
+    }
+
+    private void AssignUnitMapAnimation(ClassData classData)
+    {
+        if (animation != null)
+        {
+            Destroy(animation.gameObject);
+        }
+        animation = Instantiate(UnitClassData.BaseAnimation, MVP.transform);
+        animation.Renderer = MVP.GetComponent<SpriteRenderer>();
+        animation.Animations[0].SpriteSheet = classData.MapSprite;
+        animation.Start();
+        animation.Activate(0);
     }
 }

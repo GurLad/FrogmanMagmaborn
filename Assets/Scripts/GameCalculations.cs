@@ -101,7 +101,7 @@ public static class GameCalculations
     {
         get
         {
-            return Team.Player; // Temp - I need to think of a better way to set this (LevelMetadata perhaps?)
+            return StaticGlobals.MainPlayerTeam; // Temp - I need to think of a better way to set this (LevelMetadata perhaps?)
         }
     }
 
@@ -133,6 +133,11 @@ public static class GameCalculations
             }
         }
         return baseNum;
+    }
+
+    public static int MVPValue(int mapCount, int battleCount, int killCount, int deathCount)
+    {
+        return battleCount + killCount * 4 - mapCount - deathCount * 4;
     }
 
     public static bool HasKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
