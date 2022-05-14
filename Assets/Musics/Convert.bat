@@ -1,0 +1,1 @@
+for /r %%i in (*.wav) do ffmpeg -i "%%i" "%%~dpni.ogg" && del "%%i"
