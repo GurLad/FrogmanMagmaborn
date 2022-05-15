@@ -326,9 +326,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                 throw Bugger.Error("Bad [Name:] syntax: " + line);
             }
             string target = line.Substring(index + 6, lastIndex - index - 6);
-            Bugger.Info(target);
             line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
-            Bugger.Info(line);
         }
         if (line[0] == ':') // Command
         {
@@ -400,6 +398,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         if (origin.Functions.ContainsKey(args[1]))
                         {
                             target1.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
+                            Bugger.Info(target1.BattleQuote);
                         }
                         else
                         {

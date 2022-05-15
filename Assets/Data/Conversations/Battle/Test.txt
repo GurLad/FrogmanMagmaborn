@@ -12,11 +12,27 @@ Frogman: [Name:Fashima_] is Fashima.
 Bob: It's a-me, [Name].
 Frogman: [Name:Bob]?
 Bob: Yes, [Name:Bob].
+:setBattleQuote:Frogman:Battle
 ~ After battle
 :play:AfterBattle
 # Name: Text.
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ Battle
+:if:stringEquals:[Name:Attacker]:Frogman{
+Frogman: Ha! I'm attacking you, [Name:Defender]!
+Defender: Oof!
+}
+:else:{
+Attacker: I'm your enemy!
+Frogman: Are you Bob?
+:if:stringEquals:[Name:Attacker]:Bob{
+Attacker: Yes! How did you know?
+}
+:else:{
+Attacker: No, I'm [Name:Attacker]!
+}
+}
+:setBattleQuote:Frogman:Battle
+

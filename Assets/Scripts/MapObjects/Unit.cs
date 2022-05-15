@@ -415,9 +415,22 @@ public class Unit : MapObject
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
+            Bugger.Info(string.Join(",", PortraitController.Current.GeneratedGenericPortraits.Keys));
+            PortraitController.Current.GeneratedGenericPortraits.Add("Attacker", Icon);
+            PortraitController.Current.GeneratedGenericPortraits.Add("Defender", unit.Icon);
             ConversationPlayer.Current.OnFinishConversation = () => ActualFight(attacker, defender);
-            ConversationPlayer.Current.PlayOneShot(BattleQuote != "" ? BattleQuote : unit.BattleQuote);
-            unit.BattleQuote = BattleQuote = "";
+            string quote;
+            if (BattleQuote != "")
+            {
+                quote = BattleQuote;
+                BattleQuote = "";
+            }
+            else
+            {
+                quote = unit.BattleQuote;
+                unit.BattleQuote = "";
+            }
+            ConversationPlayer.Current.PlayOneShot(quote);
         }
         else if (TheTeam.PlayerControlled()) // The player know who they're attacking, no need for a delay.
         {

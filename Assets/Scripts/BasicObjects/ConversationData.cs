@@ -186,6 +186,12 @@ public class ConversationData : System.IComparable<ConversationData>
                 // Compaers the min pos of a unit in the given team to the given value (x or y)
                 // Params: x/y:team:?value
                 return MeetsComparisonRequirement(parts[3][0], GameController.Current.FindMinMaxPosUnit(parts[2].ToTeam(), parts[1] == "x", false), int.Parse(parts[3].Substring(1)));
+
+            // Misc
+
+            case "stringEquals":
+                // Return the two given strings are equal
+                return parts[1] == parts[2];
             default:
                 break;
         }

@@ -8100,6 +8100,8 @@ MonoBehaviour:
 
       Bob: Yes, [Name:Bob].
 
+      :setBattleQuote:Frogman:Battle
+
       ~
       After battle
 
@@ -8112,9 +8114,41 @@ MonoBehaviour:
       ====
 
 
-      ~ Sample
+      ~ Battle
 
-      # Name: Text.
+      :if:stringEquals:[Name:Attacker]:Frogman{
+
+      Frogman:
+      Ha! I''m attacking you, [Name:Defender]!
+
+      Defender: Oof!
+
+      }
+
+      :else:{
+
+      Attacker:
+      I''m your enemy!
+
+      Frogman: Are you Bob?
+
+      :if:stringEquals:[Name:Attacker]:Bob{
+
+      Attacker:
+      Yes! How did you know?
+
+      }
+
+      :else:{
+
+      Attacker: No, I''m [Name:Attacker]!
+
+      }
+
+      }
+
+      :setBattleQuote:Frogman:Battle
+
 
 '
     Name: Test
@@ -35573,20 +35607,6 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 11, y: 7}
-      Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 8}
-      Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     MapEvents: []
     Tileset: City
     Objective: 2
@@ -35633,20 +35653,6 @@ MonoBehaviour:
       ReinforcementTurn: 0
       Statue: 0
     - Pos: {x: 7, y: 6}
-      Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 7}
-      Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 8}
       Team: 2
       Level: 0
       Class: Skeleton
