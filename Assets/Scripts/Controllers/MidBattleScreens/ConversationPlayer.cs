@@ -316,6 +316,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         {
             return result | StartLine(num + 1);
         }
+        int index;
+        while ((index = line.IndexOf("[Name:")) >= 0) // Character display names (ex. "[Name:FrogmanMan]" would convert to "Frogman". For attacker, generic etc.)
+        {
+            //Bugger.Info(line);
+            int lastIndex = line.IndexOf(']');
+            if (lastIndex < 0 || lastIndex <= index)
+            {
+                throw Bugger.Error("Bad [Name:] syntax: " + line);
+            }
+            string target = line.Substring(index + 6, lastIndex - index - 6);
+            Bugger.Info(target);
+            line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
+            Bugger.Info(line);
+        }
         if (line[0] == ':') // Command
         {
             string[] parts = line.Split(':');
@@ -769,12 +783,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         if (line.Contains("[")) // Variable name (like button name)
         {
-            Bugger.Info(line);
+            //Bugger.Info(line);
             line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
             line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
             line = line.Replace("[StartButton]", Control.DisplayShortButtonName("Start"));
             line = line.Replace("[Name]", Name.text);
-            Bugger.Info(line);
+            //Bugger.Info(line);
         }
         line = line.Replace(@"\a", "\a");
         // Find the line break

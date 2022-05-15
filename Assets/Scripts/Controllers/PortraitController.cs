@@ -44,7 +44,7 @@ public class PortraitController : MonoBehaviour
     }
     public Portrait FindPortrait(string name)
     {
-        return Portraits.Find(a => a.Name == name) ?? (GeneratedGenericPortraits.ContainsKey(name) ? GeneratedGenericPortraits[name] :  ErrorPortrait);
+        return Portraits.Find(a => a.Name == name) ?? (GeneratedGenericPortraits.ContainsKey(name) ? GeneratedGenericPortraits[name] : ErrorPortrait);
     }
     public Portrait FindGenericPortrait(string tags = "")
     {

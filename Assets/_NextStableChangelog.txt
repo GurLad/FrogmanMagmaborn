@@ -1,19 +1,26 @@
-Frogman Magmaborn Beta - Version 0.3.1 (23/01/2021)
+Frogman Magmaborn Beta - Version 0.5 (??/??/2022)
 
 Changelog:
 
 * - Changes inspired by your feedback
 
 New content & features:
-	 +Added muting.
-	 +Added two level 1 maps.
+	 +Added levels 7 & 8!
+	 +Added fade transitions!
+	 +Added & improved many conversations (TBA: actually finish them).
+	 +Added a Torment power.
+	 +Added a map for levels 3 and 4.
+	 +Added MVP display for save slots.
 
 Improvements:
-	 +Improved Torment's and Zip's portraits.
-	 +Improved multiple conversations.
+	*+Reworked the first level 3 and level 4 events.
+	*+Reworked Xeplogi's character (TBA: actually do that).
+	 +Reworked the Wrath/Mercy Torment power.
+	 +Reworked the palette system internally - previous mods might become incompatible.
 	 
 Bug fixes:
-	 +Fixed a few conversations & events.
-	 +Fixed windowed mode.
-	 +Fixed battle music.
-	 +Fixed intro conversations repeating if youplayed the tutorial.
+	 +Fixed in-game text colors not matching palettes.
+	 +Fixed ranged AI.
+	 +Fixed generic event portraits not matching the gameplay ones.
+	*+Fixed many Torment conversations not having !firstTime variants.
+	 +Fixed minor UI issues when targeting ally units.

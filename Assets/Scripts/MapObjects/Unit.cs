@@ -137,7 +137,10 @@ public class Unit : MapObject
     public void SetIcon(Portrait icon, bool changeName = true)
     {
         Icon = icon;
-        Name = icon.TheDisplayName;
+        if (changeName)
+        {
+            DisplayName = Name = icon.TheDisplayName;
+        }
     }
     public override void Interact(InteractState interactState)
     {

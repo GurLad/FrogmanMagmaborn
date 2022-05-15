@@ -58,7 +58,7 @@ public class LevelUpController : MidBattleScreen
         }
         Unit unit = players[currentUnitID];
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(unit.Name);
-        UnitInfo.text = "\n" + unit.Name + "\n\n\nLevel:" + unit.Level + "\n\n";
+        UnitInfo.text = "\n" + unit + "\n\n\nLevel:" + unit.Level + "\n\n";
         for (int i = 0; i < numOptions; i++)
         {
             Stats current;

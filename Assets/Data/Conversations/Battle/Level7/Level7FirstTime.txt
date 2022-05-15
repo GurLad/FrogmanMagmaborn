@@ -68,9 +68,19 @@ Xeplogi||R: TBA
 Alfred||R: The crystals.\a The Guards.\a Just like it used to be.\a But this time, they'll die, not me.\a My friends...\a My family...\a Today, I will avenge you, at long last!
 }
 :if:hasCharacter:Memerian{
-Memerian||R: Just wait 'till you get inside.
-Frogman: Inside? Wait, you've been inside the Fortress?!
-Memerian: Yes, multiple times. But it's pointless -\a that place is one hell of a maze.\a I could never get anywhere before they killed me.
-Frogman: A maze, huh? Maybe together we could find the way.
-Memerian: Ha! I highly doubt that.
+:if:charactersAlive:<2{
+Memerian||R: Indeed. It's entire purpose is to prevent us from leaving.\a And the monsters, of course.
+Frogman: Did you ever get insider?
+Memerian: No, never. They are always led by a powerfull mage.\a Fashima.\a She was way too strong.\a Annoying as hell, too.
+Frogman: I see.\a Let's go defeat her, then.
+Memerian: Defeat her? Pfft!
+Our only hope is that she had died of old age by now.
+Frogman: Was she truly that powerfull?
+Memerian: She's a mage. She doesn't play fair.\a But enough chitchat - you'll see for yourself,\a soon enough.
+Frogman: Right.
 }
+:else:{
+Memerian||R: ...Let's hope they don't have a mage in here.
+}
+}
+

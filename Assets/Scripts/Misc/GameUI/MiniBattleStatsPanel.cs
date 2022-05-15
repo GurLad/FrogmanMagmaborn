@@ -106,7 +106,7 @@ public class MiniBattleStatsPanel : MonoBehaviour
     {
         Panel.gameObject.SetActive(true);
         Panel.Palette = (int)origin.TheTeam;
-        Info.text = origin.Name + "\n" + origin.AttackPreview(target, 2, origin.CanAttack(target));
+        Info.text = origin + "\n" + origin.AttackPreview(target, 2, origin.CanAttack(target));
         if (Inclination != null)
         {
             Inclination.gameObject.SetActive(true);
