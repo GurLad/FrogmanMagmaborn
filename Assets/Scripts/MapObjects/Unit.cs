@@ -415,7 +415,6 @@ public class Unit : MapObject
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
-            Bugger.Info(string.Join(",", PortraitController.Current.GeneratedGenericPortraits.Keys));
             PortraitController.Current.GeneratedGenericPortraits.Add("Attacker", Icon);
             PortraitController.Current.GeneratedGenericPortraits.Add("Defender", unit.Icon);
             ConversationPlayer.Current.OnFinishConversation = () => ActualFight(attacker, defender);

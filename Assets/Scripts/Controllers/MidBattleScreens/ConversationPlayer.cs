@@ -10,6 +10,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't more than 10 types
     private enum CurrentState { Writing, Waiting, Sleep, Hold }
     private enum StartLineResult { None = 0, LoadMap = 1, LoadUnits = 2, Fade = 4, MidBattleScreen = 8, FinishLevel = 16, FinishConversation = 32, Wait = 64 }
+    private enum PlayMode { PreBattle, MidBattle, PostBattle }
 
     public new static ConversationPlayer Current;
     [Header("Stats")]
@@ -54,7 +55,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private int currentLine;
     private int currentChar;
     private float count;
-    private bool postBattle = false;
+    private PlayMode playMode = PlayMode.PreBattle;
     private string targetLine;
     private string waitRequirement = "";
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
@@ -192,7 +193,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     }
     public void Play(ConversationData conversation, bool shouldFadeIn = true)
     {
-        postBattle = false;
+        playMode = PlayMode.PreBattle;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         origin = conversation;
@@ -224,6 +225,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             functionStack.Push(new FunctionStackObject(currentLine, lines));
         }
         // Load new lines
+        playMode = PlayMode.MidBattle;
         lines = new List<string>(text.Split('\n'));
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         gameObject.SetActive(true);
@@ -237,7 +239,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             GameController.Current.Win();
             return;
         }
-        postBattle = true;
+        playMode = PlayMode.PostBattle;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         lines = origin.PostBattleLines;
@@ -659,7 +661,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
                     if (conversation != null)
                     {
-                        lines = postBattle ? conversation.PostBattleLines : conversation.Lines;
+                        lines = playMode == PlayMode.PostBattle ? conversation.PostBattleLines : conversation.Lines;
                         return result | StartLine(0);
                     }
                     throw Bugger.Error("No matching conversation! (" + args[0] + ")");
@@ -668,7 +670,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     // A bit too complex to assert for now
                     waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                     Pause();
-                    if (!postBattle)
+                    if (playMode != PlayMode.PostBattle)
                     {
                         CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
                     }
@@ -848,26 +850,32 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         else
         {
             // Battle conversations
-            if (postBattle)
+            switch (playMode)
             {
-                origin.Choose(true);
-                origin = null;
-                // Clear temp flags
-                GameController.Current.TempFlags.Clear();
-                GameController.Current.Win();
-            }
-            else
-            {
-                CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
-                GameController.Current.BeginBattle();
-                if (origin.PostBattleLines.Count <= 0)
-                {
+                case PlayMode.PreBattle:
+                    CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
+                    GameController.Current.BeginBattle();
+                    if (origin.PostBattleLines.Count <= 0)
+                    {
+                        origin.Choose(true);
+                    }
+                    else
+                    {
+                        origin.Choose(false);
+                    }
+                    break;
+                case PlayMode.MidBattle:
+                    // Do nothing
+                    break;
+                case PlayMode.PostBattle:
                     origin.Choose(true);
-                }
-                else
-                {
-                    origin.Choose(false);
-                }
+                    origin = null;
+                    // Clear temp flags
+                    GameController.Current.TempFlags.Clear();
+                    GameController.Current.Win();
+                    break;
+                default:
+                    break;
             }
         }
         // Clear TempPortraits & cleanup
@@ -1033,13 +1041,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public SuspendDataConversationPlayer SaveToSuspendData()
     {
-        return new SuspendDataConversationPlayer(origin, postBattle);
+        return new SuspendDataConversationPlayer(origin);
     }
 
     public void LoadFromSuspendData(SuspendDataConversationPlayer data)
     {
         origin = new ConversationData(data.Origin);
-        postBattle = data.PostBattle;
     }
 
     private class FunctionStackObject
@@ -1059,11 +1066,9 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 public class SuspendDataConversationPlayer // People cannot suspend in the middle of a conversation
 {
     public ConversationData Origin;
-    public bool PostBattle;
 
-    public SuspendDataConversationPlayer(ConversationData origin, bool postBattle)
+    public SuspendDataConversationPlayer(ConversationData origin)
     {
         Origin = origin;
-        PostBattle = postBattle;
     }
 }
