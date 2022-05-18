@@ -45,9 +45,24 @@ Frogman: Oh. They are coming.
 # === Functions ====
 
 ~ XirverosLichFight
+:if:stringEquals:[Name:Attacker]:Xirveros{
 Xirveros: Lich! How you use magic?
 Monster|Lich: ...
 Frogman||R: Xirveros, stop fooling around!
 Xirveros: Lich?
 Frogman: That's enough, Xirveros! Stop talking to the lich!
 Xirveros: ...For frog, fight lich!
+}
+:else:{
+:if:stringEquals:[Name:Defender]:Xirveros{
+Xirveros: Lich! How you use magic?
+Monster|Lich: ...
+Frogman||R: Xirveros, stop fooling around!
+Xirveros: Lich?
+Frogman: That's enough, Xirveros! Stop talking to the lich!
+Xirveros: ...For frog, fight lich!
+}
+:else:{
+:setBattleQuote:Lich:XirverosLichFight
+}
+}

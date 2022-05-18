@@ -1,0 +1,56 @@
+priority:5
+unique:T
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+!hasFlag:BrensDied
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:addGenericCharacter:Guard2
+:loadUnits::monster
+:loadUnits::guard:T
+Brens: Lan.
+Lan: Hey.
+Brens: How are you holding up?
+Being the new Wall Magus must be quite tough.
+Lan: Tough?! Ha ha ha! This is nothing for the Great Lan!
+Brens: Really? Are you sure you're okay?\a Fashima died rather... suddenly.
+Lan: Yeah. Who needs her, anyway?\a I'm much better than her!
+Brens: That's no way to treat your former master!
+Lan: Pfft. She didn't teach me anything.\a All she ever did was act superior.\a I can do that, too!
+Brens: She was more-
+:setSpeaker:Fashima|Lan|R
+You suck, Brens. You're old and weak and pathetic.\a And I'm better than you.\a So much better.
+Brens: W-well, she was a bit like that, but-
+Lan: Listen, old man. I don't need your help, okay?\a You can go now.
+Brens: I- Ugh, fine.
+This is what I get for being nice to you lot.\a Good luck out there.
+Lan: ...I can see why Fashima hated that guy.
+Lieutenant: Uh, Lan?
+Lan: Yes, [Name:Guard1]?
+Lieutenant: My name's [Name], master.
+Lan: Whatever, [Name:Guard2]. What is it?
+Lieutenant: T-the Magmaborn are back, master.
+Lan: Back?! Oh yes! Time to beat them again!
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: TBA
+
+~ After battle
+:setFlag:LanLost1
+:play:AfterBattle
+Frogman: Wow! We beat Fashima! Yay!
+:play:Trustworthy
+Torment: Yay indeed!\a Now, you shall die!
+:showPartTitle:End of:Demo
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

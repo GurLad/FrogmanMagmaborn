@@ -39,6 +39,7 @@ Lieutenant: Right away!
 Lieutenant: Fashima! We're under attack by Magmaborn!
 Fashima_: What impeccable timing.\a Well, everyone, you know what to do.\a Defend me at all costs.
 Lieutenant: Yes, master!
+:setBattleQuote:Fashima:FashimaBattleQuote
 :markDone:
 
 ~ After battle
@@ -84,3 +85,17 @@ Memerian||R: ...Let's hope they don't have a mage in here.
 }
 }
 
+~ FashimaBattleQuote
+:if:stringEquals:[Name:Attacker]:Memerian{
+:if:!hasTempFlag:FashimaBattleMemerian{
+# TBA
+:setTempFlag:FashimaBattleMemerian
+}
+}
+:if:stringEquals:[Name:Attacker]:Frogman{
+:if:!hasTempFlag:FashimaBattleFrogman{
+# TBA
+:setTempFlag:FashimaBattleFrogman
+}
+}
+:setBattleQuote:Fashima:FashimaBattleQuote
