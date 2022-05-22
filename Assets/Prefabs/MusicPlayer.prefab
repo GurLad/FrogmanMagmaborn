@@ -47,83 +47,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tracks:
   - Name: TheFrogman
-    AudioClip: {fileID: 8300000, guid: af4c4428d5c71924280d4e10b33cc139, type: 3}
-  - Name: ToriTheme
-    AudioClip: {fileID: 8300000, guid: 99a0977eca5d54245a1010374d32a231, type: 3}
-  - Name: ToriTheme_Battle
-    AudioClip: {fileID: 8300000, guid: 7d82b308d0235444cba4020dc9b8d7fb, type: 3}
-  - Name: MagmaFlows
-    AudioClip: {fileID: 8300000, guid: 69360ce4e6829fe4c8f0671236d2fd13, type: 3}
-  - Name: MagmaFlows_Battle
-    AudioClip: {fileID: 8300000, guid: a0771a51a8916b847977798008f356bd, type: 3}
-  - Name: Dungeon
-    AudioClip: {fileID: 8300000, guid: 2ca32821733ed37418bc218dcdb87e3b, type: 3}
-  - Name: Dungeon_Battle
-    AudioClip: {fileID: 8300000, guid: 112e626b00be6c54c979d81274e3b76c, type: 3}
-  - Name: ToTheDeath
-    AudioClip: {fileID: 8300000, guid: f62058864645fb440a0af2dbf213cab7, type: 3}
-  - Name: ToTheDeath_Battle
-    AudioClip: {fileID: 8300000, guid: 3e30d9b1c7134ea4ca2ca8c13e79202d, type: 3}
-  - Name: TormentorIntro
-    AudioClip: {fileID: 8300000, guid: a097aeb7424fd744880f4ff2706d16a7, type: 3}
-  - Name: Tormentor
-    AudioClip: {fileID: 8300000, guid: 69bfa9d041955da43b53cf3a18de2510, type: 3}
-  - Name: Tormentor_Battle
-    AudioClip: {fileID: 8300000, guid: 8fc508046d8808940948485806c70bfd, type: 3}
-  - Name: EnterTheGuards
-    AudioClip: {fileID: 8300000, guid: c53a6345cf4514e4f95c745a875ed1d1, type: 3}
-  - Name: EnterTheGuards_Battle
-    AudioClip: {fileID: 8300000, guid: 4d3d6ccaea52cfc40ad19807d87c89cf, type: 3}
-  - Name: OverAndOver
-    AudioClip: {fileID: 8300000, guid: 158e596eed409ad49877e5299933a821, type: 3}
-  - Name: OverAndOver_Battle
-    AudioClip: {fileID: 8300000, guid: a4beb1fd712700346a045d86035c2b87, type: 3}
-  - Name: Unbreakable
-    AudioClip: {fileID: 8300000, guid: 5c4e00227e9bbd048adbf06c6ffed098, type: 3}
-  - Name: Unbreakable_Battle
-    AudioClip: {fileID: 8300000, guid: a32302cecacff9a49a4610f6fa2adc85, type: 3}
-  - Name: Intruders
-    AudioClip: {fileID: 8300000, guid: bb10f6d78cec4b647b25dae737d52837, type: 3}
-  - Name: Intruders_Battle
-    AudioClip: {fileID: 8300000, guid: 5bddf02d123ecc6469afb0634237a138, type: 3}
-  - Name: TheCloneVats
-    AudioClip: {fileID: 8300000, guid: a29a775b2f297554ab681ddb386d3a5d, type: 3}
-  - Name: TheCloneVats_Battle
-    AudioClip: {fileID: 8300000, guid: 82c74780e6dbc0e4cb33a024fe92ab54, type: 3}
-  - Name: EternalPast
-    AudioClip: {fileID: 8300000, guid: 35efbd2df4de6344a95a6e134828d2c3, type: 3}
-  - Name: EternalPast_Battle
-    AudioClip: {fileID: 8300000, guid: 8e7378fc9f883bc41856ca1294d4d484, type: 3}
-  - Name: Trustworthy
-    AudioClip: {fileID: 8300000, guid: 4ac6f14eddc207f44abd9c152dc68597, type: 3}
-  - Name: Trickster
-    AudioClip: {fileID: 8300000, guid: 4a0f0edb8371c6a4bb87f295bffa83a1, type: 3}
-  - Name: BeforeBattle
-    AudioClip: {fileID: 8300000, guid: 5d0e70aa4634ae840bc166e1823ef818, type: 3}
-  - Name: BeforeBattle2
-    AudioClip: {fileID: 8300000, guid: d37f9eb6cd27c814692b474f917e0ca4, type: 3}
-  - Name: BeforeBattle3
-    AudioClip: {fileID: 8300000, guid: 384adc6e039225041bebe7d99da314a4, type: 3}
-  - Name: GuardTheme
-    AudioClip: {fileID: 8300000, guid: 73615ffb774eefc4dbc8ca98df65a569, type: 3}
-  - Name: GuardTheme2
-    AudioClip: {fileID: 8300000, guid: deb3df2d02f2bae44b24f7c4c39c6dbe, type: 3}
-  - Name: GuardTheme3
-    AudioClip: {fileID: 8300000, guid: 2d0611ea51335864c884cce2a35d6f53, type: 3}
-  - Name: AfterBattle
-    AudioClip: {fileID: 8300000, guid: f2f1859b1fdbd284f9779420847d41cd, type: 3}
-  - Name: ForgottenMemories
-    AudioClip: {fileID: 8300000, guid: 75b79b91708e22342a9633cb56fc3153, type: 3}
-  - Name: ShatteredDream
-    AudioClip: {fileID: 8300000, guid: 2e984e627dea8de41979f8eeebe623e9, type: 3}
+    AudioClip: {fileID: 8300000, guid: 4056623baedbf1e4196973d5fd632b21, type: 3}
   - Name: GameOver
-    AudioClip: {fileID: 8300000, guid: a9a8380d46234784290812eca089f90f, type: 3}
+    AudioClip: {fileID: 8300000, guid: 8f0de70a50ff22840bdcc1d00a7cc2e5, type: 3}
   - Name: DeadAlly
-    AudioClip: {fileID: 8300000, guid: 4d12b9d8a4637dd4fb6c3dcdea3e203b, type: 3}
+    AudioClip: {fileID: 8300000, guid: d96cdb258173ec24d9b41bcd7541dc68, type: 3}
+  - Name: Takeover
+    AudioClip: {fileID: 8300000, guid: c107ff8e62aa4e748af8d168c147788e, type: 3}
+  - Name: Tormentor_Battle
+    AudioClip: {fileID: 8300000, guid: 53329cb6ae216f6498aa263dff1cdd07, type: 3}
+  - Name: Tormentor
+    AudioClip: {fileID: 8300000, guid: e199958cdf4617b45b233b1e3b43d6c5, type: 3}
+  - Name: TormentorIntro
+    AudioClip: {fileID: 8300000, guid: 8bb17ef04b156ef4ebbfb8e313a85788, type: 3}
+  - Name: Trickster
+    AudioClip: {fileID: 8300000, guid: 3a0f6f6a42d66b94b8796497183328dd, type: 3}
+  - Name: Trustworthy
+    AudioClip: {fileID: 8300000, guid: 4749d5a84b6013d429277730a8998e2e, type: 3}
+  - Name: Twisted_Battle
+    AudioClip: {fileID: 8300000, guid: 0231c0cbfb9f206478495fe9e4b24dc0, type: 3}
+  - Name: Twisted
+    AudioClip: {fileID: 8300000, guid: b5e456eb097bad54bbb012ad4bc255da, type: 3}
+  - Name: Dungeon_Battle
+    AudioClip: {fileID: 8300000, guid: 3d08c2a2aa03a4044af0809afd0ff06e, type: 3}
+  - Name: Dungeon
+    AudioClip: {fileID: 8300000, guid: 0a133dfbd3ec4a9478b21ed801b16389, type: 3}
+  - Name: EnterTheGuards_Battle
+    AudioClip: {fileID: 8300000, guid: 5f327f99a16505d44a5a80b92424fce0, type: 3}
+  - Name: EnterTheGuards
+    AudioClip: {fileID: 8300000, guid: 10af359a0bd5e774eae18985c58e9386, type: 3}
+  - Name: EternalPast_Battle
+    AudioClip: {fileID: 8300000, guid: e0bcbb6c2ae22aa4a9072a27848d2630, type: 3}
+  - Name: EternalPast
+    AudioClip: {fileID: 8300000, guid: d051fcff9f574c64da92e5cbf9d37a9d, type: 3}
+  - Name: Intruders_Battle
+    AudioClip: {fileID: 8300000, guid: 94a81ad9947f8ac489f45a8b3426efea, type: 3}
+  - Name: Intruders
+    AudioClip: {fileID: 8300000, guid: 27bf245a46779944e9c4ee5f8d8c274b, type: 3}
+  - Name: LastStand
+    AudioClip: {fileID: 8300000, guid: cb9c5e4d48c314948ae56edfbff9fe79, type: 3}
+  - Name: MagmaFlows_Battle
+    AudioClip: {fileID: 8300000, guid: 8d9949f7ac0d0e94781c4f1d770269c5, type: 3}
+  - Name: MagmaFlows
+    AudioClip: {fileID: 8300000, guid: 1927858984e8b3047ba5b7f5cca7c321, type: 3}
+  - Name: OverAndOver_Battle
+    AudioClip: {fileID: 8300000, guid: 4619cf3b8cd55eb42970c76842fa1aab, type: 3}
+  - Name: OverAndOver
+    AudioClip: {fileID: 8300000, guid: 2c5acff006489044aa7b7d0264c26d38, type: 3}
+  - Name: TheCloneVats_Battle
+    AudioClip: {fileID: 8300000, guid: 90f69ea018e74804d9479371b0faec44, type: 3}
+  - Name: TheCloneVats
+    AudioClip: {fileID: 8300000, guid: abfe9b31af2626b4ca452e616582bf86, type: 3}
+  - Name: ToriTheme_Battle
+    AudioClip: {fileID: 8300000, guid: 95c2d2b054774fc41bd6f8cb543ee2ca, type: 3}
+  - Name: ToriTheme
+    AudioClip: {fileID: 8300000, guid: de698e5e5bd5228489b689e8c67e625b, type: 3}
+  - Name: ToTheDeath_Battle
+    AudioClip: {fileID: 8300000, guid: 8042c947cf590714bac556d0093f9f95, type: 3}
+  - Name: ToTheDeath
+    AudioClip: {fileID: 8300000, guid: 692370efd4615e848aa36c6c5ffad492, type: 3}
+  - Name: Unbreakable_Battle
+    AudioClip: {fileID: 8300000, guid: 1a5da0f6fea061f488ab67bac754bbd7, type: 3}
+  - Name: Unbreakable
+    AudioClip: {fileID: 8300000, guid: 22cddd7596d178b4cbb0da26ec23e6b9, type: 3}
+  - Name: GuardTheme
+    AudioClip: {fileID: 8300000, guid: a17a188da9ebd254b841ead47ec2df94, type: 3}
+  - Name: GuardTheme2
+    AudioClip: {fileID: 8300000, guid: 9b64d07ca644200418d45d5f0efb8c74, type: 3}
+  - Name: ForgottenMemories
+    AudioClip: {fileID: 8300000, guid: 7d3be29f56ee6a94299c4700d0ab1cc6, type: 3}
+  - Name: BeforeBattle2
+    AudioClip: {fileID: 8300000, guid: a701a15087a958743afd24c21d8d18ad, type: 3}
+  - Name: BeforeBattle3
+    AudioClip: {fileID: 8300000, guid: f190d0c16de83f647a8a45eb08667786, type: 3}
+  - Name: BeforeBattle
+    AudioClip: {fileID: 8300000, guid: 1b74f3cb7ea0dc743b8df1a1c3c9b877, type: 3}
+  - Name: Raindance
+    AudioClip: {fileID: 8300000, guid: 8e374c9aa57c63f4c90d274bc5c219d8, type: 3}
+  - Name: AfterBattle
+    AudioClip: {fileID: 8300000, guid: 301d3134abf2bfd478c5923aad7e199b, type: 3}
   - Name: SafeAndSound
-    AudioClip: {fileID: 8300000, guid: ce4f303110c606a49bddbed234d664cc, type: 3}
+    AudioClip: {fileID: 8300000, guid: 649bf4cc43a78ae4da469febf71950d4, type: 3}
+  - Name: ShatteredDream
+    AudioClip: {fileID: 8300000, guid: 194d075a9a81f1543b9a23e25b095993, type: 3}
   - Name: Silence
-    AudioClip: {fileID: 8300000, guid: 2d0611ea51335864c884cce2a35d6f53, type: 3}
+    AudioClip: {fileID: 8300000, guid: 7136b7ec161dbba41b3bc094b734c4b2, type: 3}
   FadeSpeed: 2
   PlayOnStart: 1
   KeepTimestamp: 1

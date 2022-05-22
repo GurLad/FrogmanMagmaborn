@@ -155,4 +155,44 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             mainAudioSource.loop = true;
         }
     }
+
+#if UNITY_EDITOR || MODDABLE_BUILD
+    public void AutoLoad()
+    {
+        // Load musics json
+        MusicDataHolder dataHolder = new MusicDataHolder();
+        string json = FrogForgeImporter.LoadTextFile("Musics.json").Text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("Musics"), dataHolder);
+#if UNITY_EDITOR
+        Tracks.Clear();
+#endif
+        // Load music files (additive)
+        foreach (MusicDataHolder.MusicData music in dataHolder.Musics)
+        {
+            CrossfadeMusicPlayerObject musicObject = Tracks.Find(a => a.Name == music.Name);
+            if (musicObject == null)
+            {
+                musicObject = new CrossfadeMusicPlayerObject();
+                musicObject.Name = music.Name;
+                Tracks.Add(musicObject);
+            }
+            musicObject.AudioClip = FrogForgeImporter.LoadAudioFile("Musics/" + music.FullFileName);
+        }
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
+    }
+#endif
+
+    private class MusicDataHolder
+    {
+        public List<MusicData> Musics;
+
+        [System.Serializable]
+        public class MusicData
+        {
+            public string Name;
+            public string FullFileName;
+        }
+    }
 }

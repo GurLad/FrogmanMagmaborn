@@ -20,6 +20,7 @@ public class FrogForgeImporter : MonoBehaviour
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
     public StaticGlobalsLoader StaticGlobalsLoader;
+    public CrossfadeMusicPlayer CrossfadeMusicPlayer;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class FrogForgeImporter : MonoBehaviour
         MapController?.AutoLoadMaps();
         MapController?.AutoLoadTilesets();
         StaticGlobalsLoader?.AutoLoad();
+        CrossfadeMusicPlayer?.AutoLoad();
 #endif
     }
 
@@ -106,6 +108,16 @@ public class FrogForgeImporter : MonoBehaviour
         return new TextFile(UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/" + path));
 #elif MODDABLE_BUILD
         return new TextFile(File.ReadAllText((includesPath ? "" : DataPath) + path), path.Substring(path.LastIndexOf(@"\") + 1));
+#endif
+    }
+
+    public static AudioClip LoadAudioFile(string path)
+    {
+#if UNITY_EDITOR
+        Bugger.Info("Assets/Data/" + path);
+        return UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Data/" + path + ".ogg");
+#elif MODDABLE_BUILD
+        throw new Bugger.Error("Moddable build music editing isn't supported yet!");
 #endif
     }
 

@@ -47,5 +47,9 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.MapController.AutoLoadMaps();
         }
+        if (myScript.CrossfadeMusicPlayer != null && GUILayout.Button("Load Musics"))
+        {
+            myScript.CrossfadeMusicPlayer.AutoLoad();
+        }
     }
 }
