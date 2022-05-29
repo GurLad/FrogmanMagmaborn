@@ -1,0 +1,53 @@
+priority:-1
+unique:F
+~ Requirements
+# This conversation isn't meant to be selected - it just gurantees the same post-battle for every Fashima death event
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:lose:
+# Name: Text.
+~ After battle
+# TBA: Pseudo-kill him
+:setFlag:BrensDied
+:play:GuardTheme3
+Brens: Ha... You're tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+:play:Silence
+Fashima|???: Not so fast, old man.
+:play:ShatteredDream
+:screenShake:
+Brens: Urk!
+:killUnit:Brens
+Frogman||L: W-What? Who are you? Where did you come from?!
+Fashima|???: Seriously, Frogman? Don't you recognize me?
+Frogman||L: Recognize? Wait, you're... Fashima?!
+:if:hasCharacter:Memerian{
+Memerian||L: I knew it. You were holding back before,\a weren't you?
+}
+:if:hasCharacter:Xirveros{
+Xirveros||L: You crazy!
+}
+:if:hasCharacter:Alfred{
+Alfred||L: How DARE you! Using the Magma Emblem you stole!\a From US!
+Fashima: Oh, shut up. It isn't even that one.\a Catch.
+Alfred: What's this crys-
+}
+:else:{
+Fashima: Obviously. Now, let's leave before more Guards arrive.\a Catch.
+Frogman: What's this crys-
+}
+# Teleport
+:screenShake:
+#:loadMap:CloneVatsEntrance
+:loadMap:EndOfBeta
+:loadUnits:
+:setSingleSpeaker:L
+Torment: Well done! You've finished the beta!\a Sorry for the cliffhanger. Heh heh.\a Now, you shall die!
+:lose:
+# TBA: Fashima choice, Bodder battle
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

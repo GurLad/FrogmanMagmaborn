@@ -1,0 +1,32 @@
+priority:-1
+unique:F
+~ Requirements
+# This conversation isn't meant to be selected - it just gurantees the same post-battle for every Fashima death event
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:lose:
+# Name: Text.
+~ After battle
+:setFlag:FashimaDied
+:play:DeadAlly
+Fashima_: Took you... Long enough...
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Gurad1: F-Fashima's down! Everyone, retreat!
+# TBA: Kill all guard units
+Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!
+:if:hasCharacter:Memerian{
+Memerian: Hmpf. She's bold, I'll give her that.
+# TBA: Continue, and decide: do the characters spoil Fashima (supposedly) becoming a Magmaborn, or keep it a surprise?
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
