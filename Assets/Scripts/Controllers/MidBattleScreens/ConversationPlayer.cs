@@ -865,7 +865,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     break;
                 case PlayMode.MidBattle:
-                    // Do nothing
+                    CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
                     break;
                 case PlayMode.PostBattle:
                     origin.Choose(true);

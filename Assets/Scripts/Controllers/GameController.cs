@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     private Camera main;
     private Transform currentMapObject;
     private Transform currentUnitsObject;
-    private string deadUnitDeathQuote;
+    private DeadUnitData deadUnit;
     private bool checkEndTurn;
     private Map selectedMap;
     private int currentKnowledge;
@@ -319,16 +319,17 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public GameState CheckGameState()
     {
         CheckDifficulty();
-        if (deadUnitDeathQuote != null)
+        if (deadUnit != null)
         {
             if (CheckConveresationWait()) // Most characterNumber/alive/whatever commands
             {
                 return GameState.ShowingEvent;
             }
-            else if (deadUnitDeathQuote != "")
+            else if (deadUnit.DeathQuote != "")
             {
-                ConversationPlayer.Current.PlayOneShot(deadUnitDeathQuote);
-                deadUnitDeathQuote = "";
+                ConversationPlayer.Current.OnFinishConversation = () => { if (deadUnit.Origin != null) KillUnit(deadUnit.Origin); };
+                ConversationPlayer.Current.PlayOneShot(deadUnit.DeathQuote);
+                deadUnit.DeathQuote = "";
                 return GameState.ShowingEvent;
             }
             if (CheckPlayerWin())
@@ -345,7 +346,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 playerDeadUnits.ForEach(a => a.Pos = Vector2Int.one * -1);
             }
             enemyCount = units.FindAll(a => !a.TheTeam.IsMainPlayerTeam()).Count;
-            deadUnitDeathQuote = null;
+            deadUnit = null;
         }
         if (checkEndTurn)
         {
@@ -758,14 +759,21 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         else // Perma-death
         {
-            if (PlayerUnits.Contains(unit))
+            deadUnit = new DeadUnitData(unit, unit.DeathQuote);
+            if (unit.DeathQuote != "")
             {
-                PlayerUnits.Remove(unit);
-                DeadPlayerUnits.Add(unit.Name);
+                unit.DeathQuote = "";
             }
-            Destroy(unit.gameObject);
+            else
+            {
+                if (PlayerUnits.Contains(unit))
+                {
+                    PlayerUnits.Remove(unit);
+                    DeadPlayerUnits.Add(unit.Name);
+                }
+                Destroy(unit.gameObject);
+            }
         }
-        deadUnitDeathQuote = unit.DeathQuote; // Since I need to wait for the battle animation to finish first
     }
 
     private void PlayPostBattle()
@@ -1368,6 +1376,18 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         // Hide the conversation player - terrible workaround
         ConversationPlayer.Current.PlayOneShot("");
+    }
+
+    private class DeadUnitData
+    {
+        public Unit Origin { get; set; }
+        public string DeathQuote { get; set; }
+
+        public DeadUnitData(Unit origin, string deathQuote)
+        {
+            Origin = origin;
+            DeathQuote = deathQuote;
+        }
     }
 }
 
