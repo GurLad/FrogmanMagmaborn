@@ -7645,6 +7645,11 @@ PrefabInstance:
       objectReference: {fileID: 1563710285}
     - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
         type: 3}
+      propertyPath: CrossfadeMusicPlayer
+      value: 
+      objectReference: {fileID: 2140982263}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
       propertyPath: ConversationController
       value: 
       objectReference: {fileID: 150707142}
@@ -10113,6 +10118,18 @@ PrefabInstance:
       objectReference: {fileID: 35769312}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b96987bdfab4ce4cbed90f2a29e4153, type: 3}
+--- !u!114 &2140982263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4431875265574107204, guid: 0b96987bdfab4ce4cbed90f2a29e4153,
+    type: 3}
+  m_PrefabInstance: {fileID: 2140982262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe8186a97b40324eb61f119bc4c5261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142617405
 GameObject:
   m_ObjectHideFlags: 0

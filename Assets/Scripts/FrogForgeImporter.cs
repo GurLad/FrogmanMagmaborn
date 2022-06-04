@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 //#define MODDABLE_BUILD // Because Visual Studio doesn't work properly otherwise...
 
 #if MODDABLE_BUILD || UNITY_EDITOR
@@ -10,6 +12,7 @@ public class FrogForgeImporter : MonoBehaviour
 {
 #if MODDABLE_BUILD
     private static string DataPath;
+    private static FrogForgeImporter Current;
 #endif
 
     public ConversationController ConversationController;
@@ -22,9 +25,10 @@ public class FrogForgeImporter : MonoBehaviour
     public StaticGlobalsLoader StaticGlobalsLoader;
     public CrossfadeMusicPlayer CrossfadeMusicPlayer;
 
-    private void Awake()
+    private async void Awake()
     {
 #if MODDABLE_BUILD && !UNITY_EDITOR
+        Current = this;
         DataPath = Application.dataPath.Replace("Frogman Magmaborn_Data", "") + @"\Data\";
         Bugger.Info("Working! " + DataPath);
         ConversationController?.AutoLoad();
@@ -37,7 +41,7 @@ public class FrogForgeImporter : MonoBehaviour
         MapController?.AutoLoadMaps();
         MapController?.AutoLoadTilesets();
         StaticGlobalsLoader?.AutoLoad();
-        CrossfadeMusicPlayer?.AutoLoad();
+        await CrossfadeMusicPlayer?.AutoLoad();
 #endif
     }
 
@@ -111,14 +115,47 @@ public class FrogForgeImporter : MonoBehaviour
 #endif
     }
 
-    public static AudioClip LoadAudioFile(string path)
+    public static async Task<AudioClip> LoadAudioFile(string path)
     {
 #if UNITY_EDITOR
-        Bugger.Info("Assets/Data/" + path);
         return UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Data/" + path + ".ogg");
 #elif MODDABLE_BUILD
-        throw new Bugger.Error("Moddable build music editing isn't supported yet!");
+        //@"file:///D:\Documents\GitHub\FrogmanMagmaborn\Build\New\Moddable (Frog Forge)\Game\Data\Musics\EventThemes/05 Den of Thieves.ogg", AudioType.OGGVORBIS);//"file:////" + DataPath + path, AudioType.OGGVORBIS);
+        string targetPath = "file:///" + (DataPath + path).Replace(@"\", "/").Replace("//", "/") + ".ogg";
+        return await LoadClip(targetPath);
 #endif
+    }
+    // From https://answers.unity.com/questions/1518536/load-audioclip-from-folder-on-computer-into-game-i.html + https://answers.unity.com/questions/1727937/downloadhandleraudioclip-doesnt-return-null-but-do.html
+    private static async Task<AudioClip> LoadClip(string path)
+    {
+        AudioClip clip = null;
+        UnityWebRequest uwr = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.WAV);
+        await uwr.SendWebRequest();
+
+        // wrap tasks in try/catch, otherwise it'll fail silently
+        try
+        {
+            //while (!uwr.isDone) await Task.Delay(5);
+            //((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                throw Bugger.Error("Musics loading error: " + uwr.error);
+            }
+            else
+            {
+                //clip = ((DownloadHandlerAudioClip)uwr.downloadHandler).audioClip;
+                clip = DownloadHandlerAudioClip.GetContent(uwr);
+
+                Bugger.Info("Finished getting the music! Clip is: " + clip.samples);
+            }
+        }
+        catch (System.Exception err)
+        {
+            throw Bugger.Error("Musics loading error: " + err.Message);
+        }
+
+        return clip;
     }
 
     public static bool CheckFileExists<T>(string path) where T : Object // For the future moddable version

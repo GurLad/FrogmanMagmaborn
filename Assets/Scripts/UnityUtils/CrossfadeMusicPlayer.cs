@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,11 @@ public class CrossfadeMusicPlayerObject
 {
     public string Name;
     public AudioClip AudioClip;
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
 
 public class CrossfadeMusicPlayer : MonoBehaviour
@@ -64,12 +70,14 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             mainAudioSource.clip = Tracks[0].AudioClip;
             mainAudioSource.Play();
             Playing = Tracks[0].Name;
+            Bugger.Info("Playing " + Tracks[0].Name + ", tracks amount: " + Tracks.Count);
         }
         GetComponent<SoundController>().Init();
     }
 
     public void Play(string name, bool? keepTimestamp = null)
     {
+        Bugger.Info("Playing " + name + ", tracks amount: " + Tracks.Count);
         if (Playing == name)
         {
             return;
@@ -157,7 +165,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     }
 
 #if UNITY_EDITOR || MODDABLE_BUILD
-    public void AutoLoad()
+    public async Task AutoLoad()
     {
         // Load musics json
         MusicDataHolder dataHolder = new MusicDataHolder();
@@ -169,6 +177,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         // Load music files (additive)
         foreach (MusicDataHolder.MusicData music in dataHolder.Musics)
         {
+            Bugger.Info("Begin music " + music.Name);
             CrossfadeMusicPlayerObject musicObject = Tracks.Find(a => a.Name == music.Name);
             if (musicObject == null)
             {
@@ -176,8 +185,9 @@ public class CrossfadeMusicPlayer : MonoBehaviour
                 musicObject.Name = music.Name;
                 Tracks.Add(musicObject);
             }
-            musicObject.AudioClip = FrogForgeImporter.LoadAudioFile("Musics/" + music.FullFileName);
+            musicObject.AudioClip = await FrogForgeImporter.LoadAudioFile("Musics/" + music.FullFileName);
         }
+        //Bugger.Info("Finished loading! Musics: " + string.Join(", ", Tracks));
 #if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
 #endif
