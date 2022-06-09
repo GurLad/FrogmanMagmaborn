@@ -87,7 +87,7 @@ Kresla: Structures? Here?! This is incredible!\a Who made them? When? How?\a I'v
 }
 :addUnit:Xeplogi
 :loadUnits::player
-Xeplogi|???|R: Hold! Who goes there?
+Xeplogi|???|R: Hold. Who goes there?
 :if:charactersAlive:>0:{
 Frogman: Oh, another Magmaborn?
 Uh, I'm Frogman, and these are my fellow Magmaborn.
@@ -123,17 +123,16 @@ Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acq
 # TODO: Reduce length, it's way too long
 Kresla: Xeplogi of Jess? Of Xeplogi and the Witch fame?!
 Xeplogi: I'm afraid I never caught you name, er...?
-Kresla: Right, sorry. I'm Kresla, a renowned scholar.\a And you are Vengeful Xeplogi, right?
-Xeplogi: ...I never liked that name. Call me Xeplogi, please.
-Kresla: Yeah, whatever. So this is where you disappeared to?!\a Wait, does that mean that Memerian is also here?!
+Kresla: Right, sorry. I'm Kresla, a renowned scholar.\a And you're Vengeful Xeplogi, right?
+Xeplogi: Only my enemies call me that. Please, call me Duke Xeplogi.
+Kresla: I knew it! It IS you! So this is where you disappeared to?!\a Wait, does that mean that Memerian is here too?!
 Xeplogi: Unfortunately, yes.
 I assume you'll run into her eventually.
 Kresla: I can't believe it! A fairy tale hero,\a standing right here besides me!\a This is almost as exciting as the discovery of magic!
+Xeplogi: I'm a hero, then? Oh ho ho! I like the sound of that.
 Frogman: I'm afraid I didn't get any of this.
-Kresla: What, you don't know Xeplogi and the Witch?
-Xeplogi: Is it truly that well-known?
-Kresla: Of course! It's a popular children's story!
-Xeplogi: Children?!
+Kresla: What, you don't know Xeplogi and the Witch?\a It's a popular children's story!
+Xeplogi: W-wait, children?!
 Kresla: In short, there was this duke named Xeplogi,\a who wanted to be immortal.\a He heard about a legendary blacksmith named Memerian,\a who was said to have discovered immortality.\a Xeplogi tried to buy her secret, but she refused.\a They fought, and both disappeared.
 Frogman: That's... a pretty lame story.
 Xeplogi: It's a very rough outline. What really happened was-
@@ -143,7 +142,7 @@ Xeplogi: It's a very rough outline. What really happened was-
 Frogman: A duke? I... see.
 Xeplogi: Indeed I am! Have you ever heard of me, perchance?
 Frogman: No, never.
-Xeplogi: You must have leaved in quite the backwater village then.\a Oh ho ho!
+Xeplogi: You must have lived in quite the backwater village then.\a Oh ho ho!
 Frogman: ...
 Xeplogi: Who were you before arriving here, my dear Fro-
 }
@@ -183,30 +182,27 @@ Xeplogi: You- Ugh, fine.\a Let us do just that, then.
 
 ~ PreRepeat
 :loadUnits::player
-Frogman: Structures again? That must mean-
+Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
 :loadUnits::player
-Xeplogi: Hold! Who goes there?!
-Frogman: It's Frogman-
-Xeplogi: You! How can you speak?
-What manner of black magic is this?!\a Were you sent here by Memerian?!
-Frogman: What? No, it's us-
-Xeplogi: Your trickery cannot fool me, foul demon!\a I, the humble servant of the glorious Tori,\a am the only person worthy enough to be reborn,\a sent to defeat the evil Memerian and\a her nasty minions!
-Frogman: ...Xeplogi. It's me. We're back.\a Did you forget us so quickly?
-Xeplogi: The time for chatter is up! Prepare to be-
+Xeplogi: Frogman, my dear friend! You're back.
+Frogman: Yes.
+Xeplogi: It's so good to see you again.\a I wanted to convey my dissapointment in you.
+Frogman: Likew- Wait, what?
+Xeplogi: You died last time we fought together.\a That was a very bad idea.
+Frogman: It... wasn't my idea.
+Xeplogi: Really? Then we should punish whoever suggested it.\a It was absolutley terrible.
+Frogman: Xeplogi, nobody suggested it! I was killed!
+Xeplogi: We have a murderer in our ranks?! Who could it be?
+:setSpeaker:Xeplogi||L
 :addGenericCharacter:Guard1:young
 :addGenericCharacter:Guard2:old
 :play:GuardTheme
 :loadUnits:
 Guard1: ...Pfft! Ha ha ha!
 Guard2: Silence!\a Ugh, look! You've ruined our ambush!
-Xeplogi: W-who dares interr-
-Frogman: Oh no. We don't have time for this. Uh...\a Xeplogi! On behalf of the divine Tori,\a I order you to join us!
-Xeplogi: You cannot speak for him, fool! Only I can!
-Frogman: Oops. Um... Please join us anyway?
-Guard1: Oh my! Please go on! This is the best show ever!
-Xeplogi: Do not mock me, human! Or you shall feel the wrath of Tori!
-Frogman: Yeah! These humans were probably sent here by\a Memerian! We must defeat them!
-Xeplogi: You might be on to them, Frog!\a Fine then, let us join forces!
-Frogman: ...That was surprisingly easy.
-:setFlag:FoundXeplogiLoop
+Xeplogi||L: Oh my! Look at all these monsters and humans!
+Frogman: Yes, they're what killed us last time.
+We should stop talking if we want to stay alive this time.
+Xeplogi: Now, that's a good idea.\a Keep them coming, boy.
+Frogman: That- Ugh. Let's just get started.
