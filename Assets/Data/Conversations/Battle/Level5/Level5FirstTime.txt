@@ -20,40 +20,82 @@ Frogman: Everyone, this way!\a Let's get out of here!
 :loadUnits:Part2RestArea
 :play:Anticipation
 :if:hasCharacter:Xeplogi{
-Xeplogi: Hold!\a Where do you come from, monster friends?\a Are you Tori minions sent to serve me?
-Frogman: What? No, we're fellow Magmaborn.
-Xeplogi: What?
-Frogman: When you died, you had a crystal with you - an emblem,\a you might say, correct?
-Xeplogi: Are you talking about the holy Tori relic?
-Frogman: Yes, whatever. Anyway, this allowed you to be reborn as-
-Xeplogi: And serve the glorious Tori in his holy crusade against\a Memerian!
-Frogman: I- you know what, never mind.\a Yes, we're Tori followers.\a Happy now?
-Xeplogi: Indeed! Let us march on!
-Frogman: *sigh*
+Xeplogi: Ah. Thank you for helping me escape these lunatics.
+Frogman: You mentioned knowing these... Guards before.\a Who are they? What are they doing here?
+Xeplogi: They are annoying pests.
+They are as numerous as the monsters,\a and about as intelligent.
+In fact, I doubt that there's much human about them.
+Frogman: Really? They seemed human enough.
+Xeplogi: Did you notice how they just disintegrated when killed?\a Like the monsters?
+:if:hasCharacter:Kresla{
+Kresla: Oh! I was wondering about that!\a Do you have any idea how they do that?
+}
+:else:{
+Frogman: Huh. Do you know why?
+}
+Xeplogi: I do not, unfortunatly. It must be some sort of magic.\a And the only one I know who might have the answer is...\a Memerian, unfortunatly.
+:if:hasCharacter:Xirveros{
+Xirveros: Oh! I know! They just eat three apples a day!
+Xeplogi: ...I highly doubt that.
+}
+Frogman: Who is this Memerian?
+Xeplogi: She is an evil and backstabbing witch.
+She used to be a blacksmith,\a but then started meddling with dark magics.\a This is how she found both our Magma Emblems.
+Frogman: So... she's another Magmaborn?
+Xeplogi: Yes. We are doomed to suffer her presence for all eternity.\a Luckily, I'm here to protect you from her trickery.
+Frogman: I see. And she knows what's the deal with these Guards?
+Xeplogi: Whether she does or not, all she ever speaks is lies,\a so asking her about it is futile.\a But let us stop speaking of the devil.\a We should move on before the Guards catch up to us.
+Frogman: Actually, we're on our way to that weird fortress.
+Xeplogi: You what?! But that is suicide!
+Frogman: You've actually been there?!
+Xeplogi: N-no, but it sounds dangerous!
+Frogman: ...So you're a coward, then?
+Xeplogi: How dare you insult my honour like that!
+Frogman: Then let's go!
+Xeplogi: Wait, I didn't-
+# TBA: Add this command
+:hideUnit:Frogman
 :if:hasCharacter:Firbell{
-Firbell: Frogman.
-Frogman: Yes?
-Firbell: Are you sure that siding with this lunatic is a good idea?
-Frogman: He's a Magmaborn, like us.\a We should all help each other,\a regardless of our conditions.
-Firbell: ...Very well. I will trust you on this.\a But these humans... Why are we fighting them?
-Frogman: They attacked us.\a Do we need another reason?
-Firbell: Yet they are sentinet beings, like us.\a Should we not join forces, as you yourself said?
-Frogman: Xeplogi didn't attack us.
-Firbell: We do appear as monsters.
-What if they were sent here by Irenhold?\a We must inform them I am here.
-Frogman: So this is what it's all about, eh?
-Firbell: It would be dishonorable to fight without a formal-
-Frogman: No, I get it. We'll try talking to them then.\a But I doubt they'll listen.
-Firbell: Very well. Thank you, Frogman.
-:setFlag:FirbellGuards1
-# TBA: Add a similar conversation outside FirstTime, and a follow-up one
+Firbell: It is just the way that he is.\a You will get used to it,\a Logi.
+Xeplogi: Then he's as crazy as they come!\a Why are you following him?
+Firbell: ...Do you have a better idea?
+Xeplogi: How about you all follow me, instead?\a I assure you, I'm quite the benelovent leader.
+Firbell: ...Goodbye,\a Duke of nowhere.
+:hideUnit:Firbell
+Xeplogi: I'm the Duke of Jess, not Nowhere!\a W-wait, don't leave me!\a ...
+Ugh, fine...
+}
+:else:{
+And he's gone...\a Ugh, guess I'll follow him...
 }
 }
 :else:{
-Frogman||L: Xeplogi didn't make it, huh?
+Frogman||L: Xeplogi didn't make it, huh?\a And what's the deal with these... Guards?
 :if:hasCharacter:Kresla{
-Kresla: No. He was a weird one. I wonder what's his story.\a Who's this Tori?\a How is it possible that he has never seen a\a Magmaborn before? Where did he come from? When?\a So many questions!
-Frogman: Yes, well, I'm sure we'll meet him again one day.
+Kresla: They were so interesting! What are they doing here?
+Did they build the fortress and all other structures?\a Why are they fighting us?\a And most of all,\a why do they disintigrate upon death?
+Frogman: I don't kn- wait, disintigrate?
+Kresla: Didn't you notice? Whenever one dies,\a they just disappear, like the monsters.\a Could they be the same thing?
+But no, these Guards appear to have intelligence...\a This place holds so many mysteries!
+Frogman: Yeah. That's definitley weird.
+Kresla: I do have a few theo-
+Frogman: Kresla. Let's leave before more Guards show up.
+Kresla: But-
+Frogman: No time! We must run!
+:hideUnit:Frogman
+Kresla: Run from what? Hey, wait for me!
+}
+:else:{
+:if:hasCharacter:Firbell{
+Firbell: That is good. I did not like him.
+Frogman: Because he claimed you aren't a real princess?
+Firbell: Yes.\a Did you notice how the humans disintigrated?
+Frogman: Holy subject change, Firbell.\a Anyway- wait, what?\a Disintigrated?
+Firbell: Yes. Whenever one died, they just disappeared.\a Like the monsters.
+Frogman: I didn't notice. What do you think this means?
+Firbell: I do not know.
+Frogman: ...\a I see. Well, let's not worry about it for now.\a We're getting pretty close to the fortress.\a Let's just move on.
+Firbell: Let us.
 }
 :else:{
 :if:hasCharacter:Xirveros{
@@ -61,14 +103,20 @@ Xirveros: Ooze dead? No! Me like ooze.\a Me write ooze song!
 Frogman: No, please don't-
 Xirveros: An ooze was here    \w@
 Everyone could hear \w@
-He liked to scream  \w@
-Smelled like cream  \w@
-Over and over       \w@
-Over and over       \w@
+As green as the sea \w@
+He was nice to me   \w@
+Said he was of Jess \w@
+And I just said yes \w@
 Frogman: ...Wow.
+Xirveros: And what about humans? They just vanished!\a Like we!
+Frogman: Because we ran away?
+Xirveros: No, when fighting! They vanish like monsters!
+Frogman: I'm not in the mood for your nonsense.\a Let's just go.
+Xirveros: Frogman, me go!
 }
 :else:{
 Oh well.
+}
 }
 }
 }
@@ -109,7 +157,7 @@ Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy 
 Kresla||L: Wow, I've never seen you before! Who are you?
 }
 :if:hasCharacter:Xirveros{
-Xirveros||L: Hello, green friend! We can now have green party!
+Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
 Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
 }
 }
