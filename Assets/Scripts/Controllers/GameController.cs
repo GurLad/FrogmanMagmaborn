@@ -752,10 +752,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         if (!GameCalculations.PermaDeath && unit.TheTeam.IsMainPlayerTeam() && unit.Name != StaticGlobals.MainCharacterName) // No perma-death
         {
             Bugger.Info("Pseudo-killed " + unit.Name);
-            unit.Statue = true;
-            unit.ReinforcementTurn = int.MaxValue;
-            unit.PreviousPos = unit.Pos;
-            unit.Pos = -Vector2Int.one;
+            PseudoKillUnit(unit);
         }
         else // Perma-death
         {
@@ -774,6 +771,14 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 Destroy(unit.gameObject);
             }
         }
+    }
+
+    public void PseudoKillUnit(Unit unit)
+    {
+        unit.Statue = true;
+        unit.ReinforcementTurn = int.MaxValue;
+        unit.PreviousPos = unit.Pos;
+        unit.Pos = -Vector2Int.one;
     }
 
     private void PlayPostBattle()

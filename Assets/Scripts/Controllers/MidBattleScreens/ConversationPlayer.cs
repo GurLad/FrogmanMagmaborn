@@ -448,13 +448,32 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     break;
                 case "killUnit":
-                    // Params: string unitName
+                    // Params: string unitName, bool showDeathQuote = true
                     // Kills a unit.
-                    AssertCommand("killUnit", args, CAT.String);
+                    AssertCommand("killUnit", args, CAT.String, CAT.OpBool);
                     Unit target4 = GameController.Current.GetNamedUnit(args[0]);
                     if (target4 != null)
                     {
+                        if (args.Length > 1 && args[1] == "F")
+                        {
+                            // Remove death quote before killing
+                            target4.DeathQuote = "";
+                        }
                         GameController.Current.KillUnit(target4);
+                    }
+                    else
+                    {
+                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                    }
+                    break;
+                case "hideUnit":
+                    // Params: string unitName
+                    // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
+                    AssertCommand("hideUnit", args, CAT.String);
+                    Unit target5 = GameController.Current.GetNamedUnit(args[0]);
+                    if (target5 != null)
+                    {
+                        GameController.Current.PseudoKillUnit(target5);
                     }
                     else
                     {
