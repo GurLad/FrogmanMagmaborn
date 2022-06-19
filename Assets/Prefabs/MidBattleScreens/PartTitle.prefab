@@ -127,14 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b799ea98bcfd348ac3b41d94d2027d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySpeed: 3
-  FullDelay: 1.5
+  DisplaySpeed: 10
+  FullDelay: 0.8
+  PostDelay: 2.5
   Palette:
     Colors:
-    - {r: 0, g: 0, b: 0, a: 1}
-    - {r: 0.3137255, g: 0.18823531, b: 0, a: 1}
-    - {r: 0.6745098, g: 0.5019608, b: 0, a: 1}
-    - {r: 0.98823535, g: 0.72156864, b: 0, a: 1}
+    - id: 55
+    - id: 50
+    - id: 36
+    - id: 22
   TitleParts:
   - {fileID: 2790125455458405082}
   - {fileID: 4538067975176368946}

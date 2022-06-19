@@ -6249,7 +6249,7 @@ MonoBehaviour:
       ~
 
       #
-      Gurantee a map that makes sense for the arrivals
+      Guarantee a map that makes sense for the arrivals
 
       mapID:Level5-1
 
@@ -6317,52 +6317,51 @@ MonoBehaviour:
 
       }
 
-      Xeplogi: I do not, unfortunatly. It must
-      be some sort of magic.\a And the only one I know who might have the answer
-      is...\a Memerian, unfortunatly.
+      Xeplogi: I do not, unfortunately. It
+      must be some sort of magic.\a And the only one I know who might have the answer
+      is...\a Memerian.
 
       :if:hasCharacter:Xirveros{
 
-      Xirveros:
-      Oh! I know! They just eat three apples a day!
+      Xirveros: Oh! I
+      know! They just eat three apples a day!
 
-      Xeplogi: ...I highly doubt
-      that.
+      Xeplogi: ...I highly doubt that.
 
       }
 
-      Frogman: Who is this Memerian?
+      Frogman:
+      Who is this Memerian?
 
-      Xeplogi: She is
-      an evil and backstabbing witch.
+      Xeplogi: She is an evil and backstabbing witch.
 
-      She used to be a blacksmith,\a but then
-      started meddling with dark magics.\a This is how she found both our Magma Emblems.
+      She
+      used to be a blacksmith,\a but then started meddling with dark magics.\a This
+      is how she found both our Magma Emblems.
+
+      Frogman: So... she''s another
+      Magmaborn?
+
+      Xeplogi: Yes. We are doomed to suffer her presence for all
+      eternity.\a Luckily, I''m here to protect you from her trickery.
 
       Frogman:
-      So... she''s another Magmaborn?
+      I see. And she knows what''s the deal with these Guards?
 
-      Xeplogi: Yes. We are doomed to suffer
-      her presence for all eternity.\a Luckily, I''m here to protect you from her
-      trickery.
+      Xeplogi: Whether
+      she does or not, all she ever speaks is lies,\a so asking her about it is futile.\a
+      But let us stop speaking of the devil.\a We should move on before the Guards
+      catch up to us.
 
-      Frogman: I see. And she knows what''s the deal with these
-      Guards?
+      Frogman: Actually, we''re on our way to that weird fortress.
 
-      Xeplogi: Whether she does or not, all she ever speaks is lies,\a
-      so asking her about it is futile.\a But let us stop speaking of the devil.\a
-      We should move on before the Guards catch up to us.
-
-      Frogman: Actually,
-      we''re on our way to that weird fortress.
-
-      Xeplogi: You what?! But that
-      is suicide!
+      Xeplogi:
+      You what?! But that is suicide!
 
       Frogman: You''ve actually been there?!
 
-      Xeplogi: N-no,
-      but it sounds dangerous!
+      Xeplogi:
+      N-no, but it sounds dangerous!
 
       Frogman: ...So you''re a coward, then?
 
@@ -6426,7 +6425,7 @@ MonoBehaviour:
 
       Did they build the
       fortress and all other structures?\a Why are they fighting us?\a And most of
-      all,\a why do they disintigrate upon death?
+      all,\a why do they disintegrate upon death?
 
       Frogman: I don''t kn- wait,
       disintigrate?
@@ -6438,7 +6437,7 @@ MonoBehaviour:
       no, these Guards appear to have intelligence...\a This place holds so many
       mysteries!
 
-      Frogman: Yeah. That''s definitley weird.
+      Frogman: Yeah. That''s definitely weird.
 
       Kresla: I
       do have a few theo-
@@ -6467,10 +6466,10 @@ MonoBehaviour:
       Frogman: Because he claimed you aren''t
       a real princess?
 
-      Firbell: Yes.\a Did you notice how the humans disintigrated?
+      Firbell: Yes.\a Did you notice how the humans disintegrated?
 
       Frogman:
-      Holy subject change, Firbell.\a Anyway- wait, what?\a Disintigrated?
+      Holy subject change, Firbell.\a Anyway- wait, what?\a Disintegrated?
 
       Firbell:
       Yes. Whenever one died, they just disappeared.\a Like the monsters.
@@ -6830,7 +6829,7 @@ MonoBehaviour:
       Frogman: Yes.
 
       Xeplogi:
-      It''s so good to see you again.\a I wanted to convey my dissapointment in you.
+      It''s so good to see you again.\a I wanted to convey my disappointment in you.
 
       Frogman:
       Likew- Wait, what?
@@ -9071,6 +9070,53 @@ MonoBehaviour:
 
 '
     Name: Level8Generic
+  - Text: 'priority:21
+
+      unique:F
+
+      ~ Requirements
+
+      ~ Demands
+
+      #
+      Nothinig
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: Test
+
+      :showPartTitle:Part
+      1:Monster
+
+      Frogman: Hi.
+
+      :showPartTitle:He said:Hi
+
+      Frogman:
+      Bye.
+
+      :showPartTitle:He said:Bye
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Test
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &46070166
@@ -31272,7 +31318,7 @@ MonoBehaviour:
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman
-  - Firbell
+  - Kresla
   - Xirveros
   - Memerian
   DebugUnlimitedMove: 0

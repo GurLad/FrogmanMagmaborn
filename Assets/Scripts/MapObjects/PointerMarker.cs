@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PointerMarker : Marker
 {
-    public PalettedSprite PalettedSprite;
+    public new PalettedSprite PalettedSprite;
     private void Reset()
     {
         PalettedSprite = GetComponent<PalettedSprite>();

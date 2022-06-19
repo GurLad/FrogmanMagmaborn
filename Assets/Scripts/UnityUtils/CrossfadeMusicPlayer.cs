@@ -163,7 +163,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
     }
 
 #if UNITY_EDITOR || MODDABLE_BUILD
-    public async Task AutoLoad()
+    public void AutoLoad()
     {
         // Load musics json
         MusicDataHolder dataHolder = new MusicDataHolder();

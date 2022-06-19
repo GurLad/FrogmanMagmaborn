@@ -8,6 +8,7 @@ public class PartTitleAnimation : MidBattleScreen
     [Header("Stats")]
     public float DisplaySpeed;
     public float FullDelay;
+    public float PostDelay;
     public Palette Palette;
     [Header("Objects")]
     public List<PalettedText> TitleParts;
@@ -41,12 +42,24 @@ public class PartTitleAnimation : MidBattleScreen
     private void Update()
     {
         count += Time.deltaTime;
-        if (currentPart == TitleParts.Count && FullDelay > 0)
+        if (displayPart == 0 && currentPart > 0 && FullDelay > 0)
         {
             if (count >= FullDelay)
             {
                 count -= FullDelay;
                 FullDelay = -1;
+            }
+            else
+            {
+                return;
+            }
+        }
+        if (currentPart == TitleParts.Count && PostDelay > 0)
+        {
+            if (count >= PostDelay)
+            {
+                count -= PostDelay;
+                PostDelay = -1;
             }
             else
             {

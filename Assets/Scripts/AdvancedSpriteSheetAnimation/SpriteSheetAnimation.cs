@@ -10,7 +10,7 @@ public class SpriteSheetAnimation : MonoBehaviour
     public float Speed;
     public bool Active;
     [SerializeField]
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     private List<Sprite> frames;
     private float count = 0;
     private int currentFrame = 0;

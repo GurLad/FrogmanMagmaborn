@@ -3,7 +3,7 @@ unique:T
 ~
 roomNumber:5
 ~
-# Gurantee a map that makes sense for the arrivals
+# Guarantee a map that makes sense for the arrivals
 mapID:Level5-1
 ~
 :play:BeforeBattle2
@@ -33,7 +33,7 @@ Kresla: Oh! I was wondering about that!\a Do you have any idea how they do that?
 :else:{
 Frogman: Huh. Do you know why?
 }
-Xeplogi: I do not, unfortunatly. It must be some sort of magic.\a And the only one I know who might have the answer is...\a Memerian, unfortunatly.
+Xeplogi: I do not, unfortunately. It must be some sort of magic.\a And the only one I know who might have the answer is...\a Memerian.
 :if:hasCharacter:Xirveros{
 Xirveros: Oh! I know! They just eat three apples a day!
 Xeplogi: ...I highly doubt that.
@@ -73,11 +73,11 @@ And he's gone...\a Ugh, guess I'll follow him...
 Frogman||L: Xeplogi didn't make it, huh?\a And what's the deal with these... Guards?
 :if:hasCharacter:Kresla{
 Kresla: They were so interesting! What are they doing here?
-Did they build the fortress and all other structures?\a Why are they fighting us?\a And most of all,\a why do they disintigrate upon death?
+Did they build the fortress and all other structures?\a Why are they fighting us?\a And most of all,\a why do they disintegrate upon death?
 Frogman: I don't kn- wait, disintigrate?
 Kresla: Didn't you notice? Whenever one dies,\a they just disappear, like the monsters.\a Could they be the same thing?
 But no, these Guards appear to have intelligence...\a This place holds so many mysteries!
-Frogman: Yeah. That's definitley weird.
+Frogman: Yeah. That's definitely weird.
 Kresla: I do have a few theo-
 Frogman: Kresla. Let's leave before more Guards show up.
 Kresla: But-
@@ -89,8 +89,8 @@ Kresla: Run from what? Hey, wait for me!
 :if:hasCharacter:Firbell{
 Firbell: That is good. I did not like him.
 Frogman: Because he claimed you aren't a real princess?
-Firbell: Yes.\a Did you notice how the humans disintigrated?
-Frogman: Holy subject change, Firbell.\a Anyway- wait, what?\a Disintigrated?
+Firbell: Yes.\a Did you notice how the humans disintegrated?
+Frogman: Holy subject change, Firbell.\a Anyway- wait, what?\a Disintegrated?
 Firbell: Yes. Whenever one died, they just disappeared.\a Like the monsters.
 Frogman: I didn't notice. What do you think this means?
 Firbell: I do not know.
@@ -235,7 +235,7 @@ Frogman: Structures again? That must mean...
 :loadUnits::player
 Xeplogi: Frogman, my dear friend! You're back.
 Frogman: Yes.
-Xeplogi: It's so good to see you again.\a I wanted to convey my dissapointment in you.
+Xeplogi: It's so good to see you again.\a I wanted to convey my disappointment in you.
 Frogman: Likew- Wait, what?
 Xeplogi: You died last time we fought together.\a That was a very bad idea.
 Frogman: It... wasn't my idea.

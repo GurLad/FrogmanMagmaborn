@@ -12,7 +12,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private enum StartLineResult { None = 0, LoadMap = 1, LoadUnits = 2, Fade = 4, MidBattleScreen = 8, FinishLevel = 16, FinishConversation = 32, Wait = 64 }
     private enum PlayMode { PreBattle, MidBattle, PostBattle }
 
-    public new static ConversationPlayer Current;
+    public static ConversationPlayer Current;
     [Header("Stats")]
     public float LettersPerSecond;
     public int LineWidth = 22;

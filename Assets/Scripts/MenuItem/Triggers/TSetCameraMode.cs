@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class TSetCameraMode : Trigger
 {
     public CameraController.CameraMode CameraMode;
-    private Text Text;
-    private CameraController camera
+    private Text text;
+    private new CameraController camera
     {
         get
         {
@@ -16,7 +16,7 @@ public class TSetCameraMode : Trigger
     }
     private void Start()
     {
-        Text = GetComponent<Text>();
+        text = GetComponent<Text>();
         UpdateText();
     }
     public override void Activate()
@@ -26,6 +26,6 @@ public class TSetCameraMode : Trigger
     }
     private void UpdateText()
     {
-        Text.text = (camera.Mode & CameraMode) != CameraController.CameraMode.Default ? "On" : " Off";
+        text.text = (camera.Mode & CameraMode) != CameraController.CameraMode.Default ? "On" : " Off";
     }
 }

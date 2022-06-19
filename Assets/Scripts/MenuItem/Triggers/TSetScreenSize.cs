@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TSetScreenSize : Trigger
 {
-    private Text Text;
-    private CameraController camera
+    private Text text;
+    private new CameraController camera
     {
         get
         {
@@ -15,7 +15,7 @@ public class TSetScreenSize : Trigger
     }
     private void Start()
     {
-        Text = GetComponent<Text>();
+        text = GetComponent<Text>();
         UpdateText();
     }
     public override void Activate()
@@ -25,6 +25,6 @@ public class TSetScreenSize : Trigger
     }
     private void UpdateText()
     {
-        Text.text = "X" + (camera.CurrentMultiplier + 1);
+        text.text = "X" + (camera.CurrentMultiplier + 1);
     }
 }

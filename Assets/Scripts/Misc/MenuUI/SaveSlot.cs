@@ -13,7 +13,7 @@ public class SaveSlot : MonoBehaviour
     public List<GameObject> ContinueOnlyObjects;
     private int currentSlot;
     private int previousSign;
-    private AdvancedSpriteSheetAnimation animation = null;
+    private new AdvancedSpriteSheetAnimation animation = null;
 
     private void Start()
     {

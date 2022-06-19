@@ -22,7 +22,7 @@ public class PalettedSprite : MonoBehaviour
     [Range(0,3)]
     private int palette;
     private bool ui;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     private Image image;
     private bool initialized = false;
 
