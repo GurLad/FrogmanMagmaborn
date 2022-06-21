@@ -9,42 +9,57 @@ hasCharacter:Xeplogi
 :addUnit:Memerian
 :loadUnits::player
 :play:BeforeBattle
-Xeplogi: YOU! I've finally found you!\a The demon who has plagued my life and trapped me here!\a In the name of the divinie Tori-
-Memerian|???: Hey. You there. Who are you?\a And what are you doing with Xeplogi the mad?
-Xeplogi: The mad?! Have you no shame, fiend?! I shall-
-Frogman||L: My name is Frogman. Who might you be?
-Xeplogi||L: She... she is the horrible Memerian!
-Memerian: Just Memerian will do, thanks.
+Frogman: Huh? Who's the golem standing there?
 :if:hasCharacter:Firbell{
 :setFlag:FirbellSawMemerian
-Firbell||L: ...Memerian?
+Firbell||L: ...You... Seem familiar...
 }
-Xeplogi||L: The source of all evil! The archnemesis of Tori!\a A devilish monster! A-
-Frogman||L: I get it, Xeplogi.
-# Memerian is afraid to talk about Torment in public, and rightly so.
-:if:charactersAlive:<2{
-Memerian: Anyway. Frogman, were you sent here by Torment?
-Frogman: Wait... you know Torment?!
+Memerian|???: ...
+Xeplogi: Ah. The deplorable Memerian shows her hideous face again.
+Memerian: Ah. The deceitful thief dares insulting me.\a But I don't care for you, Xeplogi.\a Who are your friends there?
+Xeplogi: Hmpf. None of your business.\a Now, get out of here, or suffer the consequences.
+Memerian: Are you their boss?
+Xeplogi: Uh-
+Memerian: Didn't think so.\a So. Introcude yourselves.
+Frogman: Um, I'm Frogman.
+:if:hasCharacter:Firbell{
+Firbell||L: Firbell.\a I... seem to remember you from somewhere.\a Do I know you?
+Memerian: Not anymore.
+Firbell: Excuse me?
 }
 :else:{
-Memerian: Anyway. Frogman, may we speak in private?
-Frogman: What for?
-Memerian: Let's call them... the divine Tori.
-Frogman: Who?\a Wait, you mean Tor-
-Memerian: Yes.
-:if:hasCharacter:Firbell{
-Firbell: Who are you talking about?
-}
 :if:hasCharacter:Kresla{
-Kresla: Who?
+Kresla||L: Hi! I'm Kresla, a renowned scholar!\a Are you truly Memerian the Witch?!
+Memerian: I'm no witch. I'm an honest wizard and blacksmith.\a Do you actually believe Xeplogi's stupid stories?
 }
+:else:{
 :if:hasCharacter:Xirveros{
-Xirveros: Tori? No! No Tori!
+Xirveros||L: Long time, Memerian! You okay?
+Memerian: Hi, Xirveros. Yes, I'm fine.\a Too bad you're still... you.
 }
 }
-Xeplogi||L: Do not listen to her words of trickery!\a She-
-Memerian: Will you shut Xeplogi up, or shall I?
-Xeplogi: Trying to turn Frogman to your side? Ha!\a Frogman will never help the likes of you!
+}
+Xeplogi||L: T-that's enough! Stop talking to this trickster at once!
+All she ever does is steal and betray!
+Memerian: Ha! Oh, the irony. Have you no shame, Xeplogi?
+Frogman: Uh, look, I'm not sure what's your issue,\a but shouldn't we work together against-
+Memerian: Work together? He murdered me!
+Xeplogi: She stole my Magma Emblem!
+Memerian: You stole it from me first, you hypocrite!
+Frogman: Uh-
+Xeplogi||L: It was rightfully mine, you... you twister of truths!
+Memerian: That's not even a real insult, you absolute liquid!
+Xeplogi: Neither is that!
+Frogman||L: Can you please-
+Xeplogi: Why are you even trying to reason with her, Frogman?\a Was I not a good and trustworthy ally?
+Memerian: Oh, please. You're about as good in combat as a tree.\a I, on the other hand,\a have actual experience fighting the Guards.\a And winning.
+Frogman: Really?
+Memerian: I've been to the Fortress. Multiple times.
+Frogman: Seriously?! We've been trying to reach that place for ages!
+Xeplogi: Yes. And we can still get there without her help.
+Memerian||R: Ha! Good luck with that.
+Xeplogi||R: W-why, you little-
+Frogman: Ugh. Just stop, you two. Let me think.
 :call:Choice
 :setFlag:MetMemerian
 
@@ -52,23 +67,7 @@ Xeplogi: Trying to turn Frogman to your side? Ha!\a Frogman will never help the 
 :play:AfterBattle
 Frogman: Whew. That was... tough.
 :if:hasCharacter:Xeplogi{
-Xeplogi: Yes! At long last, I have vanquished the evil Memerian!\a Memerian is gone!
-Frogman: Yes, she is.
-Xeplogi: I am free! Free of her curse!\a Any moment now!
-Frogman: Uh, Xeplogi. Hate to break it to you, but...
-Xeplogi: Tori! She's dead! I am free!\a I am FREE!\a TORI!
-Frogman: Xeplogi. Tori isn't real.
-Xeplogi: S-silence, you heretic! Tori is real,\a and h-he'll reward me any minute now!\a ...\a Tori?!
-Frogman: ...
-Xeplogi: T-Tori! I... She's... How can this be...
-:if:hasCharacter:Firbell{
-Firbell: ...Let us give him a moment alone to recover.
-Frogman: Yes.
-}
-:else:{
-Frogman: Xeplogi... Let's give him a moment alone to recover.
-}
-Xeplogi: ...
+
 }
 :else:{
 :if:hasCharacter:Memerian{
@@ -113,30 +112,34 @@ Frogman: Really? Then why were you fighting the Guards?
 ~ Choice
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
-Frogman||L: I trust Xeplogi.
-If he claims you're evil, there must be a reason.
-Memerian: ...Seriously?\a What is wrong with you people?
-Xeplogi: Ha! Your time is up, Memerian!
+:setSpeaker:Memerian||R
+Frogman: All right. Xeplogi, I trust you on this.\a Memerian, please leave this place.
+Xeplogi||L: Ha! Take that, Memerian!
+Memerian: Pfft. Just try and move me.
 :play:GuardTheme
 :loadUnits:
 :addGenericCharacter:Guard1:
+:setSpeaker:Memerian||L
 Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
 :setTeam:Memerian:monster
-Memerian: You've left me no choice, Frogman.\a Prepare to die.
+:setSpeaker:Memerian||R
+Frogman: There's no need for us to fight, Memerian.\a We have a common-
+Memerian: Oh, don't even try to sweet-talk me, Frogman.\a You've made your choice.\a Now, prepare to die.
 }
 :else:{
-Frogman||L: Sorry, Xeplogi, but you're obviously insane.\a I've never heard of this Tori,\a and I'd like to hear Memerian out.
-Xeplogi: You... you traitor! I shall destroy you!
-Memerian: Don't mind him.\a He's always like that.
+:setSpeaker:Memerian||R
+Frogman: Memerian. Can you help us reach the Fortress?
+Memerian: Gladly.
+Xeplogi||R: What?! Frogman, is this a joke?!\a Are you seriously going to join up with her?!
+Frogman: Yes. I'm sorry, Xeplogi.\a But she appears knowledgeable about everything here.\a And she's willing to help us.
+Memerian: Not him, though. He should rot in hell forever.
+Xeplogi||R: As if I'd accept your help, you demon!\a And Frogman, you too!\a How dare you betray me like this!
+Frogman: This wasn't-
 :play:GuardTheme
 :loadUnits:
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
 Guard1: What is all this ruckus?\a Magmaborn?!
-Xeplogi: I am NOT one of these so-called Magmaborn!\a They have betrayed me!\a Let us join forces!
-Guard2: Heh, look, a crazy Magmaborn.
-Xeplogi: Crazy? Me?!
-Guard1: We have no time for foolishness!\a Everyone, charge!
-Xeplogi: You will regret this!\a For Tori!
+Xeplogi||R: It's too late now, Frogman.\a Prepare to feel my wrath!
 :setTeam:Xeplogi:monster
 }
