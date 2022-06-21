@@ -630,6 +630,16 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     AssertCommand("markDone", args);
                     origin.Choose(true);
                     break;
+                case "setCounter":
+                    // Params: string name, int amount
+                    AssertCommand("setCounter", args, CAT.String, CAT.Int);
+                    SavedData.Save("ConversationData", "Counter" + args[0], int.Parse(args[1]));
+                    break;
+                case "addCounter":
+                    // Params: string name, int amount
+                    AssertCommand("addCounter", args, CAT.String, CAT.Int);
+                    SavedData.Append("ConversationData", "Counter" + args[0], int.Parse(args[1]));
+                    break;
 
                 // Syntax commands (ifs, functions...)
 

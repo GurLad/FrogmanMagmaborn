@@ -112,6 +112,7 @@ Frogman: Really? Then why were you fighting the Guards?
 ~ Choice
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
+:setCounter:MemerianXeplogiBalance:-1
 :setSpeaker:Memerian||R
 Frogman: All right. Xeplogi, I trust you on this.\a Memerian, please leave this place.
 Xeplogi||L: Ha! Take that, Memerian!
@@ -127,6 +128,7 @@ Frogman: There's no need for us to fight, Memerian.\a We have a common-
 Memerian: Oh, don't even try to sweet-talk me, Frogman.\a You've made your choice.\a Now, prepare to die.
 }
 :else:{
+:setCounter:MemerianXeplogiBalance:1
 :setSpeaker:Memerian||R
 Frogman: Memerian. Can you help us reach the Fortress?
 Memerian: Gladly.

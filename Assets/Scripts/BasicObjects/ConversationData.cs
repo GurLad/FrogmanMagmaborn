@@ -147,6 +147,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "hasFlag":
                 // Return whether a conversation flag is turned on
                 return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;
+            case "compareCounter":
+                // Return whether a conversation counter matches the given value
+                return MeetsComparisonRequirement(parts[1][0], SavedData.Load("ConversationData", "Counter" + parts[1], 0), int.Parse(parts[1].Substring(1)));
             case "numRuns":
                 // Return whether a certain number of runs was reached.
                 return MeetsComparisonRequirement(parts[1][0], SavedData.Load<int>("NumRuns"), int.Parse(parts[1].Substring(1)));
