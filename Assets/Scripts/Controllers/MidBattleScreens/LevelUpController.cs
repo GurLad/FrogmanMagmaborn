@@ -59,14 +59,16 @@ public class LevelUpController : MidBattleScreen
         Unit unit = players[currentUnitID];
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(unit.Name);
         UnitInfo.text = "\n" + unit + "\n\n\nLevel:" + unit.Level + "\n\n";
+        int numStats = GameCalculations.StatsPerLevel(unit.TheTeam, unit.Name);
+        // Technically should be combination, but adding factorial etc. seems like an overkill, considering the max amount of options is 3
+        int options = unit.Stats.SumGrowths <= numStats ? 1 : unit.Stats.SumGrowths; // Pick min amount of options, see above
         for (int i = 0; i < numOptions; i++)
         {
             Stats current;
-            int numStats = GameCalculations.StatsPerLevel(unit.TheTeam, unit.Name);
             do
             {
                 current = unit.Stats.GetLevelUp(numStats);
-            } while (levelUpObjects.Find(a => a.Stats == current) != null);
+            } while (levelUpObjects.Find(a => a.Stats == current) != null || i >= options);
             levelUpObjects[i].Stats = current;
             levelUpObjects[i].Text.text = levelUpObjects[i].Stats.ToColoredString().Replace("\n", "\n\n");
         }

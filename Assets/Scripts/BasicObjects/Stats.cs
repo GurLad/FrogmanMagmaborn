@@ -94,7 +94,7 @@ public class Stats
     [HideInInspector]
     private int[] statValues = new int[6] { 4, 4, 4, 4, 4, 4 }; // Default stats
     private int _sumGrowths = -1;
-    private int sumGrowths
+    public int SumGrowths
     {
         get
         {
@@ -150,13 +150,17 @@ public class Stats
     public Stats GetMultipleLevelUps(int numLevels, int numStats = 3)
     {
         // The current algorithm causes a huge amount of min-maxing. This makes wierd builds (ex. tanky Frogman) easier to execute, but min-maxed builds less effective.
+        if (SumGrowths <= 0) // Units with 0 growths can't get stats
+        {
+            return new Stats();
+        }
         Stats result = new Stats();
         result.Growths = Growths;
         List<float> statMods = new List<float>();
         for (int i = 0; i < 6; i++)
         {
             result[i] = 0;
-            statMods.Add((float)Growths[i] / sumGrowths);
+            statMods.Add((float)Growths[i] / SumGrowths);
         }
         for (int i = 0; i < numStats * numLevels; i++) // NumStats (3) stats per level
         {
@@ -173,7 +177,7 @@ public class Stats
             result[maxMod]++;
             for (int j = 0; j < 6; j++)
             {
-                statMods[j] += (float)Growths[j] / sumGrowths;
+                statMods[j] += (float)Growths[j] / SumGrowths;
             }
         }
         return result;
@@ -185,8 +189,20 @@ public class Stats
     /// <returns>Stat changes (for display and addition)</returns>
     public Stats GetLevelUp(int numStats = 3)
     {
+        if (SumGrowths <= 0) // Units with 0 growths can't get stats
+        {
+            return new Stats();
+        }
         Stats result = new Stats();
         result.Growths = Growths;
+        if (SumGrowths <= numStats)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                result[i] = Growths[i];
+            }
+            return result;
+        }
         for (int i = 0; i < 6; i++)
         {
             result[i] = 0;
@@ -196,7 +212,7 @@ public class Stats
             int j;
             do
             {
-                int value = Random.Range(0, sumGrowths);
+                int value = Random.Range(0, SumGrowths);
                 j = -1;
                 do
                 {
