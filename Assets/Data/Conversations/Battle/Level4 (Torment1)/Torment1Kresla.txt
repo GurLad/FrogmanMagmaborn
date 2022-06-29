@@ -35,6 +35,8 @@ Torment: Cry later - now is the time to FIGHT!
 :else:{
 :if:!hasFlag:TormentCharacterPowerFail{
 :setFlag:TormentCharacterPowerFail
+:screenShake:
+:play:Trustworthy
 Torment: FROGMAN!!!
 Frogman: Aghhh!
 Torment: You died in the middle of our previous conversations!

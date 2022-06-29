@@ -126,18 +126,8 @@ public class ConversationData : System.IComparable<ConversationData>
         string[] parts = requirement.Split(':');
         switch (parts[0])
         {
-            case "hasCharacter":
-                // Check, return false if false.
-                return GameController.Current.PlayerUnits.Find(a => a.Name == parts[1]) != null;
-            case "hadCharacter":
-                // Check whether the given character died
-                return GameController.Current.DeadPlayerUnits.Contains(parts[1]);
-            case "charactersAlive":
-                // Format: charactersAlive:?X, ex. charactersAlive:>2
-                return MeetsComparisonRequirement(parts[1][0], GameController.Current.PlayerUnits.FindAll(a => a.Name != StaticGlobals.MainCharacterName).Count, int.Parse(parts[1].Substring(1)));
-            case "roomNumber":
-                // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
-                return int.Parse(parts[1]) == GameController.Current.LevelNumber;
+            // Save file requirements
+
             case "hasKnowledge":
                 // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
                 return GameCalculations.HasKnowledge(parts[1]);
@@ -149,7 +139,7 @@ public class ConversationData : System.IComparable<ConversationData>
                 return SavedData.Load("ConversationData", "Flag" + parts[1], 0) == 1;
             case "compareCounter":
                 // Return whether a conversation counter matches the given value
-                return MeetsComparisonRequirement(parts[1][0], SavedData.Load("ConversationData", "Counter" + parts[1], 0), int.Parse(parts[1].Substring(1)));
+                return MeetsComparisonRequirement(parts[2][0], SavedData.Load("ConversationData", "Counter" + parts[1], 0), int.Parse(parts[2].Substring(1)));
             case "numRuns":
                 // Return whether a certain number of runs was reached.
                 return MeetsComparisonRequirement(parts[1][0], SavedData.Load<int>("NumRuns"), int.Parse(parts[1].Substring(1)));
@@ -162,6 +152,21 @@ public class ConversationData : System.IComparable<ConversationData>
             case "finishedConversation":
                 // Return whether the whole conversation was played
                 return SavedData.Load<int>("ConversationData", "ID" + ID) == 2;
+
+            // Current run requirements
+
+            case "hasCharacter":
+                // Check, return false if false.
+                return GameController.Current.PlayerUnits.Find(a => a.Name == parts[1]) != null;
+            case "hadCharacter":
+                // Check whether the given character died
+                return GameController.Current.DeadPlayerUnits.Contains(parts[1]);
+            case "charactersAlive":
+                // Format: charactersAlive:?X, ex. charactersAlive:>2
+                return MeetsComparisonRequirement(parts[1][0], GameController.Current.PlayerUnits.FindAll(a => a.Name != StaticGlobals.MainCharacterName).Count, int.Parse(parts[1].Substring(1)));
+            case "roomNumber":
+                // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
+                return int.Parse(parts[1]) == GameController.Current.LevelNumber;
 
             // Mid-battle requirements
 

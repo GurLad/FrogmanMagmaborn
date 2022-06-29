@@ -1,0 +1,58 @@
+priority:5
+unique:T
+~ Requirements
+roomNumber:4
+hasFlag:MetXeplogi
+~ Demands
+# Nothinig
+~ Before battle
+# Must have happened after Frogman met Xeplogi, fought the Guards, and (probably) saw the 3rd flashback
+:callOther:TormentBase
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:play:Trustworthy
+:setSpeaker:Frogman
+Torment: Hello again, Frogman! Long time no see! Heh heh.
+Frogman: Ugh. Hello, Torment.
+Torment: Why the sour face? Heh.\a You've met a new friend recently,\a haven't you?
+Frogman: You... mean Xeplogi?
+Torment: But of course! Ha ha ha! I love that guy.\a He's just so punchable, isn't he?\a Heh heh.
+Frogman: I'm not sure he'd appreciate being called that.
+Torment: Ha! Tell him that for me, will you?\a But that's not important right now.\a How did you find the Guards, Frogman?
+Frogman: Are they the humans who trapped you?\a They didn't seem particularly smart,\a nor magical...
+:play:Trickster:T
+Torment: Those pathetic creatures?! Of course not!\a They're mere pawns for the true humans: the Magi.\a And the Magi are... well, you will see for yourself.\a Heh.
+:if:furthestLevel:>6{
+Frogman: I've already met them. They do seem quite powerful.
+Torment: Oh, you have? I mean, I knew that, of course!\a Heh heh.
+}
+:else:{
+Frogman: I... see.\a Wait, how do you know that I've met Xeplogi?
+Torment: I know everything, of course! Ha ha ha!
+}
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+Torment||R: But enough chit-chat - let us begin!
+Frogman: Ah!
+:loadUnits:
+:setFlag:TormentXeplogi
+:markDone:
+
+~ After battle
+:play:Trickster
+Torment: Ha! Well done, Frogman!\a What an impressive display of strentgh.\a Perhaps you should stay a little longer!\a Heh heh!
+Frogman: ...
+Torment: Are you not amused, Frogman?
+Frogman: ...No.
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: Fine, fine. You can leave.\a And try to free us this time!
+Frogman: ...
+:unlockKnowledge:TormentHonorGlory
+:showInfoDialogue:New knowledge!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

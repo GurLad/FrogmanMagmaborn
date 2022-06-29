@@ -16,6 +16,7 @@ roomNumber:0
 :if:hasCharacter:Xirveros{
 :setFlag:MetTormentXirveros
 }
+:if:hasFlag:TormentFirstRevive{
 # Revive units (reduce difficulty)
 :if:hadCharacter:Firbell{
 :addUnit:Kresla
@@ -33,6 +34,7 @@ Frogman: Ah... Another "gift" from Torment...
 Frogman: Firbell?! What are you doing here?
 Firbell: ...
 Frogman: Ah... Another "gift" from Torment...
+}
 }
 }
 
