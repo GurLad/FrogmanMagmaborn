@@ -301,7 +301,7 @@ public static class GameCalculations
 
     public static int GetDamage(this Unit attacker, Unit defender)
     {
-        int armorModifier = GameController.Current.Map[defender.Pos.x, defender.Pos.y].GetArmorModifier(defender);
+        int armorModifier = defender.GetArmorModifier(defender.Pos);
         int Damage(Unit attacker, Unit defender)
         {
             int value = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
@@ -373,9 +373,13 @@ public static class GameCalculations
         }
     }
 
-    public static int GetArmorModifier(this Tile tile, Unit unit)
+    public static int GetArmorModifier(this Unit unit, Vector2Int pos)
     {
-        return (unit.Flies && !tile.High) ? 0 :
-            (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier);
+        Tile tile = GameController.Current.Map[pos.x, pos.y];
+        return 
+            ((unit.Flies && !tile.High) ? 0 :
+            (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier)) + 
+            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.I ? unit.CountAdjacentAllies(pos) : 
+            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.II ? -unit.CountAdjacentAllies(pos) : 0));
     }
 }

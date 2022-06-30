@@ -17,7 +17,7 @@ public abstract class Marker : MapObject
     public void ShowArmorIcon()
     {
         Tile tile = GameController.Current.Map[Pos.x, Pos.y];
-        int armMod = tile.GetArmorModifier(Origin);
+        int armMod = Origin.GetArmorModifier(Pos);
         if (armMod != 0)
         {
             AdvancedSpriteSheetAnimation advancedSpriteSheetAnimation = GetComponent<AdvancedSpriteSheetAnimation>();

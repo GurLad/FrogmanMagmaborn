@@ -469,6 +469,23 @@ public class Unit : MapObject
         MapAnimationsController.Current.AnimatePushPull(this, unit, false);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
     }
+    public int CountAdjacentAllies(Vector2Int pos)
+    {
+        int count = 0;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                Unit unitAtPos = GameController.Current.FindUnitAtPos(pos.x + i, pos.y + j);
+                if (Mathf.Abs(i) + Mathf.Abs(j) <= 1 && Mathf.Abs(i) + Mathf.Abs(j) > 0 &&
+                    !(unitAtPos?.TheTeam.IsEnemy(TheTeam) ?? true) && ((unitAtPos ?? this) != this))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
     public void AI(List<Unit> units)
     {
         List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.

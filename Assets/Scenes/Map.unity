@@ -5056,7 +5056,6 @@ MonoBehaviour:
 
       }
 
-      
 
       :play:BeforeBattle
 
@@ -5095,8 +5094,8 @@ MonoBehaviour:
 
       Frogman: Torment!
 
-      Torment:
-      It''s me! Heh heh!\a What do you think of my gift?
+      Torment: It''s
+      me! Heh heh!\a What do you think of my gift?
 
       Frogman: Gift?
 
@@ -5118,18 +5117,18 @@ MonoBehaviour:
 
       }
 
-      Frogman: That... I
-      didn''t mean to...
+      Frogman: That... I didn''t
+      mean to...
 
       :play:Trickster:T
 
-      Torment: Save your excuses
-      for when she can actually hear you. Heh!
+      Torment: Save your excuses for when
+      she can actually hear you. Heh!
 
       Frogman: ...
 
-      Torment:
-      Nothing to say, eh? Well then, without further ado...
+      Torment: Nothing
+      to say, eh? Well then, without further ado...
 
       :playIntro:Tormentor
 
@@ -5140,6 +5139,8 @@ MonoBehaviour:
       :loadUnits:
 
       FIGHT!
+
+      :setFlag:TormentFirstRevive
 
       :markDone:
 
@@ -5198,19 +5199,17 @@ MonoBehaviour:
       Frogman: I''m...
       s-sorry...
 
-      Torment: Don''t apologize to me, heh!\a Well, good luck
-      staying alive without her. Ha ha ha!
+      Torment: Don''t apologize to me, heh!\a Well, good luck staying
+      alive without her. Ha ha ha!
 
       Frogman: ...
 
       }
 
-      
 
-      #
-      === Functions ====
+      # === Functions
+      ====
 
-      
 
       ~ Sample
 
@@ -5663,6 +5662,10 @@ MonoBehaviour:
 
       :setFlag:TormentCharacterPowerFail
 
+      :screenShake:
+
+      :play:Trustworthy
+
       Torment:
       FROGMAN!!!
 
@@ -5962,7 +5965,7 @@ MonoBehaviour:
 
       Frogman: You...'
     Name: Torment1TalkingFrog
-  - Text: 'priority:3
+  - Text: 'priority:2
 
       unique:T
 
@@ -5970,7 +5973,9 @@ MonoBehaviour:
 
       roomNumber:4
 
-      hasFlag:FoundXeplogiLoop
+      hasFlag:MetXeplogi
+
+      hasFlag:TormentXeplogi
 
       ~
       Demands
@@ -5979,48 +5984,72 @@ MonoBehaviour:
 
       ~ Before battle
 
-      # TBA: Add !firstTime
-      dialouge
+      # Must have happened
+      after Frogman met Xeplogi, fought the Guards, and (probably) saw the 3rd flashback
 
       :callOther:TormentBase
 
-      :play:BeforeBattle
+      :play:Trustworthy
 
       :loadMap:InitTormentRoom
 
-      #:loadUnits:InitTormentRoom:player
-
       :loadUnits:InitTormentRoom
 
-      :if:firstTime:{
+      :if:!hasFlag:TormentCharacterPowerFail{
 
-      :play:Trustworthy
+      :setFlag:TormentCharacterPowerFail
 
-      Torment:
-      Hello, hello!
-
-      Frogman: You again...\a I''ve heard someone mention Tori.\a
-      Is that you?
-
-      Torment: Oh, so you''ve finally met Xeplogi!\a He''s a
-      hilarious one, don''t you think? Ha ha ha!
-
-      Frogman: Annoying is more
-      accurate...
-
-      Torment: What''s the difference? Heh heh!\a I''ve made
-      him that way, you know.\a I keep resetting his mind.
-
-      Frogman: What?
-
-      :play:Trickster:T
+      }
 
       Torment:
-      Yes, yes! That''s the only way he keeps his story straight,\a heh heh! And
-      it''s just so funny!\a Especially your reactions, ha!
+      Hello again, Frogman! Long time no see! Heh heh.
 
-      Frogman: So that''s
-      why each time I meet him,\a he repeats the same story and can''t remember me?
+      Frogman: Torment.
+
+      Torment:
+      How good is your memory, Frogman? Heh.
+
+      Frogman: Uh... Why do you ask?
+
+      Torment:
+      When was the last time I used that greeting?
+
+      Frogman: Um, I think...
+      Uh...
+
+      :play:Trickster
+
+      Torment: Not surprising. Heh heh.\a I was
+      digging through your memories,\a and couldn''t find a trace of that conversation.\a
+      Frankly, I''m dissapointed in you. Heh.
+
+      Frogman: I''m sorr- Wait, what?\a
+      You''ve read my memories?!
+
+      Torment: Of course I did! I do that every
+      time you die! Ha ha ha!
+
+      Frogman: What?!
+
+      Torment: Most of them
+      are quite boring, I must admit.
+
+      :if:hasFlag:IntroFlashback3{
+
+      Except
+      that one where your friend died.\a That was quite... charming. Ha!
+
+      Frogman:
+      How dare you! Stay out of my mind!
+
+      }
+
+      :else:{
+
+      Frogman:
+      Stay out of my mind!
+
+      }
 
       :playIntro:Tormentor
 
@@ -6029,86 +6058,179 @@ MonoBehaviour:
       :screenShake:
 
       Torment:
-      YES!! Devious, don''t you think?\a Oh, I''m going to enjoy your interactions
-      so much!
+      As if you can do anything about it! Ha ha ha!\a Your mind and body are mine,
+      Frogman.\a Never forget that.
 
-      Frogman: You''re so evil...
+      Frogman: Why, you-
 
-      Torment: HA HA HA! Well,
-      I''d love to stay and chat,\a but there are minions to fight now, heh!\a Good
-      luck!
+      :screenShake:
+
+      AHHHHHHH!
+
+      Torment:
+      Choose your words more carefully, Frogman. Heh heh.\a Now then, let us begin!
 
       :loadUnits:
+
+      Frogman:
+      ...
+
+
+      ~ After battle
+
+      :callOther:Torment1XeplogiNoFail
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Torment1XeplogiFail
+  - Text: 'priority:5
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:4
+
+      hasFlag:MetXeplogi
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      # Must have happened
+      after Frogman met Xeplogi, fought the Guards, and (probably) saw the 3rd flashback
+
+      :callOther:TormentBase
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      :play:Trustworthy
+
+      :setSpeaker:Frogman
+
+      Torment:
+      Hello again, Frogman! Long time no see! Heh heh.
+
+      Frogman: Ugh. Hello,
+      Torment.
+
+      Torment: Why the sour face? Heh.\a You''ve met a new friend
+      recently,\a haven''t you?
+
+      Frogman: You... mean Xeplogi?
+
+      Torment:
+      But of course! Ha ha ha! I love that guy.\a He''s just so punchable, isn''t
+      he?\a Heh heh.
+
+      Frogman: I''m not sure he''d appreciate being called
+      that.
+
+      Torment: Ha! Tell him that for me, will you?\a But that''s not
+      important right now.\a How did you find the Guards, Frogman?
+
+      Frogman:
+      Are they the humans who trapped you?\a They didn''t seem particularly smart,\a
+      nor magical...
+
+      :play:Trickster:T
+
+      Torment: Those pathetic creatures?!
+      Of course not!\a They''re mere pawns for the true humans: the Magi.\a And the
+      Magi are... well, you will see for yourself.\a Heh.
+
+      :if:furthestLevel:>6{
+
+      Frogman:
+      I''ve already met them. They do seem quite powerful.
+
+      Torment: Oh, you
+      have? I mean, I knew that, of course!\a Heh heh.
 
       }
 
       :else:{
 
-      :if:!hasFlag:TormentCharacterPowerFail{
+      Frogman:
+      I... see.\a Wait, how do you know that I''ve met Xeplogi?
 
-      :setFlag:TormentCharacterPowerFail
-
-      }
-
-      
-
-      #
-      TBA
+      Torment: I
+      know everything, of course! Ha ha ha!
 
       }
 
-      
+      :playIntro:Tormentor
 
-      ~ After battle
+      :loadMap:
+
+      :screenShake:
+
+      Torment||R:
+      But enough chit-chat - let us begin!
+
+      Frogman: Ah!
+
+      :loadUnits:
+
+      :setFlag:TormentXeplogi
+
+      :markDone:
+
+
+      ~
+      After battle
 
       :play:Trickster
 
-      Frogman:
-      Urgh...
+      Torment: Ha! Well done, Frogman!\a
+      What an impressive display of strength.\a Perhaps you should stay a little
+      longer!\a Heh heh!
 
-      Torment: Well done! So very well done!\a Oh, I can''t wait
-      for you to find Xeplogi again now!
+      Frogman: ...
 
-      Frogman: I''d rather find him now
-      than continue talking to you...
+      Torment: Are you not amused,
+      Frogman?
+
+      Frogman: ...No.
 
       :loadMap:InitTormentRoom
 
       :loadUnits:InitTormentRoom
 
       Torment:
-      Oh, you''re so naive! Heh heh!\a It takes a lot of energy to reset him each
-      time,\a but your subsequent suffering is always\a worth it!
-
-      Frogman:
-      Sure. Can we leave now?
-
-      Torment: Fine, go ahead.\a Oh, and betray him
-      if you can!
-
-      He''s so very hurt each time, it''s incredible! Ha ha ha!
+      Fine, fine. You can leave.\a And try to free us this time!
 
       Frogman:
       ...
 
-      :unlockKnowledge:TormentHonorGlory
+      :unlockKnowledge:TormentGiveTake
 
-      :showInfoDialogue:New
-      knowledge!
+      :showInfoDialogue:New knowledge!
 
-      
 
-      # === Functions ====
+      #
+      === Functions ====
 
-      
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
-    Name: Torment1Xeplogi
+    Name: Torment1XeplogiNoFail
   - Text: "priority:2\nunique:T\n~ Requirements\nroomNumber:4\nhasCharacter:Xirveros\n~
       Demands\n# Nothinig\n~ Before battle\n:callOther:TormentBase\n:play:BeforeBattle\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\n:if:firstTime:{\nFrogman:
       It's you again!\n:play:Trustworthy\nTorment: It IS me again, heh heh!\nAnd
@@ -6181,6 +6303,8 @@ MonoBehaviour:
 
       }
 
+      :if:hasFlag:TormentFirstRevive{
+
       #
       Revive units (reduce difficulty)
 
@@ -6219,6 +6343,8 @@ MonoBehaviour:
 
       Frogman: Ah...
       Another "gift" from Torment...
+
+      }
 
       }
 
@@ -7268,154 +7394,153 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Xeplogi:
-      YOU! I''ve finally found you!\a The demon who has plagued my life and trapped
-      me here!\a In the name of the divinie Tori-
-
-      Memerian|???: Hey. You there.
-      Who are you?\a And what are you doing with Xeplogi the mad?
-
-      Xeplogi:
-      The mad?! Have you no shame, fiend?! I shall-
-
-      Frogman||L: My name is
-      Frogman. Who might you be?
-
-      Xeplogi||L: She... she is the horrible Memerian!
-
-      Memerian:
-      Just Memerian will do, thanks.
+      Frogman:
+      Huh? Who''s the golem standing there?
 
       :if:hasCharacter:Firbell{
 
       :setFlag:FirbellSawMemerian
 
       Firbell||L:
-      ...Memerian?
+      ...You... Seem familiar...
 
       }
 
-      Xeplogi||L: The source of all evil! The archnemesis
-      of Tori!\a A devilish monster! A-
+      Memerian|???: ...
 
-      Frogman||L: I get it, Xeplogi.
-
-      #
-      Memerian is afraid to talk about Torment in public, and rightly so.
-
-      :if:charactersAlive:<2{
+      Xeplogi:
+      Ah. The deplorable Memerian shows her hideous face again.
 
       Memerian:
-      Anyway. Frogman, were you sent here by Torment?
+      Ah. The deceitful thief dares insulting me.\a But I don''t care for you, Xeplogi.\a
+      Who are your friends there?
 
-      Frogman: Wait... you
-      know Torment?!
+      Xeplogi: Hmpf. None of your business.\a
+      Now, get out of here, or suffer the consequences.
+
+      Memerian: Are you
+      their boss?
+
+      Xeplogi: Uh-
+
+      Memerian: Didn''t think so.\a So. Introcude
+      yourselves.
+
+      Frogman: Um, I''m Frogman.
+
+      :if:hasCharacter:Firbell{
+
+      Firbell||L:
+      Firbell.\a I... seem to remember you from somewhere.\a Do I know you?
+
+      Memerian:
+      Not anymore.
+
+      Firbell: Excuse me?
 
       }
 
       :else:{
 
-      Memerian: Anyway. Frogman, may
-      we speak in private?
-
-      Frogman: What for?
-
-      Memerian: Let''s call
-      them... the divine Tori.
-
-      Frogman: Who?\a Wait, you mean Tor-
-
-      Memerian:
-      Yes.
-
-      :if:hasCharacter:Firbell{
-
-      Firbell: Who are you talking about?
-
-      }
-
       :if:hasCharacter:Kresla{
 
-      Kresla:
-      Who?
+      Kresla||L:
+      Hi! I''m Kresla, a renowned scholar!\a Are you truly Memerian the Witch?!
+
+      Memerian:
+      I''m no witch. I''m an honest wizard and blacksmith.\a Do you actually believe
+      Xeplogi''s stupid stories?
 
       }
+
+      :else:{
 
       :if:hasCharacter:Xirveros{
 
-      Xirveros: Tori? No!
-      No Tori!
+      Xirveros||L:
+      Long time, Memerian! You okay?
+
+      Memerian: Hi, Xirveros. Yes, I''m fine.\a
+      Too bad you''re still... you.
 
       }
 
       }
 
-      Xeplogi||L: Do not listen to her words of
-      trickery!\a She-
+      }
 
-      Memerian: Will you shut Xeplogi up, or shall I?
+      Xeplogi||L:
+      T-that''s enough! Stop talking to this trickster at once!
 
-      Xeplogi:
-      Trying to turn Frogman to your side? Ha!\a Frogman will never help the likes
-      of you!
+      All she ever
+      does is steal and betray!
+
+      Memerian: Ha! Oh, the irony. Have you no shame,
+      Xeplogi?
+
+      Frogman: Uh, look, I''m not sure what''s your issue,\a but
+      shouldn''t we work together against-
+
+      Memerian: Work together? He murdered
+      me!
+
+      Xeplogi: She stole my Magma Emblem!
+
+      Memerian: You stole it
+      from me first, you hypocrite!
+
+      Frogman: Uh-
+
+      Xeplogi||L: It was
+      rightfully mine, you... you twister of truths!
+
+      Memerian: That''s not
+      even a real insult, you absolute liquid!
+
+      Xeplogi: Neither is that!
+
+      Frogman||L:
+      Can you please-
+
+      Xeplogi: Why are you even trying to reason with her,
+      Frogman?\a Was I not a good and trustworthy ally?
+
+      Memerian: Oh, please.
+      You''re about as good in combat as a tree.\a I, on the other hand,\a have actual
+      experience fighting the Guards.\a And winning.
+
+      Frogman: Really?
+
+      Memerian:
+      I''ve been to the Fortress. Multiple times.
+
+      Frogman: Seriously?! We''ve
+      been trying to reach that place for ages!
+
+      Xeplogi: Yes. And we can still
+      get there without her help.
+
+      Memerian||R: Ha! Good luck with that.
+
+      Xeplogi||R:
+      W-why, you little-
+
+      Frogman: Ugh. Just stop, you two. Let me think.
 
       :call:Choice
 
       :setFlag:MetMemerian
 
 
-      ~ After battle
+      ~
+      After battle
 
       :play:AfterBattle
 
-      Frogman:
-      Whew. That was... tough.
+      Frogman: Whew. That was... tough.
 
       :if:hasCharacter:Xeplogi{
 
-      Xeplogi: Yes!
-      At long last, I have vanquished the evil Memerian!\a Memerian is gone!
-
-      Frogman:
-      Yes, she is.
-
-      Xeplogi: I am free! Free of her curse!\a Any moment now!
-
-      Frogman:
-      Uh, Xeplogi. Hate to break it to you, but...
-
-      Xeplogi: Tori! She''s dead!
-      I am free!\a I am FREE!\a TORI!
-
-      Frogman: Xeplogi. Tori isn''t real.
-
-      Xeplogi:
-      S-silence, you heretic! Tori is real,\a and h-he''ll reward me any minute now!\a
-      ...\a Tori?!
-
-      Frogman: ...
-
-      Xeplogi: T-Tori! I... She''s... How
-      can this be...
-
-      :if:hasCharacter:Firbell{
-
-      Firbell: ...Let us give
-      him a moment alone to recover.
-
-      Frogman: Yes.
-
-      }
-
-      :else:{
-
-      Frogman:
-      Xeplogi... Let''s give him a moment alone to recover.
-
-      }
-
-      Xeplogi:
-      ...
 
       }
 
@@ -7522,16 +7647,17 @@ MonoBehaviour:
 
       :if:chose:0{
 
-      Frogman||L:
-      I trust Xeplogi.
+      :setCounter:MemerianXeplogiBalance:-1
 
-      If he claims you''re evil, there must be a reason.
+      :setSpeaker:Memerian||R
 
-      Memerian:
-      ...Seriously?\a What is wrong with you people?
+      Frogman:
+      All right. Xeplogi, I trust you on this.\a Memerian, please leave this place.
 
-      Xeplogi: Ha! Your time
-      is up, Memerian!
+      Xeplogi||L:
+      Ha! Take that, Memerian!
+
+      Memerian: Pfft. Just try and move me.
 
       :play:GuardTheme
 
@@ -7539,26 +7665,50 @@ MonoBehaviour:
 
       :addGenericCharacter:Guard1:
 
+      :setSpeaker:Memerian||L
+
       Guard1:
       What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
 
       :setTeam:Memerian:monster
 
+      :setSpeaker:Memerian||R
+
+      Frogman:
+      There''s no need for us to fight, Memerian.\a We have a common-
+
       Memerian:
-      You''ve left me no choice, Frogman.\a Prepare to die.
+      Oh, don''t even try to sweet-talk me, Frogman.\a You''ve made your choice.\a
+      Now, prepare to die.
 
       }
 
       :else:{
 
-      Frogman||L:
-      Sorry, Xeplogi, but you''re obviously insane.\a I''ve never heard of this Tori,\a
-      and I''d like to hear Memerian out.
+      :setCounter:MemerianXeplogiBalance:1
 
-      Xeplogi: You... you traitor! I shall
-      destroy you!
+      :setSpeaker:Memerian||R
 
-      Memerian: Don''t mind him.\a He''s always like that.
+      Frogman:
+      Memerian. Can you help us reach the Fortress?
+
+      Memerian: Gladly.
+
+      Xeplogi||R:
+      What?! Frogman, is this a joke?!\a Are you seriously going to join up with
+      her?!
+
+      Frogman: Yes. I''m sorry, Xeplogi.\a But she appears knowledgeable
+      about everything here.\a And she''s willing to help us.
+
+      Memerian: Not
+      him, though. He should rot in hell forever.
+
+      Xeplogi||R: As if I''d accept
+      your help, you demon!\a And Frogman, you too!\a How dare you betray me like
+      this!
+
+      Frogman: This wasn''t-
 
       :play:GuardTheme
 
@@ -7571,19 +7721,8 @@ MonoBehaviour:
       Guard1:
       What is all this ruckus?\a Magmaborn?!
 
-      Xeplogi: I am NOT one of these
-      so-called Magmaborn!\a They have betrayed me!\a Let us join forces!
-
-      Guard2:
-      Heh, look, a crazy Magmaborn.
-
-      Xeplogi: Crazy? Me?!
-
-      Guard1: We
-      have no time for foolishness!\a Everyone, charge!
-
-      Xeplogi: You will
-      regret this!\a For Tori!
+      Xeplogi||R: It''s too late now,
+      Frogman.\a Prepare to feel my wrath!
 
       :setTeam:Xeplogi:monster
 
@@ -8562,7 +8701,7 @@ MonoBehaviour:
 
       Brens: She was more-
 
-      :setSpeaker:Fashima|Lan|R
+      :setSpeaker:Fashima_|Lan|R
 
       You
       suck, Brens. You''re old and weak and pathetic.\a And I''m better than you.\a
@@ -8579,15 +8718,17 @@ MonoBehaviour:
       This is what I get for being nice to you lot.\a Good luck
       out there.
 
-      Lan: ...I can see why Fashima hated that guy.
+      :setSingleSpeaker:R
 
-      Lieutenant:
-      Uh, Lan?
+      Lan: ...I can see why Fashima
+      hated that guy.
+
+      Lieutenant: Uh, Lan?
 
       Lan: Yes, [Name:Guard1]?
 
-      Lieutenant: My name''s [Name],
-      master.
+      Lieutenant:
+      My name''s [Name], master.
 
       Lan: Whatever, [Name:Guard2]. What is it?
 
@@ -9070,53 +9211,6 @@ MonoBehaviour:
 
 '
     Name: Level8Generic
-  - Text: 'priority:21
-
-      unique:F
-
-      ~ Requirements
-
-      ~ Demands
-
-      #
-      Nothinig
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      Frogman: Test
-
-      :showPartTitle:Part
-      1:Monster
-
-      Frogman: Hi.
-
-      :showPartTitle:He said:Hi
-
-      Frogman:
-      Bye.
-
-      :showPartTitle:He said:Bye
-
-
-      ~ After battle
-
-      :play:AfterBattle
-
-      #
-      Name: Text.
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Test
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &46070166
