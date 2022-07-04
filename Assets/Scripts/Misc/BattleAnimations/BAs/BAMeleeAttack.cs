@@ -36,7 +36,17 @@ public class BAMeleeAttack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit))
         {
-            ThisCombatant.Animation.Activate("AttackStart");
+            if (ThisCombatant.Animation.HasAnimation("AttackStart"))
+            {
+                ThisCombatant.Animation.Activate("AttackStart");
+            }
+            else
+            {
+                ThisCombatant.Animation.Activate("AttackEnd");
+                // Fix looking left for backstabs (teleport)
+                OtherCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                BattleAnimationController.HandleDamage(ThisCombatant, OtherCombatant);
+            }
         }
         else
         {

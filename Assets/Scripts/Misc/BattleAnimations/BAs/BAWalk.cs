@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BAWalk : BattleAnimation
 {
-    private const float SPEED = 2;
     private Vector3 currentPos;
     private float targetPos = 3;
     private bool walking;
+    protected virtual float SPEED  => 2;
+    protected virtual string WALK_ANIMATION_NAME => "Walk";
 
     private void Update()
     {
@@ -28,7 +29,7 @@ public class BAWalk : BattleAnimation
         base.FinishedAnimation(id, name);
         if (name == "CounterStart")
         {
-            ThisCombatant.Animation.Activate("Walk");
+            ThisCombatant.Animation.Activate(WALK_ANIMATION_NAME);
             walking = true;
         }
     }
@@ -49,7 +50,7 @@ public class BAWalk : BattleAnimation
             }
             else
             {
-                ThisCombatant.Animation.Activate("Walk");
+                ThisCombatant.Animation.Activate(WALK_ANIMATION_NAME);
                 walking = true;
             }
         }

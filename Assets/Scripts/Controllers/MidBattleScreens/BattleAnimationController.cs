@@ -126,6 +126,10 @@ public class BattleAnimationController : MidBattleScreen
                 animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
                 animationParts.Enqueue(() => BeginAnimation<BATeleportBack>(attacker, defender));
                 return false;
+            case BattleAnimationMode.Charge:
+                animationParts.Enqueue(() => BeginAnimation<BACharge>(attacker, defender));
+                animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
+                return true;
             default:
                 throw Bugger.Error("Impossible", false);
         }
