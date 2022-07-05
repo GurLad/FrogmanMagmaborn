@@ -1,9 +1,11 @@
 priority:5
 unique:T
+id:LanSecondTime
 ~ Requirements
 roomNumber:7
 hasFlag:FashimaDied
 !hasFlag:BrensDied
+compareCounter:TimesLanLost:=0
 ~ Demands
 hasCharacter:Lan
 ~ Before battle
@@ -44,6 +46,7 @@ Frogman: TBA
 
 ~ After battle
 :setFlag:LanLost1
+:addCounter:TimesLanLost:1
 :play:AfterBattle
 Frogman: Wow! We beat Fashima! Yay!
 :play:Trustworthy

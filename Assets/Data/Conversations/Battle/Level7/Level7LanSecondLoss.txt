@@ -3,7 +3,7 @@ unique:T
 ~ Requirements
 roomNumber:7
 hasFlag:FashimaDied
-hasFlag:LanLost2
+compareCounter:TimesLanLost:>1
 ~ Demands
 hasCharacter:Lan
 ~ Before battle
@@ -41,6 +41,7 @@ Frogman|Lan: ...
 
 ~ After battle
 :play:AfterBattle
+:addCounter:TimesLanLost:1
 Frogman: Wow! We beat Fashima! Yay!
 :play:Trustworthy
 Torment: Yay indeed!\a Now, you shall die!

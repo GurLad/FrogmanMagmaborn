@@ -7,38 +7,61 @@ hasFlag:FashimaDied
 hasCharacter:Lan
 ~ Before battle
 :play:GuardTheme2
-:addGenericCharacter:Lieutenant
+:addGenericCharacter:Lieutenant:young
 :addGenericCharacter:Guard1
 :loadUnits::monster
 :loadUnits::guard:T
 :killUnit:Brens
-# TBA: Change
-Lan: Hey.
+Lan||R: Hey.
 Lieutenant: ...
 Lan: Hey, you.
 Lieutenant: Me?
-Lan: Yes, you.\a Am I great?
-Lieutenant: Uh... sure?
-Lan: Heh heh. Yes, I'm great.\a So, so great.\a Right?
-Lieutenant: Y-yes?
-Lan: Ha! Look at you, flustered like that!\a You just can't handle my greatness, can you?
-Lieutenant: A-
-Lan: I understand you, poor fellow.\a My greatness is just so great,\a it's almost unbearable at times! Ha ha ha!
-Lieutenant: O-of course, sir.
-Lan: Sir? No, that won't do. That won't do at all!\a You should call me great sir!
-Lieutenant: Yes, si- uh, great sir!
-Lan: See? Much better now!
+Lan: Yes, you.\a Who's the best Magus, eh?
+Lieutenant: Uh... You?
+Leiutenant|Lan: Uh... You?
+:setSpeaker:Lan||R:F
+Come on, show some more enthusiasm.\a I'm your new master, remember?
+Leiutenant: U-um, of course, master! You're the best, master!
+Lan: That's more like it! Good soldier!\a You can go back to doing...\a Whatever it was you were doing before.
+Leiutenant: Right away, master!
+:setSingleSpeaker:R
+Lan: ...
+...
+Hey.\a Hey, you.
+Leiutenant: Are you talking to me again, master?
+Lan: Obviously. So. Uh.\a What is it that we're doing here,\a again?
+Leiutenant: ...Protecting the city from the Magmaborn?
+Lan: Right, right. I knew that, of course.\a I was just testing you.
+Leiutenant: O-of course, master.
+Lan: So. You're new here, eh?
+Leiutenant: Actually, I've been here with Fashima before.\a I-I was supposed to be her new leiutenant for the battle,\a but I overslept, a-and then she...
+Lan: Died. Yes, we all know about that.\a You're better off with me, anyway.\a I'm much better than her.
+Leiutenant: You're not mad...? Uh, of course, master!\a You're the greatest, master!
+Lan: Ha! Of course I am! Now, go back to your... spot, soldier.
+Leiutenant: Thank you, master!
+:setSingleSpeaker:R
+Lan: ...
+Ugh, this job sucks. It's so boring.\a Where's all the action?
 :play:BeforeBattle2
 :loadUnits::player:T
 :setSingleSpeaker:L
-Frogman: Back again... Wait, who's the wizard there?\a This isn't Fashima.
-Lan: It's me! The great Lan!
-Frogman: ...Right.
+Frogman: Back again... With Fashima dead, it should be-
+Guard1: Magmaborn! Magmaborn! We're under attack!
+:setSpeaker:Lan||R
+Leiutenant: Lan! The Magmaborn! They're here!
+Lan: Oh, finally! What took them so long?!
+HEY! MAGMABORN!
+Frogman: Huh? Who's shou-
+Lan: MY NAME IS LAN, THE NEW WALL MAGUS!\a AND I'M HERE TO SLAY YOU ALL!\a PREPARE TO DIE!!!
+Frogman: Huh. So they replaced Fashima...
+Leiutenant||L: My... e-ears...
+Lan: Ha! That was a mighty fine speech, eh, soldier?\a Soldier?
 
 ~ After battle
 :setFlag:LanLost1
 :play:AfterBattle
-Frogman: Wow! We beat Fashima! Yay!
+:addCounter:TimesLanLost:1
+Frogman: Wow! We beat Lan! Yay!
 :play:Trustworthy
 Torment: Yay indeed!\a Now, you shall die!
 :showPartTitle:End of:Demo
