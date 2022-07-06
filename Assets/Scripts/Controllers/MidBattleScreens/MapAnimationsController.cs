@@ -351,16 +351,8 @@ public class MapAnimationsController : MidBattleScreen
         // Calculate x pos - harder than it sounds
         float posX;
         int sign;
-        if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size)) // Good
-        {
-            posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
-            sign = posX > 0 ? -1 : 1;
-        }
-        else // Oof. Let's prioritize the attacker (not attacking), so it will be the same for both sides.
-        {
-            posX = (attacker.Pos.x * Mathf.Sign(attacker.Pos.x - size) < defender.Pos.x * Mathf.Sign(attacker.Pos.x - size) ? attacker.Pos.x - size : defender.Pos.x - size) + 0.5f;
-            sign = -(int)Mathf.Sign(attacker.Pos.x - size);
-        }
+        posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+        sign = posX > 0 ? -1 : 1;
         float posY = Mathf.Clamp((attacking.Pos.y + defending.Pos.y) / 2f + 0.5f, 3, GameController.Current.MapSize.y - 3);
         rectTransform.anchoredPosition = new Vector2(
             posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * sign,

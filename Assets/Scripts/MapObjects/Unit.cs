@@ -290,6 +290,20 @@ public class Unit : MapObject
     public void MarkAttack() //(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
     {
         DangerArea dangerArea = DangerArea.Generate(this, Pos.x, Pos.y, 0, false);
+        if (HasSkill(Skill.SiegeWeapon)) // Just mark everything
+        {
+            for (int i = 0; i < GameController.Current.MapSize.x; i++)
+            {
+                for (int j = 0; j < GameController.Current.MapSize.y; j++)
+                {
+                    AttackMarker attackMarker = Instantiate(AttackMarker.gameObject).GetComponent<AttackMarker>();
+                    attackMarker.Pos = new Vector2Int(i, j);
+                    attackMarker.Origin = this;
+                    attackMarker.gameObject.SetActive(true);
+                }
+            }
+            return;
+        }
         for (int i = Pos.x - Weapon.Range; i <= Pos.x + Weapon.Range; i++)
         {
             for (int j = Pos.y - Weapon.Range; j <= Pos.y + Weapon.Range; j++)
@@ -1074,6 +1088,10 @@ public class Unit : MapObject
         {
             if (this[target.x, target.y].Value != 0)
             {
+                if (unit.HasSkill(Skill.SiegeWeapon)) // No need for "favourable pos" when you have infinite range...
+                {
+                    return unit.Pos;
+                }
                 Vector2Int currentBest = new Vector2Int(-1, -1);
                 float currentBestWeight = -1;
                 Unit targetUnit = GameController.Current.FindUnitAtPos(target.x, target.y);

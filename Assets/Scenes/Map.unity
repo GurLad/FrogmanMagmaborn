@@ -1127,16 +1127,16 @@ MonoBehaviour:
       #
       Name: Text.
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name:
+      Text.
 
 '
     Name: GuardConversation5
@@ -1442,28 +1442,28 @@ MonoBehaviour:
 
       Firbell: Do you remember where you''re from?
 
-      Frogman:
-      Uh...\a No.
+      Frogman: Uh...\a
+      No.
 
-      Firbell: I thought so. But once we get out of here,\a where
-      would you go?
+      Firbell: I thought so. But once we get out of here,\a where would
+      you go?
 
       Frogman: I haven''t thought about it yet.
 
-      Firbell:
-      Would you want to come to Irenhold, then?
+      Firbell: Would
+      you want to come to Irenhold, then?
 
-      I think you would prefer
-      it to the other kingdoms.
+      I think you would prefer it to the
+      other kingdoms.
 
       Frogman: I... Firbell...
 
-      Firbell:
-      Please, it is all right.\a Even though you aren''t from there,\a I could ask
-      mother to admit you to the royal court.\a I''m sure she-
+      Firbell: Please, it
+      is all right.\a Even though you aren''t from there,\a I could ask mother to
+      admit you to the royal court.\a I''m sure she-
 
-      Frogman: Firbell,
-      let''s focus on the monsters first, all right?
+      Frogman: Firbell, let''s
+      focus on the monsters first, all right?
 
       Firbell: All right.
 
@@ -1486,16 +1486,16 @@ MonoBehaviour:
       Frogman:
       Thank you...
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level1FirbellMemory
@@ -1523,8 +1523,8 @@ MonoBehaviour:
       Frogman: Hello.\a I''ve been thinking lately.\a
       Why is it that I never see you with Kresla?
 
-      Firbell: I do not like
-      her. ...Let us defeat this monsters,\a and then I will explain.
+      Firbell: I do not like her.
+      ...Let us defeat this monsters,\a and then I will explain.
 
       Frogman:
       Right.
@@ -1533,38 +1533,38 @@ MonoBehaviour:
 
       :play:AfterBattle
 
-      Frogman: Well, that was
-      that.\a So why do you not like Kresla?
+      Frogman: Well, that was that.\a
+      So why do you not like Kresla?
 
-      Firbell: She has insulted Irenhold,
-      Xirveros, and me.\a I tend to avoid her.
+      Firbell: She has insulted Irenhold, Xirveros,
+      and me.\a I tend to avoid her.
 
-      Frogman: Oh. What did she
-      do?
+      Frogman: Oh. What did she do?
 
-      Firbell: She claimed that Irenhold no longer exists.
+      Firbell:
+      She claimed that Irenhold no longer exists.
 
-      Frogman:
-      ...
+      Frogman: ...
 
-      Firbell: Preposterous, I know.\a But she could not be dissuaded.\a
-      I cannot stand such insolance.
+      Firbell:
+      Preposterous, I know.\a But she could not be dissuaded.\a I cannot stand such
+      insolance.
 
       Frogman: So you avoid her?
 
-      Firbell:
-      What choice do I have? Killing her has no effect.
+      Firbell: What choice do
+      I have? Killing her has no effect.
 
-      I wonder how could
-      she even get a Magma Emblem.
+      I wonder how could she even get a
+      Magma Emblem.
 
       Frogman: I... see.
 
-      Firbell: But
-      worry not, I am not offended by you fighting\a alongside her.\a That is your
-      own bad choice.
+      Firbell: But worry not, I am
+      not offended by you fighting\a alongside her.\a That is your own bad choice.
 
-      Frogman: Thank you?
+      Frogman:
+      Thank you?
 
       :setFlag:FirbellOnKresla
 
@@ -1789,16 +1789,16 @@ MonoBehaviour:
       I think made it pretty
       clear our agreement was...\a confidential, didn''t I? Ha!
 
-      Frogman:
-      You...
+      Frogman: You...
 
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      Torment:
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -1825,8 +1825,8 @@ MonoBehaviour:
 
       Frogman: Hello.
 
-      Firbell: Time to smash a
-      few monsters.
+      Firbell: Time to smash a few
+      monsters.
 
       Frogman: Indeed.'
     Name: Level1GenericFirbell
@@ -1966,35 +1966,35 @@ MonoBehaviour:
       there was a crazed, laughing energy ball,\a named Torment. They are incredibly
       powerful,\a and they''re trapped here, like us.
 
-      Kresla: Wow. Uh...
-      I don''t know what to say.
+      Kresla: Wow. Uh... I
+      don''t know what to say.
 
       :play:Trustworthy
 
-      Torment||R: Yes,
-      seriously, Frogman. Who would buy such a story?\a Heh heh!
+      Torment||R: Yes, seriously,
+      Frogman. Who would buy such a story?\a Heh heh!
 
-      Frogman:
-      You! Here, do you see now, Kresla?
+      Frogman: You! Here,
+      do you see now, Kresla?
 
       Kresla||L: ...
 
+      Torment: HA HA HA! Ever
+      the fool, are you, Frogman? Heh!
+
+      I think made it pretty clear our agreement
+      was...\a confidential, didn''t I? Ha!
+
+      Frogman: You...
+
       Torment:
-      HA HA HA! Ever the fool, are you, Frogman? Heh!
-
-      I think made it pretty
-      clear our agreement was...\a confidential, didn''t I? Ha!
-
-      Frogman:
-      You...
-
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -2323,8 +2323,8 @@ MonoBehaviour:
 
       Frogman: Um, I don''t remember.
 
-      Kresla: Oh well.
-      Let me know once you do!\a Oh, you asked me something, didn''t you?
+      Kresla: Oh well. Let
+      me know once you do!\a Oh, you asked me something, didn''t you?
 
       Frogman:
       Yes, where is Firbell?
@@ -2332,32 +2332,31 @@ MonoBehaviour:
       Never mind, we are surrounded by monsters,\a
       let''s deal with them first.
 
-      Kresla: Yes, yes, the boring monsters
-      first.
+      Kresla: Yes, yes, the boring monsters first.
 
       }
 
       :else:{
 
-      Kresla: Oh! Hello again, Frogman!
+      Kresla:
+      Oh! Hello again, Frogman!
 
-      Frogman:
-      Oh, hello, Kresla.
+      Frogman: Oh, hello, Kresla.
 
-      Kresla: You died pretty quickly last time.\a That''s
-      all right, happens to me all the time.
+      Kresla:
+      You died pretty quickly last time.\a That''s all right, happens to me all the
+      time.
 
       Frogman: Yes, me too.
 
-      Kresla:
-      But the fun part is, we just come back!\a No consequences!\a This is great,
-      huh?
+      Kresla: But the fun part is, we just
+      come back!\a No consequences!\a This is great, huh?
 
-      Frogman: Uh, I wouldn''t exactly call it that...
+      Frogman: Uh, I wouldn''t
+      exactly call it that...
 
-      Kresla:
-      Why not? But as fun as dying is,\a we should probably do something about the
-      monsters.
+      Kresla: Why not? But as fun as dying is,\a we
+      should probably do something about the monsters.
 
       Frogman: Ah, right.
 
@@ -2365,7 +2364,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
 
@@ -2379,35 +2378,34 @@ MonoBehaviour:
 
       Frogman: Yes, I am.
 
-      Kresla: And a new monster
-      type, to boot!\a This is quite the discovery!\a If only I could tell my fellow
-      scholars...
+      Kresla: And a new monster type,
+      to boot!\a This is quite the discovery!\a If only I could tell my fellow scholars...
 
-      But those cowards would never come here.\a Anyway, did
-      you say something?
+      But
+      those cowards would never come here.\a Anyway, did you say something?
 
-      Frogman: No, but-
+      Frogman:
+      No, but-
 
-      Kresla: Ah, right! You
-      wanted to know where Firbell is!
+      Kresla: Ah, right! You wanted to know where Firbell is!
 
-      Well, each time we are Born is from
-      a different place,\a and always from Magma.
+      Well,
+      each time we are Born is from a different place,\a and always from Magma.
 
-      This time, you returned
-      near me. Last time, near Firbell.\a If only I could map this place... It''s
-      huge!
+      This
+      time, you returned near me. Last time, near Firbell.\a If only I could map
+      this place... It''s huge!
 
-      Frogman: Ah, that makes sense. Shall we leave now?
+      Frogman: Ah, that makes sense. Shall we leave
+      now?
 
-      Kresla:
-      Did I tell you about Firbell''s kingdom? That was my first discovery here!
-      You see, where she comes from...
+      Kresla: Did I tell you about Firbell''s kingdom? That was my first
+      discovery here! You see, where she comes from...
 
-      Frogman: Right. I''m leaving.
+      Frogman: Right. I''m
+      leaving.
 
-      Kresla:
-      ...she still thinks... Huh? Wait for me!
+      Kresla: ...she still thinks... Huh? Wait for me!
 
       }
 
@@ -2523,8 +2521,8 @@ MonoBehaviour:
 
       ... Ha ha ha ha!
 
-      Frogman: ...Really?
-      We have monsters to defeat here.
+      Frogman: ...Really? We
+      have monsters to defeat here.
 
       Kresla: Right, right.
 
@@ -2600,20 +2598,20 @@ MonoBehaviour:
       Frogman: Yes,
       I''ve seen him once or twice before.\a He''s utterly mad.
 
-      Firbell:
-      Perhaps he is now, but he used to be much more than that.\a He made the first
-      Magma Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
+      Firbell: Perhaps
+      he is now, but he used to be much more than that.\a He made the first Magma
+      Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
 
       }
 
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head
-      is his own Magma Emblem.
+      Firbell: The rock on his head is
+      his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem
-      like a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem like
+      a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -2634,7 +2632,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -2826,18 +2824,18 @@ MonoBehaviour:
       Xirveros:
       What her name? Fir... Firbal? Firgell?
 
-      Frogman: Wait, Firbell?\a A
-      princess?
+      Frogman: Wait, Firbell?\a A princess?
 
-      Xirveros: Yes! Firbell! You know not names?
+      Xirveros:
+      Yes! Firbell! You know not names?
+
+      Frogman: What?\a Never mind, what
+      about the monsters?
+
+      Xirveros: We fight, frog! It''s rocktime time!
 
       Frogman:
-      What?\a Never mind, what about the monsters?
-
-      Xirveros: We fight, frog!
-      It''s rocktime time!
-
-      Frogman: Good. Let''s-
+      Good. Let''s-
 
       Xirveros: ROCK!!!
 
@@ -2845,7 +2843,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -2861,8 +2859,8 @@ MonoBehaviour:
 
       Frogman: Wait, what?
 
-      Xirveros: I
-      was a great wizard \w@
+      Xirveros: I was
+      a great wizard \w@
 
       I never ate a lizard \w@
 
@@ -2891,8 +2889,8 @@ MonoBehaviour:
 
       Frogman: I... Ugh, fine.
 
-      Xirveros:
-      Yes! Me follow frog!\a We go together!
+      Xirveros: Yes!
+      Me follow frog!\a We go together!
 
       Frogman: If you insist...
 
@@ -2951,8 +2949,8 @@ MonoBehaviour:
 
       Frogman: Ok... Sure...
 
-      Firbell: Let us
-      give these beasts a sound thrashing,\a and then we will be able to talk properly.
+      Firbell: Let us give
+      these beasts a sound thrashing,\a and then we will be able to talk properly.
 
       Xirveros:
       Rocktime Time!
@@ -2963,7 +2961,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -2980,11 +2978,11 @@ MonoBehaviour:
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head
-      is his own Magma Emblem.
+      Firbell: The rock on his head is
+      his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem
-      like a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem like
+      a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -3000,28 +2998,28 @@ MonoBehaviour:
 
       Xirveros: I was a great wizard   \w@
 
-      I
-      never ate a lizard   \w@
+      I never
+      ate a lizard   \w@
 
       I like rocks           \w@
 
-      Yet hate
-      locks         \w@
+      Yet hate locks        
+      \w@
 
       I never liked blue     \w@
 
-      Smiles will betray
-      you \w@
+      Smiles will betray you \w@
 
-      Rivers flow to-
+      Rivers
+      flow to-
 
       Firbell: Right, that is enough, Xirveros.
 
-      Let
-      us leave this place before more monsters show up.
+      Let us leave
+      this place before more monsters show up.
 
-      Frogman: ...and before
-      he starts singing again.
+      Frogman: ...and before he starts
+      singing again.
 
       :setFlag:FinishedFirbellXirveros
 
@@ -3067,8 +3065,8 @@ MonoBehaviour:
 
       Xirveros: I like frog. Frog like me back?
 
-      Frogman:
-      I... Ugh, fine.
+      Frogman: I...
+      Ugh, fine.
 
       Xirveros: Yes! Me follow frog!\a We go together!
 
@@ -3529,12 +3527,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       Functions
 
-      
+
 
       ~ Unlock
 
@@ -3545,15 +3543,15 @@ MonoBehaviour:
 
       Tall as a log      \w@
 
-      Like my rock fight
-      \w@
+      Like my rock fight \w@
 
-      Almost take flight \w@
+      Almost
+      take flight \w@
 
       Frogman: Wow.
 
-      Xirveros:
-      Will fight like Frog too!
+      Xirveros: Will fight like Frog
+      too!
 
       :unlockKnowledge:InclinationXirveros
 
@@ -3741,8 +3739,8 @@ MonoBehaviour:
       Frogman:
       Firbell. Have you heard about Xirveros'' friends?
 
-      Firbell: What? I
-      do not remember him mentioning friends.
+      Firbell: What? I do
+      not remember him mentioning friends.
 
       Frogman: What were their names?\a
       Abrhys?\a Welki?
@@ -3758,7 +3756,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -3815,12 +3813,12 @@ MonoBehaviour:
 
       :setFlag:XirverosPast3
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -4328,8 +4326,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: I''m
-      safe... For now...
+      Frogman||L: I''m safe...
+      For now...
 
       }
 
@@ -4368,13 +4366,13 @@ MonoBehaviour:
       Kresla: I have
       a theory about the Lich''s magic crystal!
 
-      Frogman: Really? What is
-      it?
+      Frogman: Really? What is it?
 
-      Kresla: Well, as you''ve noticed-
+      Kresla:
+      Well, as you''ve noticed-
 
-      Frogman: Kresla, let''s
-      defeat the Lich before making theories on it.
+      Frogman: Kresla, let''s defeat the Lich before
+      making theories on it.
 
       Kresla: Right, right.
 
@@ -4385,19 +4383,19 @@ MonoBehaviour:
       Kresla:
       Frogman, you still haven''t heard my theory!
 
-      Frogman: Yes, Kresla.
-      After the battle.
+      Frogman: Yes, Kresla. After
+      the battle.
 
       Kresla: Urgh...
 
       }
 
-      
 
-      ~ After
-      battle
 
-      Frogman: Let''s get out of here!
+      ~ After battle
+
+      Frogman:
+      Let''s get out of here!
 
       :loadMap:InitTormentRoom
 
@@ -4415,55 +4413,55 @@ MonoBehaviour:
       Kresla: However, the question remained, where did it find one?\a
       I''ve never seen any here.
 
-      # TBA: Change if Kresla reached level 7
-      before this conversation
+      # TBA: Change if Kresla reached level 7 before
+      this conversation
 
       Frogman: Actually, I have.
 
-      Kresla:
-      Really?! Where?!
+      Kresla: Really?!
+      Where?!
 
       Frogman: It''s... complicated.
 
-      Kresla: Oh.
-      Well, anyway, even if it did find one,\a it''s still a mindless monster.\a
-      So how did it make a staff?\a And how could it learn to use magic?
+      Kresla: Oh. Well, anyway,
+      even if it did find one,\a it''s still a mindless monster.\a So how did it
+      make a staff?\a And how could it learn to use magic?
 
-      Frogman:
-      Huh.
+      Frogman: Huh.
 
-      # Again, if Kresla reached level 7, she''d comment on how they
-      must be dead elite guards (mages). Otherwise, this conversation.
+      #
+      Again, if Kresla reached level 7, she''d comment on how they must be dead elite
+      guards (mages). Otherwise, this conversation.
+
+      Kresla: So, it must have
+      used magic, and the crystal,\a before dying!
+
+      Frogman: Yes, that makes
+      sense.
+
+      Kresla: But don''t you see? There was never any record of such\a
+      crystals while I was alive!\a Even Magma Emblems, which have no such powers,\a
+      were considered myths -\a at least, until I found one.\a Did Xirveros use these
+      crystals for magic? Were they common in his time? But that was centuries ago!
+      Could they still be alive from then? Or are they from the far future? Are they
+      Guards? Are they from space? This is an extraordinary discovery! Frogman?\a
+      Are you listening?\a Frogman!
+
+      Frogman: Wha... Huh? Uh, yes, of course!
 
       Kresla:
-      So, it must have used magic, and the crystal,\a before dying!
+      Unbelievable!
 
-      Frogman:
-      Yes, that makes sense.
 
-      Kresla: But don''t you see? There was never
-      any record of such\a crystals while I was alive!\a Even Magma Emblems, which
-      have no such powers,\a were considered myths -\a at least, until I found one.\a
-      Did Xirveros use these crystals for magic? Were they common in his time? But
-      that was centuries ago! Could they still be alive from then? Or are they from
-      the far future? Are they Guards? Are they from space? This is an extraordinary
-      discovery! Frogman?\a Are you listening?\a Frogman!
 
-      Frogman: Wha...
-      Huh? Uh, yes, of course!
+      # === Functions ====
 
-      Kresla: Unbelievable!
 
-      
-
-      # ===
-      Functions ====
-
-      
 
       ~ Sample
 
-      # Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level3KreslaOnMagic
@@ -4862,8 +4860,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him,
-      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him, is
+      it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -4958,7 +4956,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -4971,9 +4969,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a
-      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
-      here, eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a I''m
+      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
+      eh? Ha ha!
 
       Frogman: I-
 
@@ -5001,16 +4999,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Firbell
@@ -5538,8 +5535,8 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment: My, must you repeat your
-      lines so? Heh heh!
+      Torment: My, must you repeat your lines
+      so? Heh heh!
 
       Frogman: Why, you-
 
@@ -5836,7 +5833,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       TBA
@@ -5849,11 +5846,11 @@ MonoBehaviour:
 
       :loadUnits:
 
-      
+
 
       }
 
-      
+
 
       ~
       After battle
@@ -5871,19 +5868,18 @@ MonoBehaviour:
 
       :unlockKnowledge:TormentPushPull
 
-      :showInfoDialogue:New
-      knowledge!
+      :showInfoDialogue:New knowledge!
 
-      
 
-      # === Functions ====
 
-      
+      #
+      === Functions ====
+
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Memerian
@@ -7781,12 +7777,12 @@ MonoBehaviour:
 
       :lose:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -8323,10 +8319,9 @@ MonoBehaviour:
 
       Frogman: Bla.
 
-      
 
-      ~ After
-      battle
+
+      ~ After battle
 
       :play:AfterBattle
 
@@ -8344,12 +8339,12 @@ MonoBehaviour:
 
       :lose:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -8396,14 +8391,14 @@ MonoBehaviour:
       Frogman:
       Bla.
 
-      
+
 
       ~ After battle
 
       :play:AfterBattle
 
-      Frogman:
-      Wow! We beat Fashima! Yay!
+      Frogman: Wow!
+      We beat Fashima! Yay!
 
       :play:Trustworthy
 
@@ -8414,12 +8409,12 @@ MonoBehaviour:
 
       :lose:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -8609,10 +8604,9 @@ MonoBehaviour:
 
       Frogman: ...Right.
 
-      
 
-      ~ After
-      battle
+
+      ~ After battle
 
       :setFlag:LanLost1
 
@@ -8630,12 +8624,12 @@ MonoBehaviour:
 
       :lose:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -8813,8 +8807,8 @@ MonoBehaviour:
 
       Lieutenant: Me?
 
-      Lan: Yes, you.\a Who''s the
-      best Magi?
+      Lan: Yes, you.\a Who''s the best
+      Magi?
 
       Lieutenant: What?
 
@@ -8823,8 +8817,8 @@ MonoBehaviour:
       Lieutenant:
       Is this some sort of a trick question, master?
 
-      Lan: Tricks? Who do
-      you think I am, soldier? Fashima?!\a Do I sound like this?
+      Lan: Tricks? Who do you
+      think I am, soldier? Fashima?!\a Do I sound like this?
 
       Fashima|Lan|L:
       You''re so stupid, soldier. Like, the worst.\a And I''m better than you.\a
@@ -8833,11 +8827,11 @@ MonoBehaviour:
       Lieutenant:
       I didn''t mean-
 
-      Lan: Oh, so you didn''t mean to, eh? I don''t care
-      what you meant!\a Your opinions mean nothing anyway!
+      Lan: Oh, so you didn''t mean to, eh? I don''t care what
+      you meant!\a Your opinions mean nothing anyway!
 
-      Lieutenant: Then
-      why did you ask-
+      Lieutenant: Then why
+      did you ask-
 
       Lan: Just shut up! My, the people I have to deal with...
 
@@ -8874,7 +8868,7 @@ MonoBehaviour:
 
       Frogman|Lan: ...
 
-      
+
 
       ~ After battle
 
@@ -8892,12 +8886,12 @@ MonoBehaviour:
 
       :lose:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -32148,7 +32142,7 @@ MonoBehaviour:
         - id: 56
       Name: Queen
       PlayerControlled: 0
-      PortraitLoadingMode: 2
+      PortraitLoadingMode: 0
       AI:
         TrueDamageWeight: 0
         RelativeDamageWeight: 0.5
@@ -37695,132 +37689,125 @@ MonoBehaviour:
   - Name: TestingArea
     LevelNumber: 9
     Units:
-    - Pos: {x: 7, y: 4}
+    - Pos: {x: 3, y: 3}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 10, y: 4}
-      Team: 1
-      Level: 4
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 12}
+    - Pos: {x: 0, y: 3}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 1}
+    - Pos: {x: 3, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 14}
+    - Pos: {x: 1, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 7, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 13}
       Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
+      Level: 9
+      Class: Fashima
+      AIType: 2
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 4, y: 4}
-      Team: 0
-      Level: 7
-      Class: Brens
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 5}
-      Team: 2
-      Level: 7
-      Class: Breaker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: City
-    Objective: 2
-    ObjectiveData: 6:6
-    MapString: 7|7|11|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|24|8|8|8|8|8|8|24|7|7|7|7;7|9|7|13|21|21|21|21|21|21|4|7|7|7|7;7|10|7|13|21|21|20|26|21|21|1|7|7|7|7;7|7|7|13|21|21|21|21|21|21|2|8|8|8|8;7|7|7|13|21|0|6|12|21|21|21|21|21|21|21;7|7|7|13|21|4|7|5|21|21|21|0|6|6|6;11|15|7|5|21|2|8|14|20|26|21|4|7|7|7;7|7|7|13|21|21|21|21|21|21|21|1|7|7|7;7|7|7|13|22|0|12|21|23|21|0|25|7|7|7;7|9|7|19|6|25|13|22|21|21|1|7|7|7|7;7|10|7|7|7|7|13|21|21|0|25|7|7|7|7;7|7|7|7|7|7|25|6|6|25|7|15|15|7|7;7|7|11|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|7|7|7|7|7|7|7|7|7|7|7|7
+    MapEvents:
+    - '~
+
+      turn:>0
+
+      ~
+
+      ~
+
+      :addSkill:Fashima:SiegeWeapon
+
+      :addSkill:Frogman:SiegeWeapon
+
+      Frogman:
+      BEGIN'
+    Tileset: Dungeon
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|0|0|0|0|3;0|0|0|0|0|0|0|0|0|0|0|3|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
   mapData:
-    Tiles: 7|7|11|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|24|8|8|8|8|8|8|24|7|7|7|7;7|9|7|13|21|21|21|21|21|21|4|7|7|7|7;7|10|7|13|21|21|20|26|21|21|1|7|7|7|7;7|7|7|13|21|21|21|21|21|21|2|8|8|8|8;7|7|7|13|21|0|6|12|21|21|21|21|21|21|21;7|7|7|13|21|4|7|5|21|21|21|0|6|6|6;11|15|7|5|21|2|8|14|20|26|21|4|7|7|7;7|7|7|13|21|21|21|21|21|21|21|1|7|7|7;7|7|7|13|22|0|12|21|23|21|0|25|7|7|7;7|9|7|19|6|25|13|22|21|21|1|7|7|7|7;7|10|7|7|7|7|13|21|21|0|25|7|7|7|7;7|7|7|7|7|7|25|6|6|25|7|15|15|7|7;7|7|11|7|7|7|7|7|7|7|7|7|7|7|7;7|7|7|7|7|7|7|7|7|7|7|7|7|7|7
+    Tiles: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|0|0|0|0|3;0|0|0|0|0|0|0|0|0|0|0|3|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
     Units:
-    - Pos: {x: 7, y: 4}
+    - Pos: {x: 3, y: 3}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 10, y: 4}
-      Team: 1
-      Level: 4
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 12}
+    - Pos: {x: 0, y: 3}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 1}
+    - Pos: {x: 3, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 14}
+    - Pos: {x: 1, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 7, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 13}
       Team: 2
-      Level: 0
-      Class: Skeleton
-      AIType: 0
+      Level: 9
+      Class: Fashima
+      AIType: 2
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 4, y: 4}
-      Team: 0
-      Level: 7
-      Class: Brens
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 5}
-      Team: 2
-      Level: 7
-      Class: Breaker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: City
+    MapEvents:
+    - Requirements: turn:>0
+      Event: ':addSkill:Fashima:SiegeWeapon
+
+        :addSkill:Frogman:SiegeWeapon
+
+        Frogman:
+        BEGIN'
+    Tileset: Dungeon
     LevelNumber: 9
-    Objective: Escape:6:6
+    Objective: Rout
     Name: TestingArea
 --- !u!114 &1902908240
 MonoBehaviour:
