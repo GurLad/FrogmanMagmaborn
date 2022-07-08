@@ -736,7 +736,7 @@ public class Unit : MapObject
     }
     public bool CanAttack(Unit other)
     {
-        return other != null && CanAttackPos(other.Pos);
+        return other != null && other.TheTeam.IsEnemy(TheTeam) && CanAttackPos(other.Pos);
     }
     private bool CanAttackPos(Vector2Int pos)
     {

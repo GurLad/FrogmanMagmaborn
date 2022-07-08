@@ -116,12 +116,12 @@ public class MapAnimationsController : MidBattleScreen
                         if (count >= 1 / BattleSpeed)
                         {
                             count -= 1 / BattleSpeed;
-                            if (defender != null && defender.CanAttack(attacker))
+                            if (missAnimation != null)
                             {
-                                if (missAnimation != null)
-                                {
-                                    Destroy(missAnimation.gameObject);
-                                }
+                                Destroy(missAnimation.gameObject);
+                            }
+                            if (defender != null && defender.Health > 0 && defender.CanAttack(attacker))
+                            {
                                 battleState = BattleAnimationState.DefenderAttacking;
                             }
                             else
@@ -351,8 +351,16 @@ public class MapAnimationsController : MidBattleScreen
         // Calculate x pos - harder than it sounds
         float posX;
         int sign;
-        posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
-        sign = posX > 0 ? -1 : 1;
+        if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size) || Mathf.Abs(attacking.Pos.x - defending.Pos.x) > size) // Good
+        {
+            posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            sign = posX > 0 ? -1 : 1;
+        }
+        else // Oof. Let's prioritize the attacker (not attacking), so it will be the same for both sides.
+        {
+            posX = (attacker.Pos.x * Mathf.Sign(attacker.Pos.x - size) < defender.Pos.x * Mathf.Sign(attacker.Pos.x - size) ? attacker.Pos.x - size : defender.Pos.x - size) + 0.5f;
+            sign = -(int)Mathf.Sign(attacker.Pos.x - size);
+        }
         float posY = Mathf.Clamp((attacking.Pos.y + defending.Pos.y) / 2f + 0.5f, 3, GameController.Current.MapSize.y - 3);
         rectTransform.anchoredPosition = new Vector2(
             posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * sign,
@@ -395,27 +403,16 @@ public class MapAnimationsController : MidBattleScreen
             case null:
                 // Destroy sprite for dead
                 SoundController.PlaySound(HitSFX, 0.5f);
+                battleTrueFlashTime = BattleFlashTime * 2; // Flash in case it has a death quote
+                if (!defending.Statue)
+                {
+                    defending.Moved = true; // "Flash"
+                }
                 break;
         }
         // Update display
-        if (attacker != null && defender != null)
-        {
-            attackerPanel.DisplayMidBattleForecast(attacker, defender, false);
-            defenderPanel.DisplayMidBattleForecast(defender, attacker, true);
-        }
-        else
-        {
-            if (attacker != null)
-            {
-                attackerPanel.DisplayMidBattleForecast(attacker, attacker, false);
-                defenderPanel.DisplayMidBattleForecast(attacker, attacker, true);
-            }
-            else
-            {
-                attackerPanel.DisplayMidBattleForecast(defender, defender, true);
-                defenderPanel.DisplayMidBattleForecast(defender, defender, false);
-            }
-        }
+        attackerPanel.DisplayMidBattleForecast(attacker, defender, false);
+        defenderPanel.DisplayMidBattleForecast(defender, attacker, true);
         return result;
     }
 

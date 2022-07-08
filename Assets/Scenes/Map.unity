@@ -36214,6 +36214,50 @@ MonoBehaviour:
     Objective: 2
     ObjectiveData: 8:14
     MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|20;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|39|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;36|28|28|28|32|5|8|11|35|35|29|34|35|35|35;34|36|28|28|28|32|35|38|28|28|32|38|28|28|28;9|37|28|28|28|28|28|28|28|28|28|28|28|28|28;0|37|28|28|28|28|28|28|28|28|28|28|28|28|28
+  - Name: Level5-4
+    LevelNumber: 0
+    Units: []
+    MapEvents:
+    - '~
+
+      teamMaxPos:y:player:>8
+
+      !hasTempFlag:charged
+
+      ~
+
+      ~
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      They''re behind us! Charge!
+
+      :setTeamAI:guard:charge
+
+      :setTempFlag:charged'
+    - '~
+
+      turn:>5
+
+      !hasTempFlag:charged
+
+      ~
+
+      ~
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      You''re too slow! Charge!
+
+      :setTeamAI:guard:charge
+
+      :setTempFlag:charged'
+    Tileset: HumanDungeon
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 34|37|28|28|28|28|28|28|28|32|34|29|35|38|28;35|38|28|28|30|33|33|36|28|28|32|38|28|28|28;28|28|28|30|3|6|2|9|36|28|28|28|28|28|28;28|28|30|34|2|1|27|10|29|36|28|28|28|28|28;28|30|29|34|5|8|2|11|34|34|36|28|30|36|28;28|31|34|34|35|35|34|29|34|34|37|28|32|34|36;30|34|34|38|28|28|31|3|15|17|37|28|28|32|35;34|29|37|28|28|28|31|4|0|10|37|28|28|28|28;34|34|38|28|28|28|31|4|1|10|37|28|28|28|28;29|38|28|28|28|28|2|27|15|16|17|36|28|28|28;37|28|28|28|28|28|31|4|1|7|10|37|28|30|33;38|28|28|28|28|28|31|4|7|27|10|37|28|32|35;28|28|28|30|36|28|31|4|27|1|12|37|28|28|28;28|28|30|29|38|28|15|17|0|15|26|37|28|28|28;28|28|32|38|28|28|31|5|8|8|11|38|28|28|28;28|28|28|28|28|28|31|34|29|34|37|28|28|28|28
   - Name: Level6-0
     LevelNumber: 6
     Units:
@@ -37710,14 +37754,14 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 1, y: 1}
+    - Pos: {x: 7, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 1}
+    - Pos: {x: 1, y: 1}
       Team: 0
       Level: 0
       Class: P
@@ -37728,6 +37772,20 @@ MonoBehaviour:
       Team: 2
       Level: 9
       Class: Fashima
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 0}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 2}
+      Team: 1
+      Level: 16
+      Class: Skeleton
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
@@ -37776,14 +37834,14 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 1, y: 1}
+    - Pos: {x: 7, y: 1}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 1}
+    - Pos: {x: 1, y: 1}
       Team: 0
       Level: 0
       Class: P
@@ -37794,6 +37852,20 @@ MonoBehaviour:
       Team: 2
       Level: 9
       Class: Fashima
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 0}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 2}
+      Team: 1
+      Level: 16
+      Class: Skeleton
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
