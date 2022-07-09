@@ -297,8 +297,8 @@ MonoBehaviour:
     ForegroundColorID: 0
     AccentColor: 1
     Voice:
-      VoiceType: 0
-      Pitch: 1
+      VoiceType: 3
+      Pitch: 0.4
     DisplayName: Bodder
   - Name: Brens
     Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
@@ -312,8 +312,8 @@ MonoBehaviour:
     ForegroundColorID: 3
     AccentColor: 1
     Voice:
-      VoiceType: 0
-      Pitch: 1
+      VoiceType: 1
+      Pitch: 0.5
     DisplayName: Brens
   - Name: Lan
     Background: {fileID: 21300000, guid: 6f6cce5a5611e2e43b652b9dcb1fe430, type: 3}
@@ -325,10 +325,10 @@ MonoBehaviour:
       - id: 8
       - id: 22
     ForegroundColorID: 3
-    AccentColor: 0
+    AccentColor: 1
     Voice:
       VoiceType: 0
-      Pitch: 1
+      Pitch: 0.8
     DisplayName: Lan
   - Name: Werse
     Background: {fileID: 21300000, guid: ae5fee134583d53439674acb57a8c36f, type: 3}
@@ -340,10 +340,10 @@ MonoBehaviour:
       - id: 46
       - id: 35
     ForegroundColorID: 1
-    AccentColor: 2
+    AccentColor: 1
     Voice:
-      VoiceType: 0
-      Pitch: 1
+      VoiceType: 2
+      Pitch: 0.9
     DisplayName: Werse
   GenericPortraits:
   - tags: female,young

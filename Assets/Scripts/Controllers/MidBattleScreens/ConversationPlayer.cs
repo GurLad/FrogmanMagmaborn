@@ -252,7 +252,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         MidBattleScreen.Set(this, false);
         if (resetSpeakers)
         {
-            SetSinglePortrait(true);
+            SetNoPortrait();
             currentSpeakerIsLeft = false;
         }
     }
@@ -1001,6 +1001,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             PortraitLHolderPalette.Palette = 3;
         }
         currentSpeakerIsLeft = left;
+    }
+    private void SetNoPortrait()
+    {
+        PortraitL.gameObject.SetActive(false);
+        PortraitR.gameObject.SetActive(false);
+        currentSpeakerIsLeft = false;
     }
     private void SetSinglePortrait(bool left)
     {

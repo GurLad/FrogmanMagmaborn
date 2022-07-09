@@ -949,7 +949,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
         unit.LoadSkills();
-        unit.Init();
+        unit.Init(true);
         return unit;
     }
 
