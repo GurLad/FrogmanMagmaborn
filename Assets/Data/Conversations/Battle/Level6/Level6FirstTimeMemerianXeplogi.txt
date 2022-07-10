@@ -64,7 +64,7 @@ Frogman: Ugh. Just stop, you two. Let me think.
 :setFlag:MetMemerian
 
 ~ After battle
-:play:AfterBattle
+:play:Anticipation
 Frogman: Whew. That was... tough.
 :if:hasCharacter:Xeplogi{
 
@@ -72,13 +72,14 @@ Frogman: Whew. That was... tough.
 :else:{
 :if:hasCharacter:Memerian{
 Memerian: So. You're here for the fortress, aren't you?
-Frogman: Yes. Have you been there?
-Memerian: I have. Multiple times, in fact.
-Frogman: Really?!\a What's in there?
-Memerian: Guards. Hordes of them. All intent on destroying you.
+Frogman: Yes. You've been there, right?\a Could you tell us a bit about what's inside?
+Memerian: I don't know what's inside,\a but I can tell you what's outside. Guards.
+Frogman: Wait. Didn't you say that you've been there before?
+Memerian: I've been to the fortress. Not inside it.\a There's a difference.
+Frogman: Right...
 :if:hasCharacter:Firbell{
-Firbell: Why do they hate us so?
-Memerian: They hate all monsters. In fact,\a from what I've gathered,\a all they do is kill monsters.
+Firbell||L: Memerian. Do you know why do these Guards hate us so?
+Memerian: They hate all monsters. In fact, from what I've gathered,\a all they ever do is killing monsters.
 :if:hasCharacter:Alfred{
 Alfred||R: ...And people. Living ones.\a Think they'll spare the dead?\a Pah!
 }
@@ -86,6 +87,12 @@ Alfred||R: ...And people. Living ones.\a Think they'll spare the dead?\a Pah!
 Firbell: But can we not talk to them?\a Explain that we are unlike the rest,\a and mean no harm?
 Memerian: No harm? Please. We've just killed a couple of them.
 Firbell: I...\a I see your point.\a Still, I must try at the very least.
+Memerian: You always do.
+Firbell: What do you mean?
+Memerian: Never mind me. Anyway, we should get out of here.\a Frogman?
+Frogman: Uh, yes, let's leave.
+Firbell: ...
+:finishConversation:
 }
 }
 :if:hasCharacter:Kresla{
