@@ -1,8 +1,11 @@
+
 priority:5
-unique:F
+unique:T
 ~ Requirements
 roomNumber:6
 hasCharacter:Xeplogi
+# Not ID since both versions have unique pre-battles
+!hasFlag:Level6FirstTime
 ~ Demands
 # TBA: Add room tags, and force a room built for Memerian and Keplogi
 ~ Before battle
@@ -65,6 +68,7 @@ Frogman: Ugh. Just stop, you two. Let me think.
 
 ~ After battle
 :play:Anticipation
+:setFlag:Level6FirstTime
 Frogman: Whew. That was... tough.
 :if:hasCharacter:Xeplogi{
 
@@ -96,23 +100,51 @@ Firbell: ...
 }
 }
 :if:hasCharacter:Kresla{
-Kresla: So did you see where are they coming from?\a They must live up there!
-Memerian: They do. And no, I never managed to find out where the ycome from.
-# TBA
-
+Kresla: So, you don't know where they come from?
+Memerian: No.
+Kresla: Excellent! I want to solve this mystery myself!
+Memerian: Alone? Good luck with that.
+Kresla: No, no. I need you as bodyguards, after all.\a Now then, let's go!
+:hideUnit:Kresla
+Memerian: ...Heh. I like that one.
+Frogman: She's a bit... reckless.
+Memerian: You don't need to be afraid when your immortal, Frogman.
+Frogman: I know. Let's follow her, shall we?
+Memerian: Let's.
+}
 # Memerian alone tells about Torment
 :if:charactersAlive:=1{
-Memerian: I used to help Torment as well, just like you.
+:if:hasFlag:MemerianMentionedTorment{
+Memerian: So. About Torment
+Frogman: Oh? Right, you know them.\a Why do they let you remember them?
+}
+:else:{
+Memerian: Frogman. Now that we're alone, you need to know something.
+Frogman: What is it?
+}
+Memerian: I used to help Torment, just like you.
 Frogman: Really?!
 Memerian: Yes. We had a... falling out eventually.\a But I see he has found a replacement already.
 Frogman: What happened?
 Memerian: I realized it was impossible.
 Frogman: What was?
-Memerian: Getting out of here.\a That fortress? It's imperentrable.
-
-I didn't have much of a life back there.\a The real world.\a And being immortal suited me just fine.
-Frogman: Really? Then why were you fighting the Guards?
-# TBA
+Memerian: Getting out of here.\a That fortress? It's impenetrable.
+Frogman: I'm sure there's a way inside...
+Memerian: That's not the problem. It doesn't even have a gate -\a anyone could theoretically enter it.
+Frogman: Huh? Then what's the problem?
+Memerian: The one guarding it. Assuming she's still alive.\a She's a wizard.
+Frogman: Like Xirveros?
+Memerian: ...Seriously?
+Frogman: Yeah, that was a foolish question.\a Like the lich, then?
+Memerian: Similar, but much more powerful. And intelligent.
+She can teleport anywhere, and transform her appearance.\a Frankly, we don't stand a chance.
+Frogman: Why are you helping me, then?
+Memerian: Something must have changed.\a Torment has selected a new champion for a reason.\a I'd like to see it.
+Frogman: I... see.
+Memerian: Now that we're on the same page, let's leave this place.
+Frogman: Right.
+:setFlag:MemerianMentionedFashima
+}
 
 # === Functions ====
 

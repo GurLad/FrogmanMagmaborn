@@ -1,8 +1,10 @@
 priority:5
-unique:F
+unique:T
 ~ Requirements
 roomNumber:6
 !hasCharacter:Xeplogi
+# Not ID since both versions have unique pre-battles
+!hasFlag:Level6FirstTime
 ~ Demands
 # TBA: Add room tags, and force a room built for Memerian and Keplogi
 ~ Before battle
@@ -25,16 +27,19 @@ Memerian: I'm Memerian.
 Frogman: Memerian? I think Xeplogi mentioned you.
 }
 Memerian: Did he now? I hope you didn't listen to the fool.
-Frogman: Um, not really.
+Frogman: He said you were an evil and witch.
+Memerian: He's a deplorable thief.
+Frogman: Uh...
 # Memerian is afraid to talk about Torment in public, and rightly so.
 :if:charactersAlive:<2{
-Memerian: Good. So, Frogman. I'll get straight to the point.\a Were you sent here by Torment?
+:setFlag:MemerianMentionedTorment
+Memerian: Let's skip the pleasentries, Frogman.\a Were you sent here by Torment?
 Frogman: Wait... you know Torment?!
 }
 :else:{
-Memerian: Good. Anyway. Frogman, may we speak in private?
+Memerian: Frogman, may we speak in private?
 Frogman: What for?
-Memerian: Let's call them... the divine Tori.
+Memerian: I need to talk to you about a... mutual friend.\a Big mouth?\a Sinister eyes?
 Frogman: Who?\a Wait, you mean Tor-
 Memerian: Yes.
 :if:hasCharacter:Firbell{
@@ -52,21 +57,14 @@ Xirveros: Tori? No! No Tori!
 :addGenericCharacter:Guard1:
 Guard1: What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
 Memerian: Ugh. Meddlesome Guards. We'll speak again soon, Frogman.
+Frogman: Wait. Why should I trust you?
+Memerian: ...Are you seriously considering Xeplogi's allegations?\a Do you have a death wish, Frogman?\a Because I can grant it.
+Frogman: Uh, no thanks.
+Memerian: Good. Then let's join forces.
+Frogman: ...
 :setFlag:MetMemerian
 
 ~ After battle
-:play:AfterBattle
-Frogman: Whew. We-
-:play:Trustworthy
-Torment: Not so fast, heh!
-Frogman: Torment?!
-Torment: Yes, it's me!\a You've reached the end of the beta!
-Frogman: What beta?
-Torment: I'm not talking to you, Frogman, but-\a You know what? Never mind.\a Anyway, this is the end of the beta!
-You can still play more runs to view more conversations
-and unlock upgrades, but you'll have to die now.
-Ha ha!
-:showPartTitle:End of:Beta
-:lose:
+:callOther:Level6FirstTimeMemerianXeplogi
 
 # === Functions ====
