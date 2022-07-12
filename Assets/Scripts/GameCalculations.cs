@@ -379,7 +379,7 @@ public static class GameCalculations
         return 
             ((unit.Flies && !tile.High) ? 0 :
             (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier)) + 
-            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.I ? unit.CountAdjacentAllies(pos) : 
-            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.II ? -unit.CountAdjacentAllies(pos) : 0));
+            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.I && unit.TheTeam.IsMainPlayerTeam() ? unit.CountAdjacentAllies(pos) : 
+            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.II && !unit.TheTeam.IsMainPlayerTeam() ? -unit.CountAdjacentAllies(pos) : 0));
     }
 }

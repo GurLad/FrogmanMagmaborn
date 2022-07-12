@@ -176,6 +176,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     {
                         Pause(false);
                         SkipDialogue.Begin();
+                        SkipDialogue.SelectItem(1);
                     }
                     break;
                 case CurrentState.Hold:

@@ -8366,8 +8366,8 @@ MonoBehaviour:
       ChoiceValue: 0
     - Name: Give /Take
       InternalName: TormentGiveTake
-      Description: 'I : All unites gain 1 Armor per adjacent ally.'
-      AltDescription: 'II: All unites lose 1 Armor per adjacent ally.'
+      Description: 'I : Player units gain 1 Armor per adjacent ally.'
+      AltDescription: 'II: Enemy units lose 1 Armor per adjacent ally.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3
