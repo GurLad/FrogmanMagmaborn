@@ -1039,6 +1039,125 @@ Transform:
   m_Father: {fileID: 1135799863}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &112286559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7673689191154767618, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_Name
+      value: Bugger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673689191154767646, guid: 6920b22997283b14db18bf8d0550f0f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6920b22997283b14db18bf8d0550f0f6, type: 3}
 --- !u!1 &112481767
 GameObject:
   m_ObjectHideFlags: 0
@@ -10968,8 +11087,6 @@ MonoBehaviour:
     Growths: 010000000100000001000000010000000100000001000000
     statValues: 040000000400000004000000040000000400000004000000
   Inclination: 0
-  Skills:
-    skills: 
   MaxAcceptableHitRisk: 50
   Priorities:
     TrueDamageWeight: 0
@@ -10990,6 +11107,8 @@ MonoBehaviour:
   ReinforcementTurn: 0
   Statue: 0
   portraitMode: 3
+  skills:
+    skills: 
   moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:
@@ -14351,12 +14470,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1626109149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8617805530085685082, guid: b3917e3aa982594419baa4f8a1789a3a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8617805528485790599}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650729687
 GameObject:
   m_ObjectHideFlags: 0
@@ -16872,7 +16985,6 @@ MonoBehaviour:
   DebugUnits: []
   DebugUnlimitedMove: 0
   DebugOPPlayers: 0
-  CameraBlackScreen: {fileID: 1626109149}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}
@@ -16886,10 +16998,10 @@ MonoBehaviour:
     TeamDatas:
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 1, g: 0, b: 1, a: 0}
+        - id: 55
+        - id: 55
+        - id: 55
+        - id: 56
       Name: Player
       PlayerControlled: 1
       PortraitLoadingMode: 0
@@ -16900,10 +17012,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 1, g: 0, b: 1, a: 0}
+        - id: 55
+        - id: 55
+        - id: 55
+        - id: 56
       Name: Monster
       PlayerControlled: 0
       PortraitLoadingMode: 1
@@ -16914,10 +17026,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 1, g: 0, b: 1, a: 0}
+        - id: 55
+        - id: 55
+        - id: 55
+        - id: 56
       Name: Guard
       PlayerControlled: 0
       PortraitLoadingMode: 2
@@ -16929,26 +17041,26 @@ MonoBehaviour:
     MusicName: 
     Palette4:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
+      - id: 55
+      - id: 55
+      - id: 55
+      - id: 55
     Alliances: 
     UnitReplacements: []
   Set:
     Name: 
     Palette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
+      - id: 55
+      - id: 55
+      - id: 55
+      - id: 55
     Palette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0, g: 0, b: 0, a: 1}
+      - id: 55
+      - id: 55
+      - id: 55
+      - id: 55
     TileObjects: []
     Tiles: []
   MapObjects: []
@@ -17002,6 +17114,9 @@ MonoBehaviour:
   BattleMoveDistance: 0.3
   BattleMissAnimation: {fileID: 1460440877}
   BattleBasePanelPosition: {fileID: 1401965837}
+  PushPullApproachDistance: 0
+  PushPullApproachRetreatSpeed: 0
+  PushPullMoveSpeed: 0
   HitSFX: {fileID: 8300000, guid: 40ca7dc105582aa4ba1b6fc405e01827, type: 3}
   MissSFX: {fileID: 8300000, guid: 734204ac8fd74b440a2794ce4507d642, type: 3}
   NoDamageSFX: {fileID: 8300000, guid: ce86335980fa1e843b15b5c2478efefd, type: 3}
@@ -17022,16 +17137,16 @@ MonoBehaviour:
   - Name: Magma
     Palette1:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.8627451, g: 0, b: 0.83137256, a: 1}
-      - {r: 0.5803922, g: 0, b: 0.54901963, a: 1}
-      - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      - id: 13
+      - id: 34
+      - id: 32
+      - id: 46
     Palette2:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 0.95686275, g: 0.8156863, b: 0.7058824, a: 1}
-      - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
-      - {r: 0.9882353, g: 0.21960784, b: 0, a: 1}
+      - id: 55
+      - id: 6
+      - id: 20
+      - id: 34
     TileObjects:
     - {fileID: 1051359412}
     - {fileID: 1837969776}
@@ -17356,10 +17471,10 @@ MonoBehaviour:
     TeamDatas:
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
-        - {r: 0, g: 0.34509805, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 25
+        - id: 53
+        - id: 56
       Name: Player
       PlayerControlled: 1
       PortraitLoadingMode: 0
@@ -17370,10 +17485,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
-        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 20
+        - id: 48
+        - id: 56
       Name: Monster
       PlayerControlled: 0
       PortraitLoadingMode: 1
@@ -17384,10 +17499,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.21960784, g: 0.7529412, b: 0.9882353, a: 1}
-        - {r: 0, g: 0, b: 0.9882353, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 15
+        - id: 43
+        - id: 56
       Name: Guard
       PlayerControlled: 0
       PortraitLoadingMode: 2
@@ -17399,20 +17514,20 @@ MonoBehaviour:
     MusicName: 
     Palette4:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-      - {r: 1, g: 0, b: 1, a: 0}
+      - id: 13
+      - id: 0
+      - id: 42
+      - id: 56
     Alliances: 000000
     UnitReplacements: []
   LevelMetadatas:
   - TeamDatas:
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.34509805, g: 0.972549, b: 0.6117647, a: 1}
-        - {r: 0, g: 0.34509805, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 25
+        - id: 53
+        - id: 56
       Name: Player
       PlayerControlled: 1
       PortraitLoadingMode: 0
@@ -17423,10 +17538,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0.9882353, g: 0.47058824, b: 0.34509805, a: 1}
-        - {r: 0.6745098, g: 0.0627451, b: 0, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 20
+        - id: 48
+        - id: 56
       Name: Monster
       PlayerControlled: 0
       PortraitLoadingMode: 1
@@ -17437,10 +17552,10 @@ MonoBehaviour:
         CautionLevel: 0
     - Palette:
         Colors:
-        - {r: 0, g: 0, b: 0, a: 1}
-        - {r: 0, g: 0.972549, b: 0.9882353, a: 1}
-        - {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
-        - {r: 0, g: 0, b: 0, a: 0}
+        - id: 13
+        - id: 12
+        - id: 40
+        - id: 56
       Name: Torment
       PlayerControlled: 0
       PortraitLoadingMode: 1
@@ -17452,10 +17567,10 @@ MonoBehaviour:
     MusicName: ToriTheme
     Palette4:
       Colors:
-      - {r: 0, g: 0, b: 0, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-      - {r: 1, g: 0, b: 1, a: 0}
+      - id: 13
+      - id: 0
+      - id: 42
+      - id: 56
     Alliances: 000000
     UnitReplacements: []
 --- !u!1 &1948964100
@@ -19760,6 +19875,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConversationPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 7897415133705611575, guid: 418b964e45a35c440a8d44cd2ba54949,
+        type: 3}
+      propertyPath: CGController
+      value: 
+      objectReference: {fileID: 943762973821451666, guid: 9221442470e45ae4a9e654ba225f6d2f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418b964e45a35c440a8d44cd2ba54949, type: 3}
 --- !u!1001 &8617805528485790599

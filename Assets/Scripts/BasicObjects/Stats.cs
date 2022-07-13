@@ -150,12 +150,16 @@ public class Stats
     public Stats GetMultipleLevelUps(int numLevels, int numStats = 3)
     {
         // The current algorithm causes a huge amount of min-maxing. This makes wierd builds (ex. tanky Frogman) easier to execute, but min-maxed builds less effective.
-        if (SumGrowths <= 0) // Units with 0 growths can't get stats
-        {
-            return new Stats();
-        }
         Stats result = new Stats();
         result.Growths = Growths;
+        if (SumGrowths <= 0) // Units with 0 growths can't get stats
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                result[i] = 0;
+            }
+            return result;
+        }
         List<float> statMods = new List<float>();
         for (int i = 0; i < 6; i++)
         {
@@ -189,12 +193,16 @@ public class Stats
     /// <returns>Stat changes (for display and addition)</returns>
     public Stats GetLevelUp(int numStats = 3)
     {
-        if (SumGrowths <= 0) // Units with 0 growths can't get stats
-        {
-            return new Stats();
-        }
         Stats result = new Stats();
         result.Growths = Growths;
+        if (SumGrowths <= 0) // Units with 0 growths can't get stats
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                result[i] = 0;
+            }
+            return result;
+        }
         if (SumGrowths <= numStats)
         {
             for (int i = 0; i < 6; i++)

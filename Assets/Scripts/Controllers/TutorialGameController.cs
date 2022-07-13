@@ -29,7 +29,7 @@ public class TutorialGameController : GameController
     protected override void Update()
     {
         base.Update();
-        if (WaitingForForceButton && !MidBattleScreen.HasCurrent && CurrentForceButton == null)
+        if (WaitingForForceButton && !MidBattleScreen.HasCurrent && CurrentForceButton == null && Time.timeScale != 0)
         {
             WaitingForForceButton = false;
             ConversationPlayer.Current.Resume();
