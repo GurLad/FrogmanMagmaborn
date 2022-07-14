@@ -12,9 +12,20 @@ charactersAlive:>1
 :loadUnits:
 :setSingleSpeaker:L
 Frogman: The Guards are here already?\a Oh no!
-Xeplogi: Hold! Who goes there?!
-Frogman: Servants of the divine Tori,\a sent here to vanquish Memerian.
-Xeplogi: Really?! Then let us join forces, friends!
+Xeplogi: Greetings, my friends. You have arrived not a moment too soon.
+:if:compareCounter:MemerianXeplogiBalance:>0{
+Frogman: Xeplogi...
+Xeplogi: I have to admit, though, that you've dissapointed me.\a Why did you pick that witch over my humble self?
+Frogman: Um, we... Uh...\a Needed her combat skills.\a No offence, Xeplogi,\a but she is a better fighter than you.
+Xeplogi: ...I see. Your honesty is commendable.\a I hereby forgive you.\a This time.
+Frogman: Thanks.
+}
+:else:{
+Frogman: Hello, Xeplogi.
+Xeplogi: Let's get out of here, shall we?
+Frogman: Let's.
+}
+
 ~ After battle
 Frogman: Everyone, run!
 :loadMap:Part2RestArea
