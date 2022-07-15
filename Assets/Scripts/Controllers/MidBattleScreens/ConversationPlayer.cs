@@ -481,6 +481,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         throw Bugger.Error("No matching unit! (" + args[0] + ")");
                     }
                     break;
+                case "killTeam":
+                    // Params: string teamName
+                    // Kills all units in a team.
+                    AssertCommand("killTeam", args, CAT.Team);
+                    GameController.Current.KillTeam(args[0].ToTeam() ?? throw Bugger.Error("No team!"));
+                    break;
                 case "setTeamAI":
                     // Params: Team team, AIType ai
                     AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);

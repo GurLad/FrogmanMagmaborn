@@ -23,7 +23,7 @@ Brens: You don't know?!
 Fashima_: Yes, I don't know.\a I'm not made of answers, you know.
 Brens: Argh! This is a disaster!
 Fashima_: Calm down, old man. Everything's under control.
-Brens: Old man?! You know that I'm younger than-\a Ugh, I've had enough!\a Keep an eye on the wall while I'm gone.
+Brens: Old man?! You're the oldest Magus alive!\a Ugh, I've had enough!\a Keep an eye on the wall while I'm gone.
 :killUnit:Brens
 :setSingleSpeaker:L
 Fashima_: ...Good riddance.
@@ -63,7 +63,10 @@ Kresla||R: I've never seen so many Guards in one place!\a Whatever it is that th
 Xirveros||R: Rocks! Lots of lots of rocks. So many lovely rocks!
 }
 :if:hasCharacter:Xeplogi{
-Xeplogi||R: TBA
+Xeplogi||R: Hm. Impressive structure.\a Albeit not as impressive as my castle.\a Oh ho ho!
+Frogman: You have a castle?
+Xeplogi: But of course! What kind of duke doesn't have one?
+Frogman: ...
 }
 :if:hasCharacter:Alfred{
 Alfred||R: The crystals.\a The Guards.\a Just like it used to be.\a But this time, they'll die, not me.\a My friends...\a My family...\a Today, I will avenge you, at long last!
@@ -87,15 +90,39 @@ Memerian||R: ...Let's hope they don't have a mage in here.
 
 ~ FashimaBattleQuote
 :if:stringEquals:[Name:Attacker]:Memerian{
-:if:!hasTempFlag:FashimaBattleMemerian{
-# TBA
-:setTempFlag:FashimaBattleMemerian
+:if:!hasFlag:FashimaBattleMemerian{
+Memerian: Fashima.
+Fashima_: Oh, Memerian. It's been a long time.\a Tired of playing it safe?
+Memerian: What game are you playing at, Fashima?
+Fashima_: The only game that matters. Stopping you.
+Memerian: Oh, please. You could have killed us a dozen times by now.\a What are you waiting for?\a Unless...
+Fashima_: I'm just having a little fun here, Memerian.\a I want to look into your eyes as you die.
+Memerian: No. That necklace... Oh my.\a Things are about to get interesting.
+Fashima_: Too bad you'll be dead by then.
+:setFlag:FashimaBattleMemerian
 }
 }
 :if:stringEquals:[Name:Attacker]:Frogman{
-:if:!hasTempFlag:FashimaBattleFrogman{
-# TBA
-:setTempFlag:FashimaBattleFrogman
+:if:!hasFlag:FashimaBattleFrogman{
+Fashima_||R: You're new.
+Frogman: Huh? You're talking to me?
+Fashima_: Yes. Who else would I be talking to?
+Frogman: Uh, it's just that no Guard has ever...
+Fashima_: I'm not a pathetic Guard. I'm Fashima, the Wall Magus.\a Prepare to die.
+Frogman: Wha...
+:setFlag:FashimaBattleFrogman
+}
+}
+:if:stringEquals:[Name:Attacker]:Alfred{
+:if:!hasFlag:FashimaBattleAlfred{
+Alfred: You. Leader of these Guards. I...\a Wait. Your smell...
+Fashima_: Seriously? Smelling me? What a pathetic creature.
+Alfred: No... It can't be... You smell like the traitor!\a Fasher!
+Fashima_: ...Fasher's dead. Has been for a long time now.\a Who're you? How do you even know him?
+Alfred: Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who're you?! His sister? Daughter?!
+Fashima_: Alfred, eh? Die in darkness, fool.
+Alfred: Rrgh! I will have my revange!
+:setFlag:FashimaBattleAlfred
 }
 }
 :setBattleQuote:Fashima:FashimaBattleQuote

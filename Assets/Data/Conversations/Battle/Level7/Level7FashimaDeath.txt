@@ -10,7 +10,7 @@ roomNumber:0
 # Name: Text.
 ~ After battle
 :setFlag:FashimaDied
-:play:DeadAlly
+:play:Raindance
 Fashima_: Took you... Long enough...
 :if:teamUnitsAlive:guard:>0{
 :getGenericCharacter:Guard1
@@ -19,14 +19,41 @@ Fashima_: Took you... Long enough...
 :addGenericCharacter:Guard1
 }
 Gurad1: F-Fashima's down! Everyone, retreat!
-# TBA: Kill all guard units
-Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!
-:if:hasCharacter:Memerian{
-Memerian: Hmpf. She's bold, I'll give her that.
-# TBA: Continue, and decide: do the characters spoil Fashima (supposedly) becoming a Magmaborn, or keep it a surprise?
+:killTeam:guard
+:if:hasFlag:FrogmanMagiHuman{
+Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!\a Like the Guards? But I thought...
 }
+:else:{
+Frogman: We... We did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I guess I shouldn't be surprised.
+}
+:call:Reaction
+:showPartTitle:Part 3:Champion
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ Reaction
+:if:hasCharacter:Memerian{
+Memerian: Hmpf. She's bold, I'll give her that.
+Frogman: Huh?
+Memerian: ...Let's enter the fortress, Frogman.
+Frogman: But-
+Memerian: Now. Before the Guards get a chance to regroup.
+Frogman: R-right...
+:return:
+}
+:if:hasCharacter:Alfred{
+Alfred: At long last... The Guards are losing. Will lose!\a Soon, my friends... Soon, the Guards will be destroyed!
+Frogman: Right... Alfred, we should enter the fortress.\a Before the Guards can regroup.
+Alfred: Gladly.
+:return:
+}
+:if:hasCharacter:Xirveros{
+Xirveros: Ooh! Fortress again! Will we meet Kostliv again?\a I miss him!
+Frogman: Kostliv?
+# The Wall Magus Xirveros killed when he was still Torment's champion
+Xirveros: Another mage. We fought a lot! He liked locks.\a But I prefer rocks!
+Frogman: Right... I'm going, Xirveros. Are you coming?
+Xirveros: Right! Maybe Kostliv inside!
+:return:
+}
+
