@@ -1,4 +1,3 @@
-
 priority:5
 unique:T
 ~ Requirements
@@ -11,7 +10,7 @@ hasCharacter:Xeplogi
 ~ Before battle
 :addUnit:Memerian
 :loadUnits::player
-:play:BeforeBattle
+:play:BeforeBattle2
 Frogman: Huh? Who's the golem standing there?
 :if:hasCharacter:Firbell{
 :setFlag:FirbellSawMemerian

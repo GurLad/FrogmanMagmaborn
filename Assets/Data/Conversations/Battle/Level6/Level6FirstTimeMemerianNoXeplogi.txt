@@ -10,7 +10,7 @@ roomNumber:6
 ~ Before battle
 :addUnit:Memerian
 :loadUnits::player
-:play:BeforeBattle
+:play:BeforeBattle2
 Memerian|???: Hey. You there. Who are you?
 :if:hasCharacter:Firbell{
 :setFlag:FirbellSawMemerian
