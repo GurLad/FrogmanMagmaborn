@@ -43,12 +43,7 @@ Lieutenant: Yes, master!
 :markDone:
 
 ~ After battle
-:play:AfterBattle
-Frogman: Wow! We beat Fashima! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+:callOther:Level7FashimaDeath
 
 # === Functions ====
 

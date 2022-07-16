@@ -12,13 +12,7 @@ Fashima_: Bla.
 Frogman: Bla.
 
 ~ After battle
-:play:AfterBattle
-:play:AfterBattle
-Frogman: Wow! We beat Fashima! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+:callOther:Level7FashimaDeath
 
 # === Functions ====
 
