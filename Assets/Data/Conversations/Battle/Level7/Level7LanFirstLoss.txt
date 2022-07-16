@@ -14,32 +14,44 @@ hasCharacter:Lan
 :addGenericCharacter:Guard1
 :loadUnits::monster
 :loadUnits::guard:T
-# TBA: improve
 Brens: Lan.
 Lan: Yes, Brens?
-Brens: I wanted to check out on you. How're you doing?
+Brens: How are you holding up?
+Being the new Wall Magus must be quite tough.
 Lan: Great! I'm doing great!
-Brens: That's nice to hear. Stuff about Fashima.
-Lan: Lan not caring about Fashima.
-Brens: Brens disturbed by it. Hints about Lan's loss
-Lan: Lan exploding, mimicks Brens.
-Brens: Gets angry, storms out.
-Gurad1: Magmaborn are here.
-:killUnit:Brens
+Brens: Really? Are you sure you're okay?\a Fashima died rather... suddenly.
+Lan: Yeah. Who needs her, anyway?
+Brens: That's no way to treat your former master!
+Lan: Pfft. Don't tell me what to do!
+Brens: I'm not-
+Brens|Lan: Oh, oh, look at me! I'm Brens!\a I'm so smart and nice and good!\a I'm here because I worry about you,\a not becuase I'm a power-hungry idiot! No, sir!
+Brens: Lan, this behaviour is quite unbecoming of a Magus!
+Brens|Lan: Yeah, Lan! Be like me! Annoying as hell!
+Brens: ...I'm going, Lan. Stay alive out there.
+:setSingleSpeaker:R
+Lan: ...
+Rot in hell, Brens.
+Lieutenant: Uh, Lan?
+Lan: Yes, [Name:Guard1]?
+Lieutenant: My name's [Name], master.
+Lan: Whatever. Spit it out.
+Lieutenant: T-the Magmaborn are back, master.
+Lan: Back?! Oh yes! I'll finally have my revenge!
 :play:BeforeBattle2
 :loadUnits::player:T
 :setSingleSpeaker:L
-Frogman: TBA
+Frogman: We're back... 
+Lan: HI, MAGMABORN! i'M GOING TO WIN THIS TIME!
+Frogman: Uh-
+Lan: BYE, LOSERS!
+Frogman: ...Wow.
+:markDone:
 
 ~ After battle
 :setFlag:LanLost1
 :addCounter:TimesLanLost:1
 :play:AfterBattle
-Frogman: Wow! We beat Fashima! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+Frogman: We did it! Time to defeat Brens!
 
 # === Functions ====
 

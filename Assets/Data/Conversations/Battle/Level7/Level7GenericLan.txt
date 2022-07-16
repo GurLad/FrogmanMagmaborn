@@ -7,23 +7,24 @@ hasFlag:FashimaDied
 hasCharacter:Lan
 ~ Before battle
 :play:GuardTheme2
-:if:hasFlag:BrensDied{
+:addGenericCharacter:Lieutenant:young
+:addGenericCharacter:Guard1
+:loadUnits::monster
+:loadUnits::guard:T
 :killUnit:Brens
-Lan: Bla.
-}
-:else:{
-Lan: Bla.
-:killUnit:Brens
-}
-Frogman: Bla.
+Lan: Oof. I'm bored.\a Where are all the Magmaborn?!
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: Back again... 
+Lan: OI! MAGMABORN! WELCOME BACK!
+Frogman: Ugh.
 
 ~ After battle
 :play:AfterBattle
-Frogman: Wow! We beat Fashima! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+:addCounter:TimesLanLost:1
+:play:AfterBattle
+Frogman: We did it again! Let's go, everyone!
 
 # === Functions ====
 

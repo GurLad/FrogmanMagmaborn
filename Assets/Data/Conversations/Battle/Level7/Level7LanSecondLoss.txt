@@ -15,12 +15,13 @@ hasCharacter:Lan
 :killUnit:Brens
 Lan: Hey. You there.
 Lieutenant: Me?
-Lan: Yes, you.\a Who's the best Magi?
+Lan: Yes, you.\a Who's the best Magus?
 Lieutenant: What?
-Lan: The best. Magi. Who is it?
+Lan: The best. Magus. Who is it?
 Lieutenant: Is this some sort of a trick question, master?
 Lan: Tricks? Who do you think I am, soldier? Fashima?!\a Do I sound like this?
-Fashima|Lan|L: You're so stupid, soldier. Like, the worst.\a And I'm better than you.\a So, so much better than you.\a You're simply pathetic.
+:setSpeaker:Fashima|Lan|L:
+You're so stupid, soldier. Like, the worst.\a And I'm better than you.\a So, so much better than you.\a You're simply pathetic.
 Lieutenant: I didn't mean-
 Lan: Oh, so you didn't mean to, eh? I don't care what you meant!\a Your opinions mean nothing anyway!
 Lieutenant: Then why did you ask-
@@ -38,15 +39,13 @@ Frogman: ...Wow. What a clever diguise.
 Frogman|Lan: ...Wow. What a clever diguise.
 Frogman: ...
 Frogman|Lan: ...
+:markDone:
 
 ~ After battle
 :play:AfterBattle
 :addCounter:TimesLanLost:1
-Frogman: Wow! We beat Fashima! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+:play:AfterBattle
+Frogman: We did it again! Let's go, everyone!
 
 # === Functions ====
 

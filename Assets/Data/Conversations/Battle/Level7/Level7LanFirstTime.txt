@@ -56,16 +56,13 @@ Lan: MY NAME IS LAN, THE NEW WALL MAGUS!\a AND I'M HERE TO SLAY YOU ALL!\a PREPA
 Frogman: Huh. So they replaced Fashima...
 Lieutenant||L: My... e-ears...
 Lan: Ha! That was a mighty fine speech, eh, soldier?\a Soldier?
+:markDone:
 
 ~ After battle
 :setFlag:LanLost1
 :play:AfterBattle
 :addCounter:TimesLanLost:1
-Frogman: Wow! We beat Lan! Yay!
-:play:Trustworthy
-Torment: Yay indeed!\a Now, you shall die!
-:showPartTitle:End of:Demo
-:lose:
+Frogman: Huh. This... Lan seems weird.\a Oh well, time to go, everyone!
 
 # === Functions ====
 
