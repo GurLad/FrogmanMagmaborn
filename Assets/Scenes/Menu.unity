@@ -1286,22 +1286,19 @@ MonoBehaviour:
       :introShowTutorial:
 
 
-
       ~
       After battle
 
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback1
@@ -1454,22 +1451,19 @@ MonoBehaviour:
       :introShowTutorial:
 
 
-
       ~
       After battle
 
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback2
@@ -1509,29 +1503,29 @@ MonoBehaviour:
 
       ...
 
-      Kebera||R: Would you care to show yourselves,\a or
-      are you still pretending to sneak about?
+      Kebera||R: Would you care to show yourselves,\a
+      or are you still pretending to sneak about?
 
-      FrogmanMan: ...I want you out
-      of my city, Kebera.\a Dead or alive.
+      FrogmanMan: ...I want you
+      out of my city, Kebera.\a Dead or alive.
 
-      Kebera||R: Do you now? And how,
-      exactly,\a do you plan on making me leave?
+      Kebera||R: Do you now? And
+      how, exactly,\a do you plan on making me leave?
 
-      FrogmanMan: You''re cornered.
-      And alone.\a Zip and I are well known for a reason.\a Give up, and you might
-      yet live.
+      FrogmanMan: You''re
+      cornered. And alone.\a Zip and I are well known for a reason.\a Give up, and
+      you might yet live.
 
-      Kebera||R: So sure of yourself, are you?\a Daring to threaten
-      me?\a But that won''t save you now,\a Frogman.\a Time to meet your maker.
+      Kebera||R: So sure of yourself, are you?\a Daring
+      to threaten me?\a But that won''t save you now,\a Frogman.\a Time to meet your
+      maker.
 
-      FrogmanMan:
-      Wrong answer. Zip, feather-
+      FrogmanMan: Wrong answer. Zip, feather-
 
       :setSingleSpeaker:L
 
-      Huh?\a Where
-      did she go?
+      Huh?\a
+      Where did she go?
 
       Zip||R: Don''t know, boss. She just-
 
@@ -1601,20 +1595,23 @@ MonoBehaviour:
 
       :introShowTutorial:
 
+      
 
       ~
       After battle
 
       # Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: IntroFlashback3
@@ -1640,7 +1637,7 @@ MonoBehaviour:
       Frogman:
       Uh... This Fashima, I-\a Wait, a memory...
 
-      #:showCG:Port
+      :showCG:Port
 
       :play:ForgottenMemories
 
@@ -1774,6 +1771,7 @@ MonoBehaviour:
 
       :play:ForgottenMemories
 
+      
 
       :hideCG:
 
@@ -1790,20 +1788,23 @@ MonoBehaviour:
 
       :introShowTutorial:
 
+      
 
       ~
       After battle
 
       # Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: IntroFlashback5

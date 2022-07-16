@@ -54,8 +54,8 @@ public class DifficultyKnowledgeMenuItem : KnowledgeMenuItem
     {
         return id switch
         {
-            1 => "Your units gain +2 extra levels. Recommended.",
-            2 => "Your units gain an extra level.",
+            1 => "Your units gain +2 extra levels. For everyone.",
+            2 => "Your units gain an extra level. For SRPG fans.",
             3 => "Your units do not get extra levels. Not recommended.",
             _ => null
         };
