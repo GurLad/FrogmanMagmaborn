@@ -42,7 +42,7 @@ public class StatusScreenHelpPanel : MonoBehaviour
     {
         for (int i = 0; i < PanelInfos.Count; i++)
         {
-            if (PanelInfos[i].Object.enabled == false)
+            if (PanelInfos[i].Object == null || PanelInfos[i].Object.enabled == false)
             {
                 PanelInfos.RemoveAt(i--);
             }
