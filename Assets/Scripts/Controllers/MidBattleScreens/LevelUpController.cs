@@ -48,6 +48,7 @@ public class LevelUpController : MidBattleScreen
             System.Action postFadeOut = () =>
             {
                 Destroy(transform.parent.gameObject);
+                GameController.Current.enabled = true;
                 GameController.Current.transform.parent.gameObject.SetActive(true);
                 Set(this, false);
                 ConversationPlayer.Current.Play(GameController.Current.CreateLevel(), true);

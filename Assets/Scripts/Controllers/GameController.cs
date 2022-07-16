@@ -794,7 +794,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         currentKnowledge++;
         SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
         SavedData.SaveAll(SaveMode.Slot);
-        interactable = true;
         PlayersLevelUp();
     }
 
@@ -1198,6 +1197,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void BeginBattle()
     {
         AssignGenericPortraitsToUnits();
+        // Begin the level properly
+        StartPhase(GameCalculations.FirstTurnTeam);
+        TurnAnimation.ShowTurn(GameCalculations.FirstTurnTeam);
         // Stats - increase the maps count of player units
         units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
     }
