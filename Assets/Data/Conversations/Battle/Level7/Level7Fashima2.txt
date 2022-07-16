@@ -20,25 +20,76 @@ Brens: What's that supposed to mean?
 Fashima_: Don't bother your feeble brain over it, Brens.
 Brens: Feeble brain? Are you calling me stupid?!
 Fashima_: Yes.
-Brens: How dare you! Mastering the art of transformation has\a nothing to do with intelligence!
-Fashima_: TBA
-
+Brens: How dare you!
+Fashima_: But it's true. I mean, you can't transform,\a you can't teleport...\a What are you even good for?
+Brens: Not everyone needs to fight, Fashima!
+I don't need transformation magic for logistics.\a Even you don't need it,\a and you're a warrior!
+Fashima_: And yet, I still know how to use it.\a Why, had you known how to do that,\a you might have looked a lot better, grandpa.
+Brens: Why do you keep goading me?! What did I ever do to you?
+Fashima_: You exist. That's reason enough.
+Brens: Wha- Ugh, fine. You don't want me here? I'll go.\a Take care, Fashima.
 :killUnit:Brens
 :setSingleSpeaker:L
-Fashima_: TBA
+Fashima_: Finally.
 :play:BeforeBattle2
 :loadUnits::player:T
 :setSingleSpeaker:L
-Frogman: TBA
-:call:Reaction
+Frogman: The fortress again... This time, we won't lose!
+#:call:Reaction
 :setSingleSpeaker:R
-Guard1: TBA
+Guard1: The Magmaborn are back!\a Quick, sound the alarm!\a Alert Fashima!
+Lieutenant: Right away!
+:setSpeaker:Fashima_||L
+Lieutenant: Fashima! We're under attack by Magmaborn!
+Fashima_: I see.
+Lieutenant: Uh... Your orders, master?
+Fashima_: The usual. Defend me, and kill them.
+Lieutenant: Yes, master!
+:setBattleQuote:Fashima:FashimaBattleQuote
 :markDone:
-
 ~ After battle
 :callOther:Level7FashimaDeath
 
 # === Functions ====
+
+~ FashimaBattleQuote
+:if:stringEquals:[Name:Attacker]:Memerian{
+:if:!hasFlag:FashimaBattleMemerian{
+Memerian: Fashima.
+Fashima_: Oh, Memerian. It's been a long time.\a Tired of playing it safe?
+Memerian: What game are you playing at, Fashima?
+Fashima_: The only game that matters. Stopping you.
+Memerian: Oh, please. You could have killed us a dozen times by now.\a What are you waiting for?\a Unless...
+Fashima_: I'm just having a little fun here, Memerian.\a I want to look into your eyes as you die.
+Memerian: No. That necklace... Oh my.\a Things are about to get interesting.
+Fashima_: Too bad you'll be dead by then.
+:setFlag:FashimaBattleMemerian
+}
+}
+:if:stringEquals:[Name:Attacker]:Frogman{
+:if:!hasFlag:FashimaBattleFrogman{
+Fashima_||R: You're new.
+Frogman: Huh? You're talking to me?
+Fashima_: Yes. Who else would I be talking to?
+Frogman: Uh, it's just that no Guard has ever...
+Fashima_: I'm not a pathetic Guard. I'm Fashima, the Wall Magus.\a Prepare to die.
+Frogman: Wha...
+:setFlag:FashimaBattleFrogman
+}
+}
+:if:stringEquals:[Name:Attacker]:Alfred{
+:if:!hasFlag:FashimaBattleAlfred{
+Alfred: You. Leader of these Guards. I...\a Wait. Your smell...
+Fashima_: Seriously? Smelling me? What a pathetic creature.
+Alfred: No... It can't be... You smell like the traitor!\a Fasher!
+Fashima_: ...Fasher's dead. Has been for a long time now.\a Who're you? How do you even know him?
+Alfred: Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who're you?! His sister? Daughter?!
+Fashima_: Alfred, eh? Die in darkness, fool.
+Alfred: Rrgh! I will have my revange!
+:setFlag:FashimaBattleAlfred
+}
+}
+:setBattleQuote:Fashima:FashimaBattleQuote
 
 ~ Reaction
 TBA

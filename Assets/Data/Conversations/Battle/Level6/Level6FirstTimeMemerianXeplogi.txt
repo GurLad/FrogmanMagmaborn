@@ -70,7 +70,15 @@ Frogman: Ugh. Just stop, you two. Let me think.
 :setFlag:Level6FirstTime
 Frogman: Whew. That was... tough.
 :if:hasCharacter:Xeplogi{
-
+Xeplogi: Indeed. Shall we go back to safer grounds now?
+Frogman: Seriously? We're almost to the fortress!
+Xeplogi: But... It could be dangerous!
+Frogman: Don't make me regret picking you over Memerian, Xplogi.
+Xeplogi: W-why would you even consider-
+Frogman: I'm going, Xeplogi. Will you?
+:hideUnit:Frogman
+Xeplogi: I- Ugh, what a strong-headed fool...\a Fine. I guess that I'll follow him.
+:finishConversation:
 }
 :else:{
 :if:hasCharacter:Memerian{

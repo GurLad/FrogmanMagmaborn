@@ -7,19 +7,28 @@ hasCharacter:Xeplogi
 ~ Demands
 # Nothinig
 ~ Before battle
+:callOther:GuardPreBanter
 :play:BeforeBattle2
 :addUnit:Memerian
 :loadUnits:
-Memerian: Hello.
+:setSingleSpeaker:R
+Memerian: ...We meet again, slime.
+Xeplogi: You! Remove yourself from my sight at once!
+Memerian: And why would I do that?
+Xeplogi: Why, you little-
+Frogman: Ugh, enough.
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
+:addCounter:MemerianXeplogiBalance:-1
+Frogman: Xeplogi, let's defeat this... witch.
 Xeplogi: Ha! Yes!
-Memerian: Oh well. Your loss.
+Memerian: ...Die, fools.
 :setTeam:Memerian:monster
 }
 :else:{
-Memerian: Finally, someone sane.
-Xeplogi: No! You're evil!
+:addCounter:MemerianXeplogiBalance:1
+Frogman: I'm sorry, Xeplogi. Please leave us.
+Xeplogi: How dare you! You will die for this, Frogman!
 :setTeam:Xeplogi:monster
 }
 ~ After battle
