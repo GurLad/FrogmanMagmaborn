@@ -11,7 +11,6 @@ roomNumber:0
 ~ After battle
 :setFlag:FashimaDied
 :play:Raindance
-Fashima_: Took you... Long enough...
 :if:teamUnitsAlive:guard:>0{
 :getGenericCharacter:Guard1
 }

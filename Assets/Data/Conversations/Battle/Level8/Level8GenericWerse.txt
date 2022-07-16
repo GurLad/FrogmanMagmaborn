@@ -1,0 +1,29 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:8
+hasFlag:BrensDied
+~ Demands
+!hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant
+:loadUnits::monster
+:loadUnits::guard:T
+Werse: ...\a I can't belive that he's... gone...
+:loadUnits:player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+Frogman: We're back... Come on, we've got no time to lose!
+
+# Name: Text.
+~ After battle
+:play:AfterBattle
+Torment: Congratiulations! You've finished the beta! Now die!
+:showPartTitle:End of:Beta
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

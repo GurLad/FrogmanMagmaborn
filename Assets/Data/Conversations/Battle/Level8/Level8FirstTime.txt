@@ -3,7 +3,7 @@ unique:T
 ~ Requirements
 roomNumber:8
 ~ Demands
-# Nothinig
+hasCharacter:Brens
 ~ Before battle
 :play:GuardTheme3
 :addGenericCharacter:Lieutenant
@@ -20,15 +20,15 @@ Werse: ...Serves her right.
 Brens||R: Oh. Oh no. So the Magmaborn...
 Lieutenant: Will be here any moment now.
 Brens: ...This is terrible. It's been centuries since...\a Werse, go alert Bodder.\a And the Crystal Magus.\a Maybe this will finally drive her to do something.
-Werse: As you wish. But the Crystal Magus is a lost cause.
+Werse: ...As you wish. But the Crystal Magus is a lost cause.
 Brens: Ugh. I know. Yet we must try!\a I'll hold the Magmaborn here. Werse, go!
 Werse: Wait, what? No, you're not a fighter!\a If they got through Fashima, they'll tear you to shreds!
 Brens: ...It is our duty to die for humanity, Werse.\a Never forget that.
-Werse: No, our duty is to protect them, not die for them!\a Brens, please! Don't sacrifice yourself!
+Werse: No. Our duty is to protect them, not die for them!\a Brens, please! Don't sacrifice yourself!
 Brens: Ha. You're a good kid, Werse.\a But we don't have time for this.\a Go alert the remaining Magi.
 Werse: Brens! You don't have to die! I beg you!
 Brens: Werse, enough with this whining! Go alert the Magi at once!\a That's an order!
-Werse: ...As you say, master.
+Werse: I...\a As you say, master.
 :killUnit:Werse
 :setSingleSpeaker:R
 Brens: ...I'm sorry, Werse. But I will fulfill my duty.
@@ -43,12 +43,55 @@ Guard3||L: For Fashima!
 :play:BeforeBattle3
 :setSingleSpeaker:L
 Frogman: We're... inside the Fortress...\a Wow, this place is a mess!
-# TBA
+:call:Reaction
+:setDeathQuote:Brens:BrensDeath
+:markDone:
 
 ~ After battle
 :callOther:BrensDeath
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ Reaction
+:if:hasCharacter:Firbell{
+Firbell: These... are homes, Frogman.
+Frogman: Yes, I know. This must be where the Guards live.
+Firbell: Killing them here would be... brutal.
+Frogman: ...You're right. But what choice do we have?\a We've come this far.\a We can't go back now.\a And they're on the way to teh center.
+Firbell: It is never too late, Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless monsters, not humans.
+Frogman: It is too late now, Firbell.\a I'm sorry. But I'm not going back.
+Firbell: ...Then I must-
+Frogman: Abandon us? Your friends? Your comrades?\a Would that be just, Firbell?
+Firbell: N-no, but-
+Frogman: This is no time to second-guess our actions, Firbell.\a We need you here, Firbell.\a Are you with us?
+Firbell: ...
+Fine, Frogman.
+Frogman: Good. Let's go!
+Firbell: ...
+How did this happen...?
+:return:
+:if:hasCharacter:Memerian{
+Memerian: Huh. That's not quite how I imagined it.
+Frogman: Yeah, me neither. Oh well, let's break through!
+:return:
+}
+:if:hasCharacter:Kresla{
+Kresla: Oh my! They must be living in these houses!\a But where do they grow food?\a Or water?\a Or do they import it from the surface?\a And why-
+Frogman: Kresla. We don't have time for this.
+Kresla: You never give me time to explore, Frogman!
+Frogman: Because we're surrounded by enemies!
+Kresla: Fine, fine. But after this battle, I'm staying here!\a I must know how they work!
+Frogman: ...Ugh, all right, Kresla.
+Kresla: Great!
+:return:
+}
+Oh well, let's break through!
+
+~ BrensDeath
+:setFlag:BrensDied
+:play:GuardTheme3
+Brens: Ha... You're tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+:play:Silence
+Fashima|???: Not so fast, old man.
+:screenShake:
+Brens: Urk!
