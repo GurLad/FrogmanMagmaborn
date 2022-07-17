@@ -34,6 +34,47 @@ public abstract class MidBattleScreen : MonoBehaviour
     {
         return MidBattleScreen.Current == this;
     }
+    /// <summary>
+    /// Does the bare minimum to fade this out - disables GameController + this, and destroys this after fading out
+    /// </summary>
+    /// <param name="postFadeOutAction">An action to invoke after fading out</param>
+    /// <param name="postFadeOutState">The palette state after fading out (for the next fade in)</param>
+    public void FadeThisOut(System.Action postFadeOutAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
+    {
+        // Pause the game so nothing accidently breaks
+        enabled = false;
+        GameController.Current.enabled = false;
+        // Prepare the actions
+        PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
+        System.Action postFadeOut = () =>
+        {
+            Destroy(transform.parent.gameObject);
+            Set(this, false);
+            PaletteController.Current.LoadState(postFadeOutState ?? state);
+            postFadeOutAction?.Invoke();
+        };
+        // Begin the fade
+        PaletteController.Current.FadeOut(postFadeOut);
+    }
+    /// <summary>
+    /// Does the bare minimum to fade this in - disables GameController + this, displays this, and enables this after the fade
+    /// </summary>
+    /// <param name="postFadeInAction">An action to invoke after fading in</param>
+    public void FadeThisIn(System.Action postFadeInAction = null)
+    {
+        // Pause the game so nothing accidently breaks
+        enabled = false;
+        GameController.Current.enabled = false;
+        transform.parent.gameObject.SetActive(true);
+        Set(this, true);
+        // Prepare the actions
+        System.Action postFadeIn = () =>
+        {
+            enabled = true;
+            postFadeInAction?.Invoke();
+        };
+        PaletteController.Current.FadeIn(postFadeIn);
+    }
     protected void Quit(bool fadeTransition = true, System.Action postQuitAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
     {
         if (!fadeTransition)
@@ -45,9 +86,6 @@ public abstract class MidBattleScreen : MonoBehaviour
         }
         else
         {
-            // Pause the game so nothing accidently breaks
-            enabled = false;
-            GameController.Current.enabled = false;
             // Prepare the actions
             PaletteController.PaletteControllerState state = PaletteController.Current.SaveState();
             System.Action postFadeIn = () =>
@@ -57,14 +95,11 @@ public abstract class MidBattleScreen : MonoBehaviour
             };
             System.Action postFadeOut = () =>
             {
-                Destroy(transform.parent.gameObject);
                 GameController.Current.transform.parent.gameObject.SetActive(true);
-                Set(this, false);
-                PaletteController.Current.LoadState(postFadeOutState ?? state);
                 PaletteController.Current.FadeIn(postFadeIn);
             };
             // Begin the fade
-            PaletteController.Current.FadeOut(postFadeOut);
+            FadeThisOut(postFadeOut, postFadeOutState);
         }
     }
     public void TransitionToThis(bool fadeTransition = true, System.Action postTransitionAction = null, PaletteController.PaletteControllerState postFadeOutState = null)

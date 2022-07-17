@@ -30,6 +30,10 @@ public class PartTitleAnimation : MidBattleScreen
         }
         count = currentPart = displayPart = 0;
         TitleParts[0].Palette = 0;
+    }
+
+    private void Start()
+    {
         previousState = PaletteController.Current.SaveState();
         PaletteController.Current.SpritePalettes[0][2] =
             PaletteController.Current.SpritePalettes[0][1] =
@@ -93,7 +97,7 @@ public class PartTitleAnimation : MidBattleScreen
             }
             else
             {
-                Quit(true, () => ConversationPlayer.Current.Resume(), previousState);
+                FadeThisOut(() => ConversationPlayer.Current.Resume(1, true), previousState);
             }
         }
     }

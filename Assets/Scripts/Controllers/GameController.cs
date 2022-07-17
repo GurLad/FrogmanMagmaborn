@@ -808,7 +808,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
         levelUpController.Init(playerCharacters);
-        levelUpController.TransitionToThis();
+        levelUpController.FadeThisIn();
     }
 
     public void PlayersSave()

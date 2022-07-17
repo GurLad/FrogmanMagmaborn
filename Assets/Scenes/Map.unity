@@ -762,10 +762,8 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       #
       === Functions ====
-
 
 
       ~ Sample
@@ -773,7 +771,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Fallback
+    Name: Conversations/Battle/Fallback.txt
   - Text: 'priority:-1
 
       unique:F
@@ -839,18 +837,16 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
-    Name: GuardConversation1
+    Name: Conversations/Battle/GuardBanter/GuardConversation1.txt
   - Text: 'priority:-1
 
       unique:F
@@ -912,18 +908,16 @@ MonoBehaviour:
       # Name: Text.
 
 
-
-      # === Functions
-      ====
+      # === Functions ====
 
 
-
-      ~ Sample
+      ~
+      Sample
 
       # Name: Text.
 
 '
-    Name: GuardConversation2
+    Name: Conversations/Battle/GuardBanter/GuardConversation2.txt
   - Text: 'priority:-1
 
       unique:F
@@ -982,18 +976,15 @@ MonoBehaviour:
       Name: Text.
 
 
-
       # === Functions ====
-
 
 
       ~ Sample
 
-      # Name:
-      Text.
+      # Name: Text.
 
 '
-    Name: GuardConversation3
+    Name: Conversations/Battle/GuardBanter/GuardConversation3.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1056,9 +1047,7 @@ MonoBehaviour:
       Text.
 
 
-
       # === Functions ====
-
 
 
       ~ Sample
@@ -1066,7 +1055,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: GuardConversation4
+    Name: Conversations/Battle/GuardBanter/GuardConversation4.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1114,19 +1103,19 @@ MonoBehaviour:
       #
       Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~ Sample
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
-    Name: GuardConversation5
+    Name: Conversations/Battle/GuardBanter/GuardConversation5.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1180,18 +1169,15 @@ MonoBehaviour:
       Name: Text.
 
 
-
       # === Functions ====
-
 
 
       ~ Sample
 
-      # Name:
-      Text.
+      # Name: Text.
 
 '
-    Name: GuardConversation6
+    Name: Conversations/Battle/GuardBanter/GuardConversation6.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1239,10 +1225,8 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       #
       === Functions ====
-
 
 
       ~ Sample
@@ -1250,7 +1234,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: GuardConversation7
+    Name: Conversations/Battle/GuardBanter/GuardConversation7.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1319,16 +1303,13 @@ MonoBehaviour:
       There are monsters approaching!
 
 
-
       ~ After battle
 
       # Name: Text.
 
 
-
       #
       === Functions ====
-
 
 
       ~ Sample
@@ -1336,7 +1317,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: GuardConversation8
+    Name: Conversations/Battle/GuardBanter/GuardConversation8.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1400,18 +1381,16 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       # === Functions ====
 
 
+      ~ Sample
 
-      ~
-      Sample
-
-      # Name: Text.
+      #
+      Name: Text.
 
 '
-    Name: GuardConversation9
+    Name: Conversations/Battle/GuardBanter/GuardConversation9.txt
   - Text: 'priority:3
 
       unique:T
@@ -1439,28 +1418,28 @@ MonoBehaviour:
 
       Firbell: Do you remember where you''re from?
 
-      Frogman: Uh...\a
-      No.
+      Frogman:
+      Uh...\a No.
 
-      Firbell: I thought so. But once we get out of here,\a where would
-      you go?
+      Firbell: I thought so. But once we get out of here,\a where
+      would you go?
 
       Frogman: I haven''t thought about it yet.
 
-      Firbell: Would
-      you want to come to Irenhold, then?
+      Firbell:
+      Would you want to come to Irenhold, then?
 
-      I think you would prefer it to the
-      other kingdoms.
+      I think you would prefer
+      it to the other kingdoms.
 
       Frogman: I... Firbell...
 
-      Firbell: Please, it
-      is all right.\a Even though you aren''t from there,\a I could ask mother to
-      admit you to the royal court.\a I''m sure she-
+      Firbell:
+      Please, it is all right.\a Even though you aren''t from there,\a I could ask
+      mother to admit you to the royal court.\a I''m sure she-
 
-      Frogman: Firbell, let''s
-      focus on the monsters first, all right?
+      Frogman: Firbell,
+      let''s focus on the monsters first, all right?
 
       Firbell: All right.
 
@@ -1483,19 +1462,19 @@ MonoBehaviour:
       Frogman:
       Thank you...
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~ Sample
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
-    Name: Level1FirbellMemory
+    Name: Conversations/Battle/Level1/Level1FirbellMemory.txt
   - Text: 'priority:3
 
       unique:T
@@ -1520,8 +1499,8 @@ MonoBehaviour:
       Frogman: Hello.\a I''ve been thinking lately.\a
       Why is it that I never see you with Kresla?
 
-      Firbell: I do not like her.
-      ...Let us defeat this monsters,\a and then I will explain.
+      Firbell: I do not like
+      her. ...Let us defeat this monsters,\a and then I will explain.
 
       Frogman:
       Right.
@@ -1530,43 +1509,43 @@ MonoBehaviour:
 
       :play:AfterBattle
 
-      Frogman: Well, that was that.\a
-      So why do you not like Kresla?
+      Frogman: Well, that was
+      that.\a So why do you not like Kresla?
 
-      Firbell: She has insulted Irenhold, Xirveros,
-      and me.\a I tend to avoid her.
+      Firbell: She has insulted Irenhold,
+      Xirveros, and me.\a I tend to avoid her.
 
-      Frogman: Oh. What did she do?
+      Frogman: Oh. What did she
+      do?
 
-      Firbell:
-      She claimed that Irenhold no longer exists.
+      Firbell: She claimed that Irenhold no longer exists.
 
-      Frogman: ...
+      Frogman:
+      ...
 
-      Firbell:
-      Preposterous, I know.\a But she could not be dissuaded.\a I cannot stand such
-      insolance.
+      Firbell: Preposterous, I know.\a But she could not be dissuaded.\a
+      I cannot stand such insolance.
 
       Frogman: So you avoid her?
 
-      Firbell: What choice do
-      I have? Killing her has no effect.
+      Firbell:
+      What choice do I have? Killing her has no effect.
 
-      I wonder how could she even get a
-      Magma Emblem.
+      I wonder how could
+      she even get a Magma Emblem.
 
       Frogman: I... see.
 
-      Firbell: But worry not, I am
-      not offended by you fighting\a alongside her.\a That is your own bad choice.
+      Firbell: But
+      worry not, I am not offended by you fighting\a alongside her.\a That is your
+      own bad choice.
 
-      Frogman:
-      Thank you?
+      Frogman: Thank you?
 
       :setFlag:FirbellOnKresla
 
 '
-    Name: Level1FirbellOnKresla
+    Name: Conversations/Battle/Level1/Level1FirbellOnKresla.txt
   - Text: 'priority:3
 
       unique:T
@@ -1641,10 +1620,8 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       # === Functions
       ====
-
 
 
       ~ Sample
@@ -1652,7 +1629,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level1FirbellOnMagmaborn
+    Name: Conversations/Battle/Level1/Level1FirbellOnMagmaborn.txt
   - Text: 'priority:5
 
       unique:T
@@ -1725,7 +1702,7 @@ MonoBehaviour:
       :markDone:
 
       :lose:'
-    Name: Level1FirbellOnMemerian
+    Name: Conversations/Battle/Level1/Level1FirbellOnMemerian.txt
   - Text: 'priority:4
 
       unique:T
@@ -1788,21 +1765,21 @@ MonoBehaviour:
       I think made it pretty
       clear our agreement was...\a confidential, didn''t I? Ha!
 
-      Frogman: You...
+      Frogman:
+      You...
 
-      Torment:
-      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
-      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
+      Torment: And yet, you betrayed me so easily? I''m offended!
+      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
+      DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman:
-      Urgh!
+      Frogman: Urgh!
 
       :markDone:
 
       :lose:'
-    Name: Level1FirbellTorment1
+    Name: Conversations/Battle/Level1/Level1FirbellTorment1.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1824,11 +1801,11 @@ MonoBehaviour:
 
       Frogman: Hello.
 
-      Firbell: Time to smash a few
-      monsters.
+      Firbell: Time to smash a
+      few monsters.
 
       Frogman: Indeed.'
-    Name: Level1GenericFirbell
+    Name: Conversations/Battle/Level1/Level1GenericFirbell.txt
   - Text: 'priority:-1
 
       unique:F
@@ -1854,7 +1831,7 @@ MonoBehaviour:
       Oh well, maybe next time.
 
       For now, killing some monsters will do.'
-    Name: Level1GenericKresla
+    Name: Conversations/Battle/Level1/Level1GenericKresla.txt
   - Text: 'priority:3
 
       unique:T
@@ -1921,7 +1898,7 @@ MonoBehaviour:
       for me!
 
       :setFlag:KreslaOnFirbell'
-    Name: Level1KreslaOnFirbell
+    Name: Conversations/Battle/Level1/Level1KreslaOnFirbell.txt
   - Text: 'priority:4
 
       unique:T
@@ -1965,40 +1942,40 @@ MonoBehaviour:
       there was a crazed, laughing energy ball,\a named Torment. They are incredibly
       powerful,\a and they''re trapped here, like us.
 
-      Kresla: Wow. Uh... I
-      don''t know what to say.
+      Kresla: Wow. Uh...
+      I don''t know what to say.
 
       :play:Trustworthy
 
-      Torment||R: Yes, seriously,
-      Frogman. Who would buy such a story?\a Heh heh!
+      Torment||R: Yes,
+      seriously, Frogman. Who would buy such a story?\a Heh heh!
 
-      Frogman: You! Here,
-      do you see now, Kresla?
+      Frogman:
+      You! Here, do you see now, Kresla?
 
       Kresla||L: ...
 
-      Torment: HA HA HA! Ever
-      the fool, are you, Frogman? Heh!
-
-      I think made it pretty clear our agreement
-      was...\a confidential, didn''t I? Ha!
-
-      Frogman: You...
-
       Torment:
-      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
-      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
+      HA HA HA! Ever the fool, are you, Frogman? Heh!
+
+      I think made it pretty
+      clear our agreement was...\a confidential, didn''t I? Ha!
+
+      Frogman:
+      You...
+
+      Torment: And yet, you betrayed me so easily? I''m offended!
+      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
+      DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman:
-      Urgh!
+      Frogman: Urgh!
 
       :markDone:
 
       :lose:'
-    Name: Level1KreslaTorment1
+    Name: Conversations/Battle/Level1/Level1KreslaTorment1.txt
   - Text: 'priority:6
 
       unique:T
@@ -2045,10 +2022,8 @@ MonoBehaviour:
       :call:PostFirst
 
 
-
       #
       === Functions ====
-
 
 
       ~ PreFirst
@@ -2091,7 +2066,6 @@ MonoBehaviour:
       :setDeathQuote:Firbell:FirbellFirstDeath
 
       :setDeathQuote:Frogman:FrogmanFirstDeath
-
 
 
       ~
@@ -2137,7 +2111,6 @@ MonoBehaviour:
       Frogman: O-okay...
 
       :setFlag:ToldFirbellName
-
 
 
       ~
@@ -2250,7 +2223,6 @@ MonoBehaviour:
       }
 
 
-
       ~ FirbellFirstDeath
 
       Firbell: Ugh... Frogman,
@@ -2270,7 +2242,6 @@ MonoBehaviour:
       this place?!
 
 
-
       ~ FrogmanFirstDeath
 
       Frogman: I-I can''t...\a I
@@ -2279,14 +2250,13 @@ MonoBehaviour:
       :lose:
 
 
-
       ~ FirbellNormalDeath
 
       Firbell:
       Ugh... I will... be back...
 
 '
-    Name: Level1MeetFirbell
+    Name: Conversations/Battle/Level1/Level1MeetFirbell.txt
   - Text: 'priority:5
 
       unique:T
@@ -2329,8 +2299,8 @@ MonoBehaviour:
 
       Frogman: Um, I don''t remember.
 
-      Kresla: Oh well. Let
-      me know once you do!\a Oh, you asked me something, didn''t you?
+      Kresla: Oh well.
+      Let me know once you do!\a Oh, you asked me something, didn''t you?
 
       Frogman:
       Yes, where is Firbell?
@@ -2338,31 +2308,32 @@ MonoBehaviour:
       Never mind, we are surrounded by monsters,\a
       let''s deal with them first.
 
-      Kresla: Yes, yes, the boring monsters first.
+      Kresla: Yes, yes, the boring monsters
+      first.
 
       }
 
       :else:{
 
-      Kresla:
-      Oh! Hello again, Frogman!
+      Kresla: Oh! Hello again, Frogman!
 
-      Frogman: Oh, hello, Kresla.
+      Frogman:
+      Oh, hello, Kresla.
 
-      Kresla:
-      You died pretty quickly last time.\a That''s all right, happens to me all the
-      time.
+      Kresla: You died pretty quickly last time.\a That''s
+      all right, happens to me all the time.
 
       Frogman: Yes, me too.
 
-      Kresla: But the fun part is, we just
-      come back!\a No consequences!\a This is great, huh?
+      Kresla:
+      But the fun part is, we just come back!\a No consequences!\a This is great,
+      huh?
 
-      Frogman: Uh, I wouldn''t
-      exactly call it that...
+      Frogman: Uh, I wouldn''t exactly call it that...
 
-      Kresla: Why not? But as fun as dying is,\a we
-      should probably do something about the monsters.
+      Kresla:
+      Why not? But as fun as dying is,\a we should probably do something about the
+      monsters.
 
       Frogman: Ah, right.
 
@@ -2370,6 +2341,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~
 
@@ -2383,34 +2355,35 @@ MonoBehaviour:
 
       Frogman: Yes, I am.
 
-      Kresla: And a new monster type,
-      to boot!\a This is quite the discovery!\a If only I could tell my fellow scholars...
+      Kresla: And a new monster
+      type, to boot!\a This is quite the discovery!\a If only I could tell my fellow
+      scholars...
 
-      But
-      those cowards would never come here.\a Anyway, did you say something?
+      But those cowards would never come here.\a Anyway, did
+      you say something?
 
-      Frogman:
-      No, but-
+      Frogman: No, but-
 
-      Kresla: Ah, right! You wanted to know where Firbell is!
+      Kresla: Ah, right! You
+      wanted to know where Firbell is!
 
-      Well,
-      each time we are Born is from a different place,\a and always from Magma.
+      Well, each time we are Born is from
+      a different place,\a and always from Magma.
 
-      This
-      time, you returned near me. Last time, near Firbell.\a If only I could map
-      this place... It''s huge!
+      This time, you returned
+      near me. Last time, near Firbell.\a If only I could map this place... It''s
+      huge!
 
-      Frogman: Ah, that makes sense. Shall we leave
-      now?
+      Frogman: Ah, that makes sense. Shall we leave now?
 
-      Kresla: Did I tell you about Firbell''s kingdom? That was my first
-      discovery here! You see, where she comes from...
+      Kresla:
+      Did I tell you about Firbell''s kingdom? That was my first discovery here!
+      You see, where she comes from...
 
-      Frogman: Right. I''m
-      leaving.
+      Frogman: Right. I''m leaving.
 
-      Kresla: ...she still thinks... Huh? Wait for me!
+      Kresla:
+      ...she still thinks... Huh? Wait for me!
 
       }
 
@@ -2427,7 +2400,7 @@ MonoBehaviour:
       }
 
 '
-    Name: Level1MeetKresla
+    Name: Conversations/Battle/Level1/Level1MeetKresla.txt
   - Text: 'priority:1
 
       unique:T
@@ -2492,7 +2465,7 @@ MonoBehaviour:
       This must be Kresla''s doing... Oh well, time to go.
 
       :setFlag:TalkingFrogFirbell'
-    Name: Level1TalkingFrogFirbell
+    Name: Conversations/Battle/Level1/Level1TalkingFrogFirbell.txt
   - Text: 'priority:1
 
       unique:T
@@ -2526,8 +2499,8 @@ MonoBehaviour:
 
       ... Ha ha ha ha!
 
-      Frogman: ...Really? We
-      have monsters to defeat here.
+      Frogman: ...Really?
+      We have monsters to defeat here.
 
       Kresla: Right, right.
 
@@ -2540,7 +2513,7 @@ MonoBehaviour:
       :play:AfterBattle
 
 '
-    Name: Level1TalkingFrogKresla
+    Name: Conversations/Battle/Level1/Level1TalkingFrogKresla.txt
   - Text: 'priority:5
 
       unique:T
@@ -2603,20 +2576,20 @@ MonoBehaviour:
       Frogman: Yes,
       I''ve seen him once or twice before.\a He''s utterly mad.
 
-      Firbell: Perhaps
-      he is now, but he used to be much more than that.\a He made the first Magma
-      Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
+      Firbell:
+      Perhaps he is now, but he used to be much more than that.\a He made the first
+      Magma Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
 
       }
 
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head is
-      his own Magma Emblem.
+      Firbell: The rock on his head
+      is his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem like
-      a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem
+      like a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -2637,13 +2610,14 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
 
       :play:AfterBattle
 
 '
-    Name: Level2FakeMeetXirverosFirbell
+    Name: Conversations/Battle/Level2/Level2FakeMeetXirverosFirbell.txt
   - Text: 'priority:-1
 
       unique:F
@@ -2715,15 +2689,13 @@ MonoBehaviour:
       No need to mark done - generic
 
 
-
       ~
 
       :play:AfterBattle
 
 
-
 '
-    Name: Level2GenericXirveros
+    Name: Conversations/Battle/Level2/Level2GenericXirveros.txt
   - Text: 'priority:-1
 
       unique:F
@@ -2767,13 +2739,12 @@ MonoBehaviour:
       # No need to mark done - generic
 
 
-
       ~
 
       :play:AfterBattle
 
 '
-    Name: Level2GenericXirverosAlone
+    Name: Conversations/Battle/Level2/Level2GenericXirverosAlone.txt
   - Text: 'priority:5
 
       unique:T
@@ -2831,18 +2802,18 @@ MonoBehaviour:
       Xirveros:
       What her name? Fir... Firbal? Firgell?
 
-      Frogman: Wait, Firbell?\a A princess?
+      Frogman: Wait, Firbell?\a A
+      princess?
 
-      Xirveros:
-      Yes! Firbell! You know not names?
-
-      Frogman: What?\a Never mind, what
-      about the monsters?
-
-      Xirveros: We fight, frog! It''s rocktime time!
+      Xirveros: Yes! Firbell! You know not names?
 
       Frogman:
-      Good. Let''s-
+      What?\a Never mind, what about the monsters?
+
+      Xirveros: We fight, frog!
+      It''s rocktime time!
+
+      Frogman: Good. Let''s-
 
       Xirveros: ROCK!!!
 
@@ -2850,6 +2821,7 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
 
@@ -2865,8 +2837,8 @@ MonoBehaviour:
 
       Frogman: Wait, what?
 
-      Xirveros: I was
-      a great wizard \w@
+      Xirveros: I
+      was a great wizard \w@
 
       I never ate a lizard \w@
 
@@ -2895,8 +2867,8 @@ MonoBehaviour:
 
       Frogman: I... Ugh, fine.
 
-      Xirveros: Yes!
-      Me follow frog!\a We go together!
+      Xirveros:
+      Yes! Me follow frog!\a We go together!
 
       Frogman: If you insist...
 
@@ -2911,7 +2883,7 @@ MonoBehaviour:
       }
 
 '
-    Name: Level2MeetXirverosAlone
+    Name: Conversations/Battle/Level2/Level2MeetXirverosAlone.txt
   - Text: 'priority:5
 
       unique:T
@@ -2955,8 +2927,8 @@ MonoBehaviour:
 
       Frogman: Ok... Sure...
 
-      Firbell: Let us give
-      these beasts a sound thrashing,\a and then we will be able to talk properly.
+      Firbell: Let us
+      give these beasts a sound thrashing,\a and then we will be able to talk properly.
 
       Xirveros:
       Rocktime Time!
@@ -2967,6 +2939,7 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
 
@@ -2983,11 +2956,11 @@ MonoBehaviour:
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head is
-      his own Magma Emblem.
+      Firbell: The rock on his head
+      is his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem like
-      a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem
+      like a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -3003,28 +2976,28 @@ MonoBehaviour:
 
       Xirveros: I was a great wizard   \w@
 
-      I never
-      ate a lizard   \w@
+      I
+      never ate a lizard   \w@
 
       I like rocks           \w@
 
-      Yet hate locks        
-      \w@
+      Yet hate
+      locks         \w@
 
       I never liked blue     \w@
 
-      Smiles will betray you \w@
+      Smiles will betray
+      you \w@
 
-      Rivers
-      flow to-
+      Rivers flow to-
 
       Firbell: Right, that is enough, Xirveros.
 
-      Let us leave
-      this place before more monsters show up.
+      Let
+      us leave this place before more monsters show up.
 
-      Frogman: ...and before he starts
-      singing again.
+      Frogman: ...and before
+      he starts singing again.
 
       :setFlag:FinishedFirbellXirveros
 
@@ -3070,8 +3043,8 @@ MonoBehaviour:
 
       Xirveros: I like frog. Frog like me back?
 
-      Frogman: I...
-      Ugh, fine.
+      Frogman:
+      I... Ugh, fine.
 
       Xirveros: Yes! Me follow frog!\a We go together!
 
@@ -3129,7 +3102,7 @@ MonoBehaviour:
       }
 
       }'
-    Name: Level2MeetXirverosFirbell
+    Name: Conversations/Battle/Level2/Level2MeetXirverosFirbell.txt
   - Text: 'priority:1
 
       unique:T
@@ -3177,7 +3150,7 @@ MonoBehaviour:
       even... I''ll just pretend this never happened.
 
       :setFlag:TalkingFrogXirveros'
-    Name: Level2TalkingFrogXirverosAlone
+    Name: Conversations/Battle/Level2/Level2TalkingFrogXirverosAlone.txt
   - Text: 'priority:1
 
       unique:T
@@ -3230,7 +3203,7 @@ MonoBehaviour:
       I''ll just pretend this never happened.
 
       :setFlag:TalkingFrogXirveros'
-    Name: Level2TalkingFrogXirverosKresla
+    Name: Conversations/Battle/Level2/Level2TalkingFrogXirverosKresla.txt
   - Text: 'priority:4
 
       unique:T
@@ -3330,21 +3303,19 @@ MonoBehaviour:
       }
 
 
-
       # Functions
 
 
+      ~ Unlock
 
-      ~
-      Unlock
+      Firbell||L:
+      I think I shall try out a different fighting style too.
 
-      Firbell||L: I think I shall try out a different fighting style
-      too.
+      Frogman: I''m
+      not sure that doing that right now is a good idea.
 
-      Frogman: I''m not sure that doing that right now is a good idea.
-
-      Firbell:
-      Perhaps. But I shall do so next time.
+      Firbell: Perhaps.
+      But I shall do so next time.
 
       Frogman: All right.
 
@@ -3354,7 +3325,7 @@ MonoBehaviour:
       knowledge!
 
 '
-    Name: Level2UnlockFirbellInclination
+    Name: Conversations/Battle/Level2/Level2UnlockFirbellInclination.txt
   - Text: 'priority:4
 
       unique:T
@@ -3453,10 +3424,8 @@ MonoBehaviour:
       }
 
 
-
       #
       Functions
-
 
 
       ~ Unlock
@@ -3471,7 +3440,7 @@ MonoBehaviour:
 
       :showInfoDialogue:New
       knowledge!'
-    Name: Level2UnlockKreslaInclination
+    Name: Conversations/Battle/Level2/Level2UnlockKreslaInclination.txt
   - Text: 'priority:4
 
       unique:T
@@ -3536,12 +3505,12 @@ MonoBehaviour:
 
       }
 
-
+      
 
       #
       Functions
 
-
+      
 
       ~ Unlock
 
@@ -3552,21 +3521,21 @@ MonoBehaviour:
 
       Tall as a log      \w@
 
-      Like my rock fight \w@
+      Like my rock fight
+      \w@
 
-      Almost
-      take flight \w@
+      Almost take flight \w@
 
       Frogman: Wow.
 
-      Xirveros: Will fight like Frog
-      too!
+      Xirveros:
+      Will fight like Frog too!
 
       :unlockKnowledge:InclinationXirveros
 
       :showInfoDialogue:New
       knowledge!'
-    Name: Level2UnlockXirverosInclination
+    Name: Conversations/Battle/Level2/Level2UnlockXirverosInclination.txt
   - Text: 'priority:1
 
       unique:T
@@ -3625,7 +3594,7 @@ MonoBehaviour:
       right, Firbell. Let''s go.
 
       :setFlag:XirverosPast1'
-    Name: Level2XirverosFirbellNames
+    Name: Conversations/Battle/Level2/Level2XirverosFirbellNames.txt
   - Text: 'priority:1
 
       unique:T
@@ -3712,10 +3681,8 @@ MonoBehaviour:
       # Name: Text.
 
 
-
       # === Functions
       ====
-
 
 
       ~ Sample
@@ -3723,7 +3690,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level2XirverosKreslaMadness
+    Name: Conversations/Battle/Level2/Level2XirverosKreslaMadness.txt
   - Text: 'priority:1
 
       unique:T
@@ -3750,8 +3717,8 @@ MonoBehaviour:
       Frogman:
       Firbell. Have you heard about Xirveros'' friends?
 
-      Firbell: What? I do
-      not remember him mentioning friends.
+      Firbell: What? I
+      do not remember him mentioning friends.
 
       Frogman: What were their names?\a
       Abrhys?\a Welki?
@@ -3767,7 +3734,7 @@ MonoBehaviour:
 
       }
 
-
+      
 
       ~
       After battle
@@ -3824,19 +3791,19 @@ MonoBehaviour:
 
       :setFlag:XirverosPast3
 
-
+      
 
       #
       === Functions ====
 
-
+      
 
       ~ Sample
 
       # Name: Text.
 
 '
-    Name: Level3FirbellOnMagic
+    Name: Conversations/Battle/Level3/Level3FirbellOnMagic.txt
   - Text: 'priority:5
 
       unique:T
@@ -3924,10 +3891,8 @@ MonoBehaviour:
       :call:PostGeneric
 
 
-
       #
       === Functions ====
-
 
 
       ~ PreFirbell
@@ -4011,7 +3976,6 @@ MonoBehaviour:
       well, time to slay a few fiends.
 
 
-
       ~ PreKresla
 
       :play:BeforeBattle
@@ -4081,7 +4045,6 @@ MonoBehaviour:
       Frogman: Let''s go!
 
 
-
       ~ PreXirveros
 
       :play:BeforeBattle
@@ -4141,7 +4104,6 @@ MonoBehaviour:
       frog!
 
 
-
       ~ PreAlone
 
       :play:BeforeBattle
@@ -4167,7 +4129,6 @@ MonoBehaviour:
       What is this-\a Ugh, I''m talking to myself.\a I need to stop that.
 
 
-
       ~
       PreAfterFail
 
@@ -4175,7 +4136,6 @@ MonoBehaviour:
 
       Frogman: You again. This time,
       I won''t lose.
-
 
 
       ~ PostFirbell
@@ -4222,7 +4182,6 @@ MonoBehaviour:
       That''s the spirit.
 
 
-
       ~ PostKresla
 
       Kresla: Oh.\a It just disintegrated.\a
@@ -4262,7 +4221,6 @@ MonoBehaviour:
       we can be unstoppable!
 
 
-
       ~ PostXirveros
 
       Frogman: That was tough.
@@ -4299,7 +4257,6 @@ MonoBehaviour:
       Let''s just go.
 
 
-
       ~ PostGeneric
 
       Frogman: That was tough! I''m
@@ -4310,7 +4267,7 @@ MonoBehaviour:
       :play:SafeAndSound
 
 '
-    Name: Level3FirstTime
+    Name: Conversations/Battle/Level3/Level3FirstTime.txt
   - Text: 'priority:-1
 
       unique:F
@@ -4347,13 +4304,13 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: I''m safe...
-      For now...
+      Frogman||L: I''m
+      safe... For now...
 
       }
 
 '
-    Name: Level3Generic
+    Name: Conversations/Battle/Level3/Level3Generic.txt
   - Text: 'priority:1
 
       unique:T
@@ -4387,13 +4344,13 @@ MonoBehaviour:
       Kresla: I have
       a theory about the Lich''s magic crystal!
 
-      Frogman: Really? What is it?
+      Frogman: Really? What is
+      it?
 
-      Kresla:
-      Well, as you''ve noticed-
+      Kresla: Well, as you''ve noticed-
 
-      Frogman: Kresla, let''s defeat the Lich before
-      making theories on it.
+      Frogman: Kresla, let''s
+      defeat the Lich before making theories on it.
 
       Kresla: Right, right.
 
@@ -4404,19 +4361,19 @@ MonoBehaviour:
       Kresla:
       Frogman, you still haven''t heard my theory!
 
-      Frogman: Yes, Kresla. After
-      the battle.
+      Frogman: Yes, Kresla.
+      After the battle.
 
       Kresla: Urgh...
 
       }
 
+      
 
+      ~ After
+      battle
 
-      ~ After battle
-
-      Frogman:
-      Let''s get out of here!
+      Frogman: Let''s get out of here!
 
       :loadMap:InitTormentRoom
 
@@ -4434,58 +4391,58 @@ MonoBehaviour:
       Kresla: However, the question remained, where did it find one?\a
       I''ve never seen any here.
 
-      # TBA: Change if Kresla reached level 7 before
-      this conversation
+      # TBA: Change if Kresla reached level 7
+      before this conversation
 
       Frogman: Actually, I have.
 
-      Kresla: Really?!
-      Where?!
+      Kresla:
+      Really?! Where?!
 
       Frogman: It''s... complicated.
 
-      Kresla: Oh. Well, anyway,
-      even if it did find one,\a it''s still a mindless monster.\a So how did it
-      make a staff?\a And how could it learn to use magic?
+      Kresla: Oh.
+      Well, anyway, even if it did find one,\a it''s still a mindless monster.\a
+      So how did it make a staff?\a And how could it learn to use magic?
 
-      Frogman: Huh.
+      Frogman:
+      Huh.
 
-      #
-      Again, if Kresla reached level 7, she''d comment on how they must be dead elite
-      guards (mages). Otherwise, this conversation.
-
-      Kresla: So, it must have
-      used magic, and the crystal,\a before dying!
-
-      Frogman: Yes, that makes
-      sense.
-
-      Kresla: But don''t you see? There was never any record of such\a
-      crystals while I was alive!\a Even Magma Emblems, which have no such powers,\a
-      were considered myths -\a at least, until I found one.\a Did Xirveros use these
-      crystals for magic? Were they common in his time? But that was centuries ago!
-      Could they still be alive from then? Or are they from the far future? Are they
-      Guards? Are they from space? This is an extraordinary discovery! Frogman?\a
-      Are you listening?\a Frogman!
-
-      Frogman: Wha... Huh? Uh, yes, of course!
+      # Again, if Kresla reached level 7, she''d comment on how they
+      must be dead elite guards (mages). Otherwise, this conversation.
 
       Kresla:
-      Unbelievable!
+      So, it must have used magic, and the crystal,\a before dying!
 
+      Frogman:
+      Yes, that makes sense.
 
+      Kresla: But don''t you see? There was never
+      any record of such\a crystals while I was alive!\a Even Magma Emblems, which
+      have no such powers,\a were considered myths -\a at least, until I found one.\a
+      Did Xirveros use these crystals for magic? Were they common in his time? But
+      that was centuries ago! Could they still be alive from then? Or are they from
+      the far future? Are they Guards? Are they from space? This is an extraordinary
+      discovery! Frogman?\a Are you listening?\a Frogman!
 
-      # === Functions ====
+      Frogman: Wha...
+      Huh? Uh, yes, of course!
 
+      Kresla: Unbelievable!
 
+      
+
+      # ===
+      Functions ====
+
+      
 
       ~ Sample
 
-      # Name:
-      Text.
+      # Name: Text.
 
 '
-    Name: Level3KreslaOnMagic
+    Name: Conversations/Battle/Level3/Level3KreslaOnMagic.txt
   - Text: 'priority:1
 
       unique:T
@@ -4544,7 +4501,6 @@ MonoBehaviour:
       :setBattleQuote:Lich:XirverosLichFight
 
 
-
       ~
       After battle
 
@@ -4590,10 +4546,8 @@ MonoBehaviour:
       :setFlag:XirverosPast2
 
 
-
       # === Functions
       ====
-
 
 
       ~ XirverosLichFight
@@ -4647,7 +4601,7 @@ MonoBehaviour:
       }
 
 '
-    Name: Level3XirverosOnMagic
+    Name: Conversations/Battle/Level3/Level3XirverosOnMagic.txt
   - Text: 'priority:2
 
       unique:T
@@ -4784,7 +4738,6 @@ MonoBehaviour:
       }
 
 
-
       ~ After battle
 
       :play:Trickster
@@ -4817,9 +4770,7 @@ MonoBehaviour:
       knowledge!
 
 
-
       # === Functions ====
-
 
 
       ~ Sample
@@ -4827,7 +4778,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Torment1Alfred
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Alfred.txt
   - Text: 'priority:2
 
       unique:T
@@ -4887,8 +4838,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him, is
-      it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him,
+      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -4983,6 +4934,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~
       After battle
@@ -4995,9 +4947,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a I''m
-      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
-      eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a
+      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
+      here, eh? Ha ha!
 
       Frogman: I-
 
@@ -5025,16 +4977,19 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
+      
 
       # === Functions ====
 
+      
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
-    Name: Torment1Firbell
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Firbell.txt
   - Text: 'priority:4
 
       unique:T
@@ -5076,7 +5031,6 @@ MonoBehaviour:
       :setFlag:MetTormentXirveros
 
       }
-
 
 
       :play:BeforeBattle
@@ -5229,10 +5183,8 @@ MonoBehaviour:
       }
 
 
-
       # === Functions
       ====
-
 
 
       ~ Sample
@@ -5240,7 +5192,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Torment1FirstRevive
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1FirstRevive.txt
   - Text: 'priority:5
 
       unique:T
@@ -5276,7 +5228,6 @@ MonoBehaviour:
       :setFlag:MetTormentXirveros
 
       }
-
 
 
       :if:!firstTime:{
@@ -5402,10 +5353,8 @@ MonoBehaviour:
       :setFlag:ReachedPart2
 
 
-
       #
       === Functions ====
-
 
 
       ~ PreFirst
@@ -5497,7 +5446,6 @@ MonoBehaviour:
       :loadUnits:
 
 
-
       ~ PreGeneric
 
       :setFlag:Torment1FirstTimeFail
@@ -5536,9 +5484,8 @@ MonoBehaviour:
       :loadUnits:
 
 
-
 '
-    Name: Torment1FirstTime
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1FirstTime.txt
   - Text: 'priority:-1
 
       unique:F
@@ -5567,8 +5514,8 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment: My, must you repeat your lines
-      so? Heh heh!
+      Torment: My, must you repeat your
+      lines so? Heh heh!
 
       Frogman: Why, you-
 
@@ -5601,7 +5548,7 @@ MonoBehaviour:
 
       Torment:
       Yes, it is! Goodbye now!'
-    Name: Torment1Generic
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Generic.txt
   - Text: 'priority:2
 
       unique:T
@@ -5749,7 +5696,6 @@ MonoBehaviour:
       }
 
 
-
       ~
       After battle
 
@@ -5801,10 +5747,8 @@ MonoBehaviour:
       }
 
 
-
       #
       === Functions ====
-
 
 
       ~ Sample
@@ -5812,7 +5756,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Torment1Kresla
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Kresla.txt
   - Text: 'priority:2
 
       unique:T
@@ -5845,24 +5789,25 @@ MonoBehaviour:
       Torment:
       Why, hello there, Frogman! I''ve missed you. Heh heh.
 
-      Frogman: You have?
+      Frogman: You
+      have?
 
-      Torment:
-      I was recently reminded of your predecessor. Memerian.\a She is such a bore,
-      isn''t she?\a Dull as a rock! Ha ha ha!
+      Torment: I was recently reminded of your predecessor. Memerian.\a
+      She is such a bore, isn''t she?\a Dull as a rock! Ha ha ha!
 
-      Frogman: Predecessor?
+      Frogman:
+      Predecessor?
 
-      Torment:
-      Yes. She was my previous champion.\a Firbell and Xirveros fought with her for
-      a while.\a But then she grew... uncooperative. Heh.
+      Torment: Yes. She was my previous champion.\a Firbell
+      and Xirveros fought with her for a while.\a But then she grew... uncooperative.
+      Heh.
 
       Frogman: Uncooperative?
 
-      Torment:
-      She stopped attempting to reach the fortress.\a In fact, she always stayed
-      far from it.\a And that simply wouldn''t do.\a After all, how would I escape
-      without you pawns to help me?\a Ha ha ha!
+      Torment: She stopped attempting
+      to reach the fortress.\a In fact, she always stayed far from it.\a And that
+      simply wouldn''t do.\a After all, how would I escape without you pawns to help
+      me?\a Ha ha ha!
 
       Frogman: How?
 
@@ -5901,14 +5846,14 @@ MonoBehaviour:
 
       Frogman: Questions?
 
-      Torment: Oh my, you truly are a worthy
-      champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t get
-      away with this.\a DIE!
+      Torment: Oh my, you truly are a
+      worthy champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t
+      get away with this.\a DIE!
 
       :loadUnits:
 
-      Frogman: ...It was worth a
-      try.
+      Frogman: ...It was worth
+      a try.
 
       }
 
@@ -5949,8 +5894,10 @@ MonoBehaviour:
 
       }
 
+      
 
-      ~ After battle
+      ~ After
+      battle
 
       :play:Trickster
 
@@ -5976,16 +5923,19 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
+      
 
       # === Functions ====
 
+      
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
-    Name: Torment1Memerian
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Memerian.txt
   - Text: 'priority:1
 
       unique:T
@@ -6063,7 +6013,7 @@ MonoBehaviour:
       Ha ha ha! Well, you can go on now, my talking companion!
 
       Frogman: You...'
-    Name: Torment1TalkingFrog
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1TalkingFrog.txt
   - Text: 'priority:2
 
       unique:T
@@ -6175,16 +6125,13 @@ MonoBehaviour:
       ...
 
 
-
       ~ After battle
 
       :callOther:Torment1XeplogiNoFail
 
 
-
       #
       === Functions ====
-
 
 
       ~ Sample
@@ -6192,7 +6139,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Torment1XeplogiFail
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1XeplogiFail.txt
   - Text: 'priority:5
 
       unique:T
@@ -6269,8 +6216,8 @@ MonoBehaviour:
       Frogman:
       I... see.\a Wait, how do you know that I''ve met Xeplogi?
 
-      Torment: I
-      know everything, of course! Ha ha ha!
+      Torment:
+      I know everything, of course! Ha ha ha!
 
       }
 
@@ -6293,6 +6240,7 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
       After battle
@@ -6322,56 +6270,57 @@ MonoBehaviour:
 
       :unlockKnowledge:TormentGiveTake
 
-      :showInfoDialogue:New knowledge!
+      :showInfoDialogue:New
+      knowledge!
 
+      
 
-      #
-      === Functions ====
+      # === Functions ====
 
+      
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
-    Name: Torment1XeplogiNoFail
-  - Text: "priority:2\r\nunique:T\r\n~ Requirements\r\nroomNumber:4\r\nhasCharacter:Xirveros\r\n~
-      Demands\r\n# Nothinig\r\n~ Before battle\r\n:callOther:TormentBase\r\n:play:BeforeBattle\r\n:loadMap:InitTormentRoom\r\n:loadUnits:InitTormentRoom\r\n:if:firstTime:{\r\nFrogman:
-      It's you again!\r\n:play:Trustworthy\r\nTorment: It IS me again, heh heh!\r\nAnd
-      you have Xirveros with you, I see!\\a An obedient dog once again. Ha!\r\nFrogman:
-      What is Xirveros to do with anything?\r\nTorment: What isn't Xirveros to do
-      with? Ha ha!\\a Didn't he ever tell you?\r\nFrogman: Tell me what?\r\nTorment:
-      Right, he probably can't, can he?\r\n:play:Trickster:T\r\nHe used to help me
-      too, just like you! Heh!\r\nFrogman: What?!\r\nTorment: Tried to betray me
-      at the end! It was...\\a Fantastic! Ha ha ha!\\a I broke his already fragile
-      mind then.\\a Can't have you be too independent, you know.\\a Heh.\r\nFrogman:
-      Is this a threat?\r\n:playIntro:Tormentor\r\n:loadMap:\r\n:screenShake:\r\nTorment:
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1XeplogiNoFail.txt
+  - Text: "priority:2\nunique:T\n~ Requirements\nroomNumber:4\nhasCharacter:Xirveros\n~
+      Demands\n# Nothinig\n~ Before battle\n:callOther:TormentBase\n:play:BeforeBattle\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\n:if:firstTime:{\nFrogman:
+      It's you again!\n:play:Trustworthy\nTorment: It IS me again, heh heh!\nAnd
+      you have Xirveros with you, I see!\\a An obedient dog once again. Ha!\nFrogman:
+      What is Xirveros to do with anything?\nTorment: What isn't Xirveros to do with?
+      Ha ha!\\a Didn't he ever tell you?\nFrogman: Tell me what?\nTorment: Right,
+      he probably can't, can he?\n:play:Trickster:T\nHe used to help me too, just
+      like you! Heh!\nFrogman: What?!\nTorment: Tried to betray me at the end! It
+      was...\\a Fantastic! Ha ha ha!\\a I broke his already fragile mind then.\\a
+      Can't have you be too independent, you know.\\a Heh.\nFrogman: Is this a threat?\n:playIntro:Tormentor\n:loadMap:\n:screenShake:\nTorment:
       Oh, it very much is! HA HA HA!!!\\a Just do what you're told, and all will
-      be fine!\\a Or not. Heh heh heh!\r\nFrogman: I-\r\nTorment: No, no, don't talk.
-      Just FIGHT!\r\n:loadUnits:\r\n}\r\n:else:{\r\nFrogman: Torment...\r\nTorment:
-      Frogman. Are you undermining me, or simply stupid?\r\nFrogman: What?\r\n:if:!hasFlag:TormentCharacterPowerFail{\r\n:setFlag:TormentCharacterPowerFail\r\nTorment:
+      be fine!\\a Or not. Heh heh heh!\nFrogman: I-\nTorment: No, no, don't talk.
+      Just FIGHT!\n:loadUnits:\n}\n:else:{\nFrogman: Torment...\nTorment: Frogman.
+      Are you undermining me, or simply stupid?\nFrogman: What?\n:if:!hasFlag:TormentCharacterPowerFail{\n:setFlag:TormentCharacterPowerFail\nTorment:
       You died quite foolishly last time. Heh.\\a It felt almost... on purpose, don't
-      you think?\r\n:else:{\r\nTorment: You died quite foolishly last time. Heh.\\a
-      And it wasn't even your first time.\r\nIt felt almost... on purpose, don't
-      you think?\r\n}\r\nFrogman: N-no, it definitely wasn't.\r\nTorment: Oh, so
-      you admit to being a fool, then?\r\nFrogman: I am not a fool!\r\n:play:Trickster:T\r\nTorment:
-      You're either a traitor or a fool - make up your mind!\\a Ha ha ha!\r\nFrogman:
-      This doesn't even make sense!\r\n:playIntro:Tormentor\r\n:loadMap:\r\n:screenShake:\r\nTorment:
+      you think?\n:else:{\nTorment: You died quite foolishly last time. Heh.\\a And
+      it wasn't even your first time.\nIt felt almost... on purpose, don't you think?\n}\nFrogman:
+      N-no, it definitely wasn't.\nTorment: Oh, so you admit to being a fool, then?\nFrogman:
+      I am not a fool!\n:play:Trickster:T\nTorment: You're either a traitor or a
+      fool - make up your mind!\\a Ha ha ha!\nFrogman: This doesn't even make sense!\n:playIntro:Tormentor\n:loadMap:\n:screenShake:\nTorment:
       Oh? You claim that I'M the problem here?\\a What insolence! Should I break
-      your mind, then?\\a Like Xirveros? Hm?\r\nFrogman: I-\r\nTorment: Ponder this
-      question while you fight, Frogman.\\a And try to win this time.\\a Otherwise,
-      I might get... paranoid.\\a Heh heh heh.\r\n:loadUnits:\r\n}\r\n\r\n~ After
-      battle\r\n:play:Trickster\r\nTorment: Ooh, you're so much more interesting
-      when fighting\\a instead of talking! Heh heh!\r\nFrogman: You... This... I...\r\nTorment:
-      See? That's much better now! Ha ha!\\a Maybe I should break your mind too.\\a
-      Hm...\r\nFrogman: N-no!\\a Please don't!\\a I'd never betray you!\r\nTorment:
-      HA HA HA!!! As if!\r\nBut nevertheless, I do enjoy our conversations. Heh!\r\n:loadMap:InitTormentRoom\r\n:loadUnits:InitTormentRoom\r\nYou
-      can keep your mind. For now.\r\n:unlockKnowledge:TormentOrderChaos\r\n:showInfoDialogue:New
-      knowledge!\r\n:loadUnits:InitTormentRoom:Player\r\n:if:hasCharacter:Xirveros{\r\nFrogman:
-      ...Xirveros?\r\nXirveros: ...Ah... Arrrg... Br... Tor... Ment... \r\nFrogman:
-      I'm sorry, Xirveros. I didn't know...\r\nXirveros: Blafs... Roo... Frog...\r\n}\r\n:else:{\r\nFrogman:
-      Xirveros...\r\n}\r\n"
-    Name: Torment1Xirveros
+      your mind, then?\\a Like Xirveros? Hm?\nFrogman: I-\nTorment: Ponder this question
+      while you fight, Frogman.\\a And try to win this time.\\a Otherwise, I might
+      get... paranoid.\\a Heh heh heh.\n:loadUnits:\n}\n\n~ After battle\n:play:Trickster\nTorment:
+      Ooh, you're so much more interesting when fighting\\a instead of talking! Heh
+      heh!\nFrogman: You... This... I...\nTorment: See? That's much better now! Ha
+      ha!\\a Maybe I should break your mind too.\\a Hm...\nFrogman: N-no!\\a Please
+      don't!\\a I'd never betray you!\nTorment: HA HA HA!!! As if!\nBut nevertheless,
+      I do enjoy our conversations. Heh!\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\nYou
+      can keep your mind. For now.\n:unlockKnowledge:TormentOrderChaos\n:showInfoDialogue:New
+      knowledge!\n:loadUnits:InitTormentRoom:Player\n:if:hasCharacter:Xirveros{\nFrogman:
+      ...Xirveros?\nXirveros: ...Ah... Arrrg... Br... Tor... Ment... \nFrogman: I'm
+      sorry, Xirveros. I didn't know...\nXirveros: Blafs... Roo... Frog...\n}\n:else:{\nFrogman:
+      Xirveros...\n}\n"
+    Name: Conversations/Battle/Level4 (Torment1)/Torment1Xirveros.txt
   - Text: 'priority:-1
 
       unique:F
@@ -6457,14 +6406,11 @@ MonoBehaviour:
       }
 
 
-
-      ~ After
-      battle
+      ~ After battle
 
 
-
-      # === Functions ====
-
+      #
+      === Functions ====
 
 
       ~ Sample
@@ -6472,7 +6418,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: TormentBase
+    Name: Conversations/Battle/Level4 (Torment1)/TormentBase.txt
   - Text: 'priority:5
 
       unique:T
@@ -6503,7 +6449,6 @@ MonoBehaviour:
       :call:PreRepeat
 
       }
-
 
 
       ~
@@ -6778,10 +6723,8 @@ MonoBehaviour:
       }
 
 
-
       #
       === Functions ====
-
 
 
       ~ PreFirst
@@ -6973,7 +6916,6 @@ MonoBehaviour:
       :call:GuardsArriveFirst
 
 
-
       ~ GuardsArriveFirst
 
       :addGenericCharacter:Guard1:young
@@ -7050,7 +6992,6 @@ MonoBehaviour:
       :setFlag:MetXeplogi
 
 
-
       ~
       PreRepeat
 
@@ -7118,109 +7059,114 @@ MonoBehaviour:
       Frogman: That- Ugh. Let''s just get started.
 
 '
-    Name: Level5FirstTime
-  - Text: "priority:4\nunique:T\n~ Requirements\nroomNumber:5\n# The first time has
-      no requirement (like Xeplogi). This could make the run slightly easier, but
-      prevents people from completely missing out on a character.\n#charactersAlive:<2\n~
-      Demands\n# Guarantee a map that makes sense for the arrivals\nmapID:Level5-1\n~
-      Before battle\n:play:BeforeBattle2\n:if:firstTime:{\n:loadUnits::player\nFrogman:
-      Huh. Xeplogi isn't here.\\a Hopefully it will be a bit quite at last.\n:addUnit:Alfred\n:loadUnits::player\nAlfred|???:
-      Hey. You there.\nFrogman: Ah! Where did you come from?\n:if:hasCharacter:Firbell{\nAlfred:
-      Name's Alfred. Who're you?\nFrogman: My name is Frogman.\nFirbell: And I am
-      Firbell. Pleased to make your acquaintance.\nAlfred: Greetings.\\a You fighting
-      the Guards?\nFrogman: The humans, you mean?\nAlfred: Obviously.\\a Never heard
-      of 'em before?\nFirbell: I have not. What are they doing here?\nAlfred: Ah.\\a
-      Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\nFrogman:
-      Sounds ominous.\nWe've only fought them once or twice here.\nAlfred: Pah! The
-      ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get ready.\nFirbell:
-      How can you smell without a-\n:setFlag:AlfredFirbell\n}\n:else:{\n:if:hasCharacter:Kresla{\nAlfred:
-      Name's Alfred. Who're-\nKresla||L: Hi there! I've never seen you before!\\a
-      Where are you from?\nAlfred: ...Alezis.\nKresla: Um, I've never heard of it.\nAlfred:
-      Pah. You heard about Guard name?\\a Bronzing?\nKresla: Wait, Bronzing? I'm
-      from there!\nAlfred: Ha! Fool!\\a That's Guard name.\\a They try erasing our
-      history.\\a Our names!\\a We mustn't forget!\\a Do not listen!\nKresla: Uh,
-      look, when I come from, there are no \"Guards\".\\a Bronzing is an independant
+    Name: Conversations/Battle/Level5/Level5FirstTime.txt
+  - Text: "priority:4\r\nunique:T\r\n~ Requirements\r\nroomNumber:5\r\n# The first
+      time has no requirement (like Xeplogi). This could make the run slightly easier,
+      but prevents people from completely missing out on a character.\r\n#charactersAlive:<2\r\n~
+      Demands\r\n# Guarantee a map that makes sense for the arrivals\r\nmapID:Level5-1\r\n~
+      Before battle\r\n:play:BeforeBattle2\r\n:if:firstTime:{\r\n:loadUnits::player\r\nFrogman:
+      Huh. Xeplogi isn't here.\\a Hopefully it will be a bit quite at last.\r\n:addUnit:Alfred\r\n:loadUnits::player\r\nAlfred|???:
+      Hey. You there.\r\nFrogman: Ah! Where did you come from?\r\n:if:hasCharacter:Firbell{\r\nAlfred:
+      Name's Alfred. Who're you?\r\nFrogman: My name is Frogman.\r\nFirbell: And
+      I am Firbell. Pleased to make your acquaintance.\r\nAlfred: Greetings.\\a You
+      fighting the Guards?\r\nFrogman: The humans, you mean?\r\nAlfred: Obviously.\\a
+      Never heard of 'em before?\r\nFirbell: I have not. What are they doing here?\r\nAlfred:
+      Ah.\\a Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\r\nFrogman:
+      Sounds ominous.\r\nWe've only fought them once or twice here.\r\nAlfred: Pah!
+      The ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get
+      ready.\r\nFirbell: How can you smell without a-\r\n:setFlag:AlfredFirbell\r\n}\r\n:else:{\r\n:if:hasCharacter:Kresla{\r\nAlfred:
+      Name's Alfred. Who're-\r\nKresla||L: Hi there! I've never seen you before!\\a
+      Where are you from?\r\nAlfred: ...Alezis.\r\nKresla: Um, I've never heard of
+      it.\r\nAlfred: Pah. You heard about Guard name?\\a Bronzing?\r\nKresla: Wait,
+      Bronzing? I'm from there!\r\nAlfred: Ha! Fool!\\a That's Guard name.\\a They
+      try erasing our history.\\a Our names!\\a We mustn't forget!\\a Do not listen!\r\nKresla:
+      Uh, look, when I come from, there are no \"Guards\".\\a Bronzing is an independant
       country.\\a But now that you mention it, Alezis never appeared in any history
-      I know of.\\a Interesting! So these Guards did erase your history!\nAlfred:
-      What?! You...\\a Pah. They're coming.\\a Get ready.\nKresla: How can you- \n:setFlag:AlfredKresla\n}\n:else:{\n:if:hasCharacter:Xirveros{\nAlfred:
-      Name's Alfred. Who're you?\nXirveros: Me Xirveros. This Frog.\nAlfred: Greetings.\\a
-      You fighting the Guards?\nXirveros: Guards! Guards!\nFrogman: Uh... Are you
-      talking about the humans?\nAlfred: Obviously.\\a Never heard of 'em before?\nFrogman:
-      No. What are they doing here?\nAlfred: Ah.\\a Lucky you.\\a Free of their wrath.\\a
-      The destruction they leave behind.\nXirveros: Destroy Guards! Guards Destroy!\nAlfred:
-      Yes, we will destroy them.\\a All of them.\nFrogman: Sure... I'll just leave
-      you two alone.\nXirveros: They Guard. We must Guard.\nAlfred: Destroy Guards!\nXirveros:
-      Guards!\nAlfred: Guards!\\a They're here!\n}\n:else:{\nAlfred: Name's Alfred.
-      Who're you?\nFrogman: My name is Frogman.\nAlfred: Greetings.\\a You fighting
-      the Guards?\nFrogman: The humans, you mean?\nAlfred: Obviously.\\a Never heard
-      of 'em before?\nFrogman: No. What are they doing here?\nAlfred: Ah.\\a Lucky
-      you.\\a Free of their wrath.\\a The destruction they leave behind.\nFrogman:
-      Sounds ominous.\nWe've only fought them once or twice here.\nAlfred: Pah! The
-      ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get ready.\nFrogman:
-      Smell? How?\n}\n}\n}\n:addGenericCharacter:Guard1:\n:addGenericCharacter:Guard2:\n:play:GuardTheme\n:loadUnits:\nGuard1:
-      Well, well... What do we have here?\\a A Magma party?\nGuard2: Heh heh. Magma
-      party. Sounds fun.\nGuard1: What? No, that's not-\nNever mind, I have no time
-      to waste on you again.\\a Everyone, charge!\nGuard2: Heh heh. Charge. Sounds
-      fun.\n}\n:else:{\n:addUnit:Alfred\n:loadUnits::player\n:if:charactersAlive:>1{\nFrogman:
-      We're back. Let's hope we don't die this time.\n:if:hasCharacter:Firbell{\nFirbell:
-      Indeed.\nFrogman: ...\nFirbell: ...\nFrogman: Do you feel like... we're been
-      watched?\n:if:hasCharacter:Xirveros{\nXirveros: I'm watching you!\nFrogman:
-      Thanks, Xirveros.\n}\nFirbell: You are right. Someone is here.\nFrogman: Guards?
-      Monsters?\nFirbell: It is unlike them to hide.\nAlfred: ...They're approaching.\nFrogman:
-      Ah! Alfred!\\a How long have you been here?\nAlfred: Too long.\n}\n:else:{\n:if:hasCharacter:Kresla{\nKresla:
-      Right! I'd like to check out these structures some more!\nFrogman: Uh, Kresla...
-      I feel like there's someone else here.\n:if:hasCharacter:Xirveros{\nXirveros:
-      Me?\nFrogman: Besides you, Xirveros.\n}\nKresla: Huh? Oh, are you talking about
-      Alfred?\nFrogman: Alfred? He's here?\nAlfred: ...Yes.\nFrogman: Oh! I... didn't
-      notice you.\nAlfred: No time for nonsense.\\a They're coming.\nFrogman: Huh?\n}\n:else:{\n#
-      Only Xirveros\nXirveros?\nXirveros: Me?\nFrogman: Yes.\\a I feel like we're
-      being watched.\nXirveros: You mean Alfred?\nFrogman: Alfred? Why, is he here?\nAlfred:
-      Yes.\nFrogman: Ah! Where did you come from?\nAlfred: The shadows.\nFrogman:
-      There... aren't many shadows in this place.\\a What with all the magma.\nAlfred:
-      ...The Guards.\\a They're coming.\nFrogman: What's that to do with shad-\n}\n}\n}\n:else:{\nFrogman:
-      I'm back. And I'm... all alone now.\nAlfred: No.\nFrogman: Ah! Alfred! Where
-      did you come from?\nAlfred: The shadows.\nFrogman: There... aren't many shadows
-      in this place.\\a What with all the magma.\nAlfred: ...The Guards.\\a They're
-      coming.\nFrogman: What's that to do with shad-\n}\n:addGenericCharacter:Guard1:young\n:addGenericCharacter:Guard2:young\n:addGenericCharacter:Guard3:young\n:addGenericCharacter:Guard4:young\n:addGenericCharacter:Guard5:young\n:addGenericCharacter:Guard6:young\n:play:GuardTheme\n:loadUnits:\nGuard1:
+      I know of.\\a Interesting! So these Guards did erase your history!\r\nAlfred:
+      What?! You...\\a Pah. They're coming.\\a Get ready.\r\nKresla: How can you-
+      \r\n:setFlag:AlfredKresla\r\n}\r\n:else:{\r\n:if:hasCharacter:Xirveros{\r\nAlfred:
+      Name's Alfred. Who're you?\r\nXirveros: Me Xirveros. This Frog.\r\nAlfred:
+      Greetings.\\a You fighting the Guards?\r\nXirveros: Guards! Guards!\r\nFrogman:
+      Uh... Are you talking about the humans?\r\nAlfred: Obviously.\\a Never heard
+      of 'em before?\r\nFrogman: No. What are they doing here?\r\nAlfred: Ah.\\a
+      Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\r\nXirveros:
+      Destroy Guards! Guards Destroy!\r\nAlfred: Yes, we will destroy them.\\a All
+      of them.\r\nFrogman: Sure... I'll just leave you two alone.\r\nXirveros: They
+      Guard. We must Guard.\r\nAlfred: Destroy Guards!\r\nXirveros: Guards!\r\nAlfred:
+      Guards!\\a They're here!\r\n}\r\n:else:{\r\nAlfred: Name's Alfred. Who're you?\r\nFrogman:
+      My name is Frogman.\r\nAlfred: Greetings.\\a You fighting the Guards?\r\nFrogman:
+      The humans, you mean?\r\nAlfred: Obviously.\\a Never heard of 'em before?\r\nFrogman:
+      No. What are they doing here?\r\nAlfred: Ah.\\a Lucky you.\\a Free of their
+      wrath.\\a The destruction they leave behind.\r\nFrogman: Sounds ominous.\r\nWe've
+      only fought them once or twice here.\r\nAlfred: Pah! The ones here are scum.\\a
+      They are weak.\\a But I smell 'em coming.\\a Get ready.\r\nFrogman: Smell?
+      How?\r\n}\r\n}\r\n}\r\n:addGenericCharacter:Guard1:\r\n:addGenericCharacter:Guard2:\r\n:play:GuardTheme\r\n:loadUnits:\r\nGuard1:
+      Well, well... What do we have here?\\a A Magma party?\r\nGuard2: Heh heh. Magma
+      party. Sounds fun.\r\nGuard1: What? No, that's not-\r\nNever mind, I have no
+      time to waste on you again.\\a Everyone, charge!\r\nGuard2: Heh heh. Charge.
+      Sounds fun.\r\n}\r\n:else:{\r\n:addUnit:Alfred\r\n:loadUnits::player\r\n:if:charactersAlive:>1{\r\nFrogman:
+      We're back. Let's hope we don't die this time.\r\n:if:hasCharacter:Firbell{\r\nFirbell:
+      Indeed.\r\nFrogman: ...\r\nFirbell: ...\r\nFrogman: Do you feel like... we're
+      been watched?\r\n:if:hasCharacter:Xirveros{\r\nXirveros: I'm watching you!\r\nFrogman:
+      Thanks, Xirveros.\r\n}\r\nFirbell: You are right. Someone is here.\r\nFrogman:
+      Guards? Monsters?\r\nFirbell: It is unlike them to hide.\r\nAlfred: ...They're
+      approaching.\r\nFrogman: Ah! Alfred!\\a How long have you been here?\r\nAlfred:
+      Too long.\r\n}\r\n:else:{\r\n:if:hasCharacter:Kresla{\r\nKresla: Right! I'd
+      like to check out these structures some more!\r\nFrogman: Uh, Kresla... I feel
+      like there's someone else here.\r\n:if:hasCharacter:Xirveros{\r\nXirveros:
+      Me?\r\nFrogman: Besides you, Xirveros.\r\n}\r\nKresla: Huh? Oh, are you talking
+      about Alfred?\r\nFrogman: Alfred? He's here?\r\nAlfred: ...Yes.\r\nFrogman:
+      Oh! I... didn't notice you.\r\nAlfred: No time for nonsense.\\a They're coming.\r\nFrogman:
+      Huh?\r\n}\r\n:else:{\r\n# Only Xirveros\r\nXirveros?\r\nXirveros: Me?\r\nFrogman:
+      Yes.\\a I feel like we're being watched.\r\nXirveros: You mean Alfred?\r\nFrogman:
+      Alfred? Why, is he here?\r\nAlfred: Yes.\r\nFrogman: Ah! Where did you come
+      from?\r\nAlfred: The shadows.\r\nFrogman: There... aren't many shadows in this
+      place.\\a What with all the magma.\r\nAlfred: ...The Guards.\\a They're coming.\r\nFrogman:
+      What's that to do with shad-\r\n}\r\n}\r\n}\r\n:else:{\r\nFrogman: I'm back.
+      And I'm... all alone now.\r\nAlfred: No.\r\nFrogman: Ah! Alfred! Where did
+      you come from?\r\nAlfred: The shadows.\r\nFrogman: There... aren't many shadows
+      in this place.\\a What with all the magma.\r\nAlfred: ...The Guards.\\a They're
+      coming.\r\nFrogman: What's that to do with shad-\r\n}\r\n:addGenericCharacter:Guard1:young\r\n:addGenericCharacter:Guard2:young\r\n:addGenericCharacter:Guard3:young\r\n:addGenericCharacter:Guard4:young\r\n:addGenericCharacter:Guard5:young\r\n:addGenericCharacter:Guard6:young\r\n:play:GuardTheme\r\n:loadUnits:\r\nGuard1:
       Quake and tremble, monsters! Your reign of terror is over!\\a For we - the
-      Incredible Six - are here to stop you!\n:if:!hasFlag:MetTheSix{\nFrogman: The
-      Incredible Six?\nGuard1: Indeed! I am [Name], the Invincible Fox!\n:setFlag:MetTheSix\n}\n:else:{\nFrogman:
-      ...You're not the first ones to claim that title.\nGuard1: Huh? Preposterous!
-      We're the one and only- Uh, I mean,\\a the six and only Incredible Six!\nFrogman:
-      Right...\nGuard1: I am [Name], the Invincible Fox!\n}\nGuard2: Greetings, friends.
-      My name is [Name],\\a also known as the Sly Dog.\nGuard3: Hello. My name is
-      [Name] Boslivixon. Prepare to die.\nGuard4: Hi! I'm [Name], the Speedy Turtle!\\a
-      I'm the best of the Six! You don't stand a chance!\nGuard5: [Name] here. The
-      Pidgeon.\nI'll wipe your ugly visage off the face of this world.\nGuard6: Uh,
-      I'm [Name]. I was told this was some kind of a party?\\a Why are there so many
-      weapons?\nFrogman: ...You're all insane.\nGuard5: And you're a delusional piece
-      of dead meat.\nGuard2: En garde!\n}\n\n~ After battle\nFrogman: This way!\\a
-      Time to get out of here!\n:if:hasCharacter:Alfred{\n:call:PostAlfred\n}\n:else:{\n:call:PostAlfredDead\n}\n:setFlag:MetAlfred\n\n#
-      === Functions ====\n\n~ PostAlfred\n# The \"fix\" only happens in level 6 -
-      Alfred abandons the player if they still have too many characters\n:if:teamUnitsAlive:guard:>0{\nAlfred:
-      You're running away?!\\a Pah, cowards, every one of you!\nFrogman: Alfred,
-      they're too many!\\a We've got to leave, now!\nAlfred: I'd rather die than
-      run!\nFrogman: What?\\a Um...\\a Then look at it this way - if you survive,\nyou
-      can help us defeat more Guards in the future!\\a Yeah!\nWe're stronger together,
-      don't you think?\nAlfred: ...Urgh.\\a Fine.\\a I admit you're strong.\\a I'll
-      follow for now, Frogman.\n}\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:Anticipation\n#
-      Frogman notices Alfred's ring\nFrogman||L: Whew, we're safe.\n:if:hasCharacter:Firbell{\nFirbell:
-      At last, we are. But not for long.\\a We should prepare for battle.\nFrogman:
-      Sure, go ahead.\n}\n:if:hasCharacter:Kresla{\nKresla: Yes. And we have time
-      to explore a bit, even!\\a I think I'll try to study the structure here.\\a
-      What IS this material?\nFrogman: Sure, go ahead.\n}\n:if:hasCharacter:Xirveros{\nXirveros:
-      This memory. My memory. Like rock! Rock song!\\a Fred, want rock song?\nAlfred:
-      ...No.\nXirveros: Oof.\n}\nFrogman||L: ...\nAlfred: ...Your ring.\\a It's like
-      mine.\\a Where's it from?\nFrogman: What? Oh, my Magma Emblem.\\a I don't remember.\nAlfred:
-      Really?\\a There was only one other.\\a Taken by the Guards.\\a You stole it?\nFrogman:
-      Uh... Maybe?\nAlfred: You better have.\\a Only other way is you're a Guard.\\a
-      In which case, I'll kill you.\nFrogman: No, I'm pretty sure I wasn't a Guard.\\a
-      But then, where is your ring from?\nAlfred: They took them both.\\a I was sent
-      to retrieve.\\a They killed me, the fools!\\a Now I am vengeance.\nFrogman:
-      I... see.\nAlfred: I'll be watching you, Frogman.\\a You better not be lying.\nFrogman:
-      I am not.\\a ...I hope.\n:setFlag:AlfredRing\n\n~ PostAlfredDead\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:SafeAndSound\nFrogman:
-      Alfred... But I'm sure he'll be back.\n"
-    Name: Level5FirstTimeAlfred
+      Incredible Six - are here to stop you!\r\n:if:!hasFlag:MetTheSix{\r\nFrogman:
+      The Incredible Six?\r\nGuard1: Indeed! I am [Name], the Invincible Fox!\r\n:setFlag:MetTheSix\r\n}\r\n:else:{\r\nFrogman:
+      ...You're not the first ones to claim that title.\r\nGuard1: Huh? Preposterous!
+      We're the one and only- Uh, I mean,\\a the six and only Incredible Six!\r\nFrogman:
+      Right...\r\nGuard1: I am [Name], the Invincible Fox!\r\n}\r\nGuard2: Greetings,
+      friends. My name is [Name],\\a also known as the Sly Dog.\r\nGuard3: Hello.
+      My name is [Name] Boslivixon. Prepare to die.\r\nGuard4: Hi! I'm [Name], the
+      Speedy Turtle!\\a I'm the best of the Six! You don't stand a chance!\r\nGuard5:
+      [Name] here. The Pidgeon.\r\nI'll wipe your ugly visage off the face of this
+      world.\r\nGuard6: Uh, I'm [Name]. I was told this was some kind of a party?\\a
+      Why are there so many weapons?\r\nFrogman: ...You're all insane.\r\nGuard5:
+      And you're a delusional piece of dead meat.\r\nGuard2: En garde!\r\n}\r\n\r\n~
+      After battle\r\nFrogman: This way!\\a Time to get out of here!\r\n:if:hasCharacter:Alfred{\r\n:call:PostAlfred\r\n}\r\n:else:{\r\n:call:PostAlfredDead\r\n}\r\n:setFlag:MetAlfred\r\n\r\n#
+      === Functions ====\r\n\r\n~ PostAlfred\r\n# The \"fix\" only happens in level
+      6 - Alfred abandons the player if they still have too many characters\r\n:if:teamUnitsAlive:guard:>0{\r\nAlfred:
+      You're running away?!\\a Pah, cowards, every one of you!\r\nFrogman: Alfred,
+      they're too many!\\a We've got to leave, now!\r\nAlfred: I'd rather die than
+      run!\r\nFrogman: What?\\a Um...\\a Then look at it this way - if you survive,\r\nyou
+      can help us defeat more Guards in the future!\\a Yeah!\r\nWe're stronger together,
+      don't you think?\r\nAlfred: ...Urgh.\\a Fine.\\a I admit you're strong.\\a
+      I'll follow for now, Frogman.\r\n}\r\n:loadMap:Part2RestArea\r\n:loadUnits:Part2RestArea\r\n:play:Anticipation\r\n#
+      Frogman notices Alfred's ring\r\nFrogman||L: Whew, we're safe.\r\n:if:hasCharacter:Firbell{\r\nFirbell:
+      At last, we are. But not for long.\\a We should prepare for battle.\r\nFrogman:
+      Sure, go ahead.\r\n}\r\n:if:hasCharacter:Kresla{\r\nKresla: Yes. And we have
+      time to explore a bit, even!\\a I think I'll try to study the structure here.\\a
+      What IS this material?\r\nFrogman: Sure, go ahead.\r\n}\r\n:if:hasCharacter:Xirveros{\r\nXirveros:
+      This memory. My memory. Like rock! Rock song!\\a Fred, want rock song?\r\nAlfred:
+      ...No.\r\nXirveros: Oof.\r\n}\r\nFrogman||L: ...\r\nAlfred: ...Your ring.\\a
+      It's like mine.\\a Where's it from?\r\nFrogman: What? Oh, my Magma Emblem.\\a
+      I don't remember.\r\nAlfred: Really?\\a There was only one other.\\a Taken
+      by the Guards.\\a You stole it?\r\nFrogman: Uh... Maybe?\r\nAlfred: You better
+      have.\\a Only other way is you're a Guard.\\a In which case, I'll kill you.\r\nFrogman:
+      No, I'm pretty sure I wasn't a Guard.\\a But then, where is your ring from?\r\nAlfred:
+      They took them both.\\a I was sent to retrieve.\\a They killed me, the fools!\\a
+      Now I am vengeance.\r\nFrogman: I... see.\r\nAlfred: I'll be watching you,
+      Frogman.\\a You better not be lying.\r\nFrogman: I am not.\\a ...I hope.\r\n:setFlag:AlfredRing\r\n\r\n~
+      PostAlfredDead\r\n:loadMap:Part2RestArea\r\n:loadUnits:Part2RestArea\r\n:play:SafeAndSound\r\nFrogman:
+      Alfred... But I'm sure he'll be back.\r\n"
+    Name: Conversations/Battle/Level5/Level5FirstTimeAlfred.txt
   - Text: 'priority:-1
 
       unique:F
@@ -7272,9 +7218,7 @@ MonoBehaviour:
       Ah... Safe at last...
 
 
-
       # === Functions ====
-
 
 
       ~ Sample
@@ -7283,7 +7227,7 @@ MonoBehaviour:
       Name: Text.
 
 '
-    Name: Level5GenericAlfred
+    Name: Conversations/Battle/Level5/Level5GenericAlfred.txt
   - Text: 'priority:-1
 
       unique:F
@@ -7348,10 +7292,12 @@ MonoBehaviour:
 
       }
 
+      
 
       ~ After battle
 
-      Frogman: Everyone, run!
+      Frogman: Everyone,
+      run!
 
       :loadMap:Part2RestArea
 
@@ -7362,17 +7308,19 @@ MonoBehaviour:
       Frogman||L:
       Ah... Safe at last...
 
+      
 
       # === Functions ====
 
+      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
-    Name: Level5GenericXeplogi
+    Name: Conversations/Battle/Level5/Level5GenericXeplogi.txt
   - Text: 'priority:5
 
       unique:T
@@ -7430,8 +7378,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: My name is
-      Frogman. Who might you be?
+      Frogman||L: My name
+      is Frogman. Who might you be?
 
       Memerian: I''m Memerian.
 
@@ -7440,11 +7388,11 @@ MonoBehaviour:
 
       }
 
-      Memerian: Did he now?
-      I hope you didn''t listen to the fool.
+      Memerian: Did he
+      now? I hope you didn''t listen to the fool.
 
-      Frogman: He said you were an
-      evil and witch.
+      Frogman: He said you were
+      an evil and witch.
 
       Memerian: He''s a deplorable thief.
 
@@ -7516,33 +7464,36 @@ MonoBehaviour:
       Memerian:
       Ugh. Meddlesome Guards. We''ll speak again soon, Frogman.
 
-      Frogman: Wait.
-      Why should I trust you?
-
-      Memerian: ...Are you seriously considering Xeplogi''s
-      allegations?\a Do you have a death wish, Frogman?\a Because I can grant it.
-
       Frogman:
-      Uh, no thanks.
+      Wait. Why should I trust you?
 
-      Memerian: Good. Then let''s join forces.
+      Memerian: ...Are you seriously considering
+      Xeplogi''s allegations?\a Do you have a death wish, Frogman?\a Because I can
+      grant it.
 
-      Frogman:
-      ...
+      Frogman: Uh, no thanks.
+
+      Memerian: Good. Then let''s
+      join forces.
+
+      Frogman: ...
 
       :setFlag:MetMemerian
 
+      
 
-      ~ After battle
+      ~
+      After battle
 
       :callOther:Level6FirstTimeMemerianXeplogi
 
+      
 
       #
       === Functions ====
 
 '
-    Name: Level6FirstTimeMemerianNoXeplogi
+    Name: Conversations/Battle/Level6/Level6FirstTimeMemerianNoXeplogi.txt
   - Text: 'priority:5
 
       unique:T
@@ -7601,8 +7552,8 @@ MonoBehaviour:
 
       Xeplogi: Uh-
 
-      Memerian: Didn''t think so.\a So. Introcude
-      yourselves.
+      Memerian: Didn''t think so.\a So.
+      Introcude yourselves.
 
       Frogman: Um, I''m Frogman.
 
@@ -7653,27 +7604,27 @@ MonoBehaviour:
       All she ever
       does is steal and betray!
 
-      Memerian: Ha! Oh, the irony. Have you no shame,
-      Xeplogi?
+      Memerian: Ha! Oh, the irony. Have you no
+      shame, Xeplogi?
 
-      Frogman: Uh, look, I''m not sure what''s your issue,\a but
-      shouldn''t we work together against-
+      Frogman: Uh, look, I''m not sure what''s your issue,\a
+      but shouldn''t we work together against-
 
-      Memerian: Work together? He murdered
-      me!
+      Memerian: Work together? He
+      murdered me!
 
       Xeplogi: She stole my Magma Emblem!
 
-      Memerian: You stole it
-      from me first, you hypocrite!
+      Memerian:
+      You stole it from me first, you hypocrite!
 
       Frogman: Uh-
 
-      Xeplogi||L: It was
-      rightfully mine, you... you twister of truths!
+      Xeplogi||L:
+      It was rightfully mine, you... you twister of truths!
 
-      Memerian: That''s not
-      even a real insult, you absolute liquid!
+      Memerian: That''s
+      not even a real insult, you absolute liquid!
 
       Xeplogi: Neither is that!
 
@@ -7695,8 +7646,8 @@ MonoBehaviour:
       Frogman: Seriously?! We''ve
       been trying to reach that place for ages!
 
-      Xeplogi: Yes. And we can still
-      get there without her help.
+      Xeplogi: Yes. And we can
+      still get there without her help.
 
       Memerian||R: Ha! Good luck with that.
 
@@ -7709,6 +7660,7 @@ MonoBehaviour:
 
       :setFlag:MetMemerian
 
+      
 
       ~
       After battle
@@ -7722,11 +7674,11 @@ MonoBehaviour:
 
       :if:hasCharacter:Xeplogi{
 
-      Xeplogi: Indeed.
-      Shall we go back to safer grounds now?
+      Xeplogi:
+      Indeed. Shall we go back to safer grounds now?
 
-      Frogman: Seriously? We''re almost
-      to the fortress!
+      Frogman: Seriously?
+      We''re almost to the fortress!
 
       Xeplogi: But... It could be dangerous!
 
@@ -7771,8 +7723,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Firbell{
 
-      Firbell||L: Memerian. Do you
-      know why do these Guards hate us so?
+      Firbell||L: Memerian. Do
+      you know why do these Guards hate us so?
 
       Memerian: They hate all monsters.
       In fact, from what I''ve gathered,\a all they ever do is killing monsters.
@@ -7790,21 +7742,21 @@ MonoBehaviour:
       But can we not talk to them?\a Explain that we are unlike the rest,\a and mean
       no harm?
 
-      Memerian: No harm? Please. We''ve just killed a couple of them.
+      Memerian: No harm? Please. We''ve just killed a couple of
+      them.
 
-      Firbell:
-      I...\a I see your point.\a Still, I must try at the very least.
+      Firbell: I...\a I see your point.\a Still, I must try at the
+      very least.
 
-      Memerian:
-      You always do.
+      Memerian: You always do.
 
       Firbell: What do you mean?
 
-      Memerian: Never mind
-      me. Anyway, we should get out of here.\a Frogman?
+      Memerian:
+      Never mind me. Anyway, we should get out of here.\a Frogman?
 
-      Frogman: Uh, yes,
-      let''s leave.
+      Frogman:
+      Uh, yes, let''s leave.
 
       Firbell: ...
 
@@ -7837,18 +7789,18 @@ MonoBehaviour:
 
       Frogman: She''s a bit... reckless.
 
-      Memerian: You don''t
-      need to be afraid when your immortal, Frogman.
+      Memerian: You
+      don''t need to be afraid when your immortal, Frogman.
 
-      Frogman: I know. Let''s
-      follow her, shall we?
+      Frogman: I know.
+      Let''s follow her, shall we?
 
       Memerian: Let''s.
 
       }
 
-      # Memerian alone
-      tells about Torment
+      #
+      Memerian alone tells about Torment
 
       :if:charactersAlive:=1{
 
@@ -7857,75 +7809,75 @@ MonoBehaviour:
       Memerian:
       So. About Torment
 
-      Frogman: Oh? Right, you know them.\a Why do they let
-      you remember them?
+      Frogman: Oh? Right, you know them.\a Why do they
+      let you remember them?
 
       }
 
       :else:{
 
-      Memerian: Frogman. Now that
-      we''re alone, you need to know something.
+      Memerian: Frogman.
+      Now that we''re alone, you need to know something.
 
-      Frogman: What is it?
+      Frogman: What is
+      it?
 
       }
 
-      Memerian:
-      I used to help Torment, just like you.
+      Memerian: I used to help Torment, just like you.
 
-      Frogman: Really?!
+      Frogman:
+      Really?!
 
-      Memerian:
-      Yes. We had a... falling out eventually.\a But I see he has found a replacement
-      already.
+      Memerian: Yes. We had a... falling out eventually.\a But I
+      see he has found a replacement already.
 
       Frogman: What happened?
 
-      Memerian: I realized it was
-      impossible.
+      Memerian:
+      I realized it was impossible.
 
       Frogman: What was?
 
-      Memerian: Getting out of here.\a
-      That fortress? It''s impenetrable.
+      Memerian:
+      Getting out of here.\a That fortress? It''s impenetrable.
 
-      Frogman: I''m sure there''s a way
-      inside...
+      Frogman:
+      I''m sure there''s a way inside...
 
-      Memerian: That''s not the problem. It doesn''t even have a
-      gate -\a anyone could theoretically enter it.
+      Memerian: That''s not the problem.
+      It doesn''t even have a gate -\a anyone could theoretically enter it.
 
-      Frogman: Huh? Then what''s
-      the problem?
+      Frogman:
+      Huh? Then what''s the problem?
 
-      Memerian: The one guarding it. Assuming she''s still alive.\a
-      She''s a wizard.
+      Memerian: The one guarding it. Assuming
+      she''s still alive.\a She''s a wizard.
 
       Frogman: Like Xirveros?
 
-      Memerian: ...Seriously?
+      Memerian:
+      ...Seriously?
 
-      Frogman:
-      Yeah, that was a foolish question.\a Like the lich, then?
+      Frogman: Yeah, that was a foolish question.\a Like the
+      lich, then?
+
+      Memerian: Similar, but much more powerful. And intelligent.
+
+      She
+      can teleport anywhere, and transform her appearance.\a Frankly, we don''t stand
+      a chance.
+
+      Frogman: Why are you helping me, then?
 
       Memerian:
-      Similar, but much more powerful. And intelligent.
+      Something must have changed.\a Torment has selected a new champion for a reason.\a
+      I''d like to see it.
 
-      She can teleport anywhere,
-      and transform her appearance.\a Frankly, we don''t stand a chance.
+      Frogman: I... see.
 
-      Frogman:
-      Why are you helping me, then?
-
-      Memerian: Something must have changed.\a
-      Torment has selected a new champion for a reason.\a I''d like to see it.
-
-      Frogman:
-      I... see.
-
-      Memerian: Now that we''re on the same page, let''s leave this
-      place.
+      Memerian: Now that
+      we''re on the same page, let''s leave this place.
 
       Frogman: Right.
 
@@ -7935,15 +7887,17 @@ MonoBehaviour:
 
       }
 
+      
 
       #
       === Functions ====
 
+      
 
       ~ Choice
 
-      :showChoice:Frogman:Trust Xeplogi:Trust
-      Memerian
+      :showChoice:Frogman:Trust
+      Xeplogi:Trust Memerian
 
       :if:chose:0{
 
@@ -8004,9 +7958,9 @@ MonoBehaviour:
       Memerian: Not
       him, though. He should rot in hell forever.
 
-      Xeplogi||R: As if I''d accept
-      your help, you demon!\a And Frogman, you too!\a How dare you betray me like
-      this!
+      Xeplogi||R: As if I''d
+      accept your help, you demon!\a And Frogman, you too!\a How dare you betray
+      me like this!
 
       Frogman: This wasn''t-
 
@@ -8029,7 +7983,7 @@ MonoBehaviour:
       }
 
 '
-    Name: Level6FirstTimeMemerianXeplogi
+    Name: Conversations/Battle/Level6/Level6FirstTimeMemerianXeplogi.txt
   - Text: 'priority:-1
 
       unique:F
@@ -8075,9 +8029,11 @@ MonoBehaviour:
       Frogman: Whew, that was tough.\a
       Let''s go, everyone! To the fortress!
 
+      
 
       # === Functions ====
 
+      
 
       ~
       Sample
@@ -8085,7 +8041,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level6GenericMemerianNoXeplogi
+    Name: Conversations/Battle/Level6/Level6GenericMemerianNoXeplogi.txt
   - Text: 'priority:-1
 
       unique:F
@@ -8162,25 +8118,27 @@ MonoBehaviour:
 
       }
 
-      ~ After
-      battle
+      ~
+      After battle
 
       :play:Anticipation
 
-      Frogman: Whew, that was tough.\a Let''s
-      go, everyone! To the fortress!
+      Frogman: Whew, that was tough.\a
+      Let''s go, everyone! To the fortress!
 
+      
 
       # === Functions ====
 
+      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
-    Name: Level6GenericMemerianXeplogi
+    Name: Conversations/Battle/Level6/Level6GenericMemerianXeplogi.txt
   - Text: 'priority:4
 
       unique:T
@@ -8232,29 +8190,29 @@ MonoBehaviour:
 
       Fashima_: Yes.
 
-      Brens: How dare you!
+      Brens: How dare
+      you!
 
-      Fashima_:
-      But it''s true. I mean, you can''t transform,\a you can''t teleport...\a What
-      are you even good for?
+      Fashima_: But it''s true. I mean, you can''t transform,\a you
+      can''t teleport...\a What are you even good for?
 
-      Brens: Not everyone needs to fight, Fashima!
+      Brens: Not everyone
+      needs to fight, Fashima!
 
-      I
-      don''t need transformation magic for logistics.\a Even you don''t need it,\a
-      and you''re a warrior!
+      I don''t need transformation magic for logistics.\a
+      Even you don''t need it,\a and you''re a warrior!
 
-      Fashima_: And yet, I still know how to use it.\a
-      Why, had you known how to do that,\a you might have looked a lot better, grandpa.
+      Fashima_: And yet,
+      I still know how to use it.\a Why, had you known how to do that,\a you might
+      have looked a lot better, grandpa.
+
+      Brens: Why do you keep goading me?!
+      What did I ever do to you?
+
+      Fashima_: You exist. That''s reason enough.
 
       Brens:
-      Why do you keep goading me?! What did I ever do to you?
-
-      Fashima_: You
-      exist. That''s reason enough.
-
-      Brens: Wha- Ugh, fine. You don''t want
-      me here? I''ll go.\a Take care, Fashima.
+      Wha- Ugh, fine. You don''t want me here? I''ll go.\a Take care, Fashima.
 
       :killUnit:Brens
 
@@ -8306,12 +8264,14 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
+      
 
-      # === Functions ====
+      # === Functions
+      ====
 
+      
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8355,14 +8315,14 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_: Yes.
-      Who else would I be talking to?
+      Fashima_:
+      Yes. Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no Guard
-      has ever...
+      Frogman: Uh, it''s just that no
+      Guard has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
-      Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima,
+      the Wall Magus.\a Prepare to die.
 
       Frogman: Wha...
 
@@ -8385,8 +8345,8 @@ MonoBehaviour:
       Alfred: No... It can''t be...
       You smell like the traitor!\a Fasher!
 
-      Fashima_: ...Fasher''s dead. Has
-      been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: ...Fasher''s dead.
+      Has been for a long time now.\a Who''re you? How do you even know him?
 
       Alfred:
       Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
@@ -8405,6 +8365,7 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
+      
 
       ~
       Reaction
@@ -8412,7 +8373,7 @@ MonoBehaviour:
       TBA
 
 '
-    Name: Level7Fashima2
+    Name: Conversations/Battle/Level7/Level7Fashima2.txt
   - Text: 'priority:3
 
       unique:T
@@ -8447,8 +8408,8 @@ MonoBehaviour:
 
       Fashima_: ...
 
-      Brens: Fashima, please.\a I have one last
-      question,\a and then I''ll never pester you again.
+      Brens: Fashima, please.\a I have one
+      last question,\a and then I''ll never pester you again.
 
       Fashima_: ...Make
       it a good one.
@@ -8530,12 +8491,14 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
+      
 
-      # === Functions ====
+      # === Functions
+      ====
 
+      
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8579,14 +8542,14 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_: Yes.
-      Who else would I be talking to?
+      Fashima_:
+      Yes. Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no Guard
-      has ever...
+      Frogman: Uh, it''s just that no
+      Guard has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
-      Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima,
+      the Wall Magus.\a Prepare to die.
 
       Frogman: Wha...
 
@@ -8609,8 +8572,8 @@ MonoBehaviour:
       Alfred: No... It can''t be...
       You smell like the traitor!\a Fasher!
 
-      Fashima_: ...Fasher''s dead. Has
-      been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: ...Fasher''s dead.
+      Has been for a long time now.\a Who''re you? How do you even know him?
 
       Alfred:
       Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
@@ -8629,6 +8592,7 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
+      
 
       ~
       Reaction
@@ -8636,7 +8600,7 @@ MonoBehaviour:
       TBA
 
 '
-    Name: Level7Fashima3
+    Name: Conversations/Battle/Level7/Level7Fashima3.txt
   - Text: 'priority:-1
 
       unique:F
@@ -8693,9 +8657,9 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman: We... We did
-      it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I
-      guess I shouldn''t be surprised.
+      Frogman: We... We
+      did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a
+      I guess I shouldn''t be surprised.
 
       }
 
@@ -8704,9 +8668,11 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
+      
 
       # === Functions ====
 
+      
 
       ~ Reaction
 
@@ -8772,9 +8738,10 @@ MonoBehaviour:
       Never
       mind, let''s go!
 
+      
 
 '
-    Name: Level7FashimaDeath
+    Name: Conversations/Battle/Level7/Level7FashimaDeath.txt
   - Text: 'priority:5
 
       unique:T
@@ -8816,11 +8783,11 @@ MonoBehaviour:
       Brens: You knew? Why didn''t you say anything?!\a
       It''s your job to prevent such incidents!
 
-      Fashima_: Isn''t it your job
-      to take care of the city,\a instead of pestering me?
+      Fashima_: Isn''t it your
+      job to take care of the city,\a instead of pestering me?
 
-      Brens: Don''t change
-      the subject!\a Are they dangerous?\a Will they try escaping?!
+      Brens: Don''t
+      change the subject!\a Are they dangerous?\a Will they try escaping?!
 
       Fashima_:
       I don''t know.
@@ -8830,14 +8797,14 @@ MonoBehaviour:
       Fashima_: Yes, I don''t
       know.\a I''m not made of answers, you know.
 
-      Brens: Argh! This is a disaster!
+      Brens: Argh! This is a
+      disaster!
 
-      Fashima_:
-      Calm down, old man. Everything''s under control.
+      Fashima_: Calm down, old man. Everything''s under control.
 
-      Brens: Old man?! You''re
-      the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an eye on the wall
-      while I''m gone.
+      Brens:
+      Old man?! You''re the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an
+      eye on the wall while I''m gone.
 
       :killUnit:Brens
 
@@ -8880,23 +8847,26 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
       After battle
 
       :callOther:Level7FashimaDeath
 
+      
 
-      # === Functions ====
+      # === Functions
+      ====
 
+      
 
-      ~
-      Reaction
+      ~ Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell||R: They are protecting
-      the Fortress...
+      Firbell||R:
+      They are protecting the Fortress...
 
       }
 
@@ -8949,39 +8919,41 @@ MonoBehaviour:
 
       Frogman: Did you ever get insider?
 
-      Memerian: No, never.
-      They are always led by a powerfull mage.\a Fashima.\a She was way too strong.\a
-      Annoying as hell, too.
+      Memerian: No,
+      never. They are always led by a powerfull mage.\a Fashima.\a She was way too
+      strong.\a Annoying as hell, too.
 
-      Frogman: I see.\a Let''s go defeat her, then.
+      Frogman: I see.\a Let''s go defeat
+      her, then.
+
+      Memerian: Defeat her? Pfft!
+
+      Our only hope is that
+      she had died of old age by now.
+
+      Frogman: Was she truly that powerfull?
 
       Memerian:
-      Defeat her? Pfft!
+      She''s a mage. She doesn''t play fair.\a But enough chitchat - you''ll see
+      for yourself,\a soon enough.
 
-      Our only hope is that she had died of old age by now.
-
-      Frogman:
-      Was she truly that powerfull?
-
-      Memerian: She''s a mage. She doesn''t
-      play fair.\a But enough chitchat - you''ll see for yourself,\a soon enough.
-
-      Frogman:
-      Right.
+      Frogman: Right.
 
       }
 
       :else:{
 
-      Memerian||R: ...Let''s hope they don''t
-      have a mage in here.
+      Memerian||R:
+      ...Let''s hope they don''t have a mage in here.
 
       }
 
       }
 
+      
 
-      ~ FashimaBattleQuote
+      ~
+      FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -9025,14 +8997,14 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_: Yes.
-      Who else would I be talking to?
+      Fashima_:
+      Yes. Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no Guard
-      has ever...
+      Frogman: Uh, it''s just that no
+      Guard has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
-      Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima,
+      the Wall Magus.\a Prepare to die.
 
       Frogman: Wha...
 
@@ -9055,8 +9027,8 @@ MonoBehaviour:
       Alfred: No... It can''t be...
       You smell like the traitor!\a Fasher!
 
-      Fashima_: ...Fasher''s dead. Has
-      been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: ...Fasher''s dead.
+      Has been for a long time now.\a Who''re you? How do you even know him?
 
       Alfred:
       Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
@@ -9076,7 +9048,7 @@ MonoBehaviour:
       :setBattleQuote:Fashima:FashimaBattleQuote
 
 '
-    Name: Level7FirstTime
+    Name: Conversations/Battle/Level7/Level7FirstTime.txt
   - Text: 'priority:-1
 
       unique:F
@@ -9133,18 +9105,21 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
+      
 
-      ~ After
-      battle
+      ~
+      After battle
 
       :callOther:Level7FashimaDeath
 
+      
 
-      # === Functions ====
+      # === Functions
+      ====
 
+      
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -9188,14 +9163,14 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_: Yes.
-      Who else would I be talking to?
+      Fashima_:
+      Yes. Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no Guard
-      has ever...
+      Frogman: Uh, it''s just that no
+      Guard has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
-      Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima,
+      the Wall Magus.\a Prepare to die.
 
       Frogman: Wha...
 
@@ -9218,8 +9193,8 @@ MonoBehaviour:
       Alfred: No... It can''t be...
       You smell like the traitor!\a Fasher!
 
-      Fashima_: ...Fasher''s dead. Has
-      been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: ...Fasher''s dead.
+      Has been for a long time now.\a Who''re you? How do you even know him?
 
       Alfred:
       Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
@@ -9239,34 +9214,34 @@ MonoBehaviour:
       :setBattleQuote:Fashima:FashimaBattleQuote
 
 '
-    Name: Level7GenericFashima
-  - Text: "priority:-1\nunique:F\n~ Requirements\nroomNumber:7\nhasFlag:FashimaDied\n~
-      Demands\nhasCharacter:Lan\n~ Before battle\n:play:GuardTheme2\n:addGenericCharacter:Lieutenant:young\n:addGenericCharacter:Guard1\n:loadUnits::monster\n:loadUnits::guard:T\n:killUnit:Brens\nLan:
-      Oof. I'm bored.\\a Where are all the Magmaborn?!\n:play:BeforeBattle2\n:loadUnits::player:T\n:setSingleSpeaker:L\nFrogman:
-      Back again... \nLan: OI! MAGMABORN! WELCOME BACK!\nFrogman: Ugh.\n\n~ After
-      battle\n:play:AfterBattle\n:addCounter:TimesLanLost:1\n:play:AfterBattle\nFrogman:
-      We did it again! Let's go, everyone!\n\n# === Functions ====\n\n~ Sample\n#
-      Name: Text.\n"
-    Name: Level7GenericLan
-  - Text: "priority:4\nunique:T\nid:LanSecondTime\n~ Requirements\nroomNumber:7\nhasFlag:FashimaDied\n!hasFlag:BrensDied\ncompareCounter:TimesLanLost:>0\n~
-      Demands\nhasCharacter:Lan\n~ Before battle\n:play:GuardTheme2\n:addGenericCharacter:Lieutenant\n:addGenericCharacter:Guard1\n:loadUnits::monster\n:loadUnits::guard:T\nBrens:
-      Lan.\nLan: Yes, Brens?\nBrens: How are you holding up?\nBeing the new Wall
-      Magus must be quite tough.\nLan: Great! I'm doing great!\nBrens: Really? Are
-      you sure you're okay?\\a Fashima died rather... suddenly.\nLan: Yeah. Who needs
-      her, anyway?\nBrens: That's no way to treat your former master!\nLan: Pfft.
-      Don't tell me what to do!\nBrens: I'm not-\nBrens|Lan: Oh, oh, look at me!
-      I'm Brens!\\a I'm so smart and nice and good!\\a I'm here because I worry about
-      you,\\a not becuase I'm a power-hungry idiot! No, sir!\nBrens: Lan, this behaviour
-      is quite unbecoming of a Magus!\nBrens|Lan: Yeah, Lan! Be like me! Annoying
-      as hell!\nBrens: ...I'm going, Lan. Stay alive out there.\n:setSingleSpeaker:R\nLan:
-      ...\nRot in hell, Brens.\nLieutenant: Uh, Lan?\nLan: Yes, [Name:Guard1]?\nLieutenant:
-      My name's [Name], master.\nLan: Whatever. Spit it out.\nLieutenant: T-the Magmaborn
-      are back, master.\nLan: Back?! Oh yes! I'll finally have my revenge!\n:play:BeforeBattle2\n:loadUnits::player:T\n:setSingleSpeaker:L\nFrogman:
-      We're back... \nLan: HI, MAGMABORN! i'M GOING TO WIN THIS TIME!\nFrogman: Uh-\nLan:
-      BYE, LOSERS!\nFrogman: ...Wow.\n:markDone:\n\n~ After battle\n:setFlag:LanLost1\n:addCounter:TimesLanLost:1\n:play:AfterBattle\nFrogman:
-      We did it! Time to defeat Brens!\n\n# === Functions ====\n\n~ Sample\n# Name:
-      Text.\n"
-    Name: Level7LanFirstLoss
+    Name: Conversations/Battle/Level7/Level7GenericFashima.txt
+  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n~
+      Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant:young\r\n:addGenericCharacter:Guard1\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\n:killUnit:Brens\r\nLan:
+      Oof. I'm bored.\\a Where are all the Magmaborn?!\r\n:play:BeforeBattle2\r\n:loadUnits::player:T\r\n:setSingleSpeaker:L\r\nFrogman:
+      Back again... \r\nLan: OI! MAGMABORN! WELCOME BACK!\r\nFrogman: Ugh.\r\n\r\n~
+      After battle\r\n:play:AfterBattle\r\n:addCounter:TimesLanLost:1\r\n:play:AfterBattle\r\nFrogman:
+      We did it again! Let's go, everyone!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
+      Name: Text.\r\n"
+    Name: Conversations/Battle/Level7/Level7GenericLan.txt
+  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:>0\r\n~
+      Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant\r\n:addGenericCharacter:Guard1\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\nBrens:
+      Lan.\r\nLan: Yes, Brens?\r\nBrens: How are you holding up?\r\nBeing the new
+      Wall Magus must be quite tough.\r\nLan: Great! I'm doing great!\r\nBrens: Really?
+      Are you sure you're okay?\\a Fashima died rather... suddenly.\r\nLan: Yeah.
+      Who needs her, anyway?\r\nBrens: That's no way to treat your former master!\r\nLan:
+      Pfft. Don't tell me what to do!\r\nBrens: I'm not-\r\nBrens|Lan: Oh, oh, look
+      at me! I'm Brens!\\a I'm so smart and nice and good!\\a I'm here because I
+      worry about you,\\a not becuase I'm a power-hungry idiot! No, sir!\r\nBrens:
+      Lan, this behaviour is quite unbecoming of a Magus!\r\nBrens|Lan: Yeah, Lan!
+      Be like me! Annoying as hell!\r\nBrens: ...I'm going, Lan. Stay alive out there.\r\n:setSingleSpeaker:R\r\nLan:
+      ...\r\nRot in hell, Brens.\r\nLieutenant: Uh, Lan?\r\nLan: Yes, [Name:Guard1]?\r\nLieutenant:
+      My name's [Name], master.\r\nLan: Whatever. Spit it out.\r\nLieutenant: T-the
+      Magmaborn are back, master.\r\nLan: Back?! Oh yes! I'll finally have my revenge!\r\n:play:BeforeBattle2\r\n:loadUnits::player:T\r\n:setSingleSpeaker:L\r\nFrogman:
+      We're back... \r\nLan: HI, MAGMABORN! i'M GOING TO WIN THIS TIME!\r\nFrogman:
+      Uh-\r\nLan: BYE, LOSERS!\r\nFrogman: ...Wow.\r\n:markDone:\r\n\r\n~ After battle\r\n:setFlag:LanLost1\r\n:addCounter:TimesLanLost:1\r\n:play:AfterBattle\r\nFrogman:
+      We did it! Time to defeat Brens!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
+      Name: Text.\r\n"
+    Name: Conversations/Battle/Level7/Level7LanFirstLoss.txt
   - Text: 'priority:5
 
       unique:T
@@ -9360,11 +9335,11 @@ MonoBehaviour:
       we all know about that.\a You''re better off with me, anyway.\a I''m much better
       than her.
 
-      Lieutenant: You''re not mad...? Uh, of course, master!\a You''re
-      the greatest, master!
+      Lieutenant: You''re not mad...? Uh, of course, master!\a
+      You''re the greatest, master!
 
-      Lan: Ha! Of course I am! Now, go back to your...
-      spot, soldier.
+      Lan: Ha! Of course I am! Now, go back
+      to your... spot, soldier.
 
       Lieutenant: Thank you, master!
 
@@ -9399,8 +9374,8 @@ MonoBehaviour:
 
       Frogman: Huh? Who''s shou-
 
-      Lan: MY NAME IS LAN, THE
-      NEW WALL MAGUS!\a AND I''M HERE TO SLAY YOU ALL!\a PREPARE TO DIE!!!
+      Lan: MY NAME IS LAN,
+      THE NEW WALL MAGUS!\a AND I''M HERE TO SLAY YOU ALL!\a PREPARE TO DIE!!!
 
       Frogman:
       Huh. So they replaced Fashima...
@@ -9412,6 +9387,7 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
       After battle
@@ -9425,37 +9401,41 @@ MonoBehaviour:
       Frogman:
       Huh. This... Lan seems weird.\a Oh well, time to go, everyone!
 
+      
 
-      # ===
-      Functions ====
+      #
+      === Functions ====
 
+      
 
       ~ Sample
 
       # Name: Text.
 
 '
-    Name: Level7LanFirstTime
-  - Text: "priority:4\nunique:T\nid:LanSecondTime\n~ Requirements\nroomNumber:7\nhasFlag:FashimaDied\n!hasFlag:BrensDied\ncompareCounter:TimesLanLost:=0\n~
-      Demands\nhasCharacter:Lan\n~ Before battle\n:play:GuardTheme2\n:addGenericCharacter:Lieutenant\n:addGenericCharacter:Guard1\n:addGenericCharacter:Guard2\n:loadUnits::monster\n:loadUnits::guard:T\nBrens:
-      Lan.\nLan: Hey.\nBrens: How are you holding up?\nBeing the new Wall Magus must
-      be quite tough.\nLan: Tough?! Ha ha ha! This is nothing for the Great Lan!\nBrens:
-      Really? Are you sure you're okay?\\a Fashima died rather... suddenly.\nLan:
-      Yeah. Who needs her, anyway?\\a I'm much better than her!\nBrens: That's no
-      way to treat your former master!\nLan: Pfft. She didn't teach me anything.\\a
-      All she ever did was act superior.\\a I can do that, too!\nBrens: She was more-\nFashima_|Lan:
-      You suck, Brens. You're old and weak and pathetic.\\a And I'm better than you.\\a
-      So much better.\nBrens: W-well, she was a bit like that, but-\nLan: Listen,
-      old man. I don't need your help, okay?\\a You can go now.\nBrens: I- Ugh, fine.\nThis
-      is what I get for being nice to you lot.\\a Good luck out there.\n:killUnit:Brens\n:setSingleSpeaker:R\nLan:
-      ...I can see why Fashima hated that guy.\nLieutenant: Uh, Lan?\nLan: Yes, [Name:Guard1]?\nLieutenant:
-      My name's [Name], master.\nLan: Whatever, [Name:Guard2]. What is it?\nLieutenant:
-      T-the Magmaborn are back, master.\nLan: Back?! Oh yes! Time to beat them again!\n:play:BeforeBattle2\n:loadUnits::player:T\n:setSingleSpeaker:L\nFrogman:
-      We're back... \nLan: HI, MAGMABORN! HERE TO LOSE AGAIN?\nFrogman: Uh, no-\nLan:
-      WHATEVER! BYE, LOSERS!\nFrogman: ...Wow.\n:markDone:\n\n~ After battle\n:setFlag:LanLost1\n:addCounter:TimesLanLost:1\n:play:AfterBattle\nFrogman:
-      We did it! Time to defeat Brens!\n\n# === Functions ====\n\n~ Sample\n# Name:
-      Text.\n"
-    Name: Level7LanFirstWin
+    Name: Conversations/Battle/Level7/Level7LanFirstTime.txt
+  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:=0\r\n~
+      Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant\r\n:addGenericCharacter:Guard1\r\n:addGenericCharacter:Guard2\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\nBrens:
+      Lan.\r\nLan: Hey.\r\nBrens: How are you holding up?\r\nBeing the new Wall Magus
+      must be quite tough.\r\nLan: Tough?! Ha ha ha! This is nothing for the Great
+      Lan!\r\nBrens: Really? Are you sure you're okay?\\a Fashima died rather...
+      suddenly.\r\nLan: Yeah. Who needs her, anyway?\\a I'm much better than her!\r\nBrens:
+      That's no way to treat your former master!\r\nLan: Pfft. She didn't teach me
+      anything.\\a All she ever did was act superior.\\a I can do that, too!\r\nBrens:
+      She was more-\r\nFashima_|Lan: You suck, Brens. You're old and weak and pathetic.\\a
+      And I'm better than you.\\a So much better.\r\nBrens: W-well, she was a bit
+      like that, but-\r\nLan: Listen, old man. I don't need your help, okay?\\a You
+      can go now.\r\nBrens: I- Ugh, fine.\r\nThis is what I get for being nice to
+      you lot.\\a Good luck out there.\r\n:killUnit:Brens\r\n:setSingleSpeaker:R\r\nLan:
+      ...I can see why Fashima hated that guy.\r\nLieutenant: Uh, Lan?\r\nLan: Yes,
+      [Name:Guard1]?\r\nLieutenant: My name's [Name], master.\r\nLan: Whatever, [Name:Guard2].
+      What is it?\r\nLieutenant: T-the Magmaborn are back, master.\r\nLan: Back?!
+      Oh yes! Time to beat them again!\r\n:play:BeforeBattle2\r\n:loadUnits::player:T\r\n:setSingleSpeaker:L\r\nFrogman:
+      We're back... \r\nLan: HI, MAGMABORN! HERE TO LOSE AGAIN?\r\nFrogman: Uh, no-\r\nLan:
+      WHATEVER! BYE, LOSERS!\r\nFrogman: ...Wow.\r\n:markDone:\r\n\r\n~ After battle\r\n:setFlag:LanLost1\r\n:addCounter:TimesLanLost:1\r\n:play:AfterBattle\r\nFrogman:
+      We did it! Time to defeat Brens!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
+      Name: Text.\r\n"
+    Name: Conversations/Battle/Level7/Level7LanFirstWin.txt
   - Text: 'priority:3
 
       unique:T
@@ -9492,18 +9472,18 @@ MonoBehaviour:
 
       Lieutenant: Me?
 
-      Lan: Yes, you.\a Who''s the best
-      Magus?
+      Lan: Yes, you.\a Who''s the
+      best Magus?
 
       Lieutenant: What?
 
-      Lan: The best. Magus. Who is it?
+      Lan: The best. Magus. Who is
+      it?
 
-      Lieutenant:
-      Is this some sort of a trick question, master?
+      Lieutenant: Is this some sort of a trick question, master?
 
-      Lan: Tricks? Who do you
-      think I am, soldier? Fashima?!\a Do I sound like this?
+      Lan:
+      Tricks? Who do you think I am, soldier? Fashima?!\a Do I sound like this?
 
       :setSpeaker:Fashima|Lan|L:
 
@@ -9519,19 +9499,20 @@ MonoBehaviour:
 
       Lieutenant: Then why did you ask-
 
-      Lan: Just
-      shut up! My, the people I have to deal with...
+      Lan:
+      Just shut up! My, the people I have to deal with...
 
-      Guard1: S-sorry to interrupt,
-      Lan, but, um...
+      Guard1: S-sorry
+      to interrupt, Lan, but, um...
 
       Lan: Yes? Out with it, soldier!
 
-      Guard1: The M-Magmaborn
-      are approaching...
+      Guard1:
+      The M-Magmaborn are approaching...
 
-      Lan: They''re here already?! That''s-\a good. Excellent.\a
-      Look alive, soldiers!\a Let''s show these monsters what''s what!
+      Lan: They''re here already?! That''s-\a
+      good. Excellent.\a Look alive, soldiers!\a Let''s show these monsters what''s
+      what!
 
       :play:BeforeBattle2
 
@@ -9556,6 +9537,7 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~ After battle
 
@@ -9568,9 +9550,11 @@ MonoBehaviour:
       Frogman:
       We did it again! Let''s go, everyone!
 
+      
 
       # === Functions ====
 
+      
 
       ~
       Sample
@@ -9578,7 +9562,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level7LanSecondLoss
+    Name: Conversations/Battle/Level7/Level7LanSecondLoss.txt
   - Text: 'priority:-1
 
       unique:F
@@ -9631,11 +9615,11 @@ MonoBehaviour:
 
       :if:hasCharacter:Alfred{
 
-      Alfred||L: How DARE
-      you! Using the Magma Emblem you stole!\a From US!
+      Alfred||L: How
+      DARE you! Using the Magma Emblem you stole!\a From US!
 
-      Fashima: Oh, shut
-      up. It isn''t even that one.\a Catch.
+      Fashima: Oh,
+      shut up. It isn''t even that one.\a Catch.
 
       Alfred: What''s this crys-
 
@@ -9674,17 +9658,19 @@ MonoBehaviour:
       #
       TBA: Fashima choice, Bodder battle
 
+      
 
       # === Functions ====
 
+      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
-    Name: Level8BrensDeath
+    Name: Conversations/Battle/Level8/Level8BrensDeath.txt
   - Text: 'priority:-5
 
       unique:T
@@ -9772,10 +9758,10 @@ MonoBehaviour:
       Brens:
       ...I''m sorry, Werse. But I will fulfill my duty.
 
-      Soldiers! Listen up!
-      Our worst fears have materialized.\a The Magmaborn are coming again.\a They
-      managed to break through our walls.\a They killed Fashima.\a Yet we must not
-      despair!\a We must protect the clone vats!\a We must protect the crystals!\a
+      Soldiers! Listen
+      up! Our worst fears have materialized.\a The Magmaborn are coming again.\a
+      They managed to break through our walls.\a They killed Fashima.\a Yet we must
+      not despair!\a We must protect the clone vats!\a We must protect the crystals!\a
       We must protect humanity!\a This is our sworn duty.\a It is time to fullfill
       it.\a Guards - assemble!
 
@@ -9807,62 +9793,65 @@ MonoBehaviour:
 
       :markDone:
 
+      
 
       ~
       After battle
 
       :callOther:BrensDeath
 
+      
 
-      # === Functions ====
+      # === Functions
+      ====
 
+      
 
-      ~
-      Reaction
+      ~ Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell: These... are homes,
-      Frogman.
+      Firbell:
+      These... are homes, Frogman.
 
-      Frogman: Yes, I know. This must be where the Guards live.
+      Frogman: Yes, I know. This must be where
+      the Guards live.
+
+      Firbell: Killing them here would be... brutal.
+
+      Frogman:
+      ...You''re right. But what choice do we have?\a We''ve come this far.\a We
+      can''t go back now.\a And they''re on the way to teh center.
 
       Firbell:
-      Killing them here would be... brutal.
+      It is never too late, Frogman. We should return.\a Go back to... before all
+      of this.\a Fighting mindless monsters, not humans.
 
-      Frogman: ...You''re right. But
-      what choice do we have?\a We''ve come this far.\a We can''t go back now.\a
-      And they''re on the way to teh center.
-
-      Firbell: It is never too late,
-      Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless
-      monsters, not humans.
-
-      Frogman: It is too late now, Firbell.\a I''m sorry.
-      But I''m not going back.
-
-      Firbell: ...Then I must-
-
-      Frogman: Abandon
-      us? Your friends? Your comrades?\a Would that be just, Firbell?
+      Frogman: It is too
+      late now, Firbell.\a I''m sorry. But I''m not going back.
 
       Firbell:
-      N-no, but-
+      ...Then I must-
 
-      Frogman: This is no time to second-guess our actions, Firbell.\a
-      We need you here, Firbell.\a Are you with us?
+      Frogman: Abandon us? Your friends? Your comrades?\a
+      Would that be just, Firbell?
+
+      Firbell: N-no, but-
+
+      Frogman: This
+      is no time to second-guess our actions, Firbell.\a We need you here, Firbell.\a
+      Are you with us?
 
       Firbell: ...
 
-      Fine,
-      Frogman.
+      Fine, Frogman.
 
-      Frogman: Good. Let''s go!
+      Frogman:
+      Good. Let''s go!
 
       Firbell: ...
 
-      How did
-      this happen...?
+      How did this happen...?
 
       :return:
 
@@ -9907,6 +9896,7 @@ MonoBehaviour:
       Oh
       well, let''s break through!
 
+      
 
       ~ BrensDeath
 
@@ -9927,7 +9917,7 @@ MonoBehaviour:
       Brens: Urk!
 
 '
-    Name: Level8FirstTime
+    Name: Conversations/Battle/Level8/Level8FirstTime.txt
   - Text: 'priority:-1
 
       unique:F
@@ -9987,6 +9977,7 @@ MonoBehaviour:
 
       :setDeathQuote:Brens:BrensDeath
 
+      
 
       #
       Name: Text.
@@ -9995,10 +9986,12 @@ MonoBehaviour:
 
       :callOther:BrensDeath
 
+      
 
-      # ===
-      Functions ====
+      #
+      === Functions ====
 
+      
 
       ~ BrensDeath
 
@@ -10019,7 +10012,7 @@ MonoBehaviour:
       Brens: Urk!
 
 '
-    Name: Level8GenericBrens
+    Name: Conversations/Battle/Level8/Level8GenericBrens.txt
   - Text: 'priority:-1
 
       unique:F
@@ -10057,20 +10050,62 @@ MonoBehaviour:
       Frogman:
       We''re back... Come on, we''ve got no time to lose!
 
+      
 
-      # Name: Text.
+      # Name:
+      Text.
 
-      ~
-      After battle
+      ~ After battle
 
       :play:AfterBattle
 
-      Torment: Congratiulations! You''ve
-      finished the beta! Now die!
+      Torment: Congratiulations!
+      You''ve finished the beta! Now die!
 
       :showPartTitle:End of:Beta
 
       :lose:
+
+      
+
+      #
+      === Functions ====
+
+      
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Conversations/Battle/Level8/Level8GenericWerse.txt
+  - Text: 'priority:21
+
+      unique:F
+
+      ~ Requirements
+
+      roomNumber:9
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman:
+      Hi
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      Frogman: Bye
+
+      :showPartTitle:Oof:Oof!
 
 
       #
@@ -10082,7 +10117,53 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Level8GenericWerse
+    Name: Conversations/Battle/Test1.txt
+  - Text: 'priority:21
+
+      unique:F
+
+      ~ Requirements
+
+      roomNumber:10
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      :showCG:FortressPreview
+
+      Frogman:
+      Hi 2
+
+      :hideCG:
+
+      Frogman: Yay.
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      Frogman:
+      Bye 2
+
+      :showPartTitle:Oof:Oof!
+
+
+      # === Functions ====
+
+
+      ~
+      Sample
+
+      # Name: Text.
+
+'
+    Name: Conversations/Battle/Test2.txt
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &44917519
@@ -32338,8 +32419,8 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 0
-  DebugEndgameLevel: 7
+  DebugStartAtEndgame: 1
+  DebugEndgameLevel: 9
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman
@@ -34242,6 +34323,14 @@ MonoBehaviour:
       Palette: 2
       High: 0
   Maps:
+  - Name: EndOfBeta
+    LevelNumber: 0
+    Units: []
+    MapEvents: []
+    Tileset: Torment
+    Objective: 0
+    ObjectiveData: Rout
+    MapString: 21|0|0|0|0|0|0|0|0|0|0|0|0|0|21;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|21|0|0|0|0|21|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|21|0|0|0|0|21|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|21|0|0|0|0|0|0|0|21|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|21|0|0|0|0|21|0|0;21|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|21|0|0|0|21|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|21|0|0|0|0
   - Name: InitTormentRoom
     LevelNumber: 0
     Units:
@@ -37823,10 +37912,28 @@ MonoBehaviour:
 
       ~
 
-      Lan: They''re still alive?\a Fine,
-      I''ll do it myself.
+      Lan: They''re still alive?\a Ugh,
+      when will they get here already?!
 
-      :addSkill:Lan:siegeWeapon'
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      Uh, Lan?
+
+      Lan: Yes?
+
+      Guard1: Aren''t you going to...\a teleport
+      to them, master?
+
+      Lan: Why would I do that, soldier?
+
+      Guard1: Uh,
+      it''s just that Fashima-
+
+      Lan: Fashima, Smashima.\a I''m waiting here,
+      soldier.
+
+      Guard1: R-right...'
     - '~
 
       turn:>2
@@ -38082,6 +38189,290 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Fashima
     MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|23|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|23;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|23;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|23|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|23
+  - Name: Boss2-2-L
+    LevelNumber: 7
+    Units:
+    - Pos: {x: 10, y: 13}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 13}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 13}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 10}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 10}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 6}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 6}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 7}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 7}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 7}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 7}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 3}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 3}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 3}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 10}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 12}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 3}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 3}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 0, y: 13}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 15, y: 13}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 15, y: 10}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 1, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 0
+    - Pos: {x: 0, y: 13}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 0
+    - Pos: {x: 8, y: 0}
+      Team: 1
+      Level: 6
+      Class: Lan
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 0}
+      Team: 1
+      Level: 0
+      Class: Brens
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 8}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents:
+    - '~
+
+      turn:>4
+
+      ~
+
+      ~
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      Reinforcements have arrived from the west, master!
+
+      Lan: Okay.'
+    - '~
+
+      turn:>6
+
+      ~
+
+      ~
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      We''ve just recieved some reinforcments from the east!
+
+      Lan: Good to
+      know.'
+    - '~
+
+      turn:>8
+
+      ~
+
+      ~
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      The final reinforcements have arrived!
+
+      Lan: Yay!'
+    - '~
+
+      turn:>10
+
+      ~
+
+      ~
+
+      Lan: They''re still alive?\a Ugh,
+      when will they get here already?!
+
+      :getGenericCharacter:Guard1
+
+      Guard1:
+      Uh, Lan?
+
+      Lan: Yes?
+
+      Guard1: Aren''t you going to...\a teleport
+      to them, master?
+
+      Lan: Why would I do that, soldier?
+
+      Guard1: Uh,
+      it''s just that Fashima-
+
+      Lan: Fashima, Smashima.\a I''m waiting here,
+      soldier.
+
+      Guard1: R-right...'
+    Tileset: Fortress
+    Objective: 1
+    ObjectiveData: Fashima
+    MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|23|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|23;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|23;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|23;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|23|23
   - Name: Boss2-2
     LevelNumber: 7
     Units:
@@ -38598,7 +38989,7 @@ MonoBehaviour:
       Statue: 0
     - Pos: {x: 14, y: 2}
       Team: 1
-      Level: 7
+      Level: 4
       Class: Brens
       AIType: 1
       ReinforcementTurn: 0
@@ -38631,6 +39022,241 @@ MonoBehaviour:
 
       Brens: I''ve had enough! Time to
       charge!
+
+      :setTeamAI:monster:charge'
+    Tileset: City
+    Objective: 1
+    ObjectiveData: Brens
+    MapString: 13|23|21|21|20|26|21|23|23|21|21|21|22|20|26;5|21|21|21|23|21|21|21|21|21|0|6|6|12|21;14|21|0|6|6|6|6|12|21|21|3|11|15|13|21;21|21|1|15|7|15|7|5|22|21|4|7|7|13|23;21|22|4|7|18|8|8|14|21|21|3|7|15|5|21;20|26|1|7|13|21|21|23|21|21|2|8|8|14|21;21|22|4|7|13|21|21|22|21|20|26|21|21|21|23;21|21|3|15|5|21|0|6|12|21|21|21|22|23|20;22|21|2|8|14|23|4|7|5|21|21|0|6|6|6;21|21|23|21|21|21|2|8|14|21|21|4|7|15|7;6|12|21|20|26|21|21|21|21|21|23|4|7|7|7;7|5|22|21|23|21|21|21|20|26|21|2|8|24|15;15|5|21|0|6|6|12|21|21|21|21|21|22|4|7;8|14|21|3|7|7|5|22|21|21|23|21|21|1|7;21|21|21|4|7|7|13|21|21|0|6|6|6|25|7;20|26|21|1|9|7|5|21|22|4|7|15|7|7|7
+  - Name: Level8-0-W
+    LevelNumber: 8
+    Units:
+    - Pos: {x: 1, y: 6}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 4}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 8}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 7}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 1}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 5}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 10}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 7}
+      Team: 2
+      Level: 7
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 4}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 2}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 2}
+      Team: 2
+      Level: 7
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 9}
+      Team: 2
+      Level: 7
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 12}
+      Team: 2
+      Level: 7
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 3
+      Statue: 0
+    - Pos: {x: 0, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 5
+      Statue: 0
+    - Pos: {x: 11, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 15, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 10
+      Statue: 0
+    - Pos: {x: 0, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 11
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 12
+      Statue: 0
+    - Pos: {x: 11, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 13
+      Statue: 0
+    - Pos: {x: 15, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 16
+      Statue: 0
+    - Pos: {x: 0, y: 14}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 16
+      Statue: 0
+    - Pos: {x: 1, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 16
+      Statue: 0
+    - Pos: {x: 11, y: 0}
+      Team: 2
+      Level: 7
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 16
+      Statue: 0
+    - Pos: {x: 14, y: 2}
+      Team: 1
+      Level: 7
+      Class: Werse
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents:
+    - '~
+
+      turn:>2
+
+      ~
+
+      ~
+
+      Werse: ...Send in the reserves.\a
+      We... must stop them.'
+    - '~
+
+      turn:>5
+
+      ~
+
+      ~
+
+      Werse: Stop... You''re killing so
+      many...
+
+      ...I will stop you myself.
 
       :setTeamAI:monster:charge'
     Tileset: City
@@ -38711,50 +39337,13 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 14, y: 13}
-      Team: 2
-      Level: 9
-      Class: Fashima
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 0}
-      Team: 1
-      Level: 0
-      Class: Skeleton
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 2}
-      Team: 1
-      Level: 16
-      Class: Skeleton
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents:
-    - '~
-
-      turn:>0
-
-      ~
-
-      ~
-
-      :addSkill:Fashima:SiegeWeapon
-
-      :addSkill:Frogman:SiegeWeapon
-
-      Frogman:
-      BEGIN'
+    MapEvents: []
     Tileset: Dungeon
-    Objective: 0
-    ObjectiveData: Rout
+    Objective: 3
+    ObjectiveData: 1
     MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|0|0|0|0|3;0|0|0|0|0|0|0|0|0|0|0|3|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
-  BaseTile: {fileID: 1597157554}
-  TilesetsContainer: {fileID: 720465191}
-  mapData:
-    Tiles: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|0|0|0|0|3;0|0|0|0|0|0|0|0|0|0|0|3|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+  - Name: TestingArea2
+    LevelNumber: 10
     Units:
     - Pos: {x: 3, y: 3}
       Team: 0
@@ -38791,39 +39380,56 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 14, y: 13}
-      Team: 2
-      Level: 9
-      Class: Fashima
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 0}
-      Team: 1
-      Level: 0
-      Class: Skeleton
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 2}
-      Team: 1
-      Level: 16
-      Class: Skeleton
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents:
-    - Requirements: turn:>0
-      Event: ':addSkill:Fashima:SiegeWeapon
-
-        :addSkill:Frogman:SiegeWeapon
-
-        Frogman:
-        BEGIN'
+    MapEvents: []
     Tileset: Dungeon
-    LevelNumber: 9
-    Objective: Rout
-    Name: TestingArea
+    Objective: 3
+    ObjectiveData: 1
+    MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|3|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|3|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|3|3|0|0;0|0|0|3|0|0|0|0|0|0|3|3|0|0|3;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+  BaseTile: {fileID: 1597157554}
+  TilesetsContainer: {fileID: 720465191}
+  mapData:
+    Tiles: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|3|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|3|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|3|3|0|0;0|0|0|3|0|0|0|0|0|0|3|3|0|0|3;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+    Units:
+    - Pos: {x: 3, y: 3}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 3}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 1}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Dungeon
+    LevelNumber: 10
+    Objective: Survive:1
+    Name: TestingArea2
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0

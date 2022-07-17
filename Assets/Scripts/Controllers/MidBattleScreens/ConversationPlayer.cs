@@ -200,23 +200,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         origin = conversation;
         lines = origin.Lines;
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
-        StartLineResult result = StartLine(0);
-        if (GameController.Current != null)
-        {
-            if ((result & StartLineResult.LoadMap) == 0)
-            {
-                GameController.Current.LoadMap();
-            }
-            if ((result & StartLineResult.LoadUnits) == 0)
-            {
-                GameController.Current.LoadLevelUnits();
-            }
-        }
-        if (shouldFadeIn && (result & StartLineResult.Fade) == 0)
-        {
-            Pause();
-            PaletteController.Current.FadeIn(() => Resume(0));
-        }
+        StartLine(0, true, shouldFadeIn);
     }
     public void PlayOneShot(string text)
     {
@@ -268,15 +252,23 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     /// Resumes the conversations & plays the next line
     /// </summary>
     /// <param name="mod">Skip mod lines (0 for repeat last line, 1 for play next, 2 or more for skip lines)</param>
-    public void Resume(int mod = 1)
+    /// <param name="fadeIn">If true, fades in the conversation before resuming, unless it's already over - in which case, finish it instead</param>
+    public void Resume(int mod = 1, bool fadeIn = false)
     {
         SoftResume();
         if (currentLine + mod >= lines.Count)
         {
-            FinishConversation();
+            FinishConversation(fadeIn);
             return;
         }
-        StartLine(currentLine + mod);
+        if (fadeIn)
+        {
+            FadeThisIn(() => Resume(mod));
+        }
+        else
+        {
+            StartLine(currentLine + mod);
+        }
     }
     /// <summary>
     /// Resumes the conversation without modifying its state (aka after menus)
@@ -306,565 +298,615 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         return false;
     }
-    private StartLineResult StartLine(int num)
+    private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = true)
     {
-        StartLineResult result = StartLineResult.None;
-        if (num >= lines.Count)
+        System.Action<StartLineResult> delayedAction = null;
+
+        StartLineResult StartLineTrue(int num)
         {
-            return result | FinishConversation();
-        }
-        currentLine = num;
-        string line = lines[currentLine];
-        if (line.Length <= 0) // Empty line
-        {
-            return result | StartLine(num + 1);
-        }
-        int index;
-        while ((index = line.IndexOf("[Name:")) >= 0) // Character display names (ex. "[Name:FrogmanMan]" would convert to "Frogman". For attacker, generic etc.)
-        {
-            //Bugger.Info(line);
-            int lastIndex = line.IndexOf(']');
-            if (lastIndex < 0 || lastIndex <= index)
+            StartLineResult result = StartLineResult.None;
+            if (num >= lines.Count)
             {
-                throw Bugger.Error("Bad [Name:] syntax: " + line);
+                return result | FinishConversation();
             }
-            string target = line.Substring(index + 6, lastIndex - index - 6);
-            line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
-        }
-        if (line[0] == ':') // Command
-        {
-            string[] parts = line.Split(':');
-            // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
-            string[] args = parts.Length > 2 ? (parts[parts.Length - 1] == "" ? new string[parts.Length - 2] : new string[parts.Length - 1]) : new string[1];
-            if (args.Length > 0)
+            currentLine = num;
+            string line = lines[currentLine];
+            if (line.Length <= 0) // Empty line
             {
-                // Array copy doesn't work for some reason?
-                for (int i = 0; i < args.Length; i++)
+                return result | StartLineTrue(num + 1);
+            }
+            int index;
+            while ((index = line.IndexOf("[Name:")) >= 0) // Character display names (ex. "[Name:FrogmanMan]" would convert to "Frogman". For attacker, generic etc.)
+            {
+                //Bugger.Info(line);
+                int lastIndex = line.IndexOf(']');
+                if (lastIndex < 0 || lastIndex <= index)
                 {
-                    args[i] = (i + 2 < parts.Length) ? parts[i + 2] : "";
+                    throw Bugger.Error("Bad [Name:] syntax: " + line);
                 }
+                string target = line.Substring(index + 6, lastIndex - index - 6);
+                line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
             }
-            switch (parts[1])
+            if (line[0] == ':') // Command
             {
-                // Level (gameplay) commands
+                string[] parts = line.Split(':');
+                // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
+                string[] args = parts.Length > 2 ? (parts[parts.Length - 1] == "" ? new string[parts.Length - 2] : new string[parts.Length - 1]) : new string[1];
+                if (args.Length > 0)
+                {
+                    // Array copy doesn't work for some reason?
+                    for (int i = 0; i < args.Length; i++)
+                    {
+                        args[i] = (i + 2 < parts.Length) ? parts[i + 2] : "";
+                    }
+                }
+                switch (parts[1])
+                {
+                    // Level (gameplay) commands
 
-                case "addUnit":
-                    // Params: string name
-                    AssertCommand("addUnit", args, CAT.String);
-                    GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(args[0]));
-                    break;
-                case "loadUnits":
-                    // Params: string mapName = chosenMap, Team team = allTeams, bool keepPrevious = false
-                    AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam, CAT.OpBool);
-                    if (parts.Length < 4)
-                    {
-                        GameController.Current.LoadLevelUnits(args[0]);
-                    }
-                    else if (parts.Length < 5)
-                    {
-                        GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam());
-                    }
-                    else
-                    {
-                        GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam(), args[2] == "T");
-                    }
-                    result |= StartLineResult.LoadUnits;
-                    break;
-                case "loadMap":
-                    // Params: string mapName = chosenMap
-                    AssertCommand("loadMap", args, CAT.OpString);
-                    GameController.Current.LoadMap(args[0]);
-                    result |= StartLineResult.LoadMap;
-                    break;
-                case "setTeam":
-                    // Params: string unitName, Team changeTo
-                    // Changes a unit's team
-                    AssertCommand("setTeam", args, CAT.String, CAT.Team);
-                    Unit target = GameController.Current.GetNamedUnit(args[0]);
-                    if (target != null)
-                    {
-                        target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
-                        target.Moved = target.Moved;
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "setBattleQuote":
-                    // Params: string unitName, string functionName
-                    // Set a unit's battle quote (aka add boss battle quote). Must use a function.
-                    AssertCommand("setBattleQuote", args, CAT.String, CAT.String);
-                    Unit target1 = GameController.Current.GetNamedUnit(args[0]);
-                    if (target1 != null)
-                    {
-                        if (origin.Functions.ContainsKey(args[1]))
+                    case "addUnit":
+                        // Params: string name
+                        AssertCommand("addUnit", args, CAT.String);
+                        GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(args[0]));
+                        break;
+                    case "loadUnits":
+                        // Params: string mapName = chosenMap, Team team = allTeams, bool keepPrevious = false
+                        AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam, CAT.OpBool);
+                        if (parts.Length < 4)
                         {
-                            target1.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
-                            Bugger.Info(target1.BattleQuote);
+                            GameController.Current.LoadLevelUnits(args[0]);
+                        }
+                        else if (parts.Length < 5)
+                        {
+                            GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam());
                         }
                         else
                         {
-                            throw Bugger.Error("No matching function! (" + args[1] + ")");
+                            GameController.Current.LoadLevelUnits(args[0], args[1].ToTeam(), args[2] == "T");
                         }
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "setDeathQuote":
-                    // Params: string unitName, string functionName
-                    // Set a unit's death quote (retains bewtween chapters). Must use a function.
-                    AssertCommand("setDeathQuote", args, CAT.String, CAT.String);
-                    Unit target2 = GameController.Current.GetNamedUnit(args[0]);
-                    if (target2 != null)
-                    {
-                        if (origin.Functions.ContainsKey(args[1]))
+                        result |= StartLineResult.LoadUnits;
+                        break;
+                    case "loadMap":
+                        // Params: string mapName = chosenMap
+                        AssertCommand("loadMap", args, CAT.OpString);
+                        GameController.Current.LoadMap(args[0]);
+                        result |= StartLineResult.LoadMap;
+                        break;
+                    case "setTeam":
+                        // Params: string unitName, Team changeTo
+                        // Changes a unit's team
+                        AssertCommand("setTeam", args, CAT.String, CAT.Team);
+                        Unit target = GameController.Current.GetNamedUnit(args[0]);
+                        if (target != null)
                         {
-                            target2.DeathQuote = string.Join("\n", origin.Functions[args[1]]);
+                            target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
+                            target.Moved = target.Moved;
                         }
                         else
                         {
-                            throw Bugger.Error("No matching function! (" + args[1] + ")");
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
                         }
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "addSkill":
-                    // Params: string unitName, string skillName
-                    // Adds a skill to a unit.
-                    AssertCommand("addSkill", args, CAT.String, CAT.String);
-                    Unit target3 = GameController.Current.GetNamedUnit(args[0]);
-                    if (target3 != null)
-                    {
-                        target3.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "killUnit":
-                    // Params: string unitName, bool showDeathQuote = true
-                    // Kills a unit.
-                    AssertCommand("killUnit", args, CAT.String, CAT.OpBool);
-                    Unit target4 = GameController.Current.GetNamedUnit(args[0]);
-                    if (target4 != null)
-                    {
-                        if (args.Length > 1 && args[1] == "F")
+                        break;
+                    case "setBattleQuote":
+                        // Params: string unitName, string functionName
+                        // Set a unit's battle quote (aka add boss battle quote). Must use a function.
+                        AssertCommand("setBattleQuote", args, CAT.String, CAT.String);
+                        Unit target1 = GameController.Current.GetNamedUnit(args[0]);
+                        if (target1 != null)
                         {
-                            // Remove death quote before killing
-                            target4.DeathQuote = "";
+                            if (origin.Functions.ContainsKey(args[1]))
+                            {
+                                target1.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
+                                Bugger.Info(target1.BattleQuote);
+                            }
+                            else
+                            {
+                                throw Bugger.Error("No matching function! (" + args[1] + ")");
+                            }
                         }
-                        GameController.Current.KillUnit(target4);
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "hideUnit":
-                    // Params: string unitName
-                    // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
-                    AssertCommand("hideUnit", args, CAT.String);
-                    Unit target5 = GameController.Current.GetNamedUnit(args[0]);
-                    if (target5 != null)
-                    {
-                        GameController.Current.PseudoKillUnit(target5);
-                    }
-                    else
-                    {
-                        throw Bugger.Error("No matching unit! (" + args[0] + ")");
-                    }
-                    break;
-                case "killTeam":
-                    // Params: string teamName
-                    // Kills all units in a team.
-                    AssertCommand("killTeam", args, CAT.Team);
-                    GameController.Current.KillTeam(args[0].ToTeam() ?? throw Bugger.Error("No team!"));
-                    break;
-                case "setTeamAI":
-                    // Params: Team team, AIType ai
-                    AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
-                    Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
-                    GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.Error("Impossible - I just validated..."));
-                    break;
-                case "lose":
-                    // Params: none
-                    AssertCommand("lose", args);
-                    GameController.Current.Lose();
-                    return result | StartLineResult.FinishLevel;
-                case "win":
-                    // Params: none
-                    AssertCommand("win", args);
-                    GameController.Current.Win();
-                    return result | StartLineResult.FinishLevel;
+                        else
+                        {
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                        }
+                        break;
+                    case "setDeathQuote":
+                        // Params: string unitName, string functionName
+                        // Set a unit's death quote (retains bewtween chapters). Must use a function.
+                        AssertCommand("setDeathQuote", args, CAT.String, CAT.String);
+                        Unit target2 = GameController.Current.GetNamedUnit(args[0]);
+                        if (target2 != null)
+                        {
+                            if (origin.Functions.ContainsKey(args[1]))
+                            {
+                                target2.DeathQuote = string.Join("\n", origin.Functions[args[1]]);
+                            }
+                            else
+                            {
+                                throw Bugger.Error("No matching function! (" + args[1] + ")");
+                            }
+                        }
+                        else
+                        {
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                        }
+                        break;
+                    case "addSkill":
+                        // Params: string unitName, string skillName
+                        // Adds a skill to a unit.
+                        AssertCommand("addSkill", args, CAT.String, CAT.String);
+                        Unit target3 = GameController.Current.GetNamedUnit(args[0]);
+                        if (target3 != null)
+                        {
+                            target3.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
+                        }
+                        else
+                        {
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                        }
+                        break;
+                    case "killUnit":
+                        // Params: string unitName, bool showDeathQuote = true
+                        // Kills a unit.
+                        AssertCommand("killUnit", args, CAT.String, CAT.OpBool);
+                        Unit target4 = GameController.Current.GetNamedUnit(args[0]);
+                        if (target4 != null)
+                        {
+                            if (args.Length > 1 && args[1] == "F")
+                            {
+                                // Remove death quote before killing
+                                target4.DeathQuote = "";
+                            }
+                            GameController.Current.KillUnit(target4);
+                        }
+                        else
+                        {
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                        }
+                        break;
+                    case "hideUnit":
+                        // Params: string unitName
+                        // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
+                        AssertCommand("hideUnit", args, CAT.String);
+                        Unit target5 = GameController.Current.GetNamedUnit(args[0]);
+                        if (target5 != null)
+                        {
+                            GameController.Current.PseudoKillUnit(target5);
+                        }
+                        else
+                        {
+                            throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                        }
+                        break;
+                    case "killTeam":
+                        // Params: string teamName
+                        // Kills all units in a team.
+                        AssertCommand("killTeam", args, CAT.Team);
+                        GameController.Current.KillTeam(args[0].ToTeam() ?? throw Bugger.Error("No team!"));
+                        break;
+                    case "setTeamAI":
+                        // Params: Team team, AIType ai
+                        AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
+                        Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
+                        GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.Error("Impossible - I just validated..."));
+                        break;
+                    case "lose":
+                        // Params: none
+                        AssertCommand("lose", args);
+                        GameController.Current.Lose();
+                        return result | StartLineResult.FinishLevel;
+                    case "win":
+                        // Params: none
+                        AssertCommand("win", args);
+                        GameController.Current.Win();
+                        return result | StartLineResult.FinishLevel;
 
-                // Conversation (graphics, music etc.) commands
+                    // Conversation (graphics, music etc.) commands
 
-                case "play":
-                    // Params: string name, bool keepTimestamp = false
-                    AssertCommand("play", args, CAT.String, CAT.OpBool);
-                    CrossfadeMusicPlayer.Current.Play(args[0], parts.Length > 3 ? (args[1] == "T") : false);
-                    break;
-                case "playIntro":
-                    // Params: string name
-                    AssertCommand("playIntro", args, CAT.String);
-                    CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
-                    break;
-                case "addGenericCharacter":
-                    // Params: string internalName, string forceTags = none
-                    // Add to TempPortraits with args[0] internal name and args[1] tags
-                    AssertCommand("addGenericCharacter", args, CAT.String, CAT.OpString);
-                    PortraitController.Current.GeneratedGenericPortraits.Add(args[0], PortraitController.Current.FindGenericPortrait(args[1]));
-                    break;
-                case "getGenericCharacter":
-                    // Params: string internalName, Team fromTeam = null
-                    AssertCommand("getGenericCharacter", args, CAT.String, CAT.OpTeam);
-                    PortraitController.Current.GeneratedGenericPortraits.Add(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
-                    break;
-                case "setSingleSpeaker":
-                    // Params: bool left = true
-                    // Removes all speakers and makes sure the next is on the left/right
-                    AssertCommand("setSingleSpeaker", args, CAT.OpBool);
-                    bool left = parts.Length > 2 ? args[0] == "L" : true;
-                    SetSinglePortrait(left);
-                    currentSpeakerIsLeft = !left;
-                    break;
-                case "setSpeaker":
-                    // Params: string speaker
-                    // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)
-                    AssertCommand("setSpeaker", args, CAT.String);
-                    SetSpeakerFromText(args[0]);
-                    break;
-                case "showCG":
-                    // Params: string name
-                    // Removes the previous CG (if any), then shows the requested CG until manually removed
-                    AssertCommand("showCG", args, CAT.String);
-                    Pause();
-                    if (CGController.Active)
-                    {
-                        CGController.FadeOutCG(() => CGController.FadeInCG(args[0]));
-                    }
-                    else
-                    {
-                        PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
-                        PaletteController.Current.FadeOut(() => CGController.FadeInCG(args[0], currentPaletteState));
-                    }
-                    return result | StartLineResult.Fade;
-                case "hideCG":
-                    // Params: none
-                    // Removes the previous CG (if any)
-                    AssertCommand("hideCG", args);
-                    if (CGController.Active)
-                    {
+                    case "play":
+                        // Params: string name, bool keepTimestamp = false
+                        AssertCommand("play", args, CAT.String, CAT.OpBool);
+                        CrossfadeMusicPlayer.Current.Play(args[0], parts.Length > 3 ? (args[1] == "T") : false);
+                        break;
+                    case "playIntro":
+                        // Params: string name
+                        AssertCommand("playIntro", args, CAT.String);
+                        CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
+                        break;
+                    case "addGenericCharacter":
+                        // Params: string internalName, string forceTags = none
+                        // Add to TempPortraits with args[0] internal name and args[1] tags
+                        AssertCommand("addGenericCharacter", args, CAT.String, CAT.OpString);
+                        PortraitController.Current.GeneratedGenericPortraits.Add(args[0], PortraitController.Current.FindGenericPortrait(args[1]));
+                        break;
+                    case "getGenericCharacter":
+                        // Params: string internalName, Team fromTeam = null
+                        AssertCommand("getGenericCharacter", args, CAT.String, CAT.OpTeam);
+                        PortraitController.Current.GeneratedGenericPortraits.Add(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
+                        break;
+                    case "setSingleSpeaker":
+                        // Params: bool left = true
+                        // Removes all speakers and makes sure the next is on the left/right
+                        AssertCommand("setSingleSpeaker", args, CAT.OpBool);
+                        bool left = parts.Length > 2 ? args[0] == "L" : true;
+                        SetSinglePortrait(left);
+                        currentSpeakerIsLeft = !left;
+                        break;
+                    case "setSpeaker":
+                        // Params: string speaker
+                        // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)
+                        AssertCommand("setSpeaker", args, CAT.String);
+                        SetSpeakerFromText(args[0]);
+                        break;
+                    case "showCG":
+                        // Params: string name
+                        // Removes the previous CG (if any), then shows the requested CG until manually removed
+                        AssertCommand("showCG", args, CAT.String);
                         Pause();
-                        CGController.FadeOutCG(() => PaletteController.Current.FadeIn(() => Resume()));
-                    }
-                    return result | StartLineResult.Fade;
-                case "screenShake":
-                    // Params: float strength = 1, float duration = 1
-                    // Shakes the screen for duartion time with strength amount
-                    AssertCommand("screenShake", args, CAT.OpFloat, CAT.OpFloat);
-                    float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
-                    float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
-                    CameraController.Current.ScreenShake(strength, duration);
-                    break;
-
-                // Show other screens (MidBattleScreens)
-
-                case "showInfoDialogue":
-                    // Args: title
-                    AssertCommand("showInfoDialogue", args, CAT.String);
-                    Pause();
-                    InfoDialogue.Text.text = args[0];
-                    InfoDialogue.Begin();
-                    return result | StartLineResult.MidBattleScreen;
-                case "showPartTitle":
-                    // Args: subtitle, title
-                    AssertCommand("showPartTitle", args, CAT.String, CAT.String);
-                    Pause();
-                    PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
-                    var currentState = PaletteController.Current.SaveState();
-                    partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
-                    var postFadeOutState = PaletteController.Current.SaveState();
-                    PaletteController.Current.LoadState(currentState);
-                    partTitle.TransitionToThis(true, null, postFadeOutState);
-                    return result | StartLineResult.MidBattleScreen;
-                case "showChoice":
-                    // Args: choosingCharacterName, option1, option2
-                    AssertCommand("showChoice", args, CAT.String, CAT.String, CAT.String);
-                    Pause();
-                    gameObject.SetActive(true);
-                    enabled = false;
-                    Text.text = "";
-                    Arrow.SetActive(false);
-                    PortraitL.Portrait = PortraitController.Current.FindPortrait(Name.text = args[0]);
-                    SetSinglePortrait(true);
-                    SetSpeaker(true);
-                    if (parts.Length != 5)
-                    {
-                        throw Bugger.Error("Currently, choices of more than 2 options aren't supported.");
-                    }
-                    ChoiceMenu.MenuItems[0].Text = args[1];
-                    ChoiceMenu.MenuItems[1].Text = args[2];
-                    // To prevent people from thinking a choice is "correct"
-                    ChoiceMenu.Begin();
-                    ChoiceMenu.SelectItem(Random.Range(0, 2));
-                    return result | StartLineResult.MidBattleScreen;
-
-                // Global commands
-
-                case "unlockKnowledge":
-                    AssertCommand("unlockKnowledge", args, CAT.String);
-                    GameCalculations.UnlockKnowledge(args[0]);
-                    break;
-                case "setFlag":
-                    AssertCommand("setFlag", args, CAT.String);
-                    SavedData.Save("ConversationData", "Flag" + args[0], 1);
-                    break;
-                case "setTempFlag":
-                    // Params: name
-                    AssertCommand("setTempFlag", args, CAT.String);
-                    GameController.Current.TempFlags.Add(args[0]);
-                    break;
-                case "markDone":
-                    // Params: none
-                    AssertCommand("markDone", args);
-                    origin.Choose(true);
-                    break;
-                case "setCounter":
-                    // Params: string name, int amount
-                    AssertCommand("setCounter", args, CAT.String, CAT.Int);
-                    SavedData.Save("ConversationData", "Counter" + args[0], int.Parse(args[1]));
-                    break;
-                case "addCounter":
-                    // Params: string name, int amount
-                    AssertCommand("addCounter", args, CAT.String, CAT.Int);
-                    SavedData.Append("ConversationData", "Counter" + args[0], int.Parse(args[1]));
-                    break;
-
-                // Syntax commands (ifs, functions...)
-
-                case "if":
-                    /* Syntax:
-                     * :if:hasFlag:bla{
-                     * Firbell: Will happen if hasFlag (requirement)
-                     * }
-                     * :else:{
-                     * Firbell: Will happen if !hasFlag
-                     * }
-                     * Firbell: Will anyway happen
-                     */
-                    // A bit too complex to assert for now
-                    string requirement = line.Substring(line.IndexOf(':', 1) + 1);
-                    requirement = requirement.Substring(0, requirement.IndexOf('{'));
-                    if (!origin.MeetsRequirement(requirement))
-                    {
-                        num = SkipBlock(num);
-                        // If found an else, do that content.
-                        if (lines[num + 1].Contains(":else:"))
+                        delayedAction = (result) =>
                         {
-                            return result | StartLine(num + 2);
+                            if (CGController.Active)
+                            {
+                                CGController.FadeOutCG(() => CGController.FadeInCG(args[0]));
+                            }
+                            else if (beforeBattleStart && shouldFadeIn)
+                            {
+                                PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
+                                CGController.FadeInCG(args[0], currentPaletteState);
+                            }
+                            else
+                            {
+                                PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
+                                PaletteController.Current.FadeOut(() => CGController.FadeInCG(args[0], currentPaletteState));
+                            }
+                        };
+                        return result | StartLineResult.Fade;
+                    case "hideCG":
+                        // Params: none
+                        // Removes the previous CG (if any)
+                        AssertCommand("hideCG", args);
+                        if (CGController.Active)
+                        {
+                            Pause();
+                            CGController.FadeOutCG(() => Resume(1, true));
                         }
-                    }
-                    break;
-                case "else":
-                    // Reaching an else outside an if means that it wasn't taken, so just skip the block.
-                    // A bit too complex to assert for now
-                    num = SkipBlock(num);
-                    break;
-                case "call":
-                    AssertCommand("call", args, CAT.String);
-                    if (origin.Functions.ContainsKey(args[0]))
-                    {
+                        return result | StartLineResult.Fade;
+                    case "screenShake":
+                        // Params: float strength = 1, float duration = 1
+                        // Shakes the screen for duartion time with strength amount
+                        AssertCommand("screenShake", args, CAT.OpFloat, CAT.OpFloat);
+                        float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
+                        float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
+                        CameraController.Current.ScreenShake(strength, duration);
+                        break;
+
+                    // Show other screens (MidBattleScreens)
+
+                    case "showInfoDialogue":
+                        // Args: title
+                        AssertCommand("showInfoDialogue", args, CAT.String);
+                        Pause();
+                        InfoDialogue.Text.text = args[0];
+                        InfoDialogue.Begin();
+                        return result | StartLineResult.MidBattleScreen;
+                    case "showPartTitle":
+                        // Args: subtitle, title
+                        AssertCommand("showPartTitle", args, CAT.String, CAT.String);
+                        Pause();
+                        PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
+                        partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
+                        partTitle.TransitionToThis();
+                        return result | StartLineResult.MidBattleScreen;
+                    case "showChoice":
+                        // Args: choosingCharacterName, option1, option2
+                        AssertCommand("showChoice", args, CAT.String, CAT.String, CAT.String);
+                        Pause();
+                        gameObject.SetActive(true);
+                        enabled = false;
+                        Text.text = "";
+                        Arrow.SetActive(false);
+                        PortraitL.Portrait = PortraitController.Current.FindPortrait(Name.text = args[0]);
+                        SetSinglePortrait(true);
+                        SetSpeaker(true);
+                        if (parts.Length != 5)
+                        {
+                            throw Bugger.Error("Currently, choices of more than 2 options aren't supported.");
+                        }
+                        ChoiceMenu.MenuItems[0].Text = args[1];
+                        ChoiceMenu.MenuItems[1].Text = args[2];
+                        // To prevent people from thinking a choice is "correct"
+                        ChoiceMenu.Begin();
+                        ChoiceMenu.SelectItem(Random.Range(0, 2));
+                        return result | StartLineResult.MidBattleScreen;
+
+                    // Global commands
+
+                    case "unlockKnowledge":
+                        AssertCommand("unlockKnowledge", args, CAT.String);
+                        GameCalculations.UnlockKnowledge(args[0]);
+                        break;
+                    case "setFlag":
+                        AssertCommand("setFlag", args, CAT.String);
+                        SavedData.Save("ConversationData", "Flag" + args[0], 1);
+                        break;
+                    case "setTempFlag":
+                        // Params: name
+                        AssertCommand("setTempFlag", args, CAT.String);
+                        GameController.Current.TempFlags.Add(args[0]);
+                        break;
+                    case "markDone":
+                        // Params: none
+                        AssertCommand("markDone", args);
+                        origin.Choose(true);
+                        break;
+                    case "setCounter":
+                        // Params: string name, int amount
+                        AssertCommand("setCounter", args, CAT.String, CAT.Int);
+                        SavedData.Save("ConversationData", "Counter" + args[0], int.Parse(args[1]));
+                        break;
+                    case "addCounter":
+                        // Params: string name, int amount
+                        AssertCommand("addCounter", args, CAT.String, CAT.Int);
+                        SavedData.Append("ConversationData", "Counter" + args[0], int.Parse(args[1]));
+                        break;
+
+                    // Syntax commands (ifs, functions...)
+
+                    case "if":
+                        /* Syntax:
+                         * :if:hasFlag:bla{
+                         * Firbell: Will happen if hasFlag (requirement)
+                         * }
+                         * :else:{
+                         * Firbell: Will happen if !hasFlag
+                         * }
+                         * Firbell: Will anyway happen
+                         */
+                        // A bit too complex to assert for now
+                        string requirement = line.Substring(line.IndexOf(':', 1) + 1);
+                        requirement = requirement.Substring(0, requirement.IndexOf('{'));
+                        if (!origin.MeetsRequirement(requirement))
+                        {
+                            num = SkipBlock(num);
+                            // If found an else, do that content.
+                            if (lines[num + 1].Contains(":else:"))
+                            {
+                                return result | StartLineTrue(num + 2);
+                            }
+                        }
+                        break;
+                    case "else":
+                        // Reaching an else outside an if means that it wasn't taken, so just skip the block.
+                        // A bit too complex to assert for now
+                        num = SkipBlock(num);
+                        break;
+                    case "call":
+                        AssertCommand("call", args, CAT.String);
+                        if (origin.Functions.ContainsKey(args[0]))
+                        {
+                            // Store current lines & position
+                            functionStack.Push(new FunctionStackObject(num, lines));
+                            // Load new lines
+                            lines = origin.Functions[args[0]];
+                            return result | StartLineTrue(0);
+                        }
+                        throw Bugger.Error("No matching function! (" + args[0] + ")");
+                    case "callOther":
+                        AssertCommand("callOther", args, CAT.String);
                         // Store current lines & position
                         functionStack.Push(new FunctionStackObject(num, lines));
-                        // Load new lines
-                        lines = origin.Functions[args[0]];
-                        return result | StartLine(0);
-                    }
-                    throw Bugger.Error("No matching function! (" + args[0] + ")");
-                case "callOther":
-                    AssertCommand("callOther", args, CAT.String);
-                    // Store current lines & position
-                    functionStack.Push(new FunctionStackObject(num, lines));
-                    // Load new conversation
-                    ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
-                    if (conversation != null)
-                    {
-                        lines = playMode == PlayMode.PostBattle ? conversation.PostBattleLines : conversation.Lines;
-                        return result | StartLine(0);
-                    }
-                    throw Bugger.Error("No matching conversation! (" + args[0] + ")");
-                case "wait":
-                    // Params: string[] requirement
-                    // A bit too complex to assert for now
-                    waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
-                    Pause();
-                    if (playMode != PlayMode.PostBattle)
-                    {
-                        CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
-                    }
-                    return result | StartLineResult.Wait;
-                case "return":
-                    AssertCommand("return", args);
-                    if (functionStack.Count == 0)
-                    {
-                        throw Bugger.Error("Nothing to return from!");
-                    }
-                    FunctionStackObject function = functionStack.Pop();
-                    lines = function.Lines;
-                    return result | StartLine(function.LineNumber + 1);
-                case "finishConversation":
-                    // Params: none
-                    AssertCommand("finishConversation", args);
-                    FinishConversation();
-                    return result | StartLineResult.FinishConversation;
-
-                // Tutorial commands
-
-                case "tutorialForceButton":
-                    // Not asserting tutorials for now
-                    if (TutorialGameController.Current == null)
-                    {
-                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
-                    }
-                    TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
-                    forceButton.Move = System.Enum.TryParse(args[0], out forceButton.Button);
-                    if (parts.Length > 3)
-                    {
-                        string[] pos = args[1].Split(',');
-                        forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
-                        if (parts.Length > 4)
+                        // Load new conversation
+                        ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
+                        if (conversation != null)
                         {
-                            forceButton.WrongLine = int.Parse(args[2]);
+                            lines = playMode == PlayMode.PostBattle ? conversation.PostBattleLines : conversation.Lines;
+                            return result | StartLineTrue(0);
                         }
-                    }
-                    TutorialGameController.Current.CurrentForceButton = forceButton;
-                    TutorialGameController.Current.WaitingForForceButton = true;
-                    Pause();
-                    return result | StartLineResult.Wait;
-                case "tutorialShowMarker":
-                    // Not asserting tutorials for now
-                    if (TutorialGameController.Current == null)
-                    {
-                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
-                    }
-                    string[] markerPos = args[0].Split(',');
-                    TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
-                    break;
-                case "tutorialFinish":
-                    // Not asserting tutorials for now
-                    if (TutorialGameController.Current == null)
-                    {
-                        throw Bugger.Error("Don't use tutorial commands outside the tutorial");
-                    }
-                    SavedData.SaveAll(SaveMode.Slot);
-                    SceneController.LoadScene("Map");
-                    return result | StartLineResult.FinishLevel;
-                default:
-                    break;
-
-                // Main menu commands
-
-                case "introShowCutscene":
-                    // Params: none
-                    if (Intro == null)
-                    {
-                        throw Bugger.Error("Don't use intro commands outside the intro");
-                    }
-                    AssertCommand("introShowCutscene", args);
-                    Pause();
-                    Intro.gameObject.SetActive(true);
-                    return result | StartLineResult.MidBattleScreen;
-                case "introShowUpgradeMenu":
-                    // Params: none
-                    if (Knowledge == null)
-                    {
-                        throw Bugger.Error("Don't use intro commands outside the intro");
-                    }
-                    AssertCommand("introShowUpgradeMenu", args);
-                    Pause();
-                    Knowledge.SetActive(true);
-                    return result | StartLineResult.MidBattleScreen;
-                case "introShowTutorial":
-                    // Params: none
-                    if (Tutorial == null)
-                    {
-                        throw Bugger.Error("Don't use intro commands outside the intro");
-                    }
-                    AssertCommand("introShowTutorial", args);
-                    if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
-                    {
+                        throw Bugger.Error("No matching conversation! (" + args[0] + ")");
+                    case "wait":
+                        // Params: string[] requirement
+                        // A bit too complex to assert for now
+                        waitRequirement = line.Substring(line.IndexOf(':', 1) + 1);
                         Pause();
-                        Tutorial.Begin();
+                        if (playMode != PlayMode.PostBattle)
+                        {
+                            CrossfadeMusicPlayer.Current.Play(GameController.Current.LevelMetadata.MusicName, false);
+                        }
+                        return result | StartLineResult.Wait;
+                    case "return":
+                        AssertCommand("return", args);
+                        if (functionStack.Count == 0)
+                        {
+                            throw Bugger.Error("Nothing to return from!");
+                        }
+                        FunctionStackObject function = functionStack.Pop();
+                        lines = function.Lines;
+                        return result | StartLineTrue(function.LineNumber + 1);
+                    case "finishConversation":
+                        // Params: none
+                        AssertCommand("finishConversation", args);
+                        FinishConversation();
+                        return result | StartLineResult.FinishConversation;
+
+                    // Tutorial commands
+
+                    case "tutorialForceButton":
+                        // Not asserting tutorials for now
+                        if (TutorialGameController.Current == null)
+                        {
+                            throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                        }
+                        TutorialGameController.ForceButton forceButton = new TutorialGameController.ForceButton();
+                        forceButton.Move = System.Enum.TryParse(args[0], out forceButton.Button);
+                        if (parts.Length > 3)
+                        {
+                            string[] pos = args[1].Split(',');
+                            forceButton.Pos = new Vector2Int(int.Parse(pos[0]), int.Parse(pos[1]));
+                            if (parts.Length > 4)
+                            {
+                                forceButton.WrongLine = int.Parse(args[2]);
+                            }
+                        }
+                        TutorialGameController.Current.CurrentForceButton = forceButton;
+                        TutorialGameController.Current.WaitingForForceButton = true;
+                        Pause();
+                        return result | StartLineResult.Wait;
+                    case "tutorialShowMarker":
+                        // Not asserting tutorials for now
+                        if (TutorialGameController.Current == null)
+                        {
+                            throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                        }
+                        string[] markerPos = args[0].Split(',');
+                        TutorialGameController.Current.ShowMarkerCursor(new Vector2Int(int.Parse(markerPos[0]), int.Parse(markerPos[1])));
+                        break;
+                    case "tutorialFinish":
+                        // Not asserting tutorials for now
+                        if (TutorialGameController.Current == null)
+                        {
+                            throw Bugger.Error("Don't use tutorial commands outside the tutorial");
+                        }
+                        SavedData.SaveAll(SaveMode.Slot);
+                        SceneController.LoadScene("Map");
+                        return result | StartLineResult.FinishLevel;
+                    default:
+                        break;
+
+                    // Main menu commands
+
+                    case "introShowCutscene":
+                        // Params: none
+                        if (Intro == null)
+                        {
+                            throw Bugger.Error("Don't use intro commands outside the intro");
+                        }
+                        AssertCommand("introShowCutscene", args);
+                        Pause();
+                        Intro.gameObject.SetActive(true);
                         return result | StartLineResult.MidBattleScreen;
-                    }
-                    break;
+                    case "introShowUpgradeMenu":
+                        // Params: none
+                        if (Knowledge == null)
+                        {
+                            throw Bugger.Error("Don't use intro commands outside the intro");
+                        }
+                        AssertCommand("introShowUpgradeMenu", args);
+                        Pause();
+                        Knowledge.SetActive(true);
+                        return result | StartLineResult.MidBattleScreen;
+                    case "introShowTutorial":
+                        // Params: none
+                        if (Tutorial == null)
+                        {
+                            throw Bugger.Error("Don't use intro commands outside the intro");
+                        }
+                        AssertCommand("introShowTutorial", args);
+                        if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
+                        {
+                            Pause();
+                            Tutorial.Begin();
+                            return result | StartLineResult.MidBattleScreen;
+                        }
+                        break;
+                }
+                return result | StartLineTrue(num + 1);
             }
-            return result | StartLine(num + 1);
+            else if (line[0] == '#' || line[0] == '}') // Comment, like this one :) Or end of if block
+            {
+                return result | StartLineTrue(num + 1);
+            }
+            if (line.IndexOf(':') != -1)
+            {
+                string portraitText = line.Split(':')[0];
+                SetSpeakerFromText(portraitText);
+            }
+            if (line.Contains("[")) // Variable name (like button name)
+            {
+                //Bugger.Info(line);
+                line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
+                line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
+                line = line.Replace("[StartButton]", Control.DisplayShortButtonName("Start"));
+                line = line.Replace("[Name]", Name.text);
+                //Bugger.Info(line);
+            }
+            line = line.Replace(@"\a", "\a");
+            // Find the line break
+            string trueLine = FindLineBreaks(TrueLine(line));
+            // Check if it's short (aka no line break) and had previous
+            if (line.IndexOf(':') < 0 && LineAddition(trueLine) && previousLineParts != null)
+            {
+                targetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
+                currentChar = previousLineParts[previousLineParts.Length - 1].Length;
+                Text.text = previousLineParts[previousLineParts.Length - 1] + targetLine[currentChar].ToString();
+            }
+            else
+            {
+                targetLine = trueLine;
+                currentChar = 0;
+                Text.text = targetLine[currentChar].ToString();
+            }
+            previousLineParts = trueLine.Split('\n');
+            PlayLetter(targetLine[currentChar]);
+            count = 0;
+            state = CurrentState.Writing;
+            Arrow.SetActive(false);
+            return result;
         }
-        else if (line[0] == '#' || line[0] == '}') // Comment, like this one :) Or end of if block
+
+        StartLineResult result = StartLineTrue(num);
+        if (beforeBattleStart)
         {
-            return result | StartLine(num + 1);
+            if (GameController.Current != null)
+            {
+                if ((result & StartLineResult.LoadMap) == 0)
+                {
+                    GameController.Current.LoadMap();
+                }
+                if ((result & StartLineResult.LoadUnits) == 0)
+                {
+                    GameController.Current.LoadLevelUnits();
+                }
+            }
+            if (shouldFadeIn && (result & StartLineResult.Fade) == 0)
+            {
+                Pause();
+                PaletteController.Current.FadeIn(() => Resume(0));
+            }
         }
-        if (line.IndexOf(':') != -1)
-        {
-            string portraitText = line.Split(':')[0];
-            SetSpeakerFromText(portraitText);
-        }
-        if (line.Contains("[")) // Variable name (like button name)
-        {
-            //Bugger.Info(line);
-            line = line.Replace("[AButton]", Control.DisplayShortButtonName("A"));
-            line = line.Replace("[BButton]", Control.DisplayShortButtonName("B"));
-            line = line.Replace("[StartButton]", Control.DisplayShortButtonName("Start"));
-            line = line.Replace("[Name]", Name.text);
-            //Bugger.Info(line);
-        }
-        line = line.Replace(@"\a", "\a");
-        // Find the line break
-        string trueLine = FindLineBreaks(TrueLine(line));
-        // Check if it's short (aka no line break) and had previous
-        if (line.IndexOf(':') < 0 && LineAddition(trueLine) && previousLineParts != null)
-        {
-            targetLine = previousLineParts[previousLineParts.Length - 1] + '\n' + trueLine;
-            currentChar = previousLineParts[previousLineParts.Length - 1].Length;
-            Text.text = previousLineParts[previousLineParts.Length - 1] + targetLine[currentChar].ToString();
-        }
-        else
-        {
-            targetLine = trueLine;
-            currentChar = 0;
-            Text.text = targetLine[currentChar].ToString();
-        }
-        previousLineParts = trueLine.Split('\n');
-        PlayLetter(targetLine[currentChar]);
-        count = 0;
-        state = CurrentState.Writing;
-        Arrow.SetActive(false);
+        delayedAction?.Invoke(result);
         return result;
     }
-    private StartLineResult FinishConversation()
+    private StartLineResult FinishConversation(bool fadedOut = false)
     {
         // Check if this is the last part
         if (functionStack.Count > 0)
         {
             FunctionStackObject function = functionStack.Pop();
             lines = function.Lines;
-            return StartLine(function.LineNumber + 1);
+            if (fadedOut)
+            {
+                FadeThisIn(() => { SoftResume(); StartLine(function.LineNumber + 1); });
+                return StartLineResult.Fade;
+            }
+            else
+            {
+                return StartLine(function.LineNumber + 1);
+            }
         }
         // If there's a CG, hide it first
         if (CGController.Active)
         {
             Pause();
-            CGController.FadeOutCG(() => PaletteController.Current.FadeIn(() => Resume()));
+            CGController.FadeOutCG(() => FinishConversation(true));
             return StartLineResult.Fade;
+        }
+        if (fadedOut && playMode != PlayMode.PostBattle) // Fade in if this isn't the post-battle part
+        {
+            FadeThisIn(() => { Resume(); });
+            return StartLineResult.Fade;
+        }
+        else // Fade out if this is the post-battle part
+        {
+            FadeThisOut(() => FinishConversation(true));
         }
         // Finish conversation
         lines.Clear();
