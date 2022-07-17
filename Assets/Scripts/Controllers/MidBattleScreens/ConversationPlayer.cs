@@ -255,7 +255,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     /// <param name="fadeIn">If true, fades in the conversation before resuming, unless it's already over - in which case, finish it instead</param>
     public void Resume(int mod = 1, bool fadeIn = false)
     {
-        SoftResume();
         if (currentLine + mod >= lines.Count)
         {
             FinishConversation(fadeIn);
@@ -263,10 +262,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         if (fadeIn)
         {
-            FadeThisIn(() => Resume(mod));
+            FadeThisIn(() => Resume(mod), false);
         }
         else
         {
+            SoftResume();
             StartLine(currentLine + mod);
         }
     }
@@ -594,7 +594,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         Pause();
                         PartTitleAnimation partTitle = Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
                         partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
-                        partTitle.TransitionToThis();
+                        partTitle.transform.parent.gameObject.SetActive(false);
+                        FadeThisOut(() => { partTitle.InitPalette(); partTitle.FadeThisIn(); }, null, false);
                         return result | StartLineResult.MidBattleScreen;
                     case "showChoice":
                         // Args: choosingCharacterName, option1, option2

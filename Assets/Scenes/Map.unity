@@ -10099,22 +10099,37 @@ MonoBehaviour:
       Frogman:
       Hi
 
+      :showPartTitle:Testy:Test
+
+      Frogman: Wow
+
+      :showCG:Port
+
+      Frogman:
+      Amazing
+
+      :showCG:Tavern
+
+      Frogman: Excellent
+
+
       ~ After battle
 
       :play:AfterBattle
 
-      Frogman: Bye
+      Frogman:
+      Bye
 
       :showPartTitle:Oof:Oof!
 
 
-      #
-      === Functions ====
+      # === Functions ====
 
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: Conversations/Battle/Test1.txt
@@ -10147,6 +10162,8 @@ MonoBehaviour:
       ~ After battle
 
       :play:AfterBattle
+
+      :showPartTitle:Oof:Oof!
 
       Frogman:
       Bye 2

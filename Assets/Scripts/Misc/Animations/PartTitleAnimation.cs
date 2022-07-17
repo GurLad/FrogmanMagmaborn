@@ -30,17 +30,18 @@ public class PartTitleAnimation : MidBattleScreen
         }
         count = currentPart = displayPart = 0;
         TitleParts[0].Palette = 0;
+        previousState = PaletteController.Current.SaveState();
     }
 
-    private void Start()
+    public PaletteController.PaletteControllerState InitPalette()
     {
-        previousState = PaletteController.Current.SaveState();
         PaletteController.Current.SpritePalettes[0][2] =
             PaletteController.Current.SpritePalettes[0][1] =
             PaletteController.Current.SpritePalettes[1][2] =
             PaletteController.Current.SpritePalettes[2][2] =
             PaletteController.Current.SpritePalettes[2][1] = Palette[0];
         PaletteController.Current.SpritePalettes[1][1] = Palette[3];
+        return PaletteController.Current.SaveState();
     }
 
     private void Update()
