@@ -905,9 +905,10 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             FadeThisIn(() => { Resume(); });
             return StartLineResult.Fade;
         }
-        else // Fade out if this is the post-battle part
+        else if (!fadedOut && playMode == PlayMode.PostBattle) // Fade out if this is the post-battle part
         {
             FadeThisOut(() => FinishConversation(true));
+            return StartLineResult.Fade;
         }
         // Finish conversation
         lines.Clear();

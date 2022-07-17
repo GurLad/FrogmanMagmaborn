@@ -53,6 +53,7 @@ public abstract class MidBattleScreen : MonoBehaviour
                 transform.parent.gameObject.SetActive(false);
                 Set(this, false);
             }
+            GameController.Current.enabled = true; // Just in case
             PaletteController.Current.LoadState(postFadeOutState ?? state);
             postFadeOutAction?.Invoke();
         };
@@ -77,6 +78,7 @@ public abstract class MidBattleScreen : MonoBehaviour
         System.Action postFadeIn = () =>
         {
             enabled = true;
+            GameController.Current.enabled = true; // Just in case - there's a mid-battle screen to stop it, anyway
             postFadeInAction?.Invoke();
         };
         PaletteController.Current.FadeIn(postFadeIn);
