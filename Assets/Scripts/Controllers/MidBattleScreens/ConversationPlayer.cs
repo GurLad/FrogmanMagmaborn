@@ -76,7 +76,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     {
         if (origin != null)
         {
-            if (skipping)
+            if (skipping && state != CurrentState.Hold)
             {
                 if (++currentLine >= lines.Count)
                 {

@@ -1,207 +1,98 @@
-The source of the Guard's power (and Tormen, revised):
-Instead of the alternate god & magic system (concept from another file), the Guards simply managed to enter Torment's realm and steal a few crystals (an ironic betrayal perhaps?). These gave them direct access to Torment's realm and, by extension, their power source. As the crystals are unbreakable, Torment could do nothing about that, and the Guard's used Torment's own power to seal them.
-As time went by, the Guards started experimenting with them, eventually inventing the Clone Vats - turning their fight with Torment into a permanent standstill, with both sides having unlimited resources.
-They eventually managed to channel the crystals' power individually, creating super-mages who had pretty much infinite magic capabilities (like the Liches). These are the Tormen - as using the crystals' power turns their skin to cyan.
-The last area will essentially be a tour of the Guard's main facility, showing the Clone Vats, the crystals themselves etc. This should show parallels between the monsters and the Guards (especially since the Guards basically destroyed civilization whenever people rediscovered the Magma Emblems), to make the final choice more difficult.
-The lead guard (aka other final boss) will use crystal-powered technology, and will probably be a "crystalpunk" cyborg/machine.
+Full timeline (as of 18/07/2022):
+I grew weary of writing concepts due to 90% of them getting outdated in a few weeks, but it's getting hard remebering it all, so here's the (hopefully) final conecpt, with the full timeline of the world and histroy before the game begins.
 
-Conversation system, revised:
-The current system is good enough for simple conversations, but is pretty bad for complex ones (ex. Level3FirstTime), with lots of copy-pastes and continutiy problems (mostly when characters die between the pre- and post-battle conversations). So here are two solutions, both based on a master-slave system:
-1.	Add header/source files (like C) - headers will include only the requirements and if-s, while the source will have the actual conversation. This should be much cleaner, but also more annoying to use and maintain.
-2.	Split the conversation into many "functions" - the base conversation will be the aftermentioned header with requirements and if-s, while the content will appear in named sections (functions) below it.
-Example (for 2, but similar to 1):
-
-prority:42
-unique:T
-~ # Requirements
-roomNumber:2
-~ # Demands
-~ # Content
-:if:hasCharacter:Firbell{
-:call:Firbell
-}
-:elseIf:hasCharacter:Kresla{
-:call:Kresla
-}
-:else{
-:call:Xirveros
-}
-~ # Post-battle
-Frogman: Whew! We survived!
-
-# ==== Functions ====
-
-# First time with Firbell
-~ Firbell
-Firbell: This is Xirveros.
-# First time with Kresla
-~ Kresla
-Kresla: This is Xirveros.
-# First time (both Firbell and Kresla are dead)
-~ Xirveros
-Xirveros: I am Xirveros.
-
-On magic & emblems, revised:
-As stated before, there are two forms of magic: by experiencing the same amount of pain that the magic would inflict, or using Torment's crystals. Monsters can't experience pain, thus can't use the first form of magic. Only the guards have crystals, however, so only Liches (dead Guard mages) can use it. The Guard boss of Part 2 is a mage with a Magma Emblem, making them the first Magmaborn mage.
-The Emblems are essentially a way to link Torment to people - similar to crystals, except manmade. The wielder of the Emblem is directly contacted by Torment at all times, which usually tries to manipulate them to kill as many people as possible & themselves. Only if the wielder dies violently do they return as Magmaborn. Most people - Frogman, Xirveros, Xeplogi - were driven mad by it. Some - Firbell - knew to ignore Torment. Most of the others were somewhere in between.
-
-Characters (parts 1 + 2):
-My previous concept about characters is rather old by now, and doesn't include the new ones. This is supposed to be writing guide for me up to level 8. Characters are written in chronological order.
-
--Xirveros:
- Wise, incomprehensible and mad. Xirveros was Torment's first champion, who tried to betray them near the end (the same way that Frogman does in one of the endings) and his mind was broken because of that.
- -Xirveros was driven mad way back when he was still alive, constantly plagued by Torment's manipulations. He developed some habits to counter that - composing shot songs to remember important information, omitting words to talk more easily, etc.
- -Once he was Reborn, he became sane again for a short time, and serving as Torment's first champion, secretly planning to undermine them in revenge for what they did. Firbell met him for short while during that time, but he kept her out of the fight.
- -After his mind was broken, his mad habits returned, but half of the time he speaks nonsense, which is hard to differentiate from important information.
--Firbell:
- Regal, authoritative and just. She is in a deep state of denial, and tries to mimic her real life behavior even if it doesn't make sense.
- -Died protecting her mother the queen during the grand coup. She believes that her sacrifice saved the kingdom and royal family, even though they were killed & forgotten centuries before the game.
- -Since the Guards cleansed the kingdoms and everyone forgot about them, no one can confirm that her kingdom is truly dead, so she continues believing that against all the odds.
- -Even though she was taught to never listen to Torment (after Irenhold's experience with Xirveros), she developed some violent tendencies due to their influence.
--Alfred:
- Unlikeable, rude and awkward. The kind of person you'd hate spending 5 minutes with, let alone eternity.
- -Stole his Magma Emblem from someone during the Guard rule following the destruction of the kingdoms, only to be accidently killed shortly after during the pursuit. This makes him the only Magmaborn who met the Guards before he died.
- -Was a common thief during the darkest age of humanity, so he never learned manners or civilized human interaction.
- -Most characters hate him, but he continues following them (and Frogman) nevertheless.
--Memerian (Golem):
- Stoic, stubborn and calm. She was Torment's second champion, who eventually grew tired of them and refused to help, tattooing information on her body to prevent them from erasing her memory.
- -She used to be a simple blacksmith, until she discovered and made Magma Emblems. She made three: one for herself, one she sold to Xeplogi and the last one she kept hidden (the Guards eventually recovered it).
- -After Xeplogi killed her, she was furious and violent, but calmed down eventually, after seeing what happened to Xeplogi. She still fights the Guards, but not for Torment's sake, but for her own survival.
- -She continues to humor Xeplogi, pretending to be the evil villain he claims she is near him.
--Xeplogi:
- Loud, narcissistic and has an inferiority complex. He used to be an actor, until buying the "Legendary Emblem" from Memerian, who convinced him that he was a mighty immortal hero sent to vanquish evil, only to be cursed by Memerian to turn into a monster.
- -Since he used to be an actor and currently has delusions of grandeur, tends to be overly dramatic and loud. Hates it when people ignore him.
- -He is absolutely certain of the story Torment told him when he was still alive, and refuses to listen to reason. Only follows Frogman because he deems the Guards even more evil.
- -Obsessed with Memerian, as he thinks that by defeating her enough time, he'll be rid of his "curse" and return to be the legendary hero.
--Kresla:
- Curious, fearless and obsessive. Her life's goal was to discover the secret of the Magma Emblems. She eventually managed to make one, but her partner (a Guard agent sent to monitor her progress) betrayed her and tried to take the Emblem. Trusting the Emblem's power, she killed herself before her partner could take it.
- -She is relatively new (died only a few years/decades before Frogman), and almost everything fascinates her, which causes her to talk on and on about stuff.
- -Has zero patience for things she considers "boring", like fighting and normal monsters.
- -Her status as an immortal increased her fearlessness to borderline suicidal, causing her to suggest (and attempt) all manners of crazy ideas.
--Frogman:
- Silent, sarcastic and impulsive. Torment's influence drives him to always continue fighting.
- -After the Torment champion reveal (end of Part 2), becomes more secluded and quite, but continues fighting the Guards despite himself.
- -Before he died, he killed his entire village and then himself, because he was driven mad by Torment. Once Frogman remembers this, he rushes to Torment, enraged, only to have his memory wiped again.
- -All other Magmaborn have an "unexplainable" impulse to follow him, because he is Torment's champion.
--Unnamed Magmaborn guard:
- Carefree, aloof and confident. Was entrusted the mission of taking the one Magma Emblem the Guards had, infiltrating the Magmaborn's and leading them to the Guard leader, in order to draw Torment out and finally end the cycle of destruction.
- -They are one of the few "real people" among the Guards (aka not a clone), and thus always had a special status.
- -Eventually became one of the most promising soldier, then battle mage, in the current generation of Guards. This is the reason they were chosen for the important mission.
- -As they had a crystal when they were alive (as a mage), they are reborn as a lich, further reinforcing their superiority over even the other Magmaborn. They claim to be Guard traitors in order to hide their true mission.
-
-Alfred, revised:
-I'm keeping the previous version in case I change my mind, but turns out that writing an annoying character is annoying.
--Alfred:
- Edgy, dark and unlikable. The kind of person you'd hate spending 5 minutes with, let alone eternity.
- -He was a young member of the Resistance during the Guard rule following the destruction of the Kingdoms, but died in one of his first missions: stealing the one Magma Emblem the Guards had.
- -Everyone else who was sent with him on that mission died in front of his eyes, and due to the unchanging nature of being a Magmaborn, he never got over their deaths, and constantly seeks vengeance on the Guards.
- -Only Memerian & Xeplogi (and maybe future Part 3 characters) knew him before the game (as they were the only ones fighting Guards), but they mostly avoided each other until Frogman reunited them.
-
-The endings:
-There are two endings (maybe a hidden third one):
-1. Frogman sides with Torment: in that ending, once Torment wins, the Guards are basically wiped out and Torment is free. In exchange, they return all Magmaborn to their human form, but they lose their immortality. Afterwards, the monsters break free of the underground Magma, and the constant battle between humans and monsters above ground commences anew. The ending slides are about how each Magmaborn adapts to the new reality (mostly fighting the monsters).
-2. Frogman sides with the Guards: in that ending, Torment is fully annhilated. All their power fades - all crystal-powered tech (ex. the clone vats) stop working, and all monsters (including the Magmaborn) disintegrate. The Guards dissolve, and humanity continues on, unaware of Torment, magic and monsters. The ending slides are about how each Magmaborn died before the game (aka a short backstory).
-3. Frogman runs away (hidden, not sure whether to even implement): all Magmaborn run away before the final battle can commence. They try living as monsters in the outside world, but most are killed and return to the Magma. Some - Frogman, maybe Kresla and Memerian - never die, and Torment eventually finds a new champion to continue the cycle. The ending slides are about how each character lives on as a monster until they die again.
-
-On Xeplogi:
-Xeplogi has one more gimmick - his mind is reset each time he is Born. This perserves his blind devotion to Torment ("Tori"), and serves as a way to annoy Frogman, as Xeplogi will keep repeating the same lines. Torment does this because they find it funny.
-
-Frogman's backstory & Dehar:
-This reworks some of the previous concepts, in order to answer the following questions (Dehar is the Magmaborn Guard):
-1. Why did Dehar wait for Frogman to kill them instead of suiciding?
-2. Who is Frogman, and why did he become the first successful champion (unlike Memerian and Xirveros)?
-
--Frogman used to be an infamous rogue for hire in a big town, taking jobs from the highest bidder - be it theft, spying or, occasionally, assassinating. While he was unhappy there, he didn't know what else to do. One day, he met the artisan Zip. They grew as friends, then lovers. Eventually, they decided to flee the town together - Frogman using his skills to hide their tracks - and live in peace together in a faraway forest.
--Meanwhile, the lead Guard finds a way to destroy Torment forever. She entrusts the two Magma Emblems the Guards had to Dehar (who practically worships her), and orders them to find a new champion for Torment. Dehar was the only Guard she trusted, and not using the second Magma Emblem was too big a risk (the Guards were just as likely to turn on her as on Torment, so she could only rely on Magmaborn to fight for her). Dehar then left the underground in order to find someone suitable, all the while talking with Torment, getting to them to trust Dehar.
--In the outside world, Dehar was surprised and disappointed - the age of knights and heroes was over, and modern (18th-19th century level of technology) warfare - muskets, horses and cannons - was inefficient for Magmaborn. They searched far and wide, until hearing tales about the legendary rogue Frogman. A person who managed to flee a big city and all the people who hated him, used more old-fashioned weapons (don't ask where he gets his arrows from) and was a skilled fighter seemed perfect for the task.
--Dehar managed to find him eventually (using magic or Mary Sue powers), gave him the Magma Emblem, and killed him. Dehar obviously kept their identity hidden to prevent another Memerian-Xeplogi situation.
--Dehar then returned, taking command of the front line defenses, in order to be the first one killed by Frogman. This way, Torment was less suspicious of them, and they had one more Magmaborn to help them against Torment (should Frogman side with Torment, Dehar will be outraged. No, there's no canon ending (unless you're called Dehar)).
-
-Frogman's backstory, revised by Dan:
-It's 2:00 a.m. Forgive my writing.
--Frogman was an infamous rogue, as mentioned above. One day, during a heist, he encountered a comatose woman just standing there. He started talking to her, imagining her speaking back to him, and eventually fell in love, kidnapped her and ran away together to a faraway forest, as above. Dark and twisted. Might be too much.
--Pain magic is weird and redundent. Remove it, but replace with what? Xirveros should still be a wizard.
--Not really new info, but:
- -The Guards didn't know any other way of life and thus would be unwilling to destroy Torment.
- -Dehar used the extensive Guard intelligence network to find out about Frogman.
- -Torment was trapped by the Guards (in the endgame) due to being arrogant.
--I hope I didn't forget anything.
-
-Frogman's backstory v. 3, ordered by flashbacks:
-1. Frogman and his gang of thieves break free from prison, again. Frogman banters with Zip, one of his subordinates.
-2. A mysterious figure (Dehar) approaches Frogman and his gang, trying to seek private council with him. He refuses, and Zip shows Dehar the way out.
-3. During a heist, Frogman sees a blind woman (Dehar using illusion magic) walking in the streets. She thinks he's part of the city watch, and asks him to show her the way home. Zip is suspicious, but Frogman says he doesn't sense anyone else and agrees, afraid she'd raise the alarm or gather attention otherwise.
-4. Frogman walks with the blind woman and they talk a bit. She hands him her ring as thanks, and Frogman accepts. Suddenly, Torment speaks in his head.
-5. Torment distracts Frogman while Dehar stabs him in the back. He dies without seeing her, although Torment slips the name.
-
-Magic & Magma Emblems, revised for the Nth time:
-Magic is only done through crystals. Magma Emblems are modified crystals, incapable of magic but instead granting the Magma Emblem abilities: giving Torment the ability to talk to them in their minds until they die, and reviving them as monsters afterwards.
-Humanity used to have crystals after Torment's downfall, during the kingdoms era. Xirveros discovered how to make Magma Emblems, and managed to make two before dying: one for him and one for the royal family. After the kingdom's downfall and Guard takeover, they confiscated all crystals. A few rebels managed to get ahold of some stolen Guard crystals and Xirveros' notes, making two more Magma Emblems, in the shape of rings. They were ambushed and the Magma Emblems taken. A small group of rebels (including Alfred) tried to retrieve them. Alfred got one, but was accidently killed. The other remained in Guard control.
-Centuries later, after the Guards returned underground but still a few centuries before Kresla, Memerian found 1-2 hidden crystals. She split them and turned them into four Magma Emblems, embedded in all sorts of items. She sold one (a bracelet) to Xeplogi. Another she embedded in her hammer. A third she turned into a monocle, which she hid (Kresla). The final one she turned into a necklace. The Guards eventually found her, killing her and taking the necklace.
-
-Levels 7-10 + Endgame:
-These are pretty old, I just never bothered writing them down.
--Level 7 (still Part 2): Frogman and co. find the "source" of the Guards: a huge underground city, built a bit like a layered pyramid. In order to enter, they'll have to scale the well-guarded walls first. This is the first time Dehar is seen, as the first Guardain - the four most powerful Guards, cloned from some of the original champions who sealed Torment (so every Guard can immediatly recognize them as Guardians). This is a defeat boss level against Dehar. After Dehar dies, she is replaced by the second (and then third) Guardian, who only retreats after being defeated.
--Level 8: The second Torment level of the run. Torment tries to gain control of Frogman by forcing him to fight (alone) against ghost versions of the other Magmaborn. Each ghost is level 0, making it an exceedingly easy level - except the objective is "anti-rout": should Frogman kill all enemies, Torment breaks his mind and gains control, leading to a Game Over. This is a bit of a twisted nightmare level, and should be creepy. After beating it for the first time, Dehar (reborn as a monster) is revealed and joins Frogman. Should Alfred still be in the party, he leaves Frogman (or even fights him like Xeplogi/Memerian). From now on, the focus of the game should slowly shift to Dehar, showing the transition of Frogman from champion to pawn (he had always been a pawn in Torment and Dehar's plans, he just never realized it).
--Level 9 (Part 3 - Champion): Dehar guides Frogman and co. through the city, giving some backstory to the Guards. Unfortunatly, the second Guardian finds and attacks them (alternatively, they attack the Guards). This is another defeat boss level, against the second Guardian. After they are killed, the third Guardian replaces them in this level (and retreats after being defeated).
--Level 10: Dehar leads Frogman and co. to the clone vats - adjacent to the "way outside room" (no idea how too call it, let's call it the Gateway for now). She explains how all Guards are clones generated using Torment's magic and can't reproduce. The third Guardain then interecepts them, blocking their way to the Gateway. This is yet another defeat boss level, with a gimmick: the clone vats constantly produce Workers (the extremely weak class), representing newly born clones. While they aren't a threat, they can block ways and strategies, and should further reinforce the idea of an eternal struggle. Also, I should add another, Torment-sympethatic character here to balance the powers between Torment and the last Guardian.
--Endgame (Part 4 - Pawn): The game saves after level 10, basically ending the roguelike portion of the game. The masterplan is revealed - the last Guardian found a way to destroy Torment, killing all Magmaborn and Guards (the other Guards wouldn't like it, so she hid it from them). She strips Torment of their (and her) powers first, and a battle between them commences. Each Magmaborn picks a side, then Frogman does (he tries convincing them to stay together to no avail). See Endings for what happens next. The sides:
---Guardian: Firbell (believes in self-sacrifice and justice, "for Irenhold"), Xirveros (finally regains his mind when Torment loses their powers, hates Torment), Xeplogi (hates Memerian - she chooses Torment first), Dehar (was part of the last Guardian's plan all along).
---Torment: Kresla (still too much to learn and do in the world, suddenly afraid of permanent death (she's used to the Magma Emblem)), Memerian (doesn't believe in self-sacrifice), Alfred (hates the Guards).
-
-Magic, revised yet again:
-Hopefully final, as I really like this idea.
-Magic can only be used to affect the holder of the Crystal* - this means no fireballs, element bending, mind manipulation etc. Its uses are mostly limited to self-illusions (Dehar in flashbacks), teleportation (Wizard & Lich attacks), transformation (all Guardians transform themselves to one of the original heroes when they become Guardians), self-mind-manipulation (pretty useless) and self-communications with Torment (as the source of magic). In addition, Crystals can be infused with magic, applying that magic on anyone who holds it (for example, a crystal that transforms the holder into a frog when taken). Magma Emblems are basically crystals infused with a very intricate spell (devised by Xirveros), which grants communication with Torment, and on death the following spell: teleports the user into the Magma, transforms them into a monster, locks away their memories and reverses the "affecting Torment" power (Torment probably manipulated Xirveros (who originally only found the communicate-with-Torment spell) into weaving this particular spell, in order to gain champions).
-* - As the source of magic, Torment can also be slightly affected by the crystals - that is how the original heroes managed to seal them (a spell that locks their place & influence to the underground, and limits their power). However, Magma Emblems reverse the effect, granting torment slight mind manipulations on the holders - the ability to read and change memories (but not minds, as that's too complex). As for the memory manipulation - Torment must restore the character's memories to read them: when Frogman has flashbacks, it's also the first time Torment sees these memories. They can only do that the moment they're Born - while alive, the Magmaborn's mind is hidden to Torment. Dehar abuses that, making sure to never actually die (so Torment can't read her memories).
-
-Names over time:
-Naming system recap: 
-1. First letter is title (K for king/queen, F for heir, M for noble (siblings of the current queen/king/heir mostly), X for honoured person (equivalent of sir).
-2. Next two letters are the first two letters of the place of birth (Ir for Irenhold, En for Enkeros...).
-3. Then the birth name.
-The nature of names changed over time. Here's a timeline:
--Kingdoms Era (Firbell, Xirveros): The naming system was mostly used by the ruling family of each kingdom. New-born childs were given safe names, starting with a constant other than K/F/M/X - for example: Bell, Veros, Lor, Song, Rhys, Bob, Roy... Commoners only used their given name (for example, until been granted the title of Xirveros by Kirsong, he was known only as Veros). When people would interact with foreigners, however, they would usually include their kingdom prefix (for example, the villager Bob from Irenhold talking to the fisherman Roy from Abenzon on a trading ship, would call each other Irbob and Abroy). Misleading birth names - such as Irena, Erick, Fred, Mella... - would be considered treason and a crime. Kirmella (the last queen of Irenhold) had a very controversial name. This was on purpose, as a display of the royal family of Irenhold's power (little did they know that it would bring their downfall when naming her that).
--Guards Era (Alfred): After the kingdoms fell and humanity was engulfed in chaos, the Guards (led by ???) rose out of their hiding to reign humanity in. They had two goals: recover all the crystals on the surface (the creation of the Magmaborn and destruction of all ruling powers by them led the Guards to believe humanity was better off without magic), and hiding all traces of magic from their history (to prevent fools from accidently finding crystals/the Guards and harming their purpose). They did this by ruling as a militaristic dictatorship, burning records of the kingdoms, outlawing talks of magic, hunting for the crystals and so on. As part of their erasure of the kingdoms' history and culture, they abolished the naming system, and encouraged forbidden names (like Fred). The resistance, trying to recover the kingdoms' past and glory, recreated the naming system, renaming all who joined them to Al[name] (as the resistance was based in Alros). Thus Alfred. After a while, the Guards suddenly returned to their underground base and left humanity alone to recover (they deemed their mission a success).
--Middle Era (Memerian, Xeplogi): Suddenly left alone, with no leaders or structures, humanity slowly recovered. Words beginning with K/F/M/X were still incredibly common from the previous era, but it also became a trend to name people while including their place of birth (usually a village/town and not a kingdom, however. Xeplogi was named Xeplogi, not Logi).
--Modern Era (Kresla, Frogman, Zip): As time went on, names were given less and less significance. Names like Kresla (beginning with K, but with a twisted "place of birth" (which had nothing to do with her real place of birth - it's just a name to her, like Alice or Bob)) were still very common, but nobody really cared about it.
-
-The Guard spell & final battle:
-The Torment-locking spell is infused in a single crystal, which prevents Torment from approaching (or using magic) near it. In order to protect the entire Guard fortress and not only that specific point, a ton of crystals are embedded all over the outer walls (as seen in-game), directly connected to that one crystals, with two purposes: increasing the flow of magic from Torment's realm to power it (basically, using thousands of streams to create a sea), and increasing the range of the spell to encompass the entire fortress.
-The last Guardian's (aka Guard commander, codename G) master plan is to modify this spell, in order to trap Torment in it's range instead of out of it. However, Torment still needs a physical body in order to be destroyed (the in-game face is just a projection - as are the Pain, Fear, Despair ghosts - and destroying it wouldn't really affect Torment (they would just create a new one)). G's plan it to take the crystal to themselves, trapping Torment inside them (G) instead of the fortress, thus granting a physical body. Then Dehar is supposed to destroy that body (kill G), and thus Torment.
-Supplying Torment with a weak and easy-to-destroy body wouldn't work, as Torment will easily escape from there on their own. G is the strongest Guard alive, making it exceedingly hard for Torment to escape. Unfortunately, Torment can control G while inside them.
-The battle itself is in two parts, in the same map - a crystal, with a lot of "veins" connecting to it, and 6/8 crystal pillars in the room connected to it. The parts:
-1. Battle against G: G wants to make sure the Magmaborn can even defeat them. So, they fight the Magmaborn. This is a normal, rogue-like (aka if you lose, you need to reach G again and the conversation changes) level, against a single enemy. Think FE7 Red Dragon.
-2. Final battle: as before, there's the choice and each unit chooses followed by the player.
-   -Guard side: The player must kill Torment (G) in 6/8 turns. Each turn, a crystal pillar is shattered, and Torment speaks.
-   -Torment side: The player must protect Torment (G) for 6/8 turns. Basically reverse of the above.
-
-The Magi (renamed Guardians):
-The original four Magi who sealed Torment and founded the Guards initially divided organization and rule of the Guards among themselves. However, they couldn't live forever: while they could constantly transform themselves into younger versions, they eventually grew weary of the world and passed away (they didn't want to constantly manipulate their memories & minds like Torment does to the Magmaborn, and they were also still mortal, unlike the Magmaborn). To ensure the continued existence of the Guards, each one took an apprentice - either a kidnapped human or a particularly promising clone - to follow in their footsteps when they died.
-This system was continually used during the entire Guard's existence, with future Magi transforming themselves into one of the eight original Magi (including the first apprentices). Their roles are:
--The Crystal Magus:
- The person in charge of the main gateway to the underground and the leader of the Guards. They guard the crystal containing Torment's seal from possible human and Magmaborn incursions (not that there ever were any). Most of the time, they are supposed to oversee the other Magi and help when needed. They are usually the strongest Magus alive.
- The current Magus & Apprentice are:
- -G: The Crystal Magus for ~200 years. Noticed the slow technological advancement of the humans and devised the master plan to end Torment once and for all. Not particularly beloved by the Guards (nor other Magi), but too powerful for anyone to outright revolt. Unlike previous Crystal Magi, they tend to keep to themselves and ignore the other Guards and Magi.
- -No apprentice. G knows that once they'll pick an apprentice, the other Magi (or even normal Guards) might try to dispose of G and put the apprentice in their place.
--The Clone Magus:
- The person in charge of protecting the clone vats and training new clones. They rarely engage in outside affairs.
- The current Magus & Apprentice are:
- -Bodder: The Clone Magus for ~20 years. Abhors violence unless someone threatens his beloved clones. Tends to ignore the other Magi, much to their frustration.
- -No apprentice. Bodder is a relatively new Magus, after his predecessor was killed by G after showing dissent.
--The City Magus:
- The person in charge of running the whole Guard city, overseeing everything besides the battle with Torment, like construction, agriculture, and law. Having the most demanding duty, City Magi tend to be workaholics and overbearing.
- The current Magus & Apprentice are:
- -Brens: The City Magus for ~100 years. Became the de-facto ruler due to G ignoring their subjects. He is constantly tired and angry, and moved basically all the city responsibilities to his apprentice. Hates pretty much all the other Magi.
- -Jedral: The apprentice for ~90 years. Acts as the actual City Magus most of the time while Brens runs around shouting at people. She is one of the two Magi who survive to the endgame, and joins Torment’s side for it, preferring the eternal battle over immediate Guard extinction (not that the Guards survive long once (and if) Torment wins).
--The Wall Magus:
- The person in charge of guarding the city from monster (and Magmaborn) incursion, usually by directly guarding or fighting at the city walls. They are also in charge of sending agents to spy on (and manipulate) the humans, but usually never go outside themselves.
- The current Magus & Apprentice are:
- -Dehar: The Wall Magus for ~150 years. Incredibly sure of herself, and the only Magus that likes G, going so far as to being their only confidant and the executive arm of their master plan. She thinks that she's better than all the other Guards and Magi (besides G, who she worships), and the Magmaborn when she becomes one. Doesn't take her duty too seriously, and even leaves the underground to personally select and hunt the champion needed for the plan to work (Frogman). Quite petty.
- -Laherdt: The apprentice for ~5-15 years, hastily chosen by Dehar once she decided to go outside in order to replace her temporarily. The biggest jerk she could find on short notice, chosen mostly to drive Brens crazy. Simply refuses to die.
+Prehistroy:
+ -Torment roamed free, tormenting humanity.
+ -Events:
+  -Eventually, a human managed to enter Torment's realm, steal a crystal, and flee.
+  -Humanity discovered magic using the crystal.
+  -More humans stole more crystals.
+  -The original 8 champions used the crystals to seal Torment underground.
+  -The built the Fortress, created the clone vats, and abandoned humanity.
+  -There were still a ton of crystals above ground, and wizards were (relativley) common. However, the complex magics (transformation, teleportation, communication) were only known to the champions. Eventually, they progressed, and enter the Kingdoms era.
+Kingdoms era (~1000-2000 years later):
+ -Three main kingdoms:
+  -Abenzon, a huge kingdom comprised of a ton of smaller, conquered ones (think Roman Empire - Abenzon was the original kingdom and Abezis (later Alezis, then Bronzing) the original capital). The core Abenzon is a hot, desert kingdom.
+  -Irenhold, a smaller, militarstic kingdom. Think vikings + middle ages England. A mountainous land, incredibly rich with iron. Almost everyone (especially the nobility) being either metalworkers or warriors, importing most food from other kingdoms (mostly Enkeros). Modern day Straberod is there.
+  -Enkeros, an isolated island country, mostly engaging in trade with the other kingdoms, and never fighting them (think early middle ages Japan). Modern day Enkress.
+ -Magic is still perelevant, albeit only to the rich and/or powerful. Torment and the Guards were basically forgotten.
+ -Events:
+  -Xirveros is born in Irenhold to a middle class family. He's incredible curious about magic, and eventually managed to aquire a crystal and begin experimenting.
+  -He is quickly recognized as a prodigy, and becomes employed by the royal family.
+  -Kirsong, the king, seeks immortality for his sickly son, Firlor. He orders Xirveros (and the other wizards) to seek a magic for that.
+  -Xirveros eventually manages to discover communication magic. Unfortunatly, this allows Torment to communicate with him.
+  -Torment "helps" Xirveros by teaching him make two Magma Emblem, while slowly driving him insane. Xirveros gifts one Magma Emblem to Kirsong.
+  -Soon afterwards, Xirveros kills himself in madness (aged 40-50). His body is never found, disturbing Kirsong. He decides to hide the other Magma Emblem instead of giving it to his son.
+  -Reborn as a monster, Xirveros slowly recovers his sanity, while becoming Torment's first champion and clashing with the Guards.
+  -Welki, a Guard agent, reports this development to the other Magi, and the realize what Xirveros did.
+  -~250 years pass. The Irenhold royal family recovers the other Magma Emblem, keeping it as a national treasure.
+  -~100 years pass. Firbell is born in Irenhold.
+  -She is gifted the Magma Emblem, placed on her crown, for her 12-16th birthday.
+  -Shortly afterwards, the coup against the Irenhold royal family happens, killing everyone (including Firbell, who is Reborn) and beginning a war between all kingdoms.
+  -During the chaos of the war, the Gate Magus at the time (and the last survivng original champion) dies.
+  -Her apprentice (and new Gate Magus), Yernis, decides that with the increasing threat of the Magmaborn and humanity destroying itself in the war, humanity would be better off without the crystals and magic.
+  -She launches a surprise attack against the crippled kingdoms, and quickly conquers the whole known world (aka the three kingdoms).
+Guard era (immediatly afterwards):
+ -The Guards control all humanity in a harsh, militrastic dictatorship. With their unlimited and heartless army of clones, no one can resist them.
+ -They systematically destroy all records of magic (and even the original three kingdoms), while confiscating all crystals and taking them to the Fortress.
+ -Near the end, the even begin destroying all knowledge of writing and other technologies, driving humanity backwards by centuries.
+ -Events:
+  -Soon after, Xirveros notices their reduced strength and manages to kill the Gate Magus, Kostliv. He then realizes that Torment can't affect him while in the Fortress, and defects to the Guards.
+  -Kostliv's apprentice (Lessem), however, kills him soon after in revenge. Torment reads Xirveros's memories and learns of his betrayal, breaking his mind.
+  -~40 years after the Guards conquer Abenzon, Alfred and Fashima (Fasher) are born in Abezis (Alezis), both to poverty. Fashima is an orphan and a few years older.
+  -Fashima sees a Guard transform at a young age (5-8), immediatly facsinating her with magic. She joins the resistence a few years later in order to get a crystal. She doesn't get along with the people there.
+  -Alfred's parents are killed when he's 8-12 for hiding a forbidden item (book or something). He manages to evade them and joins the resistence.
+  -Alfred and Fashima work together in multiple small "jobs". They don't like each other.
+  -Fashima rises through the ranks quickly, eventually getting a solo job to recover a crystal.
+  -She succeeds, and is ordered to deliver it personally to the Big Boss. On the way, she tries using it, but only manages to cause herself pain (the simplest magic).
+  -She meets the Big Boss, expecting for him to teach her magic. However, he quickly takes the crystal for himself and turns to leave. When she asks to join him, he says that entrusting magic to her would be too dangerous for the rebellion. Furious, she leaves and secretly decides to defect.
+  -The Big Boss uses the crystal to create two Magma Emblems, embedded in rings. He wants to deliver it to somebody, and assigns Alfred and a few other rebels to escort him and the Magma Emblems there, not telling them what they truly are. Fashima overhears it.
+  -Fashima turns herself in to the Guards, and is brought to an audiance with Yernis. She promises to give information about two resistence-controlled crystals, in exchange for being taught magic. Yernis agrees, and sends her alongside Lessem to intercept the delivery.
+  -In a last minute decision, the Big Boss hands Alfred and another rebel the Magma Emblems to hide them. They travel alongside an empty wagon.
+  -Fashima and Lessem intercept it, dispatch a few rebels and capture the Big Boss, who secretly instructs Alfred and the other ring-wearing rebel to run and hide. They stay and hide.
+  -Fashima searches the empty wagon and interrogates the Big Boss as to the location of the crystals. He refuses to answer. She kills him in frustration.
+  -Alfred, hidden nearby, is shocked and charges her in fury. She kills him (aged 17-20), and he disintegrates.
+  -Lessem quickly understands what happened, and stops Fashima from killing the other rebel, who reveals herself in shock. They capture her and recover the ring.
+  -Fashima is scolded for her reckless behaviour by Lessem, who wants to fire her. Yernis, however, decides to let her stay and assigns her as Lessem's apprentice, much to their (Lessem)'s chargin.
+  -Fashima studies magic from Lessem, focusing on transformation and (later) teleportation.
+  -Alfred, meanwhile, tries multiple times to enter the Fortress, but due to his terrible combat and social skills, he never gets very far.
+  -~20 years later, a group of rebels manages to assisnate Yernis.
+  -Her successor, Rhine, is opposed to continued Guard rule over humanity, and quickly withdraws all Guards back to the Fortress. The Guard era ends.
+  -There is a time of chaos in the ensuing power vaccum, but soon the world stabilizes and begins to forget the Guards (mostly due to the lack of writing technology).
+  -Fashima spends most of the time honing her combat and magical skills to near perfection.
+Middle Ages (~1000-2000 years later):
+  -Magic is regarded as fairy tales, the Guards are rarely mentioned in obscure legends, and Torment is completely forgotten.
+  -The world is divided into lots of small dukedoms.
+  -The island "nation" of Enkress is the most powerful force in the world, in a golden age of trade and creation (think ancient Greece).
+  -The Guards have completely broken touch with the outside world, having zero agents there.
+  -Events:
+   -Memerian is born to a middle-class merchant family in Jess (the largest and richest region in Enkress). She is a violent person, and doesn't fit in.
+   -~5 years later, Xeplogi is born to the noble house of Jess, detined to become its future duke.
+   -Once she reaches adulthood, Memerian leaves her family and joins the Enkress police. She doesn't see much action.
+   -A few years later, she decides to become a merecenary.
+   -~10 years later, she escorts an explorer to a forgotten temple. There, he finds some magic crystals. However, they are ambushed by bandits, killing the explorer. Memerian lives, and decides to keep the crystals for herself.
+   -~15 years later, she is crippled by an assasin while protecting a noblewoman. For saving her life, the noblewoman gifts her with a lot of money. Memerian uses it to open a small smithy, now that she can't fight.
+   -With her newfound (forced) peace, Memerian begins experimenting with the crystals in her spare time.
+   -~10 years later, Xeplogi inherits the dukedom, after the previous duke dies mysteriously. He is much more flamboyant and arrogant, and begins raising taxes.
+   -~5 years afterwards, Memerian manages to make a lot of progress studying the crystals and magic. Rumours begin of her being a witch.
+   -~2 years later, Memerian manages to make a Magma Emblem. She makes two more soon after.
+   -Intrigued by the rumours, Xeplogi decides to visit Memerian's smithy. He orders her to show him her magic. She refuses.
+   -Infuriated, he orders some of his guards to arrest Memerian and sack the place. In the ensuing battle, Xeplogi manages to steal one Magma Emblem, but his killed by Memerian soon after (aged 55-65).
+   -Memerian becomes a wanted figure, and with her old age and injury is quickly killed by a bounty hunter (aged 60-70).
+   -Torment quickly realizes Memerian's potential as an experienced and powerful warrior, and makes her their new champion. She quickly begins attacking the Fortress.
+   -The Guards soon realize that not one, but two new Magmaborns were Born. Rhine kills himself in disgrace. Fashima secretly kills Lessem, and claims they killed themselves too in shame. Rhine's successor, Lessy, orders Fashima to begin inflitrating humanity again. Fashima gladly obliges.
+   -With her newfound title as the Wall Magus (and not the apprentice), Fashima wants to explore the world. However, Memerian's constant attacks leave her little time for that.
+   -Fashima quickly picks an apprentice, Kesper. She orders him to deal with all the outside world issues.
+Reneissance (~200 years later):
+  -Similar to our own reneissance technologically, ending (and the game beggining) in late 17th century-early 18th century.
+  -Bronzing (Abezis) develops a reputation as a center of innovation and technology.
+  -The Guards inflitrate almost every society.
+  -Events: TBA, I'm tired
+   
 
 =============================================================================================================
 
-Older (better formatted at my concept compilation file):
+Older (2020) (better formatted at my concept compilation file):
 
 Story:
 People who die are reborn as mindless monsters from the Magma. A group of people, the Guards, kills the monsters to prevent them from getting to the surface. However, a lucky few found a Magma Emblem: an emblem that, when worn, lets them keep their mind and identity when they return from the Magma (they still turn into monsters, however). Frogman is one of them. He finds a few other people with Magma Emblems and, together, they try to escape the other monsters, the Guards and the Magma. However, there is one other force in play: The Blue Fireball of Torment (TBFOT). A sinister blue fireball, he sows chaos in the underground, helping the Magma Emblemers by giving them powerful weapons, but at the same time torturing them by throwing monsters at them.
@@ -419,3 +310,208 @@ I still want to add more conversations. So here are a few ideas:
   be too weird.).
 --Once a player finished all maps for a level, always/if they have the knowledge, replace the level with a small "base", with optional supports (maybe even
   Gaiden-style exploration).
+
+=============================================================================================================
+
+Old (2021):
+
+The source of the Guard's power (and Tormen, revised):
+Instead of the alternate god & magic system (concept from another file), the Guards simply managed to enter Torment's realm and steal a few crystals (an ironic betrayal perhaps?). These gave them direct access to Torment's realm and, by extension, their power source. As the crystals are unbreakable, Torment could do nothing about that, and the Guard's used Torment's own power to seal them.
+As time went by, the Guards started experimenting with them, eventually inventing the Clone Vats - turning their fight with Torment into a permanent standstill, with both sides having unlimited resources.
+They eventually managed to channel the crystals' power individually, creating super-mages who had pretty much infinite magic capabilities (like the Liches). These are the Tormen - as using the crystals' power turns their skin to cyan.
+The last area will essentially be a tour of the Guard's main facility, showing the Clone Vats, the crystals themselves etc. This should show parallels between the monsters and the Guards (especially since the Guards basically destroyed civilization whenever people rediscovered the Magma Emblems), to make the final choice more difficult.
+The lead guard (aka other final boss) will use crystal-powered technology, and will probably be a "crystalpunk" cyborg/machine.
+
+Conversation system, revised:
+The current system is good enough for simple conversations, but is pretty bad for complex ones (ex. Level3FirstTime), with lots of copy-pastes and continutiy problems (mostly when characters die between the pre- and post-battle conversations). So here are two solutions, both based on a master-slave system:
+1.	Add header/source files (like C) - headers will include only the requirements and if-s, while the source will have the actual conversation. This should be much cleaner, but also more annoying to use and maintain.
+2.	Split the conversation into many "functions" - the base conversation will be the aftermentioned header with requirements and if-s, while the content will appear in named sections (functions) below it.
+Example (for 2, but similar to 1):
+
+prority:42
+unique:T
+~ # Requirements
+roomNumber:2
+~ # Demands
+~ # Content
+:if:hasCharacter:Firbell{
+:call:Firbell
+}
+:elseIf:hasCharacter:Kresla{
+:call:Kresla
+}
+:else{
+:call:Xirveros
+}
+~ # Post-battle
+Frogman: Whew! We survived!
+
+# ==== Functions ====
+
+# First time with Firbell
+~ Firbell
+Firbell: This is Xirveros.
+# First time with Kresla
+~ Kresla
+Kresla: This is Xirveros.
+# First time (both Firbell and Kresla are dead)
+~ Xirveros
+Xirveros: I am Xirveros.
+
+On magic & emblems, revised:
+As stated before, there are two forms of magic: by experiencing the same amount of pain that the magic would inflict, or using Torment's crystals. Monsters can't experience pain, thus can't use the first form of magic. Only the guards have crystals, however, so only Liches (dead Guard mages) can use it. The Guard boss of Part 2 is a mage with a Magma Emblem, making them the first Magmaborn mage.
+The Emblems are essentially a way to link Torment to people - similar to crystals, except manmade. The wielder of the Emblem is directly contacted by Torment at all times, which usually tries to manipulate them to kill as many people as possible & themselves. Only if the wielder dies violently do they return as Magmaborn. Most people - Frogman, Xirveros, Xeplogi - were driven mad by it. Some - Firbell - knew to ignore Torment. Most of the others were somewhere in between.
+
+Characters (parts 1 + 2):
+My previous concept about characters is rather old by now, and doesn't include the new ones. This is supposed to be writing guide for me up to level 8. Characters are written in chronological order.
+
+-Xirveros:
+ Wise, incomprehensible and mad. Xirveros was Torment's first champion, who tried to betray them near the end (the same way that Frogman does in one of the endings) and his mind was broken because of that.
+ -Xirveros was driven mad way back when he was still alive, constantly plagued by Torment's manipulations. He developed some habits to counter that - composing shot songs to remember important information, omitting words to talk more easily, etc.
+ -Once he was Reborn, he became sane again for a short time, and serving as Torment's first champion, secretly planning to undermine them in revenge for what they did. Firbell met him for short while during that time, but he kept her out of the fight.
+ -After his mind was broken, his mad habits returned, but half of the time he speaks nonsense, which is hard to differentiate from important information.
+-Firbell:
+ Regal, authoritative and just. She is in a deep state of denial, and tries to mimic her real life behavior even if it doesn't make sense.
+ -Died protecting her mother the queen during the grand coup. She believes that her sacrifice saved the kingdom and royal family, even though they were killed & forgotten centuries before the game.
+ -Since the Guards cleansed the kingdoms and everyone forgot about them, no one can confirm that her kingdom is truly dead, so she continues believing that against all the odds.
+ -Even though she was taught to never listen to Torment (after Irenhold's experience with Xirveros), she developed some violent tendencies due to their influence.
+-Alfred:
+ Unlikeable, rude and awkward. The kind of person you'd hate spending 5 minutes with, let alone eternity.
+ -Stole his Magma Emblem from someone during the Guard rule following the destruction of the kingdoms, only to be accidently killed shortly after during the pursuit. This makes him the only Magmaborn who met the Guards before he died.
+ -Was a common thief during the darkest age of humanity, so he never learned manners or civilized human interaction.
+ -Most characters hate him, but he continues following them (and Frogman) nevertheless.
+-Memerian (Golem):
+ Stoic, stubborn and calm. She was Torment's second champion, who eventually grew tired of them and refused to help, tattooing information on her body to prevent them from erasing her memory.
+ -She used to be a simple blacksmith, until she discovered and made Magma Emblems. She made three: one for herself, one she sold to Xeplogi and the last one she kept hidden (the Guards eventually recovered it).
+ -After Xeplogi killed her, she was furious and violent, but calmed down eventually, after seeing what happened to Xeplogi. She still fights the Guards, but not for Torment's sake, but for her own survival.
+ -She continues to humor Xeplogi, pretending to be the evil villain he claims she is near him.
+-Xeplogi:
+ Loud, narcissistic and has an inferiority complex. He used to be an actor, until buying the "Legendary Emblem" from Memerian, who convinced him that he was a mighty immortal hero sent to vanquish evil, only to be cursed by Memerian to turn into a monster.
+ -Since he used to be an actor and currently has delusions of grandeur, tends to be overly dramatic and loud. Hates it when people ignore him.
+ -He is absolutely certain of the story Torment told him when he was still alive, and refuses to listen to reason. Only follows Frogman because he deems the Guards even more evil.
+ -Obsessed with Memerian, as he thinks that by defeating her enough time, he'll be rid of his "curse" and return to be the legendary hero.
+-Kresla:
+ Curious, fearless and obsessive. Her life's goal was to discover the secret of the Magma Emblems. She eventually managed to make one, but her partner (a Guard agent sent to monitor her progress) betrayed her and tried to take the Emblem. Trusting the Emblem's power, she killed herself before her partner could take it.
+ -She is relatively new (died only a few years/decades before Frogman), and almost everything fascinates her, which causes her to talk on and on about stuff.
+ -Has zero patience for things she considers "boring", like fighting and normal monsters.
+ -Her status as an immortal increased her fearlessness to borderline suicidal, causing her to suggest (and attempt) all manners of crazy ideas.
+-Frogman:
+ Silent, sarcastic and impulsive. Torment's influence drives him to always continue fighting.
+ -After the Torment champion reveal (end of Part 2), becomes more secluded and quite, but continues fighting the Guards despite himself.
+ -Before he died, he killed his entire village and then himself, because he was driven mad by Torment. Once Frogman remembers this, he rushes to Torment, enraged, only to have his memory wiped again.
+ -All other Magmaborn have an "unexplainable" impulse to follow him, because he is Torment's champion.
+-Unnamed Magmaborn guard:
+ Carefree, aloof and confident. Was entrusted the mission of taking the one Magma Emblem the Guards had, infiltrating the Magmaborn's and leading them to the Guard leader, in order to draw Torment out and finally end the cycle of destruction.
+ -They are one of the few "real people" among the Guards (aka not a clone), and thus always had a special status.
+ -Eventually became one of the most promising soldier, then battle mage, in the current generation of Guards. This is the reason they were chosen for the important mission.
+ -As they had a crystal when they were alive (as a mage), they are reborn as a lich, further reinforcing their superiority over even the other Magmaborn. They claim to be Guard traitors in order to hide their true mission.
+
+Alfred, revised:
+I'm keeping the previous version in case I change my mind, but turns out that writing an annoying character is annoying.
+-Alfred:
+ Edgy, dark and unlikable. The kind of person you'd hate spending 5 minutes with, let alone eternity.
+ -He was a young member of the Resistance during the Guard rule following the destruction of the Kingdoms, but died in one of his first missions: stealing the one Magma Emblem the Guards had.
+ -Everyone else who was sent with him on that mission died in front of his eyes, and due to the unchanging nature of being a Magmaborn, he never got over their deaths, and constantly seeks vengeance on the Guards.
+ -Only Memerian & Xeplogi (and maybe future Part 3 characters) knew him before the game (as they were the only ones fighting Guards), but they mostly avoided each other until Frogman reunited them.
+
+The endings:
+There are two endings (maybe a hidden third one):
+1. Frogman sides with Torment: in that ending, once Torment wins, the Guards are basically wiped out and Torment is free. In exchange, they return all Magmaborn to their human form, but they lose their immortality. Afterwards, the monsters break free of the underground Magma, and the constant battle between humans and monsters above ground commences anew. The ending slides are about how each Magmaborn adapts to the new reality (mostly fighting the monsters).
+2. Frogman sides with the Guards: in that ending, Torment is fully annhilated. All their power fades - all crystal-powered tech (ex. the clone vats) stop working, and all monsters (including the Magmaborn) disintegrate. The Guards dissolve, and humanity continues on, unaware of Torment, magic and monsters. The ending slides are about how each Magmaborn died before the game (aka a short backstory).
+3. Frogman runs away (hidden, not sure whether to even implement): all Magmaborn run away before the final battle can commence. They try living as monsters in the outside world, but most are killed and return to the Magma. Some - Frogman, maybe Kresla and Memerian - never die, and Torment eventually finds a new champion to continue the cycle. The ending slides are about how each character lives on as a monster until they die again.
+
+On Xeplogi:
+Xeplogi has one more gimmick - his mind is reset each time he is Born. This perserves his blind devotion to Torment ("Tori"), and serves as a way to annoy Frogman, as Xeplogi will keep repeating the same lines. Torment does this because they find it funny.
+
+Frogman's backstory & Dehar:
+This reworks some of the previous concepts, in order to answer the following questions (Dehar is the Magmaborn Guard):
+1. Why did Dehar wait for Frogman to kill them instead of suiciding?
+2. Who is Frogman, and why did he become the first successful champion (unlike Memerian and Xirveros)?
+
+-Frogman used to be an infamous rogue for hire in a big town, taking jobs from the highest bidder - be it theft, spying or, occasionally, assassinating. While he was unhappy there, he didn't know what else to do. One day, he met the artisan Zip. They grew as friends, then lovers. Eventually, they decided to flee the town together - Frogman using his skills to hide their tracks - and live in peace together in a faraway forest.
+-Meanwhile, the lead Guard finds a way to destroy Torment forever. She entrusts the two Magma Emblems the Guards had to Dehar (who practically worships her), and orders them to find a new champion for Torment. Dehar was the only Guard she trusted, and not using the second Magma Emblem was too big a risk (the Guards were just as likely to turn on her as on Torment, so she could only rely on Magmaborn to fight for her). Dehar then left the underground in order to find someone suitable, all the while talking with Torment, getting to them to trust Dehar.
+-In the outside world, Dehar was surprised and disappointed - the age of knights and heroes was over, and modern (18th-19th century level of technology) warfare - muskets, horses and cannons - was inefficient for Magmaborn. They searched far and wide, until hearing tales about the legendary rogue Frogman. A person who managed to flee a big city and all the people who hated him, used more old-fashioned weapons (don't ask where he gets his arrows from) and was a skilled fighter seemed perfect for the task.
+-Dehar managed to find him eventually (using magic or Mary Sue powers), gave him the Magma Emblem, and killed him. Dehar obviously kept their identity hidden to prevent another Memerian-Xeplogi situation.
+-Dehar then returned, taking command of the front line defenses, in order to be the first one killed by Frogman. This way, Torment was less suspicious of them, and they had one more Magmaborn to help them against Torment (should Frogman side with Torment, Dehar will be outraged. No, there's no canon ending (unless you're called Dehar)).
+
+Frogman's backstory, revised by Dan:
+It's 2:00 a.m. Forgive my writing.
+-Frogman was an infamous rogue, as mentioned above. One day, during a heist, he encountered a comatose woman just standing there. He started talking to her, imagining her speaking back to him, and eventually fell in love, kidnapped her and ran away together to a faraway forest, as above. Dark and twisted. Might be too much.
+-Pain magic is weird and redundent. Remove it, but replace with what? Xirveros should still be a wizard.
+-Not really new info, but:
+ -The Guards didn't know any other way of life and thus would be unwilling to destroy Torment.
+ -Dehar used the extensive Guard intelligence network to find out about Frogman.
+ -Torment was trapped by the Guards (in the endgame) due to being arrogant.
+-I hope I didn't forget anything.
+
+Frogman's backstory v. 3, ordered by flashbacks:
+1. Frogman and his gang of thieves break free from prison, again. Frogman banters with Zip, one of his subordinates.
+2. A mysterious figure (Dehar) approaches Frogman and his gang, trying to seek private council with him. He refuses, and Zip shows Dehar the way out.
+3. During a heist, Frogman sees a blind woman (Dehar using illusion magic) walking in the streets. She thinks he's part of the city watch, and asks him to show her the way home. Zip is suspicious, but Frogman says he doesn't sense anyone else and agrees, afraid she'd raise the alarm or gather attention otherwise.
+4. Frogman walks with the blind woman and they talk a bit. She hands him her ring as thanks, and Frogman accepts. Suddenly, Torment speaks in his head.
+5. Torment distracts Frogman while Dehar stabs him in the back. He dies without seeing her, although Torment slips the name.
+
+Magic & Magma Emblems, revised for the Nth time:
+Magic is only done through crystals. Magma Emblems are modified crystals, incapable of magic but instead granting the Magma Emblem abilities: giving Torment the ability to talk to them in their minds until they die, and reviving them as monsters afterwards.
+Humanity used to have crystals after Torment's downfall, during the kingdoms era. Xirveros discovered how to make Magma Emblems, and managed to make two before dying: one for him and one for the royal family. After the kingdom's downfall and Guard takeover, they confiscated all crystals. A few rebels managed to get ahold of some stolen Guard crystals and Xirveros' notes, making two more Magma Emblems, in the shape of rings. They were ambushed and the Magma Emblems taken. A small group of rebels (including Alfred) tried to retrieve them. Alfred got one, but was accidently killed. The other remained in Guard control.
+Centuries later, after the Guards returned underground but still a few centuries before Kresla, Memerian found 1-2 hidden crystals. She split them and turned them into four Magma Emblems, embedded in all sorts of items. She sold one (a bracelet) to Xeplogi. Another she embedded in her hammer. A third she turned into a monocle, which she hid (Kresla). The final one she turned into a necklace. The Guards eventually found her, killing her and taking the necklace.
+
+Levels 7-10 + Endgame:
+These are pretty old, I just never bothered writing them down.
+-Level 7 (still Part 2): Frogman and co. find the "source" of the Guards: a huge underground city, built a bit like a layered pyramid. In order to enter, they'll have to scale the well-guarded walls first. This is the first time Dehar is seen, as the first Guardain - the four most powerful Guards, cloned from some of the original champions who sealed Torment (so every Guard can immediatly recognize them as Guardians). This is a defeat boss level against Dehar. After Dehar dies, she is replaced by the second (and then third) Guardian, who only retreats after being defeated.
+-Level 8: The second Torment level of the run. Torment tries to gain control of Frogman by forcing him to fight (alone) against ghost versions of the other Magmaborn. Each ghost is level 0, making it an exceedingly easy level - except the objective is "anti-rout": should Frogman kill all enemies, Torment breaks his mind and gains control, leading to a Game Over. This is a bit of a twisted nightmare level, and should be creepy. After beating it for the first time, Dehar (reborn as a monster) is revealed and joins Frogman. Should Alfred still be in the party, he leaves Frogman (or even fights him like Xeplogi/Memerian). From now on, the focus of the game should slowly shift to Dehar, showing the transition of Frogman from champion to pawn (he had always been a pawn in Torment and Dehar's plans, he just never realized it).
+-Level 9 (Part 3 - Champion): Dehar guides Frogman and co. through the city, giving some backstory to the Guards. Unfortunatly, the second Guardian finds and attacks them (alternatively, they attack the Guards). This is another defeat boss level, against the second Guardian. After they are killed, the third Guardian replaces them in this level (and retreats after being defeated).
+-Level 10: Dehar leads Frogman and co. to the clone vats - adjacent to the "way outside room" (no idea how too call it, let's call it the Gateway for now). She explains how all Guards are clones generated using Torment's magic and can't reproduce. The third Guardain then interecepts them, blocking their way to the Gateway. This is yet another defeat boss level, with a gimmick: the clone vats constantly produce Workers (the extremely weak class), representing newly born clones. While they aren't a threat, they can block ways and strategies, and should further reinforce the idea of an eternal struggle. Also, I should add another, Torment-sympethatic character here to balance the powers between Torment and the last Guardian.
+-Endgame (Part 4 - Pawn): The game saves after level 10, basically ending the roguelike portion of the game. The masterplan is revealed - the last Guardian found a way to destroy Torment, killing all Magmaborn and Guards (the other Guards wouldn't like it, so she hid it from them). She strips Torment of their (and her) powers first, and a battle between them commences. Each Magmaborn picks a side, then Frogman does (he tries convincing them to stay together to no avail). See Endings for what happens next. The sides:
+--Guardian: Firbell (believes in self-sacrifice and justice, "for Irenhold"), Xirveros (finally regains his mind when Torment loses their powers, hates Torment), Xeplogi (hates Memerian - she chooses Torment first), Dehar (was part of the last Guardian's plan all along).
+--Torment: Kresla (still too much to learn and do in the world, suddenly afraid of permanent death (she's used to the Magma Emblem)), Memerian (doesn't believe in self-sacrifice), Alfred (hates the Guards).
+
+Magic, revised yet again:
+Hopefully final, as I really like this idea.
+Magic can only be used to affect the holder of the Crystal* - this means no fireballs, element bending, mind manipulation etc. Its uses are mostly limited to self-illusions (Dehar in flashbacks), teleportation (Wizard & Lich attacks), transformation (all Guardians transform themselves to one of the original heroes when they become Guardians), self-mind-manipulation (pretty useless) and self-communications with Torment (as the source of magic). In addition, Crystals can be infused with magic, applying that magic on anyone who holds it (for example, a crystal that transforms the holder into a frog when taken). Magma Emblems are basically crystals infused with a very intricate spell (devised by Xirveros), which grants communication with Torment, and on death the following spell: teleports the user into the Magma, transforms them into a monster, locks away their memories and reverses the "affecting Torment" power (Torment probably manipulated Xirveros (who originally only found the communicate-with-Torment spell) into weaving this particular spell, in order to gain champions).
+* - As the source of magic, Torment can also be slightly affected by the crystals - that is how the original heroes managed to seal them (a spell that locks their place & influence to the underground, and limits their power). However, Magma Emblems reverse the effect, granting torment slight mind manipulations on the holders - the ability to read and change memories (but not minds, as that's too complex). As for the memory manipulation - Torment must restore the character's memories to read them: when Frogman has flashbacks, it's also the first time Torment sees these memories. They can only do that the moment they're Born - while alive, the Magmaborn's mind is hidden to Torment. Dehar abuses that, making sure to never actually die (so Torment can't read her memories).
+
+Names over time:
+Naming system recap: 
+1. First letter is title (K for king/queen, F for heir, M for noble (siblings of the current queen/king/heir mostly), X for honoured person (equivalent of sir).
+2. Next two letters are the first two letters of the place of birth (Ir for Irenhold, En for Enkeros...).
+3. Then the birth name.
+The nature of names changed over time. Here's a timeline:
+-Kingdoms Era (Firbell, Xirveros): The naming system was mostly used by the ruling family of each kingdom. New-born childs were given safe names, starting with a constant other than K/F/M/X - for example: Bell, Veros, Lor, Song, Rhys, Bob, Roy... Commoners only used their given name (for example, until been granted the title of Xirveros by Kirsong, he was known only as Veros). When people would interact with foreigners, however, they would usually include their kingdom prefix (for example, the villager Bob from Irenhold talking to the fisherman Roy from Abenzon on a trading ship, would call each other Irbob and Abroy). Misleading birth names - such as Irena, Erick, Fred, Mella... - would be considered treason and a crime. Kirmella (the last queen of Irenhold) had a very controversial name. This was on purpose, as a display of the royal family of Irenhold's power (little did they know that it would bring their downfall when naming her that).
+-Guards Era (Alfred): After the kingdoms fell and humanity was engulfed in chaos, the Guards (led by ???) rose out of their hiding to reign humanity in. They had two goals: recover all the crystals on the surface (the creation of the Magmaborn and destruction of all ruling powers by them led the Guards to believe humanity was better off without magic), and hiding all traces of magic from their history (to prevent fools from accidently finding crystals/the Guards and harming their purpose). They did this by ruling as a militaristic dictatorship, burning records of the kingdoms, outlawing talks of magic, hunting for the crystals and so on. As part of their erasure of the kingdoms' history and culture, they abolished the naming system, and encouraged forbidden names (like Fred). The resistance, trying to recover the kingdoms' past and glory, recreated the naming system, renaming all who joined them to Al[name] (as the resistance was based in Alros). Thus Alfred. After a while, the Guards suddenly returned to their underground base and left humanity alone to recover (they deemed their mission a success).
+-Middle Era (Memerian, Xeplogi): Suddenly left alone, with no leaders or structures, humanity slowly recovered. Words beginning with K/F/M/X were still incredibly common from the previous era, but it also became a trend to name people while including their place of birth (usually a village/town and not a kingdom, however. Xeplogi was named Xeplogi, not Logi).
+-Modern Era (Kresla, Frogman, Zip): As time went on, names were given less and less significance. Names like Kresla (beginning with K, but with a twisted "place of birth" (which had nothing to do with her real place of birth - it's just a name to her, like Alice or Bob)) were still very common, but nobody really cared about it.
+
+The Guard spell & final battle:
+The Torment-locking spell is infused in a single crystal, which prevents Torment from approaching (or using magic) near it. In order to protect the entire Guard fortress and not only that specific point, a ton of crystals are embedded all over the outer walls (as seen in-game), directly connected to that one crystals, with two purposes: increasing the flow of magic from Torment's realm to power it (basically, using thousands of streams to create a sea), and increasing the range of the spell to encompass the entire fortress.
+The last Guardian's (aka Guard commander, codename G) master plan is to modify this spell, in order to trap Torment in it's range instead of out of it. However, Torment still needs a physical body in order to be destroyed (the in-game face is just a projection - as are the Pain, Fear, Despair ghosts - and destroying it wouldn't really affect Torment (they would just create a new one)). G's plan it to take the crystal to themselves, trapping Torment inside them (G) instead of the fortress, thus granting a physical body. Then Dehar is supposed to destroy that body (kill G), and thus Torment.
+Supplying Torment with a weak and easy-to-destroy body wouldn't work, as Torment will easily escape from there on their own. G is the strongest Guard alive, making it exceedingly hard for Torment to escape. Unfortunately, Torment can control G while inside them.
+The battle itself is in two parts, in the same map - a crystal, with a lot of "veins" connecting to it, and 6/8 crystal pillars in the room connected to it. The parts:
+1. Battle against G: G wants to make sure the Magmaborn can even defeat them. So, they fight the Magmaborn. This is a normal, rogue-like (aka if you lose, you need to reach G again and the conversation changes) level, against a single enemy. Think FE7 Red Dragon.
+2. Final battle: as before, there's the choice and each unit chooses followed by the player.
+   -Guard side: The player must kill Torment (G) in 6/8 turns. Each turn, a crystal pillar is shattered, and Torment speaks.
+   -Torment side: The player must protect Torment (G) for 6/8 turns. Basically reverse of the above.
+
+The Magi (renamed Guardians):
+The original four Magi who sealed Torment and founded the Guards initially divided organization and rule of the Guards among themselves. However, they couldn't live forever: while they could constantly transform themselves into younger versions, they eventually grew weary of the world and passed away (they didn't want to constantly manipulate their memories & minds like Torment does to the Magmaborn, and they were also still mortal, unlike the Magmaborn). To ensure the continued existence of the Guards, each one took an apprentice - either a kidnapped human or a particularly promising clone - to follow in their footsteps when they died.
+This system was continually used during the entire Guard's existence, with future Magi transforming themselves into one of the eight original Magi (including the first apprentices). Their roles are:
+-The Crystal Magus:
+ The person in charge of the main gateway to the underground and the leader of the Guards. They guard the crystal containing Torment's seal from possible human and Magmaborn incursions (not that there ever were any). Most of the time, they are supposed to oversee the other Magi and help when needed. They are usually the strongest Magus alive.
+ The current Magus & Apprentice are:
+ -G: The Crystal Magus for ~200 years. Noticed the slow technological advancement of the humans and devised the master plan to end Torment once and for all. Not particularly beloved by the Guards (nor other Magi), but too powerful for anyone to outright revolt. Unlike previous Crystal Magi, they tend to keep to themselves and ignore the other Guards and Magi.
+ -No apprentice. G knows that once they'll pick an apprentice, the other Magi (or even normal Guards) might try to dispose of G and put the apprentice in their place.
+-The Clone Magus:
+ The person in charge of protecting the clone vats and training new clones. They rarely engage in outside affairs.
+ The current Magus & Apprentice are:
+ -Bodder: The Clone Magus for ~20 years. Abhors violence unless someone threatens his beloved clones. Tends to ignore the other Magi, much to their frustration.
+ -No apprentice. Bodder is a relatively new Magus, after his predecessor was killed by G after showing dissent.
+-The City Magus:
+ The person in charge of running the whole Guard city, overseeing everything besides the battle with Torment, like construction, agriculture, and law. Having the most demanding duty, City Magi tend to be workaholics and overbearing.
+ The current Magus & Apprentice are:
+ -Brens: The City Magus for ~100 years. Became the de-facto ruler due to G ignoring their subjects. He is constantly tired and angry, and moved basically all the city responsibilities to his apprentice. Hates pretty much all the other Magi.
+ -Jedral: The apprentice for ~90 years. Acts as the actual City Magus most of the time while Brens runs around shouting at people. She is one of the two Magi who survive to the endgame, and joins Torment’s side for it, preferring the eternal battle over immediate Guard extinction (not that the Guards survive long once (and if) Torment wins).
+-The Wall Magus:
+ The person in charge of guarding the city from monster (and Magmaborn) incursion, usually by directly guarding or fighting at the city walls. They are also in charge of sending agents to spy on (and manipulate) the humans, but usually never go outside themselves.
+ The current Magus & Apprentice are:
+ -Dehar: The Wall Magus for ~150 years. Incredibly sure of herself, and the only Magus that likes G, going so far as to being their only confidant and the executive arm of their master plan. She thinks that she's better than all the other Guards and Magi (besides G, who she worships), and the Magmaborn when she becomes one. Doesn't take her duty too seriously, and even leaves the underground to personally select and hunt the champion needed for the plan to work (Frogman). Quite petty.
+ -Laherdt: The apprentice for ~5-15 years, hastily chosen by Dehar once she decided to go outside in order to replace her temporarily. The biggest jerk she could find on short notice, chosen mostly to drive Brens crazy. Simply refuses to die.
