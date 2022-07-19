@@ -15,6 +15,7 @@ Werse: ...\a I can't belive that he's... gone...
 :play:BeforeBattle3
 :setSingleSpeaker:L
 Frogman: We're back... Come on, we've got no time to lose!
+:setBattleQuote:Werse:WerseBattle
 
 # Name: Text.
 ~ After battle
@@ -25,5 +26,45 @@ Torment: Congratiulations! You've finished the beta! Now die!
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ WerseBattle
+:if:stringEquals:[Name:Attacker]:Werse{
+Werse||R: You win.
+Defender: Huh?
+Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Defender: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, evryone!
+:killTeam:guard
+Defender: ...What just happened?
+}
+:else:{
+Werse||R: You win.
+Attacker: Huh?
+Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Attacker: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, evryone!
+:killTeam:guard
+Attacker: ...What just happened?
+}
+:win:
+
+

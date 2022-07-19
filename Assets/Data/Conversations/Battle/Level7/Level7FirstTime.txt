@@ -68,13 +68,13 @@ Alfred||R: The crystals.\a The Guards.\a Just like it used to be.\a But this tim
 }
 :if:hasCharacter:Memerian{
 :if:charactersAlive:<2{
-Memerian||R: Indeed. It's entire purpose is to prevent us from leaving.\a And the monsters, of course.
+Memerian||R: Indeed. Its entire purpose is to prevent us from leaving.\a And the monsters, of course.
 Frogman: Did you ever get insider?
-Memerian: No, never. They are always led by a powerfull mage.\a Fashima.\a She was way too strong.\a Annoying as hell, too.
+Memerian: No, never. They are always led by a powerful mage.\a Fashima.\a She was way too strong.\a Annoying as hell, too.
 Frogman: I see.\a Let's go defeat her, then.
 Memerian: Defeat her? Pfft!
 Our only hope is that she had died of old age by now.
-Frogman: Was she truly that powerfull?
+Frogman: Was she truly that powerful?
 Memerian: She's a mage. She doesn't play fair.\a But enough chitchat - you'll see for yourself,\a soon enough.
 Frogman: Right.
 }
@@ -104,20 +104,40 @@ Frogman: Huh? You're talking to me?
 Fashima_: Yes. Who else would I be talking to?
 Frogman: Uh, it's just that no Guard has ever...
 Fashima_: I'm not a pathetic Guard. I'm Fashima, the Wall Magus.\a Prepare to die.
-Frogman: Wha...
+Frogman: Wha...?
 :setFlag:FashimaBattleFrogman
 }
 }
 :if:stringEquals:[Name:Attacker]:Alfred{
 :if:!hasFlag:FashimaBattleAlfred{
-Alfred: You. Leader of these Guards. I...\a Wait. Your smell...
-Fashima_: Seriously? Smelling me? What a pathetic creature.
-Alfred: No... It can't be... You smell like the traitor!\a Fasher!
-Fashima_: ...Fasher's dead. Has been for a long time now.\a Who're you? How do you even know him?
-Alfred: Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who're you?! His sister? Daughter?!
-Fashima_: Alfred, eh? Die in darkness, fool.
-Alfred: Rrgh! I will have my revange!
+Alfred: You! I will have vengeance!
+Fashima_: Hm? Who are you?\a Wait a moment. Alfred?!
+Alfred: Huh? How do you know me?!
+Fashima_: Wow. I can't believe it.
+You've been dead for so long,\a and now's the first time you've ever gotten close to me?\a Ha! Your incompetence truly is legendary!
+Alfred: Who're you?!
+Fashima_: Seriously? Don't you recognize me?
+Alfred: You... Wait, your smell... Fasher?!
+Fashima_: So, the dog can think! Ha ha ha!\a My, I can't wait to kill you again!
+Alfred: You...! You deserve worse than death!\a Die, traitor!!!
 :setFlag:FashimaBattleAlfred
+}
+}
+:if:stringEquals:[Name:Attacker]:Kresla{
+:if:!hasFlag:FashimaBattleKresla{
+Kresla: Hey! Are you the leader of this bunch?
+Fashima_: Yes. Who are you?
+Kresla: Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why are you protecting it?\a What is its purpose?\a Why are you fighting us?
+Fashima_: Wow. I see that the rumors about your fearlessness are correct.
+Kresla: You've heard about me?!
+Fashima_: Indeed. I must admit, I'm quite a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+Kresla: You- Wait. How do you know about the Magma Emblem?
+Fashima_: I used to be a friend of Kesper.\a Before he died, that is.
+Kresla: Kesper? How-
+Fashima_: As much as I'd like to chat, we have appearances to keep.
+Kresla: Wait-
+Fashima_: Silence, vermin! Prepare to meet my wrath!
+:setFlag:FashimaBattleKresla
 }
 }
 :setBattleQuote:Fashima:FashimaBattleQuote
