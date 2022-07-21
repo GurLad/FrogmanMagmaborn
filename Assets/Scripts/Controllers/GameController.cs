@@ -1102,6 +1102,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                         unit.PreviousPos = unit.Pos;
                         unit.Pos = Vector2Int.one * -1;
                     }
+                    else if (unit.Statue)
+                    {
+                        unit.Moved = true;
+                    }
                     PlayerUnits.Add(unit);
                     if (name != StaticGlobals.MainCharacterName)
                     {
@@ -1124,6 +1128,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     unit.PreviousPos = unit.Pos;
                     unit.Pos = Vector2Int.one * -1;
+                }
+                else if (unit.Statue)
+                {
+                    unit.Moved = true;
                 }
                 unit.gameObject.SetActive(true);
             }

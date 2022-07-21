@@ -107,7 +107,7 @@ public class FrogForgeImporter : MonoBehaviour
     public static TextFile LoadTextFile(string path, bool includesPath = false)
     {
 #if UNITY_EDITOR
-        return new TextFile(File.ReadAllText("Assets/Data/" + path), path.Substring(path.LastIndexOf(@"\") + 1));// return new TextFile(UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/" + path));
+        return new TextFile(File.ReadAllText("Assets/Data/" + path), path.Substring(path.LastIndexOf("/") + 1).Replace(".txt", ""));// return new TextFile(UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Data/" + path));
 #elif MODDABLE_BUILD
         return new TextFile(File.ReadAllText((includesPath ? "" : DataPath) + path), path.Substring(path.LastIndexOf(@"\") + 1));
 #endif
