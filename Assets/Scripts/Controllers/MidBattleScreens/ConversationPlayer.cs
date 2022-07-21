@@ -924,10 +924,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         {
             MidBattleScreen.Set(this, false);
         }
-        else // Faded out - make sure the palettes remain black
-        {
-
-        }
         // Finish conversation
         lines.Clear();
         

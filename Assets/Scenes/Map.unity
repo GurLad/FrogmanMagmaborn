@@ -10312,108 +10312,6 @@ MonoBehaviour:
 
 '
     Name: Conversations/Battle/Level8/Level8GenericWerse.txt
-  - Text: 'priority:21
-
-      unique:F
-
-      ~ Requirements
-
-      roomNumber:9
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      Frogman:
-      Hi
-
-      :showPartTitle:Testy:Test
-
-      Frogman: Wow
-
-      :showCG:Port
-
-      Frogman:
-      Amazing
-
-      :showCG:Tavern
-
-      Frogman: Excellent
-
-
-      ~ After battle
-
-      :play:AfterBattle
-
-      Frogman:
-      Bye
-
-      :showPartTitle:Oof:Oof!
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      #
-      Name: Text.
-
-'
-    Name: Conversations/Battle/Test1.txt
-  - Text: 'priority:21
-
-      unique:F
-
-      ~ Requirements
-
-      roomNumber:10
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      :showCG:FortressPreview
-
-      Frogman:
-      Hi 2
-
-      :hideCG:
-
-      Frogman: Yay.
-
-      ~ After battle
-
-      :play:AfterBattle
-
-      :showPartTitle:Oof:Oof!
-
-      Frogman:
-      Bye 2
-
-      :showPartTitle:Oof:Oof!
-
-
-      # === Functions ====
-
-
-      ~
-      Sample
-
-      # Name: Text.
-
-'
-    Name: Conversations/Battle/Test2.txt
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &44917519
@@ -32669,7 +32567,7 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 1
+  DebugStartAtEndgame: 0
   DebugEndgameLevel: 9
   DebugExtraLevels: 0
   DebugUnits:
@@ -33363,128 +33261,6 @@ MonoBehaviour:
       - id: 42
       - id: 56
     Alliances: 000001
-    UnitReplacements:
-    - Name: Goblin
-      ReplacedBy:
-      - Golem
-    - Name: Skeleton
-      ReplacedBy:
-      - Ooze
-    - Name: Gargoyle
-      ReplacedBy:
-      - Slither
-  - TeamDatas:
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 25
-        - id: 53
-        - id: 56
-      Name: The
-      PlayerControlled: 1
-      PortraitLoadingMode: 0
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 20
-        - id: 48
-        - id: 56
-      Name: Red
-      PlayerControlled: 0
-      PortraitLoadingMode: 2
-      AI:
-        TrueDamageWeight: 1
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 15
-        - id: 43
-        - id: 56
-      Name: Queen
-      PlayerControlled: 0
-      PortraitLoadingMode: 0
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0.5
-        SurvivalWeight: 0.5
-        CautionLevel: 3
-    MusicName: TheCloneVats
-    Palette4:
-      Colors:
-      - id: 13
-      - id: 0
-      - id: 42
-      - id: 56
-    Alliances: 000000
-    UnitReplacements:
-    - Name: Goblin
-      ReplacedBy:
-      - Golem
-    - Name: Skeleton
-      ReplacedBy:
-      - Ooze
-    - Name: Gargoyle
-      ReplacedBy:
-      - Slither
-  - TeamDatas:
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 25
-        - id: 53
-        - id: 56
-      Name: Player
-      PlayerControlled: 1
-      PortraitLoadingMode: 0
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 20
-        - id: 48
-        - id: 56
-      Name: Monster
-      PlayerControlled: 0
-      PortraitLoadingMode: 1
-      AI:
-        TrueDamageWeight: 1
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 15
-        - id: 43
-        - id: 56
-      Name: Guard
-      PlayerControlled: 0
-      PortraitLoadingMode: 2
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0.5
-        SurvivalWeight: 0.5
-        CautionLevel: 3
-    MusicName: 
-    Palette4:
-      Colors:
-      - id: 13
-      - id: 0
-      - id: 42
-      - id: 56
-    Alliances: 000000
     UnitReplacements:
     - Name: Goblin
       ReplacedBy:
@@ -39610,126 +39386,33 @@ MonoBehaviour:
     Objective: 0
     ObjectiveData: Rout
     MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
-  - Name: TestingArea
-    LevelNumber: 9
-    Units:
-    - Pos: {x: 3, y: 3}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 3}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: Dungeon
-    Objective: 3
-    ObjectiveData: 1
-    MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|0|0|0|0|3;0|0|0|0|0|0|0|0|0|0|0|3|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
-  - Name: TestingArea2
-    LevelNumber: 10
-    Units:
-    - Pos: {x: 3, y: 3}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 3}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: Dungeon
-    Objective: 3
-    ObjectiveData: 1
-    MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|3|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|3|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|3|3|0|0;0|0|0|3|0|0|0|0|0|0|3|3|0|0|3;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
   mapData:
-    Tiles: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|3|0|0|0|0|0|0|3|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|0|0|0|0|0|0|3|0|3|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|0|0;0|0|0|0|0|0|0|0|0|3|0|0|3|0|0;0|0|0|0|0|0|0|0|0|0|0|3|3|0|0;0|0|0|3|0|0|0|0|0|0|3|3|0|0|3;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+    Tiles: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
     Units:
-    - Pos: {x: 3, y: 3}
+    - Pos: {x: 7, y: 6}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 0, y: 3}
+    - Pos: {x: 5, y: 7}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 3, y: 1}
+    - Pos: {x: 6, y: 10}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 1}
+    - Pos: {x: 10, y: 5}
       Team: 0
       Level: 0
       Class: P
@@ -39737,10 +39420,10 @@ MonoBehaviour:
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: Dungeon
-    LevelNumber: 10
-    Objective: Survive:1
-    Name: TestingArea2
+    Tileset: HumanDungeon
+    LevelNumber: 0
+    Objective: Rout
+    Name: Part2RestArea
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0
