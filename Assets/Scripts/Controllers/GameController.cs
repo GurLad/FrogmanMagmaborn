@@ -799,6 +799,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     private void PlayersLevelUp()
     {
+        transform.parent.gameObject.SetActive(false);
+        enabled = true;
         List<Unit> playerCharacters = units.Where(a => a.TheTeam.IsMainPlayerTeam()).ToList();
         // Custom level-up system
         foreach (Unit character in playerCharacters)

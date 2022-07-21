@@ -255,19 +255,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     /// <param name="fadeIn">If true, fades in the conversation before resuming, unless it's already over - in which case, finish it instead</param>
     public void Resume(int mod = 1, bool fadeIn = false)
     {
-        if (currentLine + mod >= lines.Count)
+        SkipEmptyLines(currentLine + mod);
+        if (currentLine >= lines.Count)
         {
             FinishConversation(fadeIn);
             return;
         }
         if (fadeIn)
         {
-            FadeThisIn(() => Resume(mod), false);
+            FadeThisIn(() => Resume(0), false);
         }
         else
         {
             SoftResume();
-            StartLine(currentLine + mod);
+            StartLine(currentLine);
         }
     }
     /// <summary>
@@ -297,6 +298,15 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             return true;
         }
         return false;
+    }
+    private void SkipEmptyLines(int startAt = -1)
+    {
+        currentLine = startAt >= 0 ? startAt : currentLine;
+        string line;
+        while (currentLine < lines.Count && ((line = lines[currentLine]).Length <= 0 || line[0] == '#' || line[0] == '}'))
+        {
+            currentLine++;
+        }
     }
     private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = true)
     {
@@ -910,9 +920,17 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             FadeThisOut(() => FinishConversation(true));
             return StartLineResult.Fade;
         }
+        else if (playMode != PlayMode.PostBattle) // If this isn't the post-battle part, unset this mid-battle screen
+        {
+            MidBattleScreen.Set(this, false);
+        }
+        else // Faded out - make sure the palettes remain black
+        {
+
+        }
         // Finish conversation
         lines.Clear();
-        MidBattleScreen.Set(this, false);
+        
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         SetSinglePortrait(true);

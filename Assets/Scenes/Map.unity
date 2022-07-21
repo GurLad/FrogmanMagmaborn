@@ -8190,29 +8190,29 @@ MonoBehaviour:
 
       Fashima_: Yes.
 
-      Brens: How dare
-      you!
+      Brens: How dare you!
 
-      Fashima_: But it''s true. I mean, you can''t transform,\a you
-      can''t teleport...\a What are you even good for?
+      Fashima_:
+      But it''s true. I mean, you can''t transform,\a you can''t teleport...\a What
+      are you even good for?
 
-      Brens: Not everyone
-      needs to fight, Fashima!
+      Brens: Not everyone needs to fight, Fashima!
 
-      I don''t need transformation magic for logistics.\a
-      Even you don''t need it,\a and you''re a warrior!
+      I
+      don''t need transformation magic for logistics.\a Even you don''t need it,\a
+      and you''re a warrior!
 
-      Fashima_: And yet,
-      I still know how to use it.\a Why, had you known how to do that,\a you might
-      have looked a lot better, grandpa.
-
-      Brens: Why do you keep goading me?!
-      What did I ever do to you?
-
-      Fashima_: You exist. That''s reason enough.
+      Fashima_: And yet, I still know how to use it.\a
+      Why, had you known how to do that,\a you might have looked a lot better, grandpa.
 
       Brens:
-      Wha- Ugh, fine. You don''t want me here? I''ll go.\a Take care, Fashima.
+      Why do you keep goading me?! What did I ever do to you?
+
+      Fashima_: You
+      exist. That''s reason enough.
+
+      Brens: Wha- Ugh, fine. You don''t want
+      me here? I''ll go.\a Take care, Fashima.
 
       :killUnit:Brens
 
@@ -8264,14 +8264,12 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
-      
 
-      # === Functions
-      ====
+      # === Functions ====
 
-      
 
-      ~ FashimaBattleQuote
+      ~
+      FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8315,16 +8313,16 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_:
-      Yes. Who else would I be talking to?
+      Fashima_: Yes.
+      Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no
-      Guard has ever...
+      Frogman: Uh, it''s just that no Guard
+      has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima,
-      the Wall Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
+      Magus.\a Prepare to die.
 
-      Frogman: Wha...
+      Frogman: Wha...?
 
       :setFlag:FashimaBattleFrogman
 
@@ -8337,25 +8335,32 @@ MonoBehaviour:
       :if:!hasFlag:FashimaBattleAlfred{
 
       Alfred:
-      You. Leader of these Guards. I...\a Wait. Your smell...
+      You! I will have vengeance!
 
-      Fashima_: Seriously?
-      Smelling me? What a pathetic creature.
+      Fashima_: Hm? Who are you?\a Wait a moment.
+      Alfred?!
 
-      Alfred: No... It can''t be...
-      You smell like the traitor!\a Fasher!
+      Alfred: Huh? How do you know me?!
 
-      Fashima_: ...Fasher''s dead.
-      Has been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: Wow. I can''t
+      believe it.
+
+      You''ve been dead for so long,\a and now''s the first time
+      you''ve ever gotten close to me?\a Ha! Your incompetence truly is legendary!
 
       Alfred:
-      Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
-      you?! His sister? Daughter?!
+      Who''re you?!
 
-      Fashima_: Alfred, eh? Die in darkness,
-      fool.
+      Fashima_: Seriously? Don''t you recognize me?
 
-      Alfred: Rrgh! I will have my revange!
+      Alfred:
+      You... Wait, your smell... Fasher?!
+
+      Fashima_: So, the dog can think!
+      Ha ha ha!\a My, I can''t wait to kill you again!
+
+      Alfred: You...! You
+      deserve worse than death!\a Die, traitor!!!
 
       :setFlag:FashimaBattleAlfred
 
@@ -8363,9 +8368,53 @@ MonoBehaviour:
 
       }
 
+      :if:stringEquals:[Name:Attacker]:Kresla{
+
+      :if:!hasFlag:FashimaBattleKresla{
+
+      Kresla:
+      Hey! Are you the leader of this bunch?
+
+      Fashima_: Yes. Who are you?
+
+      Kresla:
+      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
+      are you protecting it?\a What is its purpose?\a Why are you fighting us?
+
+      Fashima_:
+      Wow. I see that the rumors about your fearlessness are correct.
+
+      Kresla:
+      You''ve heard about me?!
+
+      Fashima_: Indeed. I must admit, I''m quite
+      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+
+      Kresla:
+      You- Wait. How do you know about the Magma Emblem?
+
+      Fashima_: I used
+      to be a friend of Kesper.\a Before he died, that is.
+
+      Kresla: Kesper?
+      How-
+
+      Fashima_: As much as I''d like to chat, we have appearances to
+      keep.
+
+      Kresla: Wait-
+
+      Fashima_: Silence, vermin! Prepare to meet
+      my wrath!
+
+      :setFlag:FashimaBattleKresla
+
+      }
+
+      }
+
       :setBattleQuote:Fashima:FashimaBattleQuote
 
-      
 
       ~
       Reaction
@@ -8408,8 +8457,8 @@ MonoBehaviour:
 
       Fashima_: ...
 
-      Brens: Fashima, please.\a I have one
-      last question,\a and then I''ll never pester you again.
+      Brens: Fashima, please.\a I have one last
+      question,\a and then I''ll never pester you again.
 
       Fashima_: ...Make
       it a good one.
@@ -8451,7 +8500,7 @@ MonoBehaviour:
       ...
 
       He
-      better not show his face here again.
+      better not show his face here ever again.
 
       :play:BeforeBattle2
 
@@ -8491,14 +8540,12 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
-      
 
-      # === Functions
-      ====
+      # === Functions ====
 
-      
 
-      ~ FashimaBattleQuote
+      ~
+      FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8542,16 +8589,16 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_:
-      Yes. Who else would I be talking to?
+      Fashima_: Yes.
+      Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no
-      Guard has ever...
+      Frogman: Uh, it''s just that no Guard
+      has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima,
-      the Wall Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
+      Magus.\a Prepare to die.
 
-      Frogman: Wha...
+      Frogman: Wha...?
 
       :setFlag:FashimaBattleFrogman
 
@@ -8564,25 +8611,32 @@ MonoBehaviour:
       :if:!hasFlag:FashimaBattleAlfred{
 
       Alfred:
-      You. Leader of these Guards. I...\a Wait. Your smell...
+      You! I will have vengeance!
 
-      Fashima_: Seriously?
-      Smelling me? What a pathetic creature.
+      Fashima_: Hm? Who are you?\a Wait a moment.
+      Alfred?!
 
-      Alfred: No... It can''t be...
-      You smell like the traitor!\a Fasher!
+      Alfred: Huh? How do you know me?!
 
-      Fashima_: ...Fasher''s dead.
-      Has been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: Wow. I can''t
+      believe it.
+
+      You''ve been dead for so long,\a and now''s the first time
+      you''ve ever gotten close to me?\a Ha! Your incompetence truly is legendary!
 
       Alfred:
-      Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
-      you?! His sister? Daughter?!
+      Who''re you?!
 
-      Fashima_: Alfred, eh? Die in darkness,
-      fool.
+      Fashima_: Seriously? Don''t you recognize me?
 
-      Alfred: Rrgh! I will have my revange!
+      Alfred:
+      You... Wait, your smell... Fasher?!
+
+      Fashima_: So, the dog can think!
+      Ha ha ha!\a My, I can''t wait to kill you again!
+
+      Alfred: You...! You
+      deserve worse than death!\a Die, traitor!!!
 
       :setFlag:FashimaBattleAlfred
 
@@ -8590,9 +8644,53 @@ MonoBehaviour:
 
       }
 
+      :if:stringEquals:[Name:Attacker]:Kresla{
+
+      :if:!hasFlag:FashimaBattleKresla{
+
+      Kresla:
+      Hey! Are you the leader of this bunch?
+
+      Fashima_: Yes. Who are you?
+
+      Kresla:
+      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
+      are you protecting it?\a What is its purpose?\a Why are you fighting us?
+
+      Fashima_:
+      Wow. I see that the rumors about your fearlessness are correct.
+
+      Kresla:
+      You''ve heard about me?!
+
+      Fashima_: Indeed. I must admit, I''m quite
+      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+
+      Kresla:
+      You- Wait. How do you know about the Magma Emblem?
+
+      Fashima_: I used
+      to be a friend of Kesper.\a Before he died, that is.
+
+      Kresla: Kesper?
+      How-
+
+      Fashima_: As much as I''d like to chat, we have appearances to
+      keep.
+
+      Kresla: Wait-
+
+      Fashima_: Silence, vermin! Prepare to meet
+      my wrath!
+
+      :setFlag:FashimaBattleKresla
+
+      }
+
+      }
+
       :setBattleQuote:Fashima:FashimaBattleQuote
 
-      
 
       ~
       Reaction
@@ -8783,11 +8881,11 @@ MonoBehaviour:
       Brens: You knew? Why didn''t you say anything?!\a
       It''s your job to prevent such incidents!
 
-      Fashima_: Isn''t it your
-      job to take care of the city,\a instead of pestering me?
+      Fashima_: Isn''t it your job
+      to take care of the city,\a instead of pestering me?
 
-      Brens: Don''t
-      change the subject!\a Are they dangerous?\a Will they try escaping?!
+      Brens: Don''t change
+      the subject!\a Are they dangerous?\a Will they try escaping?!
 
       Fashima_:
       I don''t know.
@@ -8797,14 +8895,14 @@ MonoBehaviour:
       Fashima_: Yes, I don''t
       know.\a I''m not made of answers, you know.
 
-      Brens: Argh! This is a
-      disaster!
+      Brens: Argh! This is a disaster!
 
-      Fashima_: Calm down, old man. Everything''s under control.
+      Fashima_:
+      Calm down, old man. Everything''s under control.
 
-      Brens:
-      Old man?! You''re the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an
-      eye on the wall while I''m gone.
+      Brens: Old man?! You''re
+      the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an eye on the wall
+      while I''m gone.
 
       :killUnit:Brens
 
@@ -8847,26 +8945,23 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
 
       :callOther:Level7FashimaDeath
 
-      
 
-      # === Functions
-      ====
+      # === Functions ====
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell||R:
-      They are protecting the Fortress...
+      Firbell||R: They are protecting
+      the Fortress...
 
       }
 
@@ -8914,46 +9009,44 @@ MonoBehaviour:
       :if:charactersAlive:<2{
 
       Memerian||R:
-      Indeed. It''s entire purpose is to prevent us from leaving.\a And the monsters,
+      Indeed. Its entire purpose is to prevent us from leaving.\a And the monsters,
       of course.
 
       Frogman: Did you ever get insider?
 
-      Memerian: No,
-      never. They are always led by a powerfull mage.\a Fashima.\a She was way too
-      strong.\a Annoying as hell, too.
+      Memerian: No, never.
+      They are always led by a powerful mage.\a Fashima.\a She was way too strong.\a
+      Annoying as hell, too.
 
-      Frogman: I see.\a Let''s go defeat
-      her, then.
-
-      Memerian: Defeat her? Pfft!
-
-      Our only hope is that
-      she had died of old age by now.
-
-      Frogman: Was she truly that powerfull?
+      Frogman: I see.\a Let''s go defeat her, then.
 
       Memerian:
-      She''s a mage. She doesn''t play fair.\a But enough chitchat - you''ll see
-      for yourself,\a soon enough.
+      Defeat her? Pfft!
 
-      Frogman: Right.
+      Our only hope is that she had died of old age by now.
+
+      Frogman:
+      Was she truly that powerful?
+
+      Memerian: She''s a mage. She doesn''t play
+      fair.\a But enough chitchat - you''ll see for yourself,\a soon enough.
+
+      Frogman:
+      Right.
 
       }
 
       :else:{
 
-      Memerian||R:
-      ...Let''s hope they don''t have a mage in here.
+      Memerian||R: ...Let''s hope they don''t
+      have a mage in here.
 
       }
 
       }
 
-      
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8997,16 +9090,16 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_:
-      Yes. Who else would I be talking to?
+      Fashima_: Yes.
+      Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no
-      Guard has ever...
+      Frogman: Uh, it''s just that no Guard
+      has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima,
-      the Wall Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
+      Magus.\a Prepare to die.
 
-      Frogman: Wha...
+      Frogman: Wha...?
 
       :setFlag:FashimaBattleFrogman
 
@@ -9019,27 +9112,79 @@ MonoBehaviour:
       :if:!hasFlag:FashimaBattleAlfred{
 
       Alfred:
-      You. Leader of these Guards. I...\a Wait. Your smell...
+      You! I will have vengeance!
 
-      Fashima_: Seriously?
-      Smelling me? What a pathetic creature.
+      Fashima_: Hm? Who are you?\a Wait a moment.
+      Alfred?!
 
-      Alfred: No... It can''t be...
-      You smell like the traitor!\a Fasher!
+      Alfred: Huh? How do you know me?!
 
-      Fashima_: ...Fasher''s dead.
-      Has been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: Wow. I can''t
+      believe it.
+
+      You''ve been dead for so long,\a and now''s the first time
+      you''ve ever gotten close to me?\a Ha! Your incompetence truly is legendary!
 
       Alfred:
-      Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re
-      you?! His sister? Daughter?!
+      Who''re you?!
 
-      Fashima_: Alfred, eh? Die in darkness,
-      fool.
+      Fashima_: Seriously? Don''t you recognize me?
 
-      Alfred: Rrgh! I will have my revange!
+      Alfred:
+      You... Wait, your smell... Fasher?!
+
+      Fashima_: So, the dog can think!
+      Ha ha ha!\a My, I can''t wait to kill you again!
+
+      Alfred: You...! You
+      deserve worse than death!\a Die, traitor!!!
 
       :setFlag:FashimaBattleAlfred
+
+      }
+
+      }
+
+      :if:stringEquals:[Name:Attacker]:Kresla{
+
+      :if:!hasFlag:FashimaBattleKresla{
+
+      Kresla:
+      Hey! Are you the leader of this bunch?
+
+      Fashima_: Yes. Who are you?
+
+      Kresla:
+      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
+      are you protecting it?\a What is its purpose?\a Why are you fighting us?
+
+      Fashima_:
+      Wow. I see that the rumors about your fearlessness are correct.
+
+      Kresla:
+      You''ve heard about me?!
+
+      Fashima_: Indeed. I must admit, I''m quite
+      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+
+      Kresla:
+      You- Wait. How do you know about the Magma Emblem?
+
+      Fashima_: I used
+      to be a friend of Kesper.\a Before he died, that is.
+
+      Kresla: Kesper?
+      How-
+
+      Fashima_: As much as I''d like to chat, we have appearances to
+      keep.
+
+      Kresla: Wait-
+
+      Fashima_: Silence, vermin! Prepare to meet
+      my wrath!
+
+      :setFlag:FashimaBattleKresla
 
       }
 
@@ -9223,24 +9368,24 @@ MonoBehaviour:
       We did it again! Let's go, everyone!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
       Name: Text.\r\n"
     Name: Conversations/Battle/Level7/Level7GenericLan.txt
-  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:>0\r\n~
-      Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant\r\n:addGenericCharacter:Guard1\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\nBrens:
-      Lan.\r\nLan: Yes, Brens?\r\nBrens: How are you holding up?\r\nBeing the new
-      Wall Magus must be quite tough.\r\nLan: Great! I'm doing great!\r\nBrens: Really?
-      Are you sure you're okay?\\a Fashima died rather... suddenly.\r\nLan: Yeah.
-      Who needs her, anyway?\r\nBrens: That's no way to treat your former master!\r\nLan:
-      Pfft. Don't tell me what to do!\r\nBrens: I'm not-\r\nBrens|Lan: Oh, oh, look
-      at me! I'm Brens!\\a I'm so smart and nice and good!\\a I'm here because I
-      worry about you,\\a not becuase I'm a power-hungry idiot! No, sir!\r\nBrens:
-      Lan, this behaviour is quite unbecoming of a Magus!\r\nBrens|Lan: Yeah, Lan!
-      Be like me! Annoying as hell!\r\nBrens: ...I'm going, Lan. Stay alive out there.\r\n:setSingleSpeaker:R\r\nLan:
-      ...\r\nRot in hell, Brens.\r\nLieutenant: Uh, Lan?\r\nLan: Yes, [Name:Guard1]?\r\nLieutenant:
-      My name's [Name], master.\r\nLan: Whatever. Spit it out.\r\nLieutenant: T-the
-      Magmaborn are back, master.\r\nLan: Back?! Oh yes! I'll finally have my revenge!\r\n:play:BeforeBattle2\r\n:loadUnits::player:T\r\n:setSingleSpeaker:L\r\nFrogman:
-      We're back... \r\nLan: HI, MAGMABORN! i'M GOING TO WIN THIS TIME!\r\nFrogman:
-      Uh-\r\nLan: BYE, LOSERS!\r\nFrogman: ...Wow.\r\n:markDone:\r\n\r\n~ After battle\r\n:setFlag:LanLost1\r\n:addCounter:TimesLanLost:1\r\n:play:AfterBattle\r\nFrogman:
-      We did it! Time to defeat Brens!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
-      Name: Text.\r\n"
+  - Text: "priority:4\nunique:T\nid:LanSecondTime\n~ Requirements\nroomNumber:7\nhasFlag:FashimaDied\n!hasFlag:BrensDied\ncompareCounter:TimesLanLost:>0\n~
+      Demands\nhasCharacter:Lan\n~ Before battle\n:play:GuardTheme2\n:addGenericCharacter:Lieutenant\n:addGenericCharacter:Guard1\n:loadUnits::monster\n:loadUnits::guard:T\nBrens:
+      Lan.\nLan: Yes, Brens?\nBrens: How are you holding up?\nBeing the new Wall
+      Magus must be quite tough.\nLan: Great! I'm doing great!\nBrens: Really? Are
+      you sure you're okay?\\a Fashima died rather... suddenly.\nLan: Yeah. Who needs
+      her, anyway?\nBrens: That's no way to treat your former master!\nLan: Pfft.
+      Don't tell me what to do!\nBrens: I'm not-\nBrens|Lan: Oh, oh, look at me!
+      I'm Brens!\\a I'm so smart and nice and good!\\a I'm here because I worry about
+      you,\\a not becuase I'm a power-hungry idiot! No, sir!\nBrens: Lan, this behaviour
+      is quite unbecoming of a Magus!\nBrens|Lan: Yeah, Lan! Be like me! Annoying
+      as hell!\nBrens: ...I'm going, Lan. Stay alive out there.\n:setSingleSpeaker:R\nLan:
+      ...\nPsh. What a jerk.\nLieutenant: Uh, Lan?\nLan: Yes, [Name:Guard1]?\nLieutenant:
+      My name's [Name], master.\nLan: Whatever. Spit it out.\nLieutenant: T-the Magmaborn
+      are back, master.\nLan: Back?! Oh yes! I'll finally have my revenge!\n:play:BeforeBattle2\n:loadUnits::player:T\n:setSingleSpeaker:L\nFrogman:
+      We're back... \nLan: HI, MAGMABORN! i'M GOING TO WIN THIS TIME!\nFrogman: Uh-\nLan:
+      BYE, LOSERS!\nFrogman: ...Wow.\n:markDone:\n\n~ After battle\n:setFlag:LanLost1\n:addCounter:TimesLanLost:1\n:play:AfterBattle\nFrogman:
+      We did it! Time to defeat Brens!\n\n# === Functions ====\n\n~ Sample\n# Name:
+      Text.\n"
     Name: Conversations/Battle/Level7/Level7LanFirstLoss.txt
   - Text: 'priority:5
 
@@ -10050,32 +10195,120 @@ MonoBehaviour:
       Frogman:
       We''re back... Come on, we''ve got no time to lose!
 
-      
+      :setBattleQuote:Werse:WerseBattle
 
-      # Name:
-      Text.
+
+      #
+      Name: Text.
 
       ~ After battle
 
       :play:AfterBattle
 
-      Torment: Congratiulations!
-      You''ve finished the beta! Now die!
+      Torment:
+      Congratiulations! You''ve finished the beta! Now die!
 
-      :showPartTitle:End of:Beta
+      :showPartTitle:End
+      of:Beta
 
       :lose:
 
-      
 
-      #
-      === Functions ====
+      # === Functions ====
 
-      
 
-      ~ Sample
+      ~ WerseBattle
 
-      # Name: Text.
+      :if:stringEquals:[Name:Attacker]:Werse{
+
+      Werse||R:
+      You win.
+
+      Defender: Huh?
+
+      Werse: I surrender. Pretend to kill me,\a
+      and the Guards will flee.
+
+      Defender: What?
+
+      Werse: ...Fine, I''ll
+      do it myself.
+
+      :screenShake:
+
+      Urk! You''ve... got me...\a I must...
+      retreat...
+
+      :hideUnit:Werse
+
+      :if:teamUnitsAlive:guard:>0{
+
+      :getGenericCharacter:Guard1
+
+      }
+
+      :else:{
+
+      :addGenericCharacter:Guard1
+
+      }
+
+      Guard1:
+      W-werse! They''re... gone!\a Retreat, evryone!
+
+      :killTeam:guard
+
+      Defender:
+      ...What just happened?
+
+      }
+
+      :else:{
+
+      Werse||R: You win.
+
+      Attacker:
+      Huh?
+
+      Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+
+      Attacker:
+      What?
+
+      Werse: ...Fine, I''ll do it myself.
+
+      :screenShake:
+
+      Urk!
+      You''ve... got me...\a I must... retreat...
+
+      :hideUnit:Werse
+
+      :if:teamUnitsAlive:guard:>0{
+
+      :getGenericCharacter:Guard1
+
+      }
+
+      :else:{
+
+      :addGenericCharacter:Guard1
+
+      }
+
+      Guard1:
+      W-werse! They''re... gone!\a Retreat, evryone!
+
+      :killTeam:guard
+
+      Attacker:
+      ...What just happened?
+
+      }
+
+      :win:
+
+
 
 '
     Name: Conversations/Battle/Level8/Level8GenericWerse.txt
@@ -33184,6 +33417,67 @@ MonoBehaviour:
         SurvivalWeight: 0.5
         CautionLevel: 3
     MusicName: TheCloneVats
+    Palette4:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 42
+      - id: 56
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 25
+        - id: 53
+        - id: 56
+      Name: Player
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 20
+        - id: 48
+        - id: 56
+      Name: Monster
+      PlayerControlled: 0
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 15
+        - id: 43
+        - id: 56
+      Name: Guard
+      PlayerControlled: 0
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: 
     Palette4:
       Colors:
       - id: 13
