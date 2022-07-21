@@ -2021,9 +2021,11 @@ MonoBehaviour:
 
       :call:PostFirst
 
+      :showPartTitle:Part
+      1:Monster
 
-      #
-      === Functions ====
+
+      # === Functions ====
 
 
       ~ PreFirst
@@ -2132,8 +2134,6 @@ MonoBehaviour:
       I guess I''ll just
       pick a random direction.
 
-      :showPartTitle:Part 1:Monster
-
       }
 
       :else:{
@@ -2217,35 +2217,32 @@ MonoBehaviour:
 
       :setDeathQuote:Firbell:FirbellNormalDeath
 
-      :showPartTitle:Part
-      1:Monster
-
       }
 
 
-      ~ FirbellFirstDeath
+      ~
+      FirbellFirstDeath
 
-      Firbell: Ugh... Frogman,
-      I will not...\a make it...
+      Firbell: Ugh... Frogman, I will not...\a make it...
 
-      Frogman: Huh? Firbell?! No! Hang on, I''ll-
+      Frogman:
+      Huh? Firbell?! No! Hang on, I''ll-
 
-      Firbell:
-      Fret not...\a We are... immortal...
+      Firbell: Fret not...\a We are...
+      immortal...
 
       Frogman: What?!
 
-      Firbell:
-      See you...\a soon...
+      Firbell: See you...\a soon...
 
-      Frogman: She... She just disappeared?!\a What is
-      this place?!
+      Frogman:
+      She... She just disappeared?!\a What is this place?!
 
 
       ~ FrogmanFirstDeath
 
-      Frogman: I-I can''t...\a I
-      don''t want to...\a die...
+      Frogman:
+      I-I can''t...\a I don''t want to...\a die...
 
       :lose:
 
@@ -5348,13 +5345,13 @@ MonoBehaviour:
 
       Frogman: ...
 
-      :showPartTitle:Part 2:Prisoner
-
       :setFlag:ReachedPart2
 
+      :showPartTitle:Part
+      2:Prisoner
 
-      #
-      === Functions ====
+
+      # === Functions ====
 
 
       ~ PreFirst
@@ -8264,12 +8261,14 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
+      :showPartTitle:Part
+      3:Champion
+
 
       # === Functions ====
 
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8540,12 +8539,14 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
+      :showPartTitle:Part
+      3:Champion
+
 
       # === Functions ====
 
 
-      ~
-      FashimaBattleQuote
+      ~ FashimaBattleQuote
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -8755,22 +8756,18 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman: We... We
-      did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a
-      I guess I shouldn''t be surprised.
+      Frogman: We... We did
+      it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I
+      guess I shouldn''t be surprised.
 
       }
 
       :call:Reaction
 
-      :showPartTitle:Part
-      3:Champion
 
-      
+      # ===
+      Functions ====
 
-      # === Functions ====
-
-      
 
       ~ Reaction
 
@@ -8836,7 +8833,6 @@ MonoBehaviour:
       Never
       mind, let''s go!
 
-      
 
 '
     Name: Conversations/Battle/Level7/Level7FashimaDeath.txt
@@ -8951,17 +8947,19 @@ MonoBehaviour:
 
       :callOther:Level7FashimaDeath
 
+      :showPartTitle:Part
+      3:Champion
+
 
       # === Functions ====
 
 
-      ~
-      Reaction
+      ~ Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell||R: They are protecting
-      the Fortress...
+      Firbell||R:
+      They are protecting the Fortress...
 
       }
 
@@ -9250,19 +9248,18 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
-      
 
-      ~
-      After battle
+      ~ After
+      battle
 
       :callOther:Level7FashimaDeath
 
-      
+      :showPartTitle:Part 3:Champion
 
-      # === Functions
-      ====
 
-      
+      #
+      === Functions ====
+
 
       ~ FashimaBattleQuote
 
@@ -9308,14 +9305,14 @@ MonoBehaviour:
 
       Frogman: Huh? You''re talking to me?
 
-      Fashima_:
-      Yes. Who else would I be talking to?
+      Fashima_: Yes.
+      Who else would I be talking to?
 
-      Frogman: Uh, it''s just that no
-      Guard has ever...
+      Frogman: Uh, it''s just that no Guard
+      has ever...
 
-      Fashima_: I''m not a pathetic Guard. I''m Fashima,
-      the Wall Magus.\a Prepare to die.
+      Fashima_: I''m not a pathetic Guard. I''m Fashima, the Wall
+      Magus.\a Prepare to die.
 
       Frogman: Wha...
 
@@ -9338,8 +9335,8 @@ MonoBehaviour:
       Alfred: No... It can''t be...
       You smell like the traitor!\a Fasher!
 
-      Fashima_: ...Fasher''s dead.
-      Has been for a long time now.\a Who''re you? How do you even know him?
+      Fashima_: ...Fasher''s dead. Has
+      been for a long time now.\a Who''re you? How do you even know him?
 
       Alfred:
       Alfred. Of the underground.\a The one Fasher betrayed for the Guards!\a Who''re

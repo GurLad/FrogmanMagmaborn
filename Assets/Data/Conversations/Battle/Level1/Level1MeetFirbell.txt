@@ -19,6 +19,7 @@ mapID:SpawnPoint5
 }
 ~
 :call:PostFirst
+:showPartTitle:Part 1:Monster
 
 # === Functions ====
 
@@ -64,7 +65,6 @@ Frogman: Oh no... Firbell is dead...\a What am I to do?\a But what she said...\a
 ...
 I'm talking to myself here. I should get out of here...
 I guess I'll just pick a random direction.
-:showPartTitle:Part 1:Monster
 }
 :else:{
 :play:AfterBattle
@@ -98,7 +98,6 @@ Firbell: Revive from the Magma.\a You are a strange case, Frogman.
 Let us leave this place before more monsters show up.
 }
 :setDeathQuote:Firbell:FirbellNormalDeath
-:showPartTitle:Part 1:Monster
 }
 
 ~ FirbellFirstDeath

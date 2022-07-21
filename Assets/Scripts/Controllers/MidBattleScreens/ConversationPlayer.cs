@@ -895,7 +895,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             lines = function.Lines;
             if (fadedOut)
             {
-                FadeThisIn(() => { SoftResume(); StartLine(function.LineNumber + 1); });
+                FadeThisIn(() => { SoftResume(); StartLine(function.LineNumber + 1); }, playMode != PlayMode.PostBattle);
                 return StartLineResult.Fade;
             }
             else
