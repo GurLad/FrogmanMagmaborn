@@ -917,7 +917,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         else if (!fadedOut && playMode == PlayMode.PostBattle) // Fade out if this is the post-battle part
         {
-            FadeThisOut(() => FinishConversation(true));
+            gameObject.SetActive(false);
+            FadeThisOut(() => { MidBattleScreen.Set(this, false); FinishConversation(true); }, null, false);
             return StartLineResult.Fade;
         }
         else if (playMode != PlayMode.PostBattle) // If this isn't the post-battle part, unset this mid-battle screen
@@ -926,7 +927,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         // Finish conversation
         lines.Clear();
-        
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         SetSinglePortrait(true);
