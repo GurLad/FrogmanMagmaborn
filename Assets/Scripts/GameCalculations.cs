@@ -164,10 +164,20 @@ public static class GameCalculations
             case TormentPowerState.None:
                 break;
             case TormentPowerState.I:
-                units.ForEach(a => a.Health -= (!a.TheTeam.IsMainPlayerTeam() && !a.Moved && a.Health > 1) ? 1 : 0);
+                units = units.FindAll(a => a.TheTeam.IsEnemy(StaticGlobals.MainPlayerTeam));
+                if (units.Count > 0)
+                {
+                    Unit selected = units[Random.Range(0, units.Count)];
+                    selected.Health -= Mathf.Min(selected.Health - 1, 2);
+                }
                 break;
             case TormentPowerState.II:
-                units.ForEach(a => a.Health += (a.TheTeam.IsMainPlayerTeam() && a.Health < a.Stats.MaxHP) ? 1 : 0);
+                units = units.FindAll(a => a.TheTeam.IsMainPlayerTeam());
+                if (units.Count > 0)
+                {
+                    Unit selected = units[Random.Range(0, units.Count)];
+                    selected.Health += Mathf.Min(selected.Stats.MaxHP - selected.Health, 2);
+                }
                 break;
             default:
                 break;

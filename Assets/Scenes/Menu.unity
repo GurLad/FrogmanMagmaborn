@@ -1503,29 +1503,29 @@ MonoBehaviour:
 
       ...
 
-      Kebera||R: Would you care to show yourselves,\a
-      or are you still pretending to sneak about?
+      Kebera||R: Would you care to show yourselves,\a or
+      are you still pretending to sneak about?
 
-      FrogmanMan: ...I want you
-      out of my city, Kebera.\a Dead or alive.
+      FrogmanMan: ...I want you out
+      of my city, Kebera.\a Dead or alive.
 
-      Kebera||R: Do you now? And
-      how, exactly,\a do you plan on making me leave?
+      Kebera||R: Do you now? And how,
+      exactly,\a do you plan on making me leave?
 
-      FrogmanMan: You''re
-      cornered. And alone.\a Zip and I are well known for a reason.\a Give up, and
-      you might yet live.
+      FrogmanMan: You''re cornered.
+      And alone.\a Zip and I are well known for a reason.\a Give up, and you might
+      yet live.
 
-      Kebera||R: So sure of yourself, are you?\a Daring
-      to threaten me?\a But that won''t save you now,\a Frogman.\a Time to meet your
-      maker.
+      Kebera||R: So sure of yourself, are you?\a Daring to threaten
+      me?\a But that won''t save you now,\a Frogman.\a Time to meet your maker.
 
-      FrogmanMan: Wrong answer. Zip, feather-
+      FrogmanMan:
+      Wrong answer. Zip, feather-
 
       :setSingleSpeaker:L
 
-      Huh?\a
-      Where did she go?
+      Huh?\a Where
+      did she go?
 
       Zip||R: Don''t know, boss. She just-
 
@@ -1595,18 +1595,18 @@ MonoBehaviour:
 
       :introShowTutorial:
 
-      
+
 
       ~
       After battle
 
       # Name: Text.
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       Sample
@@ -1771,7 +1771,7 @@ MonoBehaviour:
 
       :play:ForgottenMemories
 
-      
+
 
       :hideCG:
 
@@ -1788,18 +1788,18 @@ MonoBehaviour:
 
       :introShowTutorial:
 
-      
+
 
       ~
       After battle
 
       # Name: Text.
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       Sample
@@ -8334,8 +8334,8 @@ MonoBehaviour:
     Upgrades:
     - Name: Hurt /Help
       InternalName: TormentHurtHelp
-      Description: 'I : Enemies take 1 non-lethal damage each player turn.'
-      AltDescription: 'II: Your units heal 1 damage each player turn.'
+      Description: 'I : A random enemy takes 2 non-lethal damage each player turn.'
+      AltDescription: 'II: A random unit heals 2 damage each player turn.'
       Cost: 3
       DefaultState: -1
       NumChoices: 3
