@@ -25,11 +25,6 @@ Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!\a Li
 :else:{
 Frogman: We... We did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I guess I shouldn't be surprised.
 }
-:call:Reaction
-
-# === Functions ====
-
-~ Reaction
 :if:hasCharacter:Memerian{
 Memerian: Hmpf. She's bold, I'll give her that.
 Frogman: Huh?
@@ -55,4 +50,8 @@ Xirveros: Right! Maybe Kostliv inside!
 :return:
 }
 Never mind, let's go!
+
+# === Functions ====
+
+~ Reaction
 
