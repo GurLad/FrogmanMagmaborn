@@ -9908,11 +9908,11 @@ MonoBehaviour:
 
       :if:hasCharacter:Alfred{
 
-      Alfred||L: How
-      DARE you! Using the Magma Emblem you stole!\a From US!
+      Alfred||L: How DARE
+      you! Using the Magma Emblem you stole!\a From US!
 
-      Fashima: Oh,
-      shut up. It isn''t even that one.\a Catch.
+      Fashima: Oh, shut
+      up. It isn''t even that one.\a Catch.
 
       Alfred: What''s this crys-
 
@@ -9936,7 +9936,7 @@ MonoBehaviour:
 
       :loadMap:EndOfBeta
 
-      :loadUnits:
+      :loadUnits:EndOfBeta
 
       :setSingleSpeaker:L
 
@@ -9951,16 +9951,14 @@ MonoBehaviour:
       #
       TBA: Fashima choice, Bodder battle
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: Level8BrensDeath
@@ -10092,7 +10090,7 @@ MonoBehaviour:
       ~
       After battle
 
-      :callOther:BrensDeath
+      :callOther:Level8BrensDeath
 
 
       # === Functions ====
@@ -10268,21 +10266,18 @@ MonoBehaviour:
 
       :setDeathQuote:Brens:BrensDeath
 
-      
 
       #
       Name: Text.
 
       ~ After battle
 
-      :callOther:BrensDeath
+      :callOther:Level8BrensDeath
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ BrensDeath
 
@@ -10332,7 +10327,7 @@ MonoBehaviour:
       Werse:
       ...\a I can''t belive that he''s... gone...
 
-      :loadUnits:player:T
+      :loadUnits::player:T
 
       :play:BeforeBattle3
 
@@ -10452,7 +10447,14 @@ MonoBehaviour:
 
       }
 
-      :win:
+      :play:AfterBattle
+
+      Torment: Congratiulations!
+      You''ve finished the beta! Now die!
+
+      :showPartTitle:End of:Beta
+
+      :lose:
 
 
 
@@ -30070,8 +30072,7 @@ MonoBehaviour:
       Values: 020000000400000003000000010000000200000002000000
     DeathQuote: ':play:DeadAlly
 
-      Xeplogi: I-impossible! How could I...\a the
-      great Xeplogi...\a be bested...\a by such...'
+      Xeplogi: What a... shame...'
   - Name: Memerian
     DisplayName: Memerian
     Class: Golem
@@ -30124,7 +30125,7 @@ MonoBehaviour:
     Inclination: 2
     Growths:
       Values: 010000000300000002000000010000000300000004000000
-    DeathQuote: "Lan: No.. How did I lose? I'm too great for this!\\a This won't
+    DeathQuote: "Lan: No... How could I lose?! I'm too good for this!\\a This won't
       do at all! AT ALL!\nUgh, I must leave... \nBut I'll be back, and I'll show
       you GREATNES!\n"
   - Name: Werse
@@ -33422,13 +33423,13 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 0
-  DebugEndgameLevel: 2
+  DebugEndgameLevel: 8
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman
   - Firbell
-  DebugUnlimitedMove: 0
-  DebugOPPlayers: 0
+  DebugUnlimitedMove: 1
+  DebugOPPlayers: 1
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}
@@ -40222,7 +40223,7 @@ MonoBehaviour:
       :setTeamAI:monster:charge'
     Tileset: City
     Objective: 1
-    ObjectiveData: Brens
+    ObjectiveData: Werse
     MapString: 13|23|21|21|20|26|21|23|23|21|21|21|22|20|26;5|21|21|21|23|21|21|21|21|21|0|6|6|12|21;14|21|0|6|6|6|6|12|21|21|3|11|15|13|21;21|21|1|15|7|15|7|5|22|21|4|7|7|13|23;21|22|4|7|18|8|8|14|21|21|3|7|15|5|21;20|26|1|7|13|21|21|23|21|21|2|8|8|14|21;21|22|4|7|13|21|21|22|21|20|26|21|21|21|23;21|21|3|15|5|21|0|6|12|21|21|21|22|23|20;22|21|2|8|14|23|4|7|5|21|21|0|6|6|6;21|21|23|21|21|21|2|8|14|21|21|4|7|15|7;6|12|21|20|26|21|21|21|21|21|23|4|7|7|7;7|5|22|21|23|21|21|21|20|26|21|2|8|24|15;15|5|21|0|6|6|12|21|21|21|21|21|22|4|7;8|14|21|3|7|7|5|22|21|21|23|21|21|1|7;21|21|21|4|7|7|13|21|21|0|6|6|6|25|7;20|26|21|1|9|7|5|21|22|4|7|15|7|7|7
   - Name: Part2RestArea
     LevelNumber: 0

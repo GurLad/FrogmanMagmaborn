@@ -11,7 +11,7 @@ hasFlag:BrensDied
 :loadUnits::monster
 :loadUnits::guard:T
 Werse: ...\a I can't belive that he's... gone...
-:loadUnits:player:T
+:loadUnits::player:T
 :play:BeforeBattle3
 :setSingleSpeaker:L
 Frogman: We're back... Come on, we've got no time to lose!
@@ -65,6 +65,9 @@ Guard1: W-werse! They're... gone!\a Retreat, evryone!
 :killTeam:guard
 Attacker: ...What just happened?
 }
-:win:
+:play:AfterBattle
+Torment: Congratiulations! You've finished the beta! Now die!
+:showPartTitle:End of:Beta
+:lose:
 
 
