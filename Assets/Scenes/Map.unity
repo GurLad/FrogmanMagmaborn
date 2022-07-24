@@ -961,66 +961,6 @@ MonoBehaviour:
 
       :play:GuardTheme
 
-      :addGenericCharacter:Guard1:
-
-      :addGenericCharacter:Guard2:
-
-      :loadUnits::guard
-
-      Guard1:
-      Hello there.
-
-      Guard2: Hello.
-
-      Guard1: Would you like to do something
-      together?
-
-      Once we finish our shift, of course.
-
-      Guard2: No.
-
-      Guard1:
-      Oh.
-
-      :showInfoDialogue:Friendship up!
-
-      ~ After battle
-
-      #
-      Name: Text.
-
-      
-
-      # === Functions ====
-
-      
-
-      ~ Sample
-
-      #
-      Name: Text.
-
-'
-    Name: GuardConversation5
-  - Text: 'priority:-1
-
-      unique:F
-
-      id:GuardPreBanter
-
-      ~ Requirements
-
-      roomNumber:0
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      :play:GuardTheme
-
       :addGenericCharacter:Guard:young
 
       :addGenericCharacter:Bob:male,young
@@ -9590,7 +9530,7 @@ MonoBehaviour:
       I'm Brens!\\a I'm so smart and nice and good!\\a I'm here because I worry about
       you,\\a not becuase I'm a power-hungry idiot! No, sir!\nBrens: Lan, this behaviour
       is quite unbecoming of a Magus!\nBrens|Lan: Yeah, Lan! Be like me! Annoying
-      as hell!\nBrens: ...I'm going, Lan. Stay alive out there.\n:setSingleSpeaker:R\nLan:
+      as hell!\nBrens: ...I'm going, Lan. Stay alive out there.\n:killUnit:Brens\n:setSingleSpeaker:R\nLan:
       ...\nPsh. What a jerk.\nLieutenant: Uh, Lan?\nLan: Yes, [Name:Guard1]?\nLieutenant:
       My name's [Name], master.\nLan: Whatever. Spit it out.\nLieutenant: T-the Magmaborn
       are back, master.\nLan: Back?! Oh yes! I'll finally have my revenge!\n:play:BeforeBattle2\n:loadUnits::player:T\n:setSingleSpeaker:L\nFrogman:
@@ -10082,11 +10022,11 @@ MonoBehaviour:
       Maybe this
       will finally drive her to do something.
 
-      Werse: ...As you wish. But
-      Lessy is a lost cause.\a She never leaves her chamber anymore.
+      Werse: ...As you wish. But Lessy
+      is a lost cause.\a She never leaves her chamber anymore.
 
-      Brens:
-      Ugh. I know. Yet we must try!\a I''ll hold the Magmaborn here. Werse, go!
+      Brens: Ugh.
+      I know. Yet we must try!\a I''ll hold the Magmaborn here. Werse, go!
 
       Werse:
       Wait, what? No, you''re not a fighter!\a If they got through Fashima, they''ll
@@ -10095,8 +10035,8 @@ MonoBehaviour:
       Brens: ...It is our duty to die for humanity, Werse.\a
       Never forget that.
 
-      Werse: No. Our duty is to protect them, not die
-      for them!\a Brens, please! Don''t sacrifice yourself!
+      Werse: No. Our duty is to protect them, not die for
+      them!\a Brens, please! Don''t sacrifice yourself!
 
       Brens: Ha. You''re
       a good kid, Werse.\a But we don''t have time for this.\a Go alert the remaining
@@ -10117,10 +10057,10 @@ MonoBehaviour:
       Brens:
       ...I''m sorry, Werse. But I will fulfill my duty.
 
-      Soldiers! Listen
-      up! Our worst fears have materialized.\a The Magmaborn are coming again.\a
-      They managed to break through our walls.\a They killed Fashima.\a Yet we must
-      not despair!\a We must protect the clone vats!\a We must protect the crystals!\a
+      Soldiers! Listen up!
+      Our worst fears have materialized.\a The Magmaborn are coming again.\a They
+      managed to break through our walls.\a They killed Fashima.\a Yet we must not
+      despair!\a We must protect the clone vats!\a We must protect the crystals!\a
       We must protect humanity!\a This is our sworn duty.\a It is time to fullfill
       it.\a Guards - assemble!
 
@@ -10137,7 +10077,7 @@ MonoBehaviour:
 
       Guard3||L: For Fashima!
 
-      :loadUnits:player:T
+      :loadUnits::player:T
 
       :play:BeforeBattle3
 
@@ -10152,65 +10092,62 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
 
       :callOther:BrensDeath
 
-      
 
-      # === Functions
-      ====
+      # === Functions ====
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell:
-      These... are homes, Frogman.
+      Firbell: These... are homes,
+      Frogman.
 
-      Frogman: Yes, I know. This must be where
-      the Guards live.
-
-      Firbell: Killing them here would be... brutal.
-
-      Frogman:
-      ...You''re right. But what choice do we have?\a We''ve come this far.\a We
-      can''t go back now.\a And they''re on the way to teh center.
+      Frogman: Yes, I know. This must be where the Guards live.
 
       Firbell:
-      It is never too late, Frogman. We should return.\a Go back to... before all
-      of this.\a Fighting mindless monsters, not humans.
+      Killing them here would be... brutal.
 
-      Frogman: It is too
-      late now, Firbell.\a I''m sorry. But I''m not going back.
+      Frogman: ...You''re right. But
+      what choice do we have?\a We''ve come this far.\a We can''t go back now.\a
+      And they''re on the way to the center.
+
+      Firbell: It is never too late,
+      Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless
+      monsters, not humans.
+
+      Frogman: It is too late now, Firbell.\a I''m sorry.
+      But I''m not going back.
+
+      Firbell: ...Then I must-
+
+      Frogman: Abandon
+      us? Your friends? Your comrades?\a Would that be just, Firbell?
 
       Firbell:
-      ...Then I must-
+      N-no, but-
 
-      Frogman: Abandon us? Your friends? Your comrades?\a
-      Would that be just, Firbell?
-
-      Firbell: N-no, but-
-
-      Frogman: This
-      is no time to second-guess our actions, Firbell.\a We need you here, Firbell.\a
-      Are you with us?
+      Frogman: This is no time to second-guess our actions, Firbell.\a
+      We need you here, Firbell.\a Are you with us?
 
       Firbell: ...
 
-      Fine, Frogman.
+      Fine,
+      Frogman.
 
-      Frogman:
-      Good. Let''s go!
+      Frogman: Good. Let''s go!
 
       Firbell: ...
 
-      How did this happen...?
+      How did
+      this happen...?
 
       :return:
 
@@ -10255,7 +10192,6 @@ MonoBehaviour:
       Oh
       well, let''s break through!
 
-      
 
       ~ BrensDeath
 
@@ -10336,6 +10272,7 @@ MonoBehaviour:
 
       :setDeathQuote:Brens:BrensDeath
 
+      
 
       #
       Name: Text.
@@ -10344,10 +10281,12 @@ MonoBehaviour:
 
       :callOther:BrensDeath
 
+      
 
-      # ===
-      Functions ====
+      #
+      === Functions ====
 
+      
 
       ~ BrensDeath
 
@@ -38934,10 +38873,14 @@ MonoBehaviour:
       Guard1: Uh,
       it''s just that Fashima-
 
-      Lan: Fashima, Smashima.\a I''m waiting here,
-      soldier.
+      Lan: Fashima, Smashima.\a I prefer walking.
 
-      Guard1: R-right...'
+      Guard1:
+      R-right...
+
+      :setTeamAI:monster:charge
+
+'
     - '~
 
       turn:>2
@@ -39469,10 +39412,14 @@ MonoBehaviour:
       Guard1: Uh,
       it''s just that Fashima-
 
-      Lan: Fashima, Smashima.\a I''m waiting here,
-      soldier.
+      Lan: Fashima, Smashima.\a I prefer walking.
 
-      Guard1: R-right...'
+      Guard1:
+      R-right...
+
+      :setTeamAI:monster:charge
+
+'
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Lan
