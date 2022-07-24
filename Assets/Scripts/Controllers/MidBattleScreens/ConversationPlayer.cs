@@ -923,7 +923,10 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         else if (playMode != PlayMode.PostBattle) // If this isn't the post-battle part, unset this mid-battle screen
         {
-            MidBattleScreen.Set(this, false);
+            if (MidBattleScreen.HasCurrent)
+            { 
+                MidBattleScreen.Set(this, false);
+            }
         }
         // Finish conversation
         lines.Clear();

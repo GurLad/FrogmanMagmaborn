@@ -9739,33 +9739,35 @@ MonoBehaviour:
       Will be here any moment now.
 
       Brens: ...This is terrible. It''s been
-      centuries since...\a Werse, go alert Bodder.\a And the Crystal Magus.\a Maybe
-      this will finally drive her to do something.
+      centuries since...\a Werse, go alert Bodder.\a And Lessy.
 
-      Werse: ...As you wish.
-      But the Crystal Magus is a lost cause.
+      Maybe this
+      will finally drive her to do something.
 
-      Brens: Ugh. I know. Yet we must
-      try!\a I''ll hold the Magmaborn here. Werse, go!
+      Werse: ...As you wish. But Lessy
+      is a lost cause.\a She never leaves her chamber anymore.
 
-      Werse: Wait, what?
-      No, you''re not a fighter!\a If they got through Fashima, they''ll tear you
-      to shreds!
-
-      Brens: ...It is our duty to die for humanity, Werse.\a Never
-      forget that.
-
-      Werse: No. Our duty is to protect them, not die for them!\a
-      Brens, please! Don''t sacrifice yourself!
-
-      Brens: Ha. You''re a good
-      kid, Werse.\a But we don''t have time for this.\a Go alert the remaining Magi.
+      Brens: Ugh.
+      I know. Yet we must try!\a I''ll hold the Magmaborn here. Werse, go!
 
       Werse:
-      Brens! You don''t have to die! I beg you!
+      Wait, what? No, you''re not a fighter!\a If they got through Fashima, they''ll
+      tear you to shreds!
 
-      Brens: Werse, enough with
-      this whining! Go alert the Magi at once!\a That''s an order!
+      Brens: ...It is our duty to die for humanity, Werse.\a
+      Never forget that.
+
+      Werse: No. Our duty is to protect them, not die for
+      them!\a Brens, please! Don''t sacrifice yourself!
+
+      Brens: Ha. You''re
+      a good kid, Werse.\a But we don''t have time for this.\a Go alert the remaining
+      Magi.
+
+      Werse: Brens! You don''t have to die! I beg you!
+
+      Brens:
+      Werse, enough with this whining! Go alert the Magi at once!\a That''s an order!
 
       Werse:
       I...\a As you say, master.
@@ -9777,10 +9779,10 @@ MonoBehaviour:
       Brens:
       ...I''m sorry, Werse. But I will fulfill my duty.
 
-      Soldiers! Listen
-      up! Our worst fears have materialized.\a The Magmaborn are coming again.\a
-      They managed to break through our walls.\a They killed Fashima.\a Yet we must
-      not despair!\a We must protect the clone vats!\a We must protect the crystals!\a
+      Soldiers! Listen up!
+      Our worst fears have materialized.\a The Magmaborn are coming again.\a They
+      managed to break through our walls.\a They killed Fashima.\a Yet we must not
+      despair!\a We must protect the clone vats!\a We must protect the crystals!\a
       We must protect humanity!\a This is our sworn duty.\a It is time to fullfill
       it.\a Guards - assemble!
 
@@ -9812,65 +9814,62 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
 
       :callOther:BrensDeath
 
-      
 
-      # === Functions
-      ====
+      # === Functions ====
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell:
-      These... are homes, Frogman.
+      Firbell: These... are homes,
+      Frogman.
 
-      Frogman: Yes, I know. This must be where
-      the Guards live.
-
-      Firbell: Killing them here would be... brutal.
-
-      Frogman:
-      ...You''re right. But what choice do we have?\a We''ve come this far.\a We
-      can''t go back now.\a And they''re on the way to teh center.
+      Frogman: Yes, I know. This must be where the Guards live.
 
       Firbell:
-      It is never too late, Frogman. We should return.\a Go back to... before all
-      of this.\a Fighting mindless monsters, not humans.
+      Killing them here would be... brutal.
 
-      Frogman: It is too
-      late now, Firbell.\a I''m sorry. But I''m not going back.
+      Frogman: ...You''re right. But
+      what choice do we have?\a We''ve come this far.\a We can''t go back now.\a
+      And they''re on the way to teh center.
+
+      Firbell: It is never too late,
+      Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless
+      monsters, not humans.
+
+      Frogman: It is too late now, Firbell.\a I''m sorry.
+      But I''m not going back.
+
+      Firbell: ...Then I must-
+
+      Frogman: Abandon
+      us? Your friends? Your comrades?\a Would that be just, Firbell?
 
       Firbell:
-      ...Then I must-
+      N-no, but-
 
-      Frogman: Abandon us? Your friends? Your comrades?\a
-      Would that be just, Firbell?
-
-      Firbell: N-no, but-
-
-      Frogman: This
-      is no time to second-guess our actions, Firbell.\a We need you here, Firbell.\a
-      Are you with us?
+      Frogman: This is no time to second-guess our actions, Firbell.\a
+      We need you here, Firbell.\a Are you with us?
 
       Firbell: ...
 
-      Fine, Frogman.
+      Fine,
+      Frogman.
 
-      Frogman:
-      Good. Let''s go!
+      Frogman: Good. Let''s go!
 
       Firbell: ...
 
-      How did this happen...?
+      How did
+      this happen...?
 
       :return:
 
@@ -9915,7 +9914,6 @@ MonoBehaviour:
       Oh
       well, let''s break through!
 
-      
 
       ~ BrensDeath
 
@@ -33150,7 +33148,7 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugStartAtEndgame: 0
-  DebugEndgameLevel: 4
+  DebugEndgameLevel: 5
   DebugExtraLevels: 0
   DebugUnits:
   - Frogman
