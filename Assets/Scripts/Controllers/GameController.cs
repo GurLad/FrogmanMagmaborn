@@ -862,6 +862,13 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         // Init unit replacements
         LevelMetadata.UnitReplacements.ForEach(a => a.Init());
         // Room-specific behaviours
+        InitRoomObjective();
+        // Play conversation
+        return conversation;
+    }
+
+    private void InitRoomObjective()
+    {
         if (selectedMap.Objective == Objective.Escape)
         {
             string[] parts = selectedMap.ObjectiveData.Split(':');
@@ -872,8 +879,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             EscapeMarker.gameObject.SetActive(false);
         }
-        // Play conversation
-        return conversation;
     }
 
     private Unit CreateEmptyUnit()
@@ -1374,6 +1379,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         selectedMap = data.SelectedMap;
         selectedMap.Init();
         LoadMap(selectedMap);
+        InitRoomObjective();
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
         foreach (string unitJSON in data.Units)

@@ -5947,13 +5947,15 @@ MonoBehaviour:
       Frogman:
       ...
 
+      :setFlag:HasTormentGiveTake
+
       :unlockKnowledge:TormentGiveTake
 
-      :showInfoDialogue:New knowledge!
+      :showInfoDialogue:New
+      knowledge!
 
 
-      #
-      === Functions ====
+      # === Functions ====
 
 
       ~ Sample
@@ -5973,6 +5975,8 @@ MonoBehaviour:
       hasFlag:MetXeplogi
 
       hasFlag:TormentXeplogi
+
+      !hasFlag:HasTormentGiveTake
 
       ~
       Demands
