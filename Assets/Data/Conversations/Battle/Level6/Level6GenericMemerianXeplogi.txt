@@ -20,14 +20,14 @@ Frogman: Ugh, enough.
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
 :addCounter:MemerianXeplogiBalance:-1
-Frogman: Xeplogi, let's defeat this... witch.
+Frogman||L: Xeplogi, let's defeat this... witch.
 Xeplogi: Ha! Yes!
 Memerian: ...Die, fools.
 :setTeam:Memerian:monster
 }
 :else:{
 :addCounter:MemerianXeplogiBalance:1
-Frogman: I'm sorry, Xeplogi. Please leave us.
+Frogman||L: I'm sorry, Xeplogi. Please leave us.
 Xeplogi: How dare you! You will die for this, Frogman!
 :setTeam:Xeplogi:monster
 }
