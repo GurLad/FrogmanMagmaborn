@@ -15,11 +15,11 @@ Werse: What? No, Brens, let me handle them. I'm str-
 Brens: What? Absolutly not! Get out of here, Werse!
 Werse: But-
 Brens: Don't make me order you again, Werse!
-Werse: ...Find.\a But promise me you'll stay alive.
+Werse: ...Fine.\a But promise me you'll stay alive.
 Brens: Heh. Don't worry about me. Now, go!
 Werse: ...
 :killUnit:Werse
-:loadUnits:player:T
+:loadUnits::player:T
 :play:BeforeBattle3
 :setSingleSpeaker:L
 Frogman: We're back... Let's defeat Brens this time!
