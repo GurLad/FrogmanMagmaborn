@@ -135,51 +135,6 @@ MonoBehaviour:
       VoiceType: 2
       Pitch: 1.5
     DisplayName: Torment
-  - Name: Xeplogi
-    Background: {fileID: 21300000, guid: 6add5ec614ff386429af24351fa82f0e, type: 3}
-    Foreground: {fileID: 21300000, guid: 346a109af78e76c4a81b08dfc6560a9e, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 25
-      - id: 39
-      - id: 53
-    ForegroundColorID: 2
-    AccentColor: 0
-    Voice:
-      VoiceType: 2
-      Pitch: 0.6
-    DisplayName: Xeplogi
-  - Name: Memerian
-    Background: {fileID: 21300000, guid: 39af27ca39c98ad429634cf4ec19c55e, type: 3}
-    Foreground: {fileID: 21300000, guid: 5f7f1696546c1ca429afdd1829314df8, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 7
-      - id: 22
-      - id: 36
-    ForegroundColorID: 1
-    AccentColor: 0
-    Voice:
-      VoiceType: 1
-      Pitch: 0.8
-    DisplayName: Memerian
-  - Name: Alfred
-    Background: {fileID: 21300000, guid: a0abfefbdb411df44bdb4b34342eaddb, type: 3}
-    Foreground: {fileID: 21300000, guid: d0fdf11286051014ebe1ccd6f2bb1581, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 26
-      - id: 40
-      - id: 54
-    ForegroundColorID: 2
-    AccentColor: 0
-    Voice:
-      VoiceType: 0
-      Pitch: 1.2
-    DisplayName: Alfred
   - Name: Zip
     Background: {fileID: 21300000, guid: c096b8f433b9e24429a38959c9cfa66a, type: 3}
     Foreground: {fileID: 21300000, guid: ab7c124666fc9914bb2ced8c979c49e8, type: 3}
@@ -210,21 +165,6 @@ MonoBehaviour:
       VoiceType: 3
       Pitch: 1
     DisplayName: Frogman
-  - Name: Dehar
-    Background: {fileID: 21300000, guid: a093919c3dfd1f74ca4ceff6341f9686, type: 3}
-    Foreground: {fileID: 21300000, guid: 67a15b3e21e25454bba50a2ac620cffc, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 0
-      - id: 28
-      - id: 42
-    ForegroundColorID: 0
-    AccentColor: 3
-    Voice:
-      VoiceType: 2
-      Pitch: 1.6
-    DisplayName: Dehar
   - Name: Kebera
     Background: {fileID: 21300000, guid: 95648850fae6e9b4f92163086cc83f97, type: 3}
     Foreground: {fileID: 21300000, guid: 52592fc8cf2ec0149ab337ccdd4cc4f6, type: 3}
@@ -240,36 +180,6 @@ MonoBehaviour:
       VoiceType: 2
       Pitch: 1.6
     DisplayName: Kebera
-  - Name: Fashima_
-    Background: {fileID: 21300000, guid: 69ee4bb687dbd6241b8d589cca9c834b, type: 3}
-    Foreground: {fileID: 21300000, guid: 707313720c0db7f41b029dbe5615b4e4, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 22
-      - id: 36
-      - id: 50
-    ForegroundColorID: 2
-    AccentColor: 1
-    Voice:
-      VoiceType: 2
-      Pitch: 1.6
-    DisplayName: Fashima
-  - Name: Fashima
-    Background: {fileID: 21300000, guid: e23beeaf41bdf01438d38c4b6d17c6a6, type: 3}
-    Foreground: {fileID: 21300000, guid: 6985d5af7744dd34c80fc7e5f9d39d04, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 37
-      - id: 51
-      - id: 53
-    ForegroundColorID: 2
-    AccentColor: 0
-    Voice:
-      VoiceType: 2
-      Pitch: 1.6
-    DisplayName: Fashima
   - Name: FBWitness
     Background: {fileID: 21300000, guid: f5b1da1ff3990b54187b60eab8d0aa39, type: 3}
     Foreground: {fileID: 21300000, guid: 8c292af261b0b2142bc16ee09870447e, type: 3}
@@ -285,81 +195,6 @@ MonoBehaviour:
       VoiceType: 0
       Pitch: 0.8
     DisplayName: ???
-  - Name: Bodder
-    Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
-    Foreground: {fileID: 21300000, guid: f8c1441e0307f7246ab3e3ae54613a05, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 8
-      - id: 22
-      - id: 35
-    ForegroundColorID: 0
-    AccentColor: 1
-    Voice:
-      VoiceType: 3
-      Pitch: 0.4
-    DisplayName: Bodder
-  - Name: Brens
-    Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
-    Foreground: {fileID: 21300000, guid: 977489b3899f54b45a7217d3e8246dcf, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 7
-      - id: 21
-      - id: 35
-    ForegroundColorID: 3
-    AccentColor: 1
-    Voice:
-      VoiceType: 1
-      Pitch: 0.5
-    DisplayName: Brens
-  - Name: Lan
-    Background: {fileID: 21300000, guid: 6f6cce5a5611e2e43b652b9dcb1fe430, type: 3}
-    Foreground: {fileID: 21300000, guid: 4a13ca4c3921a354f9f3c1fcb0129663, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 7
-      - id: 8
-      - id: 22
-    ForegroundColorID: 3
-    AccentColor: 1
-    Voice:
-      VoiceType: 0
-      Pitch: 0.8
-    DisplayName: Lan
-  - Name: Werse
-    Background: {fileID: 21300000, guid: ae5fee134583d53439674acb57a8c36f, type: 3}
-    Foreground: {fileID: 21300000, guid: 4d8c8a4094238314a8c5bc8871a6714e, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 19
-      - id: 46
-      - id: 35
-    ForegroundColorID: 1
-    AccentColor: 1
-    Voice:
-      VoiceType: 2
-      Pitch: 0.9
-    DisplayName: Werse
-  - Name: Menross
-    Background: {fileID: 21300000, guid: b8d2663e2c97e7c4887ee9daced90c5e, type: 3}
-    Foreground: {fileID: 21300000, guid: 71b02c6f1741de642aee853fbfcf06ee, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 0
-      - id: 28
-      - id: 42
-    ForegroundColorID: 3
-    AccentColor: 3
-    Voice:
-      VoiceType: 2
-      Pitch: 0.5
-    DisplayName: Menross
   GenericPortraits:
   - tags: female,young
     VoiceType: 1
