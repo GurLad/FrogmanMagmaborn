@@ -11,7 +11,7 @@ hasCharacter:Xirveros
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
 :if:firstTime:{
-Frogman: It's you again!
+Frogman||L: It's you again!
 :play:Trustworthy
 Torment: It IS me again, heh heh!
 And you have Xirveros with you, I see!\a An obedient dog once again. Ha!
@@ -33,7 +33,7 @@ Torment: No, no, don't talk. Just FIGHT!
 :loadUnits:
 }
 :else:{
-Frogman: Torment...
+Frogman||L: Torment...
 Torment: Frogman. Are you undermining me, or simply stupid?
 Frogman: What?
 :if:!hasFlag:TormentCharacterPowerFail{
@@ -60,7 +60,7 @@ Torment: Ponder this question while you fight, Frogman.\a And try to win this ti
 
 ~ After battle
 :play:Trickster
-Torment: Ooh, you're so much more interesting when fighting\a instead of talking! Heh heh!
+Torment||R: Ooh, you're so much more interesting when fighting\a instead of talking! Heh heh!
 Frogman: You... This... I...
 Torment: See? That's much better now! Ha ha!\a Maybe I should break your mind too.\a Hm...
 Frogman: N-no!\a Please don't!\a I'd never betray you!

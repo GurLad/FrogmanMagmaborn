@@ -11,7 +11,7 @@ hasCharacter:Kresla
 :loadUnits:InitTormentRoom
 :if:firstTime:{
 :play:Trustworthy
-Torment: Hello, hello! Back so soon? Heh!
+Torment||R: Hello, hello! Back so soon? Heh!
 Frogman: Unfortunately...
 Torment: Why the sour face, eh? Ha!\a Your dullness almost makes me wish Kresla was here!
 Frogman: She... she's right here.
@@ -37,14 +37,14 @@ Torment: Cry later - now is the time to FIGHT!
 :setFlag:TormentCharacterPowerFail
 :screenShake:
 :play:Trustworthy
-Torment: FROGMAN!!!
+Torment||R: FROGMAN!!!
 Frogman: Aghhh!
 Torment: You died in the middle of our previous conversations!
 }
 :else:{
 :screenShake:
 :play:Trustworthy
-Torment: FROGMAN!!!
+Torment||R: FROGMAN!!!
 Frogman: Aghhh!
 Torment: Stop dying in the middle of our conversations!
 }

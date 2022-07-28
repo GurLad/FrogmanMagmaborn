@@ -12,7 +12,7 @@ hasFlag:MetMemerian
 :if:firstTime:{
 :play:Trustworthy
 :setSpeaker:Frogman
-Torment: Why, hello there, Frogman! I've missed you. Heh heh.
+Torment||R: Why, hello there, Frogman! I've missed you. Heh heh.
 Frogman: You have?
 Torment: I was recently reminded of your predecessor. Memerian.\a She is such a bore, isn't she?\a Dull as a rock! Ha ha ha!
 Frogman: Predecessor?
@@ -42,7 +42,7 @@ Frogman: ...It was worth a try.
 :setFlag:TormentCharacterPowerFail
 }
 :setSpeaker:Frogman
-Torment: Welcome back, my dear Frogman!\a How was your... day? Heh heh.
+Torment||R: Welcome back, my dear Frogman!\a How was your... day? Heh heh.
 Frogman: Day?
 Torment: Oh no. You are not doing this again. Heh.
 Frogman: Again?
@@ -57,7 +57,7 @@ Frogman: At least there isn't a monologue this time.
 ~ After battle
 :play:Trickster
 :setSpeaker:Frogman
-Torment: What a splendid battle! Ha ha ha!
+Torment||R: What a splendid battle! Ha ha ha!
 Frogman: Splendid?
 Torment: ...I grow weary of you, Frogman. Heh.\a You can go now.
 :loadMap:InitTormentRoom

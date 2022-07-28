@@ -3730,7 +3730,7 @@ MonoBehaviour:
       Wow.\a Firbell, what is that thing?
 
       Firbell: What are you- Oh.\a You
-      mean the Fortress.
+      mean the fortress.
 
       Frogman: Fortress?
 
@@ -3833,28 +3833,29 @@ MonoBehaviour:
       they disappeared -\a but I will find out one day!\a I do have a few-
 
       Frogman:
-      Kresla. About the Lich.
+      Kresla. About the liches.
 
-      Kresla: Right, right. Firbell told me -\a before
-      she stopped talking to me, that is -\a that magic is done through unique crystals.
+      Kresla: Right, right. Firbell told me -\a
+      before she stopped talking to me, that is -\a that magic is done through unique
+      crystals.
 
-      Since
-      the lich has one, it can wield magic!\a But every time I get close to study
-      one,\a it kills me.
+      Since liches have these crystals,\a they can wield magic!\a
+      But every time I get close to study one,\a it kills me.
 
-      Here, let me show you. Follow me!
+      Here, let me
+      show you. Follow me!
 
-      Frogman:
-      Wait, where are you going?
+      Frogman: Wait, where are you going?
 
-      Kresla: To the Fortress!
+      Kresla:
+      To the Fortress!
 
       :hideCG:
 
       :play:ToTheDeath
 
-      Frogman:
-      Is that the lich?
+      Frogman: Is
+      that monster there a lich?
 
       Kresla: Indeed! Fancy fighting it?
 
@@ -3938,13 +3939,13 @@ MonoBehaviour:
       Frogman:
       I''m all alone again... Wait, what is that thing?
 
-      Wow. It''s a huge
-      underground fortress!
+      Wow. It looks like
+      a huge underground fortress!
 
       I guess I''ll go there.
 
-      # TBA: add Kresla
-      or Firbell (de[ending on who died)
+      # TBA: add
+      Kresla or Firbell (de[ending on who died)
 
       :hideCG:
 
@@ -5336,13 +5337,13 @@ MonoBehaviour:
 
       :loadUnits:InitTormentRoom
 
-      Frogman:
+      Frogman||L:
       Oh no!
 
       :play:Trustworthy
 
-      Torment: My, must you repeat your
-      lines so? Heh heh!
+      Torment: My, must you repeat your lines
+      so? Heh heh!
 
       Frogman: Why, you-
 
@@ -5403,7 +5404,7 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment:
+      Torment||R:
       Hello, hello! Back so soon? Heh!
 
       Frogman: Unfortunately...
@@ -5469,7 +5470,7 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment:
+      Torment||R:
       FROGMAN!!!
 
       Frogman: Aghhh!
@@ -5485,7 +5486,7 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment:
+      Torment||R:
       FROGMAN!!!
 
       Frogman: Aghhh!
@@ -5613,28 +5614,27 @@ MonoBehaviour:
 
       :setSpeaker:Frogman
 
-      Torment:
+      Torment||R:
       Why, hello there, Frogman! I''ve missed you. Heh heh.
 
-      Frogman: You
-      have?
+      Frogman: You have?
 
-      Torment: I was recently reminded of your predecessor. Memerian.\a
-      She is such a bore, isn''t she?\a Dull as a rock! Ha ha ha!
+      Torment:
+      I was recently reminded of your predecessor. Memerian.\a She is such a bore,
+      isn''t she?\a Dull as a rock! Ha ha ha!
 
-      Frogman:
-      Predecessor?
+      Frogman: Predecessor?
 
-      Torment: Yes. She was my previous champion.\a Firbell
-      and Xirveros fought with her for a while.\a But then she grew... uncooperative.
-      Heh.
+      Torment:
+      Yes. She was my previous champion.\a Firbell and Xirveros fought with her for
+      a while.\a But then she grew... uncooperative. Heh.
 
       Frogman: Uncooperative?
 
-      Torment: She stopped attempting
-      to reach the fortress.\a In fact, she always stayed far from it.\a And that
-      simply wouldn''t do.\a After all, how would I escape without you pawns to help
-      me?\a Ha ha ha!
+      Torment:
+      She stopped attempting to reach the fortress.\a In fact, she always stayed
+      far from it.\a And that simply wouldn''t do.\a After all, how would I escape
+      without you pawns to help me?\a Ha ha ha!
 
       Frogman: How?
 
@@ -5673,14 +5673,14 @@ MonoBehaviour:
 
       Frogman: Questions?
 
-      Torment: Oh my, you truly are a
-      worthy champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t
-      get away with this.\a DIE!
+      Torment: Oh my, you truly are a worthy
+      champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t get
+      away with this.\a DIE!
 
       :loadUnits:
 
-      Frogman: ...It was worth
-      a try.
+      Frogman: ...It was worth a
+      try.
 
       }
 
@@ -5694,7 +5694,7 @@ MonoBehaviour:
 
       :setSpeaker:Frogman
 
-      Torment:
+      Torment||R:
       Welcome back, my dear Frogman!\a How was your... day? Heh heh.
 
       Frogman:
@@ -5721,16 +5721,14 @@ MonoBehaviour:
 
       }
 
-      
 
-      ~ After
-      battle
+      ~ After battle
 
       :play:Trickster
 
       :setSpeaker:Frogman
 
-      Torment:
+      Torment||R:
       What a splendid battle! Ha ha ha!
 
       Frogman: Splendid?
@@ -5750,16 +5748,13 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
 
       # === Functions ====
 
-      
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Memerian
@@ -5790,7 +5785,7 @@ MonoBehaviour:
 
       :loadUnits:InitTormentRoom
 
-      Frogman:
+      Frogman||L:
       Oh no!
 
       :play:Trustworthy
@@ -5836,7 +5831,7 @@ MonoBehaviour:
 
       :loadUnits:InitTormentRoom
 
-      Torment:
+      Torment||R:
       Ha ha ha! Well, you can go on now, my talking companion!
 
       Frogman: You...'
@@ -6150,7 +6145,7 @@ MonoBehaviour:
 '
     Name: Torment1XeplogiNoFail
   - Text: "priority:2\nunique:T\n~ Requirements\nroomNumber:4\nhasCharacter:Xirveros\n~
-      Demands\n# Nothinig\n~ Before battle\n:callOther:TormentBase\n:play:BeforeBattle\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\n:if:firstTime:{\nFrogman:
+      Demands\n# Nothinig\n~ Before battle\n:callOther:TormentBase\n:play:BeforeBattle\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\n:if:firstTime:{\nFrogman||L:
       It's you again!\n:play:Trustworthy\nTorment: It IS me again, heh heh!\nAnd
       you have Xirveros with you, I see!\\a An obedient dog once again. Ha!\nFrogman:
       What is Xirveros to do with anything?\nTorment: What isn't Xirveros to do with?
@@ -6161,7 +6156,7 @@ MonoBehaviour:
       Can't have you be too independent, you know.\\a Heh.\nFrogman: Is this a threat?\n:playIntro:Tormentor\n:loadMap:\n:screenShake:\nTorment:
       Oh, it very much is! HA HA HA!!!\\a Just do what you're told, and all will
       be fine!\\a Or not. Heh heh heh!\nFrogman: I-\nTorment: No, no, don't talk.
-      Just FIGHT!\n:loadUnits:\n}\n:else:{\nFrogman: Torment...\nTorment: Frogman.
+      Just FIGHT!\n:loadUnits:\n}\n:else:{\nFrogman||L: Torment...\nTorment: Frogman.
       Are you undermining me, or simply stupid?\nFrogman: What?\n:if:!hasFlag:TormentCharacterPowerFail{\n:setFlag:TormentCharacterPowerFail\nTorment:
       You died quite foolishly last time. Heh.\\a It felt almost... on purpose, don't
       you think?\n:else:{\nTorment: You died quite foolishly last time. Heh.\\a And
@@ -6172,7 +6167,7 @@ MonoBehaviour:
       Oh? You claim that I'M the problem here?\\a What insolence! Should I break
       your mind, then?\\a Like Xirveros? Hm?\nFrogman: I-\nTorment: Ponder this question
       while you fight, Frogman.\\a And try to win this time.\\a Otherwise, I might
-      get... paranoid.\\a Heh heh heh.\n:loadUnits:\n}\n\n~ After battle\n:play:Trickster\nTorment:
+      get... paranoid.\\a Heh heh heh.\n:loadUnits:\n}\n\n~ After battle\n:play:Trickster\nTorment||R:
       Ooh, you're so much more interesting when fighting\\a instead of talking! Heh
       heh!\nFrogman: You... This... I...\nTorment: See? That's much better now! Ha
       ha!\\a Maybe I should break your mind too.\\a Hm...\nFrogman: N-no!\\a Please

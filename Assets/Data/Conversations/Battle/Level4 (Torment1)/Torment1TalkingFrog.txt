@@ -11,7 +11,7 @@ hasFlag:TalkingFrogFirbell
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
-Frogman: Oh no!
+Frogman||L: Oh no!
 :play:Trustworthy
 Torment: Oh yes! Missed me, Frogman?
 Frogman: N-
@@ -31,5 +31,5 @@ Torment: Bla bla bla! FIGHT!
 ~
 :play:Trickster
 :loadUnits:InitTormentRoom
-Torment: Ha ha ha! Well, you can go on now, my talking companion!
+Torment||R: Ha ha ha! Well, you can go on now, my talking companion!
 Frogman: You...
