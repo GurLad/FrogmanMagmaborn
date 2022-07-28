@@ -783,79 +783,6 @@ MonoBehaviour:
 
 '
     Name: Level1FirbellOnMagmaborn
-  - Text: 'priority:5
-
-      unique:T
-
-      ~
-
-      roomNumber:1
-
-      hasFlag:FirbellSawMemerian
-
-      ~
-
-      hasCharacter:Firbell
-
-      ~
-
-      :play:BeforeBattle
-
-      Firbell:
-      Hello, Frogman.
-
-      Frogman: Oh, hi, Firbell.
-
-      Firbell: That golem
-      we met last time... Memerian...\a I feel like I know her.
-
-      Frogman: Really?
-
-      Firbell:
-      Yes, but it does not make any sense...\a What is wrong with me?
-
-      Frogman:
-      Firbell? Are you okay?
-
-      :play:Trustworthy
-
-      Torment: Nope. She''s
-      got a bad case of faulty memory erasure.\a Heh.
-
-      Frogman: Torment?!
-
-      Torment:
-      Missed me? Ha!\a Don''t worry, I''ll leave again soon.\a Heh.
-
-      Frogman:
-      What are you doing this time?!
-
-      Torment: Fixing my past mistakes, of
-      course! I can''t have the...\a normal Magmaborn remembering my previous champions,
-      right?\a Ha ha ha!
-
-      Frogman: You... erased Firbell''s memeory?
-
-      Torment:
-      Nothing so drastic. Only a small portion of it! Heh!\a But do not trouble your
-      feeble mind -\a both of you shall forget all of that soon.
-
-      Frogman:
-      You can erase memories?!
-
-      Torment: ...I forget how slow you are sometimes.\a
-      Yes, Frogman.\a I can erase memories. Ha!\a But you must die first. After all,\a
-      touching the memories of the living would be so...\a rude, wouldn''t you agree?\a
-      Heh heh heh!
-
-      :screenShake:
-
-      Frogman: Urk!
-
-      :markDone:
-
-      :lose:'
-    Name: Level1FirbellOnMemerian
   - Text: 'priority:4
 
       unique:T
@@ -3763,183 +3690,6 @@ MonoBehaviour:
 
       roomNumber:4
 
-      hasFlag:MetAlfred
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      # TBA: Add !firstTime
-      dialouge
-
-      :callOther:TormentBase
-
-      :play:BeforeBattle
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      :if:firstTime:{
-
-      :play:Trustworthy
-
-      :setSpeaker:Torment||R
-
-      Frogman:
-      Torment.
-
-      Torment: Why, hello there too, Frogman! I''m fine, thanks for
-      asking.\a Heh.
-
-      Frogman: Can we just get to fighting?\a I''m not in the
-      mood for your nonsense.
-
-      Torment: Ooh, so angry! You remind me of someone.
-      Who could it be?\a Ha ha ha! Oh, Alfred of course!
-
-      Frogman: Him? He''s
-      more than angry. He''s...
-
-      :play:Trickster:T
-
-      Torment: Hateful!
-      Heh heh! Always so dark and brooding. Ha!
-
-      But it''s not that different,
-      you know.
-
-      Frogman: What do you mean?
-
-      Torment: He used to just
-      be an angry kid, like you. Heh heh.\a Then he took it a step further,\a channelling
-      his anger to hate.\a And from there to...
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      :loadUnits:
-
-      SUFFERING!\a
-      Ha ha ha!\a Now all he does is fight and kill,\a trying to inflict the Guards
-      the pain they inflicted him.
-
-      Frogman: I am not... Not like that...
-
-      Torment:
-      Sure, you tell yourself that. Heh!\a But it all comes back to pain.\a To ME!
-      HA HA HA!
-
-      }
-
-      :else:{
-
-      :if:!hasFlag:TormentCharacterPowerFail{
-
-      :setFlag:TormentCharacterPowerFail
-
-      }
-
-      :setSpeaker:Torment||R
-
-      Frogman:
-      Torment!
-
-      Torment: What is it, my dear Frogman?
-
-      Frogman: Can we
-      please stop with these... games?\a You keep killing us for no reason whatsoever!
-
-      Torment:
-      No reason? Why, your suffering fuels my power!\a Isn''t that reason enough?
-
-      Frogman:
-      Aren''t we supposed to be your champions?!\a Your way out of this prison?\a
-      You should treat us with more respect!
-
-      :play:Trickster:T
-
-      Torment:
-      Respect is something you earn on the battlefield.\a Fighting, and dying, for
-      me.\a Although you seem more adept at the latter... Heh.
-
-      Frogman: I-
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      Torment:
-      I wasn''t finished, Frogman. You are so... angry.\a That is good. Heh.\a Now,
-      channel this anger to fight, like Alfred does!\a Ha ha ha!
-
-      :loadUnits:
-
-      :setSingleSpeaker:L
-
-      Frogman:
-      Grrr...
-
-      }
-
-
-      ~ After battle
-
-      :play:Trickster
-
-      Frogman:
-      Oof... Please, no more...
-
-      Torment: Ooh, begging, are you? Heh!\a You''re
-      right though, you''re nothing like Alfred.\a He''d never beg! Ha ha!
-
-      Frogman:
-      Ah...
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      Torment:
-      There, everything''s fine now. No need to cry. Heh.
-
-      Frogman: ...
-
-      Torment:
-      What, did someone eat your tongue? Ha!\a Here, have some of my power.\a My
-      UNLIMITED power! Heh heh heh!
-
-      :unlockKnowledge:TormentAngerCalm
-
-      :showInfoDialogue:New
-      knowledge!
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Torment1Alfred
-  - Text: 'priority:2
-
-      unique:T
-
-      ~ Requirements
-
-      roomNumber:4
-
       hasCharacter:Firbell
 
       ~
@@ -3991,8 +3741,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him,
-      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him, is
+      it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -4087,7 +3837,6 @@ MonoBehaviour:
 
       }
 
-      
 
       ~
       After battle
@@ -4100,9 +3849,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a
-      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
-      here, eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a I''m
+      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
+      eh? Ha ha!
 
       Frogman: I-
 
@@ -4130,16 +3879,16 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+      :callOther:TormentEndOfBeta
+
 
       # === Functions ====
 
-      
 
-      ~ Sample
+      ~
+      Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Firbell
@@ -4337,6 +4086,8 @@ MonoBehaviour:
 
       }
 
+      :callOther:TormentEndOfBeta
+
 
       #
       === Functions ====
@@ -4503,13 +4254,11 @@ MonoBehaviour:
 
       Frogman: ...
 
-      :setFlag:ReachedPart2
-
-      :showPartTitle:Part
-      2:Prisoner
+      :callOther:TormentEndOfBeta
 
 
-      # === Functions ====
+      #
+      === Functions ====
 
 
       ~ PreFirst
@@ -4702,7 +4451,11 @@ MonoBehaviour:
       :loadUnits:InitTormentRoom
 
       Torment:
-      Yes, it is! Goodbye now!'
+      Yes, it is! Goodbye now!
+
+      :callOther:TormentEndOfBeta
+
+'
     Name: Torment1Generic
   - Text: 'priority:2
 
@@ -4901,6 +4654,8 @@ MonoBehaviour:
 
       }
 
+      :callOther:TormentEndOfBeta
+
 
       #
       === Functions ====
@@ -4912,179 +4667,6 @@ MonoBehaviour:
 
 '
     Name: Torment1Kresla
-  - Text: 'priority:2
-
-      unique:T
-
-      ~ Requirements
-
-      roomNumber:4
-
-      hasFlag:MetMemerian
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      :callOther:TormentBase
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      :if:firstTime:{
-
-      :play:Trustworthy
-
-      :setSpeaker:Frogman
-
-      Torment||R:
-      Why, hello there, Frogman! I''ve missed you. Heh heh.
-
-      Frogman: You have?
-
-      Torment:
-      I was recently reminded of your predecessor. Memerian.\a She is such a bore,
-      isn''t she?\a Dull as a rock! Ha ha ha!
-
-      Frogman: Predecessor?
-
-      Torment:
-      Yes. She was my previous champion.\a Firbell and Xirveros fought with her for
-      a while.\a But then she grew... uncooperative. Heh.
-
-      Frogman: Uncooperative?
-
-      Torment:
-      She stopped attempting to reach the fortress.\a In fact, she always stayed
-      far from it.\a And that simply wouldn''t do.\a After all, how would I escape
-      without you pawns to help me?\a Ha ha ha!
-
-      Frogman: How?
-
-      :play:Trickster
-
-      Torment:
-      That... was rhetorical, Frogman. Heh.
-
-      But we''ve reached an agreement,
-      in the end.
-
-      She would keep fighting the Guards,\a and I''d keep her
-      mind intact.\a Until you came along, and her services became...\a obsolete.
-      Ha ha ha!
-
-      Frogman: Obsolete?
-
-      Torment: There was no more need
-      for her to lead the Magmaborn. Heh.\a So I erased the memories of her former
-      friends.\a Except Xeplogi.\a Their interactions are just so...\a entertaining,
-      wouldn''t you agree? Ha!
-
-      Frogman: Entertaining?
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      Torment:
-      ENOUGH!
-
-      You''re ruining my monologue with your daft questions!\a Ha
-      ha ha!
-
-      Frogman: Questions?
-
-      Torment: Oh my, you truly are a worthy
-      champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t get
-      away with this.\a DIE!
-
-      :loadUnits:
-
-      Frogman: ...It was worth a
-      try.
-
-      }
-
-      :else:{
-
-      :if:!hasFlag:TormentCharacterPowerFail{
-
-      :setFlag:TormentCharacterPowerFail
-
-      }
-
-      :setSpeaker:Frogman
-
-      Torment||R:
-      Welcome back, my dear Frogman!\a How was your... day? Heh heh.
-
-      Frogman:
-      Day?
-
-      Torment: Oh no. You are not doing this again. Heh.
-
-      Frogman:
-      Again?
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      Torment:
-      Ha ha ha! I mean, I tire of your insolence!\a Prepare to die!
-
-      :loadUnits:
-
-      Frogman:
-      At least there isn''t a monologue this time.
-
-      }
-
-
-      ~ After battle
-
-      :play:Trickster
-
-      :setSpeaker:Frogman
-
-      Torment||R:
-      What a splendid battle! Ha ha ha!
-
-      Frogman: Splendid?
-
-      Torment:
-      ...I grow weary of you, Frogman. Heh.\a You can go now.
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      Frogman:
-      ...Heh.
-
-      :unlockKnowledge:TormentPushPull
-
-      :showInfoDialogue:New
-      knowledge!
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Torment1Memerian
   - Text: 'priority:1
 
       unique:T
@@ -5161,316 +4743,12 @@ MonoBehaviour:
       Torment||R:
       Ha ha ha! Well, you can go on now, my talking companion!
 
-      Frogman: You...'
+      Frogman: You...
+
+      :callOther:TormentEndOfBeta
+
+'
     Name: Torment1TalkingFrog
-  - Text: 'priority:-1
-
-      unique:F
-
-      ~ Requirements
-
-      # Never selected
-
-      roomNumber:0
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      # Nothing
-
-
-      ~
-      After battle
-
-      :play:Trickster
-
-      Torment||R: Ha! Well done, Frogman!\a
-      What an impressive display of strength.\a Perhaps you should stay a little
-      longer!\a Heh heh!
-
-      Frogman: ...
-
-      Torment: Are you not amused,
-      Frogman?
-
-      Frogman: ...No.
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      Torment:
-      Fine, fine. You can leave.\a And try to free us this time!
-
-      Frogman:
-      ...
-
-      :setFlag:HasTormentGiveTake
-
-      :unlockKnowledge:TormentGiveTake
-
-      :showInfoDialogue:New
-      knowledge!
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Torment1Xeplogi
-  - Text: 'priority:2
-
-      unique:T
-
-      ~ Requirements
-
-      roomNumber:4
-
-      hasFlag:MetXeplogi
-
-      hasFlag:TormentXeplogi
-
-      !hasFlag:HasTormentGiveTake
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      # Must have happened
-      after Frogman met Xeplogi, fought the Guards, and (probably) saw the 3rd flashback
-
-      :callOther:TormentBase
-
-      :play:Trustworthy
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      :if:!hasFlag:TormentCharacterPowerFail{
-
-      :setFlag:TormentCharacterPowerFail
-
-      }
-
-      Torment||R:
-      Hello again, Frogman! Long time no see! Heh heh.
-
-      Frogman: Torment.
-
-      Torment:
-      How good is your memory, Frogman? Heh.
-
-      Frogman: Uh... Why do you ask?
-
-      Torment:
-      When was the last time I used that greeting?
-
-      Frogman: Um, I think...
-      Uh...
-
-      :play:Trickster
-
-      Torment: Not surprising. Heh heh.\a I was
-      digging through your memories,\a and couldn''t find a trace of that conversation.\a
-      Frankly, I''m dissapointed in you. Heh.
-
-      Frogman: I''m sorr- Wait, what?\a
-      You''ve read my memories?!
-
-      Torment: Of course I did! I do that every
-      time you die! Ha ha ha!
-
-      Frogman: What?!
-
-      Torment: Most of them
-      are quite boring, I must admit.
-
-      :if:hasFlag:IntroFlashback3{
-
-      Except
-      that one where your friend died.\a That was quite... charming. Ha!
-
-      Frogman:
-      How dare you! Stay out of my mind!
-
-      }
-
-      :else:{
-
-      Frogman:
-      Stay out of my mind!
-
-      }
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      Torment:
-      As if you can do anything about it! Ha ha ha!\a Your mind and body are mine,
-      Frogman.\a Never forget that.
-
-      Frogman: Why, you-
-
-      :screenShake:
-
-      AHHHHHHH!
-
-      Torment:
-      Choose your words more carefully, Frogman. Heh heh.\a Now then, let us begin!
-
-      :loadUnits:
-
-      Frogman:
-      ...
-
-
-      ~ After battle
-
-      :callOther:Torment1Xeplogi
-
-
-      # ===
-      Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Torment1XeplogiFail
-  - Text: 'priority:5
-
-      unique:T
-
-      ~ Requirements
-
-      roomNumber:4
-
-      hasFlag:MetXeplogi
-
-      ~
-      Demands
-
-      # Nothinig
-
-      ~ Before battle
-
-      # Must have happened
-      after Frogman met Xeplogi, fought the Guards, and (probably) saw the 3rd flashback
-
-      :callOther:TormentBase
-
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
-
-      :play:Trustworthy
-
-      :setSpeaker:Frogman
-
-      Torment||R:
-      Hello again, Frogman! Long time no see! Heh heh.
-
-      Frogman: Ugh. Hello,
-      Torment.
-
-      Torment: Why the sour face? Heh.\a You''ve met a new friend
-      recently,\a haven''t you?
-
-      Frogman: You... mean Xeplogi?
-
-      Torment:
-      But of course! Ha ha ha! I love that guy.\a He''s just so punchable, isn''t
-      he?\a Heh heh.
-
-      Frogman: I''m not sure he''d appreciate being called
-      that.
-
-      Torment: Ha! Tell him that for me, will you?\a But that''s not
-      important right now.\a How did you find the Guards, Frogman?
-
-      Frogman:
-      Are they the humans who trapped you?\a They didn''t seem particularly smart,\a
-      nor magical...
-
-      :play:Trickster:T
-
-      Torment: Those pathetic creatures?!
-      Of course not!\a They''re mere pawns for the true humans: the Magi.\a And the
-      Magi are... well, you will see for yourself.\a Heh.
-
-      :if:furthestLevel:>6{
-
-      Frogman:
-      I''ve already met them. They do seem quite powerful.
-
-      Torment: Oh, you
-      have? I mean, I knew that, of course!\a Heh heh.
-
-      }
-
-      :else:{
-
-      Frogman:
-      I... see.\a Wait, how do you know that I''ve met Xeplogi?
-
-      Torment: I
-      know everything, of course! Ha ha ha!
-
-      }
-
-      :playIntro:Tormentor
-
-      :loadMap:
-
-      :screenShake:
-
-      But
-      enough chit-chat - let us begin!
-
-      Frogman: Ah!
-
-      :loadUnits:
-
-      :setFlag:TormentXeplogi
-
-      :setFlag:FrogmanMagiHuman
-
-      :markDone:
-
-
-      ~
-      After battle
-
-      :callOther:Torment1Xeplogi
-
-
-      # === Functions ====
-
-
-      ~
-      Sample
-
-      # Name: Text.
-
-'
-    Name: Torment1XeplogiNoFail
   - Text: "priority:2\nunique:T\n~ Requirements\nroomNumber:4\nhasCharacter:Xirveros\n~
       Demands\n# Nothinig\n~ Before battle\n:callOther:TormentBase\n:play:BeforeBattle\n:loadMap:InitTormentRoom\n:loadUnits:InitTormentRoom\n:if:firstTime:{\nFrogman||L:
       It's you again!\n:play:Trustworthy\nTorment: It IS me again, heh heh!\nAnd
@@ -5504,7 +4782,7 @@ MonoBehaviour:
       knowledge!\n:loadUnits:InitTormentRoom:Player\n:if:hasCharacter:Xirveros{\nFrogman:
       ...Xirveros?\nXirveros: ...Ah... Arrrg... Br... Tor... Ment... \nFrogman: I'm
       sorry, Xirveros. I didn't know...\nXirveros: Blafs... Roo... Frog...\n}\n:else:{\nFrogman:
-      Xirveros...\n}\n"
+      Xirveros...\n}\n:callOther:TormentEndOfBeta\n\n"
     Name: Torment1Xirveros
   - Text: 'priority:-1
 
@@ -5604,6 +4882,62 @@ MonoBehaviour:
 
 '
     Name: TormentBase
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      # Never appear
+
+      roomNumber:0
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+
+      ~ After battle
+
+      :if:!hasFlag:FinishedBeta{
+
+      :setFlag:FinishedBeta
+
+      :setSingleSpeaker:R
+
+      :play:Anticipation
+
+      Torment|Dev:
+      Unfortunatly, this is where your journey ends.\a As in, this is the last level
+      in the demo!\a But there''s still more content in it -\a more conversations,
+      more maps and more upgrades.\a Also, check out Frog Forge if you haven''t yet!
+
+      Oh,
+      and please send us feedback,\a on the Steam forums or GitHub!\a Anyway, enough
+      talk - DIE!!!
+
+      }
+
+      :markDone:
+
+      :showPartTitle:End of:Demo
+
+      :lose:
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: TormentEndOfBeta
   IgnoreDoneConversations: 1
   Path: Conversations\Battle
 --- !u!1 &55656080
