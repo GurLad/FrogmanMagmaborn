@@ -9,16 +9,67 @@ hasFlag:Flashback4
 :introShowCutscene:
 Frogman: TBA
 # Load village background image
-#:showCG:River
+:showCG:Sea
 :play:ForgottenMemories
-
+:setSingleSpeaker:R
+Dehar: ...
+...
+...
+Ya can come out now, I reckon.
+FrogmanMan: Ugh, finally. It felt like I was down there for hours!
+Dehar: That's because ya were, plumcot.
+FrogmanMan: What?! But you said it'll only be for a few minutes!\a Just until we left that port!
+Dehar: I was wondering how long ya'll stay there.\a Didn't think ya'd truly wait for my signal.
+FrogmanMan: Why, you-
+Dehar: Hey, easy now! It was just a little prank!
+FrogmanMan: I-
+Dehar: Tell ya what. Let me make up for that.\a Here, ya can have this ring.
+FrogmanMan: Huh? Why would I want a ring?
+Dehar: I think it'll look good on ya.
+FrogmanMan: I don't really-
+Dehar: Please? Just try it on, will ya?
+FrogmanMan: I... Ugh, whatever. Give it to me.\a Here.\a Happy now?
+Dehar: ...You're very trusting, Frogman.\a That's a useful quality.
+FrogmanMan: Huh?
+Dehar: Not very bright, either. Yes, you'll do just fine.
+FrogmanMan: What is going on?\a Wait, the ring-
+:play:Trustworthy
+TormentFB: You don't want to do that, Frogman.\a Take off that ring now, and you'll die. Heh heh.
+FrogmanMan: What?! Who is talking? Where are you?!
+TormentFB: I'm not here, Frogman. Heh.\a I'm just talking to you through that ring.
+FrogmanMan: How is this even-
+:screenShake:
+:play:Silence
+Urk!
+:play:ShatteredDream
+Dehar||L: Thank you for distracting him, Torment.
+TormentFB: No problem, Fashima. It's always fun working with you.\a Ha ha ha!
+:fadeOutScreen:
+Dehar: Likewise. Shall we go, then?
+TormentFB: What about our friend here?
+:fadeOutScreen:
+Dehar: What about- Wait, why is his body still here?
+TormentFB: He's not quite dead yet, Fashima.\a Have you lost your touch, perhaps? Heh heh.
+:fadeOutScreen:
+Dehar: Ugh. If you knew he was still alive,\a why did you blow my cover?
+TormentFB: Don't worry, Fashima. He'll forget everything, any-
+# Fashima actually kills Frogman
+:screenShake:
+:fadeOutScreen:
 :hideCG:
-:play:BeforeBattle
-Frogman: TBA
+Frogman: Ah! Fashima... is working with Torment?\a And she's the one who killed me?!\a Wait... was she also the one who killed Zip?!\a And I've... Oh, I've been such a fool!\a I will show them!\a I will stop them!\a For Zip!
+:play:Trustworthy
+Torment: My, what a dramatic speech! Ha ha ha!
+Frogman: Torment! Why, you will pay for this! For everything!
+Torment: Ha! Do you truly think you can betray me now?
+Frogman: You killed me, Torment! You and Fashima!\a Of course I'll no longer work with you!
+Torment: Heh heh. So much passion.\a Too bad you'll forget all of this.
+Frogman: What are you-
+:screenShake:
+Oof!
 :setFlag:Flashback5
-:introShowUpgradeMenu:
 :markDone:
-:introShowTutorial:
+:lose:
 
 ~ After battle
 # Name: Text.
