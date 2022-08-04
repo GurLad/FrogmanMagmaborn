@@ -7,7 +7,7 @@ hasFlag:Flashback4
 ~ Before battle
 :play:BeforeBattle
 :introShowCutscene:
-Frogman: TBA
+Frogman: Ugh... We were so close...\a Wait. Another memory...
 # Load village background image
 :showCG:Sea
 :play:ForgottenMemories
@@ -29,6 +29,7 @@ Dehar: I think it'll look good on ya.
 FrogmanMan: I don't really-
 Dehar: Please? Just try it on, will ya?
 FrogmanMan: I... Ugh, whatever. Give it to me.\a Here.\a Happy now?
+:play:Silence
 Dehar: ...You're very trusting, Frogman.\a That's a useful quality.
 FrogmanMan: Huh?
 Dehar: Not very bright, either. Yes, you'll do just fine.
@@ -44,18 +45,17 @@ Urk!
 :play:ShatteredDream
 Dehar||L: Thank you for distracting him, Torment.
 TormentFB: No problem, Fashima. It's always fun working with you.\a Ha ha ha!
-:fadeOutScreen:
-Dehar: Likewise. Shall we go, then?
-TormentFB: What about our friend here?
-:fadeOutScreen:
-Dehar: What about- Wait, why is his body still here?
-TormentFB: He's not quite dead yet, Fashima.\a Have you lost your touch, perhaps? Heh heh.
-:fadeOutScreen:
-Dehar: Ugh. If you knew he was still alive,\a why did you blow my cover?
-TormentFB: Don't worry, Fashima. He'll forget everything, any-
+Dehar|||F: Likewise. Shall we go, then?
+:darkenScreen:T
+TormentFB|||F: What about our friend here?
+Dehar|||F: What about- Wait, why is his body still here?
+TormentFB|||F: He's not quite dead yet, Fashima.\a Have you lost your touch, perhaps? Heh heh.
+:darkenScreen:T
+Dehar|||F: Ugh. If you knew he was still alive,\a why did you blow my cover?
+TormentFB|||F: Don't worry, Fashima. He'll forget everything, any-
 # Fashima actually kills Frogman
 :screenShake:
-:fadeOutScreen:
+:darkenScreen:T
 :hideCG:
 Frogman: Ah! Fashima... is working with Torment?\a And she's the one who killed me?!\a Wait... was she also the one who killed Zip?!\a And I've... Oh, I've been such a fool!\a I will show them!\a I will stop them!\a For Zip!
 :play:Trustworthy

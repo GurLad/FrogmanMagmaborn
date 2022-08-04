@@ -502,7 +502,15 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     case "lose":
                         // Params: none
                         AssertCommand("lose", args);
-                        GameController.Current.Lose();
+                        if (GameController.Current != null)
+                        {
+                            GameController.Current.Lose();
+                        }
+                        else
+                        {
+                            SavedData.SaveAll(SaveMode.Slot);
+                            SceneController.LoadScene("GameOver");
+                        }
                         return result | StartLineResult.FinishLevel;
                     case "win":
                         // Params: none
@@ -587,6 +595,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
                         float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
                         CameraController.Current.ScreenShake(strength, duration);
+                        break;
+                    case "darkenScreen":
+                        // Params: bool fixDoubleWhite = false
+                        // Darkens all palettes by one stage. If fixDoubleWhite is on, darkens true white (0) twice.
+                        AssertCommand("darkenScreen", args, CAT.OpBool);
+                        PaletteController.Current.DarkenScreen(args.Length > 0 ? args[0] == "T" : false);
                         break;
 
                     // Show other screens (MidBattleScreens)
@@ -1034,16 +1048,23 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         {
             Name.text = portrait.TheDisplayName;
         }
-        bool left = parts.Length > 2 ? parts[2] == "L" : !currentSpeakerIsLeft;
+        bool left = (parts.Length > 2 && parts[2] != "") ? parts[2] == "L" : !currentSpeakerIsLeft;
+        bool updatePortrait = (parts.Length > 3 && parts[3] != "") ? parts[3] == "T" : true;
         if (left)
         {
-            PortraitL.Portrait = portrait;
+            if (updatePortrait)
+            {
+                PortraitL.Portrait = portrait;
+            }
             speakerL = Name.text;
             SetSpeaker(true);
         }
         else
         {
-            PortraitR.Portrait = portrait;
+            if (updatePortrait)
+            {
+                PortraitR.Portrait = portrait;
+            }
             speakerR = Name.text;
             SetSpeaker(false);
         }

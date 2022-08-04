@@ -73,6 +73,30 @@ public class PaletteController : MonoBehaviour
         return textMaterial;
     }
 
+    public void DarkenScreen(bool fixDoubleWhite = false)
+    {
+        void DarkenPalette(Palette palette)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (palette[i] < CompletePalette.TransparentColor)
+                {
+                    if (fixDoubleWhite && palette[i] == 0)
+                    {
+                        palette[i] += CompletePalette.BrightnessJump;
+                    }
+                    palette[i] = Mathf.Min(CompletePalette.BlackColor, palette[i] + CompletePalette.BrightnessJump);
+                }
+            }
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            DarkenPalette(BackgroundPalettes[i]);
+            DarkenPalette(SpritePalettes[i]);
+        }
+    }
+
     public void FadeIn(System.Action postFadeAction, float speed = 30)
     {
         Fade(true, postFadeAction, speed);
