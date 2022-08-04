@@ -11,7 +11,10 @@ public class BATeleportBack : BattleAnimation
         {
             case "TeleportStart":
                 ThisCombatant.Animation.Activate("TeleportEnd");
-                ThisCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                if (ThisCombatant.ClassAnimationData.TeleportExtraData.Backstab)
+                {
+                    ThisCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                }
                 Vector3 temp = ThisCombatant.Object.transform.position;
                 temp.x = ThisCombatant.InitPos;
                 ThisCombatant.Object.transform.position = temp;
@@ -30,7 +33,6 @@ public class BATeleportBack : BattleAnimation
         base.Init(thisCombatant, otherCombatant, battleAnimationController);
         if (ThisCombatant.Unit.CanAttack(OtherCombatant.Unit)) // If can't, they never teleported to the target, so they don't need to come back
         {
-            Bugger.Info("Tele");
             ThisCombatant.Animation.Activate("TeleportStart");
         }
         else

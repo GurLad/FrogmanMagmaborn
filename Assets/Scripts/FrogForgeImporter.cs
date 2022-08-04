@@ -43,7 +43,7 @@ public class FrogForgeImporter : MonoBehaviour
 #endif
     }
 
-    public static void LoadSpriteOrAnimationToObject(GameObject gameObject, Sprite sprite, int width, int speed = -1, bool loop = true, bool activateOnStart = true)
+    public static void LoadSpriteOrAnimationToObject(GameObject gameObject, Sprite sprite, int width, float speed = -1, bool loop = true, bool activateOnStart = true)
     {
         SpriteRenderer renderer = gameObject.GetOrAddComponenet<SpriteRenderer>();
         if (sprite.rect.width > width)

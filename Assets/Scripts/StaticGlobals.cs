@@ -15,7 +15,7 @@ public enum TormentPowerState { None, I, II }
 public enum PortraitLoadingMode { Name, Team, Generic, None }
 public enum Objective { Rout, Boss, Escape, Survive }
 public enum GameState { Normal, SideWon, ShowingEvent }
-public enum BattleAnimationMode { Walk, Projectile, Teleport, Charge }
+public enum BattleAnimationMode { Walk, Projectile, Teleport }
 public enum Skill { Acrobat, NaturalCover, SiegeWeapon, Push, Pull, Vantage, AntiVantage, Dragonskin, AntiDragonskin } // Charisma, Shade, HitAndRun, FinishingTouch }
 
 public static class StaticGlobals

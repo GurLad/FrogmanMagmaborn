@@ -126,10 +126,6 @@ public class BattleAnimationController : MidBattleScreen
                 animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
                 animationParts.Enqueue(() => BeginAnimation<BATeleportBack>(attacker, defender));
                 return false;
-            case BattleAnimationMode.Charge:
-                animationParts.Enqueue(() => BeginAnimation<BACharge>(attacker, defender));
-                animationParts.Enqueue(() => BeginAnimation<BAMeleeAttack>(attacker, defender));
-                return true;
             default:
                 throw Bugger.Error("Impossible", false);
         }
@@ -268,8 +264,8 @@ public class BattleAnimationController : MidBattleScreen
             {
                 GameObject projectileObject = Instantiate(BaseProjectile, BaseProjectile.transform.parent);
                 Sprite projectileSprite = FrogForgeImporter.LoadSpriteFile(projectileLocation);
-                FrogForgeImporter.LoadSpriteOrAnimationToObject(projectileObject, projectileSprite, 8);
-                projectileObject.transform.position += new Vector3(ClassAnimations[i].ProjectilePos.x, -ClassAnimations[i].ProjectilePos.y, 0) / 16;
+                FrogForgeImporter.LoadSpriteOrAnimationToObject(projectileObject, projectileSprite, 8, BaseClassAnimation.BaseSpeed);
+                projectileObject.transform.position += new Vector3(ClassAnimations[i].ProjectileExtraData.Pos.x, -ClassAnimations[i].ProjectileExtraData.Pos.y, 0) / 16;
                 projectileObject.name = ClassAnimations[i].Name;
                 ClassAnimations[i].Projectile = projectileObject;
             }
@@ -469,8 +465,46 @@ public class ClassAnimation
     public List<BattleAnimationController.BattleBackgroundData> BattleAnimations;
     public BattleAnimationMode BattleAnimationModeMelee;
     public BattleAnimationMode BattleAnimationModeRanged;
-    [HideInInspector]
-    public Vector2Int ProjectilePos;
+    public BADWalk WalkExtraData;
+    public BADProjectile ProjectileExtraData;
+    public BADTeleport TeleportExtraData;
+
+    [System.Serializable]
+    public class BADWalk
+    {
+        public const float DEFAULT_SPEED = 2;
+        public float Speed = -1;
+        public bool CustomSpeed
+        {
+            get
+            {
+                return Speed >= 1;
+            }
+            set
+            {
+                if (!value)
+                {
+                    Speed = -1;
+                }
+                else if (value && Speed < 1)
+                {
+                    Speed = DEFAULT_SPEED;
+                }
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class BADProjectile
+    {
+        public Vector2Int Pos;
+    }
+
+    [System.Serializable]
+    public class BADTeleport
+    {
+        public bool Backstab;
+    }
 }
 
 [System.Serializable]

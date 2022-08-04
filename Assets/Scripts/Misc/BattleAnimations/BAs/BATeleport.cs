@@ -11,10 +11,19 @@ public class BATeleport : BattleAnimation
         {
             case "TeleportStart":
                 ThisCombatant.Animation.Activate("TeleportEnd");
-                ThisCombatant.LookingLeft = !ThisCombatant.LookingLeft;
-                Vector3 temp = ThisCombatant.Object.transform.position;
-                temp.x = OtherCombatant.Object.transform.position.x + OtherCombatant.LookingLeftSign;
-                ThisCombatant.Object.transform.position = temp;
+                if (ThisCombatant.ClassAnimationData.TeleportExtraData.Backstab)
+                {
+                    ThisCombatant.LookingLeft = !ThisCombatant.LookingLeft;
+                    Vector3 temp = ThisCombatant.Object.transform.position;
+                    temp.x = OtherCombatant.Object.transform.position.x + OtherCombatant.LookingLeftSign;
+                    ThisCombatant.Object.transform.position = temp;
+                }
+                else
+                {
+                    Vector3 temp = ThisCombatant.Object.transform.position;
+                    temp.x = OtherCombatant.Object.transform.position.x - OtherCombatant.LookingLeftSign;
+                    ThisCombatant.Object.transform.position = temp;
+                }
                 break;
             case "TeleportEnd":
                 Finish();

@@ -7,14 +7,13 @@ public class BAWalk : BattleAnimation
     private Vector3 currentPos;
     private float targetPos = 3;
     private bool walking;
-    protected virtual float SPEED  => 2;
-    protected virtual string WALK_ANIMATION_NAME => "Walk";
+    private float speed = 2;
 
     private void Update()
     {
         if (walking)
         {
-            currentPos.x -= Time.deltaTime * SPEED * ThisCombatant.LookingLeftSign;
+            currentPos.x -= Time.deltaTime * speed * ThisCombatant.LookingLeftSign;
             if (currentPos.x * ThisCombatant.LookingLeftSign <= targetPos * ThisCombatant.LookingLeftSign)
             {
                 currentPos.x = targetPos;
@@ -29,7 +28,7 @@ public class BAWalk : BattleAnimation
         base.FinishedAnimation(id, name);
         if (name == "CounterStart")
         {
-            ThisCombatant.Animation.Activate(WALK_ANIMATION_NAME);
+            ThisCombatant.Animation.Activate("Walk");
             walking = true;
         }
     }
@@ -44,13 +43,14 @@ public class BAWalk : BattleAnimation
             ThisCombatant.LookingLeft = !OtherCombatant.LookingLeft;
             currentPos = ThisCombatant.Object.transform.position;
             targetPos = OtherCombatant.Object.transform.position.x + ThisCombatant.LookingLeftSign;
+            speed = ThisCombatant.ClassAnimationData.WalkExtraData.CustomSpeed ? ThisCombatant.ClassAnimationData.WalkExtraData.Speed : speed;
             if (ThisCombatant.Animation.HasAnimation("CounterStart"))
             {
                 ThisCombatant.Animation.Activate("CounterStart");
             }
             else
             {
-                ThisCombatant.Animation.Activate(WALK_ANIMATION_NAME);
+                ThisCombatant.Animation.Activate("Walk");
                 walking = true;
             }
         }
