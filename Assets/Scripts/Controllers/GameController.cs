@@ -890,7 +890,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return unit;
     }
 
-    private Unit CreateUnit(string name, int level, Team team, bool canReplace)
+    public Unit CreateUnit(string name, int level, Team team, bool canReplace)
     {
         // Find replacement, fix level
         if (canReplace)
@@ -1246,7 +1246,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     // TODO: Replace all instances of "frogman/boss dead" with this function.
     public bool CheckUnitAlive(string name)
     {
-        return GetNamedUnit(name) != null;
+        return GetNamedUnit(name, true) != null;
     }
 
     public int CountUnitsAlive(Team? team)
@@ -1271,9 +1271,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return minMax;
     }
 
-    public Unit GetNamedUnit(string name)
+    public Unit GetNamedUnit(string name, bool displayName = false)
     {
-        return units.Find(a => a.ToString() == name);
+        return units.Find(a => (displayName ? a.ToString() : a.Name) == name);
     }
 
     public Portrait GetGenericPortrait(Team? team = null)

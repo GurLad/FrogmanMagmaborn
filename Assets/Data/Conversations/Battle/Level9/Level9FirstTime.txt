@@ -9,11 +9,16 @@ roomNumber:9
 :loadUnits::player
 :loadUnits::monster:T
 Bodder: Hello.
+:setDeathQuote:Bodder:BodderDeath
 ~ After battle
 :play:AfterBattle
 # Name: Text.
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ BodderDeath
+Bodder: Not yet!
+:replaceUnit:Bodder:SuBodder
+:setSpeaker:SuBodder||L
+:screenShake:
+Yarr!
