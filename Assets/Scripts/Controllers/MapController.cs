@@ -73,7 +73,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Units
             map.Units = new List<UnitPlacementData>(mapData.Units.ConvertAll(a => a.Clone()));
             // Map events
-            map.MapEvents = mapData.MapEvents;
+            map.MapEvents = new List<MapEventData>(mapData.MapEvents);
             // Name
             map.Name = mapData.Name;
             Maps.Add(map);

@@ -33322,7 +33322,7 @@ MonoBehaviour:
       Values: 020000000100000003000000010000000300000004000000
     DeathQuote: ':play:DeadAlly
 
-      Fashima: No, I can''t die yet... Frogman,
+      Fashima: No, I can''t die yet...\a Frogman,
       I''ll return after the battle.
 
       :pseudoKill:Fashima'
@@ -42934,7 +42934,17 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: teamUnitsAlive:guard:<5
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Our vanguard is dead?!\a
+        We must avenge them! Everyone, charge!
+
+        :setTeamAI:guard:charge
+
+        :setTempFlag:charged'
+      Repeatable: 0
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 12:14
@@ -43054,7 +43064,29 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: 'teamMaxPos:y:player:>8
+
+        !hasTempFlag:charged'
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: They''re behind us! Charge!
+
+        :setTeamAI:guard:charge
+
+        :setTempFlag:charged'
+      Repeatable: 0
+    - Requirements: 'turn:>5
+
+        !hasTempFlag:charged'
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: You''re too slow! Charge!
+
+        :setTeamAI:guard:charge
+
+        :setTempFlag:charged'
+      Repeatable: 0
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 8:14
@@ -43062,7 +43094,29 @@ MonoBehaviour:
   - Name: Level5-4
     LevelNumber: 0
     Units: []
-    MapEvents: []
+    MapEvents:
+    - Requirements: 'teamMaxPos:y:player:>8
+
+        !hasTempFlag:charged'
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: They''re behind us! Charge!
+
+        :setTeamAI:guard:charge
+
+        :setTempFlag:charged'
+      Repeatable: 0
+    - Requirements: 'turn:>5
+
+        !hasTempFlag:charged'
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: You''re too slow! Charge!
+
+        :setTeamAI:guard:charge
+
+        :setTempFlag:charged'
+      Repeatable: 0
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
@@ -43457,7 +43511,12 @@ MonoBehaviour:
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>6
+      Event: 'Dehar_: Still alive? Well, here I come!
+
+        :setUnitAI:Dehar_:teleport'
+      Repeatable: 0
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Dehar
@@ -43654,7 +43713,28 @@ MonoBehaviour:
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>8
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: The final reinforcements
+        have arrived!
+
+        Fashima_: Good to know, soldier.'
+      Repeatable: 0
+    - Requirements: turn:>10
+      Event: 'Fashima_: They''re still alive?\a Fine, I''ll do it myself.
+
+        :addSkill:Fashima:siegeWeapon'
+      Repeatable: 0
+    - Requirements: turn:>2
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Reinforcements are here!
+        For Fashima!
+
+'
+      Repeatable: 0
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Lan
@@ -43851,7 +43931,28 @@ MonoBehaviour:
       AIType: 2
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>8
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: The final reinforcements
+        have arrived!
+
+        Fashima_: Good to know, soldier.'
+      Repeatable: 0
+    - Requirements: turn:>10
+      Event: 'Fashima_: They''re still alive?\a Fine, I''ll do it myself.
+
+        :addSkill:Fashima:siegeWeapon'
+      Repeatable: 0
+    - Requirements: turn:>2
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Reinforcements are here!
+        For Fashima!
+
+'
+      Repeatable: 0
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Fashima
@@ -44062,7 +44163,41 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>4
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Reinforcements have arrived
+        from the west, master!
+
+        Fashima_: Took them long enough.'
+      Repeatable: 0
+    - Requirements: turn:>6
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: We''ve just recieved some
+        reinforcments from the east!
+
+        Fashima_: Can you stop shouting, soldier?
+
+        Guard1:
+        Uh, y-yes, master!
+
+        Fashima_: ...'
+      Repeatable: 0
+    - Requirements: turn:>8
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: The final reinforcements
+        have arrived!
+
+        Fashima_: Good to know, soldier.'
+      Repeatable: 0
+    - Requirements: turn:>10
+      Event: 'Fashima_: They''re still alive?\a Fine, I''ll do it myself.
+
+        :addSkill:Fashima:siegeWeapon'
+      Repeatable: 0
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Lan
@@ -44273,7 +44408,41 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>4
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Reinforcements have arrived
+        from the west, master!
+
+        Fashima_: Took them long enough.'
+      Repeatable: 0
+    - Requirements: turn:>6
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: We''ve just recieved some
+        reinforcments from the east!
+
+        Fashima_: Can you stop shouting, soldier?
+
+        Guard1:
+        Uh, y-yes, master!
+
+        Fashima_: ...'
+      Repeatable: 0
+    - Requirements: turn:>8
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: The final reinforcements
+        have arrived!
+
+        Fashima_: Good to know, soldier.'
+      Repeatable: 0
+    - Requirements: turn:>10
+      Event: 'Fashima_: They''re still alive?\a Fine, I''ll do it myself.
+
+        :addSkill:Fashima:siegeWeapon'
+      Repeatable: 0
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Fashima
@@ -44541,7 +44710,29 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>2
+      Event: ':if:compareCounter:Level9CloneSpawn:>0{
+
+        :loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0
+
+        }
+
+        :else:{
+
+        :addCounter:Level9CloneSpawn:1
+
+        }
+
+'
+      Repeatable: 1
+    - Requirements: turn:>1
+      Event: ':loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0'
+      Repeatable: 0
     Tileset: City
     Objective: 1
     ObjectiveData: Brens
@@ -44759,7 +44950,29 @@ MonoBehaviour:
       AIType: 1
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>2
+      Event: ':if:compareCounter:Level9CloneSpawn:>0{
+
+        :loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0
+
+        }
+
+        :else:{
+
+        :addCounter:Level9CloneSpawn:1
+
+        }
+
+'
+      Repeatable: 1
+    - Requirements: turn:>1
+      Event: ':loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0'
+      Repeatable: 0
     Tileset: City
     Objective: 1
     ObjectiveData: Werse
@@ -44893,7 +45106,29 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: turn:>2
+      Event: ':if:compareCounter:Level9CloneSpawn:>0{
+
+        :loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0
+
+        }
+
+        :else:{
+
+        :addCounter:Level9CloneSpawn:1
+
+        }
+
+'
+      Repeatable: 1
+    - Requirements: turn:>1
+      Event: ':loadUnits::guard:T
+
+        :setCounter:Level9CloneSpawn:0'
+      Repeatable: 0
     Tileset: CloneVats
     Objective: 1
     ObjectiveData: Bodder
