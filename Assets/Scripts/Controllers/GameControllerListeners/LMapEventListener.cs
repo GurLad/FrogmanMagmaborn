@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LMapEventListener : AGameControllerListener
 {
-    public string EventData;
+    public MapEventData EventData;
     private ConversationData targetEvent;
 
-    public void Init(string eventData)
+    public void Init(MapEventData eventData)
     {
-        targetEvent = new ConversationData(EventData = eventData);
+        targetEvent = new ConversationData((EventData = eventData).ToString());
     }
 
     public override void OnBeginPlayerTurn(List<Unit> units)
@@ -21,7 +21,10 @@ public class LMapEventListener : AGameControllerListener
         if (targetEvent.MeetsRequirements())
         {
             ConversationPlayer.Current.PlayOneShot(string.Join("\n", targetEvent.Lines));
-            Destroy(this);
+            if (!EventData.Repeatable)
+            {
+                Destroy(this);
+            }
         }
     }
 

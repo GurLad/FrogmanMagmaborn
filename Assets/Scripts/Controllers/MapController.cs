@@ -73,7 +73,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Units
             map.Units = new List<UnitPlacementData>(mapData.Units.ConvertAll(a => a.Clone()));
             // Map events
-            map.MapEvents = mapData.MapEvents.ConvertAll(a => "~\n" + a.Requirements + "\n~\n~\n" + a.Event);
+            map.MapEvents = mapData.MapEvents;
             // Name
             map.Name = mapData.Name;
             Maps.Add(map);
@@ -119,13 +119,6 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             data.Statue = Statue;
             return data;
         }
-    }
-
-    [System.Serializable]
-    public class MapEventData
-    {
-        public string Requirements;
-        public string Event;
     }
 }
 
@@ -176,13 +169,26 @@ public class Tileset
 }
 
 [System.Serializable]
+public class MapEventData
+{
+    public string Requirements;
+    public string Event;
+    public bool Repeatable;
+
+    public override string ToString()
+    {
+        return "~\n" + Requirements + "\n~\n~\n" + Event;
+    }
+}
+
+[System.Serializable]
 public class Map
 {
     public string Name;
     public int LevelNumber;
     public int[,] Tilemap;
     public List<MapController.UnitPlacementData> Units;
-    public List<string> MapEvents;
+    public List<MapEventData> MapEvents;
     public string Tileset;
     public Objective Objective;
     public string ObjectiveData;

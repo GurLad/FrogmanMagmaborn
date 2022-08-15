@@ -1023,7 +1023,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
         }
         // Load map events
-        foreach (string mapEvent in map.MapEvents)
+        foreach (MapEventData mapEvent in map.MapEvents)
         {
             LMapEventListener listener = ListenersObject.AddComponent<LMapEventListener>();
             listener.Init(mapEvent);
