@@ -1,0 +1,22 @@
+priority:5
+unique:T
+~ Requirements
+roomNumber:4
+compareCounter:FirbellAvoidsFrogman:=1
+~ Demands
+# Nothinig
+~ Before battle
+:callOther:TormentBase
+:play:BeforeBattle
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment: Hello, Frogman!
+TBA
+# Torment wipes Firbell's memory of fighting in the Guard city
+:setCounter:FirbellAvoidsFrogman:0
+:markDone:
+
+~ After battle
+:play:Trickster
+Torment: TBA
+

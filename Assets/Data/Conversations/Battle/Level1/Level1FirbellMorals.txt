@@ -1,0 +1,27 @@
+priority:6
+unique:T
+~ Requirements
+roomNumber:1
+hasFlag:FirbellDoubts
+~ Demands
+hasCharacter:Firbell
+~ Before battle
+:play:BeforeBattle
+Firbell: Frogman.
+Frogman: Hello, Firbell.
+Firbell: We must stop attempting to reach the Fortress.
+Frogman: Huh? Why?
+Firbell: TBA
+# Firbell refuses to fight humans
+:setTeam:Firbell:guard
+:setCounter:FirbellAvoidsFrogman:1
+:markDone:
+
+~ After battle
+:play:AfterBattle
+Frogman: Firbell...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

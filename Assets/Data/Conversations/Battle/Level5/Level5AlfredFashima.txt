@@ -1,0 +1,50 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:5
+charactersAlive:<2
+hasFlag:FashimaBattleAlfred
+~ Demands
+# Guarantee a map that makes sense for the arrivals
+mapID:Level5-1
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits::player
+Alfred: Frogman.
+Frogman: Ah, Alfred.
+Alfred: I must kill Fashima.
+Frogman: Oh? Uh, all right.\a She is blocking our way, after-
+Alfred: No. Not just that. She's the one.\a The one who killed me.
+Frogman: Really?! So she's the reason you hate the Guards so much?
+Alfred: Pah! All Guards are evil! She's just a traitor.
+Frogman: Traitor?
+Alfred: We worked together. For Boss.\a To overthrow Guards.\a But she betrayed us.\a Revealed us, and killed Boss and me.
+Frogman: Oh.
+Alfred: And now she's a Magus. Fashima...
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:loadUnits:
+:play:GuardTheme
+Guard1||R: Hey! Are you talking about Fashima?\a She's amazing, isn't she?\a She's so cool and powerful!\a I'm her biggest fan!
+Alfred: ...
+Guard2: [Name:Guard1].
+Guard1: Yes?
+Guard2: You are aware that these are Magmaborn, right?
+Guard1: Magmaborn? What's that?
+Guard2: Monsters.
+Guard1: Oh, really? But they were talking and-
+Guard2: Don't listen to their lies, [Name:Guard1].\a They're evil, and must be destroyed.
+Guard1: O-oh...
+Guard2: Charge!
+~ After battle
+Frogman: Everyone, run!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:Anticipation
+Frogman||L: Ah... Safe at last...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
