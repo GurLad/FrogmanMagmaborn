@@ -95,5 +95,53 @@ public class Randomizer
                 }
             }
         }
+        // Hue-shifting, because why not
+        foreach (Tileset tileset in mapController.Tilesets)
+        {
+            HueShifter shifter = new HueShifter(false);
+            tileset.Palette1 = shifter.Apply(tileset.Palette1);
+            tileset.Palette2 = shifter.Apply(tileset.Palette2);
+        }
+        HueShifter metadataShifter = new HueShifter(true);
+        for (int i = 0; i < levelMetadataController.Count; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                levelMetadataController[i].TeamDatas[j].Palette = metadataShifter.Apply(levelMetadataController[i].TeamDatas[j].Palette);
+            }
+        }
+    }
+
+    private class HueShifter
+    {
+        private int shift;
+        private bool preventWhite;
+
+        public HueShifter(bool preventWhite)
+        {
+            this.preventWhite = preventWhite;
+            shift = Random.Range(0, CompletePalette.BrightnessJump - (preventWhite ? 2 : 1));
+        }
+
+        public Palette Apply(Palette source)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                // White & black will always stay the same
+                int origin = source[i];
+                if (origin % CompletePalette.BrightnessJump != CompletePalette.BlackColor % CompletePalette.BrightnessJump &&
+                    origin != CompletePalette.TransparentColor && (!preventWhite || origin % CompletePalette.BrightnessJump != 0))
+                {
+                    int newColor = origin % CompletePalette.BrightnessJump + shift;
+                    if (origin % CompletePalette.BrightnessJump + shift >= CompletePalette.BlackColor % CompletePalette.BrightnessJump)
+                    {
+                        newColor -= CompletePalette.BrightnessJump - (preventWhite ? 2 : 1);
+                    }
+                    origin = (origin / CompletePalette.BrightnessJump) * CompletePalette.BrightnessJump + newColor;// % CompletePalette.BrightnessJump;
+                }
+                source[i] = origin;
+            }
+            return source;
+        }
     }
 }

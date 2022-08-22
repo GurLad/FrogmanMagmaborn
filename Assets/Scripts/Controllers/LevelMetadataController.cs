@@ -16,6 +16,13 @@ public class LevelMetadataController : MonoBehaviour
             return i <= 0 ? DefaultMetadata : LevelMetadatas[i - 1];
         }
     }
+    public int Count
+    {
+        get
+        {
+            return LevelMetadatas.Count + 1;
+        }
+    }
 
 #if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
