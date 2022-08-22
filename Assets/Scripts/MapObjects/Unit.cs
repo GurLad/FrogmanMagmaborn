@@ -647,7 +647,7 @@ public class Unit : MapObject
         // Which means it won't use the full move, and move slower than 1 range units, in most situations if we check Weapon.Range
         // So we use Weapon.Range for only the first iteration, to fix the above situation...
         // ...and then change to 1 range checking to utilize the full movement.
-        int range = Weapon.Range;
+        int range = Mathf.Max(Weapon.Range, 1); // So that 0 range units can retreat properly
         while (trueDangerArea[currentMoveTarget.x, currentMoveTarget.y].Type != DangerArea.TileDataType.Move)
         {
             Vector2Int min = currentMoveTarget;
@@ -911,7 +911,10 @@ public class Unit : MapObject
 
             if (!unit.HasSkill(Skill.SiegeWeapon)) // Infinite range instead of 3-10
             {
-                attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+                if (unit.Weapon.Range > 0)
+                {
+                    attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+                }
             }
             else
             {
@@ -1178,7 +1181,11 @@ public class AIPriorities
 
     public bool ShouldAttack(Unit unit)
     {
-        if (SurvivalWeight <= 0) // Monster units always attack
+        if (thisUnit.Weapon.Range <= 0) // Units who can't attack shouldn't attack anyone
+        {
+            return false;
+        }
+        else if (SurvivalWeight <= 0) // Monster units always attack
         {
             return true;
         }
