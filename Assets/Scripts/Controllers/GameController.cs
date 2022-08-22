@@ -187,6 +187,13 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     private void Start()
     {
+        // Randomize
+        if (GameCalculations.HasKnowledge("Randomize"))
+        {
+            Randomizer randomizer = new Randomizer();
+            randomizer.Randomize(PortraitController.Current, UnitClassData, MapController, LevelMetadataController);
+        }
+        // Init
         playerUnitsCache = new List<Unit>();
         if (SavedData.Load("HasSuspendData", 0) != 0) // Has suspended data
         {

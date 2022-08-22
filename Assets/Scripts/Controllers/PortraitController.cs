@@ -105,6 +105,7 @@ public class Portrait
     public CharacterVoice Voice;
     [SerializeField]
     private string DisplayName = "";
+
     public string TheDisplayName // Unity and properties...
     {
         get
@@ -116,6 +117,7 @@ public class Portrait
             DisplayName = value;
         }
     }
+
     public Portrait()
     {
         BackgroundColor = new Palette();
@@ -124,6 +126,24 @@ public class Portrait
             BackgroundColor[i] = CompletePalette.BlackColor;
         }
     }
+
+    public Portrait(Portrait origin)
+    {
+        Name = origin.Name;
+        Background = origin.Background;
+        Foreground = origin.Foreground;
+        BackgroundColor = origin.BackgroundColor.Clone();
+        ForegroundColorID = origin.ForegroundColorID;
+        AccentColor = origin.AccentColor;
+        Voice = origin.Voice.Clone();
+        DisplayName = origin.DisplayName;
+    }
+
+    public Portrait Clone()
+    {
+        return new Portrait(this);
+    }
+
     public override string ToString()
     {
         return '"' + TheDisplayName + '"';
@@ -174,6 +194,19 @@ public class CharacterVoice
     public VoiceType VoiceType;
     [Range(0, 2)]
     public float Pitch = 1;
+
+    public CharacterVoice() { }
+
+    public CharacterVoice(CharacterVoice voice)
+    {
+        VoiceType = voice.VoiceType;
+        Pitch = voice.Pitch;
+    }
+
+    public CharacterVoice Clone()
+    {
+        return new CharacterVoice(this);
+    }
 }
 
 [System.Serializable]

@@ -96,4 +96,16 @@ public static class StaticGlobals
     {
         return Mathf.Abs(one.x - two.x) + Mathf.Abs(one.y - two.y);
     }
+    public static List<T> Shuffle<T>(this List<T> values) // Fisher–Yates
+    {
+        int n = values.Count;
+        for (int i = 0; i < n - 2; i++)
+        {
+            int j = Random.Range(i, n);
+            T temp = values[i];
+            values[i] = values[j];
+            values[j] = temp;
+        }
+        return values;
+    }
 }
