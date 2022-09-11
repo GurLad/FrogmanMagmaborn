@@ -10,6 +10,7 @@ roomNumber:9
 :loadUnits::monster:T
 # Pre-battle Fashima stuff
 :play:GuardTheme3
+# If didn't trust Fashima (arrived alone)
 Bodder: Frogman, Frogman, Frogman.
 Do you know how long I've been waiting for this moment?
 Frogman: Uh... no.
@@ -38,8 +39,19 @@ Bodder: And do you know-
 # === Functions ====
 
 ~ BodderDeath
-Bodder: Not yet!
+Bodder: Heh.\a I knew this moment will... come eventually.
+Frogman: You fought well, Bodder, but it's over.
+Bodder: Over? Do you truly think this is my... end, Frogman?
+Frogman: Uh... Yes.
+Bodder: This... This isn't even... my final...
 :replaceUnit:Bodder:SuBodder
 :setSpeaker:SuBodder||L
 :screenShake:
-Yarr!
+:play:BodderUnleashed
+:setMapTheme:BodderUnleashed
+FORM!
+Frogman: Did... you just turn cyan?\a Wait.\a Your injuries...
+Bodder: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+Frogman: This seems unfair.
+# TBA: Fashima speaks, based on whether you chose to trust her
+
