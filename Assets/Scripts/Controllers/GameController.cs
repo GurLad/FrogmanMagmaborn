@@ -423,7 +423,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     if (selected != null)
                     {
                         StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
-                        statusScreenController.Show(selected);
+                        List<List<Unit>> unitLists = new List<List<Unit>>();
+                        for (int i = 0; i < 3; i++)
+                        {
+                            unitLists.Add(units.FindAll(a => (int)a.TheTeam == i));
+                        }
+                        statusScreenController.Show(selected, unitLists);
                         statusScreenController.TransitionToThis();
                     }
                     else
@@ -1298,6 +1303,16 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void KillTeam(Team team)
     {
         units.FindAll(a => a.TheTeam == team).ForEach(a => KillUnit(a));
+    }
+
+    public void ForceSetCursorPos(Vector2Int pos)
+    {
+        cursorPos = pos;
+        ShowUI(); // Update UI
+        if (MidBattleScreen.HasCurrent)
+        {
+            HideUI();
+        }
     }
 
     public void AddListener(IGameControllerListener listener)

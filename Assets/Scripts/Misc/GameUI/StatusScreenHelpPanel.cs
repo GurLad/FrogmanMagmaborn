@@ -63,36 +63,38 @@ public class StatusScreenHelpPanel : MonoBehaviour
         {
             return;
         }
-        if (Control.GetButtonDown(Control.CB.B))
-        {
-            if (!showingInfo)
-            {
-                MidBattleScreen.CurrentQuit();
-                return;
-            }
-            else
-            {
-                showingInfo = false;
-            }
-        }
         if (Control.GetButtonDown(Control.CB.Select))
         {
             showingInfo = !showingInfo;
+            if (showingInfo)
+            {
+                Controller.ShowingHelpInfo = true; // Just in case someone presses Select and B or something at the same time
+            }
         }
-        if (showingInfo)
+        if (!showingInfo)
         {
-            if (PanelInfos[current].AllowStatsHelp && Control.GetButtonDown(Control.CB.A))
-            {
-                StatsHelp.Activate(Controller, Canvas);
-                return;
-            }
-            int direction = -Control.GetAxisInt(Control.Axis.Y);
-            if (direction != 0 && direction != previousDir)
-            {
-                Show((current + count + direction) % count);
-            }
-            previousDir = direction;
+            return;
         }
+        if (Control.GetButtonDown(Control.CB.B))
+        {
+            showingInfo = false;
+        }
+        if (PanelInfos[current].AllowStatsHelp && Control.GetButtonDown(Control.CB.A))
+        {
+            StatsHelp.Activate(Controller, Canvas);
+            return;
+        }
+        int direction = -Control.GetAxisInt(Control.Axis.Y);
+        if (direction != 0 && direction != previousDir)
+        {
+            Show((current + count + direction) % count);
+        }
+        previousDir = direction;
+    }
+
+    private void LateUpdate()
+    {
+        Controller.ShowingHelpInfo = showingInfo;
     }
 
     private void Show(int toShow)
