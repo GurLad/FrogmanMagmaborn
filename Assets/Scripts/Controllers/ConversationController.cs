@@ -24,7 +24,7 @@ public class ConversationController : MonoBehaviour
             options = options.FindAll(a => !a.Done);
         }
     }
-    public ConversationData SelectConversation()
+    public List<ConversationData> GetAllOptions()
     {
         if (!IgnoreDoneConversations)
         {
@@ -38,6 +38,11 @@ public class ConversationController : MonoBehaviour
         {
             throw Bugger.Crash("Zero possible conversations!");
         }
+        return currentOptions;
+    }
+    public ConversationData SelectConversation()
+    {
+        List<ConversationData> currentOptions = GetAllOptions();
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
