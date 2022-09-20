@@ -11,7 +11,7 @@ public class BaseController : MonoBehaviour
     public MenuController StatusMenu; // Might seperate it into a different class
     [Header("Menu Items")]
     public MenuItem TalkMenuItem;
-    public MenuItem StatusMenuItem; // TBA: Replace with the inheriting StatusMenuItem class
+    public StatusMenuItem StatusMenuItem; // TBA: Replace with the inheriting StatusMenuItem class
     [Header("Objects")]
     public ConversationController BaseConversations;
 
@@ -29,11 +29,28 @@ public class BaseController : MonoBehaviour
             TalkMenu.MenuItems.Add(conversationMenuItem);
         }
         // Populate the status menu
-        foreach (Unit player in players)
+        if (players.Count < 1)
         {
-            MenuItem statusMenuItem = Instantiate(StatusMenuItem, StatusMenuItem.transform.parent);
-            // statusMenuItem.Init(player, players) // Show the status of the player & save the list for detailed scrolling
+            throw Bugger.Error("Showing base with zero units!");
+        }
+        List<List<Unit>> unitLists = new List<List<Unit>>();
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == (int)players[0].TheTeam)
+            {
+                unitLists.Add(players);
+            }
+            else
+            {
+                unitLists.Add(new List<Unit>());
+            }
+        }
+        for (int i = 0; i < players.Count; i++)
+        {
+            StatusMenuItem statusMenuItem = Instantiate(StatusMenuItem, StatusMenuItem.transform.parent);
+            statusMenuItem.Init(players[i], unitLists); // Show the status of the player & save the list for detailed scrolling
             statusMenuItem.gameObject.SetActive(true);
+            statusMenuItem.RectTransform.anchoredPosition = new Vector2(0, -statusMenuItem.RectTransform.sizeDelta.y * i);
             StatusMenu.MenuItems.Add(statusMenuItem);
         }
     }
