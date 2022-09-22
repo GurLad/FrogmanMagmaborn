@@ -1,0 +1,84 @@
+priority:5
+unique:T
+~ Requirements
+roomNumber:8
+hasFlag:BrensDied
+~ Demands
+!hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant:old
+:addGenericCharacter:Guard1:young
+:loadUnits::guard
+:setSpeaker:Guard1
+Lieutenant: ...
+Guard1: ...
+Hey, [Name:Lieutenant].
+Lieutenant: What is it, soldier?
+Guard1: What's up with Werse? Where are they?\a We're all waiting here on high alert, and...
+Lieutenant: It is none of our concern, soldier.\a Werse will come here when they're needed.
+Guard1: And when is that?
+:loadUnits::monster:T
+Werse: Right now. The Magmaborn are here.
+Guard1: Wha-
+Lieutenant||L: Werse! I take it that Lan has... fallen?
+Werse: Not exactly, [Name:Lieutenant].\a He lost to the Magmaborn,\a but managed to get away.\a Typical Lan.
+Guard1: How do you know that?
+Werse: I've been watching the battle, [Name:Guard1].\a The Magmaborn will soon be here.\a Get ready.
+Guard1: Y-Yes, master!
+Werse: Before you go. [Name:Guard1]?
+Guard1: Huh?
+Werse: Try to stay alive.
+Guard1: O-Oh. Thank you, master!
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+Frogman: We're back... Come on, we've got no time to lose!
+:setBattleQuote:Werse:WerseBattle
+:markDone:
+
+~ After battle
+:callOther:Level8BrensDeath
+
+# === Functions ====
+
+~ WerseBattle
+:if:stringEquals:[Name:Attacker]:Werse{
+Werse||R: You win.
+Defender: Huh?
+Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Defender: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, evryone!
+:killTeam:guard
+Defender: ...What just happened?
+}
+:else:{
+Werse||R: You win.
+Attacker: Huh?
+Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Attacker: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, evryone!
+:killTeam:guard
+Attacker: ...What just happened?
+}
+:callOther:Level8FashimaSpawn
