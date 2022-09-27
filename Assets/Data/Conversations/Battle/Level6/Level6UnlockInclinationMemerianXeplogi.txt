@@ -1,0 +1,75 @@
+priority:1
+unique:F
+~ Requirements
+# If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+roomNumber:6
+hasCharacter:Xeplogi
+!hasFlag:InclinationMemrianXeplogi
+~ Demands
+# Nothinig
+~ Before battle
+# TBA: Change from generic
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+:setSingleSpeaker:R
+Memerian: ...We meet again, slime.
+Xeplogi: You! Remove yourself from my sight at once!
+Memerian: And why would I do that?
+Xeplogi: Why, you little-
+Frogman: Ugh, enough.
+:showChoice:Frogman:Trust Xeplogi:Trust Memerian
+:if:chose:0{
+:addCounter:MemerianXeplogiBalance:-1
+Frogman||L: Xeplogi, let's defeat this... witch.
+Xeplogi: Ha! Yes!
+Memerian: ...Die, fools.
+:setTeam:Memerian:monster
+}
+:else:{
+:addCounter:MemerianXeplogiBalance:1
+Frogman||L: I'm sorry, Xeplogi. Please leave us.
+Xeplogi: How dare you! You will die for this, Frogman!
+:setTeam:Xeplogi:monster
+}
+~ After battle
+# TBA: Add actual text
+:play:Anticipation
+Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+:if:hasCharacter:Xeplogi{
+:if:MemerianXeplogiBalance:<1{
+Xeplogi: Thanks for supporting me.
+:unlockKnowledge:InclinationXeplogi
+:showInfoDialogue:New knowledge!
+}
+:else:{
+Xeplogi: Let me prove to you that I'm worthy of your trust.
+:unlockKnowledge:InclinationXeplogi
+:showInfoDialogue:New knowledge!
+}
+}
+:else:{
+:if:hasCharacter:Memerian{
+:if:MemerianXeplogiBalance:>-1{
+Memerian: Thanks for supporting me.
+:unlockKnowledge:InclinationMemerian
+:showInfoDialogue:New knowledge!
+}
+:else:{
+Memerian: Let me prove to you that I'm worthy of your trust.
+:unlockKnowledge:InclinationMemerian
+:showInfoDialogue:New knowledge!
+}
+}
+}
+:if:foundKnowledge:InclinationXeplogi{
+:if:foundKnowledge:InclinationMemerian{
+:setFlag:InclinationMemrianXeplogi
+}
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

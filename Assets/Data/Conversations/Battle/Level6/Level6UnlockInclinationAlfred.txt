@@ -1,0 +1,31 @@
+priority:1
+unique:T
+~ Requirements
+# If no Alfred nor Xeplogi, just Memerian
+roomNumber:6
+!hasCharacter:Xeplogi
+~ Demands
+# Nothinig
+~ Before battle
+# TBA: Text
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+:setSingleSpeaker:L
+Memerian: Hello.
+Frogman: Oh, uh, hi.
+Memerian: Let's begin.
+~ After battle
+:play:Anticipation
+Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+:if:hasCharacter:Alfred{
+Alfred: ...Fine.
+:unlockKnowledge:InclinationAlfred
+:showInfoDialogue:New knowledge!
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
