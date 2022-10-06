@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class MenuItem : MonoBehaviour
 {
     public List<GameObject> Indicators;
+    [HideInInspector]
+    public RectTransform TheRectTransform;
     public string Text
     {
         get
@@ -22,6 +24,7 @@ public class MenuItem : MonoBehaviour
     private List<Trigger> triggers;
     private void Awake()
     {
+        TheRectTransform = GetComponent<RectTransform>();
         text = GetComponent<Text>();
         palettedText = GetComponent<PalettedText>();
         palettedText.Awake();

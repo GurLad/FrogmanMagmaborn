@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public GameObject PauseMenu;
     public GameObject DifficultyMenu;
     public GameObject PartTitle;
+    public GameObject BaseMenu;
     [Header("Other data controllers")]
     public UnitClassData UnitClassData;
     public LevelMetadataController LevelMetadataController;

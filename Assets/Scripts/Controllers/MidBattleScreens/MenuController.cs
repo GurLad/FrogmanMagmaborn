@@ -25,7 +25,7 @@ public class MenuController : MidBattleScreen
             return text;
         }
     }
-    private int count;
+    protected int count;
     private int previousSign;
     private void Start()
     {
@@ -70,7 +70,7 @@ public class MenuController : MidBattleScreen
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
     }
-    public void SelectItem(int index)
+    public virtual void SelectItem(int index)
     {
         MenuItems[Selected].Unselect();
         Selected = index;

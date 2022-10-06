@@ -14576,6 +14576,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 376109210}
   - {fileID: 376109209}
+  TheRectTransform: {fileID: 0}
   Description: Your units gain an extra level. For SRPG fans.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &376109213
@@ -20207,6 +20208,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 806976467}
   - {fileID: 806976466}
+  TheRectTransform: {fileID: 0}
   Description: Your units do not get extra levels. Not recommended.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &806976470
@@ -46620,6 +46622,7 @@ MonoBehaviour:
   Indicators:
   - {fileID: 1990259760}
   - {fileID: 1990259759}
+  TheRectTransform: {fileID: 0}
   Description: Your units gain +2 extra levels. For everyone.
   DescriptionObject: {fileID: 984771635}
 --- !u!114 &1990259763

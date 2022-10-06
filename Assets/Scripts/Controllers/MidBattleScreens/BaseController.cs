@@ -24,6 +24,9 @@ public class BaseController : MonoBehaviour
         foreach (ConversationData conversation in conversations)
         {
             MenuItem conversationMenuItem = Instantiate(TalkMenuItem, TalkMenuItem.transform.parent);
+            TPlayConversation conversationTrigger = conversationMenuItem.GetComponent<TPlayConversation>();
+            conversationTrigger.Data = string.Join("\n", conversation.Lines);
+            conversationTrigger.Data += "\n:showBase:\n"; // Show the base again after the conversation is done
             conversationMenuItem.Text = conversation.ToString();
             conversationMenuItem.gameObject.SetActive(true);
             TalkMenu.MenuItems.Add(conversationMenuItem);

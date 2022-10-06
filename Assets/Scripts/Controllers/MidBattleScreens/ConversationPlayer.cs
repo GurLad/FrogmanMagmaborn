@@ -659,6 +659,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         ChoiceMenu.Begin();
                         ChoiceMenu.SelectItem(Random.Range(0, 2));
                         return result | StartLineResult.MidBattleScreen;
+                    case "showBase":
+                        // Args: none
+                        AssertCommand("showBase", args);
+                        Pause();
+                        BaseController baseController = Instantiate(GameController.Current.BaseMenu).GetComponentInChildren<BaseController>();
+                        baseController.Show(GameController.Current.PlayerUnits);
+                        return result | StartLineResult.MidBattleScreen;
 
                     // Global commands
 

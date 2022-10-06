@@ -8,6 +8,7 @@ public class ConversationController : MonoBehaviour
     public static ConversationController Current;
     public List<TextFile> Conversations;
     public bool IgnoreDoneConversations = true;
+    public bool SetAsMain = true;
     [Header("Editor loader")]
     public string Path = "Conversations";
     private List<ConversationData> options;
