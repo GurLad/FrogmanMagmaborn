@@ -44,9 +44,9 @@ Frogman: We're back... Come on, we've got no time to lose!
 
 ~ WerseBattle
 :if:stringEquals:[Name:Attacker]:Werse{
-Werse||R: You win.
+Werse||R: ...I surrender.
 Defender: Huh?
-Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 Defender: What?
 Werse: ...Fine, I'll do it myself.
 :screenShake:
@@ -63,9 +63,9 @@ Guard1: W-werse! They're... gone!\a Retreat, evryone!
 Defender: ...What just happened?
 }
 :else:{
-Werse||R: You win.
+Werse||R: ...I surrender.
 Attacker: Huh?
-Werse: I surrender. Pretend to kill me,\a and the Guards will flee.
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 Attacker: What?
 Werse: ...Fine, I'll do it myself.
 :screenShake:
