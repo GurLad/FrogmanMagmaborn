@@ -26,10 +26,20 @@ public abstract class MidBattleScreen : MonoBehaviour
         }
         Current = on ? caller : null;
     }
+    /// <summary>
+    /// All it does is enable the GameObject & call MidBattleScreen.Set. For convenience.
+    /// </summary>
+    public void Begin()
+    {
+        gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
+    }
+
     public static void CurrentQuit(bool fadeTransition = true)
     {
         Current.Quit(fadeTransition);
     }
+
     public bool IsCurrent()
     {
         return MidBattleScreen.Current == this;
@@ -95,6 +105,7 @@ public abstract class MidBattleScreen : MonoBehaviour
         };
         PaletteController.Current.FadeIn(postFadeIn);
     }
+
     protected void Quit(bool fadeTransition = true, System.Action postQuitAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
     {
         if (!fadeTransition)
@@ -123,6 +134,7 @@ public abstract class MidBattleScreen : MonoBehaviour
             FadeThisOut(postFadeOut, postFadeOutState);
         }
     }
+
     public void TransitionToThis(bool fadeTransition = true, System.Action postTransitionAction = null, PaletteController.PaletteControllerState postFadeOutState = null)
     {
         if (!fadeTransition)

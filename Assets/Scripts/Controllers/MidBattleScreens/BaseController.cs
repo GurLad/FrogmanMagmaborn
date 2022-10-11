@@ -19,7 +19,7 @@ public class BaseController : MonoBehaviour
     {
         // Show the BaseMenu and store the players for the StatusMenu
         BaseMenu.Begin();
-        // Populate the talk menu - TBA: allow for scrolling etc.
+        // Populate the talk menu
         List<ConversationData> conversations = BaseConversations.GetAllOptions();
         foreach (ConversationData conversation in conversations)
         {
@@ -27,7 +27,7 @@ public class BaseController : MonoBehaviour
             TPlayConversation conversationTrigger = conversationMenuItem.GetComponent<TPlayConversation>();
             conversationTrigger.Data = string.Join("\n", conversation.Lines);
             conversationTrigger.Data += "\n:showBase:\n"; // Show the base again after the conversation is done
-            conversationMenuItem.Text = conversation.ToString();
+            conversationMenuItem.Text = " " + conversation.ToString();
             conversationMenuItem.gameObject.SetActive(true);
             TalkMenu.MenuItems.Add(conversationMenuItem);
         }
@@ -52,6 +52,7 @@ public class BaseController : MonoBehaviour
         {
             StatusMenuItem statusMenuItem = Instantiate(StatusMenuItem, StatusMenuItem.transform.parent);
             statusMenuItem.Init(players[i], unitLists); // Show the status of the player & save the list for detailed scrolling
+            statusMenuItem.Menu = StatusMenu;
             statusMenuItem.gameObject.SetActive(true);
             statusMenuItem.RectTransform.anchoredPosition = new Vector2(0, -statusMenuItem.RectTransform.sizeDelta.y * i);
             StatusMenu.MenuItems.Add(statusMenuItem);

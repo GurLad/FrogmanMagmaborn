@@ -27,7 +27,10 @@ public class MenuItem : MonoBehaviour
         TheRectTransform = GetComponent<RectTransform>();
         text = GetComponent<Text>();
         palettedText = GetComponent<PalettedText>();
-        palettedText.Awake();
+        if (palettedText != null) // For StatusMenuItem...
+        {
+            palettedText.Awake();
+        }
         triggers = new List<Trigger>(GetComponents<Trigger>());
         Unselect();
     }

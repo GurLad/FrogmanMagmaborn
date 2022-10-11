@@ -27,11 +27,13 @@ public class MenuController : MidBattleScreen
     }
     protected int count;
     private int previousSign;
-    private void Start()
+
+    protected virtual void Start()
     {
-        MenuItems[Selected].Select();
+        SelectItem(Selected);
         count = MenuItems.Count;
     }
+
     private void Update()
     {
         if (Control.GetButtonDown(Control.CB.A))
@@ -65,17 +67,14 @@ public class MenuController : MidBattleScreen
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }
-    public void Begin()
-    {
-        gameObject.SetActive(true);
-        MidBattleScreen.Set(this, true);
-    }
+
     public virtual void SelectItem(int index)
     {
         MenuItems[Selected].Unselect();
         Selected = index;
         MenuItems[Selected].Select();
     }
+
     public void Finish()
     {
         // Generic menu done behaviour. Maybe add ContinuousTrigger/isDone?
@@ -83,6 +82,7 @@ public class MenuController : MidBattleScreen
         gameObject.SetActive(false);
         MenuItems.ForEach(a => a.OnMenuDone());
     }
+
     private void FinishMenu()
     {
         if (FinishOnSelect)

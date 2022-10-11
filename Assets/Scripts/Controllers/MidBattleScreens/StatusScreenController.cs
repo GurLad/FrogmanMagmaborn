@@ -20,6 +20,8 @@ public class StatusScreenController : MidBattleScreen
     public List<List<Unit>> UnitLists;
     [HideInInspector]
     public bool ShowingHelpInfo;
+    [HideInInspector]
+    public MidBattleScreen PreviousScreen;
     private int currentTeam;
     private int currentUnit;
     private Unit currentUnitObject;
@@ -68,7 +70,14 @@ public class StatusScreenController : MidBattleScreen
         if (Control.GetButtonDown(Control.CB.B))
         {
             GameController.Current.ForceSetCursorPos(currentUnitObject.Pos);
-            CurrentQuit();
+            if (PreviousScreen != null)
+            {
+                Quit(true, () => PreviousScreen.Begin());
+            }
+            else
+            {
+                Quit();
+            }
             return;
         }
         Vector2Int input = new Vector2Int(Control.GetAxisInt(Control.Axis.X), Control.GetAxisInt(Control.Axis.Y));

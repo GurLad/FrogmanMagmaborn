@@ -12,6 +12,8 @@ public class StatusMenuItem : MenuItem
     public List<PalettedSprite> PalettedSprites;
     public GameObject StatusScreen;
     public RectTransform RectTransform;
+    [HideInInspector]
+    public MenuController Menu;
     private Unit player;
     private List<List<Unit>> unitLists;
 
@@ -28,7 +30,9 @@ public class StatusMenuItem : MenuItem
         this.unitLists = unitLists;
         BattleStatsPanel.Display(player);
         Info.text = player + "\n\nLevel:" + player.Level;
+        Portrait.Awake();
         Portrait.Portrait = player.Icon;
+        PalettedSprites.ForEach(a => a.Awake());
     }
 
     public override void Select()
@@ -44,6 +48,7 @@ public class StatusMenuItem : MenuItem
     public override void Activate()
     {
         StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
+        statusScreenController.PreviousScreen = Menu;
         statusScreenController.Show(player, unitLists);
         statusScreenController.TransitionToThis();
     }

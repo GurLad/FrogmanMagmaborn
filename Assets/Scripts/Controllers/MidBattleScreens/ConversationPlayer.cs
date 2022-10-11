@@ -663,7 +663,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Args: none
                         AssertCommand("showBase", args);
                         Pause();
-                        BaseController baseController = Instantiate(GameController.Current.BaseMenu).GetComponentInChildren<BaseController>();
+                        BaseController baseController = Instantiate(GameController.Current.BaseMenu, GameController.Current.Canvas.transform).GetComponentInChildren<BaseController>();
                         baseController.Show(GameController.Current.PlayerUnits);
                         return result | StartLineResult.MidBattleScreen;
 

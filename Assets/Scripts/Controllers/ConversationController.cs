@@ -12,9 +12,13 @@ public class ConversationController : MonoBehaviour
     [Header("Editor loader")]
     public string Path = "Conversations";
     private List<ConversationData> options;
+
     private void Awake()
     {
-        Current = this;
+        if (SetAsMain)
+        {
+            Current = this;
+        }
         options = new List<ConversationData>();
         foreach (TextFile conversation in Conversations)
         {
@@ -25,6 +29,7 @@ public class ConversationController : MonoBehaviour
             options = options.FindAll(a => !a.Done);
         }
     }
+
     public List<ConversationData> GetAllOptions()
     {
         if (!IgnoreDoneConversations)
@@ -41,12 +46,14 @@ public class ConversationController : MonoBehaviour
         }
         return currentOptions;
     }
+
     public ConversationData SelectConversation()
     {
         List<ConversationData> currentOptions = GetAllOptions();
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
+
     public ConversationData SelectConversationByID(string id)
     {
         List<ConversationData> currentOptions = options.FindAll(a => a.ID == id);
@@ -60,6 +67,7 @@ public class ConversationController : MonoBehaviour
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }
+
 #if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
