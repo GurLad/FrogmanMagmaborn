@@ -11629,7 +11629,7 @@ MonoBehaviour:
       Bodder: This... This
       isn''t even... my final...
 
-      :setCounter:Level9CloneSpawn:1
+      :setCounter:Level9BodderState:1
 
       :setTempFlag:BodderTransformed
 
@@ -34558,14 +34558,14 @@ MonoBehaviour:
       Values: 030000000400000002000000010000000300000001000000
     DeathQuote: 
   - Name: SuBodderPre
-    DisplayName: SuBodder
+    DisplayName: Bodder
     Class: Bodder
     Inclination: 0
     Growths:
       Values: 030000000400000002000000010000000300000001000000
     DeathQuote: 
   - Name: SuBodderPir
-    DisplayName: SuBodder
+    DisplayName: Bodder
     Class: Bodder
     Inclination: 0
     Growths:
@@ -46236,13 +46236,11 @@ MonoBehaviour:
         SuBodderPir:
         RUN, LITTLE MICE! RUN FROM BODDER!
 
-        :setCounter:Level9CloneSpawn:0
+        :setCounter:Level9BodderState:0
 
         }
 
-        :else:
-
-        {
+        :else:{
 
         :replaceUnit:SuBodderPir:SuBodderPre:T
 
@@ -46251,12 +46249,12 @@ MonoBehaviour:
         SuBodderPre:
         THERE IS NO ESCAPE FROM ME, DEMONS!
 
-        :setCounter:Level9CloneSpawn:1
+        :setCounter:Level9BodderState:1
 
         }
 
 '
-      Repeatable: 0
+      Repeatable: 1
     Tileset: CloneVats
     Objective: 1
     ObjectiveData: Bodder

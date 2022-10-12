@@ -490,7 +490,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     case "replaceUnit":
                         // Params: string oldUnit, string newUnit, bool keepHealth = false
                         // Kills oldUnit and spawns newUnit in its place
-                        AssertCommand("replaceUnit", args, CAT.String, CAT.String);
+                        AssertCommand("replaceUnit", args, CAT.String, CAT.String, CAT.OpBool);
                         Unit target6 = GameController.Current.GetNamedUnit(args[0]);
                         if (target6 != null)
                         {

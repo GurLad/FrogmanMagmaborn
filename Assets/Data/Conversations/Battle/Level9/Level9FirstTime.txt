@@ -45,7 +45,7 @@ Frogman: You fought well, Bodder, but it's over.
 Bodder: Over? Do you truly think this is my... end, Frogman?
 Frogman: Uh... Yes.
 Bodder: This... This isn't even... my final...
-:setCounter:Level9CloneSpawn:1
+:setCounter:Level9BodderState:1
 :setTempFlag:BodderTransformed
 :replaceUnit:Bodder:SuBodderPre
 :addSkill:SuBodderPre:DragonSkin
