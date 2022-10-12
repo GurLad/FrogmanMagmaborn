@@ -11613,8 +11613,10 @@ MonoBehaviour:
 
       ~ BodderDeath
 
+      :play:Anticipation
+
       Bodder:
-      Heh.\a I knew this moment will... come eventually.
+      Heh.\a I knew this moment would... come eventually.
 
       Frogman: You fought
       well, Bodder, but it''s over.
@@ -11627,9 +11629,15 @@ MonoBehaviour:
       Bodder: This... This
       isn''t even... my final...
 
-      :replaceUnit:Bodder:SuBodder
+      :setCounter:Level9CloneSpawn:1
 
-      :setSpeaker:SuBodder||L
+      :setTempFlag:BodderTransformed
+
+      :replaceUnit:Bodder:SuBodderPre
+
+      :addSkill:SuBodderPre:DragonSkin
+
+      :setSpeaker:SuBodderPre||L
 
       :screenShake:
 
@@ -11642,7 +11650,7 @@ MonoBehaviour:
       Frogman:
       Did... you just turn cyan?\a Wait.\a Your injuries...
 
-      Bodder: WITNESS
+      SuBodderPre: WITNESS
       THE POWER OF THE CRYSTALS, MORTAL!
 
       Frogman: This seems unfair.
@@ -11653,7 +11661,7 @@ MonoBehaviour:
 
 '
     Name: Level9FirstTime
-  - Text: 'priority:21
+  - Text: 'priority:-21
 
       unique:F
 
@@ -34547,14 +34555,21 @@ MonoBehaviour:
     Class: Bodder
     Inclination: 0
     Growths:
-      Values: 030000000400000003000000010000000200000001000000
+      Values: 030000000400000002000000010000000300000001000000
     DeathQuote: 
-  - Name: SuBodder
-    DisplayName: Bodder
+  - Name: SuBodderPre
+    DisplayName: SuBodder
     Class: Bodder
     Inclination: 0
     Growths:
       Values: 030000000400000002000000010000000300000001000000
+    DeathQuote: 
+  - Name: SuBodderPir
+    DisplayName: SuBodder
+    Class: Bodder
+    Inclination: 0
+    Growths:
+      Values: 030000000400000003000000010000000200000001000000
     DeathQuote: 
   ClassDatas:
   - Name: Frogman
@@ -46210,6 +46225,37 @@ MonoBehaviour:
       Event: ':loadUnits::guard:T
 
         :setCounter:Level9CloneSpawn:0'
+      Repeatable: 0
+    - Requirements: hasTempFlag:BodderTransformed
+      Event: ':if:compareCounter:Level9BodderState:>0{
+
+        :replaceUnit:SuBodderPre:SuBodderPir:T
+
+        :addSkill:SuBodderPir:DragonSkin
+
+        SuBodderPir:
+        RUN, LITTLE MICE! RUN FROM BODDER!
+
+        :setCounter:Level9CloneSpawn:0
+
+        }
+
+        :else:
+
+        {
+
+        :replaceUnit:SuBodderPir:SuBodderPre:T
+
+        :addSkill:SuBodderPre:DragonSkin
+
+        SuBodderPre:
+        THERE IS NO ESCAPE FROM ME, DEMONS!
+
+        :setCounter:Level9CloneSpawn:1
+
+        }
+
+'
       Repeatable: 0
     Tileset: CloneVats
     Objective: 1

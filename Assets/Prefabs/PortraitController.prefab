@@ -315,36 +315,6 @@ MonoBehaviour:
       VoiceType: 2
       Pitch: 1.6
     DisplayName: Fashima
-  - Name: Bodder
-    Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
-    Foreground: {fileID: 21300000, guid: f8c1441e0307f7246ab3e3ae54613a05, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 8
-      - id: 22
-      - id: 35
-    ForegroundColorID: 0
-    AccentColor: 1
-    Voice:
-      VoiceType: 3
-      Pitch: 0.4
-    DisplayName: Bodder
-  - Name: SuBodder
-    Background: {fileID: 21300000, guid: 9fa5a5916f4f80c41b457080950c123c, type: 3}
-    Foreground: {fileID: 21300000, guid: e96c5fd6ffd0c4048ba0646433a860d9, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 1
-      - id: 26
-      - id: 40
-    ForegroundColorID: 0
-    AccentColor: 1
-    Voice:
-      VoiceType: 3
-      Pitch: 0.4
-    DisplayName: Bodder
   - Name: Brens
     Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
     Foreground: {fileID: 21300000, guid: 977489b3899f54b45a7217d3e8246dcf, type: 3}
@@ -390,6 +360,51 @@ MonoBehaviour:
       VoiceType: 2
       Pitch: 0.9
     DisplayName: Werse
+  - Name: Bodder
+    Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
+    Foreground: {fileID: 21300000, guid: f8c1441e0307f7246ab3e3ae54613a05, type: 3}
+    BackgroundColor:
+      Colors:
+      - id: 13
+      - id: 8
+      - id: 22
+      - id: 35
+    ForegroundColorID: 0
+    AccentColor: 1
+    Voice:
+      VoiceType: 3
+      Pitch: 0.4
+    DisplayName: Bodder
+  - Name: SuBodderPre
+    Background: {fileID: 21300000, guid: c1a75e0a2a24bea4589414a00be2180c, type: 3}
+    Foreground: {fileID: 21300000, guid: be9ef05258af81a449b05b2364aabce5, type: 3}
+    BackgroundColor:
+      Colors:
+      - id: 13
+      - id: 1
+      - id: 26
+      - id: 40
+    ForegroundColorID: 0
+    AccentColor: 1
+    Voice:
+      VoiceType: 3
+      Pitch: 0.4
+    DisplayName: Bodder
+  - Name: SuBodderPir
+    Background: {fileID: 21300000, guid: b65bcb843a33537468121b3b0753bc95, type: 3}
+    Foreground: {fileID: 21300000, guid: 5ddef531013ca8844a855897b5075cee, type: 3}
+    BackgroundColor:
+      Colors:
+      - id: 13
+      - id: 1
+      - id: 26
+      - id: 40
+    ForegroundColorID: 2
+    AccentColor: 1
+    Voice:
+      VoiceType: 3
+      Pitch: 0.4
+    DisplayName: SuBodder
   GenericPortraits:
   - tags: female,young
     VoiceType: 1
@@ -492,6 +507,12 @@ MonoBehaviour:
     Background: {fileID: 21300000, guid: 1d6b9332d3127414eb6c4dc30ee6444a, type: 3}
     Foreground: {fileID: 21300000, guid: 6d58ea298ca8331428c587b40df39f66, type: 3}
     Name: Gur2
+    Tags: []
+  - tags: female,old
+    VoiceType: 1
+    Background: {fileID: 21300000, guid: c3f3ac55c3d84e241aea7d0d764cef98, type: 3}
+    Foreground: {fileID: 21300000, guid: 62b7b7acf83321246800574823c70a6a, type: 3}
+    Name: Gur3
     Tags: []
   GenericVoicesAndNames:
   - names: Mikshel,Solke,Windom,Folge,Horbizon,Korevan,Govix,Torik,Paskalin,Estok,Derko,Dejik,Mendoks,Quijor,Bolekist,Rostikol,Rockomon,Sortelon,Holixen,Shafalen,Diesol,Herbox,Ixabix,Oliko,Celjogi,Smirki

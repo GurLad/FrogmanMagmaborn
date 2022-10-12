@@ -39,19 +39,23 @@ Bodder: And do you know-
 # === Functions ====
 
 ~ BodderDeath
-Bodder: Heh.\a I knew this moment will... come eventually.
+:play:Anticipation
+Bodder: Heh.\a I knew this moment would... come eventually.
 Frogman: You fought well, Bodder, but it's over.
 Bodder: Over? Do you truly think this is my... end, Frogman?
 Frogman: Uh... Yes.
 Bodder: This... This isn't even... my final...
-:replaceUnit:Bodder:SuBodder
-:setSpeaker:SuBodder||L
+:setCounter:Level9CloneSpawn:1
+:setTempFlag:BodderTransformed
+:replaceUnit:Bodder:SuBodderPre
+:addSkill:SuBodderPre:DragonSkin
+:setSpeaker:SuBodderPre||L
 :screenShake:
 :play:BodderUnleashed
 :setMapTheme:BodderUnleashed
 FORM!
 Frogman: Did... you just turn cyan?\a Wait.\a Your injuries...
-Bodder: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+SuBodderPre: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
 Frogman: This seems unfair.
 # TBA: Fashima speaks, based on whether you chose to trust her
 

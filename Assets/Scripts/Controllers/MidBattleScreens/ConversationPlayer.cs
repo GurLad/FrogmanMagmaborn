@@ -488,7 +488,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         }
                         break;
                     case "replaceUnit":
-                        // Params: string oldUnit, string newUnit
+                        // Params: string oldUnit, string newUnit, bool keepHealth = false
                         // Kills oldUnit and spawns newUnit in its place
                         AssertCommand("replaceUnit", args, CAT.String, CAT.String);
                         Unit target6 = GameController.Current.GetNamedUnit(args[0]);
@@ -496,6 +496,10 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         {
                             Unit newUnit = GameController.Current.CreateUnit(args[1], target6.Level, target6.TheTeam, false);
                             newUnit.Pos = target6.Pos;
+                            if (args.Length > 2 && args[2] == "T")
+                            {
+                                newUnit.Health = target6.Health;
+                            }
                             target6.DeathQuote = ""; // Doesn't actually die, after all
                             GameController.Current.KillUnit(target6);
                         }
@@ -546,6 +550,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string name
                         AssertCommand("playIntro", args, CAT.String);
                         CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
+                        break;
+                    case "setMapTheme":
+                        // Params: string name
+                        AssertCommand("setMapTheme", args, CAT.String);
+                        GameController.Current.LevelMetadata.MusicName = args[0]; // I really hope this doesn't break anything...
                         break;
                     case "addGenericCharacter":
                         // Params: string internalName, string forceTags = none
