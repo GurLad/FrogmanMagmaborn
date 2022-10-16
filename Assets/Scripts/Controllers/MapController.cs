@@ -60,6 +60,8 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             TextFile file = FrogForgeImporter.LoadTextFile(fileName, true);
             JsonUtility.FromJsonOverwrite(file.Text.ForgeJsonToUnity("mapData"), this);
             Map map = new Map();
+            // Name
+            map.Name = mapData.Name;
             // Level numer
             map.LevelNumber = mapData.LevelNumber;
             // Tileset
@@ -73,9 +75,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Units
             map.Units = new List<UnitPlacementData>(mapData.Units.ConvertAll(a => a.Clone()));
             // Map events
-            map.MapEvents = new List<MapEventData>(mapData.MapEvents);
-            // Name
-            map.Name = mapData.Name;
+            map.MapEvents = new List<MapEventData>(mapData.MapEvents.ConvertAll(a => a.Clone()));
             Maps.Add(map);
         }
 #if UNITY_EDITOR
@@ -179,6 +179,15 @@ public class MapEventData
     {
         return "~\n" + Requirements + "\n~\n~\n" + Event;
     }
+
+    public MapEventData Clone()
+    {
+        MapEventData data = new MapEventData();
+        data.Requirements = Requirements;
+        data.Event = Event;
+        data.Repeatable = Repeatable;
+        return data;
+    }
 }
 
 [System.Serializable]
@@ -270,5 +279,9 @@ public class Map
                 break;
         }
         return true;
+    }
+    public override string ToString()
+    {
+        return Name;
     }
 }

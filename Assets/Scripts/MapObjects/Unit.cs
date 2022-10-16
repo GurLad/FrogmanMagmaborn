@@ -662,7 +662,7 @@ public class Unit : MapObject
                         (range <= 1 || CanAttackPos(target, new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j))))
                     {
                         min = new Vector2Int(currentMoveTarget.x + i, currentMoveTarget.y + j);
-                        Bugger.Info("Updated min to " + min + ", value: " + fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value);
+                        //Bugger.Info("Updated min to " + min + ", value: " + fullDangerArea[currentMoveTarget.x + i, currentMoveTarget.y + j].Value);
                     }
                 }
             }
