@@ -427,7 +427,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                         List<List<Unit>> unitLists = new List<List<Unit>>();
                         for (int i = 0; i < 3; i++)
                         {
-                            unitLists.Add(units.FindAll(a => (int)a.TheTeam == i));
+                            unitLists.Add(units.FindAll(a => (int)a.TheTeam == i && (a.TheTeam == CurrentPhase || !a.Moved)));
                         }
                         statusScreenController.Show(selected, unitLists);
                         statusScreenController.TransitionToThis();
@@ -1119,6 +1119,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         unit.PreviousPos = unit.Pos;
                         unit.Pos = Vector2Int.one * -1;
+                        unit.Moved = true;
                     }
                     else if (unit.Statue)
                     {
@@ -1146,6 +1147,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     unit.PreviousPos = unit.Pos;
                     unit.Pos = Vector2Int.one * -1;
+                    unit.Moved = true;
                 }
                 else if (unit.Statue)
                 {
