@@ -38,6 +38,11 @@ public class Weapon
     }
     public override string ToString()
     {
-        return Name + "\nPOW:" + Damage.ToString().PadRight(4) + "ACC:" + Hit.ToString().PadRight(4) + "WT: " + Weight.ToString().PadRight(4) + "RNG:" + Range;
+        return "Weapon: " + Name.PadRight(12) + "Range:" + Range + "\n" + 
+            "Str:" + GetStatDisplay(Damage) + "Hit:" + Hit.ToString().PadRight(6) + "Eva:" + GetStatDisplay(-Weight);
+    }
+    private string GetStatDisplay(int source)
+    {
+        return ((source > 0 ? "+" : (source < 0 ? "" : " ")) + source).PadRight(6);
     }
 }

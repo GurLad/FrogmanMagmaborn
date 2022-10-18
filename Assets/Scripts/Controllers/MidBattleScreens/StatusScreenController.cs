@@ -15,6 +15,7 @@ public class StatusScreenController : MidBattleScreen
     public PortraitHolder Icon;
     public RectTransform HealthbarFull;
     public RectTransform HealthbarEmpty;
+    public AdvancedSpriteSheetAnimationUI ClassIcon;
     public List<PalettedSprite> PaletteSprites;
     [HideInInspector]
     public List<List<Unit>> UnitLists;
@@ -49,6 +50,18 @@ public class StatusScreenController : MidBattleScreen
         Icon.Portrait = unit.Icon;
         HealthbarFull.sizeDelta = new Vector2(unit.Health * 4, 8);
         HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.MaxHP * 4, 8);
+        // Load class icon
+        ClassData classData = GameController.Current.UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
+        ClassIcon.Animations[0].SpriteSheet = classData.MapSprite;
+        if (!ClassIcon.Active)
+        {
+            ClassIcon.Start();
+        }
+        else
+        {
+            ClassIcon.Animations[0].Split();
+        }
+        ClassIcon.Activate(0, true);
         foreach (var item in PaletteSprites)
         {
             item.Palette = (int)unit.TheTeam;

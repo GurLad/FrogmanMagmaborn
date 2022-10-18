@@ -36,10 +36,10 @@ public class SpriteSheetData
     public float Speed = -1;
     public bool Loop = false;
     [HideInInspector]
-    public List<Sprite> Frames;
+    public List<Sprite> Frames = new List<Sprite>();
     public void Split()
     {
-        Frames = new List<Sprite>();
+        Frames.Clear();
         float Width = SpriteSheet.rect.width / NumberOfFrames;
         for (int i = 0; i < NumberOfFrames; i++)
         {
