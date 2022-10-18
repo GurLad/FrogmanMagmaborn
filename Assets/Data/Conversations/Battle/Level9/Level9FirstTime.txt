@@ -5,11 +5,11 @@ roomNumber:9
 ~ Demands
 # Nothinig
 ~ Before battle
-:play:BeforeBattle
+:play:MomentOfTruth
 :loadUnits::player
 :loadUnits::monster:T
 # Pre-battle Fashima stuff
-:play:GuardTheme3
+:play:EnterTheBodder
 # If didn't trust Fashima (arrived alone)
 Bodder: Frogman, Frogman, Frogman.
 Do you know how long I've been waiting for this moment?
@@ -32,6 +32,8 @@ Bodder: Monsters like you, Frogman.
 Frogman: I've had enough. Let's charge, everyone!
 Bodder: And do you know-
 :setDeathQuote:Bodder:BodderDeath
+:play:TheInvincibleBodder:T
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.
