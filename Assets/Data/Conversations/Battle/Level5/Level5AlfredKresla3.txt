@@ -1,0 +1,29 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:5
+charactersAlive:<2
+hasCharacter:Kresla
+hasFlag:AlfredKresla2
+~ Demands
+~ Before battle
+:callOther:GuardPreBanter
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits:
+:setSingleSpeaker:L
+Kresla: Hi Alfred! Trying to find out what time he's from.
+Alfred: TBA
+:setFlag:AlfredKresla3
+
+~ After battle
+Frogman: Everyone, run!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:Anticipation
+Frogman||L: Ah... Safe at last...
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

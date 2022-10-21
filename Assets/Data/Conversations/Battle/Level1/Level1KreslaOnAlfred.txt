@@ -1,0 +1,16 @@
+priority:3
+unique:T
+~
+roomNumber:1
+hasFlag:AlfredKresla1
+~
+hasCharacter:Kresla
+~
+:play:BeforeBattle
+Kresla: Hey, Frogman! Stuff about unsure where Alfred is from.
+Frogman: Okay. TBA
+:setFlag:AlfredKresla2
+:markDone:
+~
+:play:AfterBattle
+Kresla: Ja.

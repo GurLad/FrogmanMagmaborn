@@ -1767,6 +1767,43 @@ MonoBehaviour:
 
       roomNumber:1
 
+      hasFlag:AlfredKresla1
+
+      ~
+
+      hasCharacter:Kresla
+
+      ~
+
+      :play:BeforeBattle
+
+      Kresla:
+      Hey, Frogman! Stuff about unsure where Alfred is from.
+
+      Frogman: Okay.
+      TBA
+
+      :setFlag:AlfredKresla2
+
+      :markDone:
+
+      ~
+
+      :play:AfterBattle
+
+      Kresla:
+      Ja.
+
+'
+    Name: Level1KreslaOnAlfred
+  - Text: 'priority:3
+
+      unique:T
+
+      ~
+
+      roomNumber:1
+
       numRuns:>5
 
       ~
@@ -6604,6 +6641,68 @@ MonoBehaviour:
 
 '
     Name: Level5AlfredFashima
+  - Text: 'priority:3
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:5
+
+      charactersAlive:<2
+
+      hasCharacter:Kresla
+
+      hasFlag:AlfredKresla2
+
+      ~
+      Demands
+
+      ~ Before battle
+
+      :callOther:GuardPreBanter
+
+      :play:BeforeBattle2
+
+      :addUnit:Alfred
+
+      :loadUnits:
+
+      :setSingleSpeaker:L
+
+      Kresla:
+      Hi Alfred! Trying to find out what time he''s from.
+
+      Alfred: TBA
+
+      :setFlag:AlfredKresla3
+
+
+      ~
+      After battle
+
+      Frogman: Everyone, run!
+
+      :loadMap:Part2RestArea
+
+      :loadUnits:Part2RestArea
+
+      :play:Anticipation
+
+      Frogman||L:
+      Ah... Safe at last...
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      #
+      Name: Text.
+
+'
+    Name: Level5AlfredKresla3
   - Text: 'priority:5
 
       unique:T
@@ -7252,113 +7351,122 @@ MonoBehaviour:
 
 '
     Name: Level5FirstTime
-  - Text: "priority:4\r\nunique:T\r\n~ Requirements\r\nroomNumber:5\r\n# The first
-      time has no requirement (like Xeplogi). This could make the run slightly easier,
-      but prevents people from completely missing out on a character.\r\n#charactersAlive:<2\r\n~
-      Demands\r\n# Guarantee a map that makes sense for the arrivals\r\nmapID:Level5-1\r\n~
-      Before battle\r\n:play:BeforeBattle2\r\n:if:firstTime:{\r\n:loadUnits::player\r\nFrogman:
-      Huh. Xeplogi isn't here.\\a Hopefully it will be a bit quite at last.\r\n:addUnit:Alfred\r\n:loadUnits::player\r\nAlfred|???:
-      Hey. You there.\r\nFrogman: Ah! Where did you come from?\r\n:if:hasCharacter:Firbell{\r\nAlfred:
-      Name's Alfred. Who're you?\r\nFrogman: My name is Frogman.\r\nFirbell: And
-      I am Firbell. Pleased to make your acquaintance.\r\nAlfred: Greetings.\\a You
-      fighting the Guards?\r\nFrogman: The humans, you mean?\r\nAlfred: Obviously.\\a
-      Never heard of 'em before?\r\nFirbell: I have not. What are they doing here?\r\nAlfred:
-      Ah.\\a Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\r\nFrogman:
-      Sounds ominous.\r\nWe've only fought them once or twice here.\r\nAlfred: Pah!
-      The ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get
-      ready.\r\nFirbell: How can you smell without a-\r\n:setFlag:AlfredFirbell\r\n}\r\n:else:{\r\n:if:hasCharacter:Kresla{\r\nAlfred:
-      Name's Alfred. Who're-\r\nKresla||L: Hi there! I've never seen you before!\\a
-      Where are you from?\r\nAlfred: ...Alezis.\r\nKresla: Um, I've never heard of
-      it.\r\nAlfred: Pah. You heard about Guard name?\\a Bronzing?\r\nKresla: Wait,
-      Bronzing? I'm from there!\r\nAlfred: Ha! Fool!\\a That's Guard name.\\a They
-      try erasing our history.\\a Our names!\\a We mustn't forget!\\a Do not listen!\r\nKresla:
-      Uh, look, when I come from, there are no \"Guards\".\\a Bronzing is an independant
+  - Text: "priority:4\nunique:T\n~ Requirements\nroomNumber:5\n# The first time has
+      no requirement (like Xeplogi). This could make the run slightly easier, but
+      prevents people from completely missing out on a character.\n#charactersAlive:<2\n~
+      Demands\n# Guarantee a map that makes sense for the arrivals\nmapID:Level5-1\n~
+      Before battle\n:play:BeforeBattle2\n:if:firstTime:{\n:loadUnits::player\nFrogman:
+      Huh. Xeplogi isn't here.\\a Hopefully it will be a bit quite at last.\n:addUnit:Alfred\n:loadUnits::player\nAlfred|???:
+      Hey. You there.\nFrogman: Ah! Where did you come from?\n:if:hasCharacter:Firbell{\nAlfred:
+      Name's Alfred. Who're you?\nFrogman: My name is Frogman.\nFirbell: And I am
+      Firbell. Pleased to make your acquaintance.\nAlfred: Greetings.\\a You fighting
+      the Guards?\nFrogman: The humans, you mean?\nAlfred: Obviously.\\a Never heard
+      of 'em before?\nFirbell: I have not. What are they doing here?\nAlfred: Ah.\\a
+      Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\nFrogman:
+      Sounds ominous.\nWe've only fought them once or twice here.\nAlfred: Pah! The
+      ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get ready.\nFirbell:
+      How can you smell without a-\n:setFlag:AlfredFirbell\n}\n:else:{\n:if:hasCharacter:Kresla{\nAlfred:
+      Name's Alfred. Who're-\nKresla||L: Hi there! I've never seen you before!\\a
+      Where are you from?\nAlfred: ...Alezis.\nKresla: Um, I've never heard of it.\nAlfred:
+      Pah. You heard about Guard name?\\a Bronzing?\nKresla: Wait, Bronzing? I'm
+      from there!\nAlfred: Ha! Fool!\\a That's Guard name.\\a They try erasing our
+      history.\\a Our names!\\a We mustn't forget!\\a Do not listen!\nKresla: Uh,
+      look, when I come from, there are no \"Guards\".\\a Bronzing is an independant
       country.\\a But now that you mention it, Alezis never appeared in any history
-      I know of.\\a Interesting! So these Guards did erase your history!\r\nAlfred:
-      What?! You...\\a Pah. They're coming.\\a Get ready.\r\nKresla: How can you-
-      \r\n:setFlag:AlfredKresla\r\n}\r\n:else:{\r\n:if:hasCharacter:Xirveros{\r\nAlfred:
-      Name's Alfred. Who're you?\r\nXirveros: Me Xirveros. This Frog.\r\nAlfred:
-      Greetings.\\a You fighting the Guards?\r\nXirveros: Guards! Guards!\r\nFrogman:
-      Uh... Are you talking about the humans?\r\nAlfred: Obviously.\\a Never heard
-      of 'em before?\r\nFrogman: No. What are they doing here?\r\nAlfred: Ah.\\a
-      Lucky you.\\a Free of their wrath.\\a The destruction they leave behind.\r\nXirveros:
-      Destroy Guards! Guards Destroy!\r\nAlfred: Yes, we will destroy them.\\a All
-      of them.\r\nFrogman: Sure... I'll just leave you two alone.\r\nXirveros: They
-      Guard. We must Guard.\r\nAlfred: Destroy Guards!\r\nXirveros: Guards!\r\nAlfred:
-      Guards!\\a They're here!\r\n}\r\n:else:{\r\nAlfred: Name's Alfred. Who're you?\r\nFrogman:
-      My name is Frogman.\r\nAlfred: Greetings.\\a You fighting the Guards?\r\nFrogman:
-      The humans, you mean?\r\nAlfred: Obviously.\\a Never heard of 'em before?\r\nFrogman:
-      No. What are they doing here?\r\nAlfred: Ah.\\a Lucky you.\\a Free of their
-      wrath.\\a The destruction they leave behind.\r\nFrogman: Sounds ominous.\r\nWe've
-      only fought them once or twice here.\r\nAlfred: Pah! The ones here are scum.\\a
-      They are weak.\\a But I smell 'em coming.\\a Get ready.\r\nFrogman: Smell?
-      How?\r\n}\r\n}\r\n}\r\n:addGenericCharacter:Guard1:\r\n:addGenericCharacter:Guard2:\r\n:play:GuardTheme\r\n:loadUnits:\r\nGuard1:
-      Well, well... What do we have here?\\a A Magma party?\r\nGuard2: Heh heh. Magma
-      party. Sounds fun.\r\nGuard1: What? No, that's not-\r\nNever mind, I have no
-      time to waste on you again.\\a Everyone, charge!\r\nGuard2: Heh heh. Charge.
-      Sounds fun.\r\n}\r\n:else:{\r\n:addUnit:Alfred\r\n:loadUnits::player\r\n:if:charactersAlive:>1{\r\nFrogman:
-      We're back. Let's hope we don't die this time.\r\n:if:hasCharacter:Firbell{\r\nFirbell:
-      Indeed.\r\nFrogman: ...\r\nFirbell: ...\r\nFrogman: Do you feel like... we're
-      been watched?\r\n:if:hasCharacter:Xirveros{\r\nXirveros: I'm watching you!\r\nFrogman:
-      Thanks, Xirveros.\r\n}\r\nFirbell: You are right. Someone is here.\r\nFrogman:
-      Guards? Monsters?\r\nFirbell: It is unlike them to hide.\r\nAlfred: ...They're
-      approaching.\r\nFrogman: Ah! Alfred!\\a How long have you been here?\r\nAlfred:
-      Too long.\r\n}\r\n:else:{\r\n:if:hasCharacter:Kresla{\r\nKresla: Right! I'd
-      like to check out these structures some more!\r\nFrogman: Uh, Kresla... I feel
-      like there's someone else here.\r\n:if:hasCharacter:Xirveros{\r\nXirveros:
-      Me?\r\nFrogman: Besides you, Xirveros.\r\n}\r\nKresla: Huh? Oh, are you talking
-      about Alfred?\r\nFrogman: Alfred? He's here?\r\nAlfred: ...Yes.\r\nFrogman:
-      Oh! I... didn't notice you.\r\nAlfred: No time for nonsense.\\a They're coming.\r\nFrogman:
-      Huh?\r\n}\r\n:else:{\r\n# Only Xirveros\r\nXirveros?\r\nXirveros: Me?\r\nFrogman:
-      Yes.\\a I feel like we're being watched.\r\nXirveros: You mean Alfred?\r\nFrogman:
-      Alfred? Why, is he here?\r\nAlfred: Yes.\r\nFrogman: Ah! Where did you come
-      from?\r\nAlfred: The shadows.\r\nFrogman: There... aren't many shadows in this
-      place.\\a What with all the magma.\r\nAlfred: ...The Guards.\\a They're coming.\r\nFrogman:
-      What's that to do with shad-\r\n}\r\n}\r\n}\r\n:else:{\r\nFrogman: I'm back.
-      And I'm... all alone now.\r\nAlfred: No.\r\nFrogman: Ah! Alfred! Where did
-      you come from?\r\nAlfred: The shadows.\r\nFrogman: There... aren't many shadows
-      in this place.\\a What with all the magma.\r\nAlfred: ...The Guards.\\a They're
-      coming.\r\nFrogman: What's that to do with shad-\r\n}\r\n:addGenericCharacter:Guard1:young\r\n:addGenericCharacter:Guard2:young\r\n:addGenericCharacter:Guard3:young\r\n:addGenericCharacter:Guard4:young\r\n:addGenericCharacter:Guard5:young\r\n:addGenericCharacter:Guard6:young\r\n:play:GuardTheme\r\n:loadUnits:\r\nGuard1:
+      I know of.\\a Interesting! So these Guards did erase your history!\nAlfred:
+      What?! You...\\a Pah. They're coming.\\a Get ready.\nKresla: How can you- \n:setFlag:AlfredKresla1\n}\n:else:{\n:if:hasCharacter:Xirveros{\nAlfred:
+      Name's Alfred. Who're you?\nXirveros: Me Xirveros. This Frog.\nAlfred: Greetings.\\a
+      You fighting the Guards?\nXirveros: Guards! Guards!\nFrogman: Uh... Are you
+      talking about the humans?\nAlfred: Obviously.\\a Never heard of 'em before?\nFrogman:
+      No. What are they doing here?\nAlfred: Ah.\\a Lucky you.\\a Free of their wrath.\\a
+      The destruction they leave behind.\nXirveros: Destroy Guards! Guards Destroy!\nAlfred:
+      Yes, we will destroy them.\\a All of them.\nFrogman: Sure... I'll just leave
+      you two alone.\nXirveros: They Guard. We must Guard.\nAlfred: Destroy Guards!\nXirveros:
+      Guards!\nAlfred: Guards!\\a They're here!\n}\n:else:{\nAlfred: Name's Alfred.
+      Who're you?\nFrogman: My name is Frogman.\nAlfred: Greetings.\\a You fighting
+      the Guards?\nFrogman: The humans, you mean?\nAlfred: Obviously.\\a Never heard
+      of 'em before?\nFrogman: No. What are they doing here?\nAlfred: Ah.\\a Lucky
+      you.\\a Free of their wrath.\\a The destruction they leave behind.\nFrogman:
+      Sounds ominous.\nWe've only fought them once or twice here.\nAlfred: Pah! The
+      ones here are scum.\\a They are weak.\\a But I smell 'em coming.\\a Get ready.\nFrogman:
+      Smell? How?\n}\n}\n}\n:addGenericCharacter:Guard1:\n:addGenericCharacter:Guard2:\n:play:GuardTheme\n:loadUnits:\nGuard1:
+      Well, well... What do we have here?\\a A Magma party?\nGuard2: Heh heh. Magma
+      party. Sounds fun.\nGuard1: What? No, that's not-\nNever mind, I have no time
+      to waste on you again.\\a Everyone, charge!\nGuard2: Heh heh. Charge. Sounds
+      fun.\n}\n:else:{\n:addUnit:Alfred\n:loadUnits::player\n:if:charactersAlive:>1{\nFrogman:
+      We're back. Let's hope we don't die this time.\n:if:hasCharacter:Firbell{\nFirbell:
+      Indeed.\nFrogman: ...\nFirbell: ...\nFrogman: Do you feel like... we're been
+      watched?\n:if:hasCharacter:Xirveros{\nXirveros: I'm watching you!\nFrogman:
+      Thanks, Xirveros.\n}\nFirbell: You are right. Someone is here.\nFrogman: Guards?
+      Monsters?\nFirbell: It is unlike them to hide.\nAlfred: ...They're approaching.\nFrogman:
+      Ah! Alfred!\\a How long have you been here?\nAlfred: Too long.\n}\n:else:{\n:if:hasCharacter:Kresla{\nKresla:
+      Right! I'd like to check out these structures some more!\nFrogman: Uh, Kresla...
+      I feel like there's someone else here.\n:if:hasCharacter:Xirveros{\nXirveros:
+      Me?\nFrogman: Besides you, Xirveros.\n}\nKresla: Huh? Oh, are you talking about
+      Alfred?\nFrogman: Alfred? He's here?\nAlfred: ...Yes.\nFrogman: Oh! I... didn't
+      notice you.\nAlfred: No time for nonsense.\\a They're coming.\nFrogman: Huh?\n}\n:else:{\n#
+      Only Xirveros\nXirveros?\nXirveros: Me?\nFrogman: Yes.\\a I feel like we're
+      being watched.\nXirveros: You mean Alfred?\nFrogman: Alfred? Why, is he here?\nAlfred:
+      Yes.\nFrogman: Ah! Where did you come from?\nAlfred: The shadows.\nFrogman:
+      There... aren't many shadows in this place.\\a What with all the magma.\nAlfred:
+      ...The Guards.\\a They're coming.\nFrogman: What's that to do with shad-\n}\n}\n}\n:else:{\nFrogman:
+      I'm back. And I'm... all alone now.\nAlfred: No.\nFrogman: Ah! Alfred! Where
+      did you come from?\nAlfred: The shadows.\nFrogman: There... aren't many shadows
+      in this place.\\a What with all the magma.\nAlfred: ...The Guards.\\a They're
+      coming.\nFrogman: What's that to do with shad-\n}\n:addGenericCharacter:Guard1:young\n:addGenericCharacter:Guard2:young\n:addGenericCharacter:Guard3:young\n:addGenericCharacter:Guard4:young\n:addGenericCharacter:Guard5:young\n:addGenericCharacter:Guard6:young\n:play:GuardTheme\n:loadUnits:\nGuard1:
       Quake and tremble, monsters! Your reign of terror is over!\\a For we - the
-      Incredible Six - are here to stop you!\r\n:if:!hasFlag:MetTheSix{\r\nFrogman:
-      The Incredible Six?\r\nGuard1: Indeed! I am [Name], the Invincible Fox!\r\n:setFlag:MetTheSix\r\n}\r\n:else:{\r\nFrogman:
-      ...You're not the first ones to claim that title.\r\nGuard1: Huh? Preposterous!
-      We're the one and only- Uh, I mean,\\a the six and only Incredible Six!\r\nFrogman:
-      Right...\r\nGuard1: I am [Name], the Invincible Fox!\r\n}\r\nGuard2: Greetings,
-      friends. My name is [Name],\\a also known as the Sly Dog.\r\nGuard3: Hello.
-      My name is [Name] Boslivixon. Prepare to die.\r\nGuard4: Hi! I'm [Name], the
-      Speedy Turtle!\\a I'm the best of the Six! You don't stand a chance!\r\nGuard5:
-      [Name] here. The Pidgeon.\r\nI'll wipe your ugly visage off the face of this
-      world.\r\nGuard6: Uh, I'm [Name]. I was told this was some kind of a party?\\a
-      Why are there so many weapons?\r\nFrogman: ...You're all insane.\r\nGuard5:
-      And you're a delusional piece of dead meat.\r\nGuard2: En garde!\r\n}\r\n\r\n~
-      After battle\r\nFrogman: This way!\\a Time to get out of here!\r\n:if:hasCharacter:Alfred{\r\n:call:PostAlfred\r\n}\r\n:else:{\r\n:call:PostAlfredDead\r\n}\r\n:setFlag:MetAlfred\r\n\r\n#
-      === Functions ====\r\n\r\n~ PostAlfred\r\n# The \"fix\" only happens in level
-      6 - Alfred abandons the player if they still have too many characters\r\n:if:teamUnitsAlive:guard:>0{\r\nAlfred:
-      You're running away?!\\a Pah, cowards, every one of you!\r\nFrogman: Alfred,
-      they're too many!\\a We've got to leave, now!\r\nAlfred: I'd rather die than
-      run!\r\nFrogman: What?\\a Um...\\a Then look at it this way - if you survive,\r\nyou
-      can help us defeat more Guards in the future!\\a Yeah!\r\nWe're stronger together,
-      don't you think?\r\nAlfred: ...Urgh.\\a Fine.\\a I admit you're strong.\\a
-      I'll follow for now, Frogman.\r\n}\r\n:loadMap:Part2RestArea\r\n:loadUnits:Part2RestArea\r\n:play:Anticipation\r\n#
-      Frogman notices Alfred's ring\r\nFrogman||L: Whew, we're safe.\r\n:if:hasCharacter:Firbell{\r\nFirbell:
-      At last, we are. But not for long.\\a We should prepare for battle.\r\nFrogman:
-      Sure, go ahead.\r\n}\r\n:if:hasCharacter:Kresla{\r\nKresla: Yes. And we have
-      time to explore a bit, even!\\a I think I'll try to study the structure here.\\a
-      What IS this material?\r\nFrogman: Sure, go ahead.\r\n}\r\n:if:hasCharacter:Xirveros{\r\nXirveros:
-      This memory. My memory. Like rock! Rock song!\\a Fred, want rock song?\r\nAlfred:
-      ...No.\r\nXirveros: Oof.\r\n}\r\nFrogman||L: ...\r\nAlfred: ...Your ring.\\a
-      It's like mine.\\a Where's it from?\r\nFrogman: What? Oh, my Magma Emblem.\\a
-      I don't remember.\r\nAlfred: Really?\\a There was only one other.\\a Taken
-      by the Guards.\\a You stole it?\r\nFrogman: Uh... Maybe?\r\nAlfred: You better
-      have.\\a Only other way is you're a Guard.\\a In which case, I'll kill you.\r\nFrogman:
-      No, I'm pretty sure I wasn't a Guard.\\a But then, where is your ring from?\r\nAlfred:
-      They took them both.\\a I was sent to retrieve.\\a They killed me, the fools!\\a
-      Now I am vengeance.\r\nFrogman: I... see.\r\nAlfred: I'll be watching you,
-      Frogman.\\a You better not be lying.\r\nFrogman: I am not.\\a ...I hope.\r\n:setFlag:AlfredRing\r\n\r\n~
-      PostAlfredDead\r\n:loadMap:Part2RestArea\r\n:loadUnits:Part2RestArea\r\n:play:SafeAndSound\r\nFrogman:
-      Alfred... But I'm sure he'll be back.\r\n"
+      Incredible Six - are here to stop you!\n:if:!hasFlag:MetTheSix{\nFrogman: The
+      Incredible Six?\nGuard1: Indeed! I am [Name], the Invincible Fox!\n:setFlag:MetTheSix\n}\n:else:{\nFrogman:
+      ...You're not the first ones to claim that title.\nGuard1: Huh? Preposterous!
+      We're the one and only- Uh, I mean,\\a the six and only Incredible Six!\nFrogman:
+      Right...\nGuard1: I am [Name], the Invincible Fox!\n}\nGuard2: Greetings, friends.
+      My name is [Name],\\a also known as the Sly Dog.\nGuard3: Hello. My name is
+      [Name] Boslivixon. Prepare to die.\nGuard4: Hi! I'm [Name], the Speedy Turtle!\\a
+      I'm the best of the Six! You don't stand a chance!\nGuard5: [Name] here. The
+      Pidgeon.\nI'll wipe your ugly visage off the face of this world.\nGuard6: Uh,
+      I'm [Name]. I was told this was some kind of a party?\\a Why are there so many
+      weapons?\nFrogman: ...You're all insane.\nGuard5: And you're a delusional piece
+      of dead meat.\nGuard2: En garde!\n}\n\n~ After battle\nFrogman: This way!\\a
+      Time to get out of here!\n:if:hasCharacter:Alfred{\n:call:PostAlfred\n}\n:else:{\n:call:PostAlfredDead\n}\n:setFlag:MetAlfred\n\n#
+      === Functions ====\n\n~ PostAlfred\n# The \"fix\" only happens in level 6 -
+      Alfred abandons the player if they still have too many characters\n:if:teamUnitsAlive:guard:>0{\nAlfred:
+      You're running away?!\\a Pah, cowards, every one of you!\nFrogman: Alfred,
+      they're too many!\\a We've got to leave, now!\nAlfred: I'd rather die than
+      run!\nFrogman: What?\\a Um...\\a Then look at it this way - if you survive,\nyou
+      can help us defeat more Guards in the future!\\a Yeah!\nWe're stronger together,
+      don't you think?\nAlfred: ...Urgh.\\a Fine.\\a I admit you're strong.\\a I'll
+      follow for now, Frogman.\n}\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:Anticipation\n#
+      Frogman notices Alfred's ring\nFrogman||L: Whew, we're safe.\n:if:hasCharacter:Firbell{\nFirbell:
+      At last, we are. But not for long.\\a We should prepare for battle.\nFrogman:
+      Sure, go ahead.\n}\n:if:hasCharacter:Kresla{\nKresla: Yes. And we have time
+      to explore a bit, even!\\a I think I'll try to study the structure here.\\a
+      What IS this material?\nFrogman: Sure, go ahead.\n}\n:if:hasCharacter:Xirveros{\nXirveros:
+      This memory. My memory. Like rock! Rock song!\\a Fred, want rock song?\nAlfred:
+      ...No.\nXirveros: Oof.\n}\nFrogman||L: ...\nAlfred: ...Your ring.\\a It's like
+      mine.\\a Where's it from?\nFrogman: What? Oh, my Magma Emblem.\\a I don't remember.\nAlfred:
+      Really?\\a There was only one other.\\a Taken by the Guards.\\a You stole it?\nFrogman:
+      Uh... Maybe?\nAlfred: You better have.\\a Only other way is you're a Guard.\\a
+      In which case, I'll kill you.\nFrogman: No, I'm pretty sure I wasn't a Guard.\\a
+      But then, where is your ring from?\nAlfred: They took them both.\\a I was sent
+      to retrieve.\\a They killed me, the fools!\\a Now I am vengeance.\nFrogman:
+      I... see.\nAlfred: I'll be watching you, Frogman.\\a You better not be lying.\nFrogman:
+      I am not.\\a ...I hope.\n:setFlag:AlfredRing\n\n~ PostAlfredDead\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:SafeAndSound\nFrogman:
+      Alfred... But I'm sure he'll be back.\n"
     Name: Level5FirstTimeAlfred
+  - Text: "priority:3\nunique:T\n~ Requirements\nroomNumber:5\ncharactersAlive:<2\nhasCharacter:Kresla\n!hasFlag:AlfredKresla1\n~
+      Demands\n~ Before battle\n:callOther:GuardPreBanter\n:play:BeforeBattle2\n:addUnit:Alfred\n:loadUnits:\n:setSingleSpeaker:L\nFrogman:
+      TBA\nAlfred: TBA\nKresla||L: Hi there! I've never seen you before!\\a Where
+      are you from?\nAlfred: ...Alezis.\nKresla: Um, I've never heard of it.\nAlfred:
+      Pah. You heard about Guard name?\\a Bronzing?\nKresla: Wait, Bronzing? I'm
+      from there!\nAlfred: Ha! Fool!\\a That's Guard name.\\a They try erasing our
+      history.\\a Our names!\\a We mustn't forget!\\a Do not listen!\nKresla: Uh,
+      look, when I come from, there are no \"Guards\".\\a Bronzing is an independant
+      country.\\a But now that you mention it, Alezis never appeared in any history
+      I know of.\\a Interesting! So these Guards did erase your history!\nAlfred:
+      What?! You...\\a Pah. They're coming.\\a Get ready.\nKresla: How can you- \n:setFlag:AlfredKresla1\n\n~
+      After battle\nFrogman: Everyone, run!\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:Anticipation\nFrogman||L:
+      Ah... Safe at last...\n\n# === Functions ====\n\n~ Sample\n# Name: Text.\n"
+    Name: Level5FirstTimeAlfredKresla
   - Text: 'priority:-1
 
       unique:F
