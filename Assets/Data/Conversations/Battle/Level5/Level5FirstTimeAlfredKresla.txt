@@ -7,30 +7,69 @@ hasCharacter:Kresla
 !hasFlag:AlfredKresla1
 ~ Demands
 ~ Before battle
-:callOther:GuardPreBanter
 :play:BeforeBattle2
 :addUnit:Alfred
-:loadUnits:
+:loadUnits::player
 :setSingleSpeaker:L
-Frogman: TBA
-Alfred: TBA
+Frogman: This place again... At least we appear to be alone.
+Alfred: ...Not.
+Frogman: Ah!
 Kresla||L: Hi there! I've never seen you before!\a Where are you from?
 Alfred: ...Alezis.
 Kresla: Um, I've never heard of it.
 Alfred: Pah. You heard about Guard name?\a Bronzing?
 Kresla: Wait, Bronzing? I'm from there!
 Alfred: Ha! Fool!\a That's Guard name.\a They try erasing our history.\a Our names!\a We mustn't forget!\a Do not listen!
-Kresla: Uh, look, when I come from, there are no "Guards".\a Bronzing is an independant country.\a But now that you mention it, Alezis never appeared in any history I know of.\a Interesting! So these Guards did erase your history!
-Alfred: What?! You...\a Pah. They're coming.\a Get ready.
-Kresla: How can you- 
+Kresla: Uh, look, when I come from, there are no "Guards".\a Nor Alezis, for that matter.
+Frogman||L: Kresla...
+Kresla||L: Which means that the Guards succeeded in erasing your history!\a Interesting!
+Alfred: No!\a You lie!\a Are you Guard agent?!
+Kresla: What? No, I never saw any Guards when I was alive.\a They must have hidden their existence,\a alongside yours.\a Can you tell me more about them?
+Alfred: Pah! How can you not know the Guards,\a yet know Guard name?!\a You liar!
+Kresla: Why would I lie? It's not my fault your country was-
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:young
+:addGenericCharacter:Guard3:old
+:play:GuardTheme
+Guard1: HA HA HA! You didn't!
+Guard2: I did! And then-
+Guard3: You two! What are you blabbering about?!
+Guard1: S-sir! H-he was just giving me some tips-
+Guard2: I was telling him about the magma party last night.\a Did you hear about it?
+Guard3: Party?! We have hostiles incoming!\a Stop this foolishness at once!
+Guard1: Y-yes, sir!
+Guard2: But I never finished-
+Guard1: Shut up, [Name:Guard2]! You can finish it after the battle!
+Guard2: Oof...
+:setSingleSpeaker:L
+Frogman: Hey, look! The Guards are here!\a We've run out of time!
+Kresla: But-
+Frogman: No time!
+Kresla: Oof...
 :setFlag:AlfredKresla1
 
 ~ After battle
-Frogman: Everyone, run!
+Frogman: Let's get out of here!
 :loadMap:Part2RestArea
 :loadUnits:Part2RestArea
 :play:Anticipation
-Frogman||L: Ah... Safe at last...
+:if:hasCharacter:Kresla{
+:if:hasCharacter:Alfred{
+:setSingleSpeaker:L
+Kresla: Whew! Well, now that we've got some time...\a Wait, what was your name again?
+Alfred: ...Alfred.
+Kresla: Right! So, Alfred.\a Can you tell me more about-
+Frogman: Uh, Kresla?
+Kresla: Yes?
+Frogman: TBA
+}
+:else:{
+Frogman: TBA
+}
+}
+:else:{
+Frogman||L: TBA
+}
 
 # === Functions ====
 
