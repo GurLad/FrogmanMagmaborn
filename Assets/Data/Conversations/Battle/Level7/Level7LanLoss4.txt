@@ -1,0 +1,70 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+compareCounter:TimesLanLost:>3
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant:female
+:addGenericCharacter:Guard1
+:addGenericCharacter:Guard2
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+Lan||R: ...
+I'm the best.\a Aren't I?\a I'm beautiful, I'm strong, I'm smart.\a I was chosen by Fashima. Fashima!\a The most powerful Magi ever!\a But I keep... I keep... Losing...\a To that... That Frogman...
+Lieutenant: ...Lan?
+Lan: What!
+Lieutenant: Why are you talking to yourself?\a Are you quite all right?
+Lan: All right?! Who do you think you are, eh?\a Leshy herself?!\a Get out of my sight!
+Lieutenant: ...
+:setSingleSpeaker:R
+Lan: Nnrgh...\a This is all wrong... So wrong...
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: TBA
+:markDone:
+
+~ After battle
+:play:AfterBattle
+:addCounter:TimesLanLost:1
+:play:AfterBattle
+Frogman: We did it again! Let's go, everyone!
+
+# === Functions ====
+
+~ LanDies
+# This is an alternate version of the events I thought about implementing, but probably won't, as it requires too much work modifying all levels to account for Lan's death (as Werse would become the de-facto leader of all Guards and would order them to stop fighting the monsters & Magmaborn)
+Lieutenant: Lan.\a I am relieving you of duty.
+Guard1||L: ...! She's actually going through with this?!
+Guard2||L: IS this real? Are we really getting rid of him?!
+Lan: What... What did you just say?
+Lieutenant: You are clearly unstable and unfit to lead.\a I have had enough of following you around.\a Surrender peacefully, and you might yet live.
+Lan: You! How DARE you! I will have your head for this!
+:screenShake:
+YAHH!
+Lieutenant: ...
+Pathetic.
+Lan: You... How are you still alive?
+Lieutenant: Because you're weak, Lan.\a Always have been.\a And thank you for attacking me first.\a Now my retaliation is justified.
+:screenShake:
+Lan: Arrgh!\a N-no... How...
+:hideUnit:Lan
+:setSingleSpeaker:L
+Lieutenant: ...
+Guard1: ...I can't believe it. Lan is...\a [Name:Lieutenant] killed him!
+Guard2||R: We... We're free!
+Guard3||R: Glory to [Name:Lieutenant]!
+Guard1||R: All hail [Name:Lieutenant]!
+Lieutenant: I-
+:loadUnits::monster:T
+:replaceUnit:Lan:Werse
+Werse: That is quite enough of that.
+Lieutenant: W-werse! I-I can explain-
+Werse: No need. I saw everything.
+Lieutenant: Y-you did?! Then why...
+Werse: TBA

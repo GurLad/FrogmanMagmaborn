@@ -1,0 +1,49 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:7
+hasFlag:FashimaDied
+compareCounter:TimesLanLost:>2
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:play:GuardTheme2
+:addGenericCharacter:Lieutenant
+:addGenericCharacter:Guard1
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+Lan||R: You there.
+Lieutenant: (Oh no.)
+Lan: Hey! I'm talking to you!\a Are you deaf or something?!
+Lieutenant: (I wish I was...) What is it, master?
+Lan: Stop whispering and listen to me!
+Lieutenant: I'm listening...
+Lan: Who's the worst Magus?
+Lieutenant: You-\a Wait, what?
+Lan: You said me, didn't you?!
+Lieutenant: I d-didn't-
+Lan: Do you think you're better than me, then?\a Some sort of Guard hotshot?!
+Lieutenant: N-no-
+Lan: You are nothing! Human refuse!\a Replaceable hunk of meat!\a And I-
+I am the best.\a The very best, like no-one ever was.\a The best! Do you hear me?!
+Lieutenant: O-of course, master. You are the best Magus ever.
+I beg your forgiveness for my earlier transgression.
+Lan: Hmpf. You better remember that, soldier.\a Dismissed.
+Lieutenant: (...What an utter jerk.)
+:play:BeforeBattle2
+:loadUnits::player:T
+:setSingleSpeaker:L
+Frogman: TBA
+:markDone:
+
+~ After battle
+:play:AfterBattle
+:addCounter:TimesLanLost:1
+:play:AfterBattle
+Frogman: We did it again! Let's go, everyone!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
