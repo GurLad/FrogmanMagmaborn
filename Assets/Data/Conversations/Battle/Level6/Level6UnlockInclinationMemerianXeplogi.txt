@@ -8,17 +8,40 @@ hasCharacter:Xeplogi
 ~ Demands
 # Nothinig
 ~ Before battle
-# TBA: Change from generic
-:callOther:GuardPreBanter
+:if:firstTime:{
 :play:BeforeBattle2
 :addUnit:Memerian
+:loadUnits::player
+:setSpeaker:Memerian||R
+Xeplogi: You! How dare you come here again!
+Memerian: I didn't come anywhere.
+You are the ones who have approached me.
+Xeplogi: Do not change the subject, you trickster!
+Frogman: Xeplogi. Memerian.\a How about we put our differences aside for now, and-
+Memerian: No. I am not working with this slime.
+Xeplogi: Ha! As if I would ever join forces with you!
+Frogman: Ugh. Can you please stop this pointless bickering?\a How long have you been fighting each other?
+Memerian: Centuries, I'd wager.
+Xeplogi: C-Centuries?! Don't be foolish! A year at most.
+Memerian: Oh, really? And how would you know that, idiot?
+You couldn't keep track of time even when you were alive.
+Xeplogi: Why, you-
+Frogman: You know what? This is pointless.\a You are clearly incapable of changing.\a Enjoy killing each other for all eternity.
+Xeplogi: I am not incapable of changing!\a I would gladly forgive Memerian,\a were she to apologize properly.
+Memerian: You want ME to apologize?!\a You are the one who murdered me!
+Xeplogi: See? She is clearly the problem here!
+Memerian: ...You are unsalvageable, Xeplogi.
+:play:GuardTheme
 :loadUnits:
-:setSingleSpeaker:R
-Memerian: ...We meet again, slime.
-Xeplogi: You! Remove yourself from my sight at once!
-Memerian: And why would I do that?
-Xeplogi: Why, you little-
-Frogman: Ugh, enough.
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
+:setSpeaker:Guard2
+Guard1: This is boring. Let's just kill them already.
+Guard2: Boring? How can you say that?!\a They're now getting to the good part!
+Guard1: I doubt they're capable of a good part.\a They're just arguing.\a Even the insults are lame.\a I'd rather we just kill them.
+Guard2: But...
+:setSpeaker:Xeplogi
+Frogman: Right. We are out of time.
 :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 :if:chose:0{
 :addCounter:MemerianXeplogiBalance:-1
@@ -39,7 +62,14 @@ Xeplogi: How dare you! You will die for this, Frogman!
 Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
 :if:hasCharacter:Xeplogi{
 :if:MemerianXeplogiBalance:<1{
-Xeplogi: Thanks for supporting me.
+Xeplogi: Thank you for supporting me, Frogman.
+Frogman: Yeah, sure.
+Xeplogi: I've been thinking about what you said before.\a About changing.
+Frogman: Really? Are you ready to finally forgive Memerian?
+Xeplogi: What? No way!\a I've been talking about my fighting style.
+Frogman: Ah.
+Xeplogi: I admit that it might leave a bit to be desired.\a Therefore, I shall change it.\a If you so wish.
+Frogman: TBA
 :unlockKnowledge:InclinationXeplogi
 :showInfoDialogue:New knowledge!
 }

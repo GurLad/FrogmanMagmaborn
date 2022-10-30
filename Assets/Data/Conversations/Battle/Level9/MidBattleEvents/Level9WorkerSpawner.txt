@@ -1,0 +1,24 @@
+priority:-1
+unique:F
+~ Requirements
+# Never selected
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:compareCounter:Level9CloneSpawn:>0{
+:loadUnits::guard:T
+:setCounter:Level9CloneSpawn:0
+}
+:else:{
+:addCounter:Level9CloneSpawn:1
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

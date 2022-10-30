@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 using CAT = ConversationPlayer.CommandArgumentType;
 
 public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConversationPlayer>
@@ -386,11 +387,14 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName, Team changeTo
                         // Changes a unit's team
                         AssertCommand("setTeam", args, CAT.String, CAT.Team);
-                        Unit target = GameController.Current.GetNamedUnit(args[0]);
-                        if (target != null)
+                        List<Unit> targets = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets.Count > 0)
                         {
-                            target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
-                            target.Moved = target.Moved;
+                            foreach (Unit target in targets)
+                            {
+                                target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
+                                target.Moved = target.Moved;
+                            }
                         }
                         else
                         {
@@ -401,17 +405,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName, string functionName
                         // Set a unit's battle quote (aka add boss battle quote). Must use a function.
                         AssertCommand("setBattleQuote", args, CAT.String, CAT.String);
-                        Unit target1 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target1 != null)
+                        List<Unit> targets1 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets1.Count > 0)
                         {
-                            if (origin.Functions.ContainsKey(args[1]))
+                            foreach (Unit target in targets1)
                             {
-                                target1.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
-                                Bugger.Info(target1.BattleQuote);
-                            }
-                            else
-                            {
-                                throw Bugger.Error("No matching function! (" + args[1] + ")");
+                                if (origin.Functions.ContainsKey(args[1]))
+                                {
+                                    target.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
+                                    Bugger.Info(target.BattleQuote);
+                                }
+                                else
+                                {
+                                    throw Bugger.Error("No matching function! (" + args[1] + ")");
+                                }
                             }
                         }
                         else
@@ -423,16 +430,19 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName, string functionName
                         // Set a unit's death quote (retains bewtween chapters). Must use a function.
                         AssertCommand("setDeathQuote", args, CAT.String, CAT.String);
-                        Unit target2 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target2 != null)
+                        List<Unit> targets2 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets2.Count > 0)
                         {
-                            if (origin.Functions.ContainsKey(args[1]))
+                            foreach (Unit target in targets2)
                             {
-                                target2.DeathQuote = string.Join("\n", origin.Functions[args[1]]);
-                            }
-                            else
-                            {
-                                throw Bugger.Error("No matching function! (" + args[1] + ")");
+                                if (origin.Functions.ContainsKey(args[1]))
+                                {
+                                    target.DeathQuote = string.Join("\n", origin.Functions[args[1]]);
+                                }
+                                else
+                                {
+                                    throw Bugger.Error("No matching function! (" + args[1] + ")");
+                                }
                             }
                         }
                         else
@@ -444,10 +454,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName, string skillName
                         // Adds a skill to a unit.
                         AssertCommand("addSkill", args, CAT.String, CAT.String);
-                        Unit target3 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target3 != null)
+                        List<Unit> targets3 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets3.Count > 0)
                         {
-                            target3.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
+                            foreach (Unit target in targets3)
+                            {
+                                target.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
+                            }
                         }
                         else
                         {
@@ -458,15 +471,18 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName, bool showDeathQuote = true
                         // Kills a unit.
                         AssertCommand("killUnit", args, CAT.String, CAT.OpBool);
-                        Unit target4 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target4 != null)
+                        List<Unit> targets4 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets4.Count > 0)
                         {
-                            if (args.Length > 1 && args[1] == "F")
+                            foreach (Unit target in targets4)
                             {
-                                // Remove death quote before killing
-                                target4.DeathQuote = "";
+                                if (args.Length > 1 && args[1] == "F")
+                                {
+                                    // Remove death quote before killing
+                                    target.DeathQuote = "";
+                                }
+                                GameController.Current.KillUnit(target);
                             }
-                            GameController.Current.KillUnit(target4);
                         }
                         else
                         {
@@ -477,10 +493,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string unitName
                         // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
                         AssertCommand("hideUnit", args, CAT.String);
-                        Unit target5 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target5 != null)
+                        List<Unit> targets5 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets5.Count > 0)
                         {
-                            GameController.Current.PseudoKillUnit(target5);
+                            foreach (Unit target in targets5)
+                            {
+                                GameController.Current.PseudoKillUnit(target);
+                            }
                         }
                         else
                         {
@@ -491,17 +510,20 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         // Params: string oldUnit, string newUnit, bool keepHealth = false
                         // Kills oldUnit and spawns newUnit in its place
                         AssertCommand("replaceUnit", args, CAT.String, CAT.String, CAT.OpBool);
-                        Unit target6 = GameController.Current.GetNamedUnit(args[0]);
-                        if (target6 != null)
+                        List<Unit> targets6 = GameController.Current.GetNamedUnits(args[0]);
+                        if (targets6.Count > 0)
                         {
-                            Unit newUnit = GameController.Current.CreateUnit(args[1], target6.Level, target6.TheTeam, false);
-                            newUnit.Pos = target6.Pos;
-                            if (args.Length > 2 && args[2] == "T")
+                            foreach (Unit target in targets6)
                             {
-                                newUnit.Health = target6.Health;
+                                Unit newUnit = GameController.Current.CreateUnit(args[1], target.Level, target.TheTeam, false);
+                                newUnit.Pos = target.Pos;
+                                if (args.Length > 2 && args[2] == "T")
+                                {
+                                    newUnit.Health = target.Health;
+                                }
+                                target.DeathQuote = ""; // Doesn't actually die, after all
+                                GameController.Current.KillUnit(target);
                             }
-                            target6.DeathQuote = ""; // Doesn't actually die, after all
-                            GameController.Current.KillUnit(target6);
                         }
                         else
                         {

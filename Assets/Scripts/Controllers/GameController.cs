@@ -1261,7 +1261,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     // TODO: Replace all instances of "frogman/boss dead" with this function.
     public bool CheckUnitAlive(string name)
     {
-        return GetNamedUnit(name, true) != null;
+        return GetNamedUnits(name, true).Count > 0;
     }
 
     public int CountUnitsAlive(Team? team)
@@ -1286,9 +1286,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return minMax;
     }
 
-    public Unit GetNamedUnit(string name, bool displayName = false)
+    public List<Unit> GetNamedUnits(string name, bool displayName = false)
     {
-        return units.Find(a => (displayName ? a.ToString() : a.Name) == name);
+        return units.FindAll(a => (displayName ? a.ToString() : a.Name) == name);
     }
 
     public Portrait GetGenericPortrait(Team? team = null)

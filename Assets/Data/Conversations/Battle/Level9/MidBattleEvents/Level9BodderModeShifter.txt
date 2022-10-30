@@ -1,0 +1,29 @@
+priority:-1
+unique:F
+~ Requirements
+# Never selected
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:compareCounter:Level9BodderState:>0{
+:replaceUnit:SuBodderPre:SuBodderPir:T
+:addSkill:SuBodderPir:DragonSkin
+SuBodderPir: RUN, LITTLE MICE! RUN FROM BODDER!
+:setCounter:Level9BodderState:0
+}
+:else:{
+:replaceUnit:SuBodderPir:SuBodderPre:T
+:addSkill:SuBodderPre:DragonSkin
+SuBodderPre: THERE IS NO ESCAPE FROM ME, DEMONS!
+:setCounter:Level9BodderState:1
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
