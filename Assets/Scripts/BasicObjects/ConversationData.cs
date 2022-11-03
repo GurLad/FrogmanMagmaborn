@@ -227,9 +227,9 @@ public class ConversationData : System.IComparable<ConversationData>
         return -priority.CompareTo(other.priority);
     }
 
-    public bool Choose(bool postBattle)
+    public bool Choose(bool postBattle, bool affectNonUnique = false)
     {
-        if (unique)
+        if (unique || affectNonUnique)
         {
             SavedData.Save("ConversationData", "ID" + ID, Mathf.Max(SavedData.Load<int>("ConversationData", "ID" + ID), postBattle ? 2 : 1));
             return true;

@@ -25,8 +25,10 @@ public class BaseController : MonoBehaviour
         {
             MenuItem conversationMenuItem = Instantiate(TalkMenuItem, TalkMenuItem.transform.parent);
             TPlayConversation conversationTrigger = conversationMenuItem.GetComponent<TPlayConversation>();
+            conversationTrigger.Conversation = conversation;
             conversationTrigger.Data = string.Join("\n", conversation.Lines);
             conversationTrigger.Data += "\n:showBase:\n"; // Show the base again after the conversation is done
+            conversationTrigger.NewIndicator.gameObject.SetActive(conversation.MeetsRequirement("firstTime:"));
             conversationMenuItem.Text = " " + conversation.ToString();
             conversationMenuItem.gameObject.SetActive(true);
             TalkMenu.MenuItems.Add(conversationMenuItem);

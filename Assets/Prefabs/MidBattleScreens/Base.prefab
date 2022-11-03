@@ -726,12 +726,17 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :play:BeforeBattle
+      Frogman: Hey, Fashima.
 
-      Frogman:
-      Hey, Fashima.
+      Fashima:
+      Hey, Frogman.
 
-      Fashima: Hey, Frogman.
+      Frogman: The speed of light is the best.
+
+      Fashima:
+      No.
+
+      Frogman: Oof.
 
 
       ~ After battle
@@ -750,7 +755,7 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: Test
+    Name: BaseLevel9Test
   IgnoreDoneConversations: 0
   SetAsMain: 0
   Path: Conversations\Base
@@ -891,6 +896,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 2705535912749119306, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
+        type: 3}
+      propertyPath: m_Name
+      value: NewIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207550779875205074, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9,
+        type: 3}
+      propertyPath: Indicators.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f9ad23a7dd45bc478bc4ec8ff06d4a9, type: 3}
 --- !u!1 &1922401397558504186 stripped
@@ -947,7 +962,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abe16c768af0cf4a875c1264ac0f18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Conversation:
+    sourceText: 
+    sourceID: 
   Data: 
+  NewIndicator: {fileID: 5610083035225392545}
 --- !u!114 &5610083035225392545
 MonoBehaviour:
   m_ObjectHideFlags: 0
