@@ -7,8 +7,8 @@ public class StatusMenuItem : MenuItem
 {
     [Header("Objects")]
     public BattleStatsPanel BattleStatsPanel;
-    public Text Info;
-    public PortraitHolder Portrait;
+    public Text Name;
+    public AdvancedSpriteSheetAnimationUI ClassIcon;
     public List<PalettedSprite> PalettedSprites;
     public GameObject StatusScreen;
     public RectTransform RectTransform;
@@ -20,7 +20,7 @@ public class StatusMenuItem : MenuItem
     private void Reset()
     {
         BattleStatsPanel = GetComponentInChildren<BattleStatsPanel>();
-        Portrait = GetComponentInChildren<PortraitHolder>();
+        ClassIcon = GetComponentInChildren<AdvancedSpriteSheetAnimationUI>();
         RectTransform = GetComponent<RectTransform>();
     }
 
@@ -28,10 +28,10 @@ public class StatusMenuItem : MenuItem
     {
         this.player = player;
         this.unitLists = unitLists;
-        BattleStatsPanel.Display(player);
-        Info.text = player + "\n\nLevel:" + player.Level;
-        Portrait.Awake();
-        Portrait.Portrait = player.Icon;
+        BattleStatsPanel.Display(player, false);
+        Name.text = player.ToString();
+        ClassData classData = GameController.Current.UnitClassData.ClassDatas.Find(a => a.Name == player.Class);
+        classData.SetToClassIcon(ClassIcon);
         PalettedSprites.ForEach(a => a.Awake());
     }
 

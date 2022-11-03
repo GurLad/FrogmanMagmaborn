@@ -62,4 +62,18 @@ public class ClassData
     {
         return Name;
     }
+
+    public void SetToClassIcon(AdvancedSpriteSheetAnimationUI classIcon)
+    {
+        classIcon.Animations[0].SpriteSheet = MapSprite;
+        if (!classIcon.Active)
+        {
+            classIcon.Start();
+        }
+        else
+        {
+            classIcon.Animations[0].Split();
+        }
+        classIcon.Activate(0, true);
+    }
 }

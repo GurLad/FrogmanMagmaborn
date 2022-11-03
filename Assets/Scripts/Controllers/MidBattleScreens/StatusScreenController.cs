@@ -52,16 +52,7 @@ public class StatusScreenController : MidBattleScreen
         HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.MaxHP * 4, 8);
         // Load class icon
         ClassData classData = GameController.Current.UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
-        ClassIcon.Animations[0].SpriteSheet = classData.MapSprite;
-        if (!ClassIcon.Active)
-        {
-            ClassIcon.Start();
-        }
-        else
-        {
-            ClassIcon.Animations[0].Split();
-        }
-        ClassIcon.Activate(0, true);
+        classData.SetToClassIcon(ClassIcon);
         foreach (var item in PaletteSprites)
         {
             item.Palette = (int)unit.TheTeam;

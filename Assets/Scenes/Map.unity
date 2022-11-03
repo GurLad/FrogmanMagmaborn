@@ -12520,19 +12520,30 @@ MonoBehaviour:
 
       ~ Before battle
 
+      # Pre-battle Fashima
+      stuff
+
       :play:MomentOfTruth
+
+      :showCG:FortressInside
+
+      Fashima:
+      TBA
+
+      :showBase:
+
+      Fashima: TBA
+
+      :hideCG:
 
       :loadUnits::player
 
       :loadUnits::monster:T
 
-      #
-      Pre-battle Fashima stuff
-
       :play:EnterTheBodder
 
-      # If didn''t trust
-      Fashima (arrived alone)
+      #
+      If didn''t trust Fashima (arrived alone)
 
       Bodder: Frogman, Frogman, Frogman.
 
