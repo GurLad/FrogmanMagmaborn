@@ -8,7 +8,13 @@ roomNumber:9
 # Pre-battle Fashima stuff
 :play:MomentOfTruth
 :showCG:FortressInside
-Fashima: TBA
+Fashima||R: Welcome to my humble home, my friend.
+Frogman: Ugh... How did we get here?
+:if:hasFlag:FashimaKilledAlfred{
+More importantly, why did you kill Alfred?!
+# TBA
+}
+# TBA
 :showBase:
 Fashima: TBA
 Frogman: TBA
