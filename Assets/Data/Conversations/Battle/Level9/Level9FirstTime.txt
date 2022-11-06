@@ -7,6 +7,8 @@ roomNumber:9
 ~ Before battle
 # Pre-battle Fashima stuff
 :play:MomentOfTruth
+:loadUnits::player
+:loadUnits::monster:T
 :showCG:FortressInside
 Fashima||R: Welcome to my humble home, my friend.
 Frogman: Ugh... How did we get here?
@@ -20,8 +22,6 @@ Fashima: TBA
 Frogman: TBA
 Fashima: Yo.
 :hideCG:
-:loadUnits::player
-:loadUnits::monster:T
 :play:EnterTheBodder
 # If didn't trust Fashima (arrived alone)
 Bodder: Frogman, Frogman, Frogman.

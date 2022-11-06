@@ -9483,29 +9483,29 @@ MonoBehaviour:
 
       Fashima_: Yes.
 
-      Brens: How dare
-      you!
+      Brens: How dare you!
 
-      Fashima_: But it''s true. I mean, you can''t transform,\a you
-      can''t teleport...\a What are you even good for?
+      Fashima_:
+      But it''s true. I mean, you can''t transform,\a you can''t teleport...\a What
+      are you even good for?
 
-      Brens: Not everyone
-      needs to fight, Fashima!
+      Brens: Not everyone needs to fight, Fashima!
 
-      I don''t need transformation magic for logistics.\a
-      Even you don''t need it,\a and you''re a warrior!
+      I
+      don''t need transformation magic for logistics.\a Even you don''t need it,\a
+      and you''re a warrior!
 
-      Fashima_: And yet,
-      I still know how to use it.\a Why, had you known how to do that,\a you might
-      have looked a lot better, grandpa.
-
-      Brens: Why do you keep goading me?!
-      What did I ever do to you?
-
-      Fashima_: You exist. That''s reason enough.
+      Fashima_: And yet, I still know how to use it.\a
+      Why, had you known how to do that,\a you might have looked a lot better, grandpa.
 
       Brens:
-      Wha- Ugh, fine. You don''t want me here? I''ll go.\a Take care, Fashima.
+      Why do you keep goading me?! What did I ever do to you?
+
+      Fashima_: You
+      exist. That''s reason enough.
+
+      Brens: Wha- Ugh, fine. You don''t want
+      me here? I''ll go.\a Take care, Fashima.
 
       :killUnit:Brens
 
@@ -9554,7 +9554,6 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
@@ -9564,230 +9563,16 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
 
       # === Functions ====
 
-      
 
       ~ FashimaBattleQuote
 
-      :if:stringEquals:[Name:Attacker]:Memerian{
-
-      :if:!hasFlag:FashimaBattleMemerian{
-
-      Memerian:
-      Fashima.
-
-      Fashima_: Oh, Memerian. It''s been a long time.\a Tired of
-      playing it safe?
-
-      Memerian: What game are you playing at, Fashima?
-
-      Fashima_:
-      The only game that matters. Stopping you.
-
-      Memerian: Oh, please. You
-      could have killed us a dozen times by now.\a What are you waiting for?\a Unless...
-
-      Fashima_:
-      I''m just having a little fun here, Memerian.\a I want to look into your eyes
-      as you die.
-
-      Memerian: No. That necklace... Oh my.\a Things are about
-      to get interesting.
-
-      Fashima_: Too bad you''ll be dead by then.
-
-      :setFlag:FashimaBattleMemerian
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Frogman{
-
-      :if:!hasFlag:FashimaBattleFrogman{
-
-      #
-      Fashima obviously recognizes Frogman
-
-      Fashima_||R: You''re new.
-
-      Frogman:
-      Huh? You''re talking to me?
-
-      Fashima_: Yes. Who else would I be talking
-      to?
-
-      Frogman: Uh, it''s just that no Guard has ever...
-
-      Fashima_:
-      I''m not one of those pathetic Guards.\a I''m Fashima, the Wall Magus. Prepare
-      to die.
-
-      Frogman: Wha...?
-
-      :setFlag:FashimaBattleFrogman
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Alfred{
-
-      :if:!hasFlag:FashimaBattleAlfred{
-
-      Alfred:
-      You! Magus!\a I will have vengeance!
-
-      Fashima_: Hm? Who are you?\a Wait
-      a moment. Alfred?!
-
-      Alfred: Huh? How do you know me?!
-
-      Fashima_:
-      You''ve changed since I killed you, Alfred,\a but I will always recognize your
-      markings.
-
-      Alfred: You... You killed me?\a You''re the traitor? Fasher?!
-
-      Fashima_:
-      I am the Wall Magus Fashima, now.
-
-      Alfred: ...Answer one question before
-      I kill you, Fashima.\a Why did you betray us?\a Betray Boss?\a Why did you
-      join the Guards?!
-
-      Fashima_: These are three questions, Alfred.\a Nevertheless,
-      I shall humour you.\a I didn''t betray Boss. He betrayed me.\a He stole my
-      crystal.
-
-      Alfred: Pah! Boss would never do that! The Guards do that!
-
-      Fashima_:
-      Boss was just a common street thug,\a abusing us kids to gain power and money.\a
-      Of course he''d do that.
-
-      Alfred: Lies!\a Boss was a visionary!\a Just
-      leader to replace the Guards!
-
-      Fashima_: Why did you ask about my reason
-      for betrayal if you had\a no intention of listening to me?
-
-      Alfred:
-      I thought you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
-
-      Fashima_:
-      Someday, I will. But not today.
-
-      :setFlag:FashimaBattleAlfred
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Kresla{
-
-      :if:!hasFlag:FashimaBattleKresla{
-
-      Kresla:
-      Hey! Are you the leader of this bunch?
-
-      Fashima_: Yes. Who are you?
-
-      Kresla:
-      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
-      are you protecting it?\a What is its purpose?\a Why are you fighting us?
-
-      Fashima_:
-      I see that the rumors about your fearlessness are correct.
-
-      Kresla:
-      You''ve heard about me?!
-
-      Fashima_: Indeed. I must admit, I''m quite
-      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
-
-      Kresla:
-      You- Wait. How do you know about the Magma Emblem?
-
-      Fashima_: I used
-      to be a friend of Kesper.\a Before he died, that is.
-
-      Kresla: Kesper?
-      How-
-
-      Fashima_: As much as I''d like to chat, we have appearances to
-      keep.
-
-      Kresla: Wait-
-
-      Fashima_: Silence, vermin! I am Fashima,
-      the Wall Magus!\a Prepare to meet my wrath!
-
-      :setFlag:FashimaBattleKresla
-
-      }
-
-      :else:{
-
-      Kresla:
-      Fashima! Can we-
-
-      Fashima_: Shut your mouth, evildoer! Today, I shall
-      smite you!
-
-      Kresla: ...
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Xeplogi{
-
-      :if:!hasFlag:FashimaBattleXeplogi{
-
-      Fashima_||R:
-      Who are you suposed to be?
-
-      Xeplogi: Excuse me?
-
-      Fashima_: What''s
-      your name?
-
-      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who
-      might you be?
-
-      Fashima_: Fashima, the Wall Magus. How long have you
-      been here?
-
-      Xeplogi: Longer than you''ve been alive, my child! Oh ho
-      ho!
-
-      Fashima_: I highly doubt that. Where did you get your Magma Emblem?
-
-      Xeplogi:
-      ...I purchased it from Memerian.\a Legitimately.
-
-      Fashima_: Memerian?
-      Yet I never saw you with her.
-
-      Xeplogi: Memerian?! I would never associate
-      myself with such vermin!
-
-      Fashima_: I see. Nice talk, Xeplogi.\a Now
-      die.
-
-      Xeplogi: W-wait, what?
-
-      :setFlag:FashimaBattleXeplogi
-
-      }
-
-      }
+      :callOther:Level7FashimaBattleQuote
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
-      
 
       ~
       Reaction
@@ -9830,8 +9615,8 @@ MonoBehaviour:
 
       Fashima_: ...
 
-      Brens: Fashima, please.\a I have one
-      last question,\a and then I''ll never pester you again.
+      Brens: Fashima, please.\a I have one last
+      question,\a and then I''ll never pester you again.
 
       Fashima_: ...Make
       it a good one.
@@ -9910,7 +9695,6 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
@@ -9920,13 +9704,42 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
 
       # === Functions ====
 
-      
 
       ~ FashimaBattleQuote
+
+      :callOther:Level7FashimaBattleQuote
+
+      :setBattleQuote:Fashima:FashimaBattleQuote
+
+
+      ~
+      Reaction
+
+      TBA
+
+'
+    Name: Level7Fashima3
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      # This conversation
+      isn''t meant to be selected - it just guarantees the same battle conversation
+      for every Fashima battle event
+
+      roomNumber:0
+
+      ~ Demands
+
+      #
+      Nothinig
+
+      ~ Before battle
 
       :if:stringEquals:[Name:Attacker]:Memerian{
 
@@ -10006,7 +9819,7 @@ MonoBehaviour:
       You''ve changed since I killed you, Alfred,\a but I will always recognize your
       markings.
 
-      Alfred: You... You killed me?\a You''re the traitor? Fasher?!
+      Alfred: You... You killed me?\a You''re the traitor? Alfasher?!
 
       Fashima_:
       I am the Wall Magus Fashima, now.
@@ -10016,23 +9829,23 @@ MonoBehaviour:
       join the Guards?!
 
       Fashima_: These are three questions, Alfred.\a Nevertheless,
-      I shall humour you.\a I didn''t betray Boss. He betrayed me.\a He stole my
-      crystal.
-
-      Alfred: Pah! Boss would never do that! The Guards do that!
-
-      Fashima_:
-      Boss was just a common street thug,\a abusing us kids to gain power and money.\a
-      Of course he''d do that.
-
-      Alfred: Lies!\a Boss was a visionary!\a Just
-      leader to replace the Guards!
-
-      Fashima_: Why did you ask about my reason
-      for betrayal if you had\a no intention of listening to me?
+      I shall humor you.\a I didn''t betray Boss. He betrayed me.\a He stole my crystal.
 
       Alfred:
-      I thought you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
+      Pah! Boss would never do that! The Guards do that!
+
+      Fashima_: Boss was
+      just a common street thug,\a abusing us kids to gain power and money.\a Of
+      course he''d do that.
+
+      Alfred: Lies!\a Boss was a visionary!\a Just leader
+      to replace the Guards!
+
+      Fashima_: Why did you ask about my reason for
+      betrayal if you had\a no intention of listening to me?
+
+      Alfred: I thought
+      you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
 
       Fashima_:
       Someday, I will. But not today.
@@ -10059,11 +9872,11 @@ MonoBehaviour:
       Fashima_:
       I see that the rumors about your fearlessness are correct.
 
-      Kresla:
-      You''ve heard about me?!
+      Kresla: You''ve
+      heard about me?!
 
-      Fashima_: Indeed. I must admit, I''m quite
-      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+      Fashima_: Indeed. I must admit, I''m quite a fan.\a
+      Your discoveries are legendary.\a Especially the Magma Emblem.
 
       Kresla:
       You- Wait. How do you know about the Magma Emblem?
@@ -10098,42 +9911,44 @@ MonoBehaviour:
 
       }
 
+      }
+
       :if:stringEquals:[Name:Attacker]:Xeplogi{
 
       :if:!hasFlag:FashimaBattleXeplogi{
 
       Fashima_||R:
-      Who are you suposed to be?
+      Who are you supposed to be?
 
       Xeplogi: Excuse me?
 
       Fashima_: What''s
       your name?
 
-      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who
-      might you be?
+      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who might
+      you be?
 
-      Fashima_: Fashima, the Wall Magus. How long have you
-      been here?
-
-      Xeplogi: Longer than you''ve been alive, my child! Oh ho
-      ho!
-
-      Fashima_: I highly doubt that. Where did you get your Magma Emblem?
+      Fashima_: Fashima, the Wall Magus. How long have you been here?
 
       Xeplogi:
-      ...I purchased it from Memerian.\a Legitimately.
+      Longer than you''ve been alive, my child! Oh ho ho!
 
-      Fashima_: Memerian?
-      Yet I never saw you with her.
+      Fashima_: I highly
+      doubt that. Where did you get your Magma Emblem?
 
-      Xeplogi: Memerian?! I would never associate
-      myself with such vermin!
+      Xeplogi: ...I purchased
+      it from Memerian.\a Legitimately.
 
-      Fashima_: I see. Nice talk, Xeplogi.\a Now
-      die.
+      Fashima_: Memerian? Yet I never saw
+      you with her.
 
-      Xeplogi: W-wait, what?
+      Xeplogi: Memerian?! I would never associate myself with
+      such vermin!
+
+      Fashima_: I see. Nice talk, Xeplogi.\a Now die.
+
+      Xeplogi:
+      W-wait, what?
 
       :setFlag:FashimaBattleXeplogi
 
@@ -10141,17 +9956,43 @@ MonoBehaviour:
 
       }
 
-      :setBattleQuote:Fashima:FashimaBattleQuote
+      :if:stringEquals:[Name:Attacker]:Xirveros{
 
-      
+      :if:!hasFlag:FashimaBattleXirveros{
 
-      ~
-      Reaction
-
+      #
       TBA
 
+      :setFlag:FashimaBattleXirveros
+
+      }
+
+      }
+
+      :if:stringEquals:[Name:Attacker]:Firbell{
+
+      :if:!hasFlag:FashimaBattleFirbell{
+
+      #
+      TBA
+
+      :setFlag:FashimaBattleFirbell
+
+      }
+
+      }
+
+      ~ After battle
+
+
+      #
+      === Functions ====
+
+
+      ~ Reaction
+
 '
-    Name: Level7Fashima3
+    Name: Level7FashimaBattleQuote
   - Text: 'priority:-1
 
       unique:F
@@ -10159,7 +10000,7 @@ MonoBehaviour:
       ~ Requirements
 
       # This conversation
-      isn''t meant to be selected - it just gurantees the same post-battle for every
+      isn''t meant to be selected - it just guarantees the same post-battle for every
       Fashima death event
 
       roomNumber:0
@@ -10208,9 +10049,9 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman: We... We
-      did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a
-      I guess I shouldn''t be surprised.
+      Frogman: We... We did
+      it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I
+      guess I shouldn''t be surprised.
 
       }
 
@@ -10276,15 +10117,11 @@ MonoBehaviour:
       Never
       mind, let''s go!
 
-      
 
       # === Functions ====
 
-      
 
       ~ Reaction
-
-      
 
 '
     Name: Level7FashimaDeath
@@ -10329,11 +10166,11 @@ MonoBehaviour:
       Brens: You knew? Why didn''t you say anything?!\a
       It''s your job to prevent such incidents!
 
-      Fashima_: Isn''t it your
-      job to take care of the city,\a instead of pestering me?
+      Fashima_: Isn''t it your job
+      to take care of the city,\a instead of pestering me?
 
-      Brens: Don''t
-      change the subject!\a Are they dangerous?\a Will they try escaping?!
+      Brens: Don''t change
+      the subject!\a Are they dangerous?\a Will they try escaping?!
 
       Fashima_:
       I don''t know.
@@ -10343,14 +10180,14 @@ MonoBehaviour:
       Fashima_: Yes, I don''t
       know.\a I''m not made of answers, you know.
 
-      Brens: Argh! This is a
-      disaster!
+      Brens: Argh! This is a disaster!
 
-      Fashima_: Calm down, old man. Everything''s under control.
+      Fashima_:
+      Calm down, old man. Everything''s under control.
 
-      Brens:
-      Old man?! You''re the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an
-      eye on the wall while I''m gone.
+      Brens: Old man?! You''re
+      the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an eye on the wall
+      while I''m gone.
 
       :killUnit:Brens
 
@@ -10395,7 +10232,6 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
@@ -10405,11 +10241,9 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
 
       # === Functions ====
 
-      
 
       ~ Reaction
 
@@ -10469,254 +10303,41 @@ MonoBehaviour:
 
       Frogman: Did you ever get insider?
 
-      Memerian: No,
-      never. They are always led by a powerful mage.\a Fashima.\a She was way too
-      strong.\a Annoying as hell, too.
+      Memerian: No, never.
+      They are always led by a powerful mage.\a Fashima.\a She was way too strong.\a
+      Annoying as hell, too.
 
-      Frogman: I see.\a Let''s go defeat
-      her, then.
-
-      Memerian: Defeat her? Pfft!
-
-      Our only hope is that
-      she had died of old age by now.
-
-      Frogman: Was she truly that powerful?
+      Frogman: I see.\a Let''s go defeat her, then.
 
       Memerian:
-      She''s a mage. She doesn''t play fair.\a But enough chitchat - you''ll see
-      for yourself,\a soon enough.
+      Defeat her? Pfft!
 
-      Frogman: Right.
-
-      }
-
-      :else:{
-
-      Memerian||R:
-      ...Let''s hope they don''t have a mage in here.
-
-      }
-
-      }
-
-      
-
-      ~
-      FashimaBattleQuote
-
-      :if:stringEquals:[Name:Attacker]:Memerian{
-
-      :if:!hasFlag:FashimaBattleMemerian{
-
-      Memerian:
-      Fashima.
-
-      Fashima_: Oh, Memerian. It''s been a long time.\a Tired of
-      playing it safe?
-
-      Memerian: What game are you playing at, Fashima?
-
-      Fashima_:
-      The only game that matters. Stopping you.
-
-      Memerian: Oh, please. You
-      could have killed us a dozen times by now.\a What are you waiting for?\a Unless...
-
-      Fashima_:
-      I''m just having a little fun here, Memerian.\a I want to look into your eyes
-      as you die.
-
-      Memerian: No. That necklace... Oh my.\a Things are about
-      to get interesting.
-
-      Fashima_: Too bad you''ll be dead by then.
-
-      :setFlag:FashimaBattleMemerian
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Frogman{
-
-      :if:!hasFlag:FashimaBattleFrogman{
-
-      #
-      Fashima obviously recognizes Frogman
-
-      Fashima_||R: You''re new.
+      Our only hope is that she had died of old age by now.
 
       Frogman:
-      Huh? You''re talking to me?
+      Was she truly that powerful?
 
-      Fashima_: Yes. Who else would I be talking
-      to?
+      Memerian: She''s a mage. She doesn''t play
+      fair.\a But enough chitchat - you''ll see for yourself,\a soon enough.
 
-      Frogman: Uh, it''s just that no Guard has ever...
-
-      Fashima_:
-      I''m not one of those pathetic Guards.\a I''m Fashima, the Wall Magus. Prepare
-      to die.
-
-      Frogman: Wha...?
-
-      :setFlag:FashimaBattleFrogman
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Alfred{
-
-      :if:!hasFlag:FashimaBattleAlfred{
-
-      Alfred:
-      You! Magus!\a I will have vengeance!
-
-      Fashima_: Hm? Who are you?\a Wait
-      a moment. Alfred?!
-
-      Alfred: Huh? How do you know me?!
-
-      Fashima_:
-      You''ve changed since I killed you, Alfred,\a but I will always recognize your
-      markings.
-
-      Alfred: You... You killed me?\a You''re the traitor? Fasher?!
-
-      Fashima_:
-      I am the Wall Magus Fashima, now.
-
-      Alfred: ...Answer one question before
-      I kill you, Fashima.\a Why did you betray us?\a Betray Boss?\a Why did you
-      join the Guards?!
-
-      Fashima_: These are three questions, Alfred.\a Nevertheless,
-      I shall humour you.\a I didn''t betray Boss. He betrayed me.\a He stole my
-      crystal.
-
-      Alfred: Pah! Boss would never do that! The Guards do that!
-
-      Fashima_:
-      Boss was just a common street thug,\a abusing us kids to gain power and money.\a
-      Of course he''d do that.
-
-      Alfred: Lies!\a Boss was a visionary!\a Just
-      leader to replace the Guards!
-
-      Fashima_: Why did you ask about my reason
-      for betrayal if you had\a no intention of listening to me?
-
-      Alfred:
-      I thought you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
-
-      Fashima_:
-      Someday, I will. But not today.
-
-      :setFlag:FashimaBattleAlfred
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Kresla{
-
-      :if:!hasFlag:FashimaBattleKresla{
-
-      Kresla:
-      Hey! Are you the leader of this bunch?
-
-      Fashima_: Yes. Who are you?
-
-      Kresla:
-      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
-      are you protecting it?\a What is its purpose?\a Why are you fighting us?
-
-      Fashima_:
-      I see that the rumors about your fearlessness are correct.
-
-      Kresla:
-      You''ve heard about me?!
-
-      Fashima_: Indeed. I must admit, I''m quite
-      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
-
-      Kresla:
-      You- Wait. How do you know about the Magma Emblem?
-
-      Fashima_: I used
-      to be a friend of Kesper.\a Before he died, that is.
-
-      Kresla: Kesper?
-      How-
-
-      Fashima_: As much as I''d like to chat, we have appearances to
-      keep.
-
-      Kresla: Wait-
-
-      Fashima_: Silence, vermin! I am Fashima,
-      the Wall Magus!\a Prepare to meet my wrath!
-
-      :setFlag:FashimaBattleKresla
+      Frogman:
+      Right.
 
       }
 
       :else:{
 
-      Kresla:
-      Fashima! Can we-
-
-      Fashima_: Shut your mouth, evildoer! Today, I shall
-      smite you!
-
-      Kresla: ...
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Xeplogi{
-
-      :if:!hasFlag:FashimaBattleXeplogi{
-
-      Fashima_||R:
-      Who are you suposed to be?
-
-      Xeplogi: Excuse me?
-
-      Fashima_: What''s
-      your name?
-
-      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who
-      might you be?
-
-      Fashima_: Fashima, the Wall Magus. How long have you
-      been here?
-
-      Xeplogi: Longer than you''ve been alive, my child! Oh ho
-      ho!
-
-      Fashima_: I highly doubt that. Where did you get your Magma Emblem?
-
-      Xeplogi:
-      ...I purchased it from Memerian.\a Legitimately.
-
-      Fashima_: Memerian?
-      Yet I never saw you with her.
-
-      Xeplogi: Memerian?! I would never associate
-      myself with such vermin!
-
-      Fashima_: I see. Nice talk, Xeplogi.\a Now
-      die.
-
-      Xeplogi: W-wait, what?
-
-      :setFlag:FashimaBattleXeplogi
+      Memerian||R: ...Let''s hope they don''t
+      have a mage in here.
 
       }
 
       }
+
+
+      ~ FashimaBattleQuote
+
+      :callOther:Level7FashimaBattleQuote
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
@@ -10780,7 +10401,6 @@ MonoBehaviour:
 
       :addSkill:Fashima_:Vantage
 
-      
 
       ~
       After battle
@@ -10790,226 +10410,13 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
 
       # === Functions ====
 
-      
 
       ~ FashimaBattleQuote
 
-      :if:stringEquals:[Name:Attacker]:Memerian{
-
-      :if:!hasFlag:FashimaBattleMemerian{
-
-      Memerian:
-      Fashima.
-
-      Fashima_: Oh, Memerian. It''s been a long time.\a Tired of
-      playing it safe?
-
-      Memerian: What game are you playing at, Fashima?
-
-      Fashima_:
-      The only game that matters. Stopping you.
-
-      Memerian: Oh, please. You
-      could have killed us a dozen times by now.\a What are you waiting for?\a Unless...
-
-      Fashima_:
-      I''m just having a little fun here, Memerian.\a I want to look into your eyes
-      as you die.
-
-      Memerian: No. That necklace... Oh my.\a Things are about
-      to get interesting.
-
-      Fashima_: Too bad you''ll be dead by then.
-
-      :setFlag:FashimaBattleMemerian
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Frogman{
-
-      :if:!hasFlag:FashimaBattleFrogman{
-
-      #
-      Fashima obviously recognizes Frogman
-
-      Fashima_||R: You''re new.
-
-      Frogman:
-      Huh? You''re talking to me?
-
-      Fashima_: Yes. Who else would I be talking
-      to?
-
-      Frogman: Uh, it''s just that no Guard has ever...
-
-      Fashima_:
-      I''m not one of those pathetic Guards.\a I''m Fashima, the Wall Magus. Prepare
-      to die.
-
-      Frogman: Wha...?
-
-      :setFlag:FashimaBattleFrogman
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Alfred{
-
-      :if:!hasFlag:FashimaBattleAlfred{
-
-      Alfred:
-      You! Magus!\a I will have vengeance!
-
-      Fashima_: Hm? Who are you?\a Wait
-      a moment. Alfred?!
-
-      Alfred: Huh? How do you know me?!
-
-      Fashima_:
-      You''ve changed since I killed you, Alfred,\a but I will always recognize your
-      markings.
-
-      Alfred: You... You killed me?\a You''re the traitor? Fasher?!
-
-      Fashima_:
-      I am the Wall Magus Fashima, now.
-
-      Alfred: ...Answer one question before
-      I kill you, Fashima.\a Why did you betray us?\a Betray Boss?\a Why did you
-      join the Guards?!
-
-      Fashima_: These are three questions, Alfred.\a Nevertheless,
-      I shall humour you.\a I didn''t betray Boss. He betrayed me.\a He stole my
-      crystal.
-
-      Alfred: Pah! Boss would never do that! The Guards do that!
-
-      Fashima_:
-      Boss was just a common street thug,\a abusing us kids to gain power and money.\a
-      Of course he''d do that.
-
-      Alfred: Lies!\a Boss was a visionary!\a Just
-      leader to replace the Guards!
-
-      Fashima_: Why did you ask about my reason
-      for betrayal if you had\a no intention of listening to me?
-
-      Alfred:
-      I thought you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
-
-      Fashima_:
-      Someday, I will. But not today.
-
-      :setFlag:FashimaBattleAlfred
-
-      }
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Kresla{
-
-      :if:!hasFlag:FashimaBattleKresla{
-
-      Kresla:
-      Hey! Are you the leader of this bunch?
-
-      Fashima_: Yes. Who are you?
-
-      Kresla:
-      Kresla, a renowned scholar.\a Could you explain this fortress to me?\a Why
-      are you protecting it?\a What is its purpose?\a Why are you fighting us?
-
-      Fashima_:
-      I see that the rumors about your fearlessness are correct.
-
-      Kresla:
-      You''ve heard about me?!
-
-      Fashima_: Indeed. I must admit, I''m quite
-      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
-
-      Kresla:
-      You- Wait. How do you know about the Magma Emblem?
-
-      Fashima_: I used
-      to be a friend of Kesper.\a Before he died, that is.
-
-      Kresla: Kesper?
-      How-
-
-      Fashima_: As much as I''d like to chat, we have appearances to
-      keep.
-
-      Kresla: Wait-
-
-      Fashima_: Silence, vermin! I am Fashima,
-      the Wall Magus!\a Prepare to meet my wrath!
-
-      :setFlag:FashimaBattleKresla
-
-      }
-
-      :else:{
-
-      Kresla:
-      Fashima! Can we-
-
-      Fashima_: Shut your mouth, evildoer! Today, I shall
-      smite you!
-
-      Kresla: ...
-
-      }
-
-      :if:stringEquals:[Name:Attacker]:Xeplogi{
-
-      :if:!hasFlag:FashimaBattleXeplogi{
-
-      Fashima_||R:
-      Who are you suposed to be?
-
-      Xeplogi: Excuse me?
-
-      Fashima_: What''s
-      your name?
-
-      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who
-      might you be?
-
-      Fashima_: Fashima, the Wall Magus. How long have you
-      been here?
-
-      Xeplogi: Longer than you''ve been alive, my child! Oh ho
-      ho!
-
-      Fashima_: I highly doubt that. Where did you get your Magma Emblem?
-
-      Xeplogi:
-      ...I purchased it from Memerian.\a Legitimately.
-
-      Fashima_: Memerian?
-      Yet I never saw you with her.
-
-      Xeplogi: Memerian?! I would never associate
-      myself with such vermin!
-
-      Fashima_: I see. Nice talk, Xeplogi.\a Now
-      die.
-
-      Xeplogi: W-wait, what?
-
-      :setFlag:FashimaBattleXeplogi
-
-      }
-
-      }
+      :callOther:Level7FashimaBattleQuote
 
       :setBattleQuote:Fashima:FashimaBattleQuote
 
@@ -11648,7 +11055,7 @@ MonoBehaviour:
       ~ Requirements
 
       # This conversation
-      isn''t meant to be selected - it just gurantees the same post-battle for every
+      isn''t meant to be selected - it just guarantees the same post-battle for every
       Brens death event
 
       roomNumber:0
@@ -11671,16 +11078,15 @@ MonoBehaviour:
       Frogman||L:
       W-What? Who are you? Where did you come from?!
 
-      Fashima|???: Seriously,
-      Frogman? Don''t you recognize me?
+      Fashima|???: Don''t you
+      recognize me, my friend?
 
-      Frogman||L: Recognize? Wait, you''re...
-      Fashima?!
+      Frogman||L: Recognize? Wait, you''re... Fashima?!
 
       :if:hasCharacter:Memerian{
 
-      Memerian||L: I knew it.
-      You were holding back before,\a weren''t you?
+      Memerian||L:
+      I knew it. You were holding back before,\a weren''t you?
 
       }
 
@@ -11693,13 +11099,50 @@ MonoBehaviour:
 
       :if:hasCharacter:Alfred{
 
-      Alfred||L: How DARE
-      you! Using the Magma Emblem you stole!\a From US!
+      :if:hasFlag:FashimaBattleAlfred{
 
-      Fashima: Oh, shut
-      up. It isn''t even that one.\a Catch.
+      Alfred||L:
+      How DARE you! Using the Magma Emblem you stole!\a From US!
 
-      Alfred: What''s this crys-
+      Fashima:
+      Oh, shut up. It isn''t even that one.
+
+      Alfred: Traitor! I''ll kill you!
+
+      }
+
+      :else:{
+
+      Alfred||L:
+      You... You look like Guard!\a How DARE you! Using the Magma Emblem you stole!\a
+      From US!
+
+      Fashima: Oh, shut up. It isn''t even that one.
+
+      Alfred:
+      Liar! I''ll kill you!
+
+      }
+
+      Fashima: I tire of your antics, Alfred.
+      Begone.
+
+      :screenShake:
+
+      Alfred: AHHH!
+
+      :killUnit:Alfred
+
+      Frogman||L:
+      Y-you killed Alfred?!
+
+      Fashima: Yes. He was detrimental to our plans,
+      my friend.\a Now, let''s leave before more Guards arrive.\a Catch.
+
+      Frogman:
+      What''s this crys-
+
+      :setFlag:FashimaKilledAlfred
 
       }
 
@@ -11717,33 +11160,14 @@ MonoBehaviour:
 
       :screenShake:
 
-      #:loadMap:CloneVatsEntrance
-
-      :loadMap:EndOfBeta
-
-      :loadUnits:EndOfBeta
-
-      :setSingleSpeaker:L
-
-      Torment:
-      Well done! You''ve finished the beta!\a Sorry for the cliffhanger. Heh heh.\a
-      Now, you shall die!
-
-      :showPartTitle:End of:Beta
-
-      :lose:
 
       #
-      TBA: Fashima choice, Bodder battle
-
-
-      # === Functions ====
+      === Functions ====
 
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Level8BrensDeath
@@ -11754,7 +11178,7 @@ MonoBehaviour:
       ~ Requirements
 
       # This conversation
-      isn''t meant to be selected - it just gurantees the same post-battle for every
+      isn''t meant to be selected - it just guarantees the same post-battle for every
       Werse death event
 
       roomNumber:0
@@ -12138,7 +11562,7 @@ MonoBehaviour:
       ~
       After battle
 
-      :callOther:Level8BrensDeath
+      :callOther:Level8FashimaSpawn
 
 
       # === Functions ====
@@ -12525,25 +11949,39 @@ MonoBehaviour:
 
       :play:MomentOfTruth
 
+      :loadUnits::player
+
+      :loadUnits::monster:T
+
       :showCG:FortressInside
+
+      Fashima||R:
+      Welcome to my humble home, my friend.
+
+      Frogman: Ugh... How did we get
+      here?
+
+      :if:hasFlag:FashimaKilledAlfred{
+
+      More importantly, why
+      did you kill Alfred?!
+
+      # TBA
+
+      }
+
+      # TBA
+
+      :showBase:
 
       Fashima:
       TBA
 
-      :showBase:
-
-      Fashima: TBA
-
       Frogman: TBA
 
-      Fashima:
-      Yo.
+      Fashima: Yo.
 
       :hideCG:
-
-      :loadUnits::player
-
-      :loadUnits::monster:T
 
       :play:EnterTheBodder
 
@@ -40525,6 +39963,7 @@ GameObject:
   - component: {fileID: 1902908238}
   - component: {fileID: 1902908239}
   - component: {fileID: 1902908240}
+  - component: {fileID: 1902908241}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -40569,17 +40008,7 @@ MonoBehaviour:
   UnitClassData: {fileID: 1606634284}
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
-  DebugStartAtEndgame: 1
-  DebugEndgameLevel: 9
-  DebugExtraLevels: 0
-  DebugUnits:
-  - Frogman
-  - Firbell
-  - Xirveros
-  - Memerian
-  - Fashima
-  DebugUnlimitedMove: 0
-  DebugOPPlayers: 0
+  DebugOptions: {fileID: 1902908241}
   Cursor: {fileID: 1715750235}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}
@@ -48691,6 +48120,33 @@ MonoBehaviour:
       ObjectiveData: 
       MapString: 
     Units: []
+--- !u!114 &1902908241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902908234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49fe49adf08b0c4bb4764371e61a2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  SkipIntro: 0
+  StartAtEndgame: 1
+  EndgameLevel: 9
+  ExtraLevels: 0
+  Units:
+  - Frogman
+  - Firbell
+  - Xirveros
+  - Memerian
+  - Fashima
+  UnlimitedMove: 0
+  OPPlayers: 0
+  ForceConversation: 
+  ForceMap: 
 --- !u!1 &1931883802
 GameObject:
   m_ObjectHideFlags: 0

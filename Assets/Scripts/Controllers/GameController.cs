@@ -33,12 +33,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
-    public bool DebugStartAtEndgame;
-    public int DebugEndgameLevel;
-    public int DebugExtraLevels;
-    public List<string> DebugUnits;
-    public bool DebugUnlimitedMove;
-    public bool DebugOPPlayers;
+    public DebugOptions DebugOptions;
     [Header("Objects")]
     public GameObject Cursor;
     public GameObject Canvas;
@@ -204,44 +199,16 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         else
         {
             difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
-            if (DebugStartAtEndgame)
+            NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
+            if (DebugOptions.Enabled)
             {
-                LevelNumber = DebugEndgameLevel;
-                playerUnitsCache = new List<Unit>();
-                foreach (string unit in DebugUnits)
-                {
-                    PlayerUnits.Add(CreatePlayerUnit(unit));
-                }
-                if (DebugUnlimitedMove)
-                {
-                    foreach (Unit unit in PlayerUnits)
-                    {
-                        unit.Movement = 50;
-                        unit.Flies = true;
-                    }
-                }
-                if (DebugOPPlayers)
-                {
-                    foreach (Unit unit in PlayerUnits)
-                    {
-                        unit.Stats += unit.AutoLevel(50);
-                    }
-                }
-                if (DebugExtraLevels > 0)
-                {
-                    foreach (Unit unit in PlayerUnits)
-                    {
-                        unit.Stats += unit.AutoLevel(DebugExtraLevels);
-                    }
-                }
+                DebugOptions.Apply(this, playerUnitsCache);
             }
             else
             {
                 LevelNumber = 1;
-                playerUnitsCache = new List<Unit>();
+                ConversationPlayer.Current.Play(CreateLevel());
             }
-            NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
-            ConversationPlayer.Current.Play(CreateLevel());
         }
     }
     /// <summary>
@@ -846,19 +813,35 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     /// Doesn't play the selected conversation, returning it instead, to allow other mid-battle screens (aka level up) to close before playing.
     /// </summary>
     /// <returns>The selected conversation</returns>
-    public ConversationData CreateLevel()
+    public ConversationData CreateLevel(string forceConversation = "", string forceMap = "")
     {
         List<Unit> playerCharacters = PlayerUnits;
-        // Select conversation
         Bugger.Info(string.Join(", ", playerCharacters));
-        ConversationData conversation = ConversationController.Current.SelectConversation();
+        // Select conversation
+        ConversationData conversation;
+        if (forceConversation != "")
+        {
+            conversation = ConversationController.Current.SelectConversationByID(forceConversation);
+        }
+        else
+        {
+            conversation = ConversationController.Current.SelectConversation();
+        }
+        if (conversation == null)
+        {
+            throw Bugger.Crash("Zero possible conversations!");
+        }
         // Select room
         List<Map> options = MapController.Maps.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
+        if (forceMap != "")
+        {
+            options = options.FindAll(a => a.ToString() == forceMap);
+        }
         if (options.Count <= 0)
         {
             throw Bugger.Crash("Zero possible maps!");
         }
-        selectedMap = options[UnityEngine.Random.Range(0, options.Count)];
+        selectedMap = options[Random.Range(0, options.Count)];
         Bugger.Info("Selected room: " + selectedMap.Name);
         // Clear previous level
         if (currentMapObject != null)
