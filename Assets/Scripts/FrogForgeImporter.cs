@@ -21,6 +21,7 @@ public class FrogForgeImporter : MonoBehaviour
     public CGController CGController;
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
+    public DebugOptions DebugOptions;
     public StaticGlobalsLoader StaticGlobalsLoader;
     public CrossfadeMusicPlayer CrossfadeMusicPlayer;
 
@@ -40,6 +41,7 @@ public class FrogForgeImporter : MonoBehaviour
         MapController?.AutoLoadTilesets();
         StaticGlobalsLoader?.AutoLoad();
         CrossfadeMusicPlayer?.AutoLoad();
+        DebugOptions?.AutoLoad();
 #endif
     }
 

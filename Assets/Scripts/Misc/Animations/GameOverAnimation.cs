@@ -51,7 +51,6 @@ public class GameOverAnimation : MonoBehaviour
     private void End()
     {
         // TBA: Add restart/return to menu/exit menu
-        CrossfadeMusicPlayer.Current.Play("TheFrogman", false);
         SceneController.LoadScene("Menu");
     }
 }

@@ -54,6 +54,7 @@ public class OpeningCutscene : Trigger
 
     private void Start()
     {
+        CrossfadeMusicPlayer.Current.Play("Menu", false);
         LevelMetadataController[0].SetPalettesFromMetadata();
         CreditsObject.Text.text = "";
         creditsReverse = new Palette();
