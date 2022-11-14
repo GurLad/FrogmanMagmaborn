@@ -91,13 +91,31 @@ Xeplogi: W-wait, what?
 }
 :if:stringEquals:[Name:Attacker]:Xirveros{
 :if:!hasFlag:FashimaBattleXirveros{
-# TBA
+Fashima_||R: Ah, Xirveros. The centre of it all.
+Xirveros: Me?
+Fashima_: I never got the chance to thank you properly.\a Your notes about magic were quiet useful,\a and killing Kostliv was a tremendous help to me.
+Xirveros: Kostliv? Ooh, you want Kostliv song?
+Fashima_: It's truly a shame what Lessem and Torment did to you.
+We could have made an incredible team together.
+Xirveros: Kostliv on the wall        \w@
+Hope he won't fall         \w@
+Me fight with that Kostliv \w@
+For he the target Tori give\w@
+Fashima_: ...I grow weary of your antics. Begone.
 :setFlag:FashimaBattleXirveros
 }
 }
 :if:stringEquals:[Name:Attacker]:Firbell{
 :if:!hasFlag:FashimaBattleFirbell{
-# TBA
+Firbell: You there. Are you the leader of these forces?
+Fashima_: Oh, Firbell. Long time no see.
+Firbell: ...I am sorry, but I do not recall ever seeing you before.
+Fashima_: Makes sense.
+Torment does have a tendency to wipe your memories.
+Firbell: Excuse me?
+Fashima_: Don't trouble yourself, child.\a You won't remember anything of this conversation soon,\a anyway.
+Firbell: Is that a threat?
+Fashima_: No. Threats are a waste of time.
 :setFlag:FashimaBattleFirbell
 }
 }

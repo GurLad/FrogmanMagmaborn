@@ -60,7 +60,6 @@ public class DebugOptions : MonoBehaviour
         [Header("General")]
         public bool SkipIntro;
         [Header("In-game")]
-        public bool StartAtEndgame;
         public int EndgameLevel;
         public int ExtraLevels;
         public List<string> Units;
