@@ -730,6 +730,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                         AssertCommand("addCounter", args, CAT.String, CAT.Int);
                         SavedData.Append("ConversationData", "Counter" + args[0], int.Parse(args[1]));
                         break;
+                    case "unlockAchievement":
+                        // Params: string name
+                        AssertCommand("unlockAchievement", args, CAT.String);
+                        AchievementController.UnlockAchievement(args[0]);
+                        break;
 
                     // Syntax commands (ifs, functions...)
 
