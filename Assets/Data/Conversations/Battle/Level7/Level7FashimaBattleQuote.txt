@@ -33,20 +33,25 @@ Frogman: Wha...?
 }
 :if:stringEquals:[Name:Attacker]:Alfred{
 :if:!hasFlag:FashimaBattleAlfred{
-Alfred: You! Magus!\a I will have vengeance!
-Fashima_: Hm? Who are you?\a Wait a moment. Alfred?!
-Alfred: Huh? How do you know me?!
+Alfred: You there. Guard Magus.
+How much weight... can you handle?
+Fashima_: Excuse me?
+Alfred: Can you withstand-
+Fashima_: Stop. You must be Alfred.
+Alfred: You... How do you know me?!
 Fashima_: You've changed since I killed you, Alfred,\a but I will always recognize your markings.
-Alfred: You... You killed me?\a You're the traitor? Alfasher?!
-Fashima_: I am the Wall Magus Fashima, now.
-Alfred: ...Answer one question before I kill you, Fashima.\a Why did you betray us?\a Betray Boss?\a Why did you join the Guards?!
-Fashima_: These are three questions, Alfred.\a Nevertheless, I shall humor you.\a I didn't betray Boss. He betrayed me.\a He stole my crystal.
-Alfred: Pah! Boss would never do that! The Guards do that!
-Fashima_: Boss was just a common street thug,\a abusing us kids to gain power and money.\a Of course he'd do that.
-Alfred: Lies!\a Boss was a visionary!\a Just leader to replace the Guards!
-Fashima_: Why did you ask about my reason for betrayal if you had\a no intention of listening to me?
-Alfred: I thought you had a shred of honor.\a But you're a slimy liar.\a You'll die!
-Fashima_: Someday, I will. But not today.
+Alfred: Kill... You! You're the traitor? Alfashima?!
+Fashima_: Hah. Alfashima.
+It's been millennia since anyone used that honorific.
+Alfred: You... You don't deserve it! You betrayed us!\a Killed Boss! Killed me! Stole our crystals!\a Defected to the Guards!!!
+Fashima_: You're calling me the traitor? How precious.\a Boss was the one who betrayed me.
+Alfred: What?!
+Fashima_: The crystal was mine. I recovered it.\a Yet he stole it from me.\a Left me for dead!\a The Guards saved me. Gave-\a They gave me a second chance.\a A chance to recover MY crystal.
+Alfred: Pah! Boss would never do that!\a And the Guards save nobody!
+Fashima_: Boss was just a common street thug, abusing us kids.
+He filled our heads with nonsense,\a and used us to get crystals for himself.
+Alfred: Lies! You lie! I'll kill you, traitor!
+Fashima_: You're a lost cause, Alfred.\a Here, let me put you out of your misery.
 :setFlag:FashimaBattleAlfred
 }
 }
