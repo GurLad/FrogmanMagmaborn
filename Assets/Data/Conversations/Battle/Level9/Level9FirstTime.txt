@@ -16,11 +16,33 @@ Frogman: Ugh... How did we get here?
 More importantly, why did you kill Alfred?!
 # TBA
 }
+# Improve
+Fashima: Teleportation crystals.
+Frogman: What?
+Fashima: Crystals enchanted to teleport people here when touched.\a That's why I threw them at you, my friend.
+Frogman: But how did you touch them then?
+Fashima: A wonderful invention called gloves.
+Frogman: I... see.
+Fashima: We have some time to rest now, my friend.\a If you wish, you can ask me more questions.\a If not, we can move on to our next target.
+Frogman: Next target?
+Fashima: You goal is to get out of here. Correct?
+Frogman: Uh, yes?
+Fashima: Great. Then we have two more Magi standing in our way:\a Bodder and Leshy.
+:if:hasFlag:FrogmanKnowsWhatTheMagiAre{
+Frogman: Wait. Weren't you a Magus yourself?\a Why are you helping us?\a Why are you fighting the other Magi?
+}
+:else:{
 # TBA
+}
+Fashima: Please keep your questions for the end, my friend.
+Frogman: Okay...
+Fashima: Our next target is Bodder, the Clone Magus.\a I shall teleport us to him once you're ready.
+Frogman: Sure...
+Fashima: Now. Do you have any further questions for me?
 :showBase:
-Fashima: TBA
-Frogman: TBA
-Fashima: Yo.
+# TBA: Add the "don't trust Fashima" choice.
+Frogman: I think that's enough questions.\a I'm ready.
+Fashima: Great. Then let's go to Bodder.
 :hideCG:
 :play:EnterTheBodder
 # If didn't trust Fashima (arrived alone)
