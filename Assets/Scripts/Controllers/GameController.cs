@@ -1161,6 +1161,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 return "Escape!";
             case Objective.Survive:
                 return "Reach turn " + (int.Parse(selectedMap.ObjectiveData) + 1);
+            case Objective.Custom:
+                return selectedMap.ObjectiveData;
             default:
                 break;
         }
@@ -1179,6 +1181,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 return StaticGlobals.MainCharacterName + "\nto mark";
             case Objective.Survive:
                 return "Survive\n" + (int.Parse(selectedMap.ObjectiveData) - Turn + 1) + " turns";
+            case Objective.Custom:
+                return selectedMap.ObjectiveData;
             default:
                 break;
         }
@@ -1328,6 +1332,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 return frogman.Pos == escapePos;
             case Objective.Survive:
                 return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => !a.TheTeam.IsMainPlayerTeam() && a.ReinforcementTurn <= 0).Count == 0;
+            case Objective.Custom:
+                return false; // Custom objective means the modder needs to add a custom event with :win:
             default:
                 throw Bugger.Error("No objective!");
         }

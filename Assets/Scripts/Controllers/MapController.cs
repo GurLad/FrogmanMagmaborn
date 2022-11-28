@@ -66,6 +66,8 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             map.LevelNumber = mapData.LevelNumber;
             // Tileset
             map.Tileset = mapData.Tileset;
+            // Tags
+            map.Tags = mapData.Tags;
             // Objective
             string[] objectiveParts = mapData.Objective.Split(':');
             map.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);
@@ -93,6 +95,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         public string Tileset;
         public int LevelNumber;
         public string Objective;
+        public string Tags;
         public string Name;
     }
 
@@ -201,6 +204,7 @@ public class Map
     public string Tileset;
     public Objective Objective;
     public string ObjectiveData;
+    public string Tags;
     public string MapString;
     public void Init()
     {
@@ -275,6 +279,8 @@ public class Map
                 break;
             case "mapID":
                 return Name == parts[1];
+            case "hasTag":
+                return Tags.Contains(parts[1]);
             default:
                 break;
         }

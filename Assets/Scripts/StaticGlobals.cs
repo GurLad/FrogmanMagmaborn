@@ -13,7 +13,7 @@ public enum InteractState { None, Move, Attack }
 public enum AICautionLevel { None = 0, NoDamage = 1, Suicide = 2, TEMP = 3, LittleDamage = 4 }
 public enum TormentPowerState { None, I, II }
 public enum PortraitLoadingMode { Name, Team, Generic, None }
-public enum Objective { Rout, Boss, Escape, Survive }
+public enum Objective { Rout, Boss, Escape, Survive, Custom }
 public enum GameState { Normal, SideWon, ShowingEvent }
 public enum BattleAnimationMode { Walk, Projectile, Teleport }
 public enum Skill { Acrobat, NaturalCover, SiegeWeapon, Push, Pull, Vantage, AntiVantage, Dragonskin, AntiDragonskin } // Charisma, Shade, HitAndRun, FinishingTouch }
