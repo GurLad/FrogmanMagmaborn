@@ -1,11 +1,35 @@
+For final release:
+-Must have:
+ -Custom size units (for Torment)
+ -All hardcoded stuff...
+ -Character endings + editor
+ -Finish wiki
+ -Achievements
+-Nice to have (most probably post release):
+ -Alternate palettes (low contrast, colour blind etc.)
+ -Seperate map & combat sprite palettes (for more NES FE style combats - ruins portraits, annoying fix)
+ -Improve CGs + editor
+ -GBA FE-style auto-saves, which prevent save scamming & can be used always
+ -In-game cheats for debugging - restart chapter, auto-win etc.
+ -Bigger map support
+ -Alow loading maps & units in the background while there's a CG
+ -Improve choice UI
+ -Extra commands:
+  -Scripted battle
+  -Bigger/dynamically sized info dialogue
+ -Extra editors:
+  -Knowledge (mostly custom inclination upgrades)
+  -Every single graphic (logo, UI, intro etc.)
+  -Battle calculations
+
 Status screen improvements:
 V-Add cycling between units of the same team (up/down).
 V-Add cycling between teams (left/right).
 
 Add Tellius-style base for pre-level 9 with:
- -Status (view stats of all player units in a list).
-  -Select a unit to view detailed stats of that unit.
- -Talk.
+V-Status (view stats of all player units in a list).
+ V-Select a unit to view detailed stats of that unit.
+?-Talk.
  -Save & quit.
  -Statistics?
 

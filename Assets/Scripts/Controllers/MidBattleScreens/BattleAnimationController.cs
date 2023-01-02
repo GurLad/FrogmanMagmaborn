@@ -163,7 +163,7 @@ public class BattleAnimationController : MidBattleScreen
 
     private T BeginAnimation<T>(CombatantData thisCombatant, CombatantData otherCombatant) where T : BattleAnimation
     {
-        if (thisCombatant.Unit == null)
+        if (thisCombatant.Object == null)
         {
             return null;
         }

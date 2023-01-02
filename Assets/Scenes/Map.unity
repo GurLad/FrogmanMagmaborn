@@ -1360,28 +1360,28 @@ MonoBehaviour:
 
       Firbell: Do you remember where you''re from?
 
-      Frogman:
-      Uh...\a No.
+      Frogman: Uh...\a
+      No.
 
-      Firbell: I thought so. But once we get out of here,\a where
-      would you go?
+      Firbell: I thought so. But once we get out of here,\a where would
+      you go?
 
       Frogman: I haven''t thought about it yet.
 
-      Firbell:
-      Would you want to come to Irenhold, then?
+      Firbell: Would
+      you want to come to Irenhold, then?
 
-      I think you would prefer
-      it to the other kingdoms.
+      I think you would prefer it to the
+      other kingdoms.
 
       Frogman: I... Firbell...
 
-      Firbell:
-      Please, it is all right.\a Even though you aren''t from there,\a I could ask
-      mother to admit you to the royal court.\a I''m sure she-
+      Firbell: Please, it
+      is all right.\a Even though you aren''t from there,\a I could ask mother to
+      admit you to the royal court.\a I''m sure she-
 
-      Frogman: Firbell,
-      let''s focus on the monsters first, all right?
+      Frogman: Firbell, let''s
+      focus on the monsters first, all right?
 
       Firbell: All right.
 
@@ -1404,16 +1404,16 @@ MonoBehaviour:
       Frogman:
       Thank you...
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level1FirbellMemory
@@ -1457,7 +1457,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -1466,12 +1466,12 @@ MonoBehaviour:
 
       Frogman: Firbell...
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -1505,8 +1505,8 @@ MonoBehaviour:
       Frogman: Hello.\a I''ve been thinking lately.\a
       Why is it that I never see you with Kresla?
 
-      Firbell: I do not like
-      her. ...Let us defeat this monsters,\a and then I will explain.
+      Firbell: I do not like her.
+      ...Let us defeat this monsters,\a and then I will explain.
 
       Frogman:
       Right.
@@ -1515,38 +1515,38 @@ MonoBehaviour:
 
       :play:AfterBattle
 
-      Frogman: Well, that was
-      that.\a So why do you not like Kresla?
+      Frogman: Well, that was that.\a
+      So why do you not like Kresla?
 
-      Firbell: She has insulted Irenhold,
-      Xirveros, and me.\a I tend to avoid her.
+      Firbell: She has insulted Irenhold, Xirveros,
+      and me.\a I tend to avoid her.
 
-      Frogman: Oh. What did she
-      do?
+      Frogman: Oh. What did she do?
 
-      Firbell: She claimed that Irenhold no longer exists.
+      Firbell:
+      She claimed that Irenhold no longer exists.
 
-      Frogman:
-      ...
+      Frogman: ...
 
-      Firbell: Preposterous, I know.\a But she could not be dissuaded.\a
-      I cannot stand such insolance.
+      Firbell:
+      Preposterous, I know.\a But she could not be dissuaded.\a I cannot stand such
+      insolance.
 
       Frogman: So you avoid her?
 
-      Firbell:
-      What choice do I have? Killing her has no effect.
+      Firbell: What choice do
+      I have? Killing her has no effect.
 
-      I wonder how could
-      she even get a Magma Emblem.
+      I wonder how could she even get a
+      Magma Emblem.
 
       Frogman: I... see.
 
-      Firbell: But
-      worry not, I am not offended by you fighting\a alongside her.\a That is your
-      own bad choice.
+      Firbell: But worry not, I am
+      not offended by you fighting\a alongside her.\a That is your own bad choice.
 
-      Frogman: Thank you?
+      Frogman:
+      Thank you?
 
       :setFlag:FirbellOnKresla
 
@@ -1627,12 +1627,12 @@ MonoBehaviour:
 
       # Name: Text.
 
-      
 
-      #
-      === Functions ====
 
-      
+      # === Functions
+      ====
+
+
 
       ~ Sample
 
@@ -1668,49 +1668,48 @@ MonoBehaviour:
       Firbell: That golem
       we met last time... Memerian...\a I feel like I know her.
 
+      Frogman: Really?
+
+      Firbell:
+      Yes, but it does not make any sense...\a What is wrong with me?
+
       Frogman:
-      Really?
-
-      Firbell: Yes, but it does not make any sense...\a What is wrong
-      with me?
-
-      Frogman: Firbell? Are you okay?
+      Firbell? Are you okay?
 
       :play:Trustworthy
 
+      Torment: Nope. She''s
+      got a bad case of faulty memory erasure.\a Heh.
+
+      Frogman: Torment?!
+
       Torment:
-      Nope. She''s got a bad case of faulty memory erasure.\a Heh.
+      Missed me? Ha!\a Don''t worry, I''ll leave again soon.\a Heh.
 
       Frogman:
-      Torment?!
+      What are you doing this time?!
 
-      Torment: Missed me? Ha!\a Don''t worry, I''ll leave again
-      soon.\a Heh.
+      Torment: Fixing my past mistakes, of
+      course! I can''t have the...\a normal Magmaborn remembering my previous champions,
+      right?\a Ha ha ha!
 
-      Frogman: What are you doing this time?!
-
-      Torment:
-      Fixing my past mistakes, of course! I can''t have the...\a normal Magmaborn
-      remembering my previous champions, right?\a Ha ha ha!
-
-      Frogman: You...
-      erased Firbell''s memeory?
-
-      Torment: Nothing so drastic. Only a small
-      portion of it! Heh!\a But do not trouble your feeble mind -\a both of you shall
-      forget all of that soon.
-
-      Frogman: You can erase memories?!
+      Frogman: You... erased Firbell''s memeory?
 
       Torment:
-      ...I forget how slow you are sometimes.\a Yes, Frogman.\a I can erase memories.
-      Ha!\a But you must die first. After all,\a touching the memories of the living
-      would be so...\a rude, wouldn''t you agree?\a Heh heh heh!
+      Nothing so drastic. Only a small portion of it! Heh!\a But do not trouble your
+      feeble mind -\a both of you shall forget all of that soon.
+
+      Frogman:
+      You can erase memories?!
+
+      Torment: ...I forget how slow you are sometimes.\a
+      Yes, Frogman.\a I can erase memories. Ha!\a But you must die first. After all,\a
+      touching the memories of the living would be so...\a rude, wouldn''t you agree?\a
+      Heh heh heh!
 
       :screenShake:
 
-      Frogman:
-      Urk!
+      Frogman: Urk!
 
       :markDone:
 
@@ -1780,16 +1779,16 @@ MonoBehaviour:
       I think I made it pretty
       clear our agreement was...\a confidential, didn''t I? Ha!
 
-      Frogman:
-      You...
+      Frogman: You...
 
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      Torment:
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -1818,8 +1817,8 @@ MonoBehaviour:
 
       Frogman: Hello.
 
-      Firbell: Time to smash a
-      few monsters.
+      Firbell: Time to smash a few
+      monsters.
 
       Frogman: Indeed.'
     Name: Level1GenericFirbell
@@ -1996,35 +1995,35 @@ MonoBehaviour:
       there was a crazed, laughing energy ball,\a named Torment. They are incredibly
       powerful,\a and they''re trapped here, like us.
 
-      Kresla: Wow. Uh...
-      I don''t know what to say.
+      Kresla: Wow. Uh... I
+      don''t know what to say.
 
       :play:Trustworthy
 
-      Torment||R: Yes,
-      seriously, Frogman. Who would buy such a story?\a Heh heh!
+      Torment||R: Yes, seriously,
+      Frogman. Who would buy such a story?\a Heh heh!
 
-      Frogman:
-      You! Here, do you see now, Kresla?
+      Frogman: You! Here,
+      do you see now, Kresla?
 
       Kresla||L: ...
 
+      Torment: HA HA HA! Ever
+      the fool, are you, Frogman? Heh!
+
+      I think I made it pretty clear our
+      agreement was...\a confidential, didn''t I? Ha!
+
+      Frogman: You...
+
       Torment:
-      HA HA HA! Ever the fool, are you, Frogman? Heh!
-
-      I think I made it pretty
-      clear our agreement was...\a confidential, didn''t I? Ha!
-
-      Frogman:
-      You...
-
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -2078,11 +2077,11 @@ MonoBehaviour:
       :showPartTitle:Part
       1:Monster
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ PreFirst
 
@@ -2101,8 +2100,8 @@ MonoBehaviour:
 
       Frogman: What?!
 
-      Firbell|???:
-      Do you remember your previous life?
+      Firbell|???: Do
+      you remember your previous life?
 
       Frogman: No...
 
@@ -2125,7 +2124,7 @@ MonoBehaviour:
 
       :setDeathQuote:Frogman:FrogmanFirstDeath
 
-      
+
 
       ~
       PreRepeat
@@ -2148,8 +2147,8 @@ MonoBehaviour:
       Frogman: I-\a Uh, right.\a
       So I''m immortal?!
 
-      Firbell: Quite so.\a But it is still preferable
-      not to get killed\a if you can help it.
+      Firbell: Quite so.\a But it is still preferable not
+      to get killed\a if you can help it.
 
       Frogman: I-I see...
 
@@ -2171,7 +2170,7 @@ MonoBehaviour:
 
       :setFlag:ToldFirbellName
 
-      
+
 
       ~
       PostFirst
@@ -2277,7 +2276,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       FirbellFirstDeath
@@ -2297,7 +2296,7 @@ MonoBehaviour:
       Frogman:
       She... She just disappeared?!\a What is this place?!
 
-      
+
 
       ~ FrogmanFirstDeath
 
@@ -2306,12 +2305,12 @@ MonoBehaviour:
 
       :lose:
 
-      
 
-      ~
-      FirbellNormalDeath
 
-      Firbell: Ugh... I will... be back...
+      ~ FirbellNormalDeath
+
+      Firbell:
+      Ugh... I will... be back...
 
 '
     Name: Level1MeetFirbell
@@ -2357,8 +2356,8 @@ MonoBehaviour:
 
       Frogman: Um, I don''t remember.
 
-      Kresla: Oh well.
-      Let me know once you do!\a Oh, you asked me something, didn''t you?
+      Kresla: Oh well. Let
+      me know once you do!\a Oh, you asked me something, didn''t you?
 
       Frogman:
       Yes, where is Firbell?
@@ -2366,32 +2365,31 @@ MonoBehaviour:
       Never mind, we are surrounded by monsters,\a
       let''s deal with them first.
 
-      Kresla: Yes, yes, the boring monsters
-      first.
+      Kresla: Yes, yes, the boring monsters first.
 
       }
 
       :else:{
 
-      Kresla: Oh! Hello again, Frogman!
+      Kresla:
+      Oh! Hello again, Frogman!
 
-      Frogman:
-      Oh, hello, Kresla.
+      Frogman: Oh, hello, Kresla.
 
-      Kresla: You died pretty quickly last time.\a That''s
-      all right, happens to me all the time.
+      Kresla:
+      You died pretty quickly last time.\a That''s all right, happens to me all the
+      time.
 
       Frogman: Yes, me too.
 
-      Kresla:
-      But the fun part is, we just come back!\a No consequences!\a This is great,
-      huh?
+      Kresla: But the fun part is, we just
+      come back!\a No consequences!\a This is great, huh?
 
-      Frogman: Uh, I wouldn''t exactly call it that...
+      Frogman: Uh, I wouldn''t
+      exactly call it that...
 
-      Kresla:
-      Why not? But as fun as dying is,\a we should probably do something about the
-      monsters.
+      Kresla: Why not? But as fun as dying is,\a we
+      should probably do something about the monsters.
 
       Frogman: Ah, right.
 
@@ -2399,7 +2397,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
 
@@ -2413,35 +2411,34 @@ MonoBehaviour:
 
       Frogman: Yes, I am.
 
-      Kresla: And a new monster
-      type, to boot!\a This is quite the discovery!\a If only I could tell my fellow
-      scholars...
+      Kresla: And a new monster type,
+      to boot!\a This is quite the discovery!\a If only I could tell my fellow scholars...
 
-      But those cowards would never come here.\a Anyway, did
-      you say something?
+      But
+      those cowards would never come here.\a Anyway, did you say something?
 
-      Frogman: No, but-
+      Frogman:
+      No, but-
 
-      Kresla: Ah, right! You
-      wanted to know where Firbell is!
+      Kresla: Ah, right! You wanted to know where Firbell is!
 
-      Well, each time we are Born is from
-      a different place,\a and always from Magma.
+      Well,
+      each time we are Born is from a different place,\a and always from Magma.
 
-      This time, you returned
-      near me. Last time, near Firbell.\a If only I could map this place... It''s
-      huge!
+      This
+      time, you returned near me. Last time, near Firbell.\a If only I could map
+      this place... It''s huge!
 
-      Frogman: Ah, that makes sense. Shall we leave now?
+      Frogman: Ah, that makes sense. Shall we leave
+      now?
 
-      Kresla:
-      Did I tell you about Firbell''s kingdom? That was my first discovery here!
-      You see, where she comes from...
+      Kresla: Did I tell you about Firbell''s kingdom? That was my first
+      discovery here! You see, where she comes from...
 
-      Frogman: Right. I''m leaving.
+      Frogman: Right. I''m
+      leaving.
 
-      Kresla:
-      ...she still thinks... Huh? Wait for me!
+      Kresla: ...she still thinks... Huh? Wait for me!
 
       }
 
@@ -2486,35 +2483,35 @@ MonoBehaviour:
 
       Frogman: Well met, Firbell.
 
-      Firbell:
-      Would you like to hear a joke?
+      Firbell: Would
+      you like to hear a joke?
 
       Frogman: This better not be about-
 
       Firbell:
       Actually, let us defeat these monsters first.
 
-      Frogman: Let''s. And
-      please forget the joke.
+      Frogman: Let''s. And please
+      forget the joke.
 
       ~
 
-      Firbell: What did the skeleton say
-      to the frog?
+      Firbell: What did the skeleton say to the
+      frog?
 
       Frogman: Don''t you da-
 
       :screenShake:
 
-      Firbell:
-      Ahhh! A talking frog!
+      Firbell: Ahhh!
+      A talking frog!
 
       ...
 
       You do not seem amused.
 
-      Frogman:
-      I am not. Who set this up? Kresla?\a I thought you were avoiding her.
+      Frogman: I
+      am not. Who set this up? Kresla?\a I thought you were avoiding her.
 
       Firbell:
       No, Xirveros told it to me.
@@ -2559,8 +2556,8 @@ MonoBehaviour:
 
       ... Ha ha ha ha!
 
-      Frogman: ...Really?
-      We have monsters to defeat here.
+      Frogman: ...Really? We
+      have monsters to defeat here.
 
       Kresla: Right, right.
 
@@ -2636,20 +2633,20 @@ MonoBehaviour:
       Frogman: Yes,
       I''ve seen him once or twice before.\a He''s utterly mad.
 
-      Firbell:
-      Perhaps he is now, but he used to be much more than that.\a He made the first
-      Magma Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
+      Firbell: Perhaps
+      he is now, but he used to be much more than that.\a He made the first Magma
+      Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
 
       }
 
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head
-      is his own Magma Emblem.
+      Firbell: The rock on his head is
+      his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem
-      like a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem like
+      a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -2670,7 +2667,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -2862,18 +2859,18 @@ MonoBehaviour:
       Xirveros:
       What her name? Fir... Firbal? Firgell?
 
-      Frogman: Wait, Firbell?\a A
-      princess?
+      Frogman: Wait, Firbell?\a A princess?
 
-      Xirveros: Yes! Firbell! You know not names?
+      Xirveros:
+      Yes! Firbell! You know not names?
+
+      Frogman: What?\a Never mind, what
+      about the monsters?
+
+      Xirveros: We fight, frog! It''s rocktime time!
 
       Frogman:
-      What?\a Never mind, what about the monsters?
-
-      Xirveros: We fight, frog!
-      It''s rocktime time!
-
-      Frogman: Good. Let''s-
+      Good. Let''s-
 
       Xirveros: ROCK!!!
 
@@ -2881,7 +2878,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -2897,8 +2894,8 @@ MonoBehaviour:
 
       Frogman: Wait, what?
 
-      Xirveros: I
-      was a great wizard \w@
+      Xirveros: I was
+      a great wizard \w@
 
       I never ate a lizard \w@
 
@@ -2927,8 +2924,8 @@ MonoBehaviour:
 
       Frogman: I... Ugh, fine.
 
-      Xirveros:
-      Yes! Me follow frog!\a We go together!
+      Xirveros: Yes!
+      Me follow frog!\a We go together!
 
       Frogman: If you insist...
 
@@ -2987,8 +2984,8 @@ MonoBehaviour:
 
       Frogman: Ok... Sure...
 
-      Firbell: Let us
-      give these beasts a sound thrashing,\a and then we will be able to talk properly.
+      Firbell: Let us give
+      these beasts a sound thrashing,\a and then we will be able to talk properly.
 
       Xirveros:
       Rocktime Time!
@@ -2999,7 +2996,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -3016,11 +3013,11 @@ MonoBehaviour:
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head
-      is his own Magma Emblem.
+      Firbell: The rock on his head is
+      his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem
-      like a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem like
+      a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -3036,28 +3033,28 @@ MonoBehaviour:
 
       Xirveros: I was a great wizard   \w@
 
-      I
-      never ate a lizard   \w@
+      I never
+      ate a lizard   \w@
 
       I like rocks           \w@
 
-      Yet hate
-      locks         \w@
+      Yet hate locks        
+      \w@
 
       I never liked blue     \w@
 
-      Smiles will betray
-      you \w@
+      Smiles will betray you \w@
 
-      Rivers flow to-
+      Rivers
+      flow to-
 
       Firbell: Right, that is enough, Xirveros.
 
-      Let
-      us leave this place before more monsters show up.
+      Let us leave
+      this place before more monsters show up.
 
-      Frogman: ...and before
-      he starts singing again.
+      Frogman: ...and before he starts
+      singing again.
 
       :setFlag:FinishedFirbellXirveros
 
@@ -3103,8 +3100,8 @@ MonoBehaviour:
 
       Xirveros: I like frog. Frog like me back?
 
-      Frogman:
-      I... Ugh, fine.
+      Frogman: I...
+      Ugh, fine.
 
       Xirveros: Yes! Me follow frog!\a We go together!
 
@@ -3483,20 +3480,20 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       Functions
 
-      
+
 
       ~ Unlock
 
-      Kresla: Oh, and as for what I was
-      saying before,\a I AM going to try out different styles now.
+      Kresla: Oh, and as for what I was saying
+      before,\a I AM going to try out different styles now.
 
-      Frogman:
-      All right. Good luck!
+      Frogman: All right.
+      Good luck!
 
       :unlockKnowledge:InclinationKresla
 
@@ -3569,12 +3566,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       Functions
 
-      
+
 
       ~ Unlock
 
@@ -3585,15 +3582,15 @@ MonoBehaviour:
 
       Tall as a log      \w@
 
-      Like my rock fight
-      \w@
+      Like my rock fight \w@
 
-      Almost take flight \w@
+      Almost
+      take flight \w@
 
       Frogman: Wow.
 
-      Xirveros:
-      Will fight like Frog too!
+      Xirveros: Will fight like Frog
+      too!
 
       :unlockKnowledge:InclinationXirveros
 
@@ -3783,8 +3780,8 @@ MonoBehaviour:
       Frogman:
       Firbell. Have you heard about Xirveros'' friends?
 
-      Firbell: What? I
-      do not remember him mentioning friends.
+      Firbell: What? I do
+      not remember him mentioning friends.
 
       Frogman: What were their names?\a
       Abrhys?\a Welki?
@@ -3800,7 +3797,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -3857,12 +3854,12 @@ MonoBehaviour:
 
       :setFlag:XirverosPast3
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -3956,12 +3953,12 @@ MonoBehaviour:
 
       :call:PostGeneric
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ PreFirbell
 
@@ -4003,29 +4000,28 @@ MonoBehaviour:
 
       Frogman: Then let''s go!
 
-      Firbell: ...This is a bad
-      idea...
+      Firbell: ...This is a bad idea...
 
       :hideCG:
 
       :play:ToTheDeath
 
-      Frogman: Uh, Firbell?
-      What is that monster over there?
+      Frogman:
+      Uh, Firbell? What is that monster over there?
 
-      Is it one of those so-called strong
-      monsters?
+      Is it one of those so-called
+      strong monsters?
 
       Firbell: Indeed. This one is a lich.
 
-      One of the strongest
-      monsters around here,\a capable of devastating magic.
+      One of
+      the strongest monsters around here,\a capable of devastating magic.
 
-      Frogman: Magic?
-      Never seen that before here.
+      Frogman:
+      Magic? Never seen that before here.
 
-      Firbell: Because magic requires magic
-      crystals,\a which are exceedingly rare,\a especially here.
+      Firbell: Because magic requires
+      magic crystals,\a which are exceedingly rare,\a especially here.
 
       Frogman:
       Aren''t our Magma Emblems crystals?
@@ -4035,8 +4031,8 @@ MonoBehaviour:
 
       Frogman: Oh.
 
-      Firbell:
-      Are you certain you wish to fight it?
+      Firbell: Are
+      you certain you wish to fight it?
 
       Frogman: Yes. Are you with me?
 
@@ -4044,7 +4040,7 @@ MonoBehaviour:
       Ah, you leave me no choice...\a I can''t just let you go on your own.\a Oh
       well, time to slay a few fiends.
 
-      
+
 
       ~ PreKresla
 
@@ -4064,8 +4060,8 @@ MonoBehaviour:
 
       Kresla: It''s not so simple.
 
-      That place is guarded by
-      many strong monsters -\a mostly liches.\a I could never defeat them alone.
+      That place is guarded by many
+      strong monsters -\a mostly liches.\a I could never defeat them alone.
 
       Frogman:
       Liches?
@@ -4099,8 +4095,8 @@ MonoBehaviour:
 
       :play:ToTheDeath
 
-      Frogman:
-      Is that monster there a lich?
+      Frogman: Is
+      that monster there a lich?
 
       Kresla: Indeed! Fancy fighting it?
 
@@ -4115,7 +4111,7 @@ MonoBehaviour:
 
       Frogman: Let''s go!
 
-      
+
 
       ~ PreXirveros
 
@@ -4175,7 +4171,7 @@ MonoBehaviour:
       Follow
       frog!
 
-      
+
 
       ~ PreAlone
 
@@ -4191,8 +4187,8 @@ MonoBehaviour:
 
       I guess I''ll go there.
 
-      # TBA:
-      add Kresla or Firbell (de[ending on who died)
+      # TBA: add
+      Kresla or Firbell (de[ending on who died)
 
       :hideCG:
 
@@ -4201,7 +4197,7 @@ MonoBehaviour:
       Frogman:
       What is this-\a Ugh, I''m talking to myself.\a I need to stop that.
 
-      
+
 
       ~
       PreAfterFail
@@ -4211,12 +4207,12 @@ MonoBehaviour:
       Frogman: You again. This time,
       I won''t lose.
 
-      
+
 
       ~ PostFirbell
 
-      Frogman: That was tough.
-      Let''s get out of here now!
+      Frogman: That was tough. Let''s
+      get out of here now!
 
       :loadMap:InitTormentRoom
 
@@ -4246,9 +4242,9 @@ MonoBehaviour:
 
       Frogman: Huh. Good to know.
 
-      But
-      I cannot accept a life of endless, pointless survival.\a Don''t you want to
-      find a way to leave this place?
+      But I
+      cannot accept a life of endless, pointless survival.\a Don''t you want to find
+      a way to leave this place?
 
       Firbell: I do. Getting back to Irenhold...\a
       Yes, I must do my best to return.\a Very well, Frogman. Let us go.
@@ -4256,17 +4252,17 @@ MonoBehaviour:
       Frogman:
       That''s the spirit.
 
-      
+
 
       ~ PostKresla
 
-      Kresla: Oh.\a It
-      just disintegrated.\a What a shame.
+      Kresla: Oh.\a It just disintegrated.\a
+      What a shame.
 
-      Frogman: Kresla, we need to get
-      out of here now!
+      Frogman: Kresla, we need to get out of here now!
 
-      Kresla: Right!
+      Kresla:
+      Right!
 
       :loadMap:InitTormentRoom
 
@@ -4296,12 +4292,12 @@ MonoBehaviour:
       With our powers combined,
       we can be unstoppable!
 
-      
+
 
       ~ PostXirveros
 
-      Frogman: That
-      was tough. Let''s get out of here now!
+      Frogman: That was tough.
+      Let''s get out of here now!
 
       :loadMap:InitTormentRoom
 
@@ -4330,15 +4326,15 @@ MonoBehaviour:
       Xirveros:
       Do not listen. Do not listen. Do no listen.
 
-      Frogman: Why do I even
-      bother? Let''s just go.
+      Frogman: Why do I even bother?
+      Let''s just go.
 
-      
+
 
       ~ PostGeneric
 
-      Frogman: That
-      was tough! I''m sorry, everyone.
+      Frogman: That was tough! I''m
+      sorry, everyone.
 
       I''ll just have to go on without you.
 
@@ -4382,8 +4378,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: I''m
-      safe... For now...
+      Frogman||L: I''m safe...
+      For now...
 
       }
 
@@ -4422,13 +4418,13 @@ MonoBehaviour:
       Kresla: I have
       a theory about the Lich''s magic crystal!
 
-      Frogman: Really? What is
-      it?
+      Frogman: Really? What is it?
 
-      Kresla: Well, as you''ve noticed-
+      Kresla:
+      Well, as you''ve noticed-
 
-      Frogman: Kresla, let''s
-      defeat the Lich before making theories on it.
+      Frogman: Kresla, let''s defeat the Lich before
+      making theories on it.
 
       Kresla: Right, right.
 
@@ -4439,19 +4435,19 @@ MonoBehaviour:
       Kresla:
       Frogman, you still haven''t heard my theory!
 
-      Frogman: Yes, Kresla.
-      After the battle.
+      Frogman: Yes, Kresla. After
+      the battle.
 
       Kresla: Urgh...
 
       }
 
-      
 
-      ~ After
-      battle
 
-      Frogman: Let''s get out of here!
+      ~ After battle
+
+      Frogman:
+      Let''s get out of here!
 
       :loadMap:InitTormentRoom
 
@@ -4469,55 +4465,55 @@ MonoBehaviour:
       Kresla: However, the question remained, where did it find one?\a
       I''ve never seen any here.
 
-      # TBA: Change if Kresla reached level 7
-      before this conversation
+      # TBA: Change if Kresla reached level 7 before
+      this conversation
 
       Frogman: Actually, I have.
 
-      Kresla:
-      Really?! Where?!
+      Kresla: Really?!
+      Where?!
 
       Frogman: It''s... complicated.
 
-      Kresla: Oh.
-      Well, anyway, even if it did find one,\a it''s still a mindless monster.\a
-      So how did it make a staff?\a And how could it learn to use magic?
+      Kresla: Oh. Well, anyway,
+      even if it did find one,\a it''s still a mindless monster.\a So how did it
+      make a staff?\a And how could it learn to use magic?
 
-      Frogman:
-      Huh.
+      Frogman: Huh.
 
-      # Again, if Kresla reached level 7, she''d comment on how they
-      must be dead elite guards (mages). Otherwise, this conversation.
+      #
+      Again, if Kresla reached level 7, she''d comment on how they must be dead elite
+      guards (mages). Otherwise, this conversation.
+
+      Kresla: So, it must have
+      used magic, and the crystal,\a before dying!
+
+      Frogman: Yes, that makes
+      sense.
+
+      Kresla: But don''t you see? There was never any record of such\a
+      crystals while I was alive!\a Even Magma Emblems, which have no such powers,\a
+      were considered myths -\a at least, until I found one.\a Did Xirveros use these
+      crystals for magic? Were they common in his time? But that was centuries ago!
+      Could they still be alive from then? Or are they from the far future? Are they
+      Guards? Are they from space? This is an extraordinary discovery! Frogman?\a
+      Are you listening?\a Frogman!
+
+      Frogman: Wha... Huh? Uh, yes, of course!
 
       Kresla:
-      So, it must have used magic, and the crystal,\a before dying!
+      Unbelievable!
 
-      Frogman:
-      Yes, that makes sense.
 
-      Kresla: But don''t you see? There was never
-      any record of such\a crystals while I was alive!\a Even Magma Emblems, which
-      have no such powers,\a were considered myths -\a at least, until I found one.\a
-      Did Xirveros use these crystals for magic? Were they common in his time? But
-      that was centuries ago! Could they still be alive from then? Or are they from
-      the far future? Are they Guards? Are they from space? This is an extraordinary
-      discovery! Frogman?\a Are you listening?\a Frogman!
 
-      Frogman: Wha...
-      Huh? Uh, yes, of course!
+      # === Functions ====
 
-      Kresla: Unbelievable!
 
-      
-
-      # ===
-      Functions ====
-
-      
 
       ~ Sample
 
-      # Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level3KreslaOnMagic
@@ -4916,8 +4912,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him,
-      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him, is
+      it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -5012,7 +5008,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -5025,9 +5021,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a
-      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
-      here, eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a I''m
+      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
+      eh? Ha ha!
 
       Frogman: I-
 
@@ -5055,16 +5051,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Firbell
@@ -5110,7 +5105,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       :play:BeforeBattle
 
@@ -5149,8 +5144,8 @@ MonoBehaviour:
 
       Frogman: Torment!
 
-      Torment:
-      It''s me! Heh heh!\a What do you think of my gift?
+      Torment: It''s
+      me! Heh heh!\a What do you think of my gift?
 
       Frogman: Gift?
 
@@ -5172,18 +5167,18 @@ MonoBehaviour:
 
       }
 
-      Frogman: That... I
-      didn''t mean to...
+      Frogman: That... I didn''t
+      mean to...
 
       :play:Trickster:T
 
-      Torment: Save your excuses
-      for when she can actually hear you. Heh!
+      Torment: Save your excuses for when
+      she can actually hear you. Heh!
 
       Frogman: ...
 
-      Torment:
-      Nothing to say, eh? Well then, without further ado...
+      Torment: Nothing
+      to say, eh? Well then, without further ado...
 
       :playIntro:Tormentor
 
@@ -5254,8 +5249,8 @@ MonoBehaviour:
       Frogman: I''m...
       s-sorry...
 
-      Torment: Don''t apologize to me, heh!\a Well, good luck
-      staying alive without her. Ha ha ha!
+      Torment: Don''t apologize to me, heh!\a Well, good luck staying
+      alive without her. Ha ha ha!
 
       Frogman: ...
 
@@ -5263,12 +5258,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -5312,7 +5307,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       :if:!firstTime:{
 
@@ -5422,11 +5417,11 @@ MonoBehaviour:
 
       :else:{
 
-      I would give a little parting
-      gift, but you already have it!\a That''s all right. I''m not offended...\a
-      Heh.
+      I would give a little parting gift,
+      but you already have it!\a That''s all right. I''m not offended...\a Heh.
 
-      Off you go, then!
+      Off
+      you go, then!
 
       }
 
@@ -5437,11 +5432,11 @@ MonoBehaviour:
       :showPartTitle:Part
       2:Prisoner
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ PreFirst
 
@@ -5461,13 +5456,13 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment|???: Ha.
-      Ha ha. HA HA HA!!!
+      Torment|???: Ha. Ha
+      ha. HA HA HA!!!
 
       Frogman: What''s so funny?
 
-      Torment|???:
-      Do I... have a Magma Emblem? Heh heh!\a Do you not know who I am,\a Frogman?
+      Torment|???: Do I...
+      have a Magma Emblem? Heh heh!\a Do you not know who I am,\a Frogman?
 
       :if:charactersAlive:>0{
 
@@ -5493,11 +5488,11 @@ MonoBehaviour:
 
       :play:Trickster:T
 
-      Torment|???: Why, I suppose
-      I haven''t introduced myself yet!
+      Torment|???: Why, I suppose I
+      haven''t introduced myself yet!
 
-      Who am I? Such a deep question,\a
-      for someone so foolish! Heh heh!
+      Who am I? Such a deep question,\a for
+      someone so foolish! Heh heh!
 
       I am... pain.\a Fear.\a Despair.
 
@@ -5520,21 +5515,20 @@ MonoBehaviour:
 
       Frogman: What is going on?!!
 
-      Torment: OH, I LOVE
-      this part!\a You''re going to fight my minions...\a TO THE DEATH! HA HA HA!!!
+      Torment: OH, I LOVE this
+      part!\a You''re going to fight my minions...\a TO THE DEATH! HA HA HA!!!
 
       Frogman:
       Why?!
 
-      Torment: Why?! I feed on pain! Need it!\a It doesn''t matter
-      who! Only PAIN! Enough talk! FIGHT!
+      Torment: Why?! I feed on pain! Need it!\a It doesn''t matter who!
+      Only PAIN! Enough talk! FIGHT!
 
       :loadUnits:
 
-      
 
-      ~
-      PreGeneric
+
+      ~ PreGeneric
 
       :setFlag:Torment1FirstTimeFail
 
@@ -5571,7 +5565,7 @@ MonoBehaviour:
 
       :loadUnits:
 
-      
+
 
 '
     Name: Torment1FirstTime
@@ -5603,8 +5597,8 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment: My, must you repeat your
-      lines so? Heh heh!
+      Torment: My, must you repeat your lines
+      so? Heh heh!
 
       Frogman: Why, you-
 
@@ -5693,12 +5687,12 @@ MonoBehaviour:
 
       :play:Trickster:T
 
-      Torment: Not
-      everyone is as gullible as you, heh heh!\a Some would never help an...\a evil
-      being like me willingly! HA HA HA!\a As if they have a choice!
+      Torment: Not everyone
+      is as gullible as you, heh heh!\a Some would never help an...\a evil being
+      like me willingly! HA HA HA!\a As if they have a choice!
 
-      Frogman:
-      And do I have a choice?
+      Frogman: And
+      do I have a choice?
 
       :playIntro:Tormentor
 
@@ -5709,13 +5703,13 @@ MonoBehaviour:
       Torment:
       PWAH HA HA HA! You''re a funny one, I''ll give you that!
 
-      But worry
-      not, you have the honor of being my...\a chosen one! Heh!
+      But worry not,
+      you have the honor of being my...\a chosen one! Heh!
 
-      Frogman:
-      Argh...
+      Frogman: Argh...
 
-      Torment: Cry later - now is the time to FIGHT!
+      Torment:
+      Cry later - now is the time to FIGHT!
 
       :loadUnits:
 
@@ -5736,8 +5730,8 @@ MonoBehaviour:
 
       Frogman: Aghhh!
 
-      Torment: You died in the middle
-      of our previous conversations!
+      Torment: You died in the middle of
+      our previous conversations!
 
       }
 
@@ -5784,7 +5778,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -5836,12 +5830,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -5881,25 +5875,24 @@ MonoBehaviour:
       Torment||R:
       Why, hello there, Frogman! I''ve missed you. Heh heh.
 
-      Frogman: You
-      have?
+      Frogman: You have?
 
-      Torment: I was recently reminded of your predecessor. Memerian.\a
-      She is such a bore, isn''t she?\a Dull as a rock! Ha ha ha!
+      Torment:
+      I was recently reminded of your predecessor. Memerian.\a She is such a bore,
+      isn''t she?\a Dull as a rock! Ha ha ha!
 
-      Frogman:
-      Predecessor?
+      Frogman: Predecessor?
 
-      Torment: Yes. She was my previous champion.\a Firbell
-      and Xirveros fought with her for a while.\a But then she grew... uncooperative.
-      Heh.
+      Torment:
+      Yes. She was my previous champion.\a Firbell and Xirveros fought with her for
+      a while.\a But then she grew... uncooperative. Heh.
 
       Frogman: Uncooperative?
 
-      Torment: She stopped attempting
-      to reach the fortress.\a In fact, she always stayed far from it.\a And that
-      simply wouldn''t do.\a After all, how would I escape without you pawns to help
-      me?\a Ha ha ha!
+      Torment:
+      She stopped attempting to reach the fortress.\a In fact, she always stayed
+      far from it.\a And that simply wouldn''t do.\a After all, how would I escape
+      without you pawns to help me?\a Ha ha ha!
 
       Frogman: How?
 
@@ -5938,14 +5931,14 @@ MonoBehaviour:
 
       Frogman: Questions?
 
-      Torment: Oh my, you truly are a
-      worthy champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t
-      get away with this.\a DIE!
+      Torment: Oh my, you truly are a worthy
+      champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t get
+      away with this.\a DIE!
 
       :loadUnits:
 
-      Frogman: ...It was worth
-      a try.
+      Frogman: ...It was worth a
+      try.
 
       }
 
@@ -5986,10 +5979,9 @@ MonoBehaviour:
 
       }
 
-      
 
-      ~ After
-      battle
+
+      ~ After battle
 
       :play:Trickster
 
@@ -6015,16 +6007,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Memerian
@@ -6065,7 +6056,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -6074,7 +6065,7 @@ MonoBehaviour:
 
       Torment: TBA
 
-      
+
 
 '
     Name: Torment1RestoreFirbell
@@ -6175,7 +6166,7 @@ MonoBehaviour:
 
       # Nothing
 
-      
+
 
       ~
       After battle
@@ -6210,16 +6201,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Xeplogi
@@ -6279,8 +6269,8 @@ MonoBehaviour:
 
       :play:Trickster
 
-      Torment: Not surprising. Heh heh.\a I
-      was digging through your memories,\a and couldn''t find a trace of that conversation.\a
+      Torment: Not surprising. Heh heh.\a I was
+      digging through your memories,\a and couldn''t find a trace of that conversation.\a
       Frankly, I''m dissapointed in you. Heh.
 
       Frogman: I''m sorr- Wait, what?\a
@@ -6335,18 +6325,18 @@ MonoBehaviour:
       Frogman:
       ...
 
-      
+
 
       ~ After battle
 
       :callOther:Torment1Xeplogi
 
-      
 
-      #
-      === Functions ====
 
-      
+      # ===
+      Functions ====
+
+
 
       ~ Sample
 
@@ -6430,8 +6420,8 @@ MonoBehaviour:
       Frogman:
       I... see.\a Wait, how do you know that I''ve met Xeplogi?
 
-      Torment:
-      I know everything, of course! Ha ha ha!
+      Torment: I
+      know everything, of course! Ha ha ha!
 
       }
 
@@ -6454,21 +6444,21 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
 
       :callOther:Torment1Xeplogi
 
-      
 
-      # === Functions
-      ====
 
-      
+      # === Functions ====
 
-      ~ Sample
+
+
+      ~
+      Sample
 
       # Name: Text.
 
@@ -6642,7 +6632,7 @@ MonoBehaviour:
 
       Frogman: Ah, Alfred.
 
-      Alfred: I must kill Fashima.
+      Alfred: I must kill Alfa-\a Fashima.
 
       Frogman:
       Oh? Uh, all right.\a She is blocking our way, after-
@@ -6653,13 +6643,13 @@ MonoBehaviour:
       Frogman: Really?!
       So she''s the reason you hate the Guards so much?
 
-      Alfred: Pah! All
-      Guards are evil! She''s just a traitor.
+      Alfred: Pah! All Guards
+      are evil! She''s just a traitor.
 
       Frogman: Traitor?
 
-      Alfred:
-      We worked together. For Boss.\a To overthrow Guards.\a But she betrayed us.\a
+      Alfred: We
+      worked together. For Boss.\a To overthrow Guards.\a But she betrayed us.\a
       Revealed us, and killed Boss and me.
 
       Frogman: Oh.
@@ -6718,16 +6708,14 @@ MonoBehaviour:
       Frogman||L:
       Ah... Safe at last...
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: Level5AlfredFashima
@@ -6824,7 +6812,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       Post-battle
@@ -6879,36 +6867,35 @@ MonoBehaviour:
 
       :if:hasCharacter:Xirveros{
 
-      Xirveros: Oh!
-      I know! They just eat three apples a day!
+      Xirveros: Oh! I
+      know! They just eat three apples a day!
 
-      Xeplogi: ...I highly doubt
-      that.
+      Xeplogi: ...I highly doubt that.
 
       }
 
-      Frogman: Who is this Memerian?
+      Frogman:
+      Who is this Memerian?
 
-      Xeplogi: She
-      is an evil and backstabbing witch.
+      Xeplogi: She is an evil and backstabbing witch.
 
-      She used to be a blacksmith,\a but
-      then started meddling with dark magics.\a This is how she found both our Magma
-      Emblems.
+      She
+      used to be a blacksmith,\a but then started meddling with dark magics.\a This
+      is how she found both our Magma Emblems.
 
-      Frogman: So... she''s another Magmaborn?
+      Frogman: So... she''s another
+      Magmaborn?
 
-      Xeplogi:
-      Yes. We are doomed to suffer her presence for all eternity.\a Luckily, I''m
-      here to protect you from her trickery.
+      Xeplogi: Yes. We are doomed to suffer her presence for all
+      eternity.\a Luckily, I''m here to protect you from her trickery.
 
-      Frogman: I see. And she knows
-      what''s the deal with these Guards?
+      Frogman:
+      I see. And she knows what''s the deal with these Guards?
 
-      Xeplogi: Whether she does or not,
-      all she ever speaks is lies,\a so asking her about it is futile.\a But let
-      us stop speaking of the devil.\a We should move on before the Guards catch
-      up to us.
+      Xeplogi: Whether
+      she does or not, all she ever speaks is lies,\a so asking her about it is futile.\a
+      But let us stop speaking of the devil.\a We should move on before the Guards
+      catch up to us.
 
       Frogman: Actually, we''re on our way to that weird fortress.
 
@@ -6972,23 +6959,23 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: Xeplogi
-      didn''t make it, huh?\a And what''s the deal with these... Guards?
+      Frogman||L: Xeplogi didn''t
+      make it, huh?\a And what''s the deal with these... Guards?
 
       :if:hasCharacter:Kresla{
 
       Kresla:
       They were so interesting! What are they doing here?
 
-      Did they build
-      the fortress and all other structures?\a Why are they fighting us?\a And most
-      of all,\a why do they disintegrate upon death?
+      Did they build the
+      fortress and all other structures?\a Why are they fighting us?\a And most of
+      all,\a why do they disintegrate upon death?
 
-      Frogman: I don''t kn-
-      wait, disintigrate?
+      Frogman: I don''t kn- wait,
+      disintigrate?
 
-      Kresla: Didn''t you notice? Whenever one dies,\a
-      they just disappear, like the monsters.\a Could they be the same thing?
+      Kresla: Didn''t you notice? Whenever one dies,\a they
+      just disappear, like the monsters.\a Could they be the same thing?
 
       But
       no, these Guards appear to have intelligence...\a This place holds so many
@@ -6996,8 +6983,8 @@ MonoBehaviour:
 
       Frogman: Yeah. That''s definitely weird.
 
-      Kresla:
-      I do have a few theo-
+      Kresla: I
+      do have a few theo-
 
       Frogman: Kresla. Let''s leave before more Guards
       show up.
@@ -7098,12 +7085,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ PreFirst
 
@@ -7139,8 +7126,8 @@ MonoBehaviour:
 
       :if:charactersAlive:>0:{
 
-      Frogman: Oh,
-      another Magmaborn?
+      Frogman: Oh, another
+      Magmaborn?
 
       Uh, I''m Frogman, and these are my fellow Magmaborn.
 
@@ -7229,24 +7216,24 @@ MonoBehaviour:
       Kresla: Right, sorry. I''m Kresla, a renowned scholar.\a
       And you''re Vengeful Xeplogi, right?
 
-      Xeplogi: Only my enemies call
-      me that. Please, call me Duke Xeplogi.
+      Xeplogi: Only my enemies call me
+      that. Please, call me Duke Xeplogi.
 
-      Kresla: I knew it! It IS you!
-      So this is where you disappeared to?!\a Wait, does that mean that Memerian
-      is here too?!
+      Kresla: I knew it! It IS you! So
+      this is where you disappeared to?!\a Wait, does that mean that Memerian is
+      here too?!
 
       Xeplogi: Unfortunately, yes.
 
-      I assume you''ll
-      run into her eventually.
+      I assume you''ll run
+      into her eventually.
 
-      Kresla: I can''t believe it! A fairy tale
-      hero,\a standing right here besides me!\a This is almost as exciting as the
-      discovery of magic!
+      Kresla: I can''t believe it! A fairy tale hero,\a
+      standing right here besides me!\a This is almost as exciting as the discovery
+      of magic!
 
-      Xeplogi: I''m a hero, then? Oh ho ho! I like the
-      sound of that.
+      Xeplogi: I''m a hero, then? Oh ho ho! I like the sound of
+      that.
 
       Frogman: I''m afraid I didn''t get any of this.
 
@@ -7256,9 +7243,9 @@ MonoBehaviour:
 
       Xeplogi: W-wait, children?!
 
-      Kresla: In short, there
-      was this duke named Xeplogi,\a who wanted to be immortal.\a He heard about
-      a legendary blacksmith named Memerian,\a who was said to have discovered immortality.\a
+      Kresla: In short, there was
+      this duke named Xeplogi,\a who wanted to be immortal.\a He heard about a legendary
+      blacksmith named Memerian,\a who was said to have discovered immortality.\a
       Xeplogi tried to buy her secret, but she refused.\a They fought, and both disappeared.
 
       Frogman:
@@ -7276,27 +7263,26 @@ MonoBehaviour:
       Frogman:
       A duke? I... see.
 
-      Xeplogi: Indeed I am! Have you ever heard of me,
-      perchance?
+      Xeplogi: Indeed I am! Have you ever heard of me, perchance?
 
-      Frogman: No, never.
+      Frogman:
+      No, never.
 
-      Xeplogi: You must have lived
-      in quite the backwater village then.\a Oh ho ho!
+      Xeplogi: You must have lived in quite the backwater village
+      then.\a Oh ho ho!
 
       Frogman: ...
 
-      Xeplogi:
-      Who were you before arriving here, my dear Fro-
+      Xeplogi: Who were you before arriving
+      here, my dear Fro-
 
       }
 
       :call:GuardsArriveFirst
 
-      
 
-      ~
-      GuardsArriveFirst
+
+      ~ GuardsArriveFirst
 
       :addGenericCharacter:Guard1:young
 
@@ -7344,17 +7330,17 @@ MonoBehaviour:
 
       Frogman: You know these humans?!
 
-      Xeplogi:
-      Yes. They are-
+      Xeplogi: Yes.
+      They are-
 
-      Guard1: Aha! This must be my lucky day!\a Fiends! Your
-      reign of terror has come to an end!\a For I, [Name], shall destroy you all!
+      Guard1: Aha! This must be my lucky day!\a Fiends! Your reign
+      of terror has come to an end!\a For I, [Name], shall destroy you all!
 
       Xeplogi:
       All they ever really do is-
 
-      Guard2: How many of them are there?!\a
-      Never mind, kill every last one of them!
+      Guard2: How many of them are there?!\a Never
+      mind, kill every last one of them!
 
       Xeplogi: They hate-
 
@@ -7371,7 +7357,7 @@ MonoBehaviour:
 
       :setFlag:MetXeplogi
 
-      
+
 
       ~
       PreRepeat
@@ -7434,8 +7420,8 @@ MonoBehaviour:
       We should stop talking if we
       want to stay alive this time.
 
-      Xeplogi: Now, that''s a good idea.\a
-      Keep them coming, boy.
+      Xeplogi: Now, that''s a good idea.\a Keep
+      them coming, boy.
 
       Frogman: That- Ugh. Let''s just get started.
 
@@ -8353,12 +8339,11 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~ After battle
 
-      Frogman: Everyone,
-      run!
+      Frogman: Everyone, run!
 
       :loadMap:Part2RestArea
 
@@ -8369,16 +8354,16 @@ MonoBehaviour:
       Frogman||L:
       Ah... Safe at last...
 
-      
+
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
 
-      # Name: Text.
+      ~ Sample
+
+      #
+      Name: Text.
 
 '
     Name: Level5GenericXeplogi
@@ -8439,8 +8424,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: My name
-      is Frogman. Who might you be?
+      Frogman||L: My name is
+      Frogman. Who might you be?
 
       Memerian: I''m Memerian.
 
@@ -8449,19 +8434,18 @@ MonoBehaviour:
 
       }
 
-      Memerian: Did he
-      now? I hope you didn''t listen to the fool.
+      Memerian: Did he now?
+      I hope you didn''t listen to the fool.
 
-      Frogman: He said you were
-      an evil witch.
+      Frogman: He said you were an
+      evil witch.
 
       Memerian: He''s a deplorable thief.
 
-      Frogman:
-      Uh...
+      Frogman: Uh...
 
-      # Memerian is afraid to talk about Torment in public, and rightly
-      so.
+      #
+      Memerian is afraid to talk about Torment in public, and rightly so.
 
       :if:charactersAlive:<2{
 
@@ -8525,30 +8509,29 @@ MonoBehaviour:
       Memerian:
       Ugh. Meddlesome Guards. We''ll speak again soon, Frogman.
 
+      Frogman: Wait.
+      Why should I trust you?
+
+      Memerian: ...Are you seriously considering Xeplogi''s
+      allegations?\a Do you have a death wish, Frogman?\a Because I can grant it.
+
       Frogman:
-      Wait. Why should I trust you?
+      Uh, no thanks.
 
-      Memerian: ...Are you seriously considering
-      Xeplogi''s allegations?\a Do you have a death wish, Frogman?\a Because I can
-      grant it.
+      Memerian: Good. Then let''s join forces.
 
-      Frogman: Uh, no thanks.
-
-      Memerian: Good. Then let''s
-      join forces.
-
-      Frogman: ...
+      Frogman:
+      ...
 
       :setFlag:MetMemerian
 
-      
 
-      ~
-      After battle
+
+      ~ After battle
 
       :callOther:Level6FirstTimeMemerianXeplogi
 
-      
+
 
       #
       === Functions ====
@@ -8613,8 +8596,8 @@ MonoBehaviour:
 
       Xeplogi: Uh-
 
-      Memerian: Didn''t think so.\a So.
-      Introcude yourselves.
+      Memerian: Didn''t think so.\a So. Introcude
+      yourselves.
 
       Frogman: Um, I''m Frogman.
 
@@ -8665,27 +8648,27 @@ MonoBehaviour:
       All she ever
       does is steal and betray!
 
-      Memerian: Ha! Oh, the irony. Have you no
-      shame, Xeplogi?
+      Memerian: Ha! Oh, the irony. Have you no shame,
+      Xeplogi?
 
-      Frogman: Uh, look, I''m not sure what''s your issue,\a
-      but shouldn''t we work together against-
+      Frogman: Uh, look, I''m not sure what''s your issue,\a but
+      shouldn''t we work together against-
 
-      Memerian: Work together? He
-      murdered me!
+      Memerian: Work together? He murdered
+      me!
 
       Xeplogi: She stole my Magma Emblem!
 
-      Memerian:
-      You stole it from me first, you hypocrite!
+      Memerian: You stole it
+      from me first, you hypocrite!
 
       Frogman: Uh-
 
-      Xeplogi||L:
-      It was rightfully mine, you... you twister of truths!
+      Xeplogi||L: It was
+      rightfully mine, you... you twister of truths!
 
-      Memerian: That''s
-      not even a real insult, you absolute liquid!
+      Memerian: That''s not
+      even a real insult, you absolute liquid!
 
       Xeplogi: Neither is that!
 
@@ -8707,8 +8690,8 @@ MonoBehaviour:
       Frogman: Seriously?! We''ve
       been trying to reach that place for ages!
 
-      Xeplogi: Yes. And we can
-      still get there without her help.
+      Xeplogi: Yes. And we can still
+      get there without her help.
 
       Memerian||R: Ha! Good luck with that.
 
@@ -8721,7 +8704,7 @@ MonoBehaviour:
 
       :setFlag:MetMemerian
 
-      
+
 
       ~
       After battle
@@ -8735,11 +8718,11 @@ MonoBehaviour:
 
       :if:hasCharacter:Xeplogi{
 
-      Xeplogi:
-      Indeed. Shall we go back to safer grounds now?
+      Xeplogi: Indeed.
+      Shall we go back to safer grounds now?
 
-      Frogman: Seriously?
-      We''re almost to the fortress!
+      Frogman: Seriously? We''re almost
+      to the fortress!
 
       Xeplogi: But... It could be dangerous!
 
@@ -8784,8 +8767,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Firbell{
 
-      Firbell||L: Memerian. Do
-      you know why do these Guards hate us so?
+      Firbell||L: Memerian. Do you
+      know why do these Guards hate us so?
 
       Memerian: They hate all monsters.
       In fact, from what I''ve gathered,\a all they ever do is killing monsters.
@@ -8803,21 +8786,21 @@ MonoBehaviour:
       But can we not talk to them?\a Explain that we are unlike the rest,\a and mean
       no harm?
 
-      Memerian: No harm? Please. We''ve just killed a couple of
-      them.
+      Memerian: No harm? Please. We''ve just killed a couple of them.
 
-      Firbell: I...\a I see your point.\a Still, I must try at the
-      very least.
+      Firbell:
+      I...\a I see your point.\a Still, I must try at the very least.
 
-      Memerian: You always do.
+      Memerian:
+      You always do.
 
       Firbell: What do you mean?
 
-      Memerian:
-      Never mind me. Anyway, we should get out of here.\a Frogman?
+      Memerian: Never mind
+      me. Anyway, we should get out of here.\a Frogman?
 
-      Frogman:
-      Uh, yes, let''s leave.
+      Frogman: Uh, yes,
+      let''s leave.
 
       Firbell: ...
 
@@ -8850,18 +8833,18 @@ MonoBehaviour:
 
       Frogman: She''s a bit... reckless.
 
-      Memerian: You
-      don''t need to be afraid when your immortal, Frogman.
+      Memerian: You don''t
+      need to be afraid when your immortal, Frogman.
 
-      Frogman: I know.
-      Let''s follow her, shall we?
+      Frogman: I know. Let''s
+      follow her, shall we?
 
       Memerian: Let''s.
 
       }
 
-      #
-      Memerian alone tells about Torment
+      # Memerian alone
+      tells about Torment
 
       :if:charactersAlive:=1{
 
@@ -8870,75 +8853,75 @@ MonoBehaviour:
       Memerian:
       So. About Torment
 
-      Frogman: Oh? Right, you know them.\a Why do they
-      let you remember them?
+      Frogman: Oh? Right, you know them.\a Why do they let
+      you remember them?
 
       }
 
       :else:{
 
-      Memerian: Frogman.
-      Now that we''re alone, you need to know something.
+      Memerian: Frogman. Now that
+      we''re alone, you need to know something.
 
-      Frogman: What is
-      it?
+      Frogman: What is it?
 
       }
 
-      Memerian: I used to help Torment, just like you.
+      Memerian:
+      I used to help Torment, just like you.
 
-      Frogman:
-      Really?!
+      Frogman: Really?!
 
-      Memerian: Yes. We had a... falling out eventually.\a But I
-      see he has found a replacement already.
+      Memerian:
+      Yes. We had a... falling out eventually.\a But I see he has found a replacement
+      already.
 
       Frogman: What happened?
 
-      Memerian:
-      I realized it was impossible.
+      Memerian: I realized it was
+      impossible.
 
       Frogman: What was?
 
-      Memerian:
-      Getting out of here.\a That fortress? It''s impenetrable.
+      Memerian: Getting out of here.\a
+      That fortress? It''s impenetrable.
 
-      Frogman:
-      I''m sure there''s a way inside...
+      Frogman: I''m sure there''s a way
+      inside...
 
-      Memerian: That''s not the problem.
-      It doesn''t even have a gate -\a anyone could theoretically enter it.
+      Memerian: That''s not the problem. It doesn''t even have a
+      gate -\a anyone could theoretically enter it.
 
-      Frogman:
-      Huh? Then what''s the problem?
+      Frogman: Huh? Then what''s
+      the problem?
 
-      Memerian: The one guarding it. Assuming
-      she''s still alive.\a She''s a wizard.
+      Memerian: The one guarding it. Assuming she''s still alive.\a
+      She''s a wizard.
 
       Frogman: Like Xirveros?
 
-      Memerian:
-      ...Seriously?
+      Memerian: ...Seriously?
 
-      Frogman: Yeah, that was a foolish question.\a Like the
-      lich, then?
-
-      Memerian: Similar, but much more powerful. And intelligent.
-
-      She
-      can teleport anywhere, and transform her appearance.\a Frankly, we don''t stand
-      a chance.
-
-      Frogman: Why are you helping me, then?
+      Frogman:
+      Yeah, that was a foolish question.\a Like the lich, then?
 
       Memerian:
-      Something must have changed.\a Torment has selected a new champion for a reason.\a
-      I''d like to see it.
+      Similar, but much more powerful. And intelligent.
 
-      Frogman: I... see.
+      She can teleport anywhere,
+      and transform her appearance.\a Frankly, we don''t stand a chance.
 
-      Memerian: Now that
-      we''re on the same page, let''s leave this place.
+      Frogman:
+      Why are you helping me, then?
+
+      Memerian: Something must have changed.\a
+      Torment has selected a new champion for a reason.\a I''d like to see it.
+
+      Frogman:
+      I... see.
+
+      Memerian: Now that we''re on the same page, let''s leave this
+      place.
 
       Frogman: Right.
 
@@ -8948,17 +8931,17 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Choice
 
-      :showChoice:Frogman:Trust
-      Xeplogi:Trust Memerian
+      :showChoice:Frogman:Trust Xeplogi:Trust
+      Memerian
 
       :if:chose:0{
 
@@ -9019,9 +9002,9 @@ MonoBehaviour:
       Memerian: Not
       him, though. He should rot in hell forever.
 
-      Xeplogi||R: As if I''d
-      accept your help, you demon!\a And Frogman, you too!\a How dare you betray
-      me like this!
+      Xeplogi||R: As if I''d accept
+      your help, you demon!\a And Frogman, you too!\a How dare you betray me like
+      this!
 
       Frogman: This wasn''t-
 
@@ -9090,11 +9073,11 @@ MonoBehaviour:
       Frogman: Whew, that was tough.\a
       Let''s go, everyone! To the fortress!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       Sample
@@ -9179,24 +9162,24 @@ MonoBehaviour:
 
       }
 
-      ~
-      After battle
+      ~ After
+      battle
 
       :play:Anticipation
 
-      Frogman: Whew, that was tough.\a
-      Let''s go, everyone! To the fortress!
+      Frogman: Whew, that was tough.\a Let''s
+      go, everyone! To the fortress!
 
-      
+
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
 
-      # Name: Text.
+      ~ Sample
+
+      #
+      Name: Text.
 
 '
     Name: Level6GenericMemerianXeplogi
@@ -9898,47 +9881,59 @@ MonoBehaviour:
       :if:!hasFlag:FashimaBattleAlfred{
 
       Alfred:
-      You! Magus!\a I will have vengeance!
+      You there. Guard Magus.
 
-      Fashima_: Hm? Who are you?\a Wait
-      a moment. Alfred?!
-
-      Alfred: Huh? How do you know me?!
+      How much weight... can you handle?
 
       Fashima_:
-      You''ve changed since I killed you, Alfred,\a but I will always recognize your
-      markings.
+      Excuse me?
 
-      Alfred: You... You killed me?\a You''re the traitor? Alfasher?!
+      Alfred: Can you withstand-
 
-      Fashima_:
-      I am the Wall Magus Fashima, now.
+      Fashima_: Stop. You must
+      be Alfred.
 
-      Alfred: ...Answer one question before
-      I kill you, Fashima.\a Why did you betray us?\a Betray Boss?\a Why did you
-      join the Guards?!
+      Alfred: You... How do you know me?!
 
-      Fashima_: These are three questions, Alfred.\a Nevertheless,
-      I shall humor you.\a I didn''t betray Boss. He betrayed me.\a He stole my crystal.
+      Fashima_: You''ve
+      changed since I killed you, Alfred,\a but I will always recognize your markings.
 
       Alfred:
-      Pah! Boss would never do that! The Guards do that!
+      Kill... You! You''re the traitor? Alfashima?!
 
-      Fashima_: Boss was
-      just a common street thug,\a abusing us kids to gain power and money.\a Of
-      course he''d do that.
+      Fashima_: Hah. Alfashima.
 
-      Alfred: Lies!\a Boss was a visionary!\a Just leader
-      to replace the Guards!
+      It''s
+      been millennia since anyone used that honorific.
 
-      Fashima_: Why did you ask about my reason for
-      betrayal if you had\a no intention of listening to me?
+      Alfred: You... You
+      don''t deserve it! You betrayed us!\a Killed Boss! Killed me! Stole our crystals!\a
+      Defected to the Guards!!!
 
-      Alfred: I thought
-      you had a shred of honor.\a But you''re a slimy liar.\a You''ll die!
+      Fashima_: You''re calling me the traitor?
+      How precious.\a Boss was the one who betrayed me.
+
+      Alfred: What?!
 
       Fashima_:
-      Someday, I will. But not today.
+      The crystal was mine. I recovered it.\a Yet he stole it from me.\a Left me
+      for dead!\a The Guards saved me. Gave-\a They gave me a second chance.\a A
+      chance to recover MY crystal.
+
+      Alfred: Pah! Boss would never do that!\a
+      And the Guards save nobody!
+
+      Fashima_: Boss was just a common street
+      thug, abusing us kids.
+
+      He filled our heads with nonsense,\a and used
+      us to get crystals for himself.
+
+      Alfred: Lies! You lie! I''ll kill you,
+      traitor!
+
+      Fashima_: You''re a lost cause, Alfred.\a Here, let me put
+      you out of your misery.
 
       :setFlag:FashimaBattleAlfred
 
@@ -11858,7 +11853,7 @@ MonoBehaviour:
 
       :setDeathQuote:Brens:BrensDeath
 
-      
+
 
       #
       Name: Text.
@@ -11867,12 +11862,12 @@ MonoBehaviour:
 
       :callOther:Level8BrensDeath
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ BrensDeath
 
@@ -12106,16 +12101,76 @@ MonoBehaviour:
 
       }
 
+      # Improve
+
+      Fashima:
+      Teleportation crystals.
+
+      Frogman: What?
+
+      Fashima: Crystals enchanted
+      to teleport people here when touched.\a That''s why I threw them at you, my
+      friend.
+
+      Frogman: But how did you touch them then?
+
+      Fashima: A
+      wonderful invention called gloves.
+
+      Frogman: I... see.
+
+      Fashima:
+      We have some time to rest now, my friend.\a If you wish, you can ask me more
+      questions.\a If not, we can move on to our next target.
+
+      Frogman: Next
+      target?
+
+      Fashima: You goal is to get out of here. Correct?
+
+      Frogman:
+      Uh, yes?
+
+      Fashima: Great. Then we have two more Magi standing in our
+      way:\a Bodder and Leshy.
+
+      :if:hasFlag:FrogmanKnowsWhatTheMagiAre{
+
+      Frogman:
+      Wait. Weren''t you a Magus yourself?\a Why are you helping us?\a Why are you
+      fighting the other Magi?
+
+      }
+
+      :else:{
+
       # TBA
+
+      }
+
+      Fashima:
+      Please keep your questions for the end, my friend.
+
+      Frogman: Okay...
+
+      Fashima:
+      Our next target is Bodder, the Clone Magus.\a I shall teleport us to him once
+      you''re ready.
+
+      Frogman: Sure...
+
+      Fashima: Now. Do you have any
+      further questions for me?
 
       :showBase:
 
+      # TBA: Add the "don''t trust
+      Fashima" choice.
+
+      Frogman: I think that''s enough questions.\a I''m ready.
+
       Fashima:
-      TBA
-
-      Frogman: TBA
-
-      Fashima: Yo.
+      Great. Then let''s go to Bodder.
 
       :hideCG:
 
@@ -41756,6 +41811,67 @@ MonoBehaviour:
     - Name: Gargoyle
       ReplacedBy:
       - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 22
+        - id: 50
+        - id: 56
+      Name: Happy
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 18
+        - id: 46
+        - id: 56
+      Name: Smiling
+      PlayerControlled: 1
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 17
+        - id: 45
+        - id: 56
+      Name: Flowers
+      PlayerControlled: 1
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+    MusicName: BodderUnleashed
+    Palette4:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 42
+      - id: 56
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43205,6 +43321,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 21|0|0|0|0|0|0|0|0|0|0|0|0|0|21;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|21|0|0|0|0|21|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|21|0|0|0|0|21|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|21|0|0|0|0|0|0|0|21|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|21|0|0|0|0|21|0|0;21|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|21|0|0|0|21|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|21|0|0|0|0
   - Name: InitTormentRoom
     LevelNumber: 0
@@ -43241,6 +43358,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 27|9|0|0|0|0|0|3|15|26|27|8|11|0|0;7|27|6|9|0|3|6|27|8|8|11|1|1|0|0;8|8|7|7|6|7|7|11|0|0|0|0|1|0|3;1|1|5|8|8|8|11|0|0|0|0|1|3|6|7;1|0|0|0|0|1|0|0|0|0|0|3|18|21|21;9|0|0|0|0|1|1|0|0|0|1|5|20|22|22;7|6|9|1|1|3|6|6|9|1|1|1|4|19|22;8|2|10|0|0|4|7|7|7|9|0|0|5|20|23;0|4|11|1|1|4|7|27|7|10|0|0|1|5|8;6|11|0|0|0|4|27|7|12|10|0|0|0|1|0;11|0|0|0|3|7|7|7|13|10|0|0|0|1|0;0|0|0|0|5|27|7|7|13|27|9|0|0|3|6;0|0|0|0|1|5|8|15|26|27|10|1|1|4|27;0|0|3|9|1|0|0|5|8|8|11|1|0|4|7;0|3|12|7|6|9|1|1|1|1|1|0|0|4|27;3|7|20|17|7|27|6|6|9|0|0|0|0|4|27
   - Name: SpawnPoint1
     LevelNumber: 1
@@ -43284,6 +43402,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|0|0|5|8|8|11;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|3|6|6|6|6|6|9|0|0|0|0|0|0|0;0|4|18|16|16|16|24|10|0|0|0|0|0|0|0;0|4|14|7|8|7|14|10|0|0|0|3|6|6|9;0|4|7|10|1|4|7|10|1|1|1|4|27|7|7;0|4|12|7|6|7|12|10|0|0|0|5|7|7|27;0|4|20|16|16|16|26|10|0|0|0|0|5|7|27;0|5|8|8|8|8|8|11|0|0|0|0|0|5|8;0|0|0|0|0|1|0|0|0|0|0|0|0|0|0;0|0|0|0|0|1|0|0|0|0|0|3|9|0|0;0|0|0|3|6|6|6|6|9|0|3|27|11|0|0;6|6|6|7|27|7|7|7|10|1|5|11|0|0|0;7|7|7|7|7|27|7|8|11|0|0|0|0|0|0;21|24|7|7|8|8|11|0|0|0|0|0|0|0|0;22|25|8|11|0|0|0|0|0|0|0|0|0|0|3
   - Name: SpawnPoint2
     LevelNumber: 1
@@ -43327,6 +43446,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|0|5|10|0|0|0;0|0|0|0|0|0|0|0|0|0|0|5|6|9|0;0|0|0|0|0|0|0|0|0|0|0|0|5|10|0;0|0|0|0|0|0|0|3|9|0|0|0|0|4|6;0|0|0|0|0|0|0|5|27|9|0|0|0|5|8;6|9|0|0|0|0|0|0|5|11|0|0|0|0|0;27|10|0|0|0|0|0|0|1|0|0|0|0|0|0;8|11|1|0|0|0|0|0|1|1|1|0|0|0|0;0|0|1|3|9|0|0|1|3|12|9|1|0|0|0;0|0|1|4|11|0|1|3|18|23|24|9|1|0|0;0|0|3|10|0|1|3|15|26|8|20|24|9|1|0;0|0|4|10|1|1|4|27|10|1|4|19|17|1|0;0|0|5|11|0|1|5|15|24|6|18|26|11|1|0;0|0|0|0|0|0|1|5|20|21|26|11|1|0|0;0|0|0|0|0|0|0|1|5|14|11|1|0|0|0;0|0|0|0|0|0|0|0|1|1|1|0|0|0|0
   - Name: SpawnPoint3
     LevelNumber: 1
@@ -43370,6 +43490,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 22|25|10|0|0|0|0|0|0|0|0|0|5|2|7;22|26|11|0|0|0|0|0|0|0|0|0|0|5|7;26|10|0|0|0|0|0|0|0|0|0|0|0|0|5;8|11|0|0|0|0|3|9|0|0|0|0|0|0|0;0|0|0|0|0|0|4|10|1|0|0|0|0|0|0;0|0|0|0|0|3|27|11|1|1|1|1|0|0|0;0|0|0|0|0|4|10|1|1|3|6|9|1|0|0;0|0|0|0|0|5|11|1|3|18|16|24|9|1|0;6|6|6|9|1|1|1|3|18|26|7|13|10|1|0;8|8|8|27|9|1|3|15|26|7|8|13|10|1|0;0|0|0|5|11|1|4|27|7|10|1|13|10|1|0;0|0|0|0|0|1|5|15|24|7|6|13|10|1|0;0|0|0|0|0|0|1|5|20|24|7|13|10|1|0;0|0|0|0|0|0|0|1|5|20|16|26|11|1|0;0|0|0|0|0|0|0|0|1|5|8|11|1|0|0;0|0|0|0|0|0|0|0|0|1|1|1|0|0|0
   - Name: SpawnPoint4
     LevelNumber: 1
@@ -43413,6 +43534,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 7|10|0|0|0|0|0|0|0|0|0|0|0|4|27;5|11|0|0|0|0|0|0|0|0|0|0|0|5|8;0|0|0|0|0|0|0|0|0|3|6|9|1|1|0;0|0|0|0|0|0|0|0|0|5|2|27|9|1|0;0|0|0|0|1|3|9|1|0|1|1|5|7|9|0;0|1|3|6|6|15|17|9|0|1|0|0|5|27|9;0|3|7|7|27|7|7|11|0|0|0|0|0|5|11;3|27|7|7|7|7|10|1|0|0|0|0|0|0|0;4|27|18|17|27|15|24|9|1|0|0|0|0|0|0;4|18|26|7|8|7|20|24|6|9|0|0|0|0|0;4|13|7|10|1|4|7|13|7|2|9|0|0|0|0;4|13|7|10|1|4|7|13|7|27|10|0|0|0|3;5|20|24|7|6|7|18|26|7|27|11|0|0|0|4;0|5|20|17|27|15|26|7|7|10|1|0|0|0|5;0|0|5|8|8|8|8|8|8|11|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
   - Name: SpawnPoint5
     LevelNumber: 1
@@ -43456,6 +43578,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 26|11|0|0|0|0|0|0|0|1|5|8|8|14|7;11|0|0|3|6|9|0|0|0|1|1|0|0|5|27;0|0|3|7|27|11|0|3|9|1|0|0|0|0|5;0|1|4|7|10|1|1|5|2|9|0|0|0|0|1;0|3|2|27|2|9|1|1|4|10|0|0|0|0|0;3|12|7|7|7|12|9|0|5|11|0|0|0|0|0;4|19|17|7|15|25|10|0|0|0|0|0|0|0|0;4|13|7|8|7|13|10|0|0|0|0|3|9|0|0;4|13|10|1|4|13|10|0|0|0|1|4|11|0|0;4|13|7|6|27|13|10|0|0|1|3|10|1|0|0;4|19|17|7|15|25|10|0|0|3|27|11|1|1|3;5|14|27|8|7|14|10|1|1|5|11|0|0|3|12;0|5|2|1|2|27|11|0|0|0|0|0|0|5|20;0|0|4|6|8|11|0|0|0|0|0|0|0|0|5;0|0|5|11|0|0|0|0|0|0|0|0|0|0|0;0|0|1|0|0|0|0|0|0|0|0|0|0|0|0
   - Name: SpawnPoint6
     LevelNumber: 1
@@ -43499,6 +43622,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;6|9|0|0|0|0|0|3|6|6|6|6|6|9|0;17|11|0|0|0|0|3|18|21|16|21|16|21|24|9;11|1|0|0|0|0|4|19|26|7|14|7|20|25|10;0|1|1|0|0|0|5|14|27|7|8|27|7|13|10;0|1|3|9|1|1|1|4|7|10|1|4|15|25|10;0|1|4|10|0|0|3|12|7|7|6|7|7|13|10;0|3|27|11|0|0|4|19|24|27|27|7|18|25|10;0|5|11|0|0|0|5|20|23|17|8|15|23|26|11;0|0|0|0|0|0|0|5|8|11|1|5|8|11|0;0|0|0|3|9|0|0|0|0|0|0|1|0|0|0;0|0|0|5|11|0|0|0|0|0|0|1|0|0|0;0|0|0|0|0|0|0|0|0|0|3|9|0|0|0;0|0|0|0|0|0|3|9|1|1|5|11|0|0|0;0|0|3|9|1|1|5|11|0|0|0|0|0|0|0;0|0|5|11|0|0|0|0|0|0|0|0|0|0|0
   - Name: SpawnPoint7
     LevelNumber: 1
@@ -43542,6 +43666,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|3|6|9|0|0|0|0|0;0|0|0|0|0|0|3|15|16|17|9|0|0|0|3;0|0|3|9|1|1|2|7|8|7|2|9|1|3|15;6|6|27|11|1|3|7|10|1|4|27|10|1|5|11;8|8|11|0|0|5|2|27|6|7|2|11|0|0|0;0|0|0|0|0|0|5|2|8|2|11|0|0|0|0;0|0|0|0|0|0|0|0|1|0|0|0|0|0|0;0|0|0|0|0|0|0|3|9|0|0|0|0|0|0;0|0|0|3|9|1|1|5|27|9|0|0|0|0|0;0|0|0|5|27|9|0|1|4|10|1|0|0|0|0;0|0|0|0|5|11|1|1|5|11|1|1|3|9|0;0|0|0|0|0|0|0|0|0|0|0|0|5|7|6;9|0|0|0|0|0|0|0|0|0|0|0|1|4|12;24|9|0|0|0|0|0|0|0|0|3|9|1|5|14;22|24|9|0|0|0|0|0|0|0|5|10|0|0|5
   - Name: SpawnPoint8
     LevelNumber: 1
@@ -43585,6 +43710,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0;0|0|3|6|9|1|3|9|0|0|0|0|0|0|0;0|3|8|2|11|0|4|27|9|0|0|0|0|0|0;3|11|0|0|1|1|5|12|10|0|0|0|0|3|6;11|0|0|0|0|0|1|14|10|0|0|0|0|5|27;0|0|0|0|0|0|0|4|10|0|0|0|0|1|4;0|0|0|0|0|0|3|27|11|0|0|0|0|3|2;0|0|0|0|0|0|5|11|0|0|0|0|0|5|8;6|9|0|0|0|0|1|0|0|0|0|0|0|0|0;17|11|1|1|3|6|6|6|6|9|0|0|0|0|0;10|0|0|3|7|18|17|27|15|24|9|0|0|0|0;11|0|0|4|27|14|7|8|7|14|7|9|0|0|0;0|0|0|4|2|7|10|1|4|7|2|11|0|0|0;0|0|0|5|7|12|7|12|7|12|11|0|0|0|0;0|0|0|0|5|20|16|23|16|26|0|0|0|0|0;0|0|0|0|0|5|27|7|8|11|0|0|0|0|0
   - Name: Level2-0-A
     LevelNumber: 2
@@ -43649,6 +43775,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 8|8|7|7|8|8|7|13|7|11|0|0|0|0|0;0|0|4|10|0|0|4|13|10|0|0|0|0|0|0;6|6|27|7|6|6|7|13|10|0|3|9|0|0|0;7|8|8|8|7|15|16|26|10|1|4|27|9|0|0;11|0|1|0|5|8|8|27|10|0|4|2|10|0|0;0|0|1|0|0|0|0|5|11|0|5|8|11|0|0;0|0|3|6|6|9|0|0|0|0|0|1|0|0|0;0|0|5|2|27|7|6|9|0|0|0|1|0|0|0;0|0|0|4|15|16|17|10|1|1|3|6|6|6|6;0|0|0|5|8|8|8|11|0|0|5|8|8|8|27;0|0|0|0|0|0|0|0|0|0|0|0|1|0|5;0|0|0|0|0|0|0|0|0|0|0|0|1|0|0;0|0|0|0|0|0|0|0|0|0|0|0|3|9|0;6|6|9|0|0|0|0|0|0|0|0|3|27|11|0;7|7|11|0|0|0|0|0|3|6|6|7|10|0|0;5|11|0|0|0|0|0|0|4|18|21|24|11|0|0
   - Name: Level2-0-B
     LevelNumber: 2
@@ -43713,6 +43840,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 8|8|7|7|8|8|7|13|7|11|0|0|0|0|0;0|0|4|10|0|0|4|13|10|1|1|0|0|0|0;6|6|27|7|6|6|7|13|10|0|3|9|0|0|0;7|8|8|8|7|15|16|26|10|0|4|27|9|0|0;11|0|0|0|5|8|8|27|10|0|4|2|10|0|0;0|0|0|0|1|0|0|5|11|0|5|8|11|0|0;0|0|3|6|6|9|0|1|0|0|0|1|1|0|0;0|0|5|2|27|7|6|9|0|0|0|0|1|0|0;0|0|1|4|15|16|17|10|0|0|3|6|6|6|6;0|0|0|5|8|8|8|11|1|1|5|8|8|8|27;0|0|0|0|0|0|0|0|0|0|0|0|0|1|5;0|0|0|0|0|0|0|0|0|0|0|0|0|1|1;1|1|0|0|0|0|0|0|0|0|0|0|3|9|0;6|6|9|0|0|0|0|0|0|0|0|3|27|11|0;7|7|11|0|0|0|0|0|3|6|6|7|10|0|0;5|11|0|0|0|0|0|1|4|18|21|24|11|0|0
   - Name: Level2-0-C-Alone
     LevelNumber: 2
@@ -43756,6 +43884,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 8|8|7|7|8|8|7|13|7|11|0|0|0|0|0;0|0|4|10|0|0|4|13|10|1|0|0|0|0|0;6|6|27|7|6|6|7|13|10|1|3|9|0|0|0;7|8|8|8|7|15|16|26|10|0|4|27|9|0|0;11|0|0|0|5|8|8|27|10|0|4|2|10|0|0;0|0|0|0|0|1|0|5|11|0|5|8|11|0|0;0|0|3|6|6|9|0|0|1|0|0|0|0|0|0;0|0|5|2|27|7|6|9|1|1|1|0|0|0|1;0|0|0|4|15|16|17|10|0|1|3|6|6|6|6;0|0|0|5|8|8|8|11|0|0|5|8|8|8|27;0|0|0|0|0|0|0|0|0|0|0|0|1|1|5;0|0|0|0|0|0|0|0|0|0|0|0|1|0|0;0|0|0|0|0|0|0|0|0|0|0|1|3|9|0;6|6|9|0|0|0|0|0|0|0|0|3|27|11|0;7|7|11|0|0|0|0|0|3|6|6|7|10|0|0;5|11|0|0|0|0|0|1|4|18|21|24|11|0|0
   - Name: Level2-1-A-Alone
     LevelNumber: 2
@@ -43799,6 +43928,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 7|7|7|9|0|0|0|0|0|0|0|0|0|0|0;8|8|7|27|6|6|6|6|6|6|9|0|0|0|0;0|0|5|8|8|15|16|16|16|17|7|6|6|6|6;0|0|0|0|1|5|8|8|7|27|7|7|27|12|7;0|0|0|0|0|1|1|0|5|8|15|17|7|13|7;0|0|0|0|0|3|9|0|0|0|5|8|7|14|7;0|0|0|0|0|5|27|9|0|0|0|1|5|8|8;0|0|0|0|0|0|5|11|0|0|0|1|0|0|0;0|0|0|0|0|0|1|1|0|0|3|9|0|0|0;0|3|6|6|9|0|3|9|0|0|5|11|0|0|0;6|7|2|7|10|1|5|2|9|0|0|0|0|0|0;8|8|27|2|10|0|0|5|11|0|0|0|0|0|0;0|0|5|7|10|0|0|0|0|0|0|0|0|0|0;0|0|0|5|11|0|0|0|0|0|0|0|0|3|6;0|0|0|0|0|0|0|0|0|0|0|0|3|7|27;0|0|0|0|0|0|0|0|0|0|0|0|4|7|18
   - Name: Level2-1-B
     LevelNumber: 2
@@ -43863,6 +43993,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 7|7|7|9|0|0|0|0|0|0|0|0|0|0|0;8|8|7|27|6|6|6|6|6|6|9|0|0|0|0;0|0|5|8|8|15|16|16|16|17|7|6|6|6|6;0|0|0|0|0|5|8|8|7|27|7|7|27|12|7;0|0|0|0|0|1|0|1|5|8|15|17|7|13|7;0|0|0|0|0|3|9|1|0|0|5|8|7|14|7;0|0|0|0|0|5|27|9|0|0|0|0|5|8|8;0|0|0|0|0|0|5|11|0|0|1|1|0|0|0;0|0|0|0|0|0|0|1|1|0|3|9|0|0|0;0|3|6|6|9|0|3|9|1|1|5|11|1|0|0;6|7|2|7|10|1|5|2|9|0|0|0|0|0|0;8|8|27|2|10|1|1|5|11|0|0|0|0|0|0;0|0|5|7|10|0|0|0|0|0|0|0|0|0|1;0|0|0|5|11|0|0|0|0|0|0|0|1|3|6;0|0|0|0|0|0|0|0|0|0|0|0|3|7|27;0|0|0|0|0|0|0|0|0|0|0|0|4|7|18
   - Name: Level2-1-C
     LevelNumber: 2
@@ -43927,6 +44058,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 7|7|7|9|0|0|0|0|0|0|0|0|0|0|0;8|8|7|27|6|6|6|6|6|6|9|1|0|0|0;0|0|5|8|8|15|16|16|16|17|7|6|6|6|6;0|0|0|1|0|5|8|8|7|27|7|7|27|12|7;0|0|0|0|0|1|1|0|5|8|15|17|7|13|7;0|0|0|0|0|3|9|0|0|0|5|8|7|14|7;0|0|0|0|0|5|27|9|0|0|0|1|5|8|8;0|0|0|0|0|0|5|11|0|0|0|1|1|0|0;0|0|0|0|0|0|0|0|0|0|3|9|0|0|0;1|3|6|6|9|0|3|9|1|1|5|11|0|0|0;6|7|2|7|10|1|5|2|9|0|0|0|0|0|0;8|8|27|2|10|1|1|5|11|0|0|0|0|0|0;0|0|5|7|10|0|0|0|0|0|0|0|0|0|0;0|0|0|5|11|0|0|0|0|0|0|0|0|3|6;0|0|0|0|0|0|0|0|0|0|0|0|3|7|27;0|0|0|0|0|0|0|0|0|0|0|0|4|7|18
   - Name: Level2-2-A
     LevelNumber: 2
@@ -43991,6 +44123,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 22|25|10|0|0|0|0|0|0|0|0|0|4|27|7;23|26|11|0|0|0|0|0|0|0|0|0|5|8|8;7|10|0|0|0|0|0|0|0|0|0|0|0|0|0;27|10|1|1|3|9|0|0|0|0|0|0|0|0|0;8|11|0|0|5|11|0|0|0|0|0|0|0|0|0;0|0|0|0|0|1|0|0|3|6|9|0|0|0|0;0|0|0|0|0|1|3|6|15|24|10|0|0|0|0;0|0|0|0|0|3|12|27|7|13|10|0|0|0|0;0|0|0|0|0|4|13|7|7|14|10|0|0|0|0;0|0|0|0|0|4|13|7|27|7|11|0|0|0|0;0|0|0|0|0|4|20|16|17|11|0|0|0|0|0;0|0|0|0|0|5|8|8|11|1|0|0|0|0|0;0|0|0|0|0|0|0|0|1|1|0|3|9|0|0;0|0|0|0|0|0|0|0|1|3|6|15|17|9|0;6|9|0|0|0|0|0|0|3|27|27|7|7|10|0;4|11|0|0|0|0|0|0|5|18|24|7|27|10|0
   - Name: Level2-2-B
     LevelNumber: 2
@@ -44055,6 +44188,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 22|25|10|0|0|0|0|0|0|0|0|0|4|27|7;23|26|11|0|0|0|0|0|0|0|0|0|5|8|8;7|10|0|0|0|0|0|0|0|0|0|0|0|0|0;27|10|0|0|3|9|0|0|0|0|0|0|0|0|0;8|11|0|0|5|11|0|0|0|0|0|0|0|0|0;0|0|0|0|0|1|1|0|3|6|9|0|0|0|0;0|0|0|0|0|1|3|6|15|24|10|0|0|0|0;0|0|0|0|0|3|12|27|7|13|10|0|0|0|0;0|0|0|0|0|4|13|7|7|14|10|0|0|0|0;0|0|0|0|0|4|13|7|27|7|11|0|0|0|0;0|0|0|0|0|4|20|16|17|11|1|0|0|0|0;0|0|0|0|0|5|8|8|11|0|1|1|0|0|0;0|0|0|0|0|0|0|0|1|0|1|3|9|0|0;0|0|0|0|0|0|0|0|1|3|6|15|17|9|0;6|9|0|0|0|0|0|0|3|27|27|7|7|10|0;4|11|0|0|0|0|0|0|5|18|24|7|27|10|0
   - Name: Level2-2-C-Alone
     LevelNumber: 2
@@ -44098,6 +44232,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 22|25|10|0|0|0|0|0|0|0|0|0|4|27|7;23|26|11|0|0|0|0|0|0|0|0|0|5|8|8;7|10|1|0|0|0|0|0|0|0|0|0|0|0|0;27|10|0|0|3|9|0|0|0|0|0|0|0|0|0;8|11|1|1|5|11|0|0|0|0|0|0|0|0|0;0|0|0|0|1|1|0|0|3|6|9|0|0|0|0;0|0|0|0|0|1|3|6|15|24|10|0|0|0|0;0|0|0|0|0|3|12|27|7|13|10|0|0|0|0;0|0|0|0|0|4|13|7|7|14|10|0|0|0|0;0|0|0|0|0|4|13|7|27|7|11|0|0|0|0;0|0|0|0|0|4|20|16|17|11|0|0|0|0|0;0|0|0|0|0|5|8|8|11|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|3|9|0|0;0|0|0|0|0|0|0|0|0|3|6|15|17|9|0;6|9|0|0|0|0|0|0|3|27|27|7|7|10|0;4|11|0|0|0|0|0|0|5|18|24|7|27|10|0
   - Name: Level2-3-A
     LevelNumber: 2
@@ -44162,6 +44297,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|5|8|11|0|0|0|0|0|0|0|1|0|0;0|0|0|0|0|0|0|0|0|0|0|3|9|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;9|0|0|0|3|9|0|0|0|0|3|7|10|0|0;7|9|0|0|5|27|6|9|1|0|4|12|10|0|0;5|27|9|1|1|5|8|11|1|1|4|14|10|0|0;0|5|10|0|0|0|0|0|0|0|4|27|11|0|0;0|0|4|9|0|0|0|0|0|3|7|10|0|0|0;0|0|5|7|9|0|0|0|0|4|12|10|0|0|0;0|0|0|5|27|6|6|9|1|4|14|11|0|0|0;0|0|0|0|5|15|16|17|6|7|11|0|0|0|0;0|0|0|0|1|5|8|8|8|11|0|0|0|3|6;0|0|0|0|0|0|0|0|1|1|0|0|0|4|7;0|0|0|0|0|0|0|0|0|1|1|1|3|7|27;0|0|0|0|0|0|0|0|0|0|1|3|7|27|7
   - Name: Level2-3-B
     LevelNumber: 2
@@ -44226,6 +44362,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|5|8|11|0|0|0|0|0|0|0|0|0|0;0|0|0|0|0|0|0|0|0|0|0|3|9|0|0;0|0|0|0|0|0|0|0|0|0|1|4|10|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;9|0|0|0|3|9|0|0|0|0|3|7|10|0|0;7|9|1|1|5|27|6|9|0|0|4|12|10|0|0;5|27|9|1|0|5|8|11|1|0|4|14|10|0|0;0|5|10|0|0|0|1|1|0|0|4|27|11|0|0;0|0|4|9|0|0|0|1|0|3|7|10|1|0|0;0|0|5|7|9|1|0|0|0|4|12|10|0|0|0;0|0|0|5|27|6|6|9|0|4|14|11|0|0|0;0|0|0|0|5|15|16|17|6|7|11|1|0|0|0;0|0|0|0|1|5|8|8|8|11|0|0|0|3|6;0|0|0|0|0|0|0|0|0|0|0|0|0|4|7;0|0|0|0|0|0|0|0|0|0|0|1|3|7|27;0|0|0|0|0|0|0|0|0|0|0|3|7|27|7
   - Name: Level2-3-C-Alone
     LevelNumber: 2
@@ -44269,6 +44406,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|5|8|11|0|0|0|0|0|0|1|0|0|0;0|0|0|0|0|0|0|0|0|0|0|3|9|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;0|0|0|0|0|0|0|0|0|0|0|4|10|0|0;9|0|0|0|3|9|0|0|0|0|3|7|10|0|0;7|9|1|0|5|27|6|9|1|1|4|12|10|0|0;5|27|9|0|1|5|8|11|1|0|4|14|10|0|0;0|5|10|0|0|0|0|0|0|0|4|27|11|0|0;0|0|4|9|0|0|0|0|0|3|7|10|1|0|0;0|0|5|7|9|0|0|0|0|4|12|10|0|0|0;0|0|0|5|27|6|6|9|0|4|14|11|0|0|0;0|0|0|0|5|15|16|17|6|7|11|1|0|0|1;0|0|0|0|0|5|8|8|8|11|1|1|1|3|6;0|0|0|0|0|0|0|1|0|0|0|1|1|4|7;0|0|0|0|0|0|0|0|0|0|0|1|3|7|27;0|0|0|0|0|0|0|0|0|0|1|3|7|27|7
   - Name: Level2-4-A
     LevelNumber: 2
@@ -44333,6 +44471,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|5|7|19|22|22|26;0|0|0|0|0|0|0|0|0|0|5|20|23|26|7;0|0|0|0|0|0|0|0|0|0|1|5|7|7|27;0|0|0|3|9|0|0|0|0|1|1|1|4|7|7;0|0|0|5|27|1|1|3|6|9|1|0|5|27|7;0|0|0|1|0|1|3|27|2|10|0|0|0|4|15;0|0|0|1|0|0|5|2|8|11|0|0|0|5|7;0|0|3|6|9|0|1|0|1|1|0|0|0|0|4;0|0|4|12|27|9|0|0|0|1|1|0|0|0|5;0|0|4|20|17|11|1|1|0|3|6|9|1|0|0;0|0|5|8|11|1|1|3|6|7|27|11|0|0|0;6|9|1|0|0|0|0|4|7|27|11|0|0|0|0;27|7|9|0|0|0|0|5|8|11|0|0|0|0|0;17|27|10|0|0|0|0|0|0|0|0|0|0|0|0;7|27|7|9|0|0|0|0|0|0|0|0|0|0|0;7|18|24|11|0|0|0|0|0|0|0|0|0|0|0
   - Name: Level2-4-B
     LevelNumber: 2
@@ -44397,6 +44536,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|5|7|19|22|22|26;0|0|0|0|0|0|0|0|0|0|5|20|23|26|7;0|0|0|0|0|0|0|0|0|0|0|5|7|7|27;0|0|0|3|9|0|0|1|0|0|0|1|4|7|7;0|0|0|5|27|1|1|3|6|9|1|1|5|27|7;0|0|0|0|1|0|3|27|2|10|1|1|1|4|15;0|0|0|0|1|1|5|2|8|11|0|0|0|5|7;0|0|3|6|9|1|0|0|1|0|0|0|0|1|4;0|0|4|12|27|9|0|0|1|1|0|1|1|1|5;0|1|4|20|17|11|1|0|1|3|6|9|0|0|0;0|1|5|8|11|1|1|3|6|7|27|11|0|0|0;6|9|0|0|0|0|0|4|7|27|11|0|0|0|0;27|7|9|0|0|0|0|5|8|11|1|0|0|0|0;17|27|10|1|0|0|0|0|0|0|0|0|0|0|0;7|27|7|9|0|0|0|0|0|0|0|0|0|0|0;7|18|24|11|0|0|0|0|0|0|0|0|0|0|0
   - Name: Level2-4-C-Alone
     LevelNumber: 2
@@ -44440,6 +44580,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|0|5|7|19|22|22|26;0|0|0|0|0|0|0|0|0|0|5|20|23|26|7;0|0|0|0|0|0|0|0|0|0|0|5|7|7|27;0|0|0|3|9|0|0|0|0|0|0|0|4|7|7;0|0|0|5|27|1|1|3|6|9|1|1|5|27|7;0|0|0|1|0|0|3|27|2|10|0|0|1|4|15;0|0|0|0|0|1|5|2|8|11|1|1|1|5|7;0|0|3|6|9|1|1|0|0|1|1|0|0|1|4;0|0|4|12|27|9|0|0|0|1|0|0|0|0|5;0|1|4|20|17|11|1|0|0|3|6|9|0|0|1;1|0|5|8|11|1|0|3|6|7|27|11|0|0|0;6|9|0|0|0|0|0|4|7|27|11|1|0|0|0;27|7|9|0|0|0|0|5|8|11|1|0|0|0|0;17|27|10|0|0|0|0|0|0|0|0|0|0|0|0;7|27|7|9|0|0|0|0|0|0|0|0|0|0|0;7|18|24|11|1|0|0|0|0|0|0|0|0|0|0
   - Name: Boss1-0
     LevelNumber: 3
@@ -44616,6 +44757,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
+    Tags: 
     MapString: 10|0|0|0|4|7|7|7|7|7|10|0|0|0|4;10|0|0|0|4|15|17|27|15|17|10|0|0|0|4;10|0|0|0|4|7|27|7|8|8|11|0|0|0|4;10|0|0|0|4|7|7|10|0|0|0|0|0|0|4;10|0|0|0|4|27|27|10|1|3|9|0|0|0|4;10|0|0|0|4|15|24|10|0|5|11|0|0|0|4;10|0|0|0|4|27|13|10|0|0|1|0|0|0|4;10|0|0|0|4|7|13|27|6|6|9|0|0|0|4;10|0|0|0|4|15|22|16|16|24|10|0|0|0|4;10|0|0|0|4|27|14|7|7|14|10|0|0|0|4;10|0|0|0|5|8|8|7|27|8|11|0|0|0|4;10|0|0|0|0|0|0|4|10|0|0|0|0|0|4;10|0|0|0|3|6|6|27|7|6|9|0|0|0|4;10|0|0|0|12|7|7|7|7|7|12|0|0|0|4;10|0|0|0|19|24|7|27|7|18|25|0|0|0|4;10|0|0|0|19|22|24|27|18|22|25|0|0|0|4
   - Name: Boss1-1
     LevelNumber: 3
@@ -44771,6 +44913,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
+    Tags: 
     MapString: 0|0|0|3|6|18|21|16|21|24|6|9|0|0|0;0|3|6|18|21|22|25|1|19|22|16|24|6|6|9;3|18|21|22|22|22|26|0|20|26|1|19|21|21|16;21|22|22|23|23|26|7|6|7|10|0|20|23|26|7;22|22|25|1|0|4|7|27|7|8|6|7|7|7|7;22|22|22|24|6|7|7|7|12|0|4|7|27|7|7;23|22|23|26|7|7|15|16|26|1|18|24|8|7|7;7|14|1|0|4|7|10|0|1|18|22|25|0|12|7;7|7|15|21|24|8|7|6|15|23|23|26|1|19|24;7|7|7|20|25|0|4|7|7|10|0|1|18|22|23;7|7|27|7|14|1|12|27|7|7|6|18|22|25|10;7|2|8|7|7|15|23|17|7|27|8|19|22|25|10;24|1|0|4|7|7|7|7|7|10|0|19|22|26|11;22|21|21|24|8|27|7|8|7|12|1|19|26|11|0;20|23|22|25|0|18|24|0|18|22|16|26|11|0|0;5|8|20|25|1|19|25|1|19|25|8|11|0|0|0
   - Name: Boss1-2
     LevelNumber: 3
@@ -44912,6 +45055,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
+    Tags: 
     MapString: 22|22|25|9|0|0|0|5|7|10|0|4|15|23|24;22|23|26|10|0|1|0|0|4|7|9|2|8|7|13;25|7|8|2|0|0|0|0|4|7|11|0|0|4|14;26|10|0|3|9|0|3|6|27|10|1|3|9|2|7;8|2|0|4|7|6|7|27|12|10|1|5|11|0|5;0|0|3|7|27|8|15|16|26|7|9|1|1|0|0;0|0|4|12|11|0|0|1|4|7|12|0|1|3|9;0|0|4|13|1|0|1|0|4|7|13|0|3|27|11;0|0|4|13|9|0|1|0|4|15|25|0|4|10|0;0|0|4|14|10|0|0|0|4|27|14|0|5|11|0;0|0|4|27|7|6|6|6|7|10|1|1|1|0|0;0|0|5|8|15|16|17|27|8|11|1|3|9|0|3;9|0|0|1|4|27|8|11|0|0|0|5|11|2|7;11|0|0|3|7|10|0|0|0|0|0|0|0|4|12;0|0|3|7|7|11|0|0|0|3|6|2|6|7|19;0|0|12|27|12|0|0|0|3|12|27|7|18|21|22
   - Name: Boss1-3
     LevelNumber: 3
@@ -45067,6 +45211,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|1|0|0|0|1|3|6;0|0|3|9|0|1|0|0|0|0|0|1|3|27|15;0|3|2|10|0|0|0|3|6|9|1|0|5|7|7;0|5|8|11|1|1|1|5|15|17|9|0|0|5|11;0|1|0|0|3|9|1|1|4|27|7|9|0|0|0;9|1|0|0|4|2|9|1|5|15|17|27|9|0|0;7|9|0|0|4|27|10|1|1|5|8|27|10|0|3;27|7|9|1|5|15|17|9|0|0|0|5|11|1|18;7|7|27|9|1|5|8|11|0|0|0|0|1|1|19;5|7|7|12|9|0|0|0|0|3|9|0|3|6|20;0|5|15|26|11|0|1|0|1|5|11|1|4|7|27;0|0|5|11|1|1|0|0|1|0|0|0|5|27|18;0|0|0|0|0|3|6|6|9|0|0|0|1|5|19;9|0|0|0|0|5|8|27|10|0|3|9|1|0|20;24|9|1|0|0|0|0|5|11|1|5|11|0|0|5;22|24|9|0|0|0|0|0|0|0|0|0|1|0|0
   - Name: Boss1-4
     LevelNumber: 3
@@ -45229,6 +45374,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
+    Tags: 
     MapString: 9|0|1|0|0|0|0|1|5|15|24|27|15|17|9;17|6|9|1|0|0|0|3|9|5|14|11|4|18|24;21|21|17|6|6|9|1|5|11|1|4|6|15|22|25;19|26|8|8|27|2|9|0|0|0|4|27|7|20|25;26|10|3|9|5|8|10|3|9|3|7|12|27|12|14;18|17|27|11|1|0|5|15|16|21|21|25|8|19|24;13|27|10|1|3|9|1|5|8|20|23|26|1|19|22;25|7|11|0|5|11|1|0|0|4|8|11|1|20|23;13|7|9|0|0|0|1|3|6|27|6|9|1|2|10;19|17|10|0|0|0|0|5|11|5|2|10|3|18|24;14|27|11|0|0|1|0|0|1|3|8|27|7|19|25;24|10|3|6|6|9|1|0|1|12|9|4|15|23|26;25|10|5|2|27|11|1|3|9|13|10|4|7|18|21;22|17|6|7|11|0|0|5|11|14|10|4|8|19|22;26|8|8|11|0|0|0|0|0|4|7|27|6|20|23;11|0|0|0|0|0|0|0|3|7|8|7|18|24|27
   - Name: TormentRoom0
     LevelNumber: 4
@@ -45342,6 +45488,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
+    Tags: 
     MapString: 0|0|1|0|0|9|10|12|10|11|2|0|1|0|21;6|18|2|21|0|0|0|16|2|0|21|0|0|6|18;8|4|10|10|18|3|6|14|18|3|6|10|10|5|20;0|0|0|0|5|10|19|3|7|10|4|2|0|0|21;21|6|10|10|20|2|16|3|16|2|8|10|10|18|2;0|16|2|1|0|21|16|3|16|2|0|1|0|16|2;21|8|10|10|10|12|5|12|4|12|10|10|10|20|2;0|0|0|0|1|7|13|5|13|19|3|0|21|0|0;0|21|0|0|1|7|13|5|13|19|3|0|0|0|21;0|6|10|10|10|14|4|14|5|14|10|10|10|18|2;0|16|2|1|0|0|16|3|16|2|21|1|0|16|2;21|8|10|10|18|2|16|3|16|2|6|10|10|20|2;0|0|0|21|4|10|19|3|7|10|5|2|0|21|0;6|5|10|10|20|3|8|12|20|3|8|10|10|4|18;8|20|2|0|0|0|0|16|2|0|21|0|0|8|20;0|0|1|0|21|9|10|14|10|11|2|21|1|0|0
   - Name: TormentRoom1
     LevelNumber: 4
@@ -45455,6 +45602,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
+    Tags: 
     MapString: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
   - Name: TormentRoom2
     LevelNumber: 4
@@ -45568,6 +45716,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
+    Tags: 
     MapString: 0|6|18|2|1|21|6|4|18|2|1|21|6|18|2;21|8|4|18|2|0|7|14|19|2|0|6|5|20|2;0|1|8|4|10|10|19|3|7|10|10|5|20|3|0;6|18|3|16|3|0|16|2|16|2|1|16|3|6|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|14|10|5|10|10|19|3|7|10|10|4|10|14|20;21|0|0|16|2|21|16|3|16|2|21|16|2|0|21;0|15|2|16|3|6|4|12|5|18|3|16|2|15|2;0|17|2|16|3|8|5|14|4|20|3|16|2|17|2;0|21|0|16|2|0|16|3|16|2|0|16|2|0|0;6|12|10|4|10|10|19|3|7|10|10|5|10|12|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|20|3|16|3|21|16|2|16|2|1|16|3|8|20;0|1|6|5|10|10|19|3|7|10|10|4|18|3|21;0|6|5|20|2|21|7|12|19|2|21|8|4|18|2;0|8|20|2|1|0|8|4|20|2|1|0|8|20|2
   - Name: TormentRoom3
     LevelNumber: 4
@@ -45681,6 +45830,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
+    Tags: 
     MapString: 0|21|0|0|1|21|0|15|2|21|1|0|0|21|0;6|18|3|21|15|2|9|4|11|2|15|2|1|6|18;8|4|2|0|16|3|0|16|2|1|16|2|0|5|20;1|16|2|1|8|12|10|5|10|12|20|3|21|16|3;21|16|3|15|3|16|2|1|0|16|3|15|3|16|2;6|14|10|5|10|19|2|15|2|7|10|4|10|14|18;16|2|1|17|2|16|3|16|3|16|2|17|1|21|16;7|18|2|0|1|7|12|5|12|19|3|0|0|6|19;7|20|2|21|1|7|14|4|14|19|3|21|0|8|19;16|2|1|15|2|16|3|16|3|16|2|15|3|0|16;8|12|10|4|10|19|2|17|2|7|10|5|10|12|20;0|16|3|17|3|16|2|1|21|16|3|17|3|16|2;1|16|2|1|6|14|10|4|10|14|18|3|21|16|3;6|5|2|0|16|3|21|16|2|1|16|2|0|4|18;8|20|3|21|17|2|9|5|11|2|17|2|1|8|20;0|0|21|0|1|0|21|17|2|0|1|21|0|0|21
   - Name: Level5-0
     LevelNumber: 0
@@ -45794,6 +45944,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
+    Tags: 
     MapString: 28|28|28|28|28|28|32|34|29|37|28|28|28|28|28;28|28|28|28|28|28|28|31|34|34|33|33|33|33|33;33|33|33|36|28|28|28|31|34|34|34|34|29|34|34;34|34|34|34|33|33|33|34|3|6|6|9|34|34|34;34|34|34|34|34|29|34|34|4|15|24|10|34|35|34;6|6|6|6|9|34|34|34|5|0|14|10|37|28|31;16|17|27|12|10|34|29|34|34|5|8|11|37|28|31;7|1|7|13|10|34|34|34|29|34|34|34|37|28|32;7|7|7|13|0|6|6|9|34|35|35|34|37|28|28;7|7|1|14|27|15|24|10|37|28|28|31|34|33|33;1|7|7|7|7|7|14|10|37|28|28|31|34|29|34;7|7|7|1|7|7|27|10|34|33|33|34|3|6|6;7|18|21|24|1|7|12|10|34|34|34|34|4|15|16;7|19|22|25|1|7|13|10|34|34|3|6|27|7|7;7|20|23|26|7|7|13|10|34|34|4|12|7|7|1;7|7|7|7|1|1|13|10|34|34|4|13|1|7|7
   - Name: Level5-1
     LevelNumber: 5
@@ -45914,6 +46065,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 12:0
+    Tags: PlayersSpawnFirst
     MapString: 28|32|35|35|34|34|34|34|34|34|34|36|28|28|28;28|28|28|28|31|34|34|29|34|34|34|34|36|28|28;28|28|28|28|31|34|29|34|34|35|35|35|35|33|33;28|28|28|28|32|34|34|34|38|28|28|28|28|31|29;28|28|28|28|39|32|34|37|28|28|28|28|30|34|34;36|28|28|28|39|28|32|38|28|28|30|33|34|3|6;38|28|30|33|36|28|39|39|28|30|29|34|3|0|1;28|39|32|35|38|39|30|33|33|34|34|3|27|18|16;30|36|39|28|28|30|34|0|6|9|34|4|0|13|0;32|29|36|39|39|31|34|4|27|1|0|0|7|20|16;39|32|38|28|28|31|34|5|8|0|1|0|27|1|7;39|28|28|30|33|34|34|34|34|34|4|7|1|0|1;36|28|30|34|34|29|2|9|29|34|4|18|17|0|7;32|33|34|29|34|34|5|11|34|34|4|14|7|7|1;28|32|35|35|35|35|35|34|34|29|0|27|7|7|7;28|28|28|28|28|28|28|32|34|34|4|12|7|1|0
   - Name: Level5-2
     LevelNumber: 5
@@ -46044,6 +46196,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 12:14
+    Tags: PlayersSpawnFirst
     MapString: 28|28|28|28|28|28|32|35|34|34|29|34|34|34|34;28|30|33|36|28|28|28|28|32|35|34|34|34|34|34;28|31|2|9|36|28|28|28|28|28|32|34|34|29|34;28|31|5|11|38|28|28|28|28|28|28|32|34|34|34;28|32|35|38|39|39|30|36|28|28|28|28|32|34|34;36|39|28|28|28|39|32|34|36|28|28|28|28|32|35;34|33|33|36|28|28|28|32|29|36|28|28|28|28|28;29|34|34|38|28|28|28|39|32|38|39|39|28|28|28;35|35|38|28|28|30|33|29|39|28|28|30|33|36|28;28|28|28|28|30|34|29|37|28|28|28|31|3|12|33;33|33|33|33|29|34|34|37|28|28|28|31|0|13|6;6|6|6|6|6|6|9|37|28|28|28|32|5|20|16;16|16|17|27|15|24|10|37|28|28|28|28|32|5|8;7|0|7|7|7|14|10|37|28|28|28|28|28|32|35;7|7|7|7|7|27|10|34|36|28|28|28|28|28|28;0|7|7|0|7|12|10|34|37|28|28|30|36|28|28
   - Name: Level5-3
     LevelNumber: 5
@@ -46186,6 +46339,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 8:14
+    Tags: PlayersSpawnFirst
     MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|20;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|39|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;36|28|28|28|32|5|8|11|35|35|29|34|35|35|35;34|36|28|28|28|32|35|38|28|28|32|38|28|28|28;9|37|28|28|28|28|28|28|28|28|28|28|28|28|28;0|37|28|28|28|28|28|28|28|28|28|28|28|28|28
   - Name: Level5-4
     LevelNumber: 0
@@ -46216,6 +46370,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 34|37|28|28|28|28|28|28|28|32|34|29|35|38|28;35|38|28|28|30|33|33|36|28|28|32|38|28|28|28;28|28|28|30|3|6|2|9|36|28|28|28|28|28|28;28|28|30|34|2|1|27|10|29|36|28|28|28|28|28;28|30|29|34|5|8|2|11|34|34|36|28|30|36|28;28|31|34|34|35|35|34|29|34|34|37|28|32|34|36;30|34|34|38|28|28|31|3|15|17|37|28|28|32|35;34|29|37|28|28|28|31|4|0|10|37|28|28|28|28;34|34|38|28|28|28|31|4|1|10|37|28|28|28|28;29|38|28|28|28|28|2|27|15|16|17|36|28|28|28;37|28|28|28|28|28|31|4|1|7|10|37|28|30|33;38|28|28|28|28|28|31|4|7|27|10|37|28|32|35;28|28|28|30|36|28|31|4|27|1|12|37|28|28|28;28|28|30|29|38|28|15|17|0|15|26|37|28|28|28;28|28|32|38|28|28|31|5|8|8|11|38|28|28|28;28|28|28|28|28|28|31|34|29|34|37|28|28|28|28
   - Name: Level5-5
     LevelNumber: 5
@@ -46358,7 +46513,8 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 1:7
-    MapString: 31|37|39|28|28|28|28|31|38|28|28|28|28|28|28;29|38|28|28|28|28|30|37|28|28|28|28|28|28|28;38|28|28|28|28|30|3|9|36|28|28|28|30|36|28;28|28|15|16|16|17|27|27|15|16|16|24|9|38|28;28|39|39|31|35|35|5|11|37|39|31|13|11|33|33;39|39|12|37|28|39|31|3|9|33|3|13|29|38|32;28|30|13|37|39|12|6|1|12|6|1|14|9|36|28;28|31|13|9|18|25|0|7|19|24|27|0|10|38|39;28|32|13|0|20|25|1|0|19|26|0|27|10|33|33;39|39|13|11|35|14|27|27|14|1|11|12|11|29|35;39|39|13|37|39|31|0|10|4|11|35|13|9|34|33;36|28|13|37|39|31|4|1|11|37|28|13|10|29|38;38|39|20|16|16|17|27|0|15|16|16|26|11|38|28;39|39|39|32|5|8|8|8|8|11|38|32|38|28|28;28|28|28|28|32|35|34|34|29|38|39|39|28|28|28;28|28|30|36|39|30|29|34|34|33|36|28|28|28|30
+    Tags: PlayersSpawnFirst
+    MapString: 31|37|39|28|28|28|28|31|38|28|28|28|28|28|28;29|38|28|28|28|28|30|37|28|28|28|28|28|28|28;38|28|28|28|28|30|3|9|36|28|28|28|30|36|28;28|28|15|16|16|17|1|0|15|16|16|24|9|38|28;28|39|39|31|35|35|5|11|37|39|31|13|11|33|33;39|39|12|37|28|39|31|3|9|33|3|13|29|38|32;28|30|13|37|39|12|6|1|12|6|1|14|9|36|28;28|31|13|9|18|25|0|7|19|24|27|0|10|38|39;28|32|13|0|20|25|1|0|19|26|0|27|10|33|33;39|39|13|11|35|14|27|27|14|1|11|12|11|29|35;39|39|13|37|39|31|0|10|4|11|35|13|9|34|33;36|28|13|37|39|31|4|1|11|37|28|13|10|29|38;38|39|20|16|16|17|27|0|15|16|16|26|11|38|28;39|39|39|32|5|8|8|8|8|11|38|32|38|28|28;28|28|28|28|32|35|34|34|29|38|39|39|28|28|28;28|28|30|36|39|30|29|34|34|33|36|28|28|28|30
   - Name: Level6-0
     LevelNumber: 6
     Units:
@@ -46485,6 +46641,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 28|28|28|28|28|28|28|28|30|34|29|34|34|34|34;36|28|28|28|28|28|30|33|34|34|35|35|35|34|34;34|33|33|33|33|33|29|34|34|38|39|28|28|31|34;34|29|35|35|35|35|35|34|37|28|39|28|28|31|34;34|37|28|28|28|39|28|31|29|33|36|28|28|31|29;29|37|28|28|28|30|33|34|34|34|38|28|30|29|34;34|34|33|33|33|34|34|34|34|37|28|28|31|3|6;34|3|6|6|6|6|6|6|0|37|28|30|3|1|0;34|4|0|7|0|1|1|10|34|38|28|31|5|0|1;34|4|15|16|16|24|0|11|37|28|39|31|34|35|5;34|0|27|1|1|13|10|34|38|28|30|29|38|28|32;32|5|18|24|0|13|10|37|28|28|31|38|28|28|28;28|31|19|25|1|13|11|38|39|30|37|28|28|30|36;28|32|20|26|1|14|37|39|28|31|37|28|30|34|34;28|28|32|5|7|27|9|33|33|29|34|33|34|18|16;28|28|28|32|5|27|0|9|34|34|34|34|29|13|7
   - Name: Level6-1
     LevelNumber: 6
@@ -46612,6 +46769,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 26|11|38|28|28|30|34|34|34|29|34|34|19|25|27;29|38|39|39|30|34|29|34|35|35|35|34|19|22|21;38|28|39|30|34|34|34|37|28|28|39|32|20|23|23;28|28|30|34|29|34|34|34|33|36|39|28|31|34|34;33|33|34|34|34|35|12|27|2|9|36|28|31|29|34;34|29|34|34|37|39|13|1|0|10|37|28|32|34|34;34|34|3|9|37|28|13|7|27|10|37|39|39|31|34;35|35|2|0|37|28|13|7|1|0|9|36|28|31|34;28|28|32|34|37|28|13|1|1|0|10|37|28|31|29;36|39|39|31|37|28|20|16|16|17|11|38|28|31|34;34|36|28|31|37|28|28|32|35|34|37|28|28|31|34;34|37|28|32|29|36|28|28|28|31|29|33|33|34|34;9|37|39|39|31|29|33|33|33|34|34|34|29|34|38;7|9|36|28|32|34|3|6|6|6|6|9|34|38|28;24|10|37|28|28|31|4|12|27|15|24|10|37|28|28;25|7|9|36|28|31|4|13|1|0|13|10|37|39|30
   - Name: Boss2-0
     LevelNumber: 0
@@ -46758,6 +46916,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 5|5|1|13|5|20|5|5|4|16|17|5|5|0|6;5|11|4|16|17|2|15|3|1|13|5|5|5|0|6;5|5|1|13|5|11|5|5|5|5|5|11|5|0|21;11|5|0|12|5|5|5|5|17|5|5|5|5|0|6;5|5|2|14|3|1|13|5|5|5|2|9|15|1|7;5|5|17|5|5|0|12|5|5|11|0|21|18|23|23;1|7|13|11|5|0|12|11|5|5|1|7|19|23|23;0|6|12|5|5|0|12|5|5|17|4|10|22|23|23;0|6|12|11|5|1|13|5|5|5|1|7|19|23|23;0|6|12|5|17|4|16|5|5|5|0|6|18|23|23;2|1|7|13|5|2|14|3|25|11|0|21|18|23|23;5|0|21|12|5|20|5|5|24|5|0|6|18|23|23;5|1|7|13|5|28|5|17|28|5|0|6|18|23|23;17|4|10|16|11|20|11|5|24|5|0|21|18|23|23;5|1|7|13|5|2|15|3|25|5|0|6|18|23|23;11|0|21|12|17|4|16|5|11|5|1|7|19|23|23
   - Name: Boss2-1-L
     LevelNumber: 7
@@ -46998,6 +47157,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Lan
+    Tags: PlayersSpawnFirst
     MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|23|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|23;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|23;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|23|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|23
   - Name: Boss2-1
     LevelNumber: 7
@@ -47216,6 +47376,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Fashima
+    Tags: PlayersSpawnFirst
     MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|23|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|23;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|23;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|23|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|23
   - Name: Boss2-2-L
     LevelNumber: 7
@@ -47478,6 +47639,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Lan
+    Tags: PlayersSpawnFirst
     MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|23|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|23;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|23;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|23;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|23|23
   - Name: Boss2-2
     LevelNumber: 7
@@ -47723,6 +47885,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 1
     ObjectiveData: Fashima
+    Tags: PlayersSpawnFirst
     MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|23|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|23;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|23;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|23;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|23|23
   - Name: FortressSample
     LevelNumber: 0
@@ -47766,6 +47929,7 @@ MonoBehaviour:
     Tileset: Fortress
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 20|11|5|5|0|21|12|5|5|1|7|19|23|23|23;20|5|17|5|0|6|12|11|17|4|10|22|23|23|23;20|5|11|5|0|21|12|5|5|1|7|19|23|23|23;2|9|15|3|1|7|13|5|11|0|6|18|23|23|23;0|6|12|5|5|5|5|5|5|0|6|18|23|23|23;1|7|13|5|5|5|17|5|5|1|7|19|23|23|23;4|10|16|5|11|5|5|5|17|4|10|22|23|23|23;1|7|13|5|5|5|17|5|5|1|7|19|23|23|23;0|6|12|5|5|5|5|5|5|0|21|18|23|23|23;2|8|14|3|1|7|13|11|5|0|6|18|23|23|23;20|5|5|11|0|6|12|5|5|0|6|18|23|23|23;20|5|17|5|0|6|12|5|5|0|21|18|23|23|23;20|5|5|5|1|7|13|5|11|1|7|19|23|23|23;20|11|5|17|4|10|16|5|17|4|10|22|23|23|23;20|5|5|5|1|7|13|5|5|1|7|19|23|23|23;20|5|17|11|0|21|12|11|5|0|21|18|23|23|23
   - Name: Level8-0-B
     LevelNumber: 8
@@ -47999,6 +48163,7 @@ MonoBehaviour:
     Tileset: City
     Objective: 1
     ObjectiveData: Brens
+    Tags: PlayersSpawnFirst
     MapString: 13|23|21|21|20|26|21|23|23|21|21|21|22|20|26;5|21|21|21|23|21|21|21|21|21|0|6|6|12|21;14|21|0|6|6|6|6|12|21|21|3|11|15|13|21;21|21|3|15|7|15|7|5|22|21|4|7|7|13|23;21|22|4|7|18|8|8|14|21|21|3|7|15|5|21;20|26|1|7|13|21|21|23|21|21|2|8|8|14|21;21|22|4|7|13|21|21|22|21|20|26|21|21|21|23;21|21|3|15|5|23|0|6|12|21|21|21|22|23|20;22|21|2|8|14|23|4|7|5|21|21|0|6|6|6;21|21|23|21|21|21|2|8|14|21|21|27|7|15|7;6|12|21|20|26|21|21|21|21|21|23|29|7|7|7;7|30|22|21|23|21|21|21|20|26|21|2|8|24|15;15|32|21|0|6|6|12|21|21|21|21|21|22|4|7;8|14|21|3|7|7|5|22|21|21|23|21|21|1|7;21|21|21|4|7|7|13|21|21|0|6|6|6|25|7;20|26|21|1|9|7|5|21|22|4|7|15|7|7|7
   - Name: Level8-0-W
     LevelNumber: 8
@@ -48228,6 +48393,7 @@ MonoBehaviour:
     Tileset: City
     Objective: 1
     ObjectiveData: Brens
+    Tags: PlayersSpawnFirst
     MapString: 13|23|21|21|20|26|21|23|23|21|21|21|22|20|26;5|21|21|21|23|21|21|21|21|21|0|6|6|12|21;14|21|0|6|6|6|6|12|21|21|3|11|15|13|21;21|21|3|15|7|15|7|5|22|21|4|7|7|13|23;21|22|4|7|18|8|8|14|21|21|3|7|15|5|21;20|26|1|7|13|21|21|23|21|21|2|8|8|14|21;21|22|4|7|13|21|21|22|21|20|26|21|21|21|23;21|21|3|15|5|23|0|6|12|21|21|21|22|23|20;22|21|2|8|14|23|4|7|5|21|21|0|6|6|6;21|21|23|21|21|21|2|8|14|21|21|27|7|15|7;6|12|21|20|26|21|21|21|21|21|23|29|7|7|7;7|30|22|21|23|21|21|21|20|26|21|2|8|24|15;15|32|21|0|6|6|12|21|21|21|21|21|22|4|7;8|14|21|3|7|7|5|22|21|21|23|21|21|1|7;21|21|21|4|7|7|13|21|21|0|6|6|6|25|7;20|26|21|1|9|7|5|21|22|4|7|15|7|7|7
   - Name: Level8-1-B
     LevelNumber: 8
@@ -48461,6 +48627,7 @@ MonoBehaviour:
     Tileset: City
     Objective: 1
     ObjectiveData: Brens
+    Tags: PlayersSpawnFirst
     MapString: 7|10|15|10|7|10|13|21|3|15|13|21|22|4|7;7|7|7|7|7|7|5|21|4|7|5|23|21|2|8;8|8|8|8|8|8|14|21|1|7|13|21|21|21|21;21|21|21|21|23|21|21|22|3|7|13|20|26|22|21;21|0|6|6|6|12|21|21|27|7|19|6|12|21|0;22|4|7|7|7|5|23|21|28|7|7|15|5|21|27;21|2|24|7|18|14|21|21|29|15|18|8|14|21|28;21|23|3|15|13|20|26|21|2|8|14|20|26|23|28;21|21|4|7|5|23|22|21|21|21|21|21|21|21|28;21|21|2|8|14|21|21|0|6|6|6|6|12|23|28;21|22|21|21|21|21|23|27|7|11|7|15|30|22|29;20|26|21|23|21|20|26|29|15|7|7|15|32|21|2;6|6|6|12|21|21|21|2|8|8|24|7|13|21|21;9|7|7|13|21|21|21|23|21|21|1|7|13|20|26;10|7|7|5|22|21|21|21|20|26|27|7|30|21|21;11|7|15|13|23|21|21|21|21|22|29|7|32|21|23
   - Name: Level8-1-W
     LevelNumber: 8
@@ -48690,6 +48857,7 @@ MonoBehaviour:
     Tileset: City
     Objective: 1
     ObjectiveData: Brens
+    Tags: PlayersSpawnFirst
     MapString: 7|10|15|10|7|10|13|21|3|15|13|21|22|4|7;7|7|7|7|7|7|5|21|4|7|5|23|21|2|8;8|8|8|8|8|8|14|21|1|7|13|21|21|21|21;21|21|21|21|23|21|21|22|3|7|13|20|26|22|21;21|0|6|6|6|12|21|21|27|7|19|6|12|21|0;22|4|7|7|7|5|23|21|28|7|7|15|5|21|27;21|2|24|7|18|14|21|21|29|15|18|8|14|21|28;21|23|3|15|13|20|26|21|2|8|14|20|26|23|28;21|21|4|7|5|23|22|21|21|21|21|21|21|21|28;21|21|2|8|14|21|21|0|6|6|6|6|12|23|28;21|22|21|21|21|21|23|27|7|11|7|15|30|22|29;20|26|21|23|21|20|26|29|15|7|7|15|32|21|2;6|6|6|12|21|21|21|2|8|8|24|7|13|21|21;9|7|7|13|21|21|21|23|21|21|1|7|13|20|26;10|7|7|5|22|21|21|21|20|26|27|7|30|21|21;11|7|15|13|23|21|21|21|21|22|29|7|32|21|23
   - Name: CloneVatsTest
     LevelNumber: 0
@@ -48846,6 +49014,7 @@ MonoBehaviour:
     Tileset: CloneVats
     Objective: 1
     ObjectiveData: Bodder
+    Tags: PlayersSpawnFirst
     MapString: 11|17|6|6|6|12|10|16|0|6|6|1|7|12|10;11|17|1|7|6|6|2|3|9|8|6|6|6|6|12;11|17|6|6|6|6|6|12|4|16|0|6|1|7|6;11|17|6|6|1|7|6|12|10|16|0|6|6|6|6;11|17|6|6|6|6|6|6|2|3|9|8|6|6|6;18|24|30|6|6|6|6|6|12|4|16|0|6|1|7;19|25|31|6|6|1|7|12|4|16|16|16|0|6|6;20|26|32|6|6|6|6|2|3|8|2|3|8|6|6;21|27|33|6|6|6|6|2|3|8|2|3|8|6|6;22|28|34|6|6|1|7|12|4|16|16|16|0|6|6;23|29|35|6|6|6|6|6|12|10|16|0|6|1|7;11|17|6|6|6|6|6|6|2|3|9|8|6|6|6;11|17|6|6|1|7|6|12|4|16|0|6|6|6|6;11|17|6|6|6|6|6|12|10|16|0|6|1|7|6;11|17|1|7|6|6|2|3|9|8|6|6|6|6|12;11|17|6|6|6|12|4|16|0|6|6|1|7|12|4
   - Name: CloneVatsTest1
     LevelNumber: 9
@@ -48967,6 +49136,7 @@ MonoBehaviour:
     Tileset: CloneVats
     Objective: 1
     ObjectiveData: Bodder
+    Tags: PlayersSpawnFirst
     MapString: 11|17|17|6|12|10|16|16|16|0|6|6|6|12|10;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|1|7|6|6|2|3|9|9|9|8|1|7;18|24|30|36|6|6|6|12|4|16|16|16|0|6|6;19|25|31|37|1|7|2|9|9|8|2|3|9|8|6;20|26|32|38|6|6|12|4|0|6|6|12|4|0|6;21|27|33|39|6|6|12|10|0|6|6|12|10|0|6;22|28|34|40|1|7|2|3|9|8|2|9|9|8|6;23|29|35|41|6|6|6|12|4|16|16|16|0|6|6;11|17|17|1|7|6|6|2|3|3|9|9|8|1|7;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|12|4|16|16|16|0|6|6|6|12|4
   - Name: T
     LevelNumber: 0
@@ -49031,6 +49201,7 @@ MonoBehaviour:
     Tileset: CloneVats
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 8|8|6|6|6|6|12|10|6|12|10|16|16|16|16;4|16|6|12|4|16|12|10|12|4|16|16|16|16|16;6|6|6|6|6|6|12|10|12|10|6|12|10|16|16;6|6|6|6|12|4|16|16|2|3|8|6|12|10|16;6|4|12|4|6|6|6|6|12|4|6|4|12|10|16;16|16|12|10|16|16|16|6|12|10|6|6|12|10|16;16|16|6|6|6|12|10|16|16|16|16|12|4|16|16;16|16|12|4|6|6|6|12|10|16|16|12|10|16|16;16|16|16|12|4|16|16|2|3|9|8|6|6|6|12;16|16|16|6|6|6|6|12|4|16|0|6|6|6|12;16|16|16|16|16|16|16|16|16|16|16|16|12|4|12;16|16|16|16|16|16|16|16|16|16|16|16|12|10|16;16|16|16|16|16|16|16|16|16|16|16|16|6|12|10;6|6|12|10|16|16|16|16|16|16|16|6|6|12|10;6|6|12|10|16|16|16|16|6|6|6|6|12|4|16;6|12|4|16|16|16|16|16|12|4|16|16|12|10|16
   - Name: T2
     LevelNumber: 0
@@ -49144,6 +49315,7 @@ MonoBehaviour:
     Tileset: CloneVats
     Objective: 3
     ObjectiveData: 6
+    Tags: PlayersSpawnFirst
     MapString: 16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;6|12|10|16|16|16|16|12|4|16|16|16|16|6|12;6|2|3|9|8|10|6|6|6|10|2|3|9|8|12;16|16|16|16|2|3|8|4|2|3|8|4|16|16|16;16|2|3|9|8|4|12|10|12|4|6|3|9|8|10;16|12|4|16|16|16|12|10|12|10|16|16|16|12|10;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|16|16|16|16|6|6|6|6|12|4|16|16|16|16;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|12|4|16|16|16|12|4|12|10|16|16|16|12|10;16|2|3|9|8|10|12|10|12|10|2|3|9|8|10;16|16|16|16|2|3|8|10|2|3|8|4|16|16|16;6|2|3|9|8|4|6|6|6|4|2|3|9|8|12;6|12|4|16|16|16|16|12|4|16|16|16|16|6|12;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16
   - Name: Part2RestArea
     LevelNumber: 0
@@ -49180,45 +49352,224 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
+    Tags: PlayersSpawnFirst
     MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
-  BaseTile: {fileID: 1597157554}
-  TilesetsContainer: {fileID: 720465191}
-  mapData:
-    Tiles: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
+  - Name: TestingArea
+    LevelNumber: 10
     Units:
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 8, y: 5}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 5, y: 7}
+    - Pos: {x: 7, y: 6}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 10}
+    - Pos: {x: 6, y: 5}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 10, y: 5}
+    - Pos: {x: 7, y: 4}
       Team: 0
       Level: 0
       Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 7}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 1
+      Level: 0
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 7}
+      Team: 1
+      Level: 0
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 6}
+      Team: 1
+      Level: 0
+      Class: Wizard
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 4}
+      Team: 2
+      Level: 16
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 2
+      Level: 16
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 5}
+      Team: 2
+      Level: 16
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 5}
+      Team: 2
+      Level: 16
+      Class: Wizard
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: HumanDungeon
-    LevelNumber: 0
+    Tileset: Dungeon
+    Objective: 0
+    ObjectiveData: Rout
+    Tags: 
+    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|2|2|2|2|2|2|2;2|2|2|1|0|0|0|2|2|2|2|2|2|2|2;2|2|2|2|1|0|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+  BaseTile: {fileID: 1597157554}
+  TilesetsContainer: {fileID: 720465191}
+  mapData:
+    Tiles: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|0|2|2|2|2|2|2;2|2|2|1|0|0|0|0|2|2|2|2|2|2|2;2|2|2|1|0|0|0|2|2|2|2|2|2|2|2;2|2|2|2|1|0|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Units:
+    - Pos: {x: 8, y: 5}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 4}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 4}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 7}
+      Team: 1
+      Level: 0
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 1
+      Level: 0
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 7}
+      Team: 1
+      Level: 0
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 6}
+      Team: 1
+      Level: 0
+      Class: Wizard
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 4}
+      Team: 2
+      Level: 16
+      Class: Skeleton
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 2
+      Level: 16
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 5}
+      Team: 2
+      Level: 16
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 5}
+      Team: 2
+      Level: 16
+      Class: Wizard
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Dungeon
+    LevelNumber: 10
     Objective: Rout
-    Name: Part2RestArea
+    Tags: 
+    Name: TestingArea
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49252,6 +49603,7 @@ MonoBehaviour:
       Tileset: 
       Objective: 0
       ObjectiveData: 
+      Tags: 
       MapString: 
     Units: []
 --- !u!114 &1902908241
@@ -49269,11 +49621,11 @@ MonoBehaviour:
   options:
     Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 9
+    EndgameLevel: 10
     ExtraLevels: 0
     Units:
     - Frogman
-    - Kresla
+    - Firbell
     - Xirveros
     - Memerian
     - Fashima
