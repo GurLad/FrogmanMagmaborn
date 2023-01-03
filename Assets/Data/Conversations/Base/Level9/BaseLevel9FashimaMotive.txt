@@ -5,9 +5,28 @@ roomNumber:9
 ~ Demands
 # Nothinig
 ~ Before battle
-# TBA
-Frogman: Why did you join us?
-Fashima: Excuses.
+# Fashima actually tells the truth here, except for being a Magmaborn
+Frogman: Why did you join us? Why did you betray the other Magi?
+Fashima: Do you know how long I've been alive, my friend?
+Frogman: Uh... No.
+Fashima: Me neither. But a few millenia, at least.
+Frogman: Millenia?! But... But you look so young! How can that be?!
+Fashima: Magic, my friend. Magic can transform you.\a Keep your body young and healthy.\a Indefinitely.
+Frogman: This is... Uh... Wow.
+But this has nothing to do with my question.\a Why did you let yourself die now?
+Fashima: This has everything to do with your question.
+I've been alive for far longer than any other Magi.
+Longer than any other human, I'd wager.\a And do you know how I spent this time?
+Frogman: No.
+Fashima: Protecting humanity from monsters,\a and your fellow Magmaborn.\a Over and over again. Endlessly.\a I couldn't bear it any more.
+Frogman: Why didn't you just leave?
+Fashima: You misunderstand my goal.
+It wasn't merely to stop being a Magus -\a but rather to end this eternal,\a foolish struggle once and for all.
+Frogman: So you became a Magmaborn?
+Fashima: Yes. The only one capable of ending the Magi is a Magus.
+Frogman: I see...
+:setFlag:BaseFashimaMotive
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.
