@@ -53,7 +53,6 @@ Frogman: ...So you're a coward, then?
 Xeplogi: How dare you insult my honour like that!
 Frogman: Then let's go!
 Xeplogi: Wait, I didn't-
-# TBA: Add this command
 :hideUnit:Frogman
 :if:hasCharacter:Firbell{
 Firbell: It is just the way that he is.\a You will get used to it,\a Logi.
@@ -226,6 +225,7 @@ Guard2: CHAAAAAAAAARGE!
 Xeplogi: Oh, shut up! I'm trying to explain-
 Frogman: Xeplogi, let's leave the explaining to after this battle.
 Xeplogi: You- Ugh, fine.\a Let us do just that, then.
+:unlockAchievement:JoinXeplogi
 :setFlag:MetXeplogi
 
 ~ PreRepeat

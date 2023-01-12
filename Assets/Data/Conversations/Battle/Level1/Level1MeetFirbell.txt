@@ -19,6 +19,7 @@ mapID:SpawnPoint5
 }
 ~
 :call:PostFirst
+:unlockAchievement:Part1
 :showPartTitle:Part 1:Monster
 
 # === Functions ====
@@ -37,6 +38,7 @@ Frogman: Monsters?!
 Firbell|???: Yes. I do not have time to explain. Ready your bow.
 Frogman: My b-bow?\a Right, I have a bow...\a Wait, what's your name?!
 Firbell||L: Firbell.\a Now, let us begin!
+:unlockAchievement:JoinFirbell
 :setDeathQuote:Firbell:FirbellFirstDeath
 :setDeathQuote:Frogman:FrogmanFirstDeath
 

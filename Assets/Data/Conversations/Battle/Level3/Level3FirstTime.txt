@@ -27,6 +27,7 @@ roomNumber:3
 }
 :call:PreAlone
 ~ After battle
+:unlockAchievement:DefeatLich
 :if:hasCharacter:Firbell{
 :call:PostFirbell
 :finishConversation:

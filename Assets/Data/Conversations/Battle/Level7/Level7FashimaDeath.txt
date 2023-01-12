@@ -10,6 +10,7 @@ roomNumber:0
 # Name: Text.
 ~ After battle
 :setFlag:FashimaDied
+:unlockAchievement:DefeatFashima
 :play:Raindance
 :if:teamUnitsAlive:guard:>0{
 :getGenericCharacter:Guard1

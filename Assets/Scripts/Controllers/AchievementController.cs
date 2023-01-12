@@ -60,4 +60,12 @@ public static class AchievementController
  *   - Power! Unlimited Power! - Unlock all Torment powers.
  *   ? The best offense is a good defence - Finish the game using all defensive (blue) Torment powers (TBA: actually change all Torment powers so blue - defensive & red - offensive).
  *   ? Glass Cannons Galore - Finish the game using all offensive (red) Torment powers.
+ *   
+ * Internal names:
+ * - Join forces: JoinX (ex. JoinFirbell)
+ * - Part: PartX (ex. Part1)
+ * - Defeat: DefeatX (ex. DefeatLich). For Bodder: DefeatBodder, DefeatSuperBodder.
+ * - Endings: EndingX (ex. EndingFashima)
+ * - Conversations: ConversationX (ex. ConversationTalkingFrog)
+ * - Misc: MiscX (ex. MiscTutorialFinished)
  */ 
