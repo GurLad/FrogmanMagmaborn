@@ -1420,6 +1420,14 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         ConversationPlayer.Current.PlayOneShot("");
     }
 
+    /// <summary>
+    /// Updates all units for settings change. Currently only exists for the extra symbols accessibility option.
+    /// </summary>
+    public void ReflectSettingsUpdate()
+    {
+        units.ForEach(a => a.ReflectSettingsUpdate());
+    }
+
     private class DeadUnitData
     {
         public Unit Origin { get; set; }

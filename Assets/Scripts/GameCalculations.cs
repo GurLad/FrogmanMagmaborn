@@ -97,6 +97,14 @@ public static class GameCalculations
         }
     }
 
+    public static bool ExtraSymbolsOn
+    {
+        get
+        {
+            return SavedData.Load("ExtraSymbolsOn", 0, SaveMode.Global) == 1;
+        }
+    }
+
     public static Team FirstTurnTeam
     {
         get

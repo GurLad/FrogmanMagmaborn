@@ -30,6 +30,15 @@ public class LevelMetadataController : MonoBehaviour
         // Load metadatas json
         string json = FrogForgeImporter.LoadTextFile("LevelMetadata.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("LevelMetadatas"), this);
+        // Load symbols
+        for (int i = 0; i < LevelMetadatas.Count; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                LevelMetadatas[i].TeamDatas[j].BaseSymbol = FrogForgeImporter.LoadSpriteFile("Images/TeamSymbols/" + LevelMetadatas[i].TeamDatas[j].Name + "/B.png");
+                LevelMetadatas[i].TeamDatas[j].MovedSymbol = FrogForgeImporter.LoadSpriteFile("Images/TeamSymbols/" + LevelMetadatas[i].TeamDatas[j].Name + "/M.png");
+            }
+        }
         // Find default
         DefaultMetadata = LevelMetadatas[0];
         LevelMetadatas.RemoveAt(0);

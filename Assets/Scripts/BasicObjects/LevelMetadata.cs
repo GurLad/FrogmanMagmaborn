@@ -41,6 +41,8 @@ public class LevelMetadata
         public bool PlayerControlled; // Functionality TBA
         public PortraitLoadingMode PortraitLoadingMode;
         public AIPriorities AI;
+        public Sprite BaseSymbol;
+        public Sprite MovedSymbol;
     }
 
 

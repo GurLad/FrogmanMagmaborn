@@ -23,6 +23,8 @@ public class Unit : MapObject
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;
+    [Header("Objects")]
+    public SpriteRenderer Symbol;
     [HideInInspector]
     public Weapon Weapon;
     [HideInInspector]
@@ -65,7 +67,8 @@ public class Unit : MapObject
         set
         {
             moved = value;
-            palette.Palette = moved ? 3 : (int)TheTeam;
+            palette.Palette = Moved ? 3 : (int)TheTeam;
+            Symbol.sprite = Moved ? GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].MovedSymbol : GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].BaseSymbol;
         }
     }
     private int movement = 5;
@@ -80,10 +83,12 @@ public class Unit : MapObject
             movement = value;
         }
     }
+
     public Unit()
     {
         Priorities = new AIPriorities(this);
     }
+
     public void Init(bool callStart = false)
     {
         palette = GetComponent<PalettedSprite>();
@@ -98,8 +103,10 @@ public class Unit : MapObject
             Start();
         }
     }
+
     protected override void Start()
     {
+        ReflectSettingsUpdate();
         if (started)
         {
             return;
@@ -115,6 +122,7 @@ public class Unit : MapObject
         Moved = Statue;
         Health = Stats.MaxHP;
     }
+
     private void LoadIcon()
     {
         switch (portraitMode == PortraitLoadingMode.None ? (portraitMode = GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode) : portraitMode)
@@ -134,6 +142,7 @@ public class Unit : MapObject
                 throw Bugger.Error("Invalid portrait loading mode!");
         }
     }
+
     public void SetIcon(Portrait icon, bool changeName = true)
     {
         Icon = icon;
@@ -142,6 +151,7 @@ public class Unit : MapObject
             DisplayName = Name = icon.TheDisplayName;
         }
     }
+
     public override void Interact(InteractState interactState)
     {
         switch (interactState)
@@ -170,10 +180,12 @@ public class Unit : MapObject
                 break;
         }
     }
+
     private DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
         return DangerArea.Generate(this, x, y, range, includePassThroughMoves);
     }
+
     private DangerArea GetDangerArea(bool includePassThroughMoves = false)
     {
         return GetDangerArea(Pos.x, Pos.y, Movement, includePassThroughMoves);
@@ -354,6 +366,7 @@ public class Unit : MapObject
         //    }
         //}
     }
+
     public void MoveTo(Vector2Int pos, bool immediate = false)
     {
         // Add animation etc.
@@ -374,6 +387,7 @@ public class Unit : MapObject
             Pos = pos;
         }
     }
+
     public void Fight(Unit unit)
     {
         void ActualFight(Unit attacker, Unit defender)
@@ -455,6 +469,7 @@ public class Unit : MapObject
             MapAnimationsController.Current.AnimateDelay();
         }
     }
+
     public bool CanPush(Unit unit)
     {
         Vector2Int truePos = -(Pos - unit.Pos) + unit.Pos;
@@ -463,6 +478,7 @@ public class Unit : MapObject
             GameController.Current.IsValidPos(truePos.x, truePos.y) && GameController.Current.Map[truePos.x, truePos.y].GetMovementCost(unit) <= unit.Movement &&
             !GameController.Current.FindUnitAtPos(truePos.x, truePos.y);
     }
+
     public bool CanPull(Unit unit)
     {
         Vector2Int truePos = (Pos - unit.Pos) + Pos;
@@ -471,18 +487,21 @@ public class Unit : MapObject
             GameController.Current.IsValidPos(truePos.x, truePos.y) && GameController.Current.Map[truePos.x, truePos.y].GetMovementCost(this) <= Movement &&
             !GameController.Current.FindUnitAtPos(truePos.x, truePos.y);
     }
+
     public void Push(Unit unit)
     {
         GameController.Current.RemoveMarkers();
         MapAnimationsController.Current.AnimatePushPull(this, unit, true);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
     }
+
     public void Pull(Unit unit)
     {
         GameController.Current.RemoveMarkers();
         MapAnimationsController.Current.AnimatePushPull(this, unit, false);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
     }
+
     public int CountAdjacentAllies(Vector2Int pos)
     {
         int count = 0;
@@ -500,6 +519,7 @@ public class Unit : MapObject
         }
         return count;
     }
+
     public void AI(List<Unit> units)
     {
         List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
@@ -566,6 +586,7 @@ public class Unit : MapObject
                 break;
         }
     }
+
     /// <summary>
     /// Tries the Hold AI. If successful (returns true), starts the animations and ends the turn - the caller MUSTN'T activate another AI.
     /// Otherwise, does nothing - the caller MUST activate a fallback AI (or end the turn).
@@ -588,6 +609,7 @@ public class Unit : MapObject
         }
         return false;
     }
+
     private void RetreatAI(DangerArea fullDangerArea)
     {
         Vector2Int minPoint = -Vector2Int.one;
@@ -629,6 +651,7 @@ public class Unit : MapObject
         }
         MoveTo(target);
     }
+
     private Vector2Int ClosestMoveablePointToTarget(Vector2Int target, DangerArea fullDangerArea)
     {
         DangerArea trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement);
@@ -675,6 +698,7 @@ public class Unit : MapObject
         }
         return currentMoveTarget;
     }
+
     private float HoldAITargetValue(Unit unit)
     {
         int trueDamage = this.GetDamage(unit);
@@ -711,6 +735,7 @@ public class Unit : MapObject
         //    "; Final calculation: " + Priorities.GetTotalPriority(unit));
         return Priorities.GetTotalPriority(unit);
     }
+
     private int GetMoveRequiredToReachPos(Vector2Int pos, int movement, DangerArea fullMoveRange)
     {
         int min = int.MaxValue;
@@ -734,22 +759,27 @@ public class Unit : MapObject
         }
         return min;
     }
+
     public bool CanAttack(Unit other)
     {
         return other != null && other.TheTeam.IsEnemy(TheTeam) && CanAttackPos(other.Pos);
     }
+
     private bool CanAttackPos(Vector2Int pos)
     {
         return CanAttackPos(pos.x, pos.y, Pos.x, Pos.y);
     }
+
     private bool CanAttackPos(int x, int y)
     {
         return CanAttackPos(x, y, Pos.x, Pos.y);
     }
+
     private bool CanAttackPos(Vector2Int pos, Vector2Int fromPos)
     {
         return CanAttackPos(pos.x, pos.y, fromPos.x, fromPos.y);
     }
+
     private bool CanAttackPos(int x, int y, int fromX, int fromY)
     {
         //return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - x) + Mathf.Abs(Pos.y - y));
@@ -764,20 +794,24 @@ public class Unit : MapObject
             return DangerArea.Generate(this, fromX, fromY, 0, false)[x, y].Type == DangerArea.TileDataType.Attack;
         }
     }
+
     public string AttackPreview(Unit other, int padding = 2, bool canAttack = true)
     {
         return "HP :" + Health.ToString().PadRight(padding) + 
             "\nDMG:" + (canAttack ? this.GetDamage(other).ToString() : "--").PadRight(padding) + 
             "\nHIT:" + (canAttack ? this.GetHitChance(other).ToString() : "--").PadRight(padding);
     }
+
     public string BattleStats()
     {
         return "ATK:" + (Weapon.Damage + Stats.Strength).ToString().PadRight(3) + "\nHIT:" + (Weapon.Hit + 10 * Stats.Precision - 40).ToString().PadRight(3) + "\nAVD:" + (10 * (Stats.Evasion - Weapon.Weight) - 40).ToString().PadRight(3);
     }
+
     public string State()
     {
         return Statue ? "Statue" : (Moved ? "Moved" : "Normal");
     }
+
     public bool? Attack(Unit unit)
     {
         int percent = this.GetHitChance(unit);
@@ -817,10 +851,12 @@ public class Unit : MapObject
             return false;
         }
     }
+
     public override string ToString()
     {
         return (Icon?.Name == TheTeam.Name() ? Class : DisplayName) ?? DisplayName;
     }
+
     public void ChangeInclination(Inclination target)
     {
         for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
@@ -833,18 +869,22 @@ public class Unit : MapObject
             Stats.Growths[i]++;
         }
     }
+
     public void AddSkill(Skill skill)
     {
         skills.AddSkill(skill);
     }
+
     public bool HasSkill(Skill skill)
     {
         return skills.HasSkill(skill);
     }
+
     public string Save()
     {
         return JsonUtility.ToJson(this);
     }
+
     public void Load(string json, bool resetMoved = false)
     {
         MoveMarker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
@@ -854,6 +894,15 @@ public class Unit : MapObject
         AttackMarker = attackMarker;
         LoadIcon();
         moved = !resetMoved && moved;
+    }
+
+    /// <summary>
+    /// Updates all units for settings change. Currently only exists for the extra symbols accessibility option.
+    /// </summary>
+    public void ReflectSettingsUpdate()
+    {
+        Symbol.gameObject.SetActive(GameCalculations.ExtraSymbolsOn);
+        Symbol.sprite = Moved ? GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].MovedSymbol : GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].BaseSymbol;
     }
 
     public class DangerArea
