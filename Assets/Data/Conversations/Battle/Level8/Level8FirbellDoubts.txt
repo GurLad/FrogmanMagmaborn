@@ -1,0 +1,37 @@
+priority:-1
+unique:F
+~ Requirements
+# This conversation isn't meant to be selected
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:!hasFlag:FirbellDoubts{
+Firbell: These... are homes, Frogman.
+Frogman: Yes, I know. This must be where the Guards live.
+Firbell: Killing them here would be brutal. And highly unjust.
+Frogman: ...You're right. But what choice do we have?\a We've come this far.\a It's too late to go back now.
+Firbell: It is never too late, Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless monsters, not humans.
+Frogman: For eternity?
+Firbell: Until Irenhold rescues us, or reasons with these... Guards.
+Frogman: That's unlikely, I'm afraid.
+I'm sorry, but I'm not going back.
+Firbell: ...Then I must-
+Frogman: Abandon us? Your friends? Your comrades?\a Would that be just?
+Firbell: N-no, but-
+Frogman: This is no time to second-guess our actions,\a Firbell.\a We need you here. Now.\a Are you with us?
+Firbell: ...
+Fine, Frogman.
+Frogman: Good. Let's go!
+Firbell: ...
+How did this happen...?
+:setFlag:FirbellDoubts
+}
+
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

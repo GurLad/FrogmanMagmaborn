@@ -33,7 +33,7 @@ Guard1: O-Oh. Thank you, master!
 :loadUnits::player:T
 :play:BeforeBattle3
 :setSingleSpeaker:L
-Frogman: We're back... Come on, we've got no time to lose!
+:call:Reaction
 :setBattleQuote:Werse:WerseBattle
 :markDone:
 
@@ -82,3 +82,13 @@ Guard1: W-werse! They're... gone!\a Retreat, evryone!
 :killTeam:guard
 Attacker: ...What just happened?
 }
+
+~ Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Come on, we've got no time to lose!

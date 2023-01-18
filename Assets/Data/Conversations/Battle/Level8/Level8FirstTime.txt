@@ -36,7 +36,7 @@ Werse: I...\a As you say, master.
 :killUnit:Werse
 :setSingleSpeaker:R
 Brens: ...I'm sorry, Werse. But I will fulfill my duty.
-Soldiers! Listen up! Our worst fears have materialized.\a The Magmaborn are coming again.\a They managed to break through our walls.\a They killed Fashima.\a Yet we must not despair!\a We must protect the clone vats!\a We must protect the crystals!\a We must protect humanity!\a This is our sworn duty.\a It is time to fullfill it.\a Guards - assemble!
+Soldiers! Listen up! Our worst fears have materialized.\a The Magmaborn are back.\a They managed to break through our walls.\a They've killed Fashima.\a And yet, we shall not despair!\a We must protect the clone vats.\a We must protect the crystals.\a We must protect humanity!\a This is our solemn duty, and it is time to fulfill it!
 :addGenericCharacter:Guard1
 :addGenericCharacter:Guard2
 :addGenericCharacter:Guard3
@@ -58,26 +58,7 @@ Frogman: We're... inside the Fortress...\a Wow, this place is a mess!
 
 ~ Reaction
 :if:hasCharacter:Firbell{
-Firbell: These... are homes, Frogman.
-Frogman: Yes, I know. This must be where the Guards live.
-Firbell: Killing them here would be... brutal.
-Frogman: ...You're right. But what choice do we have?\a We've come this far.\a We can't go back now.\a And they're on the way to the center.
-Firbell: It is never too late, Frogman. We should return.\a Go back to... before all of this.\a Fighting mindless monsters, not humans.
-Frogman: It is too late now, Firbell.\a I'm sorry. But I'm not going back.
-Firbell: ...Then I must-
-Frogman: Abandon us? Your friends? Your comrades?\a Would that be just, Firbell?
-Firbell: N-no, but-
-Frogman: This is no time to second-guess our actions, Firbell.\a We need you here, Firbell.\a Are you with us?
-Firbell: ...
-Fine, Frogman.
-Frogman: Good. Let's go!
-Firbell: ...
-How did this happen...?
-:setFlag:FirbellDoubts
-:return:
-:if:hasCharacter:Memerian{
-Memerian: Huh. That's not quite how I imagined it.
-Frogman: Yeah, me neither. Oh well, let's break through!
+:callOther:Level8FirbellDoubts
 :return:
 }
 :if:hasCharacter:Kresla{
@@ -86,8 +67,13 @@ Frogman: Kresla. We don't have time for this.
 Kresla: You never give me time to explore, Frogman!
 Frogman: Because we're surrounded by enemies!
 Kresla: Fine, fine. But after this battle, I'm staying here!\a I must know how they work!
-Frogman: ...Ugh, all right, Kresla.
-Kresla: Great!
+Frogman: ...Ugh, fine.
+Kresla: Great! Now let's get rid of these pesky people!
+:return:
+}
+:if:hasCharacter:Memerian{
+Memerian: Huh. That's not quite how I imagined it.
+Frogman: Yeah, me neither. Oh well, let's break through!
 :return:
 }
 Oh well, let's break through!

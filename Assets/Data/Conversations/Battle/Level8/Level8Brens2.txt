@@ -1,0 +1,69 @@
+priority:4
+unique:T
+~ Requirements
+roomNumber:8
+!hasFlag:BrensDied
+~ Demands
+hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Werse
+Lieutenant: Master Brens! The Magmaborn! They're back!
+Brens: Back at the wall? How is Lan holding up?
+Lieutenant: N-no, they... they managed to defeat him, master.
+Brens: Defeat?! Oh no. Not again... We can't replace him!\a What are we supposed to do?!
+:loadUnits::monster
+Werse: Don't worry about Lan. He managed to retreat in time.\a He's fine.
+Brens: Werse? Where were you? How do you know that?
+Werse: I've been watching the battle.
+Brens: Watching? That's dangerous, Werse!\a We can't afford to lose you!
+Werse: I can take care of myself, Brens.\a Besides, I remained invisible.
+Brens: Good, good.
+Lieutenant: Uh... The Magmaborn are getting close...
+Brens: Right! Werse, get out of here! I'll handle them!
+Werse: This again?
+Brens: Lessy didn't respond per usual,\a and Bodder refused to leave the vats.\a That's what you said.
+Werse: True, but I can fight them in your stead.\a I'm the better fight,\a and you know it.
+Brens: No. You're my apprentice, Werse.\a It's my duty to protect the city, not yours.
+Werse: Then let me fight alongside you.
+Brens: That's against our rules, and you know it.
+Werse: What good are rules and duty for us now?!\a Fashima is dead!\a The Magmaborn are in our city!\a They don't care about our rules!
+Brens: But I do, Werse! They exist for a reason!\a Now, leave this place!\a That's an order!
+Werse: ...Please don't sacrifice yourself, Brens.
+Werse: I won't. Now go!
+Werse: ...
+:killUnit:Werse
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+:call:Reaction
+:setDeathQuote:Brens:BrensDeath
+:markDone:
+
+# Name: Text.
+~ After battle
+:callOther:Level8BrensDeath
+
+# === Functions ====
+
+~ BrensDeath
+:setFlag:BrensDied
+:play:GuardTheme3
+Brens: Ha... You're tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+:play:Silence
+Fashima|???: Not so fast, old man.
+:screenShake:
+Brens: Urk!
+
+~Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Let's defeat Brens this time!
