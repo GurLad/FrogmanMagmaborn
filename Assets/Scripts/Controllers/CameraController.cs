@@ -67,9 +67,12 @@ public class CameraController : MonoBehaviour
     }
     public void ScreenShake(float strength, float duration)
     {
-        ScreenShaker screenShaker = gameObject.AddComponent<ScreenShaker>();
-        screenShaker.Strength = strength;
-        screenShaker.Duration = duration;
+        if (GameCalculations.ScreenShakeOn)
+        {
+            ScreenShaker screenShaker = gameObject.AddComponent<ScreenShaker>();
+            screenShaker.Strength = strength;
+            screenShaker.Duration = duration;
+        }
         SoundController.PlaySound(ScreenShakeSFX, 0.5f);
     }
 }

@@ -36,5 +36,9 @@ public class InitControls : MonoBehaviour
         {
             SavedData.Save("TransitionsOn", 1, SaveMode.Global);
         }
+        if (!SavedData.HasKey("ScreenShakeOn", SaveMode.Global))
+        {
+            SavedData.Save("ScreenShakeOn", 1, SaveMode.Global);
+        }
     }
 }

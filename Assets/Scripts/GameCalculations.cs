@@ -105,6 +105,14 @@ public static class GameCalculations
         }
     }
 
+    public static bool ScreenShakeOn
+    {
+        get
+        {
+            return SavedData.Load("ScreenShakeOn", 1, SaveMode.Global) == 1;
+        }
+    }
+
     public static Team FirstTurnTeam
     {
         get
