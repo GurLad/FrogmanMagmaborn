@@ -5,21 +5,39 @@ roomNumber:1
 hasFlag:FirbellDoubts
 ~ Demands
 hasCharacter:Firbell
+mapID:SpawnPoint7
 ~ Before battle
 :play:BeforeBattle
+:loadUnits::player
 Firbell: Frogman.
 Frogman: Hello, Firbell.
-Firbell: We must stop attempting to reach the Fortress.
-Frogman: Huh? Why?
-Firbell: TBA
-# Firbell refuses to fight humans
+Firbell: We need to talk.
+Frogman: About what?
+Firbell: About what we have been doing for the past few lives.\a Assaulting the Fortress and the Guards is not right.\a We are killing humans here,\a Frogman.\a Destroying their homes and invading their land.\a There is no honor in conquest.
+Frogman: They didn't exactly give us much of a choice.\a They wouldn't let us out of here,\a and you know that.
+Firbell: And what life is there for us out there, should we get out?\a Would we even regain our humanity?
+And are our own lives really more important than theirs?
+Frogman: I don't know what awaits us outside,\a but it's surely better than what's down here.
+Firbell: Would you truly kill dozens just for that chance?
+Frogman: Oh, please. The Guards are just as willing to kill us.
+Firbell: They have a good reason.\a We are invading their home.
+Frogman: No, we're not. We're just trying to live our lives,\a free from this hellish prison.\a They're not attacking us to protect themselves,\a but rather to keep us chained.
+And that is something I will never accept.
+Firbell: I will never accept attacking people at their own homes.\a If that is your path,\a then I have no interest in following it.
 :setTeam:Firbell:guard
+Farewell.
+Frogman: Woah, hold on. Are you seriously going to leave me?
+Firbell: Yes. If the Guards cannot stop you, then I shall.
+:loadUnits::monster:T
+Frogman: Uh, are you sure about this?
+Firbell: The time for talk is over, Frogman.\a I see now that I was wrong to trust you.\a Have at thee!
+Frogman: Wait-
 :setCounter:FirbellAvoidsFrogman:1
 :markDone:
 
 ~ After battle
 :play:AfterBattle
-Frogman: Firbell...
+Frogman: Firbell... I'm really sorry... But I will get out of here.
 
 # === Functions ====
 
