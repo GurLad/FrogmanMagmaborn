@@ -24925,7 +24925,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -53421,6 +53421,11 @@ PrefabInstance:
       propertyPath: CGController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
+        type: 3}
+      propertyPath: DebugOptions
+      value: 
+      objectReference: {fileID: 1902908241}
     - target: {fileID: 7394452989847595799, guid: 8ec6a9467a08e2d49a679b076976f611,
         type: 3}
       propertyPath: MapController
