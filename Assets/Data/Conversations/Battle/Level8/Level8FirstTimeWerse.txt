@@ -19,6 +19,7 @@ Guard1: What's up with Werse? Where are they?\a We're all waiting here on high a
 Lieutenant: It is none of our concern, soldier.\a Werse will come here when they're needed.
 Guard1: And when is that?
 :loadUnits::monster:T
+:killUnit:Lan
 Werse: Right now. The Magmaborn are here.
 Guard1: Wha-
 Lieutenant||L: Werse! I take it that Lan has... fallen?
@@ -59,7 +60,7 @@ Urk! You've... got me...\a I must... retreat...
 :else:{
 :addGenericCharacter:Guard1
 }
-Guard1: W-werse! They're... gone!\a Retreat, evryone!
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
 :killTeam:guard
 Defender: ...What just happened?
 }
@@ -78,7 +79,7 @@ Urk! You've... got me...\a I must... retreat...
 :else:{
 :addGenericCharacter:Guard1
 }
-Guard1: W-werse! They're... gone!\a Retreat, evryone!
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
 :killTeam:guard
 Attacker: ...What just happened?
 }

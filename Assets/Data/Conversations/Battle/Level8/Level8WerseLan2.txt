@@ -1,0 +1,107 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:8
+hasFlag:BrensDied
+compareCounter:TimesLanLost:>4
+~ Demands
+!hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant:old
+:addGenericCharacter:Guard1:young
+:loadUnits::guard
+
+:loadUnits::monster:T
+:setSpeaker:Werse
+Lan: ...
+Werse: You're awfully cooperative today.\a I didn't even have to put you to sleep.
+Lan: I can't win against the Magmaborn, can I?
+Werse: Hm. Colour me surprised. No, you can't. No one can.
+Lan: Then why... why do we keep fighting, Werse?\a What's the point?
+Werse: We have to protect humanity. That is our...\a duty...
+Lan: Ha. Never thought I'd see the day where you talk about duty.\a Wasn't that Brens' thing?
+Werse: It was...
+Lan: Then why are you talking about it, eh? What's your reason?
+Werse: ...I can't abandon the Guards.\a And they... they would never abandon their duty. And...\a this is what Brens would've wanted.
+Lan: Hmpf. I never did care much for the Guards.\a Or the old man.
+Werse: Then why are you fighting the Magmaborn?
+Lan: I... I want to be the best.\a To be better than Fashima.\a Than you, and Bodder, and Leshy.
+Werse: ...Seriously?
+Lan: Yeah. But if none of you can beat the Magmaborn,\a then why should I try, eh?\a You're already not better than me!
+Werse: ...
+Lan: Why, I can just stop trying to beat the Magmaborn,\a and get better at other stuff!\a You can waste your time trying to do the impossible all you want -\a I'm going to become the best fisherman in the world!
+Werse: ...I have no words for your idiocity.
+Lan: Oh, just you wait till you see my amazing fishing skills!\a I'm simply the best!
+Werse: I can't believe I thought for a moment you were redeemable.\a [Name:Guard1]?
+Guard1: Yes, master?
+Werse: Take this one to his quarters.\a I shall instil some sense in him late.
+Guard1: Yes, master!
+Lan: Woah, hold on, what are you-
+:screenShake:
+Ah!
+:killUnit:Lan
+:setSingleSpeaker:L
+Werse: Ugh. What a fool.
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+:call:Reaction
+:setBattleQuote:Werse:WerseBattle
+:markDone:
+
+~ After battle
+:unlockAchievement:DefeatWerse
+:callOther:Level8FashimaSpawn
+
+# === Functions ====
+
+~ WerseBattle
+:if:stringEquals:[Name:Attacker]:Werse{
+Werse||R: ...I surrender.
+Defender: Huh?
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
+Defender: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
+:killTeam:guard
+Defender: ...What just happened?
+}
+:else:{
+Werse||R: ...I surrender.
+Attacker: Huh?
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
+Attacker: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
+:killTeam:guard
+Attacker: ...What just happened?
+}
+
+~ Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Come on, we've got no time to lose!

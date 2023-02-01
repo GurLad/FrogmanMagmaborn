@@ -1,5 +1,5 @@
-priority:-1
-unique:F
+priority:4
+unique:T
 ~ Requirements
 roomNumber:8
 hasFlag:BrensDied
@@ -7,25 +7,40 @@ hasFlag:BrensDied
 !hasCharacter:Brens
 ~ Before battle
 :play:GuardTheme3
-:addGenericCharacter:Lieutenant
+:addGenericCharacter:Lieutenant:old
+:addGenericCharacter:Guard1:young
 :loadUnits::guard
-Lieutenant: ...
-...
-...
-:loadUnits::monster
+# TBA: Make it clearer that Werse uses crystals to heal Lan & put him to sleep
+:loadUnits::monster:T
+:setSpeaker:Werse
+Lan: Ow! Let me go! You're... hurting me!
+Werse: Stop struggling, and I'll let you go.
+Lan: This is unfair! I could've... beat them!\a Why... why did you stop me?!
+Werse: No, you couldn't. You would've died.\a And we can't afford to lose you. Not now.
+Lan: No, no, no! You're wrong! I... I was just getting warmed up!\a I can beat them! I'm... better than them!
+Werse: Oh, just shut up and let me treat your wounds.
+Lan: I will not- Ah! Argh! Oof!
+Werse: There you go. This should be enough to keep you alive.
+Lan: Ah... I feel... tired... What have... you...
+Werse: [Name:Guard1]?
+Guard1: Yes, master?
+Werse: Take this one to his room.
+He should remain asleep for a few more hours.
+Guard1: Yes, master!
 :killUnit:Lan
-Werse: I'm back, [Name:Lieutenant].
-Lieutenant: Werse! How did the battle go?
-Werse: Badly. Lan lost again.\a At least he managed to get away.\a Per usual.
-Lieutenant: I... see.
-Werse: We don't have much time, [Name:Lieutenant].\a The Magmaborn are coming.
+:setSingleSpeaker:L
+Werse: Ugh. What a pain.
+Lieutenant: Did you say something, master?
+Werse: Nothing, [Name:Lieutenant].
+The Magmaborn should be here soon.\a Get everyone ready, please.
+Lieutenant: Yes, master!
 :loadUnits::player:T
 :play:BeforeBattle3
 :setSingleSpeaker:L
-Frogman: We're back... Come on, we've got no time to lose!
+:call:Reaction
 :setBattleQuote:Werse:WerseBattle
+:markDone:
 
-# Name: Text.
 ~ After battle
 :unlockAchievement:DefeatWerse
 :callOther:Level8FashimaSpawn
@@ -71,4 +86,13 @@ Guard1: W-werse! They're... gone!\a Retreat, everyone!
 :killTeam:guard
 Attacker: ...What just happened?
 }
-:callOther:Level8FashimaSpawn
+
+~ Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Come on, we've got no time to lose!

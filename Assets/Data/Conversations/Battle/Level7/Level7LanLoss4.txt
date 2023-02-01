@@ -15,18 +15,43 @@ hasCharacter:Lan
 :loadUnits::guard:T
 :killUnit:Brens
 Lan||R: ...
-I'm the best.\a Aren't I?\a I'm beautiful, I'm strong, I'm smart.\a I was chosen by Fashima. Fashima!\a The most powerful Magi ever!\a But I keep... I keep... Losing...\a To that... That Frogman...
+I'm the best.\a Aren't I?
+I'm beautiful, I'm strong, I'm smart.\a I was chosen by Fashima.\a Fashima! The most powerful Magi ever!\a But I keep... I keep... Losing...\a To that... That Frogman...
 Lieutenant: ...Lan?
 Lan: What!
 Lieutenant: Why are you talking to yourself?\a Are you quite all right?
-Lan: All right?! Who do you think you are, eh?\a Leshy herself?!\a Get out of my sight!
+Lan: All right?! Who do you think you are, eh? Leshy herself?!\a Get out of my sight!
 Lieutenant: ...
 :setSingleSpeaker:R
 Lan: Nnrgh...\a This is all wrong... So wrong...
+:killUnit:Lan
+:loadUnits::monster:T
+:replaceUnit:Brens:Werse
+Werse: Lan. Get ahold of yourself.
+Lan: Werse? What are you doing here?!
+Werse: Making sure you don't get yourself killed.
+Lan: I... I don't need your help! Go away!
+Werse: Yes, you do.
+You won't be able to fight the Magmaborn in this sorry state.
+Lan: Sorry state?! I'm in the best state! The best!\a I... I can take them all!
+Werse: Oh, really? Prove it to me.
+Lan: Prove it? I don't have to prove anything to you!\a You're not my master!
+Werse: Are you afraid you'll fail, then?
+Lan: N-no! I'm not afraid! I'm the great Lan - I fear nothing!
+Werse: Excellent. Then I shall be watching you battle.\a Don't dissapoint me.
+:killUnit:Werse
+:setSingleSpeaker:R
+Lan: Wha-
+...
+What nerves! They have no right to watch me battle!
+...
+Ugh, fine! I'll show them! I'll show them all!\a Lan the great is back!
 :play:BeforeBattle2
 :loadUnits::player:T
 :setSingleSpeaker:L
-Frogman: TBA
+Frogman: Back-
+Lan: HEY, YOU! STUPID MAGMABORN! I'M GONNA BEAT YOU THIS TIME!
+Frogman: Yeah, right...
 :markDone:
 
 ~ After battle
