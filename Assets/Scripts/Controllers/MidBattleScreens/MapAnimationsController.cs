@@ -372,7 +372,7 @@ public class MapAnimationsController : MidBattleScreen
 
     private bool? HandleDamage(Unit attacking, Unit defending, bool attackerAttack)
     {
-        bool? result = attacking.Attack(defending);
+        bool? result = attacking.Attack(defending, GameCalculations.GetRandomHitResult()); // TODO: FIX!!!!
         switch (result)
         {
             case true:

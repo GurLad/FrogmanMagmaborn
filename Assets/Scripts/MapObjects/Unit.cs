@@ -870,9 +870,11 @@ public class Unit : MapObject
     {
         MoveMarker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
         AttackMarker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy
+        SpriteRenderer symbol = Symbol;
         JsonUtility.FromJsonOverwrite(json, this);
         MovementMarker = movementMarker;
         AttackMarker = attackMarker;
+        Symbol = symbol;
         LoadIcon();
         moved = !resetMoved && moved;
     }

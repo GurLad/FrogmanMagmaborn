@@ -1403,10 +1403,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void AutoSaveClearAction()
     {
-        if (suspendData.OnLoadAction == null)
-        {
-            throw Bugger.Error("Auto-save error: trying to clear an empty action!");
-        }
+        //if (suspendData.OnLoadAction == null)
+        //{
+        //    throw Bugger.Error("Auto-save error: trying to clear an empty action!");
+        //}
         suspendData.OnLoadAction = null;
         suspendData = SaveToSuspendData();
     }

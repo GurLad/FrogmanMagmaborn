@@ -40,7 +40,7 @@ Guard1: Yes, master!
 Lan: Woah, hold on, what are you-
 :screenShake:
 Ah!
-:killUnit:Lan
+:killUnit:Lan:F
 :setSingleSpeaker:L
 Werse: Ugh. What a fool.
 :loadUnits::player:T
@@ -48,6 +48,8 @@ Werse: Ugh. What a fool.
 :setSingleSpeaker:L
 :call:Reaction
 :setBattleQuote:Werse:WerseBattle
+# Achivement name: Go Fish
+:unlockAchievement:ConversationLanLose
 :markDone:
 
 ~ After battle
