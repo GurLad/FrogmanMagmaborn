@@ -43,6 +43,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     public Intro Intro;
     [HideInInspector]
     public System.Action OnFinishConversation;
+    public bool Playing => gameObject.activeSelf;
     [SerializeField]
     private bool startActive = true;
     private float speed;
@@ -63,6 +64,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private List<string> lines;
     private string[] previousLineParts;
     private bool skipping;
+
     private void Awake()
     {
         Current = this;
@@ -310,6 +312,10 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         {
             currentLine++;
         }
+    }
+    private void TrueSkipToLine(int target)
+    {
+        // TBA
     }
     private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = true)
     {
@@ -1227,15 +1233,46 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public SuspendDataConversationPlayer SaveToSuspendData()
     {
-        return new SuspendDataConversationPlayer(origin);
+        if (Playing)
+        {
+            return new SuspendDataConversationPlayer(origin, currentLine, functionStack, lines);
+        }
+        else
+        {
+            return new SuspendDataConversationPlayer(origin);
+        }
     }
 
     public void LoadFromSuspendData(SuspendDataConversationPlayer data)
     {
         origin = new ConversationData(data.Origin);
+        if (data.Playing)
+        {
+            // We need to skip through every FunctionStackObject in the stack in reverse order, so that they all reach their target line properly
+            // First, reverse the stack
+            Stack<FunctionStackObject> reverseStack = new Stack<FunctionStackObject>();
+            while (data.FunctionStack.Count > 0)
+            {
+                reverseStack.Push(data.FunctionStack.Pop());
+            }
+            // Now, skip all lines until the target line for each element in the reverse stack
+            while (reverseStack.Count > 0)
+            {
+                FunctionStackObject stackObject = reverseStack.Pop();
+                lines = stackObject.Lines;
+                TrueSkipToLine(stackObject.LineNumber);
+                data.FunctionStack.Push(stackObject);
+            }
+            // Lastly, assign the proper stack & lines to this ConversationPlayer & skip to them
+            lines = data.Lines;
+            functionStack = data.FunctionStack;
+            TrueSkipToLine(data.CurrentLine);
+            SoftResume(); // Not sure whether it's soft or not, depending on future me's implementation of TrueSkip
+        }
     }
 
-    private class FunctionStackObject
+    [System.Serializable]
+    public class FunctionStackObject
     {
         public int LineNumber;
         public List<string> Lines;
@@ -1249,12 +1286,25 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 }
 
 [System.Serializable]
-public class SuspendDataConversationPlayer // People cannot suspend in the middle of a conversation
+public class SuspendDataConversationPlayer
 {
     public ConversationData Origin;
+    public bool Playing;
+    public int CurrentLine;
+    public Stack<ConversationPlayer.FunctionStackObject> FunctionStack = new Stack<ConversationPlayer.FunctionStackObject>();
+    public List<string> Lines;
 
     public SuspendDataConversationPlayer(ConversationData origin)
     {
         Origin = origin;
+        Playing = false;
+    }
+
+    public SuspendDataConversationPlayer(ConversationData origin, int currentLine, Stack<ConversationPlayer.FunctionStackObject> functionStack, List<string> lines) : this(origin)
+    {
+        CurrentLine = currentLine;
+        FunctionStack = functionStack;
+        Lines = lines;
+        Playing = true;
     }
 }

@@ -266,6 +266,7 @@ public class MapAnimationsController : MidBattleScreen
     {
         CurrentAnimation = AnimationType.None;
         Time.timeScale = 1; // Remove double speed
+        GameController.Current.AutoSaveClearAction();
         // Support for chaining animations & actions.
         count = 0;
         MidBattleScreen.Set(this, false);
@@ -287,6 +288,7 @@ public class MapAnimationsController : MidBattleScreen
         }
         if (unit.Pos == targetPos)
         {
+            GameController.Current.AutoSaveClearAction();
             OnFinishAnimation();
             return;
         }

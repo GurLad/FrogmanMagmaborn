@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     private Map selectedMap;
     private int currentKnowledge;
     private int enemyCount; // To increase performance
+    private SuspendDataGameController suspendData = new SuspendDataGameController();
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
     {
@@ -761,6 +762,35 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.Pos = -Vector2Int.one;
     }
 
+    public void Fight(Unit source, Unit attacker, Unit defender, float attackerRandomResult, float defenderRandomResult)
+    {
+        if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
+        {
+            CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
+            BattleAnimationController battleAnimationController = Instantiate(Battle).GetComponentInChildren<BattleAnimationController>();
+            battleAnimationController.transform.parent.gameObject.SetActive(true);
+            battleAnimationController.StartBattle(attacker, defender, attackerRandomResult, defenderRandomResult);
+            battleAnimationController.TransitionToThis();
+            FinishMove(source);
+        }
+        else // Map animations
+        {
+            RemoveMarkers();
+            MapAnimationsController.Current.AnimateBattle(attacker, defender);
+            MapAnimationsController.Current.OnFinishAnimation = () =>
+            {
+                if (this != null)
+                {
+                    FinishMove(source);
+                }
+                else
+                {
+                    FinishMoveDead();
+                }
+            };
+        }
+    }
+
     private void PlayPostBattle()
     {
         NotifyListeners(a => a.OnPlayerWin(units));
@@ -1361,9 +1391,38 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return false;
     }
 
+    public void AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType type, Vector2Int origin, Vector2Int target, string additionalData)
+    {
+        if (suspendData.OnLoadAction != null)
+        {
+            throw Bugger.Error("Auto-save error: trying to save an action during another action!");
+        }
+        suspendData = SaveToSuspendData();
+        suspendData.OnLoadAction = new SuspendDataGameController.CurrentAction(type, origin, target, additionalData);
+    }
+
+    public void AutoSaveClearAction()
+    {
+        if (suspendData.OnLoadAction == null)
+        {
+            throw Bugger.Error("Auto-save error: trying to clear an empty action!");
+        }
+        suspendData.OnLoadAction = null;
+        suspendData = SaveToSuspendData();
+    }
+
+    public void AutoSaveExecuteAction()
+    {
+        // TBA
+    }
+
     public SuspendDataGameController SaveToSuspendData()
     {
-        SuspendDataGameController suspendData = new SuspendDataGameController();
+        if (suspendData.OnLoadAction != null)
+        {
+            // Don't update the suspend data during an action to prevent double effects (ex. a unit taking damage twice)
+            return suspendData;
+        }
         suspendData.LevelNumber = LevelNumber;
         suspendData.Turn = Turn;
         suspendData.DeadPlayerUnits = DeadPlayerUnits;
@@ -1416,8 +1475,17 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 playerUnitsCache.Add(unit);
             }
         }
-        // Hide the conversation player - terrible workaround
-        ConversationPlayer.Current.PlayOneShot("");
+        if (ConversationPlayer.Current.Playing)
+        {
+            // Queue the saved action to after the conversation ends (aka for unit death)
+            ConversationPlayer.Current.OnFinishConversation = () => AutoSaveExecuteAction();
+        }
+        else
+        {
+            // Hide the conversation player - terrible workaround
+            ConversationPlayer.Current.PlayOneShot("");
+            AutoSaveExecuteAction();
+        }
     }
 
     /// <summary>
@@ -1454,4 +1522,24 @@ public class SuspendDataGameController
     public int EnemyCount;
     public Map SelectedMap;
     public List<string> Units;
+    public CurrentAction OnLoadAction;
+
+    [System.Serializable]
+    public class CurrentAction
+    {
+        public enum ActionType { Move, Combat, Push, Pull }
+
+        public ActionType Type;
+        public Vector2Int Origin;
+        public Vector2Int Target;
+        public string AdditionalData;
+
+        public CurrentAction(ActionType type, Vector2Int origin, Vector2Int target, string additionalData)
+        {
+            Type = type;
+            Origin = origin;
+            Target = target;
+            AdditionalData = additionalData;
+        }
+    }
 }

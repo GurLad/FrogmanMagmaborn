@@ -156,6 +156,13 @@ public static class GameCalculations
         return battleCount + killCount * 4 - mapCount - deathCount * 4;
     }
 
+    public static float GetRandomHitResult()
+    {
+        //int a, b;
+        //((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f;
+        return (Random.Range(0, 100) + Random.Range(0, 50)) / 1.5f;
+    }
+
     public static bool HasKnowledge(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
     {
         return KnowledgeController.HasKnowledge(name);

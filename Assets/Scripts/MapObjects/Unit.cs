@@ -379,6 +379,7 @@ public class Unit : MapObject
             }
             else
             {
+                GameController.Current.AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType.Move, Pos, pos, "");
                 MapAnimationsController.Current.AnimateMovement(this, pos);
             }
         }
@@ -390,35 +391,6 @@ public class Unit : MapObject
 
     public void Fight(Unit unit)
     {
-        void ActualFight(Unit attacker, Unit defender)
-        {
-            if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
-            {
-                CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
-                BattleAnimationController battleAnimationController = Instantiate(GameController.Current.Battle).GetComponentInChildren<BattleAnimationController>();
-                battleAnimationController.transform.parent.gameObject.SetActive(true);
-                battleAnimationController.StartBattle(attacker, defender);
-                battleAnimationController.TransitionToThis();
-                GameController.Current.FinishMove(this);
-            }
-            else // Map animations
-            {
-                GameController.Current.RemoveMarkers();
-                MapAnimationsController.Current.AnimateBattle(attacker, defender);
-                MapAnimationsController.Current.OnFinishAnimation = () =>
-                {
-                    if (this != null)
-                    {
-                        GameController.Current.FinishMove(this);
-                    }
-                    else
-                    {
-                        GameController.Current.FinishMoveDead();
-                    }
-                };
-            }
-        }
-
         // Stats - increase battle count if either unit is a player
         if (TheTeam.PlayerControlled())
         {
@@ -440,12 +412,19 @@ public class Unit : MapObject
             attacker = this;
             defender = unit;
         }
+        // Save the result beforehand to prevent cheating
+        float attackerRandomResult = GameCalculations.GetRandomHitResult();
+        float defenderRandomResult = GameCalculations.GetRandomHitResult();
+        GameController.Current.AutoSaveSaveAction(
+            SuspendDataGameController.CurrentAction.ActionType.Combat,
+            attacker.Pos, defender.Pos, Pos + "," + attackerRandomResult + "," + defenderRandomResult);
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
             PortraitController.Current.GeneratedGenericPortraits.Add("Attacker", Icon);
             PortraitController.Current.GeneratedGenericPortraits.Add("Defender", unit.Icon);
-            ConversationPlayer.Current.OnFinishConversation = () => ActualFight(attacker, defender);
+            ConversationPlayer.Current.OnFinishConversation = () =>
+                GameController.Current.Fight(this, attacker, defender, attackerRandomResult, defenderRandomResult);
             string quote;
             if (BattleQuote != "")
             {
@@ -461,11 +440,12 @@ public class Unit : MapObject
         }
         else if (TheTeam.PlayerControlled()) // The player know who they're attacking, no need for a delay.
         {
-            ActualFight(attacker, defender);
+            GameController.Current.Fight(this, attacker, defender, attackerRandomResult, defenderRandomResult);
         }
         else // If an enemy attacks, however, a delay is needed in order to show the target.
         {
-            MapAnimationsController.Current.OnFinishAnimation = () => ActualFight(attacker, defender);
+            MapAnimationsController.Current.OnFinishAnimation = () =>
+                GameController.Current.Fight(this, attacker, defender, attackerRandomResult, defenderRandomResult);
             MapAnimationsController.Current.AnimateDelay();
         }
     }
@@ -490,6 +470,7 @@ public class Unit : MapObject
 
     public void Push(Unit unit)
     {
+        GameController.Current.AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType.Push, Pos, unit.Pos, "");
         GameController.Current.RemoveMarkers();
         MapAnimationsController.Current.AnimatePushPull(this, unit, true);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
@@ -497,6 +478,7 @@ public class Unit : MapObject
 
     public void Pull(Unit unit)
     {
+        GameController.Current.AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType.Pull, Pos, unit.Pos, "");
         GameController.Current.RemoveMarkers();
         MapAnimationsController.Current.AnimatePushPull(this, unit, false);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
@@ -812,7 +794,7 @@ public class Unit : MapObject
         return Statue ? "Statue" : (Moved ? "Moved" : "Normal");
     }
 
-    public bool? Attack(Unit unit)
+    public bool? Attack(Unit unit, float randomResult)
     {
         int percent = this.GetHitChance(unit);
         if (percent >= 80)
@@ -823,10 +805,9 @@ public class Unit : MapObject
         {
             percent -= 10;
         }
-        int a, b;
-        if (((a = Random.Range(0, 100)) + (b = Random.Range(0, 50))) / 1.5f < percent) // 1.5RN system
+        if (randomResult < percent) // 1.5RN system
         {
-            Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
+            //Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
             unit.Health -= this.GetDamage(unit);
             // Kill?
             if (unit.Health <= 0)
@@ -847,7 +828,7 @@ public class Unit : MapObject
         }
         else
         {
-            Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
+            //Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
             return false;
         }
     }

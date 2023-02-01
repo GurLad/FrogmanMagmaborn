@@ -44,7 +44,7 @@ public class BattleAnimationController : MidBattleScreen
     private BattleAnimation currentAnimation;
     private float count = 0;
 
-    public void StartBattle(Unit attacker, Unit defender)
+    public void StartBattle(Unit attacker, Unit defender, float attackerRandomResult, float defenderRandomResult)
     {
         Attacker = new CombatantData(AttackerInfoObject, AttackerInclinationObject, AttackerIconObject, AttackerHealthbarObject, AttackerSpritesObject, AttackerObject, attacker);
         Defender = new CombatantData(DefenderInfoObject, DefenderInclinationObject, DefenderIconObject, DefenderHealthbarObject, DefenderSpritesObject, DefenderObject, defender);
@@ -52,6 +52,8 @@ public class BattleAnimationController : MidBattleScreen
         Defender.Init(this);
         Attacker.LookingLeft = true;
         Defender.LookingLeft = false;
+        Attacker.RandomResult = attackerRandomResult;
+        Defender.RandomResult = defenderRandomResult;
         Tile attackerTile = GameController.Current.Map[Attacker.Unit.Pos.x, Attacker.Unit.Pos.y];
         LoadBattleBackground(attackerTile, true);
         Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
@@ -153,6 +155,7 @@ public class BattleAnimationController : MidBattleScreen
                 count += Time.deltaTime;
                 if (count >= WaitTime)
                 {
+                    GameController.Current.AutoSaveClearAction();
                     CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
                     Time.timeScale = 1;
                     Quit();
@@ -174,7 +177,7 @@ public class BattleAnimationController : MidBattleScreen
 
     public bool? HandleDamage(CombatantData attacker, CombatantData defender)
     {
-        bool? result = attacker.Unit.Attack(defender.Unit);
+        bool? result = attacker.Unit.Attack(defender.Unit, attacker.RandomResult);
         switch (result)
         {
             case true:
@@ -385,6 +388,7 @@ public class BattleAnimationController : MidBattleScreen
         public SpriteRenderer Object;
         public ClassAnimation ClassAnimationData;
         public float InitPos;
+        public float RandomResult;
         private bool _lookingLeft;
         public bool LookingLeft
         {
