@@ -6,11 +6,24 @@ hasFlag:MetLan
 ~ Demands
 # Nothinig
 ~ Before battle
-# TBA
-Frogman: Can you tell me a bit about Lan? He seems...\a eccentric.
+Frogman: Can you tell me a bit about Lan? He seems... eccentric.
 Fashima: Oh, him.\a Pay no mind to him - he is irrelevant.
 Frogman: Irrelevant?
-Fashima: Yes. The other Magi were pestering me about picking an apprentice.\a So
+Fashima: Yes. The other Magi kept pestering me about picking an\a apprentice.
+So I picked the most obnoxious one I could fine.
+I hope he's not giving you too much trouble.
+Frogman: He is a bit annoying, I have to admit.
+Fashima: Did you manage to kill him?
+:if:compareCounter:LanLoseCount:>2{
+Frogman: No... He keeps running away before we can finish him.
+}
+:else:{
+Frogman: Not yet... He managed to get away.
+}
+Fashima: I see. I apologize for any inconvenience he may have\a caused.
+It was not my intention to harm you, my friend.
+Frogman: Right...
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.
