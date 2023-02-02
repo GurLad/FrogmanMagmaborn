@@ -367,6 +367,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
             checkEndTurn = false;
         }
+        AutoSaveClearAction(); // Once the GameState is normal again, we can clear the current action
         return GameState.Normal;
     }
 
@@ -776,7 +777,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         else // Map animations
         {
             RemoveMarkers();
-            MapAnimationsController.Current.AnimateBattle(attacker, defender);
+            MapAnimationsController.Current.AnimateBattle(attacker, defender, attackerRandomResult, defenderRandomResult);
             MapAnimationsController.Current.OnFinishAnimation = () =>
             {
                 if (this != null)
@@ -1403,17 +1404,37 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void AutoSaveClearAction()
     {
-        //if (suspendData.OnLoadAction == null)
-        //{
-        //    throw Bugger.Error("Auto-save error: trying to clear an empty action!");
-        //}
-        suspendData.OnLoadAction = null;
-        suspendData = SaveToSuspendData();
+        if (suspendData.OnLoadAction != null)
+        {
+            suspendData.OnLoadAction = null;
+            suspendData = SaveToSuspendData();
+        }
     }
 
     public void AutoSaveExecuteAction()
     {
-        // TBA
+        if (suspendData.OnLoadAction != null)
+        {
+            switch (suspendData.OnLoadAction.Type)
+            {
+                case SuspendDataGameController.CurrentAction.ActionType.Move:
+
+                    break;
+                case SuspendDataGameController.CurrentAction.ActionType.Combat:
+                    break;
+                case SuspendDataGameController.CurrentAction.ActionType.Push:
+                    break;
+                case SuspendDataGameController.CurrentAction.ActionType.Pull:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public bool AutoSaveHasAction()
+    {
+        return suspendData.OnLoadAction != null;
     }
 
     public SuspendDataGameController SaveToSuspendData()

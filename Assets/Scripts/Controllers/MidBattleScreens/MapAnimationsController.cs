@@ -39,6 +39,8 @@ public class MapAnimationsController : MidBattleScreen
     private SpriteRenderer unitSpriteRenderer;
     private List<Vector2Int> path = new List<Vector2Int>();
     // Battle animation vars
+    private float battleAttackerRandomResult;
+    private float battleDefenderRandomResult;
     private float battleTrueFlashTime;
     private BattleAnimationState battleState;
     private MiniBattleStatsPanel attackerPanel;
@@ -266,7 +268,6 @@ public class MapAnimationsController : MidBattleScreen
     {
         CurrentAnimation = AnimationType.None;
         Time.timeScale = 1; // Remove double speed
-        GameController.Current.AutoSaveClearAction();
         // Support for chaining animations & actions.
         count = 0;
         MidBattleScreen.Set(this, false);
@@ -288,7 +289,6 @@ public class MapAnimationsController : MidBattleScreen
         }
         if (unit.Pos == targetPos)
         {
-            GameController.Current.AutoSaveClearAction();
             OnFinishAnimation();
             return;
         }
@@ -304,10 +304,12 @@ public class MapAnimationsController : MidBattleScreen
         StartAnimation(AnimationType.Movement);
     }
 
-    public void AnimateBattle(Unit attacking, Unit defending)
+    public void AnimateBattle(Unit attacking, Unit defending, float attackerRandomResult, float defenderRandomResult)
     {
         attacker = attacking;
         defender = defending;
+        battleAttackerRandomResult = attackerRandomResult;
+        battleDefenderRandomResult = defenderRandomResult;
         attackerBasePos = attacker.transform.position;
         defenderBasePos = defender.transform.position;
         battleDirection = (defenderBasePos - attackerBasePos).normalized;
@@ -372,7 +374,7 @@ public class MapAnimationsController : MidBattleScreen
 
     private bool? HandleDamage(Unit attacking, Unit defending, bool attackerAttack)
     {
-        bool? result = attacking.Attack(defending, GameCalculations.GetRandomHitResult()); // TODO: FIX!!!!
+        bool? result = attacking.Attack(defending, attacker == attacking ? battleAttackerRandomResult : battleDefenderRandomResult);
         switch (result)
         {
             case true:

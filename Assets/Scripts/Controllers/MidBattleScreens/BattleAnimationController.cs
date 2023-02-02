@@ -155,7 +155,6 @@ public class BattleAnimationController : MidBattleScreen
                 count += Time.deltaTime;
                 if (count >= WaitTime)
                 {
-                    GameController.Current.AutoSaveClearAction();
                     CrossfadeMusicPlayer.Current.SwitchBattleMode(false);
                     Time.timeScale = 1;
                     Quit();
