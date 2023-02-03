@@ -8,6 +8,80 @@ using PlayMode = ConversationPlayer.PlayMode;
 public static class EventCommandProcessor
 {
     public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't more than 10 types
+    public enum CommandType { Level, Conversation, MidBattleScreen, Global, Syntax, Tutorial, Menu }
+
+    private static List<CommandStruct> AllCommands { get; } = new List<CommandStruct>(new CommandStruct[]
+    {
+        // Level commands
+
+        new CommandStruct("addUnit", CommandType.Level, CAT.String),
+        new CommandStruct("loadUnits", CommandType.Level, CAT.OpString, CAT.OpTeam, CAT.OpBool),
+        new CommandStruct("loadMap", CommandType.Level, CAT.OpString),
+        new CommandStruct("setTeam", CommandType.Level, CAT.String, CAT.Team),
+        new CommandStruct("setBattleQuote", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("setDeathQuote", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("addSkill", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("killUnit", CommandType.Level, CAT.String, CAT.OpBool),
+        new CommandStruct("hideUnit", CommandType.Level, CAT.String),
+        new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
+        new CommandStruct("killTeam", CommandType.Level, CAT.Team),
+        new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType),
+        new CommandStruct("lose", CommandType.Level),
+        new CommandStruct("win", CommandType.Level),
+
+        // Conversation commands
+        
+        new CommandStruct("play", CommandType.Conversation, CAT.String, CAT.OpBool),
+        new CommandStruct("playIntro", CommandType.Conversation, CAT.String),
+        new CommandStruct("setMapTheme", CommandType.Conversation, CAT.String),
+        new CommandStruct("addGenericCharacter", CommandType.Conversation, CAT.String, CAT.OpString),
+        new CommandStruct("getGenericCharacter", CommandType.Conversation, CAT.String, CAT.OpTeam),
+        new CommandStruct("setSingleSpeaker", CommandType.Conversation, CAT.OpBool),
+        new CommandStruct("setSpeaker", CommandType.Conversation, CAT.String),
+        new CommandStruct("showCG", CommandType.Conversation, CAT.String),
+        new CommandStruct("hideCG", CommandType.Conversation),
+        new CommandStruct("screenShake", CommandType.Conversation, CAT.OpFloat, CAT.OpFloat),
+        new CommandStruct("darkenScreen", CommandType.Conversation, CAT.OpBool),
+
+        // Show other screens (MidBattleScreens)
+
+        new CommandStruct("showInfoDialogue", CommandType.MidBattleScreen, CAT.String),
+        new CommandStruct("showPartTitle", CommandType.MidBattleScreen, CAT.String, CAT.String),
+        new CommandStruct("showChoice", CommandType.MidBattleScreen, CAT.String, CAT.String, CAT.String),
+        new CommandStruct("showBase", CommandType.MidBattleScreen),
+
+        // Global commands
+
+        new CommandStruct("unlockKnowledge", CommandType.Global, CAT.String),
+        new CommandStruct("setFlag", CommandType.Global, CAT.String),
+        new CommandStruct("setTempFlag", CommandType.Global, CAT.String),
+        new CommandStruct("markDone", CommandType.Global),
+        new CommandStruct("setCounter", CommandType.Global, CAT.String, CAT.Int),
+        new CommandStruct("addCounter", CommandType.Global, CAT.String, CAT.Int),
+        new CommandStruct("unlockAchievement", CommandType.Global, CAT.String),
+
+        // Syntax commands
+
+        new CommandStruct("if", CommandType.Syntax, false),
+        new CommandStruct("else", CommandType.Syntax, false),
+        new CommandStruct("call", CommandType.Syntax, CAT.String),
+        new CommandStruct("callOther", CommandType.Syntax, CAT.String),
+        new CommandStruct("wait", CommandType.Syntax, false),
+        new CommandStruct("return", CommandType.Syntax),
+        new CommandStruct("finishConversation", CommandType.Syntax),
+
+        // Tutorial
+
+        new CommandStruct("tutorialForceButton", CommandType.Tutorial, false),
+        new CommandStruct("tutorialShowMarker", CommandType.Tutorial, false),
+        new CommandStruct("tutorialFinish", CommandType.Tutorial, false),
+
+        // Menu
+
+        new CommandStruct("introShowCutscene", CommandType.Menu),
+        new CommandStruct("introShowUpgradeMenu", CommandType.Menu),
+        new CommandStruct("introShowTutorial", CommandType.Menu)
+    });
 
     private static int SkipBlock(int currentLine, List<string> lines)
     {
@@ -19,24 +93,9 @@ public static class EventCommandProcessor
         }
         return currentLine;
     }
-    public static StartLineResult ExecuteCommand(
-        this ConversationPlayer player,
-        List<string> lines,
-        int num,
-        ConversationData origin,
-        CGController cgController,
-        Stack<ConversationPlayer.FunctionStackObject> functionStack,
-        PlayMode playMode,
-        bool beforeBattleStart,
-        bool shouldFadeIn,
-        System.Func<int, StartLineResult> StartLineTrue,
-        out System.Action<StartLineResult> delayedAction)
+
+    public static string[] GetArgsFromParts(string[] parts)
     {
-        delayedAction = null;
-        StartLineResult result = StartLineResult.None;
-        string line = lines[num];
-        string[] parts = line.Split(':');
-        // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
         string[] args = parts.Length > 2 ? (parts[parts.Length - 1] == "" ? new string[parts.Length - 2] : new string[parts.Length - 1]) : new string[1];
         if (args.Length > 0)
         {
@@ -46,18 +105,31 @@ public static class EventCommandProcessor
                 args[i] = (i + 2 < parts.Length) ? parts[i + 2] : "";
             }
         }
-        switch (parts[1])
-        {
-            // Level (gameplay) commands
+        return args;
+    }
 
+    public static CommandStruct GetCommandStruct(string commandName)
+    {
+        return AllCommands.Find(a => a.Name == commandName);
+    }
+
+    public static StartLineResult ExecuteLevelCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        int num,
+        ConversationData origin,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "addUnit":
                 // Params: string name
-                AssertCommand("addUnit", args, CAT.String);
                 GameController.Current.PlayerUnits.Add(GameController.Current.CreatePlayerUnit(args[0]));
                 break;
             case "loadUnits":
                 // Params: string mapName = chosenMap, Team team = allTeams, bool keepPrevious = false
-                AssertCommand("loadUnits", args, CAT.OpString, CAT.OpTeam, CAT.OpBool);
                 if (parts.Length < 4)
                 {
                     GameController.Current.LoadLevelUnits(args[0]);
@@ -74,14 +146,12 @@ public static class EventCommandProcessor
                 break;
             case "loadMap":
                 // Params: string mapName = chosenMap
-                AssertCommand("loadMap", args, CAT.OpString);
                 GameController.Current.LoadMap(args[0]);
                 result |= StartLineResult.LoadMap;
                 break;
             case "setTeam":
                 // Params: string unitName, Team changeTo
                 // Changes a unit's team
-                AssertCommand("setTeam", args, CAT.String, CAT.Team);
                 List<Unit> targets = GameController.Current.GetNamedUnits(args[0]);
                 if (targets.Count > 0)
                 {
@@ -99,7 +169,6 @@ public static class EventCommandProcessor
             case "setBattleQuote":
                 // Params: string unitName, string functionName
                 // Set a unit's battle quote (aka add boss battle quote). Must use a function.
-                AssertCommand("setBattleQuote", args, CAT.String, CAT.String);
                 List<Unit> targets1 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets1.Count > 0)
                 {
@@ -124,7 +193,6 @@ public static class EventCommandProcessor
             case "setDeathQuote":
                 // Params: string unitName, string functionName
                 // Set a unit's death quote (retains bewtween chapters). Must use a function.
-                AssertCommand("setDeathQuote", args, CAT.String, CAT.String);
                 List<Unit> targets2 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets2.Count > 0)
                 {
@@ -148,7 +216,6 @@ public static class EventCommandProcessor
             case "addSkill":
                 // Params: string unitName, string skillName
                 // Adds a skill to a unit.
-                AssertCommand("addSkill", args, CAT.String, CAT.String);
                 List<Unit> targets3 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets3.Count > 0)
                 {
@@ -165,7 +232,6 @@ public static class EventCommandProcessor
             case "killUnit":
                 // Params: string unitName, bool showDeathQuote = true
                 // Kills a unit.
-                AssertCommand("killUnit", args, CAT.String, CAT.OpBool);
                 List<Unit> targets4 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets4.Count > 0)
                 {
@@ -187,7 +253,6 @@ public static class EventCommandProcessor
             case "hideUnit":
                 // Params: string unitName
                 // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
-                AssertCommand("hideUnit", args, CAT.String);
                 List<Unit> targets5 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets5.Count > 0)
                 {
@@ -204,7 +269,6 @@ public static class EventCommandProcessor
             case "replaceUnit":
                 // Params: string oldUnit, string newUnit, bool keepHealth = false
                 // Kills oldUnit and spawns newUnit in its place
-                AssertCommand("replaceUnit", args, CAT.String, CAT.String, CAT.OpBool);
                 List<Unit> targets6 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets6.Count > 0)
                 {
@@ -228,18 +292,15 @@ public static class EventCommandProcessor
             case "killTeam":
                 // Params: string teamName
                 // Kills all units in a team.
-                AssertCommand("killTeam", args, CAT.Team);
                 GameController.Current.KillTeam(args[0].ToTeam() ?? throw Bugger.Error("No team!"));
                 break;
             case "setTeamAI":
                 // Params: Team team, AIType ai
-                AssertCommand("setTeamAI", args, CAT.Team, CAT.AIType);
                 Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
                 GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.Error("Impossible - I just validated..."));
                 break;
             case "lose":
                 // Params: none
-                AssertCommand("lose", args);
                 if (GameController.Current != null)
                 {
                     GameController.Current.Lose();
@@ -252,55 +313,65 @@ public static class EventCommandProcessor
                 return result | StartLineResult.FinishLevel;
             case "win":
                 // Params: none
-                AssertCommand("win", args);
                 GameController.Current.Win();
                 return result | StartLineResult.FinishLevel;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
 
-            // Conversation (graphics, music etc.) commands
-
+    public static StartLineResult ExecuteConversationCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationPlayer player,
+        int num,
+        CGController cgController,
+        bool beforeBattleStart,
+        bool shouldFadeIn,
+        System.Func<int, StartLineResult> StartLineTrue,
+        out System.Action<StartLineResult> delayedAction)
+    {
+        StartLineResult result = StartLineResult.None;
+        delayedAction = null;
+        switch (commandName)
+        {
             case "play":
                 // Params: string name, bool keepTimestamp = false
-                AssertCommand("play", args, CAT.String, CAT.OpBool);
                 CrossfadeMusicPlayer.Current.Play(args[0], parts.Length > 3 ? (args[1] == "T") : false);
                 break;
             case "playIntro":
                 // Params: string name
-                AssertCommand("playIntro", args, CAT.String);
                 CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
                 break;
             case "setMapTheme":
                 // Params: string name
-                AssertCommand("setMapTheme", args, CAT.String);
                 GameController.Current.LevelMetadata.MusicName = args[0]; // I really hope this doesn't break anything...
                 break;
             case "addGenericCharacter":
                 // Params: string internalName, string forceTags = none
                 // Add to TempPortraits with args[0] internal name and args[1] tags
-                AssertCommand("addGenericCharacter", args, CAT.String, CAT.OpString);
                 PortraitController.Current.GeneratedGenericPortraits.Add(args[0], PortraitController.Current.FindGenericPortrait(args[1]));
                 break;
             case "getGenericCharacter":
                 // Params: string internalName, Team fromTeam = null
-                AssertCommand("getGenericCharacter", args, CAT.String, CAT.OpTeam);
                 PortraitController.Current.GeneratedGenericPortraits.Add(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
                 break;
             case "setSingleSpeaker":
                 // Params: bool left = true
                 // Removes all speakers and makes sure the next is on the left/right
-                AssertCommand("setSingleSpeaker", args, CAT.OpBool);
                 bool left = parts.Length > 2 ? args[0] == "L" : true;
                 player.SetSinglePortrait(left, !left);
                 break;
             case "setSpeaker":
                 // Params: string speaker
-                // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)
-                AssertCommand("setSpeaker", args, CAT.String);
+                // Displays the speaker without pausing (equivelant to "name|display|L/R: bla", without the text/pause)                
                 player.SetSpeakerFromText(args[0]);
                 break;
             case "showCG":
                 // Params: string name
-                // Removes the previous CG (if any), then shows the requested CG until manually removed
-                AssertCommand("showCG", args, CAT.String);
+                // Removes the previous CG (if any), then shows the requested CG until manually removed                
                 player.Pause();
                 delayedAction = (result) =>
                 {
@@ -323,7 +394,6 @@ public static class EventCommandProcessor
             case "hideCG":
                 // Params: none
                 // Removes the previous CG (if any)
-                AssertCommand("hideCG", args);
                 if (cgController.Active)
                 {
                     player.Pause();
@@ -333,7 +403,6 @@ public static class EventCommandProcessor
             case "screenShake":
                 // Params: float strength = 1, float duration = 1
                 // Shakes the screen for duartion time with strength amount
-                AssertCommand("screenShake", args, CAT.OpFloat, CAT.OpFloat);
                 float strength = parts.Length > 2 ? float.Parse(args[0] != "" ? args[0] : "0.5") : 0.5f;
                 float duration = parts.Length > 3 ? float.Parse(args[1] != "" ? args[1] : "0.5") : 0.5f;
                 CameraController.Current.ScreenShake(strength, duration);
@@ -341,22 +410,31 @@ public static class EventCommandProcessor
             case "darkenScreen":
                 // Params: bool fixDoubleWhite = false
                 // Darkens all palettes by one stage. If fixDoubleWhite is on, darkens true white (0) twice.
-                AssertCommand("darkenScreen", args, CAT.OpBool);
                 PaletteController.Current.DarkenScreen(args.Length > 0 ? args[0] == "T" : false);
                 break;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
 
-            // Show other screens (MidBattleScreens)
-
+    public static StartLineResult ExecuteMidBattleScreenCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationPlayer player)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "showInfoDialogue":
                 // Args: title
-                AssertCommand("showInfoDialogue", args, CAT.String);
                 player.Pause();
                 player.InfoDialogue.Text.text = args[0];
                 player.InfoDialogue.Begin();
                 return result | StartLineResult.MidBattleScreen;
             case "showPartTitle":
                 // Args: subtitle, title
-                AssertCommand("showPartTitle", args, CAT.String, CAT.String);
                 player.Pause();
                 PartTitleAnimation partTitle = GameObject.Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
                 partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
@@ -365,7 +443,6 @@ public static class EventCommandProcessor
                 return result | StartLineResult.MidBattleScreen;
             case "showChoice":
                 // Args: choosingCharacterName, option1, option2
-                AssertCommand("showChoice", args, CAT.String, CAT.String, CAT.String);
                 player.Pause();
                 player.gameObject.SetActive(true);
                 player.enabled = false;
@@ -386,50 +463,74 @@ public static class EventCommandProcessor
                 return result | StartLineResult.MidBattleScreen;
             case "showBase":
                 // Args: none
-                AssertCommand("showBase", args);
                 player.Pause();
                 BaseController baseController = GameObject.Instantiate(GameController.Current.BaseMenu, GameController.Current.Canvas.transform).GetComponentInChildren<BaseController>();
                 baseController.Show(GameController.Current.PlayerUnits);
                 return result | StartLineResult.MidBattleScreen;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+    }
 
-            // Global commands
-
+    public static StartLineResult ExecuteGlobalCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationData origin,
+        int num,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "unlockKnowledge":
-                AssertCommand("unlockKnowledge", args, CAT.String);
                 GameCalculations.UnlockKnowledge(args[0]);
                 break;
             case "setFlag":
-                AssertCommand("setFlag", args, CAT.String);
                 SavedData.Save("ConversationData", "Flag" + args[0], 1);
                 break;
             case "setTempFlag":
                 // Params: name
-                AssertCommand("setTempFlag", args, CAT.String);
                 GameController.Current.TempFlags.Add(args[0]);
                 break;
             case "markDone":
                 // Params: none
-                AssertCommand("markDone", args);
                 origin.Choose(true);
                 break;
             case "setCounter":
                 // Params: string name, int amount
-                AssertCommand("setCounter", args, CAT.String, CAT.Int);
                 SavedData.Save("ConversationData", "Counter" + args[0], int.Parse(args[1]));
                 break;
             case "addCounter":
                 // Params: string name, int amount
-                AssertCommand("addCounter", args, CAT.String, CAT.Int);
                 SavedData.Append("ConversationData", "Counter" + args[0], int.Parse(args[1]));
                 break;
             case "unlockAchievement":
                 // Params: string name
-                AssertCommand("unlockAchievement", args, CAT.String);
                 AchievementController.UnlockAchievement(args[0]);
                 break;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
 
-            // Syntax commands (ifs, functions...)
-
+    public static StartLineResult ExecuteSyntaxCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        string line,
+        ConversationPlayer player,
+        List<string> lines,
+        int num,
+        ConversationData origin,
+        Stack<ConversationPlayer.FunctionStackObject> functionStack,
+        PlayMode playMode,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "if":
                 /* Syntax:
                  * :if:hasFlag:bla{
@@ -459,7 +560,6 @@ public static class EventCommandProcessor
                 num = SkipBlock(num, lines);
                 break;
             case "call":
-                AssertCommand("call", args, CAT.String);
                 if (origin.Functions.ContainsKey(args[0]))
                 {
                     // Store current lines & position
@@ -470,7 +570,6 @@ public static class EventCommandProcessor
                 }
                 throw Bugger.Error("No matching function! (" + args[0] + ")");
             case "callOther":
-                AssertCommand("callOther", args, CAT.String);
                 // Store current lines & position
                 functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines));
                 // Load new conversation
@@ -492,7 +591,6 @@ public static class EventCommandProcessor
                 }
                 return result | StartLineResult.Wait;
             case "return":
-                AssertCommand("return", args);
                 if (functionStack.Count == 0)
                 {
                     throw Bugger.Error("Nothing to return from!");
@@ -502,12 +600,25 @@ public static class EventCommandProcessor
                 return result | StartLineTrue(function.LineNumber + 1);
             case "finishConversation":
                 // Params: none
-                AssertCommand("finishConversation", args);
                 player.FinishConversation();
                 return result | StartLineResult.FinishConversation;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
 
-            // Tutorial commands
-
+    public static StartLineResult ExecuteTutorialCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationPlayer player,
+        int num,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "tutorialForceButton":
                 // Not asserting tutorials for now
                 if (TutorialGameController.Current == null)
@@ -548,17 +659,28 @@ public static class EventCommandProcessor
                 SceneController.LoadScene("Map");
                 return result | StartLineResult.FinishLevel;
             default:
-                break;
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
 
-            // Main menu commands
-
+    public static StartLineResult ExecuteMenuCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationPlayer player,
+        int num,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
             case "introShowCutscene":
                 // Params: none
                 if (player.Intro == null)
                 {
                     throw Bugger.Error("Don't use intro commands outside the intro");
                 }
-                AssertCommand("introShowCutscene", args);
                 player.Pause();
                 player.Intro.gameObject.SetActive(true);
                 return result | StartLineResult.MidBattleScreen;
@@ -568,7 +690,6 @@ public static class EventCommandProcessor
                 {
                     throw Bugger.Error("Don't use intro commands outside the intro");
                 }
-                AssertCommand("introShowUpgradeMenu", args);
                 player.Pause();
                 player.Knowledge.SetActive(true);
                 return result | StartLineResult.MidBattleScreen;
@@ -578,7 +699,6 @@ public static class EventCommandProcessor
                 {
                     throw Bugger.Error("Don't use intro commands outside the intro");
                 }
-                AssertCommand("introShowTutorial", args);
                 if (SavedData.Load("ConversationData", "FlagTutorialFinish", 0) == 0)
                 {
                     player.Pause();
@@ -586,46 +706,127 @@ public static class EventCommandProcessor
                     return result | StartLineResult.MidBattleScreen;
                 }
                 break;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
         }
         return result | StartLineTrue(num + 1);
     }
-    private static void AssertCommand(string commandName, string[] args, params CAT[] commandArguments)
+
+    public static StartLineResult ExecuteCommand(
+        this ConversationPlayer player,
+        List<string> lines,
+        int num,
+        ConversationData origin,
+        CGController cgController,
+        Stack<ConversationPlayer.FunctionStackObject> functionStack,
+        PlayMode playMode,
+        bool beforeBattleStart,
+        bool shouldFadeIn,
+        System.Func<int, StartLineResult> StartLineTrue,
+        out System.Action<StartLineResult> delayedAction)
     {
-        if (GameCalculations.Debug)
+        delayedAction = null;
+        string line = lines[num];
+        string[] parts = line.Split(':');
+        // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
+        string[] args = GetArgsFromParts(parts);
+        CommandStruct command = GetCommandStruct(parts[0]);
+        if (command == null)
         {
-            string errorMessage = "Incorrect arguemnts: " + commandName + " requires " + string.Join(":", commandArguments).Replace("Op", "(optional)") + " arguments - " + string.Join(":", args) + " is incompatible";
-            // Since args always contains "" at the end, the last argument doesn't really exist
-            if ((args.Length - 1) > commandArguments.Length || ((args.Length - 1) < commandArguments.Length && (int)commandArguments[args.Length - 1] < 10))
+            throw Bugger.Error("No matching command! (" + parts[0] + ")");
+        }
+        command.Assert(args);
+        switch (command.Type)
+        {
+            case CommandType.Level:
+                return ExecuteLevelCommand(command.Name, parts, args, num, origin, StartLineTrue);
+            case CommandType.Conversation:
+                return ExecuteConversationCommand(command.Name, parts, args, player, num, cgController, beforeBattleStart, shouldFadeIn, StartLineTrue, out delayedAction);
+            case CommandType.MidBattleScreen:
+                return ExecuteMidBattleScreenCommand(command.Name, parts, args, player);
+            case CommandType.Global:
+                return ExecuteGlobalCommand(command.Name, parts, args, origin, num, StartLineTrue);
+            case CommandType.Syntax:
+                return ExecuteSyntaxCommand(command.Name, parts, args, line, player, lines, num, origin, functionStack, playMode, StartLineTrue);
+            case CommandType.Tutorial:
+                return ExecuteTutorialCommand(command.Name, parts, args, player, num, StartLineTrue);
+            case CommandType.Menu:
+                return ExecuteLevelCommand(command.Name, parts, args, num, origin, StartLineTrue);
+            default:
+                throw Bugger.Error("Impossible");
+        }
+    }
+
+    public class CommandStruct
+    {
+        public string Name;
+        public CommandType Type;
+        public CAT[] Arguments;
+        private bool NoAssert;
+
+        public CommandStruct(string name, CommandType type, params CAT[] arguments)
+        {
+            Name = name;
+            Type = type;
+            Arguments = arguments;
+        }
+
+        public CommandStruct(string name, CommandType type, bool noAssert)
+        {
+            Name = name;
+            Type = type;
+            Arguments = new CAT[0];
+            NoAssert = noAssert;
+        }
+
+        public void Assert(string[] args)
+        {
+            if (NoAssert)
             {
-                throw Bugger.Error(errorMessage);
+                return;
             }
-            for (int i = 0; i < args.Length - 1; i++)
+            AssertCommand(Name, args, Arguments);
+        }
+
+        private void AssertCommand(string commandName, string[] args, params CAT[] commandArguments)
+        {
+            if (GameCalculations.Debug)
             {
-                if (!MatchesCommandType(args[i], (CAT)((int)commandArguments[i] % 10)))
+                string errorMessage = "Incorrect arguemnts: " + commandName + " requires " + string.Join(":", commandArguments).Replace("Op", "(optional)") + " arguments - " + string.Join(":", args) + " is incompatible";
+                // Since args always contains "" at the end, the last argument doesn't really exist
+                if ((args.Length - 1) > commandArguments.Length || ((args.Length - 1) < commandArguments.Length && (int)commandArguments[args.Length - 1] < 10))
                 {
                     throw Bugger.Error(errorMessage);
                 }
+                for (int i = 0; i < args.Length - 1; i++)
+                {
+                    if (!MatchesCommandType(args[i], (CAT)((int)commandArguments[i] % 10)))
+                    {
+                        throw Bugger.Error(errorMessage);
+                    }
+                }
             }
         }
-    }
-    private static bool MatchesCommandType(string part, CAT command)
-    {
-        switch (command)
+
+        private bool MatchesCommandType(string part, CAT command)
         {
-            case CAT.String:
-                return true;
-            case CAT.Int:
-                return int.TryParse(part, out _);
-            case CAT.Float:
-                return float.TryParse(part, out _);
-            case CAT.Bool:
-                return part.ToUpper() == "T" || part.ToUpper() == "F" || part.ToUpper() == "L" || part.ToUpper() == "R";
-            case CAT.Team:
-                return true; // Non-existant team is all teams
-            case CAT.AIType:
-                return part.ToAIType() != null;
-            default:
-                throw Bugger.Error("There's no command of type " + command + "!");
+            switch (command)
+            {
+                case CAT.String:
+                    return true;
+                case CAT.Int:
+                    return int.TryParse(part, out _);
+                case CAT.Float:
+                    return float.TryParse(part, out _);
+                case CAT.Bool:
+                    return part.ToUpper() == "T" || part.ToUpper() == "F" || part.ToUpper() == "L" || part.ToUpper() == "R";
+                case CAT.Team:
+                    return true; // Non-existant team is all teams
+                case CAT.AIType:
+                    return part.ToAIType() != null;
+                default:
+                    throw Bugger.Error("There's no command of type " + command + "!");
+            }
         }
     }
 }
