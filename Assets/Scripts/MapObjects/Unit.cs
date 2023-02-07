@@ -243,7 +243,10 @@ public class Unit : MapObject
             }
         }
     }
-
+    /// <summary>
+    /// Moves the unit to the target pos, then shows attack markers (aka move playable unit).
+    /// </summary>
+    /// <param name="Pos">Target pos to move to.</param>
     public void MoveOrder(Vector2Int Pos)
     {
         GameController.Current.RemoveMarkers();
@@ -366,7 +369,11 @@ public class Unit : MapObject
         //    }
         //}
     }
-
+    /// <summary>
+    /// Moves the unit to the given pos. If immediate is false, also animates the movement.
+    /// </summary>
+    /// <param name="pos">Target pos to move to.</param>
+    /// <param name="immediate">Skip the move animation?</param>
     public void MoveTo(Vector2Int pos, bool immediate = false)
     {
         // Add animation etc.
@@ -389,7 +396,7 @@ public class Unit : MapObject
         }
     }
 
-    public void Fight(Unit unit)
+    public void Fight(Unit unit, float attackerRandomResult = -1, float defenderRandomResult = -1)
     {
         // Stats - increase battle count if either unit is a player
         if (TheTeam.PlayerControlled())
@@ -413,11 +420,11 @@ public class Unit : MapObject
             defender = unit;
         }
         // Save the result beforehand to prevent cheating
-        float attackerRandomResult = GameCalculations.GetRandomHitResult();
-        float defenderRandomResult = GameCalculations.GetRandomHitResult();
+        attackerRandomResult = attackerRandomResult < 0 ? GameCalculations.GetRandomHitResult() : attackerRandomResult;
+        defenderRandomResult = defenderRandomResult < 0 ? GameCalculations.GetRandomHitResult() : defenderRandomResult;
         GameController.Current.AutoSaveSaveAction(
             SuspendDataGameController.CurrentAction.ActionType.Combat,
-            attacker.Pos, defender.Pos, Pos + "," + attackerRandomResult + "," + defenderRandomResult);
+            attacker.Pos, defender.Pos, Pos.x + "," + Pos.y + ";" + attackerRandomResult + "," + defenderRandomResult);
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {

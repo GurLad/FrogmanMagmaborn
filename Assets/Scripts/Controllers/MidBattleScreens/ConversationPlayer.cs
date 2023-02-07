@@ -73,6 +73,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         PortraitL.gameObject.SetActive(false);
         CGController.Init();
     }
+
     private void Update()
     {
         if (origin != null)
@@ -193,6 +194,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
         }
     }
+
     public void Play(ConversationData conversation, bool shouldFadeIn = true)
     {
         playMode = PlayMode.PreBattle;
@@ -203,6 +205,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0, true, shouldFadeIn);
     }
+
     public void PlayOneShot(string text)
     {
         // Store current lines & position
@@ -218,6 +221,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         MidBattleScreen.Set(this, true);
         StartLine(0);
     }
+
     public void PlayPostBattle()
     {
         if (origin.PostBattleLines.Count <= 0)
@@ -232,6 +236,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0);
     }
+
     public void Pause(bool resetSpeakers = true)
     {
         gameObject.SetActive(false);
@@ -242,6 +247,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             currentSpeakerIsLeft = false;
         }
     }
+
     public void Wait(float seconds)
     {
         SoftResume();
@@ -283,6 +289,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         gameObject.SetActive(true);
         enabled = true;
     }
+
     public void Skip()
     {
         skipping = true;
@@ -302,6 +309,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         return false;
     }
+
     private void SkipEmptyLines(int startAt = -1)
     {
         currentLine = startAt >= 0 ? startAt : currentLine;
@@ -311,10 +319,15 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             currentLine++;
         }
     }
+
     private void TrueSkipToLine(int target)
     {
-        while (currentLine < target)
+        // TBA: Maybe return result? Technically we don't really need it for the current purpose (loading auto-saves), but still
+        System.Action<StartLineResult> delayedAction = null;
+
+        StartLineResult StartLineTrue(int num)
         {
+            currentLine = num;
             string line = lines[currentLine];
             switch (GetLineType(lines[currentLine]))
             {
@@ -323,7 +336,24 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                 case LineType.EndOfBlock:
                     break;
                 case LineType.Command:
-                    // TBA: Also handle this for CGs and stuff
+                    // Only process conversation commands for now (TBA: add syntax commands too)
+                    string[] parts = line.Split(':');
+                    EventCommandProcessor.CommandStruct commandStruct = EventCommandProcessor.GetCommandStruct(parts[0]);
+                    if (commandStruct.Type == EventCommandProcessor.CommandType.Conversation)
+                    {
+                        string[] args = EventCommandProcessor.GetArgsFromParts(parts);
+                        EventCommandProcessor.ExecuteConversationCommand(
+                            commandStruct.Name,
+                            parts,
+                            args,
+                            this,
+                            currentLine,
+                            CGController,
+                            true,
+                            true,
+                            StartLineTrue,
+                            out delayedAction);
+                    }
                     break;
                 case LineType.Text:
                     if (line.IndexOf(':') != -1)
@@ -336,8 +366,16 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     break;
             }
             currentLine++;
+            return StartLineResult.None; // ?
         }
+
+        while (currentLine < target)
+        {
+            StartLineTrue(currentLine);
+        }
+        delayedAction?.Invoke(StartLineResult.None); // ?
     }
+
     private string ProcessLine(string line)
     {
         int index;
@@ -354,6 +392,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         return line;
     }
+
     private LineType GetLineType(string line)
     {
         if (line.Length <= 0) // Empty line
@@ -374,6 +413,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         return LineType.Text;
     }
+
     private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = true)
     {
         System.Action<StartLineResult> delayedAction = null;
@@ -471,6 +511,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         delayedAction?.Invoke(result);
         return result;
     }
+
     public StartLineResult FinishConversation(bool fadedOut = false)
     {
         // Check if this is the last part
@@ -567,12 +608,14 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         OnFinishConversation = null;
         return StartLineResult.FinishConversation;
     }
+
     private string TrueLine(string line)
     {
         int index = line.IndexOf(':');
         line = line.Substring(index >= 0 ? index + 2 : 0);
         return line;
     }
+
     private string FindLineBreaks(string line)
     {
         int lineWidth = LineWidth;
@@ -592,10 +635,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         //ErrorController.Info(line);
         return line;
     }
+
     private bool LineAddition(string trueLine)
     {
         return /*trueLine.IndexOf('\n') < 0 &&*/ currentLine >= 1;
     }
+
     public void SetSpeakerFromText(string speakerText)
     {
         // Format: name|displayName|L/R
@@ -631,6 +676,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         voice = portrait.Voice;
     }
+
     public void SetSpeaker(bool left)
     {
         PortraitHolder target = left ? PortraitL : PortraitR;
@@ -652,6 +698,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         currentSpeakerIsLeft = left;
     }
+
     public void SetSinglePortrait(bool left, bool? newCurrentSpeakerIsLeft = null)
     {
         currentSpeakerIsLeft = newCurrentSpeakerIsLeft ?? currentSpeakerIsLeft;
@@ -659,12 +706,14 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         PortraitR.gameObject.SetActive(!left);
         SetSpeaker(left);
     }
+
     private void SetNoPortrait()
     {
         PortraitL.gameObject.SetActive(false);
         PortraitR.gameObject.SetActive(false);
         currentSpeakerIsLeft = false;
     }
+
     private void PlayLetter(char letter)
     {
         letter = letter.ToString().ToLower()[0];

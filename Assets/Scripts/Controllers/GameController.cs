@@ -676,6 +676,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
     }
 
+    public Unit FindUnitAtPos(Vector2Int pos)
+    {
+        return FindUnitAtPos(pos.x, pos.y);
+    }
+
     public Unit FindUnitAtPos(int x, int y)
     {
         return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
@@ -1415,16 +1420,38 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         if (suspendData.OnLoadAction != null)
         {
+            // Create vars which we'll (probably) use later
+            Unit origin, target;
+            origin = FindUnitAtPos(suspendData.OnLoadAction.Origin);
             switch (suspendData.OnLoadAction.Type)
             {
                 case SuspendDataGameController.CurrentAction.ActionType.Move:
-
+                    origin.MoveTo(suspendData.OnLoadAction.Target);
                     break;
                 case SuspendDataGameController.CurrentAction.ActionType.Combat:
+                    // Load all the parts
+                    string[] parts = suspendData.OnLoadAction.AdditionalData.Split(';');
+                    string[] posParts = parts[0].Split(',');
+                    string[] randomResultParts = parts[1].Split(',');
+                    Vector2Int attackerPos = new Vector2Int(int.Parse(posParts[0]), int.Parse(posParts[1]));
+                    Unit attacker = FindUnitAtPos(attackerPos);
+                    target = FindUnitAtPos(suspendData.OnLoadAction.Target);
+                    if (attacker == origin)
+                    {
+                        origin.Fight(target, int.Parse(randomResultParts[0]), int.Parse(randomResultParts[1]));
+                    }
+                    else
+                    {
+                        target.Fight(origin, int.Parse(randomResultParts[0]), int.Parse(randomResultParts[1]));
+                    }
                     break;
                 case SuspendDataGameController.CurrentAction.ActionType.Push:
+                    target = FindUnitAtPos(suspendData.OnLoadAction.Target);
+                    origin.Push(target);
                     break;
                 case SuspendDataGameController.CurrentAction.ActionType.Pull:
+                    target = FindUnitAtPos(suspendData.OnLoadAction.Target);
+                    origin.Pull(target);
                     break;
                 default:
                     break;
