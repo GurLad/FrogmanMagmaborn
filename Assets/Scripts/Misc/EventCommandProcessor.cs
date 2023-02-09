@@ -730,10 +730,10 @@ public static class EventCommandProcessor
         string[] parts = line.Split(':');
         // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
         string[] args = GetArgsFromParts(parts);
-        CommandStruct command = GetCommandStruct(parts[0]);
+        CommandStruct command = GetCommandStruct(parts[1]);
         if (command == null)
         {
-            throw Bugger.Error("No matching command! (" + parts[0] + ")");
+            throw Bugger.Error("No matching command! (" + parts[1] + ")");
         }
         command.Assert(args);
         switch (command.Type)
@@ -771,12 +771,12 @@ public static class EventCommandProcessor
             Arguments = arguments;
         }
 
-        public CommandStruct(string name, CommandType type, bool noAssert)
+        public CommandStruct(string name, CommandType type, bool assert)
         {
             Name = name;
             Type = type;
             Arguments = new CAT[0];
-            NoAssert = noAssert;
+            NoAssert = !assert;
         }
 
         public void Assert(string[] args)

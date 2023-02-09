@@ -338,7 +338,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                 case LineType.Command:
                     // Only process conversation commands for now (TBA: add syntax commands too)
                     string[] parts = line.Split(':');
-                    EventCommandProcessor.CommandStruct commandStruct = EventCommandProcessor.GetCommandStruct(parts[0]);
+                    EventCommandProcessor.CommandStruct commandStruct = EventCommandProcessor.GetCommandStruct(parts[1]);
                     if (commandStruct.Type == EventCommandProcessor.CommandType.Conversation)
                     {
                         string[] args = EventCommandProcessor.GetArgsFromParts(parts);
