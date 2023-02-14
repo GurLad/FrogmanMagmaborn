@@ -6,12 +6,15 @@ roomNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
-:play:BeforeBattle
+:lose:
 # Name: Text.
 ~ After battle
-:play:AfterBattle
-Fashima: TBA
-# Name: Text.
+:if:hasFlag:FashimaSpawnWerse1{
+:callOther:Level8FashimaSpawnWerse1
+}
+:else:{
+:callOther:Level8FashimaSpawnWerseGeneric
+}
 
 # === Functions ====
 

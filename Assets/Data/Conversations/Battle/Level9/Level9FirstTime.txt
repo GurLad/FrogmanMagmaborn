@@ -15,6 +15,18 @@ Frogman: Ugh... How did we get here?
 :if:hasFlag:FashimaKilledAlfred{
 More importantly, why did you kill Alfred?!
 # TBA
+:if:charactersAlive:>0{
+Wait, where is everyone?!
+}
+}
+:else:{
+:if:charactersAlive:>0{
+Wait, where is everyone?!
+Fashima: Don't worry, my friend. They are safe.
+Frogman: Safe where? What have you done to them?!
+Fashima: I have merely teleported them somewhere else.\a Our talk might tread treacherous ground.
+Frogman: Teleported? How?
+}
 }
 # Improve
 Fashima: Teleportation crystals.
@@ -25,9 +37,9 @@ Fashima: A wonderful invention called gloves.
 Frogman: I... see.
 Fashima: We have some time to rest now, my friend.\a If you wish, you can ask me more questions.\a If not, we can move on to our next target.
 Frogman: Next target?
-Fashima: You goal is to get out of here. Correct?
+Fashima: Your goal is to get out of here. Correct?
 Frogman: Uh, yes?
-Fashima: Great. Then we have two more Magi standing in our way:\a Bodder and Leshy.
+Fashima: Great. Then we have two more Magi standing in our way:\a Bodder and Lessy.
 :if:hasFlag:FrogmanKnowsWhatTheMagiAre{
 Frogman: Wait. Weren't you a Magus yourself?\a Why are you helping us?\a Why are you fighting the other Magi?
 }
@@ -45,8 +57,31 @@ Frogman: Sure...
 Fashima: Now. Do you have any further questions for me?
 :showBase:
 # TBA: Add the "don't trust Fashima" choice.
-Frogman: I think that's enough questions.\a I'm ready.
+Frogman: I think that's enough questions.
 Fashima: Great. Then let's go to Bodder.
+Frogman: ...
+:showChoice:Frogman:Trust Fashima:Don't trust Fashima
+:if:chose:0{
+:call:TrustFashima
+}
+:else:{
+:call:DontTrustFashima
+}
+
+~ After battle
+:unlockAchievement:DefeatSuperBodder
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ TrustFashima
+Frogman||L: Right. I'm ready.
+:hideCG:
+:play:EnterTheBodder
+Bodder: TBA
+
+~ DontTrustFashima
 :hideCG:
 :play:EnterTheBodder
 # If didn't trust Fashima (arrived alone)
@@ -72,13 +107,6 @@ Frogman: I've had enough. Let's charge, everyone!
 Bodder: And do you know-
 :setDeathQuote:Bodder:BodderDeath
 :play:TheInvincibleBodder:T
-
-~ After battle
-:unlockAchievement:DefeatSuperBodder
-:play:AfterBattle
-# Name: Text.
-
-# === Functions ====
 
 ~ BodderDeath
 :unlockAchievement:DefeatBodder

@@ -1,0 +1,32 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:9
+hasFlag:BaseFashimaMotive
+hasFlag:BaseFashimaBodder
+~ Demands
+# Nothinig
+~ Before battle
+Frogman: Hold on. These teleportation crystals.\a Why didn't you use them before?\a You could've just teleported us to a lava pit or something.
+Fashima: Correct. However, as should be obvious by know,\a my goal was to be killed by you.
+Frogman: To end the Magi?
+Fashima: Yes.
+Frogman: Then why not just teleport them to their death?
+Fashima: It wouldn't work on Lessy.
+Frogman: Why not?
+Fashima: You will see.
+Frogman: Then what about Bodder?
+Fashima: He makes for good practice for you, my friend.\a If you cannot defeat him,\a you stand no chance against Lessy.
+Frogman: Practice? He killed me once already!
+Fashima: And yet, here you are again, safe and sound.
+Frogman: I-
+Ugh.
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
