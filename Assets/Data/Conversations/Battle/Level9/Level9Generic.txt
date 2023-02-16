@@ -1,5 +1,5 @@
-priority:5
-unique:T
+priority:-1
+unique:F
 ~ Requirements
 roomNumber:9
 ~ Demands
@@ -10,55 +10,10 @@ roomNumber:9
 :loadUnits::player
 :loadUnits::monster:T
 :showCG:FortressInside
-Fashima||R: Welcome to my humble home, my friend.
-Frogman: Ugh... How did we get here?
-:if:hasFlag:FashimaKilledAlfred{
-More importantly, why did you kill Alfred?!
-# TBA
-:if:charactersAlive:>0{
-Wait, where is everyone?!
-}
-}
-:else:{
-:if:charactersAlive:>0{
-Wait, where is everyone?!
-Fashima: Don't worry, my friend. They are safe.
-Frogman: Safe where? What have you done to them?!
-Fashima: I have merely teleported them somewhere else.\a Our talk might tread treacherous ground.
-Frogman: Teleported? How?
-}
-}
-# Improve
-Fashima: Teleportation crystals.
-Frogman: What?
-Fashima: Crystals enchanted to teleport people here when touched.\a That's why I threw them at you, my friend.
-Frogman: But how did you touch them then?
-Fashima: A wonderful invention called gloves.
-Frogman: I... see.
-Fashima: We have some time to rest now, my friend.\a If you wish, you can ask me more questions.\a If not, we can move on to our next target.
-Frogman: Next target?
-Fashima: Your goal is to get out of here. Correct?
-Frogman: Uh, yes?
-Fashima: Great. Then we have two more Magi standing in our way:\a Bodder and Lessy.
-:if:hasFlag:FrogmanKnowsWhatTheMagiAre{
-Frogman: Wait. Weren't you a Magus yourself?\a Why are you helping us?\a Why are you fighting the other Magi?
-}
-:else:{
-Frogman: Magi? What does that mean?
-Fashima: The leaders of the Guards, capable of using magic.
-Frogman: Like you?
-Fashima: Exactly.
-Frogman: Oh. Then why are you helping us?\a Why are you fighting the other Magi?
-}
-Fashima: Please keep your questions for the end, my friend.
-Frogman: Okay...
-Fashima: Our next target is Bodder, the Clone Magus.\a I shall teleport us to him once you're ready.
-Frogman: Sure...
-Fashima: Now. Do you have any further questions for me?
+Fashima||R: Welcome back, my friend.
+Frogman: Ugh...
+Fashima: TBA
 :showBase:
-Frogman: I think that's enough questions.
-Fashima: Great. Then let's go to Bodder.
-Frogman: ...
 :callOther:Level9TrustFashimaChoice
 :hideCG:
 :call:EnterBodder
