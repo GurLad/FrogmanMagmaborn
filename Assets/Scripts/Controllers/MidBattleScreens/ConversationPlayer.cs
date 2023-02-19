@@ -320,62 +320,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
     }
 
-    private void TrueSkipToLine(int target)
-    {
-        // TBA: Maybe return result? Technically we don't really need it for the current purpose (loading auto-saves), but still
-        System.Action<StartLineResult> delayedAction = null;
-
-        StartLineResult StartLineTrue(int num)
-        {
-            currentLine = num;
-            string line = lines[currentLine];
-            switch (GetLineType(lines[currentLine]))
-            {
-                case LineType.Empty:
-                case LineType.Comment:
-                case LineType.EndOfBlock:
-                    break;
-                case LineType.Command:
-                    // Only process conversation commands for now (TBA: add syntax commands too)
-                    string[] parts = line.Split(':');
-                    EventCommandProcessor.CommandStruct commandStruct = EventCommandProcessor.GetCommandStruct(parts[1]);
-                    if (commandStruct.Type == EventCommandProcessor.CommandType.Conversation)
-                    {
-                        string[] args = EventCommandProcessor.GetArgsFromParts(parts);
-                        EventCommandProcessor.ExecuteConversationCommand(
-                            commandStruct.Name,
-                            parts,
-                            args,
-                            this,
-                            currentLine,
-                            CGController,
-                            true,
-                            true,
-                            StartLineTrue,
-                            out delayedAction);
-                    }
-                    break;
-                case LineType.Text:
-                    if (line.IndexOf(':') != -1)
-                    {
-                        string portraitText = line.Split(':')[0];
-                        SetSpeakerFromText(portraitText);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            currentLine++;
-            return StartLineResult.None; // ?
-        }
-
-        while (currentLine < target)
-        {
-            StartLineTrue(currentLine);
-        }
-        delayedAction?.Invoke(StartLineResult.None); // ?
-    }
-
     private string ProcessLine(string line)
     {
         int index;
@@ -602,7 +546,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
         }
         // Clear TempPortraits & cleanup
-        PortraitController.Current.GeneratedGenericPortraits.Clear();
+        PortraitController.Current.ClearGeneratedPortraits();
         System.Action action = OnFinishConversation;
         action?.Invoke();
         OnFinishConversation = null;
@@ -752,26 +696,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         origin = new ConversationData(data.Origin);
         if (data.Playing)
         {
-            // We need to skip through every FunctionStackObject in the stack in reverse order, so that they all reach their target line properly
-            // First, reverse the stack
-            Stack<FunctionStackObject> reverseStack = new Stack<FunctionStackObject>();
-            while (data.FunctionStack.Count > 0)
-            {
-                reverseStack.Push(data.FunctionStack.Pop());
-            }
-            // Now, skip all lines until the target line for each element in the reverse stack
-            while (reverseStack.Count > 0)
-            {
-                FunctionStackObject stackObject = reverseStack.Pop();
-                lines = stackObject.Lines;
-                TrueSkipToLine(stackObject.LineNumber);
-                data.FunctionStack.Push(stackObject);
-            }
-            // Lastly, assign the proper stack & lines to this ConversationPlayer & skip to them
-            lines = data.Lines;
-            functionStack = data.FunctionStack;
-            TrueSkipToLine(data.CurrentLine);
-            SoftResume(); // Not sure whether it's soft or not, depending on future me's implementation of TrueSkip
+            // TBA
+            PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
         }
     }
 
@@ -797,6 +723,7 @@ public class SuspendDataConversationPlayer
     public int CurrentLine;
     public Stack<ConversationPlayer.FunctionStackObject> FunctionStack = new Stack<ConversationPlayer.FunctionStackObject>();
     public List<string> Lines;
+    public List<GeneratedPortrait> GeneratedPortraits;
 
     public SuspendDataConversationPlayer(ConversationData origin)
     {
@@ -809,6 +736,7 @@ public class SuspendDataConversationPlayer
         CurrentLine = currentLine;
         FunctionStack = functionStack;
         Lines = lines;
+        GeneratedPortraits = PortraitController.Current.SaveAllGeneratedPortraits();
         Playing = true;
     }
 }

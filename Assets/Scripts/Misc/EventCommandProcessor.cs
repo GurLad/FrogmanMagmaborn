@@ -352,11 +352,11 @@ public static class EventCommandProcessor
             case "addGenericCharacter":
                 // Params: string internalName, string forceTags = none
                 // Add to TempPortraits with args[0] internal name and args[1] tags
-                PortraitController.Current.GeneratedGenericPortraits.Add(args[0], PortraitController.Current.FindGenericPortrait(args[1]));
+                PortraitController.Current.AddGenericPortrait(args[0], args[1]);
                 break;
             case "getGenericCharacter":
                 // Params: string internalName, Team fromTeam = null
-                PortraitController.Current.GeneratedGenericPortraits.Add(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
+                PortraitController.Current.AddPortraitAlias(args[0], GameController.Current.GetGenericPortrait(parts.Length > 3 ? args[1].ToTeam() : null));
                 break;
             case "setSingleSpeaker":
                 // Params: bool left = true

@@ -1260,10 +1260,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     private void AssignGenericPortraitsToUnits(Team? team = null)
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
-        List<Portrait> portraits = PortraitController.Current.GeneratedGenericPortraits.Values.ToList();
+        List<GeneratedPortrait> portraits = PortraitController.Current.SaveAllGeneratedPortraits();
         for (int i = 0; i < portraits.Count && i < targetUnits.Count; i++)
         {
-            targetUnits[i].SetIcon(portraits[i]);
+            targetUnits[i].SetIcon(portraits[i].Portrait);
         }
     }
 

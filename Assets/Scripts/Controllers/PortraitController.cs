@@ -19,13 +19,14 @@ public class PortraitController : MonoBehaviour
     public List<AudioClip> DebugVoices;
     public AudioSource DebugSource;
     // I just realized how many problems thus far could've been solved with a dictionary...
-    [HideInInspector]
-    public Dictionary<string, Portrait> GeneratedGenericPortraits = new Dictionary<string, Portrait>(); 
+    private Dictionary<string, GeneratedPortrait> generatedPortraits { get; } = new Dictionary<string, GeneratedPortrait>(); 
+
     private void Reset()
     {
         Portraits.Add(new Portrait());
         DebugSource = GetComponent<AudioSource>();
     }
+
     private void Awake()
     {
         Current = this;
@@ -42,11 +43,13 @@ public class PortraitController : MonoBehaviour
             GenericPortraits[i].Init();
         }
     }
+
     public Portrait FindPortrait(string name)
     {
-        return Portraits.Find(a => a.Name == name) ?? (GeneratedGenericPortraits.ContainsKey(name) ? GeneratedGenericPortraits[name] : ErrorPortrait);
+        return Portraits.Find(a => a.Name == name) ?? (generatedPortraits.ContainsKey(name) ? generatedPortraits[name].Portrait : ErrorPortrait);
     }
-    public Portrait FindGenericPortrait(string tags = "")
+
+    public GeneratedPortrait GenerateGenericPortrait(string internalName = "", string tags = "")
     {
         // Find portraits with matching tags
         List<GenericPortrait> genericPortraits;
@@ -61,8 +64,34 @@ public class PortraitController : MonoBehaviour
             genericPortraits = GenericPortraits;
         }
         // Select portrait
-        return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait();
+        return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait(internalName);
     }
+
+    public void AddGenericPortrait(string internalName, string tags = "")
+    {
+        generatedPortraits.Add(internalName, GenerateGenericPortrait(internalName, tags));
+    }
+
+    public void AddPortraitAlias(string internalName, Portrait portrait)
+    {
+        generatedPortraits.Add(internalName, new GeneratedPortrait(internalName, portrait));
+    }
+
+    public void ClearGeneratedPortraits()
+    {
+        generatedPortraits.Clear();
+    }
+
+    public List<GeneratedPortrait> SaveAllGeneratedPortraits()
+    {
+        return generatedPortraits.Values.ToList();
+    }
+
+    public void LoadGeneratedPortraits(List<GeneratedPortrait> portraits)
+    {
+        portraits.ForEach(a => generatedPortraits.Add(a.InternalName, a));
+    }
+
 #if UNITY_EDITOR || MODDABLE_BUILD
     public void AutoLoad()
     {
@@ -168,23 +197,91 @@ public class GenericPortrait
         Tags = new List<string>(tags.Split(','));
     }
 
-    public Portrait ToPortrait()
+    public GeneratedPortrait ToPortrait(string internalName)
     {
+        // Create a new GeneratedPortrait
+        GeneratedPortrait generatedPortrait = new GeneratedPortrait();
+        generatedPortrait.Voice = PortraitController.Current.GenericVoicesAndNames[VoiceType].ToVoice();
+        generatedPortrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
+        generatedPortrait.ForegroundColorID = Random.Range(0, 4);
+        generatedPortrait.InternalName = internalName;
+        generatedPortrait.PortraitName = Name;
+        generatedPortrait.Generic = true;
+        // Now "restore" that generated portrait
+        generatedPortrait.Portrait = RestoreGeneratedPortrait(generatedPortrait);
+        return generatedPortrait;
+    }
+
+    public Portrait RestoreGeneratedPortrait(GeneratedPortrait generatedPortrait)
+    {
+        // Set the background & foreground from this portrait
         Portrait portrait = new Portrait();
-        NamedVoice voice = PortraitController.Current.GenericVoicesAndNames[VoiceType].ToVoice();
-        portrait.Voice = voice;
-        portrait.Name = voice.Name;
         portrait.Background = Background;
         portrait.Foreground = Foreground;
-        portrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
-        portrait.ForegroundColorID = Random.Range(0, 4);
         portrait.AccentColor = 2;
+        // The rest of the values are taken from the generated one
+        portrait.Voice = generatedPortrait.Voice;
+        portrait.BackgroundColor = generatedPortrait.BackgroundColor;
+        portrait.ForegroundColorID = generatedPortrait.ForegroundColorID;
+        portrait.Name = generatedPortrait.Voice.Name;
         return portrait;
     }
 
     public override string ToString()
     {
         return tags + ": " + Background.name;
+    }
+}
+
+[System.Serializable]
+public class GeneratedPortrait
+{
+    // For both actual generic portraits and battle generated portraits (ex. Attacker, Defender...)
+    public bool Generic;
+    public string InternalName;
+    public string PortraitName;
+    // Only for generic portraits
+    public Palette BackgroundColor = new Palette();
+    [Range(0, 3)]
+    public int ForegroundColorID;
+    public NamedVoice Voice;
+    // The most important part
+    private Portrait _portait;
+    public Portrait Portrait
+    {
+        get
+        {
+            if (_portait == null)
+            {
+                if (Generic)
+                {
+                    GenericPortrait temp = PortraitController.Current.GenericPortraits.Find(a => a.Name == PortraitName);
+                    _portait = temp.RestoreGeneratedPortrait(this);
+                }
+                else
+                {
+                    _portait = PortraitController.Current.FindPortrait(PortraitName);
+                }
+            }
+            return _portait;
+        }
+        set
+        {
+            _portait = value;
+        }
+    }
+
+    public GeneratedPortrait()
+    {
+        Generic = true;
+    }
+
+    public GeneratedPortrait(string internalName, Portrait copyFrom)
+    {
+        Generic = false;
+        InternalName = internalName;
+        PortraitName = copyFrom.Name;
+        Portrait = copyFrom;
     }
 }
 

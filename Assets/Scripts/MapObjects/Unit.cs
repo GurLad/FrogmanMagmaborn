@@ -135,7 +135,7 @@ public class Unit : MapObject
                 Name = Class;
                 break;
             case PortraitLoadingMode.Generic:
-                Icon = PortraitController.Current.FindGenericPortrait();
+                Icon = PortraitController.Current.GenerateGenericPortrait().Portrait;
                 DisplayName = Name = Icon.TheDisplayName;
                 break;
             default:
@@ -428,8 +428,8 @@ public class Unit : MapObject
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
-            PortraitController.Current.GeneratedGenericPortraits.Add("Attacker", Icon);
-            PortraitController.Current.GeneratedGenericPortraits.Add("Defender", unit.Icon);
+            PortraitController.Current.AddPortraitAlias("Attacker", Icon);
+            PortraitController.Current.AddPortraitAlias("Defender", unit.Icon);
             ConversationPlayer.Current.OnFinishConversation = () =>
                 GameController.Current.Fight(this, attacker, defender, attackerRandomResult, defenderRandomResult);
             string quote;
