@@ -8,6 +8,7 @@ roomNumber:0
 ~ Before battle
 :if:compareCounter:Level9CloneSpawn:>0{
 :loadUnits::guard:T
+:setDeathQuote:Worker:WorkerDeath
 :setCounter:Level9CloneSpawn:0
 }
 :else:{

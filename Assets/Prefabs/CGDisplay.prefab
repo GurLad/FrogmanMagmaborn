@@ -53,25 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CGs:
-  - Name: John
-    BGPalette1:
-      Colors:
-      - id: 13
-      - id: 24
-      - id: 39
-      - id: 53
-    BGPalette2:
-      Colors:
-      - id: 13
-      - id: 1
-      - id: 15
-      - id: 43
-    FGPalette1: 3
-    FGPalette2: 1
-    BGImage1: {fileID: 21300000, guid: 3304cba05ca82f242b558d5065dc947b, type: 3}
-    BGImage2: {fileID: 21300000, guid: 0d12c8108ac470649a553085b51b312c, type: 3}
-    FGImage1: {fileID: 21300000, guid: 0ad3f342b8319e84db3888f248d37611, type: 3}
-    FGImage2: {fileID: 21300000, guid: 14c3ddf6c4ff34d4887651ec23cd107a, type: 3}
   - Name: Castle
     BGPalette1:
       Colors:
@@ -123,11 +104,11 @@ MonoBehaviour:
       - id: 0
       - id: 28
       - id: 42
-    FGPalette1: 0
+    FGPalette1: 3
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: b3298a953aee0bd4090f356fac927bbf, type: 3}
     BGImage2: {fileID: 0}
-    FGImage1: {fileID: 0}
+    FGImage1: {fileID: 21300000, guid: 7e4929f696a5b3448a2819c24b7c35d5, type: 3}
     FGImage2: {fileID: 0}
   - Name: FortressPreview
     BGPalette1:
@@ -161,11 +142,11 @@ MonoBehaviour:
       - id: 0
       - id: 28
       - id: 42
-    FGPalette1: 0
+    FGPalette1: 3
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: 0f2c61059ca094040b1d4b81f97b9c38, type: 3}
     BGImage2: {fileID: 0}
-    FGImage1: {fileID: 0}
+    FGImage1: {fileID: 21300000, guid: 9f106ed05a152ff48a1f96f8e98f10c6, type: 3}
     FGImage2: {fileID: 0}
   - Name: Sea
     BGPalette1:
@@ -180,11 +161,11 @@ MonoBehaviour:
       - id: 0
       - id: 28
       - id: 42
-    FGPalette1: 0
+    FGPalette1: 3
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: fa818be3a4e1cf6479821aa3823e2553, type: 3}
     BGImage2: {fileID: 0}
-    FGImage1: {fileID: 0}
+    FGImage1: {fileID: 21300000, guid: 8422a5788b788594998feddf021a3998, type: 3}
     FGImage2: {fileID: 0}
   - Name: FortressInside
     BGPalette1:
@@ -199,11 +180,11 @@ MonoBehaviour:
       - id: 0
       - id: 28
       - id: 42
-    FGPalette1: 0
+    FGPalette1: 3
     FGPalette2: 0
     BGImage1: {fileID: 21300000, guid: 9c735d0138f58684bb3b1748af17988f, type: 3}
     BGImage2: {fileID: 0}
-    FGImage1: {fileID: 0}
+    FGImage1: {fileID: 21300000, guid: 1cb54738cee68cd41b4d19661fe5a8ed, type: 3}
     FGImage2: {fileID: 0}
   Container: {fileID: 648550419450069948}
   BG1: {fileID: 7858611218519447194}

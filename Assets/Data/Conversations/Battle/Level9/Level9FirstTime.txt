@@ -70,12 +70,6 @@ Frogman: ...
 
 # === Functions ====
 
-~ TrustFashima
-Frogman||L: Right. I'm ready.
-:hideCG:
-:play:EnterTheBodder
-Bodder: TBA
-
 ~ EnterBodder
 :play:EnterTheBodder
 # TBA: Change everything, since can't arrive alone anymore
@@ -124,3 +118,5 @@ SuBodderPre: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
 Frogman: This seems unfair.
 # TBA: Fashima speaks, based on whether you chose to trust her
 
+~ WorkerDeath
+:callOther:Level9WorkerDeath

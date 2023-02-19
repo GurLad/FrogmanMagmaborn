@@ -6,7 +6,66 @@ roomNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
+Dead: Ah...!
+:setSpeaker:Frogman||L
+# Player reaction
+:if:hasCharacter:Firbell{
+Firbell: Frogman? What have you just done?!
+Frogman: Uh... Killed an enemy?
+Firbell: That was a harmless, unharmed person!\a They were not our enemy, Bodder is our enemy!\a Why did you do this?
+Frogman: Um...
+Firbell: This was completely unjustified!\a You disgust me! Prepare to die!
+Frogman: Woah, hey now. No need to get aggresive.
+Firbell: No need to get aggressive?
+You just killed a person for no reason whatsoever,\a and you're calling me aggressive?!\a Ugh! I have had enough of you!
+:setTeam:Firbell:guard
+Frogman: Oops.
+}
+:if:hasCharacter:Kresla{
+Kresla: Woah. Did you just kill a random onlooker?
+Frogman: Uh... yes?
+Kresla: Wow! That's brutal! Why did you do that, though?
+Frogman: To... anger Bodder?
+Kresla: You killed a person just to anger Bodder?\a I've got to admit,\a I didn't see that coming. Interesting!\a You've got quite the dark mind!
+Frogman: Thanks...?
+}
+# TBA: More reactions
 
+# Bodder reaction
+:if:hasTempFlag:BodderTransformed{
+:if:compareCounter:Level9BodderState:>0{
+:replaceUnit:SuBodderPre:SuBodderPir:T
+:addSkill:SuBodderPir:DragonSkin
+SuBodderPir: YOU UTTER MONSTER! ATTACKING HARMLESS CLONES?!\a HAVE YOU NO SHAME?!\a ARRRRGH! YOU'RE A DEAD MAN, FROGMAN!
+:setCounter:Level9BodderState:0
+}
+:else:{
+:replaceUnit:SuBodderPir:SuBodderPre:T
+:addSkill:SuBodderPre:DragonSkin
+SuBodderPre: YOU UTTER MONSTER! HAVE YOU NO SHAME?!\a ATTACKING HARMLESS CLONES?!\a YOU'RE A DEAD MAN, FROGMAN! ARRRRGH!
+:setCounter:Level9BodderState:1
+}
+}
+:else:{
+Bodder: Do you know what I hate most in this world, Frogman?
+Frogman: Not again...
+Bodder: Warriors without honor. Without any sense of justice.\a Murderers, like you.
+Who don't even think twice before killing an innocent.\a Like you just did.
+Frogman: I-
+Bodder: Shut up. I see now that you deserve no mercy.\a Prepare to feel my wrath!
+:setCounter:Level9BodderState:1
+:setTempFlag:BodderTransformed
+:replaceUnit:Bodder:SuBodderPre
+:addSkill:SuBodderPre:DragonSkin
+:setSpeaker:SuBodderPre||R
+:screenShake:
+:playIntro:BodderUnleashed
+:setMapTheme:BodderUnleashed
+ARRRRGH!
+Frogman: Did... you just turn cyan?\a Wait.\a Your injuries...
+SuBodderPre: WITNESS THE POWER OF THE CRYSTALS, MORTAL!\a YOU SHALL SUFFER FOR YOUR SINS!
+Frogman: This seems unfair.
+}
 
 ~ After battle
 :play:AfterBattle
@@ -14,5 +73,6 @@ roomNumber:0
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ BodderReaction
+
+~ PlayerReaction

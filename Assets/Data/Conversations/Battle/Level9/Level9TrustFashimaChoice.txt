@@ -8,24 +8,9 @@ roomNumber:0
 :if:!hasFlag:DidntTrustFashima{
 :showChoice:Frogman:Trust Fashima:Don't trust Fashima
 :if:chose:0{
-:call:TrustFashima
+Frogman||L: Right. I'm ready.
 }
 :else:{
-:call:DontTrustFashima
-}
-}
-
-~ After battle
-:unlockAchievement:DefeatSuperBodder
-:play:AfterBattle
-# Name: Text.
-
-# === Functions ====
-
-~ TrustFashima
-Frogman||L: Right. I'm ready.
-
-~ DontTrustFashima
 Frogman||L: I don't think so.
 Fashima: Excuse me?
 Frogman: You really don't seem trustworthy.
@@ -84,3 +69,12 @@ Please...
 :lose:
 }
 }
+}
+
+~ After battle
+:unlockAchievement:DefeatSuperBodder
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+

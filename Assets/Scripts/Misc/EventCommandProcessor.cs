@@ -563,20 +563,22 @@ public static class EventCommandProcessor
                 if (origin.Functions.ContainsKey(args[0]))
                 {
                     // Store current lines & position
-                    functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines));
+                    functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.FindAll(a => true)));
                     // Load new lines
-                    lines = origin.Functions[args[0]];
+                    lines.Clear();
+                    lines.AddRange(origin.Functions[args[0]]);
                     return result | StartLineTrue(0);
                 }
                 throw Bugger.Error("No matching function! (" + args[0] + ")");
             case "callOther":
                 // Store current lines & position
-                functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines));
+                functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.FindAll(a => true)));
                 // Load new conversation
                 ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
                 if (conversation != null)
                 {
-                    lines = playMode == PlayMode.PostBattle ? conversation.PostBattleLines : conversation.Lines;
+                    lines.Clear();
+                    lines.AddRange(playMode == PlayMode.PostBattle ? conversation.PostBattleLines : conversation.Lines);
                     return result | StartLineTrue(0);
                 }
                 throw Bugger.Error("No matching conversation! (" + args[0] + ")");
@@ -596,7 +598,8 @@ public static class EventCommandProcessor
                     throw Bugger.Error("Nothing to return from!");
                 }
                 ConversationPlayer.FunctionStackObject function = functionStack.Pop();
-                lines = function.Lines;
+                lines.Clear();
+                lines.AddRange(function.Lines);
                 return result | StartLineTrue(function.LineNumber + 1);
             case "finishConversation":
                 // Params: none

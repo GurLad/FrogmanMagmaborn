@@ -136,7 +136,7 @@ public class Unit : MapObject
                 break;
             case PortraitLoadingMode.Generic:
                 Icon = PortraitController.Current.GenerateGenericPortrait().Portrait;
-                DisplayName = Name = Icon.TheDisplayName;
+                DisplayName = Icon.TheDisplayName;
                 break;
             default:
                 throw Bugger.Error("Invalid portrait loading mode!");
@@ -148,7 +148,7 @@ public class Unit : MapObject
         Icon = icon;
         if (changeName)
         {
-            DisplayName = Name = icon.TheDisplayName;
+            DisplayName = icon.TheDisplayName;
         }
     }
 
@@ -630,6 +630,7 @@ public class Unit : MapObject
         {
             MapAnimationsController.Current.OnFinishAnimation = () =>
             {
+                DeathQuote = ""; // Retreating doesn't use a death quote
                 MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.KillUnit(this);
                 MapAnimationsController.Current.AnimateDelay();
             };

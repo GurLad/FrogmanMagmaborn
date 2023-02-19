@@ -59,7 +59,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private PlayMode playMode = PlayMode.PreBattle;
     private string targetLine;
     private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
-    private List<string> lines;
+    private List<string> lines { get; } = new List<string>();
     private string[] previousLineParts;
     private bool skipping;
 
@@ -201,7 +201,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         origin = conversation;
-        lines = origin.Lines;
+        lines.Clear();
+        lines.AddRange(origin.Lines);
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0, true, shouldFadeIn);
     }
@@ -215,7 +216,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         // Load new lines
         playMode = PlayMode.MidBattle;
-        lines = new List<string>(text.Split('\n'));
+        lines.Clear();
+        lines.AddRange(text.Split('\n'));
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
@@ -232,7 +234,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         playMode = PlayMode.PostBattle;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
-        lines = origin.PostBattleLines;
+        lines.Clear();
+        lines.AddRange(origin.PostBattleLines);
         speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
         StartLine(0);
     }
@@ -462,7 +465,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         if (functionStack.Count > 0)
         {
             FunctionStackObject function = functionStack.Pop();
-            lines = function.Lines;
+            lines.Clear();
+            lines.AddRange(function.Lines);
             if (fadedOut)
             {
                 FadeThisIn(() => { SoftResume(); StartLine(function.LineNumber + 1); }, playMode != PlayMode.PostBattle);

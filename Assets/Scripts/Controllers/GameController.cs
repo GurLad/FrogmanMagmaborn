@@ -303,7 +303,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             }
             else if (deadUnit.DeathQuote != "")
             {
-                ConversationPlayer.Current.OnFinishConversation = () => { if (deadUnit.Origin != null) KillUnit(deadUnit.Origin); };
+                Unit target = deadUnit.Origin; // In case another unit dies during the death quote...
+                PortraitController.Current.AddPortraitAlias("Dead", deadUnit.Origin.Icon);
+                ConversationPlayer.Current.OnFinishConversation = () => { if (target != null) KillUnit(target); };
                 ConversationPlayer.Current.PlayOneShot(deadUnit.DeathQuote);
                 deadUnit.DeathQuote = "";
                 return GameState.ShowingEvent;
@@ -1546,7 +1548,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     private class DeadUnitData
     {
-        public Unit Origin { get; set; }
+        public Unit Origin { get; }
         public string DeathQuote { get; set; }
 
         public DeadUnitData(Unit origin, string deathQuote)
