@@ -11,6 +11,8 @@ public class CGController : MonoBehaviour
     public PalettedSprite BG2;
     public PalettedSprite FG1;
     public PalettedSprite FG2;
+    [HideInInspector]
+    public string CurrentCG;
     public bool Active
     {
         get
@@ -56,6 +58,7 @@ public class CGController : MonoBehaviour
         BG2.Palette = 1;
         FG1.Palette = toShow.FGPalette1;
         FG2.Palette = toShow.FGPalette2;
+        CurrentCG = name;
         Container.SetActive(true);
         PaletteController.Current.FadeIn(() => ConversationPlayer.Current.Wait(1));
     }

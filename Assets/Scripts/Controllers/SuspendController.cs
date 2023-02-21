@@ -14,6 +14,13 @@ public class SuspendController : MonoBehaviour
         Current = this;
     }
 
+    private void OnApplicationQuit()
+    {
+        SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
+        SaveToSuspendData();
+        SavedData.SaveAll();
+    }
+
     public void SaveToSuspendData()
     {
         SuspendDataConversationPlayer = ConversationPlayer.Current.SaveToSuspendData();

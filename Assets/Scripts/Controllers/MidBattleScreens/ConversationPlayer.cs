@@ -551,6 +551,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         // Clear TempPortraits & cleanup
         PortraitController.Current.ClearGeneratedPortraits();
+        speakerL = speakerR = "";
         System.Action action = OnFinishConversation;
         action?.Invoke();
         OnFinishConversation = null;
@@ -610,7 +611,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             {
                 PortraitL.Portrait = portrait;
             }
-            speakerL = Name.text;
+            speakerL = parts[0];
             SetSpeaker(true);
         }
         else
@@ -619,7 +620,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             {
                 PortraitR.Portrait = portrait;
             }
-            speakerR = Name.text;
+            speakerR = parts[0];
             SetSpeaker(false);
         }
         voice = portrait.Voice;
@@ -629,7 +630,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     {
         PortraitHolder target = left ? PortraitL : PortraitR;
         NameHolder.anchoredPosition = new Vector2(left ? 64 : 112, NameHolder.anchoredPosition.y);
-        Name.text = left ? speakerL : speakerR;
+        Name.text = left ? PortraitL.Portrait.TheDisplayName : PortraitR.Portrait.TheDisplayName;
         voice = target.Portrait?.Voice ?? null;
         TextHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
         NameHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
@@ -652,6 +653,14 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         currentSpeakerIsLeft = newCurrentSpeakerIsLeft ?? currentSpeakerIsLeft;
         PortraitL.gameObject.SetActive(left);
         PortraitR.gameObject.SetActive(!left);
+        if (left)
+        {
+            speakerR = "";
+        }
+        else
+        {
+            speakerL = "";
+        }
         SetSpeaker(left);
     }
 
@@ -660,6 +669,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         PortraitL.gameObject.SetActive(false);
         PortraitR.gameObject.SetActive(false);
         currentSpeakerIsLeft = false;
+        speakerL = speakerR = "";
     }
 
     private void PlayLetter(char letter)
@@ -685,9 +695,9 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public SuspendDataConversationPlayer SaveToSuspendData()
     {
-        if (Playing && !GameController.Current.AutoSaveHasAction()) // If there's a saved action, it was the one causing this conversation, so we can just wait for it to happen again
+        if (Playing) // If there's a saved action, it's supposed to happen after this conversation (ex. battle)
         {
-            return new SuspendDataConversationPlayer(origin, currentLine, functionStack, lines);
+            return new SuspendDataConversationPlayer(origin, currentLine, functionStack, lines, speakerL, speakerR, CGController);
         }
         else
         {
@@ -700,8 +710,28 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         origin = new ConversationData(data.Origin);
         if (data.Playing)
         {
-            // TBA
+            // TBA: Test
+            lines.Clear();
+            lines.AddRange(data.Lines);
+            currentLine = data.CurrentLine;
+            functionStack = data.FunctionStack;
             PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
+            if (data.SpeakerL != "")
+            {
+                SetSpeakerFromText(data.SpeakerL + "||L");
+            }
+            if (data.SpeakerR != "")
+            {
+                SetSpeakerFromText(data.SpeakerR + "||R");
+            }
+            if (data.CurrentCG != "")
+            {
+                CGController.FadeInCG(data.CurrentCG);
+            }
+            else
+            {
+                SoftResume();
+            }
         }
     }
 
@@ -728,6 +758,9 @@ public class SuspendDataConversationPlayer
     public Stack<ConversationPlayer.FunctionStackObject> FunctionStack = new Stack<ConversationPlayer.FunctionStackObject>();
     public List<string> Lines;
     public List<GeneratedPortrait> GeneratedPortraits;
+    public string SpeakerL;
+    public string SpeakerR;
+    public string CurrentCG;
 
     public SuspendDataConversationPlayer(ConversationData origin)
     {
@@ -735,12 +768,22 @@ public class SuspendDataConversationPlayer
         Playing = false;
     }
 
-    public SuspendDataConversationPlayer(ConversationData origin, int currentLine, Stack<ConversationPlayer.FunctionStackObject> functionStack, List<string> lines) : this(origin)
+    public SuspendDataConversationPlayer(
+        ConversationData origin,
+        int currentLine,
+        Stack<ConversationPlayer.FunctionStackObject> functionStack,
+        List<string> lines,
+        string speakerL,
+        string speakerR,
+        CGController cgController) : this(origin)
     {
         CurrentLine = currentLine;
         FunctionStack = functionStack;
         Lines = lines;
+        SpeakerL = speakerL;
+        SpeakerR = speakerR;
         GeneratedPortraits = PortraitController.Current.SaveAllGeneratedPortraits();
+        CurrentCG = cgController.Active ? cgController.CurrentCG : "";
         Playing = true;
     }
 }
