@@ -1360,28 +1360,28 @@ MonoBehaviour:
 
       Firbell: Do you remember where you''re from?
 
-      Frogman:
-      Uh...\a No.
+      Frogman: Uh...\a
+      No.
 
-      Firbell: I thought so. But once we get out of here,\a where
-      would you go?
+      Firbell: I thought so. But once we get out of here,\a where would
+      you go?
 
       Frogman: I haven''t thought about it yet.
 
-      Firbell:
-      Would you want to come to Irenhold, then?
+      Firbell: Would
+      you want to come to Irenhold, then?
 
-      I think you would prefer
-      it to the other kingdoms.
+      I think you would prefer it to the
+      other kingdoms.
 
       Frogman: I... Firbell...
 
-      Firbell:
-      Please, it is all right.\a Even though you aren''t from there,\a I could ask
-      mother to admit you to the royal court.\a I''m sure she-
+      Firbell: Please, it
+      is all right.\a Even though you aren''t from there,\a I could ask mother to
+      admit you to the royal court.\a I''m sure she-
 
-      Frogman: Firbell,
-      let''s focus on the monsters first, all right?
+      Frogman: Firbell, let''s
+      focus on the monsters first, all right?
 
       Firbell: All right.
 
@@ -1404,16 +1404,16 @@ MonoBehaviour:
       Frogman:
       Thank you...
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level1FirbellMemory
@@ -1466,38 +1466,37 @@ MonoBehaviour:
       And are our own lives really more important than
       theirs?
 
-      Frogman: I don''t know what awaits us outside,\a but it''s
-      surely better than what''s down here.
+      Frogman: I don''t know what awaits us outside,\a but it''s surely
+      better than what''s down here.
 
-      Firbell: Would you truly kill
-      dozens just for that chance?
+      Firbell: Would you truly kill dozens
+      just for that chance?
 
-      Frogman: Oh, please. The Guards are just
-      as willing to kill us.
+      Frogman: Oh, please. The Guards are just as willing
+      to kill us.
 
-      Firbell: They have a good reason.\a We are invading
-      their home.
+      Firbell: They have a good reason.\a We are invading their
+      home.
 
-      Frogman: No, we''re not. We''re just trying to live our
-      lives,\a free from this hellish prison.\a They''re not attacking us to protect
-      themselves,\a but rather to keep us chained.
+      Frogman: No, we''re not. We''re just trying to live our lives,\a
+      free from this hellish prison.\a They''re not attacking us to protect themselves,\a
+      but rather to keep us chained.
 
-      And that is something
-      I will never accept.
+      And that is something I will never accept.
 
-      Firbell: I will never accept attacking people
-      at their own homes.\a If that is your path,\a then I have no interest in following
-      it.
+      Firbell:
+      I will never accept attacking people at their own homes.\a If that is your
+      path,\a then I have no interest in following it.
 
       :setTeam:Firbell:guard
 
       Farewell.
 
-      Frogman: Woah,
-      hold on. Are you seriously going to leave me?
+      Frogman:
+      Woah, hold on. Are you seriously going to leave me?
 
-      Firbell: Yes. If the
-      Guards cannot stop you, then I shall.
+      Firbell: Yes. If
+      the Guards cannot stop you, then I shall.
 
       :loadUnits::monster:T
 
@@ -1513,7 +1512,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -1523,11 +1522,11 @@ MonoBehaviour:
       Frogman: Firbell... I''m really
       sorry... But I will get out of here.
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       Sample
@@ -1562,8 +1561,8 @@ MonoBehaviour:
       Frogman: Hello.\a I''ve been thinking lately.\a
       Why is it that I never see you with Kresla?
 
-      Firbell: I do not like
-      her. ...Let us defeat this monsters,\a and then I will explain.
+      Firbell: I do not like her.
+      ...Let us defeat this monsters,\a and then I will explain.
 
       Frogman:
       Right.
@@ -1572,38 +1571,38 @@ MonoBehaviour:
 
       :play:AfterBattle
 
-      Frogman: Well, that was
-      that.\a So why do you not like Kresla?
+      Frogman: Well, that was that.\a
+      So why do you not like Kresla?
 
-      Firbell: She has insulted Irenhold,
-      Xirveros, and me.\a I tend to avoid her.
+      Firbell: She has insulted Irenhold, Xirveros,
+      and me.\a I tend to avoid her.
 
-      Frogman: Oh. What did she
-      do?
+      Frogman: Oh. What did she do?
 
-      Firbell: She claimed that Irenhold no longer exists.
+      Firbell:
+      She claimed that Irenhold no longer exists.
 
-      Frogman:
-      ...
+      Frogman: ...
 
-      Firbell: Preposterous, I know.\a But she could not be dissuaded.\a
-      I cannot stand such insolance.
+      Firbell:
+      Preposterous, I know.\a But she could not be dissuaded.\a I cannot stand such
+      insolance.
 
       Frogman: So you avoid her?
 
-      Firbell:
-      What choice do I have? Killing her has no effect.
+      Firbell: What choice do
+      I have? Killing her has no effect.
 
-      I wonder how could
-      she even get a Magma Emblem.
+      I wonder how could she even get a
+      Magma Emblem.
 
       Frogman: I... see.
 
-      Firbell: But
-      worry not, I am not offended by you fighting\a alongside her.\a That is your
-      own bad choice.
+      Firbell: But worry not, I am
+      not offended by you fighting\a alongside her.\a That is your own bad choice.
 
-      Frogman: Thank you?
+      Frogman:
+      Thank you?
 
       :setFlag:FirbellOnKresla
 
@@ -1684,12 +1683,12 @@ MonoBehaviour:
 
       # Name: Text.
 
-      
 
-      #
-      === Functions ====
 
-      
+      # === Functions
+      ====
+
+
 
       ~ Sample
 
@@ -1725,49 +1724,48 @@ MonoBehaviour:
       Firbell: That golem
       we met last time... Memerian...\a I feel like I know her.
 
+      Frogman: Really?
+
+      Firbell:
+      Yes, but it does not make any sense...\a What is wrong with me?
+
       Frogman:
-      Really?
-
-      Firbell: Yes, but it does not make any sense...\a What is wrong
-      with me?
-
-      Frogman: Firbell? Are you okay?
+      Firbell? Are you okay?
 
       :play:Trustworthy
 
+      Torment: Nope. She''s
+      got a bad case of faulty memory erasure.\a Heh.
+
+      Frogman: Torment?!
+
       Torment:
-      Nope. She''s got a bad case of faulty memory erasure.\a Heh.
+      Missed me? Ha!\a Don''t worry, I''ll leave again soon.\a Heh.
 
       Frogman:
-      Torment?!
+      What are you doing this time?!
 
-      Torment: Missed me? Ha!\a Don''t worry, I''ll leave again
-      soon.\a Heh.
+      Torment: Fixing my past mistakes, of
+      course! I can''t have the...\a normal Magmaborn remembering my previous champions,
+      right?\a Ha ha ha!
 
-      Frogman: What are you doing this time?!
-
-      Torment:
-      Fixing my past mistakes, of course! I can''t have the...\a normal Magmaborn
-      remembering my previous champions, right?\a Ha ha ha!
-
-      Frogman: You...
-      erased Firbell''s memeory?
-
-      Torment: Nothing so drastic. Only a small
-      portion of it! Heh!\a But do not trouble your feeble mind -\a both of you shall
-      forget all of that soon.
-
-      Frogman: You can erase memories?!
+      Frogman: You... erased Firbell''s memeory?
 
       Torment:
-      ...I forget how slow you are sometimes.\a Yes, Frogman.\a I can erase memories.
-      Ha!\a But you must die first. After all,\a touching the memories of the living
-      would be so...\a rude, wouldn''t you agree?\a Heh heh heh!
+      Nothing so drastic. Only a small portion of it! Heh!\a But do not trouble your
+      feeble mind -\a both of you shall forget all of that soon.
+
+      Frogman:
+      You can erase memories?!
+
+      Torment: ...I forget how slow you are sometimes.\a
+      Yes, Frogman.\a I can erase memories. Ha!\a But you must die first. After all,\a
+      touching the memories of the living would be so...\a rude, wouldn''t you agree?\a
+      Heh heh heh!
 
       :screenShake:
 
-      Frogman:
-      Urk!
+      Frogman: Urk!
 
       :markDone:
 
@@ -1837,16 +1835,16 @@ MonoBehaviour:
       I think I made it pretty
       clear our agreement was...\a confidential, didn''t I? Ha!
 
-      Frogman:
-      You...
+      Frogman: You...
 
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      Torment:
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -1875,8 +1873,8 @@ MonoBehaviour:
 
       Frogman: Hello.
 
-      Firbell: Time to smash a
-      few monsters.
+      Firbell: Time to smash a few
+      monsters.
 
       Frogman: Indeed.'
     Name: Level1GenericFirbell
@@ -1970,11 +1968,11 @@ MonoBehaviour:
       Kresla: Ha! No, but it''s
       fun!
 
-      Frogman: *sigh* I''ve been meaning to ask.\a Why is it that I
-      never see you with Firbell?
+      Frogman: *sigh* I''ve been meaning to ask.\a Why is it that I never
+      see you with Firbell?
 
-      Kresla: I have no idea, actually. I never
-      thought about it.
+      Kresla: I have no idea, actually. I never thought
+      about it.
 
       But now that you mention it, it IS wierd.\a Interesting!
 
@@ -1988,25 +1986,25 @@ MonoBehaviour:
 
       :play:AfterBattle
 
-      Kresla: So, what do you
-      propose we do?
+      Kresla: So, what do you propose
+      we do?
 
       Frogman: How about asking her?
 
-      Kresla: Nah,
-      too boring. I say we ambush her!\a Ohh! Maybe pretend to be monsters, and then\a
-      reveal our true identities before she kills us!
+      Kresla: Nah, too boring.
+      I say we ambush her!\a Ohh! Maybe pretend to be monsters, and then\a reveal
+      our true identities before she kills us!
 
       Or after!
 
-      Frogman:
-      ...Remind me to never follow your advice.
+      Frogman: ...Remind
+      me to never follow your advice.
 
-      Kresla: What?! Why? They''re
-      excellent!\a All right, hear this - Maybe we borrow...
+      Kresla: What?! Why? They''re excellent!\a
+      All right, hear this - Maybe we borrow...
 
-      Where are you
-      going? Wait for me!
+      Where are you going? Wait
+      for me!
 
       :setFlag:KreslaOnFirbell
 
@@ -2042,52 +2040,51 @@ MonoBehaviour:
       Hm, you''re thinking about something, I can tell!\a What is it? Did you discover
       something new?!
 
-      Frogman: No, it''s... complicated.\a Have you seen
-      Firbell?
+      Frogman: No, it''s... complicated.\a Have you seen Firbell?
 
-      Kresla: Firbell? No. It''s been forever since the last time
-      I saw her,\a you know.
+      Kresla:
+      Firbell? No. It''s been forever since the last time I saw her,\a you know.
 
-      Frogman: Yes. Uh, do you remember your last
-      interaction?
+      Frogman:
+      Yes. Uh, do you remember your last interaction?
 
-      Kresla: Not really. I think she got really mad at something
-      I said?
+      Kresla: Not really.
+      I think she got really mad at something I said?
 
       Frogman: Oh.
 
-      Kresla: Why are you asking all these questions?\a
-      Wait, is Firbell avoiding you too?!
-
-      Frogman: I think so...
-
       Kresla:
-      Oh my! What did you say?
+      Why are you asking all these questions?\a Wait, is Firbell avoiding you too?!
 
-      Frogman: It''s a long story, and we have monsters
-      to fight here.
+      Frogman:
+      I think so...
 
-      Kresla: Right. But afterwards, you''re definitely telling
-      me!
+      Kresla: Oh my! What did you say?
+
+      Frogman: It''s
+      a long story, and we have monsters to fight here.
+
+      Kresla: Right. But
+      afterwards, you''re definitely telling me!
 
       :markDone:
 
-      
 
-      ~ After battle
+
+      ~ After
+      battle
 
       :play:AfterBattle
 
-      Kresla:
-      So! What happened with Firbell?
+      Kresla: So! What happened with Firbell?
 
-      Frogman: She wanted us to stop trying
-      to reach the Fortress.
+      Frogman:
+      She wanted us to stop trying to reach the Fortress.
 
       Kresla: What? Why?
 
-      Frogman: She said
-      that attacking the Guards isn''t honorable.
+      Frogman:
+      She said that attacking the Guards isn''t honorable.
 
       Kresla: I see!
 
@@ -2101,11 +2098,11 @@ MonoBehaviour:
       Kresla: What? There''s a lot
       to discuss here!\a Where are you going?!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       Sample
@@ -2157,35 +2154,35 @@ MonoBehaviour:
       there was a crazed, laughing energy ball,\a named Torment. They are incredibly
       powerful,\a and they''re trapped here, like us.
 
-      Kresla: Wow. Uh...
-      I don''t know what to say.
+      Kresla: Wow. Uh... I
+      don''t know what to say.
 
       :play:Trustworthy
 
-      Torment||R: Yes,
-      seriously, Frogman. Who would buy such a story?\a Heh heh!
+      Torment||R: Yes, seriously,
+      Frogman. Who would buy such a story?\a Heh heh!
 
-      Frogman:
-      You! Here, do you see now, Kresla?
+      Frogman: You! Here,
+      do you see now, Kresla?
 
       Kresla||L: ...
 
+      Torment: HA HA HA! Ever
+      the fool, are you, Frogman? Heh!
+
+      I think I made it pretty clear our
+      agreement was...\a confidential, didn''t I? Ha!
+
+      Frogman: You...
+
       Torment:
-      HA HA HA! Ever the fool, are you, Frogman? Heh!
-
-      I think I made it pretty
-      clear our agreement was...\a confidential, didn''t I? Ha!
-
-      Frogman:
-      You...
-
-      Torment: And yet, you betrayed me so easily? I''m offended!
-      Heh.\a But everything comes with a price.\a And the price of betrayal is...\a
-      DEATH! HA HA HA!
+      And yet, you betrayed me so easily? I''m offended! Heh.\a But everything comes
+      with a price.\a And the price of betrayal is...\a DEATH! HA HA HA!
 
       :screenShake:
 
-      Frogman: Urgh!
+      Frogman:
+      Urgh!
 
       :markDone:
 
@@ -2643,35 +2640,35 @@ MonoBehaviour:
 
       Frogman: Well met, Firbell.
 
-      Firbell:
-      Would you like to hear a joke?
+      Firbell: Would
+      you like to hear a joke?
 
       Frogman: This better not be about-
 
       Firbell:
       Actually, let us defeat these monsters first.
 
-      Frogman: Let''s. And
-      please forget the joke.
+      Frogman: Let''s. And please
+      forget the joke.
 
       ~
 
-      Firbell: What did the skeleton say
-      to the frog?
+      Firbell: What did the skeleton say to the
+      frog?
 
       Frogman: Don''t you da-
 
       :screenShake:
 
-      Firbell:
-      Ahhh! A talking frog!
+      Firbell: Ahhh!
+      A talking frog!
 
       ...
 
       You do not seem amused.
 
-      Frogman:
-      I am not. Who set this up? Kresla?\a I thought you were avoiding her.
+      Frogman: I
+      am not. Who set this up? Kresla?\a I thought you were avoiding her.
 
       Firbell:
       No, Xirveros told it to me.
@@ -2716,8 +2713,8 @@ MonoBehaviour:
 
       ... Ha ha ha ha!
 
-      Frogman: ...Really?
-      We have monsters to defeat here.
+      Frogman: ...Really? We
+      have monsters to defeat here.
 
       Kresla: Right, right.
 
@@ -2793,20 +2790,20 @@ MonoBehaviour:
       Frogman: Yes,
       I''ve seen him once or twice before.\a He''s utterly mad.
 
-      Firbell:
-      Perhaps he is now, but he used to be much more than that.\a He made the first
-      Magma Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
+      Firbell: Perhaps
+      he is now, but he used to be much more than that.\a He made the first Magma
+      Emblem,\a and gave Irenhold''s royal family mine -\a the one on my crown.
 
       }
 
       Xirveros:
       I like rocks. This lucky rock. Mine!
 
-      Firbell: The rock on his head
-      is his own Magma Emblem.
+      Firbell: The rock on his head is
+      his own Magma Emblem.
 
-      Frogman: Okay...\a Frankly, he doesn''t seem
-      like a mighty wizard.\a No offense, Xirveros.
+      Frogman: Okay...\a Frankly, he doesn''t seem like
+      a mighty wizard.\a No offense, Xirveros.
 
       Xirveros: Only defense!
 
@@ -2827,7 +2824,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
 
@@ -3642,20 +3639,20 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       Functions
 
-      
+
 
       ~ Unlock
 
-      Kresla: Oh, and as for what I was
-      saying before,\a I AM going to try out different styles now.
+      Kresla: Oh, and as for what I was saying
+      before,\a I AM going to try out different styles now.
 
-      Frogman:
-      All right. Good luck!
+      Frogman: All right.
+      Good luck!
 
       :unlockKnowledge:InclinationKresla
 
@@ -3728,12 +3725,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       Functions
 
-      
+
 
       ~ Unlock
 
@@ -3744,15 +3741,15 @@ MonoBehaviour:
 
       Tall as a log      \w@
 
-      Like my rock fight
-      \w@
+      Like my rock fight \w@
 
-      Almost take flight \w@
+      Almost
+      take flight \w@
 
       Frogman: Wow.
 
-      Xirveros:
-      Will fight like Frog too!
+      Xirveros: Will fight like Frog
+      too!
 
       :unlockKnowledge:InclinationXirveros
 
@@ -3942,8 +3939,8 @@ MonoBehaviour:
       Frogman:
       Firbell. Have you heard about Xirveros'' friends?
 
-      Firbell: What? I
-      do not remember him mentioning friends.
+      Firbell: What? I do
+      not remember him mentioning friends.
 
       Frogman: What were their names?\a
       Abrhys?\a Welki?
@@ -3959,7 +3956,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -4016,12 +4013,12 @@ MonoBehaviour:
 
       :setFlag:XirverosPast3
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -4532,8 +4529,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: I''m
-      safe... For now...
+      Frogman||L: I''m safe...
+      For now...
 
       }
 
@@ -4572,13 +4569,13 @@ MonoBehaviour:
       Kresla: I have
       a theory about the Lich''s magic crystal!
 
-      Frogman: Really? What is
-      it?
+      Frogman: Really? What is it?
 
-      Kresla: Well, as you''ve noticed-
+      Kresla:
+      Well, as you''ve noticed-
 
-      Frogman: Kresla, let''s
-      defeat the Lich before making theories on it.
+      Frogman: Kresla, let''s defeat the Lich before
+      making theories on it.
 
       Kresla: Right, right.
 
@@ -4589,19 +4586,19 @@ MonoBehaviour:
       Kresla:
       Frogman, you still haven''t heard my theory!
 
-      Frogman: Yes, Kresla.
-      After the battle.
+      Frogman: Yes, Kresla. After
+      the battle.
 
       Kresla: Urgh...
 
       }
 
-      
 
-      ~ After
-      battle
 
-      Frogman: Let''s get out of here!
+      ~ After battle
+
+      Frogman:
+      Let''s get out of here!
 
       :loadMap:InitTormentRoom
 
@@ -4619,55 +4616,55 @@ MonoBehaviour:
       Kresla: However, the question remained, where did it find one?\a
       I''ve never seen any here.
 
-      # TBA: Change if Kresla reached level 7
-      before this conversation
+      # TBA: Change if Kresla reached level 7 before
+      this conversation
 
       Frogman: Actually, I have.
 
-      Kresla:
-      Really?! Where?!
+      Kresla: Really?!
+      Where?!
 
       Frogman: It''s... complicated.
 
-      Kresla: Oh.
-      Well, anyway, even if it did find one,\a it''s still a mindless monster.\a
-      So how did it make a staff?\a And how could it learn to use magic?
+      Kresla: Oh. Well, anyway,
+      even if it did find one,\a it''s still a mindless monster.\a So how did it
+      make a staff?\a And how could it learn to use magic?
 
-      Frogman:
-      Huh.
+      Frogman: Huh.
 
-      # Again, if Kresla reached level 7, she''d comment on how they
-      must be dead elite guards (mages). Otherwise, this conversation.
+      #
+      Again, if Kresla reached level 7, she''d comment on how they must be dead elite
+      guards (mages). Otherwise, this conversation.
+
+      Kresla: So, it must have
+      used magic, and the crystal,\a before dying!
+
+      Frogman: Yes, that makes
+      sense.
+
+      Kresla: But don''t you see? There was never any record of such\a
+      crystals while I was alive!\a Even Magma Emblems, which have no such powers,\a
+      were considered myths -\a at least, until I found one.\a Did Xirveros use these
+      crystals for magic? Were they common in his time? But that was centuries ago!
+      Could they still be alive from then? Or are they from the far future? Are they
+      Guards? Are they from space? This is an extraordinary discovery! Frogman?\a
+      Are you listening?\a Frogman!
+
+      Frogman: Wha... Huh? Uh, yes, of course!
 
       Kresla:
-      So, it must have used magic, and the crystal,\a before dying!
+      Unbelievable!
 
-      Frogman:
-      Yes, that makes sense.
 
-      Kresla: But don''t you see? There was never
-      any record of such\a crystals while I was alive!\a Even Magma Emblems, which
-      have no such powers,\a were considered myths -\a at least, until I found one.\a
-      Did Xirveros use these crystals for magic? Were they common in his time? But
-      that was centuries ago! Could they still be alive from then? Or are they from
-      the far future? Are they Guards? Are they from space? This is an extraordinary
-      discovery! Frogman?\a Are you listening?\a Frogman!
 
-      Frogman: Wha...
-      Huh? Uh, yes, of course!
+      # === Functions ====
 
-      Kresla: Unbelievable!
 
-      
-
-      # ===
-      Functions ====
-
-      
 
       ~ Sample
 
-      # Name: Text.
+      # Name:
+      Text.
 
 '
     Name: Level3KreslaOnMagic
@@ -4699,44 +4696,44 @@ MonoBehaviour:
 
       Frogman: Yes, I know. Lich.
 
-      Xirveros: Lich has
-      magic crystal. Me not. You not.\a Why?
+      Xirveros: Lich has magic
+      crystal. Me not. You not.\a Why?
 
-      Frogman: I don''t know.\a You
-      can always ask it.
+      Frogman: I don''t know.\a You can always
+      ask it.
 
       Xirveros: Good idea! Frog, to lich!
 
-      Frogman:
-      I... I was joking...
+      Frogman: I... I was
+      joking...
 
       }
 
       :else:{
 
-      Xirveros: Frog! Let''s
-      ask lich magic!
+      Xirveros: Frog! Let''s ask lich magic!
 
-      Frogman: Xirveros, forget I said anything.
+      Frogman:
+      Xirveros, forget I said anything.
 
-      Xirveros:
-      What?
+      Xirveros: What?
 
-      Frogman: That''s the spirit.
+      Frogman: That''s
+      the spirit.
 
       }
 
       :setBattleQuote:Lich:XirverosLichFight
 
-      
+
 
       ~
       After battle
 
       Xirveros: No, lich!
 
-      Frogman: Xirveros, we''re
-      outta here!
+      Frogman: Xirveros, we''re outta
+      here!
 
       :loadMap:InitTormentRoom
 
@@ -4751,35 +4748,35 @@ MonoBehaviour:
       What were you thinking?! Talking to a lich?!\a That... that was a bad joke!\a
       You could''ve died!
 
-      Xirveros: Died.\a Me died.\a Knowledge died.\a
-      All died.
+      Xirveros: Died.\a Me died.\a Knowledge died.\a All
+      died.
 
       Frogman: You... That''s no what I me-
 
-      Xirveros: They
-      dead. All dead.\a All for Firlor.\a Did they remember?\a Recover?\a Abrhys...
-      Welki...
+      Xirveros: They dead.
+      All dead.\a All for Firlor.\a Did they remember?\a Recover?\a Abrhys... Welki...
 
-      Frogman: Who?
+      Frogman:
+      Who?
 
-      Xirveros: Apprentice. Teacher. They
-      before you.\a Before death.
+      Xirveros: Apprentice. Teacher. They before you.\a Before death.
 
-      Frogman: Huh. Who were they?
+      Frogman:
+      Huh. Who were they?
 
-      Xirveros:
-      Nnngh... Frog. Frog. Froooo...
+      Xirveros: Nnngh... Frog. Frog. Froooo...
 
-      Frogman: Oh. They are coming.
+      Frogman:
+      Oh. They are coming.
 
       :setFlag:XirverosPast2
 
-      
 
-      #
-      === Functions ====
 
-      
+      # === Functions
+      ====
+
+
 
       ~ XirverosLichFight
 
@@ -5069,8 +5066,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him,
-      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him, is
+      it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -5165,7 +5162,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -5178,9 +5175,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a
-      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
-      here, eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a I''m
+      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
+      eh? Ha ha!
 
       Frogman: I-
 
@@ -5208,16 +5205,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Firbell
@@ -5263,7 +5259,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       :play:BeforeBattle
 
@@ -5302,8 +5298,8 @@ MonoBehaviour:
 
       Frogman: Torment!
 
-      Torment:
-      It''s me! Heh heh!\a What do you think of my gift?
+      Torment: It''s
+      me! Heh heh!\a What do you think of my gift?
 
       Frogman: Gift?
 
@@ -5325,18 +5321,18 @@ MonoBehaviour:
 
       }
 
-      Frogman: That... I
-      didn''t mean to...
+      Frogman: That... I didn''t
+      mean to...
 
       :play:Trickster:T
 
-      Torment: Save your excuses
-      for when she can actually hear you. Heh!
+      Torment: Save your excuses for when
+      she can actually hear you. Heh!
 
       Frogman: ...
 
-      Torment:
-      Nothing to say, eh? Well then, without further ado...
+      Torment: Nothing
+      to say, eh? Well then, without further ado...
 
       :playIntro:Tormentor
 
@@ -5407,8 +5403,8 @@ MonoBehaviour:
       Frogman: I''m...
       s-sorry...
 
-      Torment: Don''t apologize to me, heh!\a Well, good luck
-      staying alive without her. Ha ha ha!
+      Torment: Don''t apologize to me, heh!\a Well, good luck staying
+      alive without her. Ha ha ha!
 
       Frogman: ...
 
@@ -5416,12 +5412,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -5752,8 +5748,8 @@ MonoBehaviour:
 
       :play:Trustworthy
 
-      Torment: My, must you repeat your
-      lines so? Heh heh!
+      Torment: My, must you repeat your lines
+      so? Heh heh!
 
       Frogman: Why, you-
 
@@ -5842,12 +5838,12 @@ MonoBehaviour:
 
       :play:Trickster:T
 
-      Torment: Not
-      everyone is as gullible as you, heh heh!\a Some would never help an...\a evil
-      being like me willingly! HA HA HA!\a As if they have a choice!
+      Torment: Not everyone
+      is as gullible as you, heh heh!\a Some would never help an...\a evil being
+      like me willingly! HA HA HA!\a As if they have a choice!
 
-      Frogman:
-      And do I have a choice?
+      Frogman: And
+      do I have a choice?
 
       :playIntro:Tormentor
 
@@ -5858,13 +5854,13 @@ MonoBehaviour:
       Torment:
       PWAH HA HA HA! You''re a funny one, I''ll give you that!
 
-      But worry
-      not, you have the honor of being my...\a chosen one! Heh!
+      But worry not,
+      you have the honor of being my...\a chosen one! Heh!
 
-      Frogman:
-      Argh...
+      Frogman: Argh...
 
-      Torment: Cry later - now is the time to FIGHT!
+      Torment:
+      Cry later - now is the time to FIGHT!
 
       :loadUnits:
 
@@ -5885,8 +5881,8 @@ MonoBehaviour:
 
       Frogman: Aghhh!
 
-      Torment: You died in the middle
-      of our previous conversations!
+      Torment: You died in the middle of
+      our previous conversations!
 
       }
 
@@ -5933,7 +5929,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
@@ -5985,12 +5981,12 @@ MonoBehaviour:
 
       }
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -6030,25 +6026,24 @@ MonoBehaviour:
       Torment||R:
       Why, hello there, Frogman! I''ve missed you. Heh heh.
 
-      Frogman: You
-      have?
+      Frogman: You have?
 
-      Torment: I was recently reminded of your predecessor. Memerian.\a
-      She is such a bore, isn''t she?\a Dull as a rock! Ha ha ha!
+      Torment:
+      I was recently reminded of your predecessor. Memerian.\a She is such a bore,
+      isn''t she?\a Dull as a rock! Ha ha ha!
 
-      Frogman:
-      Predecessor?
+      Frogman: Predecessor?
 
-      Torment: Yes. She was my previous champion.\a Firbell
-      and Xirveros fought with her for a while.\a But then she grew... uncooperative.
-      Heh.
+      Torment:
+      Yes. She was my previous champion.\a Firbell and Xirveros fought with her for
+      a while.\a But then she grew... uncooperative. Heh.
 
       Frogman: Uncooperative?
 
-      Torment: She stopped attempting
-      to reach the fortress.\a In fact, she always stayed far from it.\a And that
-      simply wouldn''t do.\a After all, how would I escape without you pawns to help
-      me?\a Ha ha ha!
+      Torment:
+      She stopped attempting to reach the fortress.\a In fact, she always stayed
+      far from it.\a And that simply wouldn''t do.\a After all, how would I escape
+      without you pawns to help me?\a Ha ha ha!
 
       Frogman: How?
 
@@ -6087,14 +6082,14 @@ MonoBehaviour:
 
       Frogman: Questions?
 
-      Torment: Oh my, you truly are a
-      worthy champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t
-      get away with this.\a DIE!
+      Torment: Oh my, you truly are a worthy
+      champion!\a Feeding me with my own frustration! Ha ha!\a But you won''t get
+      away with this.\a DIE!
 
       :loadUnits:
 
-      Frogman: ...It was worth
-      a try.
+      Frogman: ...It was worth a
+      try.
 
       }
 
@@ -6135,10 +6130,9 @@ MonoBehaviour:
 
       }
 
-      
 
-      ~ After
-      battle
+
+      ~ After battle
 
       :play:Trickster
 
@@ -6164,16 +6158,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Memerian
@@ -6214,7 +6207,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -6223,7 +6216,7 @@ MonoBehaviour:
 
       Torment: TBA
 
-      
+
 
 '
     Name: Torment1RestoreFirbell
@@ -6326,7 +6319,7 @@ MonoBehaviour:
 
       # Nothing
 
-      
+
 
       ~
       After battle
@@ -6361,16 +6354,15 @@ MonoBehaviour:
       :showInfoDialogue:New
       knowledge!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Xeplogi
@@ -6430,8 +6422,8 @@ MonoBehaviour:
 
       :play:Trickster
 
-      Torment: Not surprising. Heh heh.\a I
-      was digging through your memories,\a and couldn''t find a trace of that conversation.\a
+      Torment: Not surprising. Heh heh.\a I was
+      digging through your memories,\a and couldn''t find a trace of that conversation.\a
       Frankly, I''m dissapointed in you. Heh.
 
       Frogman: I''m sorr- Wait, what?\a
@@ -6486,18 +6478,18 @@ MonoBehaviour:
       Frogman:
       ...
 
-      
+
 
       ~ After battle
 
       :callOther:Torment1Xeplogi
 
-      
 
-      #
-      === Functions ====
 
-      
+      # ===
+      Functions ====
+
+
 
       ~ Sample
 
@@ -6581,8 +6573,8 @@ MonoBehaviour:
       Frogman:
       I... see.\a Wait, how do you know that I''ve met Xeplogi?
 
-      Torment:
-      I know everything, of course! Ha ha ha!
+      Torment: I
+      know everything, of course! Ha ha ha!
 
       }
 
@@ -6605,21 +6597,21 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
 
       :callOther:Torment1Xeplogi
 
-      
 
-      # === Functions
-      ====
 
-      
+      # === Functions ====
 
-      ~ Sample
+
+
+      ~
+      Sample
 
       # Name: Text.
 
@@ -8497,12 +8489,11 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~ After battle
 
-      Frogman: Everyone,
-      run!
+      Frogman: Everyone, run!
 
       :loadMap:Part2RestArea
 
@@ -8513,16 +8504,16 @@ MonoBehaviour:
       Frogman||L:
       Ah... Safe at last...
 
-      
+
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
 
-      # Name: Text.
+      ~ Sample
+
+      #
+      Name: Text.
 
 '
     Name: Level5GenericXeplogi
@@ -9718,30 +9709,29 @@ MonoBehaviour:
 
       Fashima_: Yes.
 
-      Brens: How dare
-      you!
+      Brens: How dare you!
 
-      Fashima_: But it''s true. I mean, you can''t transform,\a you
-      can''t teleport...\a What are you even good for?
+      Fashima_:
+      But it''s true. I mean, you can''t transform,\a you can''t teleport...\a What
+      are you even good for?
 
-      Brens: Not everyone
-      needs to fight, Fashima!
+      Brens: Not everyone needs to fight, Fashima!
 
-      I don''t need transformation magic for logistics.\a
-      Even you don''t need it,\a and you''re a warrior!
+      I
+      don''t need transformation magic for logistics.\a Even you don''t need it,\a
+      and you''re a warrior!
 
-      Fashima_: And yet,
-      I still know how to use it.\a Why, had you known how to do that,\a you might
-      have looked a lot better, grandpa.
+      Fashima_: And yet, I still know how to use it.\a
+      Why, had you known how to do that,\a you might have looked a lot better, grandpa.
 
-      Brens: Why do you keep goading me?!
-      What did I ever do to you?
+      Brens:
+      Why do you keep goading me?! What did I ever do to you?
 
-      Fashima_: You''re obnoxious. Annoying. Bothersome.
-      Boring.\a Should I go on?
+      Fashima_: You''re
+      obnoxious. Annoying. Bothersome. Boring.\a Should I go on?
 
-      Brens: Wha- Ugh, fine. You don''t want me
-      here? I''ll go.\a Take care, Fashima.
+      Brens: Wha-
+      Ugh, fine. You don''t want me here? I''ll go.\a Take care, Fashima.
 
       :killUnit:Brens
 
@@ -9790,7 +9780,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -9802,11 +9792,11 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ FashimaBattleQuote
 
@@ -9814,7 +9804,7 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima_:FashimaBattleQuote
 
-      
+
 
       ~
       Reaction
@@ -9857,8 +9847,8 @@ MonoBehaviour:
 
       Fashima_: ...
 
-      Brens: Fashima, please.\a I have one
-      last question,\a and then I''ll never pester you again.
+      Brens: Fashima, please.\a I have one last
+      question,\a and then I''ll never pester you again.
 
       Fashima_: ...Make
       it a good one.
@@ -9937,7 +9927,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -9949,11 +9939,11 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ FashimaBattleQuote
 
@@ -9961,7 +9951,7 @@ MonoBehaviour:
 
       :setBattleQuote:Fashima_:FashimaBattleQuote
 
-      
+
 
       ~
       Reaction
@@ -10132,11 +10122,11 @@ MonoBehaviour:
       Fashima_:
       I see that the rumors about your fearlessness are correct.
 
-      Kresla:
-      You''ve heard about me?!
+      Kresla: You''ve
+      heard about me?!
 
-      Fashima_: Indeed. I must admit, I''m quite
-      a fan.\a Your discoveries are legendary.\a Especially the Magma Emblem.
+      Fashima_: Indeed. I must admit, I''m quite a fan.\a
+      Your discoveries are legendary.\a Especially the Magma Emblem.
 
       Kresla:
       You- Wait. How do you know about the Magma Emblem?
@@ -10185,30 +10175,30 @@ MonoBehaviour:
       Fashima_: What''s
       your name?
 
-      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who
-      might you be?
+      Xeplogi: I am Duke Xeplogi the Third of Jess.\a And who might
+      you be?
 
-      Fashima_: Fashima, the Wall Magus. How long have you
-      been here?
-
-      Xeplogi: Longer than you''ve been alive, my child! Oh ho
-      ho!
-
-      Fashima_: I highly doubt that. Where did you get your Magma Emblem?
+      Fashima_: Fashima, the Wall Magus. How long have you been here?
 
       Xeplogi:
-      ...I purchased it from Memerian.\a Legitimately.
+      Longer than you''ve been alive, my child! Oh ho ho!
 
-      Fashima_: Memerian?
-      Yet I never saw you with her.
+      Fashima_: I highly
+      doubt that. Where did you get your Magma Emblem?
 
-      Xeplogi: Memerian?! I would never associate
-      myself with such vermin!
+      Xeplogi: ...I purchased
+      it from Memerian.\a Legitimately.
 
-      Fashima_: I see. Nice talk, Xeplogi.\a Now
-      die.
+      Fashima_: Memerian? Yet I never saw
+      you with her.
 
-      Xeplogi: W-wait, what?
+      Xeplogi: Memerian?! I would never associate myself with
+      such vermin!
+
+      Fashima_: I see. Nice talk, Xeplogi.\a Now die.
+
+      Xeplogi:
+      W-wait, what?
 
       :setFlag:FashimaBattleXeplogi
 
@@ -10225,31 +10215,30 @@ MonoBehaviour:
 
       Xirveros: Me?
 
-      Fashima_:
-      I never got the chance to thank you properly.\a Your notes about magic were
-      quiet useful,\a and killing Kostliv was a tremendous help to me.
+      Fashima_: I
+      never got the chance to thank you properly.\a Your notes about magic were quiet
+      useful,\a and killing Kostliv was a tremendous help to me.
 
       Xirveros:
       Kostliv? Ooh, you want Kostliv song?
 
-      Fashima_: It''s truly a shame
-      what Lessem and Torment did to you.
+      Fashima_: It''s truly a shame what
+      Lessem and Torment did to you.
 
-      We could have made an incredible
-      team together.
+      We could have made an incredible team
+      together.
 
       Xirveros: Kostliv on the wall        \w@
 
-      Hope
-      he won''t fall         \w@
+      Hope he won''t
+      fall         \w@
 
       Me fight with that Kostliv \w@
 
-      For
-      he the target Tori give\w@
+      For he the target
+      Tori give\w@
 
-      Fashima_: ...I grow weary of your antics.
-      Begone.
+      Fashima_: ...I grow weary of your antics. Begone.
 
       :setFlag:FashimaBattleXirveros
 
@@ -10267,24 +10256,24 @@ MonoBehaviour:
       Fashima_: Oh, Firbell.
       Long time no see.
 
-      Firbell: ...I am sorry, but I do not recall ever
-      seeing you before.
+      Firbell: ...I am sorry, but I do not recall ever seeing
+      you before.
 
       Fashima_: Makes sense.
 
-      Torment does have
-      a tendency to wipe your memories.
+      Torment does have a tendency
+      to wipe your memories.
 
       Firbell: Excuse me?
 
-      Fashima_:
-      Don''t trouble yourself, child.\a You won''t remember anything of this conversation
-      soon,\a anyway.
+      Fashima_: Don''t trouble
+      yourself, child.\a You won''t remember anything of this conversation soon,\a
+      anyway.
 
       Firbell: Is that a threat?
 
-      Fashima_: No. Threats
-      are a waste of time.
+      Fashima_: No. Threats are
+      a waste of time.
 
       :setFlag:FashimaBattleFirbell
 
@@ -10292,16 +10281,16 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~
       After battle
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Reaction
 
@@ -10365,9 +10354,9 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman: We... We
-      did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a
-      I guess I shouldn''t be surprised.
+      Frogman: We... We did
+      it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I
+      guess I shouldn''t be surprised.
 
       }
 
@@ -10433,11 +10422,11 @@ MonoBehaviour:
       Never
       mind, let''s go!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Reaction
 
@@ -10484,11 +10473,11 @@ MonoBehaviour:
       Brens: You knew? Why didn''t you say anything?!\a
       It''s your job to prevent such incidents!
 
-      Fashima_: Isn''t it your
-      job to take care of the city,\a instead of pestering me?
+      Fashima_: Isn''t it your job
+      to take care of the city,\a instead of pestering me?
 
-      Brens: Don''t
-      change the subject!\a Are they dangerous?\a Will they try escaping?!
+      Brens: Don''t change
+      the subject!\a Are they dangerous?\a Will they try escaping?!
 
       Fashima_:
       I don''t know.
@@ -10498,14 +10487,14 @@ MonoBehaviour:
       Fashima_: Yes, I don''t
       know.\a I''m not made of answers, you know.
 
-      Brens: Argh! This is a
-      disaster!
+      Brens: Argh! This is a disaster!
 
-      Fashima_: Calm down, old man. Everything''s under control.
+      Fashima_:
+      Calm down, old man. Everything''s under control.
 
-      Brens:
-      Old man?! You''re the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an
-      eye on the wall while I''m gone.
+      Brens: Old man?! You''re
+      the oldest Magus alive!\a Ugh, I''ve had enough!\a Keep an eye on the wall
+      while I''m gone.
 
       :killUnit:Brens
 
@@ -10550,7 +10539,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -10562,11 +10551,11 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ Reaction
 
@@ -10626,41 +10615,40 @@ MonoBehaviour:
 
       Frogman: Did you ever get insider?
 
-      Memerian: No,
-      never. They are always led by a powerful mage.\a Fashima.\a She was way too
-      strong.\a Annoying as hell, too.
+      Memerian: No, never.
+      They are always led by a powerful mage.\a Fashima.\a She was way too strong.\a
+      Annoying as hell, too.
 
-      Frogman: I see.\a Let''s go defeat
-      her, then.
-
-      Memerian: Defeat her? Pfft!
-
-      Our only hope is that
-      she had died of old age by now.
-
-      Frogman: Was she truly that powerful?
+      Frogman: I see.\a Let''s go defeat her, then.
 
       Memerian:
-      She''s a mage. She doesn''t play fair.\a But enough chitchat - you''ll see
-      for yourself,\a soon enough.
+      Defeat her? Pfft!
 
-      Frogman: Right.
+      Our only hope is that she had died of old age by now.
+
+      Frogman:
+      Was she truly that powerful?
+
+      Memerian: She''s a mage. She doesn''t play
+      fair.\a But enough chitchat - you''ll see for yourself,\a soon enough.
+
+      Frogman:
+      Right.
 
       }
 
       :else:{
 
-      Memerian||R:
-      ...Let''s hope they don''t have a mage in here.
+      Memerian||R: ...Let''s hope they don''t
+      have a mage in here.
 
       }
 
       }
 
-      
 
-      ~
-      FashimaBattleQuote
+
+      ~ FashimaBattleQuote
 
       :callOther:Level7FashimaBattleQuote
 
@@ -10726,7 +10714,7 @@ MonoBehaviour:
 
       :addSkill:Fashima_:Vantage
 
-      
+
 
       ~
       After battle
@@ -10738,11 +10726,11 @@ MonoBehaviour:
       :showPartTitle:Part
       3:Champion
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~ FashimaBattleQuote
 
@@ -11285,25 +11273,25 @@ MonoBehaviour:
 
       Werse: Yes, you do.
 
-      You won''t be able
-      to fight the Magmaborn in this sorry state.
+      You won''t be able to
+      fight the Magmaborn in this sorry state.
 
-      Lan: Sorry state?! I''m
-      in the best state! The best!\a I... I can take them all!
+      Lan: Sorry state?! I''m in
+      the best state! The best!\a I... I can take them all!
 
-      Werse: Oh,
-      really? Prove it to me.
+      Werse: Oh, really?
+      Prove it to me.
 
-      Lan: Prove it? I don''t have to prove anything
-      to you!\a You''re not my master!
+      Lan: Prove it? I don''t have to prove anything to you!\a
+      You''re not my master!
 
-      Werse: Are you afraid you''ll fail,
-      then?
+      Werse: Are you afraid you''ll fail, then?
 
-      Lan: N-no! I''m not afraid! I''m the great Lan - I fear nothing!
+      Lan:
+      N-no! I''m not afraid! I''m the great Lan - I fear nothing!
 
-      Werse:
-      Excellent. Then I shall be watching you battle.\a Don''t dissapoint me.
+      Werse: Excellent.
+      Then I shall be watching you battle.\a Don''t dissapoint me.
 
       :killUnit:Werse
 
@@ -11337,7 +11325,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~ After battle
 
@@ -11350,11 +11338,11 @@ MonoBehaviour:
       Frogman:
       We did it again! Let''s go, everyone!
 
-      
+
 
       # === Functions ====
 
-      
+
 
       ~
       LanDies
@@ -11367,20 +11355,20 @@ MonoBehaviour:
       Lieutenant:
       Lan.\a I am relieving you of duty.
 
-      Guard1||L: ...! She''s actually
-      going through with this?!
+      Guard1||L: ...! She''s actually going
+      through with this?!
 
-      Guard2||L: IS this real? Are we really getting
-      rid of him?!
+      Guard2||L: IS this real? Are we really getting rid
+      of him?!
 
       Lan: What... What did you just say?
 
-      Lieutenant:
-      You are clearly unstable and unfit to lead.\a I have had enough of following
-      you around.\a Surrender peacefully, and you might yet live.
+      Lieutenant: You
+      are clearly unstable and unfit to lead.\a I have had enough of following you
+      around.\a Surrender peacefully, and you might yet live.
 
-      Lan: You!
-      How DARE you! I will have your head for this!
+      Lan: You! How
+      DARE you! I will have your head for this!
 
       :screenShake:
 
@@ -11472,16 +11460,15 @@ MonoBehaviour:
       Frogman||L:
       W-What? Who are you? Where did you come from?!
 
-      Fashima|???: Don''t
-      you recognize me, my friend?
+      Fashima|???: Don''t you
+      recognize me, my friend?
 
-      Frogman||L: Recognize? Wait, you''re...
-      Fashima?!
+      Frogman||L: Recognize? Wait, you''re... Fashima?!
 
       :if:hasCharacter:Memerian{
 
-      Memerian||L: I knew it.
-      You were holding back before,\a weren''t you?
+      Memerian||L:
+      I knew it. You were holding back before,\a weren''t you?
 
       }
 
@@ -11555,12 +11542,12 @@ MonoBehaviour:
 
       :screenShake:
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ Sample
 
@@ -12207,14 +12194,14 @@ MonoBehaviour:
 
       Hey, [Name:Lieutenant].
 
-      Lieutenant:
-      What is it, soldier?
+      Lieutenant: What
+      is it, soldier?
 
-      Guard1: What''s up with Werse? Where are they?\a
-      We''re all waiting here on high alert, and...
+      Guard1: What''s up with Werse? Where are they?\a We''re
+      all waiting here on high alert, and...
 
-      Lieutenant: It is none
-      of our concern, soldier.\a Werse will come here when they''re needed.
+      Lieutenant: It is none of our
+      concern, soldier.\a Werse will come here when they''re needed.
 
       Guard1:
       And when is that?
@@ -12264,7 +12251,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -12273,12 +12260,12 @@ MonoBehaviour:
 
       :callOther:Level8FashimaSpawn
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ WerseBattle
 
@@ -12289,11 +12276,11 @@ MonoBehaviour:
 
       Defender: Huh?
 
-      Werse: There''s no need for
-      any more lives to be lost today.\a Pretend to kill me,\a and the Guards will
-      flee.
+      Werse: There''s no need for any
+      more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 
-      Defender: What?
+      Defender:
+      What?
 
       Werse: ...Fine, I''ll do it myself.
 
@@ -12343,8 +12330,8 @@ MonoBehaviour:
 
       :screenShake:
 
-      Urk! You''ve...
-      got me...\a I must... retreat...
+      Urk! You''ve... got
+      me...\a I must... retreat...
 
       :hideUnit:Werse
 
@@ -12370,7 +12357,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~ Reaction
 
@@ -12453,7 +12440,7 @@ MonoBehaviour:
 
       :setDeathQuote:Brens:BrensDeath
 
-      
+
 
       #
       Name: Text.
@@ -12462,12 +12449,12 @@ MonoBehaviour:
 
       :callOther:Level8BrensDeath
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ BrensDeath
 
@@ -12534,8 +12521,8 @@ MonoBehaviour:
 
       Lieutenant: I... see.
 
-      Werse: We don''t have much
-      time, [Name:Lieutenant].\a The Magmaborn are coming.
+      Werse: We don''t have much time,
+      [Name:Lieutenant].\a The Magmaborn are coming.
 
       :loadUnits::player:T
 
@@ -12548,7 +12535,7 @@ MonoBehaviour:
 
       :setBattleQuote:Werse:WerseBattle
 
-      
+
 
       #
       Name: Text.
@@ -12559,12 +12546,12 @@ MonoBehaviour:
 
       :callOther:Level8FashimaSpawn
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ WerseBattle
 
@@ -12575,11 +12562,11 @@ MonoBehaviour:
 
       Defender: Huh?
 
-      Werse: There''s no need for
-      any more lives to be lost today.\a Pretend to kill me,\a and the Guards will
-      flee.
+      Werse: There''s no need for any
+      more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 
-      Defender: What?
+      Defender:
+      What?
 
       Werse: ...Fine, I''ll do it myself.
 
@@ -12629,8 +12616,8 @@ MonoBehaviour:
 
       :screenShake:
 
-      Urk! You''ve...
-      got me...\a I must... retreat...
+      Urk! You''ve... got
+      me...\a I must... retreat...
 
       :hideUnit:Werse
 
@@ -12723,20 +12710,20 @@ MonoBehaviour:
 
       Guard1: Yes, master?
 
-      Werse: Take this one to
-      his room.
+      Werse: Take this one to his
+      room.
 
       He should remain asleep for a few more hours.
 
-      Guard1:
-      Yes, master!
+      Guard1: Yes,
+      master!
 
       :killUnit:Lan:F
 
       :setSingleSpeaker:L
 
-      Werse:
-      Ugh. What a pain.
+      Werse: Ugh.
+      What a pain.
 
       Lieutenant: Did you say something, master?
 
@@ -12760,7 +12747,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -12769,12 +12756,12 @@ MonoBehaviour:
 
       :callOther:Level8FashimaSpawn
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ WerseBattle
 
@@ -12785,11 +12772,11 @@ MonoBehaviour:
 
       Defender: Huh?
 
-      Werse: There''s no need for
-      any more lives to be lost today.\a Pretend to kill me,\a and the Guards will
-      flee.
+      Werse: There''s no need for any
+      more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 
-      Defender: What?
+      Defender:
+      What?
 
       Werse: ...Fine, I''ll do it myself.
 
@@ -12839,8 +12826,8 @@ MonoBehaviour:
 
       :screenShake:
 
-      Urk! You''ve...
-      got me...\a I must... retreat...
+      Urk! You''ve... got
+      me...\a I must... retreat...
 
       :hideUnit:Werse
 
@@ -12866,7 +12853,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~ Reaction
 
@@ -12917,7 +12904,7 @@ MonoBehaviour:
 
       :loadUnits::guard
 
-      
+
 
       :loadUnits::monster:T
 
@@ -12946,53 +12933,52 @@ MonoBehaviour:
       Werse:
       It was...
 
-      Lan: Then why are you talking about it, eh? What''s your
-      reason?
+      Lan: Then why are you talking about it, eh? What''s your reason?
 
-      Werse: ...I can''t abandon the Guards.\a And they... they would
-      never abandon their duty. And...\a this is what Brens would''ve wanted.
+      Werse:
+      ...I can''t abandon the Guards.\a And they... they would never abandon their
+      duty. And...\a this is what Brens would''ve wanted.
+
+      Lan: Hmpf. I never
+      did care much for the Guards.\a Or the old man.
+
+      Werse: Then why are
+      you fighting the Magmaborn?
+
+      Lan: I... I want to be the best.\a To be
+      better than Fashima.\a Than you, and Bodder, and Leshy.
+
+      Werse: ...Seriously?
 
       Lan:
-      Hmpf. I never did care much for the Guards.\a Or the old man.
+      Yeah. But if none of you can beat the Magmaborn,\a then why should I try, eh?\a
+      You''re already not better than me!
+
+      Werse: ...
+
+      Lan: Why, I can
+      just stop trying to beat the Magmaborn,\a and get better at other stuff!\a
+      You can waste your time trying to do the impossible all you want -\a I''m going
+      to become the best fisherman in the world!
+
+      Werse: ...I have no words
+      for your idiocity.
+
+      Lan: Oh, just you wait till you see my amazing fishing
+      skills!\a I''m simply the best!
+
+      Werse: I can''t believe I thought for
+      a moment you were redeemable.\a [Name:Guard1]?
+
+      Guard1: Yes, master?
 
       Werse:
-      Then why are you fighting the Magmaborn?
-
-      Lan: I... I want to be the
-      best.\a To be better than Fashima.\a Than you, and Bodder, and Leshy.
-
-      Werse:
-      ...Seriously?
-
-      Lan: Yeah. But if none of you can beat the Magmaborn,\a
-      then why should I try, eh?\a You''re already not better than me!
-
-      Werse:
-      ...
-
-      Lan: Why, I can just stop trying to beat the Magmaborn,\a and get
-      better at other stuff!\a You can waste your time trying to do the impossible
-      all you want -\a I''m going to become the best fisherman in the world!
-
-      Werse:
-      ...I have no words for your idiocity.
-
-      Lan: Oh, just you wait till you
-      see my amazing fishing skills!\a I''m simply the best!
-
-      Werse: I can''t
-      believe I thought for a moment you were redeemable.\a [Name:Guard1]?
+      Take this one to his quarters.\a I shall instil some sense in him late.
 
       Guard1:
-      Yes, master?
+      Yes, master!
 
-      Werse: Take this one to his quarters.\a I shall instil
-      some sense in him late.
-
-      Guard1: Yes, master!
-
-      Lan: Woah, hold
-      on, what are you-
+      Lan: Woah, hold on, what are you-
 
       :screenShake:
 
@@ -13022,7 +13008,7 @@ MonoBehaviour:
 
       :markDone:
 
-      
+
 
       ~
       After battle
@@ -13031,12 +13017,12 @@ MonoBehaviour:
 
       :callOther:Level8FashimaSpawn
 
-      
+
 
       #
       === Functions ====
 
-      
+
 
       ~ WerseBattle
 
@@ -13047,11 +13033,11 @@ MonoBehaviour:
 
       Defender: Huh?
 
-      Werse: There''s no need for
-      any more lives to be lost today.\a Pretend to kill me,\a and the Guards will
-      flee.
+      Werse: There''s no need for any
+      more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 
-      Defender: What?
+      Defender:
+      What?
 
       Werse: ...Fine, I''ll do it myself.
 
@@ -13101,8 +13087,8 @@ MonoBehaviour:
 
       :screenShake:
 
-      Urk! You''ve...
-      got me...\a I must... retreat...
+      Urk! You''ve... got
+      me...\a I must... retreat...
 
       :hideUnit:Werse
 
@@ -13128,7 +13114,7 @@ MonoBehaviour:
 
       }
 
-      
+
 
       ~ Reaction
 
@@ -50732,6 +50718,9 @@ MonoBehaviour:
     CurrentLine: 0
     Lines: []
     GeneratedPortraits: []
+    SpeakerL: 
+    SpeakerR: 
+    CurrentCG: 
   SuspendDataGameController:
     LevelNumber: 0
     Turn: 0
@@ -50781,7 +50770,7 @@ MonoBehaviour:
     - Memerian
     UnlimitedMove: 0
     OPPlayers: 0
-    ForceConversation: Level9FirstTime
+    ForceConversation: 
     ForceMap: 
 --- !u!1 &1903834759
 GameObject:
