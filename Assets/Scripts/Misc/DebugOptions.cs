@@ -8,6 +8,7 @@ public class DebugOptions : MonoBehaviour
     private Options options;
     public bool Enabled => options.Enabled;
     public bool SkipIntro => options.SkipIntro;
+    public bool KillAutoSaves => options.KillAutoSaves;
 
     public void Apply(GameController gameController, List<Unit> playerUnitsCache)
     {
@@ -67,5 +68,6 @@ public class DebugOptions : MonoBehaviour
         public bool OPPlayers;
         public string ForceConversation;
         public string ForceMap;
+        public bool KillAutoSaves;
     }
 }

@@ -50716,11 +50716,15 @@ MonoBehaviour:
       sourceID: 
     Playing: 0
     CurrentLine: 0
+    FunctionStack: []
     Lines: []
     GeneratedPortraits: []
     SpeakerL: 
     SpeakerR: 
     CurrentCG: 
+    CGPreviousState:
+      BackgroundPalettes: []
+      SpritePalettes: []
   SuspendDataGameController:
     LevelNumber: 0
     Turn: 0
@@ -50772,6 +50776,7 @@ MonoBehaviour:
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 
+    KillAutoSaves: 0
 --- !u!1 &1903834759
 GameObject:
   m_ObjectHideFlags: 0

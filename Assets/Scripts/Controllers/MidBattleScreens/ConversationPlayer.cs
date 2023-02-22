@@ -41,7 +41,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     public Intro Intro;
     [HideInInspector]
     public System.Action OnFinishConversation;
-    public bool Playing => gameObject.activeSelf;
+    public bool Playing;
     public string waitRequirement { private get; set; } = "";
     [SerializeField]
     private bool startActive = true;
@@ -58,7 +58,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private float count;
     private PlayMode playMode = PlayMode.PreBattle;
     private string targetLine;
-    private Stack<FunctionStackObject> functionStack = new Stack<FunctionStackObject>();
+    private Stack<FunctionStackObject> functionStack { get; } = new Stack<FunctionStackObject>();
     private List<string> lines { get; } = new List<string>();
     private string[] previousLineParts;
     private bool skipping;
@@ -66,7 +66,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private void Awake()
     {
         Current = this;
-        gameObject.SetActive(startActive);
+        gameObject.SetActive(Playing = startActive);
         PortraitR.Awake();
         PortraitR.gameObject.SetActive(false);
         PortraitL.Awake();
@@ -197,6 +197,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public void Play(ConversationData conversation, bool shouldFadeIn = true)
     {
+        Playing = true;
         playMode = PlayMode.PreBattle;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
@@ -209,6 +210,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public void PlayOneShot(string text)
     {
+        Playing = true;
         // Store current lines & position
         if (currentLine < (lines?.Count ?? 0))
         {
@@ -231,6 +233,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             GameController.Current.Win();
             return;
         }
+        Playing = true;
         playMode = PlayMode.PostBattle;
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
@@ -265,6 +268,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     /// <param name="fadeIn">If true, fades in the conversation before resuming, unless it's already over - in which case, finish it instead</param>
     public void Resume(int mod = 1, bool fadeIn = false)
     {
+        Playing = true;
         SkipEmptyLines(currentLine + mod);
         if (currentLine >= lines.Count)
         {
@@ -288,6 +292,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     /// </summary>
     public void SoftResume()
     {
+        Playing = true;
         MidBattleScreen.Set(this, true);
         gameObject.SetActive(true);
         enabled = true;
@@ -503,6 +508,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
         }
         // Finish conversation
+        Playing = false;
         lines.Clear();
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
@@ -630,7 +636,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     {
         PortraitHolder target = left ? PortraitL : PortraitR;
         NameHolder.anchoredPosition = new Vector2(left ? 64 : 112, NameHolder.anchoredPosition.y);
-        Name.text = left ? PortraitL.Portrait.TheDisplayName : PortraitR.Portrait.TheDisplayName;
+        Name.text = (left ? PortraitL.Portrait?.TheDisplayName : PortraitR.Portrait?.TheDisplayName) ?? "";
         voice = target.Portrait?.Voice ?? null;
         TextHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
         NameHolderPalette.Palette = target.Portrait?.AccentColor ?? 0;
@@ -710,11 +716,12 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         origin = new ConversationData(data.Origin);
         if (data.Playing)
         {
+            Bugger.Info("Playing! CG is " + data.CurrentCG);
             // TBA: Test
             lines.Clear();
             lines.AddRange(data.Lines);
-            currentLine = data.CurrentLine;
-            functionStack = data.FunctionStack;
+            currentLine = data.CurrentLine - 1; // To repeat the previous line
+            data.FunctionStack.ForEach(a => functionStack.Push(a));
             PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
             if (data.SpeakerL != "")
             {
@@ -726,12 +733,17 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
             if (data.CurrentCG != "")
             {
-                CGController.FadeInCG(data.CurrentCG);
+                gameObject.SetActive(false);
+                CGController.FadeInCG(data.CurrentCG, data.CGPreviousState);
             }
             else
             {
                 SoftResume();
             }
+        }
+        else
+        {
+            gameObject.SetActive(false); // The GameController will properly disable this ConversationPlayer later
         }
     }
 
@@ -755,12 +767,13 @@ public class SuspendDataConversationPlayer
     public ConversationData Origin;
     public bool Playing;
     public int CurrentLine;
-    public Stack<ConversationPlayer.FunctionStackObject> FunctionStack = new Stack<ConversationPlayer.FunctionStackObject>();
+    public List<ConversationPlayer.FunctionStackObject> FunctionStack = new List<ConversationPlayer.FunctionStackObject>();
     public List<string> Lines;
     public List<GeneratedPortrait> GeneratedPortraits;
     public string SpeakerL;
     public string SpeakerR;
     public string CurrentCG;
+    public PaletteController.PaletteControllerState CGPreviousState;
 
     public SuspendDataConversationPlayer(ConversationData origin)
     {
@@ -778,12 +791,16 @@ public class SuspendDataConversationPlayer
         CGController cgController) : this(origin)
     {
         CurrentLine = currentLine;
-        FunctionStack = functionStack;
         Lines = lines;
         SpeakerL = speakerL;
         SpeakerR = speakerR;
+        while (functionStack.Count > 0)
+        {
+            FunctionStack.Add(functionStack.Pop());
+        }
         GeneratedPortraits = PortraitController.Current.SaveAllGeneratedPortraits();
         CurrentCG = cgController.Active ? cgController.CurrentCG : "";
         Playing = true;
+        CGPreviousState = cgController.PreviousState;
     }
 }

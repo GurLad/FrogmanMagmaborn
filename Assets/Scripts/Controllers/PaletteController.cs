@@ -153,10 +153,13 @@ public class PaletteController : MonoBehaviour
         state.LoadTo(this);
     }
 
+    [System.Serializable]
     public class PaletteControllerState
     {
-        private Palette[] BackgroundPalettes { get; set; } = new Palette[4];
-        private Palette[] SpritePalettes { get; set; } = new Palette[4];
+        [SerializeField]
+        private Palette[] BackgroundPalettes = new Palette[4];
+        [SerializeField]
+        private Palette[] SpritePalettes = new Palette[4];
 
         public PaletteControllerState(PaletteController paletteController)
         {
@@ -177,6 +180,7 @@ public class PaletteController : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     private class PaletteWithMaterial : Palette
     {
         private Material linkedMaterial;
@@ -199,6 +203,7 @@ public class PaletteController : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     private class SpritePaletteWithMaterial : PaletteWithMaterial // Also affects the TextMaterial
     {
         private Material linkedTextMaterial;

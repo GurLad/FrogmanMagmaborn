@@ -192,10 +192,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         // Init
         playerUnitsCache = new List<Unit>();
-        if (SavedData.Load("HasSuspendData", 0) != 0) // Has suspended data
+        if (SavedData.Load("HasSuspendData", 0) != 0 && !DebugOptions.KillAutoSaves) // Has suspended data
         {
             SuspendController.Current.LoadFromSuspendData();
-            TurnAnimation.ShowTurn(CurrentPhase);
         }
         else
         {
@@ -1534,7 +1533,14 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             // Hide the conversation player - terrible workaround
             ConversationPlayer.Current.PlayOneShot("");
-            AutoSaveExecuteAction();
+            if (AutoSaveHasAction())
+            {
+                AutoSaveExecuteAction();
+            }
+            else
+            {
+                TurnAnimation.ShowTurn(CurrentPhase);
+            }
         }
     }
 

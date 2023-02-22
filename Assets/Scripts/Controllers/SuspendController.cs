@@ -31,8 +31,8 @@ public class SuspendController : MonoBehaviour
 
     public void LoadFromSuspendData()
     {
-        SavedData.Save("HasSuspendData", 0); // No need to delete the data - we can just say that there is none
-        SavedData.SaveAll();
+        //SavedData.Save("HasSuspendData", 0); // Keep the suspend data, as we assume that it'll be successfully overwritten once the player quits
+        //SavedData.SaveAll();
         JsonUtility.FromJsonOverwrite(SavedData.Load<string>("SuspendData", "SuspendData"), this);
         ConversationPlayer.Current.LoadFromSuspendData(SuspendDataConversationPlayer);
         GameController.Current.LoadFromSuspendData(SuspendDataGameController);

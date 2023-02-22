@@ -20,7 +20,7 @@ public class CGController : MonoBehaviour
             return Container.activeSelf;
         }
     }
-    private PaletteController.PaletteControllerState previousState = null;
+    public PaletteController.PaletteControllerState PreviousState { get; private set; } = null;
 
     private void Reset()
     {
@@ -41,7 +41,7 @@ public class CGController : MonoBehaviour
 
     public void FadeInCG(string name, PaletteController.PaletteControllerState currentState = null)
     {
-        previousState = currentState ?? previousState;
+        PreviousState = currentState ?? PreviousState;
         CG toShow = CGs.Find(a => a.Name == name);
         if (toShow == null)
         {
@@ -51,7 +51,7 @@ public class CGController : MonoBehaviour
         LoadImage(BG2, toShow.BGImage2);
         LoadImage(FG1, toShow.FGImage1);
         LoadImage(FG2, toShow.FGImage2);
-        PaletteController.Current.LoadState(previousState);
+        PaletteController.Current.LoadState(PreviousState);
         PaletteController.Current.BackgroundPalettes[0].CopyFrom(toShow.BGPalette1.Clone());
         PaletteController.Current.BackgroundPalettes[1].CopyFrom(toShow.BGPalette2.Clone());
         BG1.Palette = 0;
@@ -69,7 +69,7 @@ public class CGController : MonoBehaviour
         {
             PaletteController.Current.FadeOut(() =>
             {
-                PaletteController.Current.LoadState(previousState ?? PaletteController.Current.SaveState());
+                PaletteController.Current.LoadState(PreviousState ?? PaletteController.Current.SaveState());
                 Container.SetActive(false);
                 postFadeOutAction?.Invoke();
             });
