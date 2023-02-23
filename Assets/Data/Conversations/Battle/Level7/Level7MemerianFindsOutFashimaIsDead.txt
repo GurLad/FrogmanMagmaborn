@@ -1,0 +1,25 @@
+priority:-1
+unique:F
+~ Requirements
+# This conversation isn't meant to be selected - it just guarantees the same post-battle for every Fashima death event
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:!hasFlag:MemerianKnowsFashimaIsDead{
+Memerian: Huh? Where is Fashima?\a Who is that clown?
+Frogman: What? Oh, we killed Fashima.\a Didn't you know that?
+Memerian: No! How?! That's impossible!
+Frogman: Uh, it's the truth.
+Memerian: You... Huh. I appear to have underestimated you, Froman.\a This is... interesting.
+Frogman: Thanks?
+:setFlag:MemerianKnowsFashimaIsDead
+}
+
+# Name: Text.
+~ After battle
+:lose:
+
+# === Functions ====
+
+~ Reaction

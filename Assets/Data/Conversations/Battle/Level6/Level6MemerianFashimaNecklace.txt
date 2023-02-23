@@ -1,0 +1,29 @@
+priority:3
+unique:T
+~ Requirements
+# If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+roomNumber:6
+charactersAlive:<2
+hasFlag:FashimaBattleMemerian
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits::player
+:setSpeaker:Frogman||L
+Memerian: TBA
+:if:hasFlag:MemerianMentionedTorment{
+
+}
+
+:unlockAchievement:JoinMemerian
+~ After battle
+# TBA: Add actual text
+:play:Anticipation
+Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

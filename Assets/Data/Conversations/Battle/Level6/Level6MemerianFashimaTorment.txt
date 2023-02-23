@@ -1,0 +1,80 @@
+priority:3
+unique:T
+~ Requirements
+# If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+roomNumber:6
+charactersAlive:<2
+!hasFlag:MemerianMentionedFashima
+~ Demands
+# Nothinig
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits::player
+:setSpeaker:Frogman||L
+Memerian: Frogman.
+Frogman: Oh. Hi, Memerian.
+Memerian: It's nice of you to come here alone.\a I've been meaning to talk to you about something.
+:if:hasFlag:MemerianMentionedTorment{
+Frogman: What is it? Wait, is it about Torment?
+Memerian: Yes.
+Frogman: Why do they let you remember them?
+}
+:else:{
+Frogman: What is it? Wait, is it about Xeplogi?
+Memerian: What? Ugh, no. No, it's about Tormet.
+Frogman: You know Torment?!
+Memerian: Yes.
+Frogman: Why do they let you remember them?
+}
+Memerian: I used to help Torment, just like you.
+Frogman: Really?!
+Memerian: Yes. We had a... falling out eventually.\a But I see he has found a replacement already.
+Frogman: What happened?
+Memerian: I realized it was impossible.
+Frogman: What was?
+Memerian: Getting out of here.\a That fortress? It's impenetrable.
+:if:furthestLevel:>6{
+:if:!hasFlag:FashimaDied{
+Frogman: Because of Fashima?
+Memerian: Yes.
+Frogman: TBA
+}
+:else:{
+:if:hasFlag:MemerianKnowsFashimaIsDead{
+Or at least, that's what I thought. TBA
+}
+:else:{
+Frogman: Because of Fashima?
+Memerian: Yes.
+Frogman: Well, she's dead.
+Memerian: What?!
+Frogman: TBA
+:setFlag:MemerianKnowsFashimaIsDead
+}
+}
+}
+:else:{
+Frogman: I'm sure there's a way inside...
+Memerian: That's not the problem. It doesn't even have a gate -\a anyone could theoretically enter it.
+Frogman: Huh? Then what's the problem?
+Memerian: The one guarding it. Assuming she's still alive.\a She's a wizard.
+Frogman: Like Xirveros?
+Memerian: ...Seriously?
+Frogman: Yeah, that was a foolish question.\a Like the lich, then?
+Memerian: Similar, but much more powerful. And intelligent.
+She can teleport anywhere, and transform her appearance.\a Frankly, we don't stand a chance.
+Frogman: Why are you helping me, then?
+Memerian: Something must have changed.\a Torment has selected a new champion for a reason.\a I'd like to see it.
+Frogman: I... see. Wait, champion? What-
+}
+:unlockAchievement:JoinMemerian
+~ After battle
+# TBA: Add actual text
+:play:Anticipation
+Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
