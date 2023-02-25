@@ -12,6 +12,40 @@ charactersAlive:<2
 :addUnit:Memerian
 :loadUnits::player
 :setSpeaker:Frogman||L
+:call:MemerianConversation
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:young
+:addGenericCharacter:Guard3:old
+:loadUnits:
+Guard1: Ugh, enough with this nonsense already!
+Guard2: This isn't nonsense! I'm telling you,\a I saw a yellow fish swimming in the magma over there!
+Guard1: Fish cannot survive in magma, you dolt!
+Guard2: Why not?
+Guard1: Why not?! How would they even survive?\a What would they eat?!
+Guard2: Uh, socks maybe?
+Guard1: Socks? Seriously?!
+Guard2: I do remember seeing some socks floating around here.\a Or maybe it was in the kitchen?
+Guard1: Argh! You're hopeless!
+Guard3: Hey, you two! Stop yapping and get in formation!\a We're approaching a group of monsters!
+Guard2: Monsters?!
+Guard1: Maybe you can try feeding them a sock.\a See if they turn into fish.
+Guard2: Wow! That's an awesome idea! Thanks, [Name:Guard1]!
+Guard1: No! That's a terrible idea! Come back here!
+:setSpeaker:Frogman||L
+Memerian: It appears that our time has run out, Frogman.\a Let's get started, shall we?
+Frogman: Y-yes.
+:unlockAchievement:JoinMemerian
+:markDone:
+~ After battle
+:play:Anticipation
+Frogman: Ah... Is it... over?
+Memerian: Yes. But we should leave before reinforcements arrive.
+Frogman: Right. Are you ready to return to the Fortress?
+Memerian: Indeed.
+
+# === Functions ====
+
+~ MemerianConversation
 Memerian: Frogman.
 Frogman: Oh. Hi, Memerian.
 Memerian: It's nice of you to come here alone.\a I've been meaning to talk to you about something.
@@ -26,6 +60,7 @@ Memerian: What? Ugh, no. No, it's about Tormet.
 Frogman: You know Torment?!
 Memerian: Yes.
 Frogman: Why do they let you remember them?
+:setFlag:MemerianMentionedTorment
 }
 Memerian: I used to help Torment, just like you.
 Frogman: Really?!
@@ -38,19 +73,50 @@ Memerian: Getting out of here.\a That fortress? It's impenetrable.
 :if:!hasFlag:FashimaDied{
 Frogman: Because of Fashima?
 Memerian: Yes.
-Frogman: TBA
+Frogman: I mean, she is quite tough,\a but are you sure she's unbeatable?
+Memerian: Of course. Have you seen her powers?\a She can teleport anywhere, and transform her appearance.\a Frankly, we don't stand a chance.
+Frogman: Why are you helping me, then?
+Memerian: Something must have changed.\a Torment has selected a new champion for a reason.\a I'd like to see it.
+Frogman: I... see. Wait, champion? What-
+:return:
 }
 :else:{
 :if:hasFlag:MemerianKnowsFashimaIsDead{
-Or at least, that's what I thought. TBA
+Or at least, that's what I thought.\a But Fashima's dead now.
+:if:furthestLevel:>8{
+# Memerian hasn't met Fashima after she turned into a "Magmaborn" - if only to reduce conversation variants
+Frogman: Right...
+}
+:else:{
+Frogman: Yes.
+}
+Memerian: Something isn't quite right, though.\a Defeating her was too easy.
+Frogman: Too easy?
+Memerian: Compared to our past battles, she...\a almost threw the fight on purpose.
+Frogman: What are you talking about?
+Memerian: As you probably noticed when we fought her,\a she can teleport anywhere.\a During my time as Torment's champion,\a she usually killed everyone in seconds the moment we entered her line of sight.
+Frogman: I... see. Wait, champion? What-
+:return:
 }
 :else:{
 Frogman: Because of Fashima?
 Memerian: Yes.
 Frogman: Well, she's dead.
 Memerian: What?!
-Frogman: TBA
+Frogman: Yeah. We killed her some time ago.
+Memerian: That's impossible! Surely you jest!
+Frogman: I do not.
+Memerian: I... Wow.\a You're either much stronger than you look,\a or something else is going on here.
+:if:furthestLevel:>8{
+Frogman: ...
+}
+:else:{
+Frogman: Something else?
+}
+Memerian: During my time as Torment's champion,\a she usually killed everyone in seconds the moment we entered her line of sight.
+Frogman: I... see. Wait, champion? What-
 :setFlag:MemerianKnowsFashimaIsDead
+:return:
 }
 }
 }
@@ -68,13 +134,3 @@ Frogman: Why are you helping me, then?
 Memerian: Something must have changed.\a Torment has selected a new champion for a reason.\a I'd like to see it.
 Frogman: I... see. Wait, champion? What-
 }
-:unlockAchievement:JoinMemerian
-~ After battle
-# TBA: Add actual text
-:play:Anticipation
-Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
-
-# === Functions ====
-
-~ Sample
-# Name: Text.

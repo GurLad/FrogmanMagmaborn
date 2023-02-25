@@ -1,0 +1,38 @@
+priority:-1
+unique:F
+id:GuardPreBanter
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:play:GuardTheme
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
+:loadUnits::guard
+Guard1: Hey.
+Guard2: ...Are you talking to me?
+Guard1: Yes. Uh. Could you help me with something?
+Guard2: What is it?
+Guard1: A friend and I are trying a new game...
+Guard2: Wait a moment. Are you [Name:Guard1]?
+Guard1: Um, yes?
+Guard2: Oh no. No way. I've heard about your so-called games.\a Not interested.
+Guard1: W-wait! Here me out! I promise,\a this time it doesn't require 3 hours!\a Nor licking a golem!\a Not even-
+Guard2: Yeah, right.
+Guard1: Please! It's very simple!
+Just tell me your favourite monster type!
+Guard2: ...What?
+Guard1: Just answer the question.
+Guard2: Uh, I don't know. Gargoyles, I guess?\a They can fly, which is pretty cool.
+Guard1: Okay, excellent! So. It goes like this.\a You take this mushrooms,\a and you have to-
+Guard2: No way! I'm out! I am not falling for your shenanigans!\a Bye!
+:setSingleSpeaker:L
+Guard!: H-hey! Where are you going? Come back!
+~ After battle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
