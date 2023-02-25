@@ -579,6 +579,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         UITileInfoPanel.anchorMin = anchor;
         UITileInfoPanel.anchorMax = anchor;
         UITileInfoPanel.pivot = anchor;
+        MapObjectsAtPos(cursorPos).ForEach(a => a.Hover(InteractState));
     }
 
     private void HideUI()
@@ -627,12 +628,22 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public bool MarkerAtPos<T>(int x, int y) where T : Marker
     {
-        return MapObjects.Find(a => a.Pos.x == x && a.Pos.y == y && a is T) == null;
+        return GetMarkerAtPos<T>(x, y) == null;
     }
 
     public bool MarkerAtPos<T>(Vector2Int pos) where T : Marker
     {
         return MarkerAtPos<T>(pos.x, pos.y);
+    }
+
+    public T GetMarkerAtPos<T>(int x, int y) where T : Marker
+    {
+        return (T)MapObjects.Find(a => a.Pos.x == x && a.Pos.y == y && a is T);
+    }
+
+    public T GetMarkerAtPos<T>(Vector2Int pos) where T : Marker
+    {
+        return GetMarkerAtPos<T>(pos.x, pos.y);
     }
 
     private List<MapObject> MapObjectsAtPos(int x, int y)
@@ -658,6 +669,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             return true;
         }
         return false;
+    }
+
+    public void RemoveArrowMarkers()
+    {
+        MapObjects.FindAll(a => a is MoveMarker).ForEach(a => ((MoveMarker)a).HideArrow());
     }
 
     public void FinishMove(Unit unit)

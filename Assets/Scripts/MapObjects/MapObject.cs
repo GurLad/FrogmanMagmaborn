@@ -18,7 +18,11 @@ public abstract class MapObject : MonoBehaviour
             transform.position = new Vector3(pos.x * GameController.Current.TileSize, -pos.y * GameController.Current.TileSize, transform.position.z);
         }
     }
+
     public abstract void Interact(InteractState interactState);
+
+    public virtual void Hover(InteractState interactState) { }
+
     protected virtual void Start()
     {
         Pos = new Vector2Int((int)transform.position.x, -(int)transform.position.y);
@@ -29,6 +33,7 @@ public abstract class MapObject : MonoBehaviour
         }
         GameController.Current.MapObjects.Add(this);
     }
+
     protected virtual void OnDestroy()
     {
         if (!GameController.Current.MapObjects.Contains(this)) // This shouldn't happen - MapObjects are supposed to remove themselves
