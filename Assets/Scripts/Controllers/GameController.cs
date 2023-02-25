@@ -579,7 +579,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         UITileInfoPanel.anchorMin = anchor;
         UITileInfoPanel.anchorMax = anchor;
         UITileInfoPanel.pivot = anchor;
-        MapObjectsAtPos(cursorPos).ForEach(a => a.Hover(InteractState));
+        // Movement arrows
+        if (InteractState == InteractState.Move)
+        {
+            RemoveArrowMarkers();
+            MapObjectsAtPos(cursorPos).ForEach(a => a.Hover(InteractState));
+        }
     }
 
     private void HideUI()
@@ -673,7 +678,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void RemoveArrowMarkers()
     {
-        MapObjects.FindAll(a => a is MoveMarker).ForEach(a => ((MoveMarker)a).HideArrow());
+        MapObjects.FindAll(a => a is MarkerWithArrow).ForEach(a => ((MarkerWithArrow)a).HideArrow());
     }
 
     public void FinishMove(Unit unit)

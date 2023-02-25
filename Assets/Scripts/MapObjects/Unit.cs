@@ -261,6 +261,10 @@ public class Unit : MapObject
 
     public List<Vector2Int> FindPath(Vector2Int targetPos)
     {
+        if (targetPos == Pos) // The path is empty, as the target pos is this pos
+        {
+            return new List<Vector2Int>();
+        }
         DangerArea dangerArea = GetDangerArea(true); // Cannot rely on given one, as will probably not ignore allies.
         // Recover path (slightly different from the AI one, find a way to merge them?)
         List<Vector2Int> path = new List<Vector2Int>();

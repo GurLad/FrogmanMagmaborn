@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackMarker : Marker
+public class AttackMarker : MarkerWithArrow
 {
     [HideInInspector]
     public Unit.DangerArea DangerArea;
+
+    public override void Hover(InteractState interactState)
+    {
+        if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
+        {
+            GameController.Current.GetMarkerAtPos<MarkerWithArrow>(DangerArea.GetBestPosToAttackTargetFrom(Pos)).ShowArrowPath();
+        }
+    }
 
     public override void Interact(InteractState interactState)
     {
