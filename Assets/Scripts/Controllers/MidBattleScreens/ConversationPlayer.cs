@@ -513,6 +513,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         gameObject.SetActive(false);
         state = CurrentState.Sleep;
         SetSinglePortrait(true);
+        PortraitL.gameObject.SetActive(false);
         currentSpeakerIsLeft = false;
         previousLineParts = null;
         skipping = false;
@@ -656,7 +657,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public void SetSinglePortrait(bool left, bool? newCurrentSpeakerIsLeft = null)
     {
-        currentSpeakerIsLeft = newCurrentSpeakerIsLeft ?? currentSpeakerIsLeft;
         PortraitL.gameObject.SetActive(left);
         PortraitR.gameObject.SetActive(!left);
         if (left)
@@ -668,6 +668,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             speakerL = "";
         }
         SetSpeaker(left);
+        currentSpeakerIsLeft = newCurrentSpeakerIsLeft ?? currentSpeakerIsLeft;
     }
 
     private void SetNoPortrait()

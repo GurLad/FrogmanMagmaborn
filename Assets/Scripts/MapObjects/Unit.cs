@@ -433,6 +433,7 @@ public class Unit : MapObject
         // Actual fight
         if (BattleQuote != "" || unit.BattleQuote != "") // Battle quotes achieve the same effect as delays
         {
+            GameController.Current.RemoveMarkers();
             PortraitController.Current.AddPortraitAlias("Attacker", Icon);
             PortraitController.Current.AddPortraitAlias("Defender", unit.Icon);
             ConversationPlayer.Current.OnFinishConversation = () =>

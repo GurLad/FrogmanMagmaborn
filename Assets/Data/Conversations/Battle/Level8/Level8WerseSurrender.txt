@@ -7,6 +7,7 @@ roomNumber:0
 # Nothinig
 ~ Before battle
 :if:stringEquals:[Name:Attacker]:Werse{
+:setSpeaker:Defender
 Werse||R: ...I surrender.
 Defender: Huh?
 Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
@@ -14,7 +15,7 @@ Defender: What?
 Werse: ...Fine, I'll do it myself.
 :screenShake:
 Urk! You've... got me...\a I must... retreat...
-:hideUnit:Werse
+:killUnit:Werse
 :if:teamUnitsAlive:guard:>0{
 :getGenericCharacter:Guard1
 }
@@ -26,6 +27,7 @@ Guard1: W-werse! They're... gone!\a Retreat, everyone!
 Defender: ...What just happened?
 }
 :else:{
+:setSpeaker:Attacker
 Werse||R: ...I surrender.
 Attacker: Huh?
 Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
@@ -33,7 +35,7 @@ Attacker: What?
 Werse: ...Fine, I'll do it myself.
 :screenShake:
 Urk! You've... got me...\a I must... retreat...
-:hideUnit:Werse
+:killUnit:Werse
 :if:teamUnitsAlive:guard:>0{
 :getGenericCharacter:Guard1
 }

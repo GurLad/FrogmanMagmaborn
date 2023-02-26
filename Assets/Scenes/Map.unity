@@ -13368,6 +13368,8 @@ MonoBehaviour:
 
       :if:stringEquals:[Name:Attacker]:Werse{
 
+      :setSpeaker:Defender
+
       Werse||R:
       ...I surrender.
 
@@ -13386,7 +13388,7 @@ MonoBehaviour:
       Urk!
       You''ve... got me...\a I must... retreat...
 
-      :hideUnit:Werse
+      :killUnit:Werse
 
       :if:teamUnitsAlive:guard:>0{
 
@@ -13412,25 +13414,27 @@ MonoBehaviour:
 
       :else:{
 
-      Werse||R: ...I surrender.
+      :setSpeaker:Attacker
+
+      Werse||R:
+      ...I surrender.
+
+      Attacker: Huh?
+
+      Werse: There''s no need for any
+      more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
 
       Attacker:
-      Huh?
+      What?
 
-      Werse: There''s no need for any more lives to be lost today.\a
-      Pretend to kill me,\a and the Guards will flee.
-
-      Attacker: What?
-
-      Werse:
-      ...Fine, I''ll do it myself.
+      Werse: ...Fine, I''ll do it myself.
 
       :screenShake:
 
-      Urk! You''ve... got
-      me...\a I must... retreat...
+      Urk!
+      You''ve... got me...\a I must... retreat...
 
-      :hideUnit:Werse
+      :killUnit:Werse
 
       :if:teamUnitsAlive:guard:>0{
 
@@ -51089,8 +51093,8 @@ MonoBehaviour:
     - Firbell
     - Xirveros
     - Memerian
-    UnlimitedMove: 0
-    OPPlayers: 0
+    UnlimitedMove: 1
+    OPPlayers: 1
     ForceConversation: 
     ForceMap: Level8-1-W
     KillAutoSaves: 1

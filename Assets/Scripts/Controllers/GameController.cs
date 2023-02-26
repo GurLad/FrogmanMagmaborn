@@ -795,7 +795,18 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void Fight(Unit source, Unit attacker, Unit defender, float attackerRandomResult, float defenderRandomResult)
     {
-        if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
+        if (attacker == null || defender == null) // One unit is dead, so skip the battle (for when the battle quote kills one of them - aka Werse)
+        {
+            if (source != null)
+            {
+                FinishMove(source);
+            }
+            else
+            {
+                FinishMoveDead();
+            }
+        }
+        else if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
         {
             CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
             BattleAnimationController battleAnimationController = Instantiate(Battle).GetComponentInChildren<BattleAnimationController>();
@@ -810,7 +821,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             MapAnimationsController.Current.AnimateBattle(attacker, defender, attackerRandomResult, defenderRandomResult);
             MapAnimationsController.Current.OnFinishAnimation = () =>
             {
-                if (this != null)
+                if (source != null)
                 {
                     FinishMove(source);
                 }
