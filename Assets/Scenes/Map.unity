@@ -39707,8 +39707,9 @@ GameObject:
   - component: {fileID: 1715750237}
   - component: {fileID: 1715750236}
   - component: {fileID: 1715750238}
+  - component: {fileID: 1715750239}
   m_Layer: 0
-  m_Name: Pointer
+  m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39793,6 +39794,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 0
   palette: 0
+--- !u!114 &1715750239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715750235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec37146ff076bfa41947f78e586231d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameUIController: {fileID: 1902908242}
+  palettedSprite: {fileID: 1715750238}
 --- !u!1 &1721474198
 GameObject:
   m_ObjectHideFlags: 0
@@ -42365,6 +42380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1902908236}
   - component: {fileID: 1902908235}
+  - component: {fileID: 1902908242}
   - component: {fileID: 1902908237}
   - component: {fileID: 1902908238}
   - component: {fileID: 1902908239}
@@ -42391,13 +42407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapSize: {x: 16, y: 15}
   TileSize: 1
-  UITileInfoPanel: {fileID: 136851799}
-  UITileInfo: {fileID: 1251508931}
-  UIUnitInfoPanel: {fileID: 314948340}
-  UIUnitInfo: {fileID: 713707831}
-  UIFightPanel: {fileID: 832172147}
-  UIAttackerPanel: {fileID: 1409916836}
-  UIDefenderPanel: {fileID: 2146978961}
   TurnAnimation: {fileID: 1556140462}
   Battle: {fileID: 626328139}
   StatusScreen: {fileID: 1866344048309540548, guid: 2d523648b6b0c434196856ef46682162,
@@ -42415,7 +42424,8 @@ MonoBehaviour:
   LevelMetadataController: {fileID: 1902908238}
   MapController: {fileID: 1902908239}
   DebugOptions: {fileID: 1902908241}
-  Cursor: {fileID: 1715750235}
+  GameUIController: {fileID: 1902908242}
+  Cursor: {fileID: 1715750239}
   Canvas: {fileID: 1670623970}
   BaseUnit: {fileID: 1111376493}
   PointerMarker: {fileID: 28154510}
@@ -51098,6 +51108,26 @@ MonoBehaviour:
     ForceConversation: 
     ForceMap: Level8-1-W
     KillAutoSaves: 1
+--- !u!114 &1902908242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902908234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf47baef074154b49add08cb32dab353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UITileInfoPanel: {fileID: 136851799}
+  UITileInfo: {fileID: 1251508931}
+  UIUnitInfoPanel: {fileID: 314948340}
+  UIUnitInfo: {fileID: 713707831}
+  UIFightPanel: {fileID: 832172147}
+  UIAttackerPanel: {fileID: 1409916836}
+  UIDefenderPanel: {fileID: 2146978961}
+  Cursor: {fileID: 1715750239}
 --- !u!1 &1903834759
 GameObject:
   m_ObjectHideFlags: 0

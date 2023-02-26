@@ -314,8 +314,8 @@ public class MapAnimationsController : MidBattleScreen
         defenderBasePos = defender.transform.position;
         battleDirection = (defenderBasePos - attackerBasePos).normalized;
         battleState = BattleAnimationState.AttackerAttacking;
-        attackerPanel = InitPanel(GameController.Current.UIAttackerPanel, attacker, defender, false);
-        defenderPanel = InitPanel(GameController.Current.UIDefenderPanel, defender, attacker, true);
+        attackerPanel = InitPanel(GameController.Current.GameUIController.UIAttackerPanel, attacker, defender, false);
+        defenderPanel = InitPanel(GameController.Current.GameUIController.UIDefenderPanel, defender, attacker, true);
         FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
         FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
         StartAnimation(AnimationType.Battle);

@@ -12,13 +12,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public Vector2Int MapSize = new Vector2Int(16, 15);
     public float TileSize;
     [Header("UI")]
-    public RectTransform UITileInfoPanel;
-    public Text UITileInfo;
-    public RectTransform UIUnitInfoPanel;
-    public Text UIUnitInfo;
-    public RectTransform UIFightPanel;
-    public MiniBattleStatsPanel UIAttackerPanel;
-    public MiniBattleStatsPanel UIDefenderPanel;
     public TurnAnimation TurnAnimation;
     [Header("Mid-battle screens")]
     public GameObject Battle;
@@ -35,7 +28,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     [Header("Debug")] // TODO: Move all this (and related code) to a seperate class
     public DebugOptions DebugOptions;
     [Header("Objects")]
-    public GameObject Cursor;
+    public GameUIController GameUIController;
+    public CursorController Cursor;
     public GameObject Canvas;
     public Unit BaseUnit;
     public PointerMarker PointerMarker;
@@ -67,17 +61,29 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public Team CurrentPhase = GameCalculations.FirstTurnTeam;
     protected Difficulty difficulty;
     private List<IGameControllerListener> listeners = new List<IGameControllerListener>();
-    private float cursorMoveDelay;
     private float enemyMoveDelayCount;
-    private Vector2Int previousPos = new Vector2Int(-1, -1);
-    private Camera main;
     private Transform currentMapObject;
     private Transform currentUnitsObject;
     private DeadUnitData deadUnit;
     private bool checkEndTurn;
     private Map selectedMap;
     private int currentKnowledge;
-    private int enemyCount; // To increase performance
+    private int _enemyCount; // To increase performance
+    private int enemyCount
+    {
+        get
+        {
+            if (_enemyCount < 0)
+            {
+                _enemyCount = units.FindAll(a => !a.TheTeam.IsMainPlayerTeam()).Count;
+            }
+            return _enemyCount;
+        }
+        set
+        {
+            _enemyCount = value;
+        }
+    }
     private SuspendDataGameController suspendData = new SuspendDataGameController();
     private List<Unit> playerUnitsCache;
     public List<Unit> PlayerUnits
@@ -115,31 +121,20 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             SavedData.Save<int>("NumRuns", value);
         }
     }
-    protected Vector2Int cursorPos
-    {
-        get
-        {
-            return new Vector2Int((int)(Cursor.transform.position.x / TileSize), -(int)(Cursor.transform.position.y / TileSize));
-        }
-        set
-        {
-            Cursor.transform.position = new Vector3(value.x * TileSize, -value.y * TileSize, Cursor.transform.position.z);
-        }
-    }
     private bool _interactable = true;
-    private bool interactable
+    public bool Interactable
     {
         get => _interactable;
-        set
+        private set
         {
             _interactable = value;
-            if (interactable)
+            if (Interactable)
             {
-                ShowUI();
+                GameUIController.ShowUI(Cursor.Pos);
             }
             else
             {
-                HideUI();
+                GameUIController.HideUI();
             }
         }
     }
@@ -174,7 +169,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     protected virtual void Awake()
     {
         Current = this;
-        main = Camera.main;
         // Init maps
         MapController.Maps.ForEach(a => a.Init());
         // Init markers
@@ -218,72 +212,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         if (MidBattleScreen.HasCurrent) // For ConversationPlayer
         {
-            HideUI();
+            GameUIController.HideUI();
             return;
         }
         if (Time.timeScale == 0 || CheckGameState() != GameState.Normal)
         {
             return;
-        }
-        // Interact/UI code
-        if (interactable)
-        {
-            if (!Cursor.gameObject.activeSelf)
-            {
-                ShowUI();
-            }
-            if (cursorMoveDelay <= 0)
-            {
-                if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(Control.Axis.Y)) >= 0.5f)
-                {
-                    Cursor.transform.position += new Vector3(
-                        Control.GetAxisInt(Control.Axis.X),
-                        Control.GetAxisInt(Control.Axis.Y)) * TileSize;
-                    Cursor.transform.position = new Vector3(
-                        Mathf.Clamp(cursorPos.x, 0, MapSize.x - 1) * TileSize,
-                        -Mathf.Clamp(cursorPos.y, 0, MapSize.y - 1) * TileSize,
-                        Cursor.transform.position.z);
-                    cursorMoveDelay = 0.15f;
-                    if (cursorPos != previousPos)
-                    {
-                        cursorMoveDelay = 0.15f;
-                    }
-                    else
-                    {
-                        cursorMoveDelay -= Time.deltaTime;
-                    }
-                }
-            }
-            else
-            {
-                cursorMoveDelay -= Time.deltaTime;
-            }
-            if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) < 0.5f && Mathf.Abs(Control.GetAxis(Control.Axis.Y)) < 0.5f)
-            {
-                cursorMoveDelay = 0;
-            }
-            if (Control.GetButtonDown(Control.CB.A))
-            {
-                HandleAButton();
-            }
-            else if (Control.GetButtonDown(Control.CB.B))
-            {
-                HandleBButton();
-            }
-            else if (Control.GetButtonDown(Control.CB.Select))
-            {
-                HandleSelectButton();
-            }
-            else if (Control.GetButtonDown(Control.CB.Start))
-            {
-                HandleStartButton();
-            }
-            if (previousPos != cursorPos)
-            {
-                ShowUI();
-                SystemSFXController.Play(SystemSFXController.Type.CursorMove);
-            }
-            previousPos = cursorPos;
         }
         // End Interact/UI code
         EnemyAI();
@@ -379,19 +313,19 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         checkEndTurn = true;
     }
 
-    protected virtual void HandleAButton()
+    public virtual void HandleAButton(Vector2Int pos)
     {
-        InteractWithTile(cursorPos.x, cursorPos.y);
+        InteractWithTile(pos.x, pos.y);
     }
 
-    protected virtual void HandleBButton()
+    public virtual void HandleBButton(Vector2Int pos)
     {
         switch (InteractState)
         {
             case InteractState.None: // View chosen character's stats
                 if (!RemoveMarkers()) // If not viewing enemy range
                 {
-                    Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                    Unit selected = FindUnitAtPos(pos.x, pos.y);
                     if (selected != null)
                     {
                         StatusScreenController statusScreenController = Instantiate(StatusScreen).GetComponentInChildren<StatusScreenController>();
@@ -426,13 +360,13 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
     }
 
-    protected virtual void HandleSelectButton()
+    public virtual void HandleSelectButton(Vector2Int pos)
     {
         switch (InteractState)
         {
             case InteractState.None:
                 // Select next unit
-                Unit selected = FindUnitAtPos(cursorPos.x, cursorPos.y);
+                Unit selected = FindUnitAtPos(pos.x, pos.y);
                 if (selected != null)
                 {
                     bool foundSelected = false;
@@ -441,7 +375,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         if (foundSelected && trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                         {
-                            cursorPos = trueUnits[i].Pos;
+                            Cursor.Pos = trueUnits[i].Pos;
                             foundSelected = false;
                             break;
                         }
@@ -456,7 +390,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                         {
                             if (trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                             {
-                                cursorPos = trueUnits[i].Pos;
+                                Cursor.Pos = trueUnits[i].Pos;
                                 break;
                             }
                         }
@@ -469,7 +403,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         if (trueUnits[i].TheTeam == CurrentPhase && trueUnits[i].Moved == false)
                         {
-                            cursorPos = trueUnits[i].Pos;
+                            Cursor.Pos = trueUnits[i].Pos;
                             break;
                         }
                     }
@@ -478,14 +412,14 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             case InteractState.Move:
             case InteractState.Attack:
                 // Select selected unit
-                cursorPos = Selected.Pos;
+                Cursor.Pos = Selected.Pos;
                 break;
             default:
                 break;
         }
     }
 
-    protected virtual void HandleStartButton()
+    public virtual void HandleStartButton(Vector2Int pos)
     {
         // Only works in None
         switch (InteractState)
@@ -531,76 +465,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
     }
 
-    private void ShowUI()
-    {
-        UITileInfoPanel.gameObject.SetActive(true);
-        UIUnitInfoPanel.gameObject.SetActive(true);
-        Cursor.gameObject.SetActive(true);
-        UITileInfo.text = Map[cursorPos.x, cursorPos.y].ToString();
-        Unit unit = FindUnitAtPos(cursorPos.x, cursorPos.y);
-        Vector2 anchor;
-        if (cursorPos.x >= MapSize.x / 2)
-        {
-            anchor = new Vector2Int(0, 1);
-        }
-        else
-        {
-            anchor = new Vector2Int(1, 1);
-        }
-        if (enemyCount == -1)
-        {
-            enemyCount = units.FindAll(a => !a.TheTeam.IsMainPlayerTeam()).Count;
-        }
-        if (unit != null)
-        {
-            UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
-            UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
-        }
-        else
-        {
-            UIUnitInfo.text = GetInfoObjectiveText();
-            UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = 3;
-        }
-        UIUnitInfoPanel.anchorMin = anchor;
-        UIUnitInfoPanel.anchorMax = anchor;
-        UIUnitInfoPanel.pivot = anchor;
-        if (InteractState != InteractState.None)
-        {
-            UIFightPanel.gameObject.SetActive(true);
-            anchor.y = 0.5f;
-            UIFightPanel.anchorMin = anchor;
-            UIFightPanel.anchorMax = anchor;
-            UIFightPanel.pivot = anchor;
-            DisplayBattleForecast(Selected, unit);
-            DisplayBattleForecast(unit, Selected, true);
-        }
-        else
-        {
-            UIFightPanel.gameObject.SetActive(false);
-        }
-        anchor.y = 0;
-        UITileInfoPanel.anchorMin = anchor;
-        UITileInfoPanel.anchorMax = anchor;
-        UITileInfoPanel.pivot = anchor;
-        // Movement arrows
-        if (InteractState == InteractState.Move)
-        {
-            RemoveArrowMarkers();
-            MapObjectsAtPos(cursorPos).ForEach(a => a.Hover(InteractState));
-        }
-    }
-
-    private void HideUI()
-    {
-        UITileInfoPanel.gameObject.SetActive(false);
-        UIUnitInfoPanel.gameObject.SetActive(false);
-        UIFightPanel.gameObject.SetActive(false);
-        Cursor.gameObject.SetActive(false);
-    }
-
     private void EnemyAI()
     {
-        // Enemy AI. TBA: Change to check which team is player controlled and which is computer controlled.
+        // Enemy AI
         if (!CurrentPhase.PlayerControlled())
         {
             if (enemyMoveDelayCount > MapAnimationsController.Current.DelayTime) // Delay once before the phase begins
@@ -621,12 +488,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 enemyMoveDelayCount += Time.deltaTime;
             }
         }
-    }
-
-    private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
-    {
-        MiniBattleStatsPanel panel = reverse ? UIDefenderPanel : UIAttackerPanel;
-        panel.DisplayBattleForecast(origin, target, reverse);
     }
 
     public void InteractWithTile(int x, int y)
@@ -654,12 +515,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return GetMarkerAtPos<T>(pos.x, pos.y);
     }
 
-    private List<MapObject> MapObjectsAtPos(int x, int y)
+    public List<MapObject> MapObjectsAtPos(int x, int y)
     {
         return MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y);
     }
 
-    private List<MapObject> MapObjectsAtPos(Vector2Int pos)
+    public List<MapObject> MapObjectsAtPos(Vector2Int pos)
     {
         return MapObjectsAtPos(pos.x, pos.y);
     }
@@ -669,7 +530,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     /// <returns>True if there were any markers, false otherwise.</returns>
     public bool RemoveMarkers()
     {
-        previousPos = new Vector2Int(-1, -1);
         List<MapObject> markers = MapObjects.FindAll(a => a is Marker);
         if (markers.Count > 0)
         {
@@ -750,7 +610,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 }
             }
         }
-        interactable = team.PlayerControlled();
+        Interactable = team.PlayerControlled();
+        Cursor.Palette = (int)team;
         if (team == GameCalculations.FirstTurnTeam)
         {
             Turn++;
@@ -1160,7 +1021,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     unit.transform.parent = currentUnitsObject;
                     unit.Health = unit.Stats.MaxHP;
                     unit.Pos = unitData.Pos;
-                    cursorPos = unit.Pos; // Auto-cursor
+                    Cursor.Pos = unit.Pos; // Auto-cursor
                     continue;
                 }
                 else
@@ -1187,7 +1048,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     }
                     else
                     {
-                        cursorPos = unit.Pos; // Auto-cursor
+                        Cursor.Pos = unit.Pos; // Auto-cursor
                     }
                 }
             }
@@ -1287,7 +1148,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         AssignGenericPortraitsToUnits();
         // Begin the level properly
-        interactable = GameCalculations.FirstTurnTeam.PlayerControlled();
+        Interactable = GameCalculations.FirstTurnTeam.PlayerControlled();
         TurnAnimation.ShowTurn(GameCalculations.FirstTurnTeam);
         // Stats - increase the maps count of player units
         units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
@@ -1369,11 +1230,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void ForceSetCursorPos(Vector2Int pos)
     {
-        cursorPos = pos;
-        ShowUI(); // Update UI
+        Cursor.Pos = pos;
+        GameUIController.ShowUI(Cursor.Pos); // Update UI
         if (MidBattleScreen.HasCurrent)
         {
-            HideUI();
+            GameUIController.HideUI();
         }
     }
 
@@ -1557,6 +1418,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             if (unit.TheTeam.IsMainPlayerTeam())
             {
                 playerUnitsCache.Add(unit);
+                if (unit.Name == StaticGlobals.MainCharacterName)
+                {
+                    Cursor.Pos = unit.Pos; // Auto-cursor
+                }
             }
         }
         if (ConversationPlayer.Current.Playing)

@@ -35,11 +35,11 @@ public class TutorialGameController : GameController
             ConversationPlayer.Current.Resume();
         }
     }
-    protected override void HandleAButton()
+    public override void HandleAButton(Vector2Int pos)
     {
-        if (CurrentForceButton.Button == Control.CB.A && (CurrentForceButton.Pos == cursorPos || CurrentForceButton.Pos == Vector2Int.one * -1))
+        if (CurrentForceButton.Button == Control.CB.A && (CurrentForceButton.Pos == pos || CurrentForceButton.Pos == Vector2Int.one * -1))
         {
-            base.HandleAButton();
+            base.HandleAButton(pos);
             CurrentForceButton = null;
             MarkerCursor.gameObject.SetActive(false);
         }
@@ -48,11 +48,11 @@ public class TutorialGameController : GameController
             WrongInput();
         }
     }
-    protected override void HandleBButton()
+    public override void HandleBButton(Vector2Int pos)
     {
-        if (CurrentForceButton.Button == Control.CB.B && (CurrentForceButton.Pos == cursorPos || CurrentForceButton.Pos == Vector2Int.one * -1))
+        if (CurrentForceButton.Button == Control.CB.B && (CurrentForceButton.Pos == pos || CurrentForceButton.Pos == Vector2Int.one * -1))
         {
-            base.HandleBButton();
+            base.HandleBButton(pos);
             CurrentForceButton = null;
             MarkerCursor.gameObject.SetActive(false);
         }
@@ -61,11 +61,11 @@ public class TutorialGameController : GameController
             WrongInput();
         }
     }
-    protected override void HandleSelectButton()
+    public override void HandleSelectButton(Vector2Int pos)
     {
-        base.HandleSelectButton();
+        base.HandleSelectButton(pos);
     }
-    protected override void HandleStartButton()
+    public override void HandleStartButton(Vector2Int pos)
     {
         // No menu in tutorial (?)
     }
