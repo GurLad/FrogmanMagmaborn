@@ -71,7 +71,12 @@ Frogman: What was?
 Memerian: Getting out of here.\a That fortress? It's impenetrable.
 :if:furthestLevel:>6{
 :if:!hasFlag:FashimaDied{
+:if:hasFlag:FrogmanKnowsFashimasName{
 Frogman: Because of Fashima?
+}
+:else:{
+Frogman: Because of that Guard mage?
+}
 Memerian: Yes.
 Frogman: I mean, she is quite tough,\a but are you sure she's unbeatable?
 Memerian: Of course. Have you seen her powers?\a She can teleport anywhere, and transform her appearance.\a Frankly, we don't stand a chance.
@@ -90,6 +95,12 @@ Frogman: Right...
 :else:{
 Frogman: Yes.
 }
+:if:!hasFlag:FrogmanKnowsFashimasName{
+Frogman: Fashima?
+Memerian: The Guard mage we killed.
+Frogman: Ah.
+:setFlag:FrogmanKnowsFashimasName
+}
 Memerian: Something isn't quite right, though.\a Defeating her was too easy.
 Frogman: Too easy?
 Memerian: Compared to our past battles, she...\a almost threw the fight on purpose.
@@ -99,7 +110,12 @@ Frogman: I... see. Wait, champion? What-
 :return:
 }
 :else:{
+:if:hasFlag:FrogmanKnowsFashimasName{
 Frogman: Because of Fashima?
+}
+:else:{
+Frogman: Because of that Guard mage?
+}
 Memerian: Yes.
 Frogman: Well, she's dead.
 Memerian: What?!

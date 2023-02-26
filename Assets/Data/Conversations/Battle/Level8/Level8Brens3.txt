@@ -1,0 +1,77 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:8
+!hasFlag:BrensDied
+~ Demands
+hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant
+:loadUnits::monster
+:loadUnits::guard:T
+:setSpeaker:Brens
+Werse: I'm back.
+Brens: How did it go? Has Bodder finally decided to help us?
+Werse: I'm afraid not. But I did manage to get an audience.
+Brens: Really? What did she say?!
+Werse: She got mad at me for breaking into her chamber,\a and dismissed me immediately afterwards.\a She refused to listen to reason,\a even after I told her that Fashima is already dead.
+Brens: Hold on. You broke into her chamber?!
+Werse: Yes. But that's not-
+Brens: Have you lost your mind?! She is our leader!\a You... you can't do that!
+Werse: Our leader? When was the last time you saw her, Brens?
+Brens: Uh...
+Werse: She hasn't been leading us for ages now!\a Someone had to do something about it!\a Had I not seen her myself today,\a I would've assumed she abandoned us completely!
+Brens: That is no excuse! She must have her reasons!\a We are not to question her orders,\a let alone break into her chamber!
+Werse: Why? What has she done to earn our respect?!
+Brens: She has been our leader for longer than you've been alive!\a You have no right to doubt her!
+Werse: I- Ugh, that's not even my point!\a When I saw her, something was off.\a She was too agitated, too quick-tempered.\a She didn't even talk her usual self.
+Brens: Of course she was angry - you broke into her chamber!\a And that situation is highly unusual!\a How many times have you even met her,\a to know so well how she talks like?
+Werse: ...Only a few times, and yet-
+Brens: Enough with this nonsense! Werse, you're dismissed!\a Go home and take a rest.\a I'll let the incident today slide,\a but it better not happen again!
+Werse: But-
+Brens: Werse!
+Werse: ...I apologize, master. I shall never do it again.
+Brens: Good.
+:setSingleSpeaker:R
+:killUnit:Werse
+...
+Lieutenant: Um... m-master?
+Brens: Yes, soldier?
+Lieutenant: The M-Magmaborn... They're back...
+Brens: Back? Where?!
+Lieutenant: They s-should be here in a few moments...
+Brens: A few moments? Why didn't you say something earlier?!
+Lieutenant: I d-didn't want to i-interrupt you...
+Brens: You- Ugh, no matter! Get ready, everyone!
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+:call:Reaction
+:setDeathQuote:Brens:BrensDeath
+:markDone:
+
+# Name: Text.
+~ After battle
+:callOther:Level8BrensDeath
+
+# === Functions ====
+
+~ BrensDeath
+:setFlag:BrensDied
+:play:GuardTheme3
+Brens: Ha... You're tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+:play:Silence
+Fashima|???: Not so fast, old man.
+:screenShake:
+Brens: Urk!
+
+~Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Let's defeat Brens this time!

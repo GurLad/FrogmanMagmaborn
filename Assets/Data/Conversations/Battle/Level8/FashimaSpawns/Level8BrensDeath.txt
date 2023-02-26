@@ -13,7 +13,14 @@ roomNumber:0
 :play:ShatteredDream
 Frogman||L: W-What? Who are you? Where did you come from?!
 Fashima|???: Don't you recognize me, my friend?
+:if:hasFlag:FrogmanKnowsFashimasName{
 Frogman||L: Recognize? Wait, you're... Fashima?!
+}
+:else:{
+Frogman||L: Recognize? Wait, you're... the Guard mage?!
+Fashima: Yes. And my name is Fashima. Not the Guard mage.
+:setFlag:FrogmanKnowsFashimasName
+}
 :if:hasCharacter:Memerian{
 Memerian||L: I knew it. You were holding back before,\a weren't you?
 }

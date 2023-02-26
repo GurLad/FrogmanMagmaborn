@@ -25,7 +25,12 @@ Guard1: F-Fashima's down! Everyone, retreat!
 Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!\a Like the Guards? But I thought...
 }
 :else:{
+:if:hasFlag:FrogmanKnowsFashimasName{
 Frogman: We... We did it! We beat Fashima!\a Huh. She just... disappeared.\a Like all Guards.\a I guess I shouldn't be surprised.
+}
+:else:{
+Frogman: We... We did it! We beat that mage!\a Huh. She just... disappeared. Like all Guards.\a I guess I shouldn't be surprised.
+}
 }
 :if:hasCharacter:Memerian{
 Memerian: Hmpf. She's bold, I'll give her that.
