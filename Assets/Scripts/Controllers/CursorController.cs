@@ -16,6 +16,21 @@ public class CursorController : MonoBehaviour
         set
         {
             transform.position = new Vector3(value.x * tileSize, -value.y * tileSize, transform.position.z);
+            if (Visible)
+            {
+                SystemSFXController.Play(SystemSFXController.Type.CursorMove);
+            }
+        }
+    }
+    public bool Visible
+    {
+        get
+        {
+            return palettedSprite.gameObject.activeSelf;
+        }
+        set
+        {
+            palettedSprite.gameObject.SetActive(value);
         }
     }
     public int Palette { set => palettedSprite.Palette = value; }
@@ -26,10 +41,19 @@ public class CursorController : MonoBehaviour
 
     private void Update()
     {
+        if (MidBattleScreen.HasCurrent) // For ConversationPlayer
+        {
+            GameUIController.HideUI();
+            return;
+        }
+        if (Time.timeScale == 0 || GameController.Current.CheckGameState() != GameState.Normal)
+        {
+            return;
+        }
         // Interact/UI code
         if (GameController.Current.Interactable)
         {
-            if (!gameObject.activeSelf)
+            if (!Visible)
             {
                 GameUIController.ShowUI(Pos);
             }
@@ -37,13 +61,9 @@ public class CursorController : MonoBehaviour
             {
                 if (Mathf.Abs(Control.GetAxis(Control.Axis.X)) >= 0.5f || Mathf.Abs(Control.GetAxis(Control.Axis.Y)) >= 0.5f)
                 {
-                    transform.position += new Vector3(
-                        Control.GetAxisInt(Control.Axis.X),
-                        Control.GetAxisInt(Control.Axis.Y)) * tileSize;
-                    transform.position = new Vector3(
-                        Mathf.Clamp(Pos.x, 0, mapSize.x - 1) * tileSize,
-                        -Mathf.Clamp(Pos.y, 0, mapSize.y - 1) * tileSize,
-                        transform.position.z);
+                    Pos = new Vector2Int(
+                        Mathf.Clamp(Pos.x + Control.GetAxisInt(Control.Axis.X), 0, mapSize.x - 1),
+                        Mathf.Clamp(Pos.y - Control.GetAxisInt(Control.Axis.Y), 0, mapSize.y - 1));
                     cursorMoveDelay = 0.15f;
                     if (Pos != previousPos)
                     {
@@ -63,6 +83,11 @@ public class CursorController : MonoBehaviour
             {
                 cursorMoveDelay = 0;
             }
+            if (previousPos != Pos)
+            {
+                GameUIController.ShowUI(Pos);
+            }
+            previousPos = Pos;
             if (Control.GetButtonDown(Control.CB.A))
             {
                 GameController.Current.HandleAButton(Pos);
@@ -79,18 +104,11 @@ public class CursorController : MonoBehaviour
             {
                 GameController.Current.HandleStartButton(Pos);
             }
-            if (previousPos != Pos)
-            {
-                GameUIController.ShowUI(Pos);
-                SystemSFXController.Play(SystemSFXController.Type.CursorMove);
-                // Movement arrows
-                if (GameController.Current.InteractState == InteractState.Move)
-                {
-                    GameController.Current.RemoveArrowMarkers();
-                    GameController.Current.MapObjectsAtPos(Pos).ForEach(a => a.Hover(GameController.Current.InteractState));
-                }
-            }
-            previousPos = Pos;
         }
+    }
+
+    public void RefreshNextFrame()
+    {
+        previousPos = -Vector2Int.one;
     }
 }

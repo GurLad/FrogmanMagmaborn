@@ -347,12 +347,14 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             case InteractState.Move:// Undo turn in move/attack
                 Selected = null;
                 RemoveMarkers();
+                Cursor.RefreshNextFrame();
                 InteractState = InteractState.None;
                 SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
             case InteractState.Attack:
                 Selected.MoveTo(Selected.PreviousPos, true);
                 Selected.Interact(InteractState = InteractState.None);
+                Cursor.RefreshNextFrame();
                 SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
             default:

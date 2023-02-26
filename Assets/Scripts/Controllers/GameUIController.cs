@@ -20,7 +20,7 @@ public class GameUIController : MonoBehaviour
     {
         UITileInfoPanel.gameObject.SetActive(true);
         UIUnitInfoPanel.gameObject.SetActive(true);
-        Cursor.gameObject.SetActive(true);
+        Cursor.Visible = true;
         UITileInfo.text = GameController.Current.Map[pos.x, pos.y].ToString();
         Unit unit = GameController.Current.FindUnitAtPos(pos.x, pos.y);
         Vector2 anchor;
@@ -63,6 +63,12 @@ public class GameUIController : MonoBehaviour
         UITileInfoPanel.anchorMin = anchor;
         UITileInfoPanel.anchorMax = anchor;
         UITileInfoPanel.pivot = anchor;
+        // Movement arrows
+        if (GameController.Current.InteractState == InteractState.Move)
+        {
+            GameController.Current.RemoveArrowMarkers();
+            GameController.Current.MapObjectsAtPos(pos).ForEach(a => a.Hover(GameController.Current.InteractState));
+        }
     }
 
     public void HideUI()
@@ -70,7 +76,7 @@ public class GameUIController : MonoBehaviour
         UITileInfoPanel.gameObject.SetActive(false);
         UIUnitInfoPanel.gameObject.SetActive(false);
         UIFightPanel.gameObject.SetActive(false);
-        Cursor.gameObject.SetActive(false);
+        Cursor.Visible = false;
     }
 
     private void DisplayBattleForecast(Unit origin, Unit target, bool reverse = false)
