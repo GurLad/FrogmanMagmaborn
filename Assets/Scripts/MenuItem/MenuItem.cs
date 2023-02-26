@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MenuItem : MonoBehaviour
 {
+    public bool UseCancelSFX;
     public List<GameObject> Indicators;
     [HideInInspector]
     public RectTransform TheRectTransform;
@@ -47,6 +48,7 @@ public class MenuItem : MonoBehaviour
     public virtual void Activate()
     {
         triggers.ForEach(a => a.Activate());
+        SystemSFXController.Play(UseCancelSFX ? SystemSFXController.Type.MenuCancel : SystemSFXController.Type.MenuSelect);
     }
     public virtual void OnMenuDone()
     {

@@ -165,6 +165,7 @@ public class Unit : MapObject
                     GameController.Current.InteractState = InteractState.Move;
                     GameController.Current.ShowPointerMarker(this, (int)TheTeam);
                     GameController.Current.Selected = this;
+                    SystemSFXController.Play(SystemSFXController.Type.UnitSelect);
                 }
                 else if (TheTeam != GameController.Current.CurrentPhase)
                 {

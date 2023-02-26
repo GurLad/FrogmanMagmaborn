@@ -34,6 +34,7 @@ public class StatusScreenController : MidBattleScreen
         currentTeam = (int)unit.TheTeam;
         Bugger.Info("Unit: " + unit + ", pos: " + unit.Pos + ", all: " + string.Join(", ", UnitLists[currentTeam]));
         Show(unit, UnitLists[currentTeam].FindIndex(a => a.Pos == unit.Pos));
+        SystemSFXController.Play(SystemSFXController.Type.LongSelect);
     }
 
     private void Show(Unit unit, int index)
@@ -83,6 +84,7 @@ public class StatusScreenController : MidBattleScreen
             {
                 Quit();
             }
+            SystemSFXController.Play(SystemSFXController.Type.LongCancel);
             return;
         }
         Vector2Int input = new Vector2Int(Control.GetAxisInt(Control.Axis.X), Control.GetAxisInt(Control.Axis.Y));
@@ -96,6 +98,7 @@ public class StatusScreenController : MidBattleScreen
                 PaletteController.Current.LoadState(previousPalette);
                 Show(UnitLists[currentTeam][index], index);
                 PaletteController.Current.FadeIn(() => enabled = true);
+                SystemSFXController.Play(SystemSFXController.Type.LongMove);
             });
         }
         else if (input.x != 0 && input.x != previousDir.x)
@@ -112,6 +115,7 @@ public class StatusScreenController : MidBattleScreen
                 Show(UnitLists[currentTeam][index], index);
                 currentUnit = tempIndex;
                 PaletteController.Current.FadeIn(() => enabled = true);
+                SystemSFXController.Play(SystemSFXController.Type.LongMove);
             });
         }
         if (!GameCalculations.TransitionsOn) // With transitions, players can just hold the button and it looks fine

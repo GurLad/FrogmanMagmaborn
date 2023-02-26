@@ -281,6 +281,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             if (previousPos != cursorPos)
             {
                 ShowUI();
+                SystemSFXController.Play(SystemSFXController.Type.CursorMove);
             }
             previousPos = cursorPos;
         }
@@ -413,10 +414,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 Selected = null;
                 RemoveMarkers();
                 InteractState = InteractState.None;
+                SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
             case InteractState.Attack:
                 Selected.MoveTo(Selected.PreviousPos, true);
                 Selected.Interact(InteractState = InteractState.None);
+                SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
             default:
                 break;

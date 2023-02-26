@@ -6,31 +6,32 @@ Clash of Nerds feedback:
  -Wait confirmation
  -Make the X/Z/Enter display until the player begins a save file
 V-Add movement arrows
- -Add menu/cursor SFX
 
 For v0.6 release:
--Conversations:
- -Level1KreslaOnAlfred
- -Torment1RestoreFirbell
- -Level5AlfredKresla3
- -Level5FirstTimeAlfredKresla
- -Level6MemerianFashimaNecklace
- -Level6MemerianFashimaTorment
- -Level6UnlockInclinationAlfred
- -Level6UnlockInclinationMemerianXeplogi
- -Level7LanLoss3
- -Level8Brens3
- -Level8Werse2
- -Level8FashimaSpawnWerse1
- -Level8FashimaSpawnWerseGeneric
- -Level9FirstTime
- -Level9Generic
- -Level9PostDidntTrustFashima
- -Level9WorkerDeath
- -BaseLevel9Alfred
- -BaseLevel9GuardsAndMagi
- -BaseLevel9Magi
- -BaseLevel9Magic
+ -Conversations:
+  -Level1KreslaOnAlfred
+  -Torment1RestoreFirbell
+  -Level5AlfredKresla3
+  -Level5FirstTimeAlfredKresla
+  -Level6MemerianFashimaNecklace
+ V-Level6MemerianFashimaTorment
+  -Level6UnlockInclinationAlfred
+  -Level6UnlockInclinationMemerianXeplogi
+  -Level7LanLoss3
+  -Level8Brens3
+  -Level8Werse2
+  -Level8FashimaSpawnWerse1
+  -Level8FashimaSpawnWerseGeneric
+  -Level9FirstTime
+  -Level9Generic
+  -Level9PostDidntTrustFashima
+  -Level9WorkerDeath
+  -BaseLevel9Alfred
+  -BaseLevel9GuardsAndMagi
+  -BaseLevel9Magi
+  -BaseLevel9Magic
+ -Add menu/cursor SFX
+ -Seperate cursor code from GameController
 
 For final release:
 -Must have:

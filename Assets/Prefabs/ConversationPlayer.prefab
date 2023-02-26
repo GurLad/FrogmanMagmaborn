@@ -727,10 +727,10 @@ MonoBehaviour:
   LettersPerSecond: 12
   LineWidth: 30
   VoiceTypes:
-  - {fileID: 8300000, guid: 9ca22729db8aa8c4394223d2afe1b034, type: 3}
-  - {fileID: 8300000, guid: eb61a48ce0c4b874ca932b2402ea0349, type: 3}
-  - {fileID: 8300000, guid: 67ef34fbc4aa56e46b00731cd52301f2, type: 3}
-  - {fileID: 8300000, guid: a099f9050f39c644bafb968570321ff3, type: 3}
+  - {fileID: 8300000, guid: c886e033e6d02984d9505e0929fd9a6e, type: 3}
+  - {fileID: 8300000, guid: e8574d6c4ca44954599778247f6d0210, type: 3}
+  - {fileID: 8300000, guid: f92280f73a6ab694c856a82e057c2b20, type: 3}
+  - {fileID: 8300000, guid: 45f095ddb2ad3bd4ab4d22ed74852541, type: 3}
   VoiceMod: 0.1
   PunctuationDelay: 2
   AllObjectsHolder: {fileID: 4302129078787225969}
@@ -751,6 +751,7 @@ MonoBehaviour:
   Knowledge: {fileID: 0}
   Tutorial: {fileID: 0}
   Intro: {fileID: 0}
+  Playing: 0
   startActive: 1
 --- !u!1001 &6757712536418939877
 PrefabInstance:

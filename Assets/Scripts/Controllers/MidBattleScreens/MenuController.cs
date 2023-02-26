@@ -50,6 +50,7 @@ public class MenuController : MidBattleScreen
             {
                 CancelTrigger.Activate();
             }
+            SystemSFXController.Play(SystemSFXController.Type.MenuCancel);
             return;
         }
         if (Control.GetButtonDown(Control.CB.Start))
@@ -58,21 +59,26 @@ public class MenuController : MidBattleScreen
             {
                 FinishMenu();
                 StartTrigger.Activate();
+                SystemSFXController.Play(SystemSFXController.Type.MenuSelect);
             }
             return;
         }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
-            SelectItem((Selected - Control.GetAxisInt(Control.Axis.Y) + count) % count);
+            SelectItem((Selected - Control.GetAxisInt(Control.Axis.Y) + count) % count, true);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }
 
-    public virtual void SelectItem(int index)
+    public virtual void SelectItem(int index, bool playSFX = false)
     {
         MenuItems[Selected].Unselect();
         Selected = index;
         MenuItems[Selected].Select();
+        if (playSFX)
+        {
+            SystemSFXController.Play(SystemSFXController.Type.MenuMove);
+        }
     }
 
     public void Finish()

@@ -16,9 +16,9 @@ public class ScrollingMenuController : MenuController
         SetPage(currentPage);
     }
 
-    public override void SelectItem(int index)
+    public override void SelectItem(int index, bool playSFX = false)
     {
-        base.SelectItem(index);
+        base.SelectItem(index, playSFX);
         if (index < currentPage)
         {
             SetPage(index);

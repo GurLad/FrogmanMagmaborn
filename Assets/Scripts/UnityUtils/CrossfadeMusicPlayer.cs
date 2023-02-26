@@ -72,6 +72,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             Playing = Tracks[0].Name;
         }
         GetComponent<SoundController>().Init();
+        GetComponent<SystemSFXController>().Init();
     }
 
     public void Play(string name, bool? keepTimestamp = null)
