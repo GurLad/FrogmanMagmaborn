@@ -1,0 +1,54 @@
+priority:-1
+unique:F
+~ Requirements
+# This conversation isn't meant to be selected - it just guarantees the same post-battle for every Werse death event
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:stringEquals:[Name:Attacker]:Werse{
+Werse||R: ...I surrender.
+Defender: Huh?
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
+Defender: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
+:killTeam:guard
+Defender: ...What just happened?
+}
+:else:{
+Werse||R: ...I surrender.
+Attacker: Huh?
+Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
+Attacker: What?
+Werse: ...Fine, I'll do it myself.
+:screenShake:
+Urk! You've... got me...\a I must... retreat...
+:hideUnit:Werse
+:if:teamUnitsAlive:guard:>0{
+:getGenericCharacter:Guard1
+}
+:else:{
+:addGenericCharacter:Guard1
+}
+Guard1: W-werse! They're... gone!\a Retreat, everyone!
+:killTeam:guard
+Attacker: ...What just happened?
+}
+
+~ After battle
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

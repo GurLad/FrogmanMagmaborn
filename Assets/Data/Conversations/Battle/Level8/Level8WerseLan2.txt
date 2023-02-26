@@ -59,44 +59,7 @@ Werse: Ugh. What a fool.
 # === Functions ====
 
 ~ WerseBattle
-:if:stringEquals:[Name:Attacker]:Werse{
-Werse||R: ...I surrender.
-Defender: Huh?
-Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
-Defender: What?
-Werse: ...Fine, I'll do it myself.
-:screenShake:
-Urk! You've... got me...\a I must... retreat...
-:hideUnit:Werse
-:if:teamUnitsAlive:guard:>0{
-:getGenericCharacter:Guard1
-}
-:else:{
-:addGenericCharacter:Guard1
-}
-Guard1: W-werse! They're... gone!\a Retreat, everyone!
-:killTeam:guard
-Defender: ...What just happened?
-}
-:else:{
-Werse||R: ...I surrender.
-Attacker: Huh?
-Werse: There's no need for any more lives to be lost today.\a Pretend to kill me,\a and the Guards will flee.
-Attacker: What?
-Werse: ...Fine, I'll do it myself.
-:screenShake:
-Urk! You've... got me...\a I must... retreat...
-:hideUnit:Werse
-:if:teamUnitsAlive:guard:>0{
-:getGenericCharacter:Guard1
-}
-:else:{
-:addGenericCharacter:Guard1
-}
-Guard1: W-werse! They're... gone!\a Retreat, everyone!
-:killTeam:guard
-Attacker: ...What just happened?
-}
+:callOther:Level8WerseSurrender
 
 ~ Reaction
 :if:hasCharacter:Firbell{
