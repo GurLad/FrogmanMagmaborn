@@ -72,6 +72,7 @@ Frogman: ...
 
 ~ EnterBodder
 :play:EnterTheBodder
+:call:Reaction
 # TBA: Change everything, since can't arrive alone anymore
 Bodder: Frogman, Frogman, Frogman.
 Do you know how long I've been waiting for this moment?
@@ -117,6 +118,22 @@ Frogman: Did... you just turn cyan?\a Wait.\a Your injuries...
 SuBodderPre: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
 Frogman: This seems unfair.
 # TBA: Fashima speaks, based on whether you chose to trust her
+
+~ Reaction
+:if:hasCharacter:Memerian{
+Memerian: TBA
+:setFlag:MemerianMetMagmabornFashima
+:return:
+}
+:if:hasCharacter:Firbell{
+Firbell: TBA
+:return:
+}
+:if:hasCharacter:Kresla{
+Kresla: TBA
+:return:
+}
+# More TBA
 
 ~ WorkerDeath
 :callOther:Level9WorkerDeath

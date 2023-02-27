@@ -3,8 +3,11 @@ unique:T
 ~ Requirements
 # If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 roomNumber:6
-charactersAlive:<2
+charactersAlive:=1
+compareCounter:MemerianXeplogiBalance:>0
 hasFlag:FashimaBattleMemerian
+# Pointless discussion if Memerian already knows her theory is correct
+!hasFlag:MemerianMetMagmabornFashima
 ~ Demands
 # Nothinig
 ~ Before battle
@@ -12,11 +15,13 @@ hasFlag:FashimaBattleMemerian
 :addUnit:Memerian
 :loadUnits::player
 :setSpeaker:Frogman||L
-Memerian: TBA
-:if:hasFlag:MemerianMentionedTorment{
-
-}
-
+:call:MemerianConversation
+:setFlag:FrogmanKnowsAboutFashimasNecklace
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
+:addGenericCharacter:Guard3:
+:loadUnits:
+Guard1: TBA
 :unlockAchievement:JoinMemerian
 ~ After battle
 # TBA: Add actual text
@@ -25,5 +30,50 @@ Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ MemerianConversation
+Memerian: Hey. You're back.
+Frogman: Yes.
+Memerian: And alone. That's great.
+Frogman: Great? Why?
+Memerian: Something big is about to happen.\a And I'm not sure how some Magmaborn would react.\a I'd like to keep it between us.
+Frogman: What are you talking about?
+Memerian: It's Fashima. She's wearing a Magma Emblem.
+:if:furthestLevel:>8{
+Frogman: TBA
+:return:
+}
+:if:!hasFlag:FrogmanKnowsFashimasName{
+Frogman: Who?
+Memerian: ...Fashima. The Wall Magus?\s The one guarding the Fortress?
+Frogman: Oh. How do you know her name?
+Memerian: I fought her a lot in the past.\a I used to be Torment's champion before you, you know.
+:setFlag:FrogmanKnowsFashimasName
+:if:!hasFlag:MemerianMentionedTorment{
+Frogman: You were? Wait, you know Torment?!
+Memerian: Ugh. Did I really never tell you even that much?\a Never mind, that's not the point right now.\a As I've said, Fashima is wearing a Magma Emblem.\a Do you know what that means?
+:setFlag:MemerianMentionedTorment
+}
+:else:{
+Frogman: Ah, right.
+Memerian: Anyway, that's not the point.\a As I've said, Fashima is wearing a Magma Emblem.\a Do you know what that means?
+}
+}
+Frogman: A Magma Emblem?\a Wait.\a Does that mean that should we kill her,\a she'll return as a Magmaborn?!
+Memerian: Exactly.
+Frogman: Woah. That's...\a Huh.\a How do you even know that?
+Memerian: I managed to get a close look at her necklace last time.\a It's one of the three Magma Emblems I made.
+Frogman: You've made Magma Emblems?!
+Memerian: Yes. Three in total: one I embedded in my hammer,\a another in a small pin -\a which was stolen by Xeplogi -\a and the last one in a necklace -\a the same one that Fashima currently wears.
+Frogman: Wow.\a But isn't destroying all Magmaborn her goal?\a Becoming one seems... contrary.
+Memerian: I know. It's quite the bold move on her part.\a She's either planning to defect to us,\a or try to destroy us from the inside.
+Frogman: Destroying us? How would she even do that?
+Memerian: I don't know. But be careful around her.\a She's not one to be trusted,\a even if she ends up becoming one of us.
+Frogman: Right...
+Memerian: Oh, and don't tell anyone else about it.
+Frogman: Why not?
+Memerian: You want to get out of here, right?
+Frogman: Uh, yes?
+Memerian: Some Magmaborn would...\a have reservations about creating another one,\a especially a Magus like her.\a If you want everyone to keep helping you,\a do the smart thing and keep it to yourself.
+Frogman: Sure... Why are you telling me this, then?
+Memerian: You seemed quite determined about getting out of here.\a I don't doubt this knowledge would stop you.
+Frogman: Right...

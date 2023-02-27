@@ -3,8 +3,11 @@ unique:T
 ~ Requirements
 # If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 roomNumber:6
-charactersAlive:<2
+charactersAlive:=1
+compareCounter:MemerianXeplogiBalance:>0
 !hasFlag:MemerianMentionedFashima
+# Mostly out of laziness, but also Memerian doesn't really have much to add after Fashima becomes a "Magmaborn"
+!hasFlag:MemerianMetMagmabornFashima
 ~ Demands
 # Nothinig
 ~ Before battle
@@ -13,6 +16,7 @@ charactersAlive:<2
 :loadUnits::player
 :setSpeaker:Frogman||L
 :call:MemerianConversation
+:setFlag:MemerianMentionedFashima
 :addGenericCharacter:Guard1:young
 :addGenericCharacter:Guard2:young
 :addGenericCharacter:Guard3:old
