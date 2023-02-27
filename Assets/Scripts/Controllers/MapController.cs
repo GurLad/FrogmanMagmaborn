@@ -206,6 +206,7 @@ public class Map
     public string ObjectiveData;
     public string Tags;
     public string MapString;
+
     public void Init()
     {
         string[] lines = MapString.Split(';');
@@ -220,6 +221,7 @@ public class Map
             }
         }
     }
+
     public bool MatchesDemands(ConversationData conversation)
     {
         if (LevelNumber != GameController.Current.LevelNumber)
@@ -245,6 +247,7 @@ public class Map
         }
         return true;
     }
+
     private bool MeetsDemand(string demand)
     {
         string[] parts = demand.Split(':');
@@ -286,6 +289,7 @@ public class Map
         }
         return true;
     }
+
     public override string ToString()
     {
         return Name;

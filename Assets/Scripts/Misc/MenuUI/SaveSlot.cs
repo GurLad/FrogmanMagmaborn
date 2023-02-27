@@ -25,6 +25,7 @@ public class SaveSlot : MonoBehaviour
     {
         if (Control.GetButtonDown(Control.CB.Start) || Control.GetButtonDown(Control.CB.A))
         {
+            SavedData.Save("HasASaveSlot", 1, SaveMode.Global);
             SavedData.Save("NewGame", 0);
             StartTrigger.Activate();
             gameObject.SetActive(false);

@@ -17,6 +17,7 @@ public class MoveMarker : MarkerWithArrow
         if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
             Origin.MoveOrder(Pos);
+            SystemSFXController.Play(SystemSFXController.Type.UnitSelect);
         }
         else if (interactState == InteractState.None)
         {

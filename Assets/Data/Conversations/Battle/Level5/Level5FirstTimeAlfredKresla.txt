@@ -6,6 +6,8 @@ charactersAlive:<2
 hasCharacter:Kresla
 !hasFlag:AlfredKresla1
 ~ Demands
+# Guarantee a map that makes sense for the arrivals
+hasTag:PlayersSpawnFirst
 ~ Before battle
 :play:BeforeBattle2
 :addUnit:Alfred

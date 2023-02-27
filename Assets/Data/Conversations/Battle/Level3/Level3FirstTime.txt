@@ -3,6 +3,7 @@ unique:T
 ~ Requirements
 roomNumber:3
 ~ Demands
+hasTag:LichVisible
 ~ Before battle
 :if:!firstTime:{
 :if:charactersAlive:<1{

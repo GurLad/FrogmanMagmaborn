@@ -161,10 +161,7 @@ public class Unit : MapObject
                 MovementMarker.PalettedSprite.Palette = (int)TheTeam;
                 if (TheTeam == GameController.Current.CurrentPhase && !Moved)
                 {
-                    MarkDangerArea(Pos.x, Pos.y, Movement, false);
-                    GameController.Current.InteractState = InteractState.Move;
-                    GameController.Current.ShowPointerMarker(this, (int)TheTeam);
-                    GameController.Current.Selected = this;
+                    SelectOrder();
                     SystemSFXController.Play(SystemSFXController.Type.UnitSelect);
                 }
                 else if (TheTeam != GameController.Current.CurrentPhase)
@@ -243,6 +240,16 @@ public class Unit : MapObject
                 }
             }
         }
+    }
+    /// <summary>
+    /// Select the unit, then show move markers (aka select playable unit).
+    /// </summary>
+    public void SelectOrder()
+    {
+        MarkDangerArea(Pos.x, Pos.y, Movement, false);
+        GameController.Current.InteractState = InteractState.Move;
+        GameController.Current.ShowPointerMarker(this, (int)TheTeam);
+        GameController.Current.Selected = this;
     }
     /// <summary>
     /// Moves the unit to the target pos, then shows attack markers (aka move playable unit).

@@ -39,11 +39,13 @@ public class AttackMarker : MarkerWithArrow
                 {
                     Origin.Pull(unit);
                 }
+                SystemSFXController.Play(SystemSFXController.Type.UnitSelect);
             }
         }
         else if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
             Origin.MoveOrder(DangerArea.GetBestPosToAttackTargetFrom(Pos));
+            SystemSFXController.Play(SystemSFXController.Type.UnitSelect);
         }
         else if (interactState == InteractState.None)
         {

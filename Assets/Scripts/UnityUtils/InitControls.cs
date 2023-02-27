@@ -23,14 +23,9 @@ public class InitControls : MonoBehaviour
             Control.SetButton(Control.CB.Start, KeyCode.Return);
             Control.SetAxis(Control.Axis.X, KeyCode.RightArrow, KeyCode.LeftArrow);
             Control.SetAxis(Control.Axis.Y, KeyCode.UpArrow, KeyCode.DownArrow);
-            if (InitA != null)
-            {
-                InitA.gameObject.SetActive(true);
-                InitB.gameObject.SetActive(true);
-                InitStart.text = InitStart.text.Replace("Start", "Enter");
-            }
             SavedData.Save("MusicOn", 1, SaveMode.Global);
             SavedData.Save("SFXOn", 1, SaveMode.Global);
+            SavedData.Save("GameSpeed", 1, SaveMode.Global); // Default game speed is fast
         }
         if (!SavedData.HasKey("TransitionsOn", SaveMode.Global))
         {
@@ -39,6 +34,15 @@ public class InitControls : MonoBehaviour
         if (!SavedData.HasKey("ScreenShakeOn", SaveMode.Global))
         {
             SavedData.Save("ScreenShakeOn", 1, SaveMode.Global);
+        }
+        if (!SavedData.HasKey("HasASaveSlot", SaveMode.Global))
+        {
+            if (InitA != null)
+            {
+                InitA.gameObject.SetActive(true);
+                InitB.gameObject.SetActive(true);
+                InitStart.text = InitStart.text.Replace("Start", "Enter");
+            }
         }
     }
 }

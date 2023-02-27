@@ -352,8 +352,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
             case InteractState.Attack:
+                RemoveMarkers();
+                Selected.MovementMarker.PalettedSprite.Palette = (int)Selected.TheTeam; // Probably not necessary, but just in case
                 Selected.MoveTo(Selected.PreviousPos, true);
-                Selected.Interact(InteractState = InteractState.None);
+                Selected.SelectOrder();
                 Cursor.RefreshNextFrame();
                 SystemSFXController.Play(SystemSFXController.Type.UnitCancel);
                 break;
