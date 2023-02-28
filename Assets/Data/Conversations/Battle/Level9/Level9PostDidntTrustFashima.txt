@@ -26,35 +26,10 @@ Fashima: TBA
 
 # === Functions ====
 
-~ TrustFashima
-Frogman||L: Right. I'm ready.
-:hideCG:
-:play:EnterTheBodder
-Bodder: TBA
-
 ~ EnterBodder
 :play:EnterTheBodder
-# TBA: Change everything, since can't arrive alone anymore
-Bodder: Frogman, Frogman, Frogman.
-Do you know how long I've been waiting for this moment?
-Frogman: Uh... no.
-Bodder: Ever since you've slain your first Guard,\a all those months ago.
-Frogman: Are you sure it was mon-
-Bodder: And do you know why, Frogman?
-Frogman: Because you seek revenge?
-Bodder: Because I'm the guardian of the Guards, Frogman.\a I raised them.\a I trained them.\a I taught them all they know.
-Frogman: Okay.
-Bodder: And do you know what you are, Frogman?
-Frogman: Enlighten me.
-Bodder: A hideous, nefarious, bloodthirsty monster.
-One which doesn't think twice before killing people.
-One which cares for nothing but its own flesh.
-Frogman: When will this monologue end, Bodder?
-Bodder: And do you know what I hate most in this world, Frogman?
-Frogman: Silence?
-Bodder: Monsters like you, Frogman.
-Frogman: I've had enough. Let's charge, everyone!
-Bodder: And do you know-
+:call:Reaction
+:callOther:Level9EnterBodder
 :setDeathQuote:Bodder:BodderDeath
 :play:TheInvincibleBodder:T
 
@@ -82,3 +57,6 @@ Frogman: This seems unfair.
 
 ~ WorkerDeath
 :callOther:Level9WorkerDeath
+
+~ Reaction
+# Not sure if there should be any tbh
