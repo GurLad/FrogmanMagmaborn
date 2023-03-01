@@ -23,8 +23,12 @@ Frogman: Are they the humans who trapped you?\a They didn't seem particularly sm
 :play:Trickster:T
 Torment: Those pathetic creatures?! Of course not!\a They're mere pawns for the true humans: the Magi.\a And the Magi are... well, you will see for yourself.\a Heh.
 :if:furthestLevel:>6{
-Frogman: I've already met them. They do seem quite powerful.
-Torment: Oh, you have? I mean, I knew that, of course!\a Heh heh.
+:if:hasFlag:FrogmanKnowsFashimasName{
+Frogman: You mean like Fashima?
+:else:{
+Frogman: You mean like that mage guarding the Fortress?
+}
+Torment: Oh, have you already met her?\a I mean, I knew that, of course!\a Heh heh.
 }
 :else:{
 Frogman: I... see.\a Wait, how do you know that I've met Xeplogi?

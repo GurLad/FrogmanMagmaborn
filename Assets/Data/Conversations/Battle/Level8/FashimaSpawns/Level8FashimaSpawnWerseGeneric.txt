@@ -12,6 +12,9 @@ roomNumber:0
 :setSpeaker:Frogman
 Fashima: ...That one knows more than is good for them. How bothersome.
 Frogman: Fashima-
+:if:hasCharacter:Alfred{
+:callOther:Level8FashimaKillsAlfred
+}
 Fashima: You know the drill. Catch.
 Frogman: I-
 # Teleport

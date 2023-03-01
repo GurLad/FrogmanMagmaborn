@@ -12,6 +12,10 @@ roomNumber:0
 :setSpeaker:Frogman
 Fashima: Hmpf. That was annoying.
 Frogman: Fashima?! You're back!
+:if:hasCharacter:Alfred{
+Fashima: Yes. It appears that Werse managed to get away.\a Hm...
+:callOther:Level8FashimaKillsAlfred
+}
 Fashima: Yes. It appears that Werse managed to get away.\a Hm...\a No matter. We have to go now, Frogman. Catch.
 Frogman: Wait-
 :screenShake:

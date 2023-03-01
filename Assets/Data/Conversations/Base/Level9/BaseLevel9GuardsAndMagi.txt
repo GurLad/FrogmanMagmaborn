@@ -5,7 +5,12 @@ roomNumber:9
 ~ Demands
 # Nothinig
 ~ Before battle
+:if:hasFlag:FrogmanMagiHuman{
 Frogman: So... You used to be a Guard Magus, right?
+}
+:else:{
+Frogman: So... You used to be a Guard mage, right?
+}
 Fashima: No. I used to be a Magus, not a Guard.\a The Guards are a completely different thing.
 Frogman: What's the difference?
 Fashima: Guards are simple-minded clones, created using magic.\a The Magi are humans,\a trained to use magic and lead the Guards.

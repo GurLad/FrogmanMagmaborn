@@ -14,9 +14,11 @@ Fashima||R: Welcome to my humble home, my friend.
 Frogman: Ugh... How did we get here?
 :if:hasFlag:FashimaKilledAlfred{
 More importantly, why did you kill Alfred?!
-# TBA
 :if:charactersAlive:>0{
-Wait, where is everyone?!
+And where is everyone?!
+}
+:else:{
+Fashima: I...
 }
 }
 :else:{
@@ -49,6 +51,7 @@ Fashima: The leaders of the Guards, capable of using magic.
 Frogman: Like you?
 Fashima: Exactly.
 Frogman: Oh. Then why are you helping us?\a Why are you fighting the other Magi?
+:setFlag:FrogmanKnowsWhatTheMagiAre
 }
 Fashima: Please keep your questions for the end, my friend.
 Frogman: Okay...

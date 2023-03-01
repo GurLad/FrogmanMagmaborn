@@ -28,31 +28,14 @@ Memerian||L: I knew it. You were holding back before,\a weren't you?
 Xirveros||L: You crazy!
 }
 :if:hasCharacter:Alfred{
-:if:hasFlag:FashimaBattleAlfred{
-Alfred||L: How DARE you! Using the Magma Emblem you stole!\a From US!
-Fashima: Oh, shut up. It isn't even that one.
-Alfred: Traitor! I'll kill you!
-}
-:else:{
-Alfred||L: You... You look like Guard!\a How DARE you! Using the Magma Emblem you stole!\a From US!
-Fashima: Oh, shut up. It isn't even that one.
-Alfred: Liar! I'll kill you!
-}
-Fashima: I tire of your antics, Alfred. Begone.
-:screenShake:
-Alfred: AHHH!
-:killUnit:Alfred
-Frogman||L: Y-you killed Alfred?!
-Fashima: Yes. He was detrimental to our plans, my friend.\a Now, let's leave before more Guards arrive.\a Catch.
-Frogman: What's this crys-
-:setFlag:FashimaKilledAlfred
+:callOther:Level8FashimaKillsAlfred
 }
 :else:{
 Fashima: Obviously. Now, let's leave before more Guards arrive.\a Catch.
 Frogman: What's this crys-
-}
 # Teleport
 :screenShake:
+}
 
 # === Functions ====
 
