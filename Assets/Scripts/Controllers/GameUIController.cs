@@ -24,7 +24,7 @@ public class GameUIController : MonoBehaviour
         UITileInfo.text = GameController.Current.Map[pos.x, pos.y].ToString();
         Unit unit = GameController.Current.FindUnitAtPos(pos.x, pos.y);
         Vector2 anchor;
-        if (pos.x >= pos.x / 2)
+        if (pos.x >= GameController.Current.MapSize.x / 2)
         {
             anchor = new Vector2Int(0, 1);
         }

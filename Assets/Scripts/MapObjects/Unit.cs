@@ -67,8 +67,8 @@ public class Unit : MapObject
         set
         {
             moved = value;
-            palette.Palette = Moved ? 3 : (int)TheTeam;
-            Symbol.sprite = Moved ? GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].MovedSymbol : GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].BaseSymbol;
+            palette.Palette = moved ? 3 : (int)TheTeam;
+            Symbol.sprite = moved ? GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].MovedSymbol : GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].BaseSymbol;
         }
     }
     private int movement = 5;

@@ -724,6 +724,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             currentLine = data.CurrentLine - 1; // To repeat the previous line
             data.FunctionStack.ForEach(a => functionStack.Push(a));
             PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
+            CrossfadeMusicPlayer.Current.Play(data.CurrentMusic);
             if (data.SpeakerL != "")
             {
                 SetSpeakerFromText(data.SpeakerL + "||L");
@@ -775,6 +776,7 @@ public class SuspendDataConversationPlayer
     public string SpeakerR;
     public string CurrentCG;
     public PaletteController.PaletteControllerState CGPreviousState;
+    public string CurrentMusic;
 
     public SuspendDataConversationPlayer(ConversationData origin)
     {
@@ -801,7 +803,8 @@ public class SuspendDataConversationPlayer
         }
         GeneratedPortraits = PortraitController.Current.SaveAllGeneratedPortraits();
         CurrentCG = cgController.Active ? cgController.CurrentCG : "";
-        Playing = true;
         CGPreviousState = cgController.PreviousState;
+        CurrentMusic = CrossfadeMusicPlayer.Current.Playing;
+        Playing = true;
     }
 }

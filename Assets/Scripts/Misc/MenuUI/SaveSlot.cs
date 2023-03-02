@@ -29,11 +29,13 @@ public class SaveSlot : MonoBehaviour
             SavedData.Save("NewGame", 0);
             StartTrigger.Activate();
             gameObject.SetActive(false);
+            SystemSFXController.Play(SystemSFXController.Type.MenuSelect);
             return;
         }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
             Select((currentSlot - Control.GetAxisInt(Control.Axis.Y) + MaxSlots) % MaxSlots);
+            SystemSFXController.Play(SystemSFXController.Type.MenuMove);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }

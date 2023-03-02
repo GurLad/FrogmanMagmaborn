@@ -92,6 +92,7 @@ public class LevelUpController : MidBattleScreen
         {
             players[currentUnitID].Stats += levelUpObjects[selected].Stats;
             NextUnit();
+            SystemSFXController.Play(SystemSFXController.Type.MenuSelect);
         }
         else if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
@@ -100,6 +101,7 @@ public class LevelUpController : MidBattleScreen
             selected %= numOptions;
             levelUpObjects[selected].PalettedSprite.Palette = 0;
             StatInfo.Display(players[currentUnitID], levelUpObjects[selected].Stats);
+            SystemSFXController.Play(SystemSFXController.Type.MenuMove);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }

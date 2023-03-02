@@ -185,7 +185,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         }
         // Init
         playerUnitsCache = new List<Unit>();
-        if (SavedData.Load("HasSuspendData", 0) != 0 && !DebugOptions.KillAutoSaves) // Has suspended data
+        if (SavedData.Load("HasSuspendData", 0) != 0 && (!DebugOptions.Enabled || !DebugOptions.KillAutoSaves)) // Has suspended data
         {
             SuspendController.Current.LoadFromSuspendData();
         }
@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
             NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
-            SavedData.Append("Log", "Data", "Began run " + NumRuns + "\n");
+            SavedData.Append("Log", "Data", "Began run " + NumRuns + ", difficulty: " + difficulty + "\n");
             if (DebugOptions.Enabled)
             {
                 DebugOptions.Apply(this, playerUnitsCache);
@@ -749,7 +749,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public ConversationData CreateLevel(string forceConversation = "", string forceMap = "")
     {
         List<Unit> playerCharacters = PlayerUnits;
-        Bugger.Info(string.Join(", ", playerCharacters));
+        Bugger.Info("New level! Player characters: " + string.Join(", ", playerCharacters));
         // Select conversation
         ConversationData conversation;
         if (forceConversation != "")
@@ -1373,6 +1373,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             return suspendData;
         }
         suspendData.LevelNumber = LevelNumber;
+        suspendData.LevelMetadata = LevelMetadata; // In case the map theme is changed
         suspendData.Turn = Turn;
         suspendData.DeadPlayerUnits = DeadPlayerUnits;
         suspendData.TempFlags = TempFlags;
@@ -1390,7 +1391,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void LoadFromSuspendData(SuspendDataGameController data)
     {
         LevelNumber = data.LevelNumber;
-        (LevelMetadata = LevelMetadataController[LevelNumber]).SetPalettesFromMetadata();
+        LevelMetadata = data.LevelMetadata;
         Turn = data.Turn;
         DeadPlayerUnits = data.DeadPlayerUnits;
         TempFlags = data.TempFlags;
@@ -1444,6 +1445,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             {
                 TurnAnimation.ShowTurn(CurrentPhase);
             }
+            CrossfadeMusicPlayer.Current.Play(LevelMetadata.MusicName);
         }
         SavedData.Append("Log", "Data", "Resumed\n");
     }
@@ -1473,6 +1475,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 public class SuspendDataGameController
 {
     public int LevelNumber;
+    public LevelMetadata LevelMetadata;
     public int Turn;
     public List<string> DeadPlayerUnits;
     public List<string> TempFlags;

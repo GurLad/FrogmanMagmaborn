@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SystemSFXController : MonoBehaviour
 {
-    public enum Type { MenuSelect, MenuMove, MenuCancel, LongSelect, LongMove, LongCancel, UnitSelect, UnitCancel, UnitForbidden, CursorMove }
+    public enum Type { MenuSelect, MenuMove, MenuCancel, LongSelect, LongMove, LongCancel, UnitSelect, UnitCancel, UnitAction, UnitForbidden, CursorMove }
 
     private static SystemSFXController systemSFXController;
     public List<AudioClip> SFXList;
