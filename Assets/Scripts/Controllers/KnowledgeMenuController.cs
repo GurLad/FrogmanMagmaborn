@@ -137,6 +137,7 @@ public class KnowledgeMenuController : MonoBehaviour
                 Description.text = UpgradeMenus[selectedMenu].Description;
                 Cost.text = "";
                 pressedLastFrame = true;
+                SystemSFXController.Play(SystemSFXController.Type.MenuMove);
             }
         }
         else

@@ -30,6 +30,7 @@ public class CursorController : MonoBehaviour
         }
         set
         {
+            //Bugger.Info("Visible: " + Visible + " -> " + value);
             palettedSprite.gameObject.SetActive(value);
         }
     }

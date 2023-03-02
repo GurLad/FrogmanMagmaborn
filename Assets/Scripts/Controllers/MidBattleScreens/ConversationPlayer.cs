@@ -740,7 +740,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
             else
             {
-                SoftResume();
+                Resume(0);
+                //Bugger.Info("State is " + state);
             }
         }
         else
