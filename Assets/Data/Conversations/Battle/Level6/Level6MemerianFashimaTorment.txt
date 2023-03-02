@@ -21,6 +21,8 @@ compareCounter:MemerianXeplogiBalance:>0
 :addGenericCharacter:Guard2:young
 :addGenericCharacter:Guard3:old
 :loadUnits:
+:play:GuardTheme
+:setSpeaker:Guard2
 Guard1: Ugh, enough with this nonsense already!
 Guard2: This isn't nonsense! I'm telling you,\a I saw a yellow fish swimming in the magma over there!
 Guard1: Fish cannot survive in magma, you dolt!
@@ -42,10 +44,15 @@ Frogman: Y-yes.
 :markDone:
 ~ After battle
 :play:Anticipation
+:if:hasCharacter:Memerian{
 Frogman: Ah... Is it... over?
 Memerian: Yes. But we should leave before reinforcements arrive.
 Frogman: Right. Are you ready to return to the Fortress?
 Memerian: Indeed.
+}
+:else:{
+Frogman: Ah... It's finally over. Guess I should go.\a Memerian... I'll see you again next time.
+}
 
 # === Functions ====
 

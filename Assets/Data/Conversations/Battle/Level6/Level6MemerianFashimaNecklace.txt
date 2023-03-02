@@ -17,16 +17,45 @@ hasFlag:FashimaBattleMemerian
 :setSpeaker:Frogman||L
 :call:MemerianConversation
 :setFlag:FrogmanKnowsAboutFashimasNecklace
+:setFlag:MemerianMentionedFashima
 :addGenericCharacter:Guard1:
 :addGenericCharacter:Guard2:
 :addGenericCharacter:Guard3:
 :loadUnits:
-Guard1: TBA
+:play:GuardTheme
+:setSpeaker:Guard2
+Guard1: Quake and tremble, fiends!
+Guard2: Run and hide, monsters!
+Guard1: For your fate has caught up with you!
+Guard2: And your luck has run out!
+Guard1: It is time for the most incredible duo...
+Guard2: A team with unmatched prowess and skill...
+Guard1: To put you in your place and take away your hope!
+Guard2: To steal your life and bring you to your grave!
+Guard1: Together...
+Guard2: We are...
+Guard1: [Name]!
+Guard2: [Name]!
+Guard1: THE!
+Guard2: INCREDIBLE!
+Guard1: LAMP!
+Guard2: DUO!
+Guard3: & [Name]!
+:setSpeaker:Memerian||R
+Frogman: ...
+Memerian: ...
+Frogman: ...Wow.
 :unlockAchievement:JoinMemerian
 ~ After battle
-# TBA: Add actual text
 :play:Anticipation
-Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+:if:hasCharacter:Memerian{
+Frogman: Ha... Whew, that was tough.
+Memerian: Indeed. But it's time to get out of here.
+Frogman: Uh, right.
+}
+:else:{
+Frogman: Ha... Whew, that was tough.
+}
 
 # === Functions ====
 
@@ -39,7 +68,26 @@ Memerian: Something big is about to happen.\a And I'm not sure how some Magmabor
 Frogman: What are you talking about?
 Memerian: It's Fashima. She's wearing a Magma Emblem.
 :if:furthestLevel:>8{
-Frogman: TBA
+Frogman: Uh, yes. She died and became a Magmaborn, after all.
+:if:!hasFlag:MemerianKnowsFashimaIsDead{
+Memerian: Wait. She's dead?!
+Frogman: Yeah. We killed her.
+Memerian: What?! That's... huh.\a She must have let you kill her on purpose.\a It's quite the bold move on her part.
+Frogman: On purpose? Are you sure?
+Memerian: Definitely. What did she tell you?
+Frogman: Uh, she said that she's going to help us.
+:setFlag:MemerianKnowsFashimaIsDead
+}
+:else:{
+Memerian: Oh, did you meet her already?
+Frogman: Yes. She's... helping us against the other Magi.
+Memerian: Huh. This is unexpected news.\a It's quite the bold move on her part.\a She said she'll help us?
+Frogman: Yes.
+}
+Memerian: Interesting.\a I wonder whether that's really her goal,\a or if she's merely planning to destroy us from inside.
+Frogman: Destroy us? How would she even do that?
+Memerian: I don't know. But be careful around her.\a She's not one to be trusted,\a even if she ends up becoming one of us.
+Frogman: Right...
 :return:
 }
 :if:!hasFlag:FrogmanKnowsFashimasName{
@@ -58,6 +106,22 @@ Frogman: Ah, right.
 Memerian: Anyway, that's not the point.\a As I've said, Fashima is wearing a Magma Emblem.\a Do you know what that means?
 }
 }
+:if:hasFlag:FashimaDied{
+Frogman: A Magma Emblem?\a Wait.\a Does that mean that after we killed her,\a she returned as a Magmaborn?!
+:if:!hasFlag:MemerianKnowsFashimaIsDead{
+Memerian: Exactly.\a Wait, killed her?!
+Frogman: Uh, yes. She's already dead...
+Memerian: That's- huh. Well, I guess it makes sense.
+Frogman: What do you mean?
+Memerian: She must have intended for you to kill her.\a To return as a Magmaborn.
+Frogman: Seriously?
+Memerian: Yes. It's quite the bold move on her part.\a She's either planning to defect to us,\a or try to destroy us from the inside.
+}
+:else:{
+Memerian: Yes. It's quite the bold move on her part.\a She's either planning to defect to us,\a or try to destroy us from the inside.
+}
+}
+:else:{
 Frogman: A Magma Emblem?\a Wait.\a Does that mean that should we kill her,\a she'll return as a Magmaborn?!
 Memerian: Exactly.
 Frogman: Woah. That's...\a Huh.\a How do you even know that?
@@ -66,6 +130,7 @@ Frogman: You've made Magma Emblems?!
 Memerian: Yes. Three in total: one I embedded in my hammer,\a another in a small pin -\a which was stolen by Xeplogi -\a and the last one in a necklace -\a the same one that Fashima currently wears.
 Frogman: Wow.\a But isn't destroying all Magmaborn her goal?\a Becoming one seems... contrary.
 Memerian: I know. It's quite the bold move on her part.\a She's either planning to defect to us,\a or try to destroy us from the inside.
+}
 Frogman: Destroying us? How would she even do that?
 Memerian: I don't know. But be careful around her.\a She's not one to be trusted,\a even if she ends up becoming one of us.
 Frogman: Right...
