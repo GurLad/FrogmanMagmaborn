@@ -46,7 +46,9 @@ public class OpeningCutscene : Trigger
             }
             else
             {
-                ConversationPlayer.Current.Play(ConversationController.Current.SelectConversation(), false);
+                ConversationData selected = ConversationController.Current.SelectConversation();
+                SavedData.Append("Log", "Data", "Saw intro conversation " + selected.ID + "\n");
+                ConversationPlayer.Current.Play(selected, false);
                 Destroy(this);
             }
         };

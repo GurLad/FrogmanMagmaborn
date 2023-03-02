@@ -538,7 +538,7 @@ public class Unit : MapObject
                 enemyUnits = enemyUnits.Where(a => fullDangerArea[a.Pos.x, a.Pos.y].Value != 0).ToList();
                 if (enemyUnits.Count <= 0) // Can't attack anyone - probably surrounded by scary enemies
                 {
-                    Bugger.Info(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
+                    //Bugger.Info(ToString() + " can't attack anyone - probably surrounded by scary enemies - and retreats");
                     RetreatAI(fullDangerArea);
                     return;
                 }
@@ -603,7 +603,7 @@ public class Unit : MapObject
             if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
             {
                 Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(unit.Pos, -1);
-                Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
+                //Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                 MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
                 return true;
@@ -633,7 +633,7 @@ public class Unit : MapObject
         }
         if (minPoint == -Vector2Int.one)
         {
-            Bugger.Info(this + " can't move :(");
+            //Bugger.Info(this + " can't move :(");
             MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
             MoveTo(Pos);
             return;
@@ -660,7 +660,6 @@ public class Unit : MapObject
         DangerArea trueDangerArea = GetDangerArea(Pos.x, Pos.y, Movement);
         Vector2Int currentMoveTarget = new Vector2Int(target.x, target.y);
         GameController.Current.RemoveMarkers();
-        Bugger.Info("Begin " + this);
         // This is problematic, because here's how the algorithm works for 1 range:
         //  - Start at the target pos
         //  - In each iteration, try all 4 directions. The one with the highest remaining mov (aka min mov required to reach) is the new target
@@ -1164,7 +1163,7 @@ public class Unit : MapObject
                             {
                                 if (!unit.CanAttackPos(target.x, target.y, target.x + i, target.y + j))
                                 {
-                                    Bugger.Info(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
+                                    //Bugger.Info(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
                                     continue;
                                 }
                                 float weight = 50; // Make sure it's positive
@@ -1174,7 +1173,7 @@ public class Unit : MapObject
                                 {
                                     weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
                                 }
-                                Bugger.Info("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
+                                //Bugger.Info("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
                                 if (weight > currentBestWeight)
                                 {
                                     currentBest = new Vector2Int(target.x + i, target.y + j);

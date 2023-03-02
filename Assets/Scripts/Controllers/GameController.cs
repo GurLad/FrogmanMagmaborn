@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             if (playerUnitsCache == null)
             {
-                Bugger.Info("Loading player units...");
+                //Bugger.Info("Loading player units...");
                 playerUnitsCache = new List<Unit>();
                 string[] playerUnits = SavedData.Load<string>("PlayerDatas").Split('\n');
                 for (int i = 0; i < playerUnits.Length - 1; i++)
@@ -101,7 +101,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     unit.Load(playerUnits[i], true);
                     unit.name = "Unit" + unit.Name;
                     unit.Health = unit.Stats.MaxHP;
-                    Bugger.Info("Loading " + unit.Name);
                     AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
@@ -194,6 +193,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
             NumRuns++; // While I'd like to prevent abuse, like the knowledge, it looks weird in the save selection screen when there are 0 runs
+            SavedData.Append("Log", "Data", "Began run " + NumRuns + "\n");
             if (DebugOptions.Enabled)
             {
                 DebugOptions.Apply(this, playerUnitsCache);
@@ -275,10 +275,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     current = (Team)(((int)current + 1) % 3);
                     if (current == CurrentPhase)
                     {
-                        Bugger.Info("Only one team is alive - " + current);
+                        //Bugger.Info("Only one team is alive - " + current);
                     }
                 } while (units.Find(a => a.TheTeam == current) == null);
-                Bugger.Info("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
+                //Bugger.Info("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
                 bool showTurnAnimation = StartPhase(current);
                 if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
@@ -628,7 +628,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         if (!GameCalculations.PermaDeath && unit.TheTeam.IsMainPlayerTeam() && unit.Name != StaticGlobals.MainCharacterName) // No perma-death
         {
-            Bugger.Info("Pseudo-killed " + unit.Name);
             PseudoKillUnit(unit);
         }
         else // Perma-death
@@ -710,6 +709,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         LevelNumber++;
         currentKnowledge++;
         SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
+        SavedData.Append("Log", "Data", "Won :)\n");
         SavedData.SaveAll(SaveMode.Slot);
         PlayersLevelUp();
     }
@@ -740,10 +740,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         string saveData = "";
         playerCharacters.ForEach(a => saveData += a.Save() + "\n");
         SavedData.Save("PlayerDatas", saveData);
-        for (int i = 0; i < playerCharacters.Count; i++)
-        {
-            Bugger.Info(playerCharacters[i].Save());
-        }
     }
     /// <summary>
     /// Creates a new level - selects a conversation & map, setts the palettes, inits stuff...
@@ -768,6 +764,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             throw Bugger.Crash("Zero possible conversations!");
         }
+        Bugger.Info("Selected conversation: " + conversation.ID);
         // Select room
         List<Map> options = MapController.Maps.FindAll(a => a.MatchesDemands(conversation)); // TBA - add room demands for conversations
         if (forceMap != "")
@@ -796,6 +793,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         LevelMetadata.UnitReplacements.ForEach(a => a.Init());
         // Room-specific behaviours
         InitRoomObjective();
+        // Log this level
+        SavedData.Append("Log", "Data", "Created level " + LevelNumber + " - conversation is " + conversation.ID + ", map is " + selectedMap.Name + "\n");
         // Play conversation
         return conversation;
     }
@@ -1142,6 +1141,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         LevelMetadataController[0].SetPalettesFromMetadata(); // Fix Torment palette
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
+        SavedData.Append("Log", "Data", "Lost :(\n");
         SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("GameOver");
     }
@@ -1196,7 +1196,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public int FindMinMaxPosUnit(Team? team, bool x, bool max)
     {
-        Bugger.Info("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
+        //Bugger.Info("Checking " + (x ? "x" : "y") + " of team " + (team ?? Team.Guard).Name() + ", for " + (max ? "max" : "min"));
         int minMax = max ? -1 : (x ? MapSize.x : MapSize.y);
         List<Unit> targets = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
         foreach (Unit unit in targets)
@@ -1206,7 +1206,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 minMax = x ? unit.Pos.x : unit.Pos.y;
             }
         }
-        Bugger.Info("Result: " + minMax);
+        //Bugger.Info("Result: " + minMax);
         return minMax;
     }
 
@@ -1416,7 +1416,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             unit.Pos = tempPos;
             unit.Moved = tempMoved;
             unit.Health = tempHealth;
-            Bugger.Info("Loading " + unit.Name);
             AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
             unit.gameObject.SetActive(true);
             if (unit.TheTeam.IsMainPlayerTeam())
@@ -1446,6 +1445,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 TurnAnimation.ShowTurn(CurrentPhase);
             }
         }
+        SavedData.Append("Log", "Data", "Resumed\n");
     }
 
     /// <summary>

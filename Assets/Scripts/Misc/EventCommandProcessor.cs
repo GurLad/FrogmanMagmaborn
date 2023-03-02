@@ -177,7 +177,6 @@ public static class EventCommandProcessor
                         if (origin.Functions.ContainsKey(args[1]))
                         {
                             target.BattleQuote = string.Join("\n", origin.Functions[args[1]]);
-                            Bugger.Info(target.BattleQuote);
                         }
                         else
                         {
@@ -754,7 +753,7 @@ public static class EventCommandProcessor
             case CommandType.Tutorial:
                 return ExecuteTutorialCommand(command.Name, parts, args, player, num, StartLineTrue);
             case CommandType.Menu:
-                return ExecuteLevelCommand(command.Name, parts, args, num, origin, StartLineTrue);
+                return ExecuteMenuCommand(command.Name, parts, args, player, num, StartLineTrue);
             default:
                 throw Bugger.Error("Impossible");
         }

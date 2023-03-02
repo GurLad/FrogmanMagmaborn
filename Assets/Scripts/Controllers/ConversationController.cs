@@ -39,7 +39,7 @@ public class ConversationController : MonoBehaviour
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
         currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
-        Bugger.Info("Options: " + string.Join(", ", currentOptions));
+        Bugger.Info("GetAllOptions - they are: " + string.Join(", ", currentOptions));
         if (currentOptions.Count <= 0)
         {
             throw Bugger.Crash("Zero possible conversations!");
@@ -63,7 +63,7 @@ public class ConversationController : MonoBehaviour
         }
         currentOptions.Sort();
         currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
-        Bugger.Info("Options: " + string.Join(", ", currentOptions));
+        Bugger.Info("SelectConversationByID - they are: " + string.Join(", ", currentOptions));
         ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
         return chosen;
     }

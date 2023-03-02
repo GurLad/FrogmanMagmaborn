@@ -32,7 +32,7 @@ public class StatusScreenController : MidBattleScreen
     {
         UnitLists = unitLists;
         currentTeam = (int)unit.TheTeam;
-        Bugger.Info("Unit: " + unit + ", pos: " + unit.Pos + ", all: " + string.Join(", ", UnitLists[currentTeam]));
+        //Bugger.Info("Unit: " + unit + ", pos: " + unit.Pos + ", all: " + string.Join(", ", UnitLists[currentTeam]));
         Show(unit, UnitLists[currentTeam].FindIndex(a => a.Pos == unit.Pos));
         SystemSFXController.Play(SystemSFXController.Type.LongSelect);
     }

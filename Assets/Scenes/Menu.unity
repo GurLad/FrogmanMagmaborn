@@ -5774,7 +5774,6 @@ GameObject:
   - component: {fileID: 1018104457}
   - component: {fileID: 1018104460}
   - component: {fileID: 1018104459}
-  - component: {fileID: 1018104458}
   - component: {fileID: 1018104461}
   m_Layer: 5
   m_Name: InitA
@@ -5802,19 +5801,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 256, y: 32}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1018104458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018104456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b3465a22a2596449954f8441efdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Menu: {fileID: 0}
 --- !u!114 &1018104459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8608,7 +8594,6 @@ GameObject:
   - component: {fileID: 1647725149}
   - component: {fileID: 1647725152}
   - component: {fileID: 1647725151}
-  - component: {fileID: 1647725150}
   - component: {fileID: 1647725153}
   m_Layer: 5
   m_Name: InitB
@@ -8636,19 +8621,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 256, y: 32}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1647725150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647725148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b3465a22a2596449954f8441efdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Menu: {fileID: 0}
 --- !u!114 &1647725151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9541,6 +9513,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9555,6 +9529,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9569,6 +9545,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: 
     Palette4:
       Colors:
@@ -9603,6 +9581,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9617,6 +9597,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9631,6 +9613,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: MagmaFlows
     Palette4:
       Colors:
@@ -9664,6 +9648,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9678,6 +9664,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9692,6 +9680,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: Dungeon
     Palette4:
       Colors:
@@ -9725,6 +9715,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9739,6 +9731,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9753,6 +9747,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: ToTheDeath
     Palette4:
       Colors:
@@ -9783,6 +9779,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9797,6 +9795,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9811,6 +9811,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: Tormentor
     Palette4:
       Colors:
@@ -9844,6 +9846,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9858,6 +9862,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9872,6 +9878,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: EnterTheGuards
     Palette4:
       Colors:
@@ -9905,6 +9913,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9919,6 +9929,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9933,6 +9945,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: OverAndOver
     Palette4:
       Colors:
@@ -9966,6 +9980,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9980,6 +9996,8 @@ MonoBehaviour:
         RelativeDamageWeight: 1
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -9994,6 +10012,8 @@ MonoBehaviour:
         RelativeDamageWeight: 1
         SurvivalWeight: 0
         CautionLevel: 1
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: Unbreakable
     Palette4:
       Colors:
@@ -10027,6 +10047,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -10041,6 +10063,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0
         SurvivalWeight: 0
         CautionLevel: 0
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     - Palette:
         Colors:
         - id: 13
@@ -10055,6 +10079,8 @@ MonoBehaviour:
         RelativeDamageWeight: 0.5
         SurvivalWeight: 0.5
         CautionLevel: 3
+      BaseSymbol: {fileID: 0}
+      MovedSymbol: {fileID: 0}
     MusicName: TheCloneVats
     Palette4:
       Colors:

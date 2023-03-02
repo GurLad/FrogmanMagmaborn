@@ -74,7 +74,6 @@ public class BattleAnimationController : MidBattleScreen
         // Set init pos
         Attacker.InitPos = Attacker.Object.transform.position.x;
         Defender.InitPos = Defender.Object.transform.position.x;
-        Bugger.Info(Attacker.InitPos + ", " + Defender.InitPos);
         // Attacker move
         bool adjacent = FarAttack(Attacker, Defender, meleeAttack);
         // Defender move

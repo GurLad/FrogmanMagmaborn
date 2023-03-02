@@ -33,6 +33,7 @@ For v0.6 release:
   -BaseLevel9Magic
 V-Add menu/cursor SFX
 V-Seperate cursor code from GameController
+ -Add save log & remove all unnecessary Bugger.Info calls
 
 For final release:
 -Must have:
@@ -41,16 +42,17 @@ For final release:
  -Character endings + editor
  -Finish wiki
  -Achievements
+ -Add save slot copy/delete
 -Nice to have (most probably post release):
  -Alternate palettes (low contrast, colour blind etc.)
  -Seperate map & combat sprite palettes (for more NES FE style combats - ruins portraits, annoying fix)
  -Improve CGs + editor
- -GBA FE-style auto-saves, which prevent save scamming & can be used always
+~-GBA FE-style auto-saves, which prevent save scamming & can be used always (done, untested)
  -In-game cheats for debugging - restart chapter, auto-win etc.
  -Bigger map support
  -Alow loading maps & units in the background while there's a CG
  -Improve choice UI
- -Unit.cs and GameController.cs have an absurd amount of bloat - seperate a ton of stuff to different classes
+~-Unit.cs and GameController.cs have an absurd amount of bloat - seperate a ton of stuff to different classes (some seperation)
  -Extra commands:
   -Scripted battle
   -Bigger/dynamically sized info dialogue

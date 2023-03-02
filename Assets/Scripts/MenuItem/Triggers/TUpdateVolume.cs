@@ -8,7 +8,6 @@ public class TUpdateVolume : Trigger
 
     public override void Activate()
     {
-        Bugger.Info(SavedData.Load("MusicOn", 1, SaveMode.Global).ToString());
         if (Music)
         {
             CrossfadeMusicPlayer.Current.Volume = SavedData.Load("MusicOn", 1, SaveMode.Global);

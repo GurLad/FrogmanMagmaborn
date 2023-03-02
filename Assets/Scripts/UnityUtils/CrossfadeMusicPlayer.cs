@@ -118,7 +118,6 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         if (on)
         {
             Play(Playing + "_Battle");
-            Bugger.Info("PLaying battle! " + Playing);
         }
         else
         {

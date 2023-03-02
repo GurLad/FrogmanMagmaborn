@@ -27,6 +27,7 @@ public class SuspendController : MonoBehaviour
         SuspendDataGameController = GameController.Current.SaveToSuspendData();
         SavedData.Save("HasSuspendData", 1);
         SavedData.Save("SuspendData", "SuspendData", JsonUtility.ToJson(this));
+        SavedData.Append("Log", "Data", "Saved & quit\n");
     }
 
     public void LoadFromSuspendData()
