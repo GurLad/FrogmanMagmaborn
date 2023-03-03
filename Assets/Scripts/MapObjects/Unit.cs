@@ -44,12 +44,13 @@ public class Unit : MapObject
     public int ReinforcementTurn;
     [HideInInspector]
     public bool Statue;
-    public int BattleStatsStr { get { return Stats.Strength + Weapon.Damage; } }
-    public int BattleStatsEnd { get { return Stats.MaxHP; } }
-    public int BattleStatsPir { get { return Stats.Pierce; } }
-    public int BattleStatsArm { get { return Stats.Armor; } }
-    public int BattleStatsPre { get { return Stats.Precision * 10 + Weapon.Hit - 40; } }
-    public int BattleStatsEva { get { return (Stats.Evasion - Weapon.Weight) * 10 - 40; } }
+    public int BattleStatsStr => Stats.Strength + Weapon.Damage;
+    public int BattleStatsEnd => Stats.MaxHP;
+    public int BattleStatsPir => Stats.Pierce;
+    public int BattleStatsArm => Stats.Armor;
+    public int BattleStatsPre => Stats.Precision * 10 + Weapon.Hit - 40;
+    public int BattleStatsEva => (Stats.Evasion - Weapon.Weight) * 10 - 40;
+    public bool InsideMap => !(Pos == -Vector2Int.one && ReinforcementTurn > 0 && !Statue);
     [SerializeField]
     private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
@@ -524,7 +525,7 @@ public class Unit : MapObject
 
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a)).ToList(); // Pretty much all AIs need enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a) && a.InsideMap).ToList(); // Pretty much all AIs need enemy units.
         switch (AIType)
         {
             case AIType.Charge:
@@ -597,9 +598,11 @@ public class Unit : MapObject
     private bool TryHoldAI(List<Unit> enemyUnits)
     {
         DangerArea dangerArea = GetDangerArea();
-        enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
+        //enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
+        enemyUnits = enemyUnits.OrderBy(a => HoldAITargetValue(a)).ToList();
         foreach (Unit unit in enemyUnits)
         {
+            //Bugger.Info(this + " is trying " + unit + ", which has AI value " + HoldAITargetValue(unit));
             if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
             {
                 Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(unit.Pos, -1);
@@ -732,7 +735,7 @@ public class Unit : MapObject
             }
         }
         // Otherwise, time to calculate true weight!
-        //ErrorController.Info(ToString() + " AI values against " + unit.ToString() + " are: " + 
+        //Bugger.Info(ToString() + " AI values against " + unit.ToString() + " are: " +
         //    "Damage (" + Priorities.TrueDamageWeight + "): " + Priorities.TrueDamageValue(unit) +
         //    ", Relative Damage (" + Priorities.RelativeDamageWeight + "): " + Priorities.RelativeDamageValue(unit) +
         //    ", Survival (" + Priorities.SurvivalWeight + "): " + Priorities.SurvivalValue(unit) +

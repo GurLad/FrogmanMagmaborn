@@ -43891,9 +43891,9 @@ MonoBehaviour:
       PortraitLoadingMode: 2
       AI:
         TrueDamageWeight: 0
-        RelativeDamageWeight: 0
-        SurvivalWeight: 1
-        CautionLevel: 7
+        RelativeDamageWeight: 1
+        SurvivalWeight: 0
+        CautionLevel: 0
       BaseSymbol: {fileID: 21300000, guid: ba6a6433748c2e0409ecfca4075a5d1a, type: 3}
       MovedSymbol: {fileID: 21300000, guid: a628fb1fc7633e4438ee4f0e1e847a59, type: 3}
     MusicName: TheInvincibleBodder
@@ -51824,17 +51824,16 @@ MonoBehaviour:
   options:
     Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 8
+    EndgameLevel: 4
     ExtraLevels: 0
     Units:
     - Frogman
     - Firbell
     - Xirveros
-    - Memerian
-    UnlimitedMove: 1
-    OPPlayers: 1
+    UnlimitedMove: 0
+    OPPlayers: 0
     ForceConversation: 
-    ForceMap: Level8-1-W
+    ForceMap: 
     KillAutoSaves: 1
 --- !u!114 &1902908242
 MonoBehaviour:

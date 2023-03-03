@@ -651,7 +651,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void PseudoKillUnit(Unit unit)
     {
-        unit.Statue = true;
+        unit.Statue = false; // I'm not sure why it used to be true? Check later to be safe
         unit.ReinforcementTurn = int.MaxValue;
         unit.PreviousPos = unit.Pos;
         unit.Pos = -Vector2Int.one;
@@ -1082,7 +1082,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void ShowDangerArea()
     {
-        units.FindAll(a => a.TheTeam != CurrentPhase && !a.Moved).ForEach(a => a.MarkDangerArea());
+        units.FindAll(a => a.TheTeam.IsEnemy(CurrentPhase) && !a.Moved).ForEach(a => a.MarkDangerArea());
     }
 
     public string GetPauseObjectiveText()
