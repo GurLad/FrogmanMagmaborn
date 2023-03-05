@@ -315,7 +315,29 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public virtual void HandleAButton(Vector2Int pos)
     {
-        InteractWithTile(pos.x, pos.y);
+        switch (InteractState)
+        {
+            case InteractState.None:
+                InteractWithTile(pos.x, pos.y);
+                break;
+            case InteractState.Move:
+            case InteractState.Attack:
+                if (MarkerAtPos<Marker>(pos))
+                {
+                    InteractWithTile(pos.x, pos.y);
+                }
+                else
+                {
+                    SystemSFXController.Play(SystemSFXController.Type.UnitForbidden);
+                    if (Selected.gameObject.GetComponent<UnitFlash>() == null)
+                    {
+                        Selected.gameObject.AddComponent<UnitFlash>().Init(Selected);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public virtual void HandleBButton(Vector2Int pos)
@@ -501,7 +523,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public bool MarkerAtPos<T>(int x, int y) where T : Marker
     {
-        return GetMarkerAtPos<T>(x, y) == null;
+        return GetMarkerAtPos<T>(x, y) != null;
     }
 
     public bool MarkerAtPos<T>(Vector2Int pos) where T : Marker

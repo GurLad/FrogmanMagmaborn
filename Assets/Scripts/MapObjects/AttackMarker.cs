@@ -39,7 +39,16 @@ public class AttackMarker : MarkerWithArrow
                 {
                     Origin.Pull(unit);
                 }
+                else
+                {
+                    SystemSFXController.Play(SystemSFXController.Type.UnitForbidden);
+                    return;
+                }
                 SystemSFXController.Play(SystemSFXController.Type.UnitAction);
+            }
+            else
+            {
+                SystemSFXController.Play(SystemSFXController.Type.UnitForbidden);
             }
         }
         else if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
