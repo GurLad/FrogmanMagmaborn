@@ -75,10 +75,23 @@ public static class SavedData
     }
 
     private static int saveSlot = 0;
-    private static SaveFile GlobalFile = new SaveFile("GlobalSettings", DEFAULT_GLOBAL_FILES_SAVE_TYPE, -1);
-    private static SaveFile SlotFile = new SaveFile("Default", SaveFileType.File, 0);
+    private static SaveFile GlobalFile;
+    private static SaveFile SlotFile;
     private static Dictionary<string, SaveFile> SaveFiles = new Dictionary<string, SaveFile>();
 
+    /// <summary>
+    /// Initializes the GlobalFile and a default SlotFile.
+    /// This function should only ever be called once - before any other SavedData action is taken, but after loading the prefix.
+    /// </summary>
+    public static void InitFiles()
+    {
+        if (GlobalFile != null)
+        {
+            throw new SavedDataException("GlobalFile already exists!");
+        }
+        GlobalFile = new SaveFile("GlobalSettings", DEFAULT_GLOBAL_FILES_SAVE_TYPE, -1);
+        SlotFile = new SaveFile("Default", SaveFileType.File, 0);
+    }
     /// <summary>
     /// Creates a new file. <b>Use this only when creating new slots, and make sure to always have the same files in each slot.</b>
     /// <para>While SavedData can handle different slots having different files, it would be a pain to maintain, as changing slots closes all previous files.</para>

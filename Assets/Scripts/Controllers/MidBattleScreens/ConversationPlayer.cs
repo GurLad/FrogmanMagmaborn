@@ -272,7 +272,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         SkipEmptyLines(currentLine + mod);
         if (currentLine >= lines.Count)
         {
-            if (FinishConversation(fadeIn) == StartLineResult.FinishConversation)
+            if ((FinishConversation(fadeIn) & (StartLineResult.FinishConversation | StartLineResult.Fade)) != 0)
             {
                 return;
             }

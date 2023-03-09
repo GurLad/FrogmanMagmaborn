@@ -2563,17 +2563,19 @@ MonoBehaviour:
       Kresla|???:
       Right, of course, where are my manners?
 
-      Kresla||L: My name is Kresla,
-      a renowned scholar.
+      :setSpeaker:Kresla||L
 
-      You''ve probably heard of me when you were still
-      alive.\a Assuming we were alive around the same time and place.\a Where are
-      you from?
+      My
+      name is Kresla, a renowned scholar.
+
+      You''ve probably heard of me when
+      you were still alive.\a Assuming we were alive around the same time and place.\a
+      Where are you from?
 
       Frogman: Um, I don''t remember.
 
-      Kresla: Oh well. Let
-      me know once you do!\a Oh, you asked me something, didn''t you?
+      Kresla: Oh
+      well. Let me know once you do!\a Oh, you asked me something, didn''t you?
 
       Frogman:
       Yes, where is Firbell?
@@ -2614,7 +2616,6 @@ MonoBehaviour:
       :markDone:
 
       }
-
 
 
       ~
@@ -4144,14 +4145,6 @@ MonoBehaviour:
 
       :if:!firstTime:{
 
-      :if:charactersAlive:<1{
-
-      :call:PreAlone
-
-      }
-
-      :else:{
-
       :call:PreAfterFail
 
       :finishConversation:
@@ -4218,10 +4211,8 @@ MonoBehaviour:
       :call:PostGeneric
 
 
-
       #
       === Functions ====
-
 
 
       ~ PreFirbell
@@ -4305,7 +4296,6 @@ MonoBehaviour:
       well, time to slay a few fiends.
 
 
-
       ~ PreKresla
 
       :play:BeforeBattle
@@ -4376,7 +4366,6 @@ MonoBehaviour:
       Frogman: Let''s go!
 
 
-
       ~ PreXirveros
 
       :play:BeforeBattle
@@ -4436,7 +4425,6 @@ MonoBehaviour:
       frog!
 
 
-
       ~ PreAlone
 
       :play:BeforeBattle
@@ -4462,7 +4450,6 @@ MonoBehaviour:
       What is this-\a Ugh, I''m talking to myself.\a I need to stop that.
 
 
-
       ~
       PreAfterFail
 
@@ -4470,7 +4457,6 @@ MonoBehaviour:
 
       Frogman: You again. This time,
       I won''t lose.
-
 
 
       ~ PostFirbell
@@ -4517,7 +4503,6 @@ MonoBehaviour:
       That''s the spirit.
 
 
-
       ~ PostKresla
 
       Kresla: Oh.\a It just disintegrated.\a
@@ -4557,7 +4542,6 @@ MonoBehaviour:
       we can be unstoppable!
 
 
-
       ~ PostXirveros
 
       Frogman: That was tough.
@@ -4592,7 +4576,6 @@ MonoBehaviour:
 
       Frogman: Why do I even bother?
       Let''s just go.
-
 
 
       ~ PostGeneric
@@ -9517,6 +9500,8 @@ MonoBehaviour:
 
       :setFlag:FrogmanKnowsAboutFashimasNecklace
 
+      :setFlag:MemerianMentionedFashima
+
       :addGenericCharacter:Guard1:
 
       :addGenericCharacter:Guard2:
@@ -9525,25 +9510,91 @@ MonoBehaviour:
 
       :loadUnits:
 
+      :play:GuardTheme
+
+      :setSpeaker:Guard2
+
       Guard1:
-      TBA
+      Quake and tremble, fiends!
+
+      Guard2: Run and hide, monsters!
+
+      Guard1:
+      For your fate has caught up with you!
+
+      Guard2: And your luck has run
+      out!
+
+      Guard1: It is time for the most incredible duo...
+
+      Guard2:
+      A team with unmatched prowess and skill...
+
+      Guard1: To put you in your
+      place and take away your hope!
+
+      Guard2: To steal your life and bring
+      you to your grave!
+
+      Guard1: Together...
+
+      Guard2: We are...
+
+      Guard1:
+      [Name]!
+
+      Guard2: [Name]!
+
+      Guard1: THE!
+
+      Guard2: INCREDIBLE!
+
+      Guard1:
+      LAMP!
+
+      Guard2: DUO!
+
+      Guard3: & [Name]!
+
+      :setSpeaker:Memerian||R
+
+      Frogman:
+      ...
+
+      Memerian: ...
+
+      Frogman: ...Wow.
 
       :unlockAchievement:JoinMemerian
 
-      ~ After battle
+      :markDone:
 
-      # TBA:
-      Add actual text
+      ~
+      After battle
 
       :play:Anticipation
 
-      Frogman: Whew, that was tough.\a
-      Let''s go, everyone! To the fortress!
+      :if:hasCharacter:Memerian{
 
+      Frogman:
+      Ha... Whew, that was tough.
+
+      Memerian: Indeed. But it''s time to get
+      out of here.
+
+      Frogman: Uh, right.
+
+      }
+
+      :else:{
+
+      Frogman:
+      Ha... Whew, that was tough.
+
+      }
 
 
       # === Functions ====
-
 
 
       ~
@@ -9570,7 +9621,58 @@ MonoBehaviour:
       :if:furthestLevel:>8{
 
       Frogman:
-      TBA
+      Uh, yes. She died and became a Magmaborn, after all.
+
+      :if:!hasFlag:MemerianKnowsFashimaIsDead{
+
+      Memerian:
+      Wait. She''s dead?!
+
+      Frogman: Yeah. We killed her.
+
+      Memerian: What?!
+      That''s... huh.\a She must have let you kill her on purpose.\a It''s quite
+      the bold move on her part.
+
+      Frogman: On purpose? Are you sure?
+
+      Memerian:
+      Definitely. What did she tell you?
+
+      Frogman: Uh, she said that she''s
+      going to help us.
+
+      :setFlag:MemerianKnowsFashimaIsDead
+
+      }
+
+      :else:{
+
+      Memerian:
+      Oh, did you meet her already?
+
+      Frogman: Yes. She''s... helping us against
+      the other Magi.
+
+      Memerian: Huh. This is unexpected news.\a It''s quite
+      the bold move on her part.\a She said she''ll help us?
+
+      Frogman: Yes.
+
+      }
+
+      Memerian:
+      Interesting.\a I wonder whether that''s really her goal,\a or if she''s merely
+      planning to destroy us from inside.
+
+      Frogman: Destroy us? How would she
+      even do that?
+
+      Memerian: I don''t know. But be careful around her.\a
+      She''s not one to be trusted,\a even if she ends up becoming one of us.
+
+      Frogman:
+      Right...
 
       :return:
 
@@ -9616,6 +9718,47 @@ MonoBehaviour:
 
       }
 
+      :if:hasFlag:FashimaDied{
+
+      Frogman:
+      A Magma Emblem?\a Wait.\a Does that mean that after we killed her,\a she returned
+      as a Magmaborn?!
+
+      :if:!hasFlag:MemerianKnowsFashimaIsDead{
+
+      Memerian:
+      Exactly.\a Wait, killed her?!
+
+      Frogman: Uh, yes. She''s already dead...
+
+      Memerian:
+      That''s- huh. Well, I guess it makes sense.
+
+      Frogman: What do you mean?
+
+      Memerian:
+      She must have intended for you to kill her.\a To return as a Magmaborn.
+
+      Frogman:
+      Seriously?
+
+      Memerian: Yes. It''s quite the bold move on her part.\a She''s
+      either planning to defect to us,\a or try to destroy us from the inside.
+
+      }
+
+      :else:{
+
+      Memerian:
+      Yes. It''s quite the bold move on her part.\a She''s either planning to defect
+      to us,\a or try to destroy us from the inside.
+
+      }
+
+      }
+
+      :else:{
+
       Frogman:
       A Magma Emblem?\a Wait.\a Does that mean that should we kill her,\a she''ll
       return as a Magmaborn?!
@@ -9641,6 +9784,8 @@ MonoBehaviour:
 
       Memerian: I know. It''s quite the bold move on her part.\a
       She''s either planning to defect to us,\a or try to destroy us from the inside.
+
+      }
 
       Frogman:
       Destroying us? How would she even do that?
@@ -9726,6 +9871,10 @@ MonoBehaviour:
 
       :loadUnits:
 
+      :play:GuardTheme
+
+      :setSpeaker:Guard2
+
       Guard1:
       Ugh, enough with this nonsense already!
 
@@ -9782,15 +9931,27 @@ MonoBehaviour:
 
       :play:Anticipation
 
-      Frogman: Ah... Is it... over?
+      :if:hasCharacter:Memerian{
+
+      Frogman:
+      Ah... Is it... over?
+
+      Memerian: Yes. But we should leave before reinforcements
+      arrive.
+
+      Frogman: Right. Are you ready to return to the Fortress?
 
       Memerian:
-      Yes. But we should leave before reinforcements arrive.
+      Indeed.
 
-      Frogman: Right.
-      Are you ready to return to the Fortress?
+      }
 
-      Memerian: Indeed.
+      :else:{
+
+      Frogman: Ah... It''s finally over. Guess
+      I should go.\a Memerian... I''ll see you again next time.
+
+      }
 
 
       #
@@ -15271,7 +15432,7 @@ MonoBehaviour:
 
 '
     Name: Level9WorkerSpawner
-  - Text: 'priority:-21
+  - Text: 'priority:21
 
       unique:F
 
@@ -15286,19 +15447,22 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: Hey,
-      let''s check out the base!
+      Frogman: What
+      can I say, citizen?
 
-      :showBase:
-
-      Frogman: All right, that''s
-      enough.\a To battle!
+      :win:
 
       # Name: Text.
 
       ~ After battle
 
       :play:AfterBattle
+
+      Frogman:
+      Sometimes, criminals are dogs.
+
+      :showInfoDialogue:I don''t care
+
 
       #
       Name: Text.
@@ -47320,7 +47484,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
-    Tags: LichVisible
+    Tags: 
     MapString: 0|0|0|0|0|0|0|0|1|0|0|0|1|3|6;0|0|3|9|0|1|0|0|0|0|0|1|3|27|15;0|3|2|10|0|0|0|3|6|9|1|0|5|7|7;0|5|8|11|1|1|1|5|15|17|9|0|0|5|11;0|1|0|0|3|9|1|1|4|27|7|9|0|0|0;9|1|0|0|4|2|9|1|5|15|17|27|9|0|0;7|9|0|0|4|27|10|1|1|5|8|27|10|0|3;27|7|9|1|5|15|17|9|0|0|0|5|11|1|18;7|7|27|9|1|5|8|11|0|0|0|0|1|1|19;5|7|7|12|9|0|0|0|0|3|9|0|3|6|20;0|5|15|26|11|0|1|0|1|5|11|1|4|7|27;0|0|5|11|1|1|0|0|1|0|0|0|5|27|18;0|0|0|0|0|3|6|6|9|0|0|0|1|5|19;9|0|0|0|0|5|8|27|10|0|3|9|1|0|20;24|9|1|0|0|0|0|5|11|1|5|11|0|0|5;22|24|9|0|0|0|0|0|0|0|0|0|1|0|0
   - Name: Boss1-4
     LevelNumber: 3
@@ -47483,7 +47647,7 @@ MonoBehaviour:
     Tileset: Magma
     Objective: 1
     ObjectiveData: Lich
-    Tags: LichVisible
+    Tags: 
     MapString: 9|0|1|0|0|0|0|1|5|15|24|27|15|17|9;17|6|9|1|0|0|0|3|9|5|14|11|4|18|24;21|21|17|6|6|9|1|5|11|1|4|6|15|22|25;19|26|8|8|27|2|9|0|0|0|4|27|7|20|25;26|10|3|9|5|8|10|3|9|3|7|12|27|12|14;18|17|27|11|1|0|5|15|16|21|21|25|8|19|24;13|27|10|1|3|9|1|5|8|20|23|26|1|19|22;25|7|11|0|5|11|1|0|0|4|8|11|1|20|23;13|7|9|0|0|0|1|3|6|27|6|9|1|2|10;19|17|10|0|0|0|0|5|11|5|2|10|3|18|24;14|27|11|0|0|1|0|0|1|3|8|27|7|19|25;24|10|3|6|6|9|1|0|1|12|9|4|15|23|26;25|10|5|2|27|11|1|3|9|13|10|4|7|18|21;22|17|6|7|11|0|0|5|11|14|10|4|8|19|22;26|8|8|11|0|0|0|0|0|4|7|27|6|20|23;11|0|0|0|0|0|0|0|3|7|8|7|18|24|27
   - Name: TormentRoom0
     LevelNumber: 4
@@ -47597,7 +47761,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
-    Tags: LichVisible
+    Tags: 
     MapString: 0|0|1|0|0|9|10|12|10|11|2|0|1|0|21;6|18|2|21|0|0|0|16|2|0|21|0|0|6|18;8|4|10|10|18|3|6|14|18|3|6|10|10|5|20;0|0|0|0|5|10|19|3|7|10|4|2|0|0|21;21|6|10|10|20|2|16|3|16|2|8|10|10|18|2;0|16|2|1|0|21|16|3|16|2|0|1|0|16|2;21|8|10|10|10|12|5|12|4|12|10|10|10|20|2;0|0|0|0|1|7|13|5|13|19|3|0|21|0|0;0|21|0|0|1|7|13|5|13|19|3|0|0|0|21;0|6|10|10|10|14|4|14|5|14|10|10|10|18|2;0|16|2|1|0|0|16|3|16|2|21|1|0|16|2;21|8|10|10|18|2|16|3|16|2|6|10|10|20|2;0|0|0|21|4|10|19|3|7|10|5|2|0|21|0;6|5|10|10|20|3|8|12|20|3|8|10|10|4|18;8|20|2|0|0|0|0|16|2|0|21|0|0|8|20;0|0|1|0|21|9|10|14|10|11|2|21|1|0|0
   - Name: TormentRoom1
     LevelNumber: 4
@@ -47711,7 +47875,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
-    Tags: LichVisible
+    Tags: 
     MapString: 0|6|18|2|1|21|6|4|18|2|1|0|6|18|2;0|8|4|3|6|10|19|3|7|10|18|3|5|20|2;21|0|16|2|16|2|8|5|20|2|16|2|16|2|21;0|1|16|2|16|2|1|16|3|0|16|2|16|3|0;0|0|16|2|16|2|1|16|3|21|16|2|16|2|0;1|0|7|12|19|2|6|4|18|2|7|12|19|2|1;6|10|14|4|14|10|19|3|7|10|14|5|14|10|18;16|2|1|16|2|21|7|12|19|2|0|16|3|21|16;16|2|1|16|2|0|7|14|19|2|21|16|3|0|16;8|10|12|5|12|10|19|3|7|10|12|4|12|10|20;1|0|7|14|19|2|8|4|20|2|7|14|19|2|1;0|21|16|2|16|2|1|16|3|0|16|2|16|2|0;0|1|16|2|16|2|1|16|3|0|16|2|16|3|21;0|0|16|2|16|2|6|5|18|2|16|2|16|2|0;21|6|5|3|8|10|19|3|7|10|20|3|4|18|2;0|8|20|2|1|21|8|4|20|2|1|21|8|20|2
   - Name: TormentRoom2
     LevelNumber: 4
@@ -47825,7 +47989,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
-    Tags: LichVisible
+    Tags: 
     MapString: 0|6|18|2|1|21|6|4|18|2|1|21|6|18|2;21|8|4|18|2|0|7|14|19|2|0|6|5|20|2;0|1|8|4|10|10|19|3|7|10|10|5|20|3|0;6|18|3|16|3|0|16|2|16|2|1|16|3|6|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|14|10|5|10|10|19|3|7|10|10|4|10|14|20;21|0|0|16|2|21|16|3|16|2|21|16|2|0|21;0|15|2|16|3|6|4|12|5|18|3|16|2|15|2;0|17|2|16|3|8|5|14|4|20|3|16|2|17|2;0|21|0|16|2|0|16|3|16|2|0|16|2|0|0;6|12|10|4|10|10|19|3|7|10|10|5|10|12|18;7|19|2|16|2|1|16|2|16|3|0|16|2|7|19;8|20|3|16|3|21|16|2|16|2|1|16|3|8|20;0|1|6|5|10|10|19|3|7|10|10|4|18|3|21;0|6|5|20|2|21|7|12|19|2|21|8|4|18|2;0|8|20|2|1|0|8|4|20|2|1|0|8|20|2
   - Name: TormentRoom3
     LevelNumber: 4
@@ -47939,7 +48103,7 @@ MonoBehaviour:
     Tileset: Torment
     Objective: 3
     ObjectiveData: 6
-    Tags: LichVisible
+    Tags: 
     MapString: 0|21|0|0|1|21|0|15|2|21|1|0|0|21|0;6|18|3|21|15|2|9|4|11|2|15|2|1|6|18;8|4|2|0|16|3|0|16|2|1|16|2|0|5|20;1|16|2|1|8|12|10|5|10|12|20|3|21|16|3;21|16|3|15|3|16|2|1|0|16|3|15|3|16|2;6|14|10|5|10|19|2|15|2|7|10|4|10|14|18;16|2|1|17|2|16|3|16|3|16|2|17|1|21|16;7|18|2|0|1|7|12|5|12|19|3|0|0|6|19;7|20|2|21|1|7|14|4|14|19|3|21|0|8|19;16|2|1|15|2|16|3|16|3|16|2|15|3|0|16;8|12|10|4|10|19|2|17|2|7|10|5|10|12|20;0|16|3|17|3|16|2|1|21|16|3|17|3|16|2;1|16|2|1|6|14|10|4|10|14|18|3|21|16|3;6|5|2|0|16|3|21|16|2|1|16|2|0|4|18;8|20|3|21|17|2|9|5|11|2|17|2|1|8|20;0|0|21|0|1|0|21|17|2|0|1|21|0|0|21
   - Name: Level5-0
     LevelNumber: 0
@@ -48053,7 +48217,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
-    Tags: LichVisible
+    Tags: 
     MapString: 28|28|28|28|28|28|32|34|29|37|28|28|28|28|28;28|28|28|28|28|28|28|31|34|34|33|33|33|33|33;33|33|33|36|28|28|28|31|34|34|34|34|29|34|34;34|34|34|34|33|33|33|34|3|6|6|9|34|34|34;34|34|34|34|34|29|34|34|4|15|24|10|34|35|34;6|6|6|6|9|34|34|34|5|0|14|10|37|28|31;16|17|27|12|10|34|29|34|34|5|8|11|37|28|31;7|1|7|13|10|34|34|34|29|34|34|34|37|28|32;7|7|7|13|0|6|6|9|34|35|35|34|37|28|28;7|7|1|14|27|15|24|10|37|28|28|31|34|33|33;1|7|7|7|7|7|14|10|37|28|28|31|34|29|34;7|7|7|1|7|7|27|10|34|33|33|34|3|6|6;7|18|21|24|1|7|12|10|34|34|34|34|4|15|16;7|19|22|25|1|7|13|10|34|34|3|6|27|7|7;7|20|23|26|7|7|13|10|34|34|4|12|7|7|1;7|7|7|7|1|1|13|10|34|34|4|13|1|7|7
   - Name: Level5-1
     LevelNumber: 5
@@ -48305,7 +48469,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 12:14
-    Tags: PlayersSpawnFirst
+    Tags: 
     MapString: 28|28|28|28|28|28|32|35|34|34|29|34|34|34|34;28|30|33|36|28|28|28|28|32|35|34|34|34|34|34;28|31|2|9|36|28|28|28|28|28|32|34|34|29|34;28|31|5|11|38|28|28|28|28|28|28|32|34|34|34;28|32|35|38|39|39|30|36|28|28|28|28|32|34|34;36|39|28|28|28|39|32|34|36|28|28|28|28|32|35;34|33|33|36|28|28|28|32|29|36|28|28|28|28|28;29|34|34|38|28|28|28|39|32|38|39|39|28|28|28;35|35|38|28|28|30|33|29|39|28|28|30|33|36|28;28|28|28|28|30|34|29|37|28|28|28|31|3|12|33;33|33|33|33|29|34|34|37|28|28|28|31|0|13|6;6|6|6|6|6|6|9|37|28|28|28|32|5|20|16;16|16|17|27|15|24|10|37|28|28|28|28|32|5|8;7|0|7|7|7|14|10|37|28|28|28|28|28|32|35;7|7|7|7|7|27|10|34|36|28|28|28|28|28|28;0|7|7|0|7|12|10|34|37|28|28|30|36|28|28
   - Name: Level5-3
     LevelNumber: 5
@@ -48448,7 +48612,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 2
     ObjectiveData: 8:14
-    Tags: PlayersSpawnFirst
+    Tags: 
     MapString: 29|34|34|34|34|38|28|28|28|28|28|32|35|34|20;35|35|34|29|38|28|28|28|28|28|28|28|28|32|35;39|28|32|38|28|28|28|28|28|28|28|28|28|28|28;39|39|28|28|28|28|39|30|36|28|28|28|28|28|28;36|39|30|36|39|39|39|32|38|39|30|36|28|28|28;34|33|29|37|39|28|28|28|28|28|32|38|39|30|33;34|29|34|38|28|28|28|28|28|28|28|39|39|31|34;34|34|37|28|28|28|28|30|36|28|28|28|30|34|3;32|34|34|33|15|16|16|24|9|36|28|28|31|3|7;28|32|35|34|27|1|0|14|10|37|28|28|31|4|1;28|28|28|32|12|0|0|27|10|37|39|30|3|0|8;28|28|28|28|20|16|16|17|11|29|33|15|17|11|34;36|28|28|28|32|5|8|11|35|35|29|34|35|35|35;34|36|28|28|28|32|35|38|28|28|32|38|28|28|28;9|37|28|28|28|28|28|28|28|28|28|28|28|28|28;0|37|28|28|28|28|28|28|28|28|28|28|28|28|28
   - Name: Level5-4
     LevelNumber: 0
@@ -48479,7 +48643,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
-    Tags: PlayersSpawnFirst
+    Tags: 
     MapString: 34|37|28|28|28|28|28|28|28|32|34|29|35|38|28;35|38|28|28|30|33|33|36|28|28|32|38|28|28|28;28|28|28|30|3|6|2|9|36|28|28|28|28|28|28;28|28|30|34|2|1|27|10|29|36|28|28|28|28|28;28|30|29|34|5|8|2|11|34|34|36|28|30|36|28;28|31|34|34|35|35|34|29|34|34|37|28|32|34|36;30|34|34|38|28|28|31|3|15|17|37|28|28|32|35;34|29|37|28|28|28|31|4|0|10|37|28|28|28|28;34|34|38|28|28|28|31|4|1|10|37|28|28|28|28;29|38|28|28|28|28|2|27|15|16|17|36|28|28|28;37|28|28|28|28|28|31|4|1|7|10|37|28|30|33;38|28|28|28|28|28|31|4|7|27|10|37|28|32|35;28|28|28|30|36|28|31|4|27|1|12|37|28|28|28;28|28|30|29|38|28|15|17|0|15|26|37|28|28|28;28|28|32|38|28|28|31|5|8|8|11|38|28|28|28;28|28|28|28|28|28|31|34|29|34|37|28|28|28|28
   - Name: Level5-5
     LevelNumber: 5
@@ -48750,7 +48914,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
-    Tags: PlayersSpawnFirst
+    Tags: 
     MapString: 28|28|28|28|28|28|28|28|30|34|29|34|34|34|34;36|28|28|28|28|28|30|33|34|34|35|35|35|34|34;34|33|33|33|33|33|29|34|34|38|39|28|28|31|34;34|29|35|35|35|35|35|34|37|28|39|28|28|31|34;34|37|28|28|28|39|28|31|29|33|36|28|28|31|29;29|37|28|28|28|30|33|34|34|34|38|28|30|29|34;34|34|33|33|33|34|34|34|34|37|28|28|31|3|6;34|3|6|6|6|6|6|6|0|37|28|30|3|1|0;34|4|0|7|0|1|1|10|34|38|28|31|5|0|1;34|4|15|16|16|24|0|11|37|28|39|31|34|35|5;34|0|27|1|1|13|10|34|38|28|30|29|38|28|32;32|5|18|24|0|13|10|37|28|28|31|38|28|28|28;28|31|19|25|1|13|11|38|39|30|37|28|28|30|36;28|32|20|26|1|14|37|39|28|31|37|28|30|34|34;28|28|32|5|7|27|9|33|33|29|34|33|34|18|16;28|28|28|32|5|27|0|9|34|34|34|34|29|13|7
   - Name: Level6-1
     LevelNumber: 6
@@ -48878,7 +49042,7 @@ MonoBehaviour:
     Tileset: HumanDungeon
     Objective: 0
     ObjectiveData: Rout
-    Tags: PlayersSpawnFirst
+    Tags: 
     MapString: 26|11|38|28|28|30|34|34|34|29|34|34|19|25|27;29|38|39|39|30|34|29|34|35|35|35|34|19|22|21;38|28|39|30|34|34|34|37|28|28|39|32|20|23|23;28|28|30|34|29|34|34|34|33|36|39|28|31|34|34;33|33|34|34|34|35|12|27|2|9|36|28|31|29|34;34|29|34|34|37|39|13|1|0|10|37|28|32|34|34;34|34|3|9|37|28|13|7|27|10|37|39|39|31|34;35|35|2|0|37|28|13|7|1|0|9|36|28|31|34;28|28|32|34|37|28|13|1|1|0|10|37|28|31|29;36|39|39|31|37|28|20|16|16|17|11|38|28|31|34;34|36|28|31|37|28|28|32|35|34|37|28|28|31|34;34|37|28|32|29|36|28|28|28|31|29|33|33|34|34;9|37|39|39|31|29|33|33|33|34|34|34|29|34|38;7|9|36|28|32|34|3|6|6|6|6|9|34|38|28;24|10|37|28|28|31|4|12|27|15|24|10|37|28|28;25|7|9|36|28|31|4|13|1|0|13|10|37|39|30
   - Name: Level6-2
     LevelNumber: 6
@@ -51824,7 +51988,7 @@ MonoBehaviour:
   options:
     Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 4
+    EndgameLevel: 3
     ExtraLevels: 0
     Units:
     - Frogman

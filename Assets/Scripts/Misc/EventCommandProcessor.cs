@@ -312,7 +312,8 @@ public static class EventCommandProcessor
                 return result | StartLineResult.FinishLevel;
             case "win":
                 // Params: none
-                GameController.Current.Win();
+                ConversationPlayer.Current.Pause();
+                ConversationPlayer.Current.PlayPostBattle();
                 return result | StartLineResult.FinishLevel;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");

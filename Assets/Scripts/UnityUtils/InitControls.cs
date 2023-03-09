@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class InitControls : MonoBehaviour
 {
+    private static bool initDone = false;
+
     public Text InitA;
     public Text InitB;
     public Text InitStart;
+
     private void Awake()
     {
+        if (initDone)
+        {
+            return;
+        }
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
         // Load & init the save slot
+        SavedData.InitFiles();
         SavedData.SaveSlot = SavedData.Load("DefaultSaveSlot", 0, SaveMode.Global);
         SavedData.CreateSaveSlotFiles();
         if (!SavedData.HasKey("InitControls", SaveMode.Global))
@@ -44,5 +52,6 @@ public class InitControls : MonoBehaviour
                 InitStart.text = InitStart.text.Replace("Start", "Enter");
             }
         }
+        initDone = true;
     }
 }

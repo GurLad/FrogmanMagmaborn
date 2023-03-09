@@ -6,10 +6,6 @@ roomNumber:3
 hasTag:LichVisible
 ~ Before battle
 :if:!firstTime:{
-:if:charactersAlive:<1{
-:call:PreAlone
-}
-:else:{
 :call:PreAfterFail
 :finishConversation:
 }

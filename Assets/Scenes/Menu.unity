@@ -1119,8 +1119,8 @@ MonoBehaviour:
 
       What... is this place?
 
-      Wait...\a Who am
-      I?\a What is going on?!
+      Wait...\a Who am I?\a
+      What is going on?!
 
       ???: Hey! You there!
 
@@ -1152,8 +1152,8 @@ MonoBehaviour:
 
       :introShowUpgradeMenu:
 
-      ???:
-      Hey! Over here!
+      ???: Hey!
+      Over here!
 
       :markDone:
 
@@ -8361,9 +8361,25 @@ MonoBehaviour:
       DefaultState: -1
       NumChoices: 3
       ChoiceValue: 0
-    - Name: Kepluigi
-      InternalName: InclinationKepluigi
-      Description: Change Kepluigi's inclination.
+    - Name: Xeplogi
+      InternalName: InclinationXeplogi
+      Description: Change Xeplogi's inclination.
+      AltDescription: 
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Memerian
+      InternalName: InclinationMemerian
+      Description: Change Memerian's inclination.
+      AltDescription: 
+      Cost: 3
+      DefaultState: -1
+      NumChoices: 3
+      ChoiceValue: 0
+    - Name: Alfred
+      InternalName: InclinationAlfred
+      Description: Change Alfred's inclination.
       AltDescription: 
       Cost: 3
       DefaultState: -1

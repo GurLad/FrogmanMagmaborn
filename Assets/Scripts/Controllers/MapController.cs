@@ -57,6 +57,9 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
         string[] fileNames = FrogForgeImporter.GetAllFilesAtPath("Maps");
         foreach (string fileName in fileNames)
         {
+            // Empty mapData to make sure no extra data (aka tags) is carried over
+            mapData = null;
+            // Load new mapData
             TextFile file = FrogForgeImporter.LoadTextFile(fileName, true);
             JsonUtility.FromJsonOverwrite(file.Text.ForgeJsonToUnity("mapData"), this);
             Map map = new Map();
@@ -67,7 +70,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             // Tileset
             map.Tileset = mapData.Tileset;
             // Tags
-            map.Tags = mapData.Tags;
+            map.Tags = mapData.Tags ?? "";
             // Objective
             string[] objectiveParts = mapData.Objective.Split(':');
             map.Objective = (Objective)System.Enum.Parse(typeof(Objective), objectiveParts[0]);

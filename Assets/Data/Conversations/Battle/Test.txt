@@ -1,16 +1,18 @@
-priority:-21
+priority:21
 unique:F
 ~ Requirements
 ~ Demands
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
-Frogman: Hey, let's check out the base!
-:showBase:
-Frogman: All right, that's enough.\a To battle!
+Frogman: What can I say, citizen?
+:win:
 # Name: Text.
 ~ After battle
 :play:AfterBattle
+Frogman: Sometimes, criminals are dogs.
+:showInfoDialogue:I don't care
+
 # Name: Text.
 
 # === Functions ====
