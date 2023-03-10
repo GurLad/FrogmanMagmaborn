@@ -49,6 +49,7 @@ public class CursorController : MonoBehaviour
         }
         if (Time.timeScale == 0 || GameController.Current.CheckGameState() != GameState.Normal)
         {
+            GameUIController.HideUI();
             return;
         }
         // Interact/UI code

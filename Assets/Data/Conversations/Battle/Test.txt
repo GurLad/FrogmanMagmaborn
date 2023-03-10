@@ -5,17 +5,17 @@ unique:F
 # Nothinig
 ~ Before battle
 :play:BeforeBattle
-Frogman: What can I say, citizen?
-:win:
+:loadUnits:
+:killUnit:Brens
+Fashima_: Fashima zombie.
+:callOther:Level7GenericFashima
 # Name: Text.
 ~ After battle
 :play:AfterBattle
-Frogman: Sometimes, criminals are dogs.
-:showInfoDialogue:I don't care
 
 # Name: Text.
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ FashimaBattleQuote
+Fashima_: The dead cannot speak.

@@ -556,6 +556,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     /// <returns>True if there were any markers, false otherwise.</returns>
     public bool RemoveMarkers()
     {
+        Cursor.RefreshNextFrame();
         List<MapObject> markers = MapObjects.FindAll(a => a is Marker);
         if (markers.Count > 0)
         {
