@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         AttackMarker.Init();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         // Randomize
         if (GameCalculations.HasKnowledge("Randomize"))
@@ -1165,6 +1165,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
         SavedData.Append("Log", "Data", "Lost :(\n");
+        SavedData.Save("HasSuspendData", 0);
         SavedData.SaveAll(SaveMode.Slot);
         SceneController.LoadScene("GameOver");
     }

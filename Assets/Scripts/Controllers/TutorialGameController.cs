@@ -11,6 +11,7 @@ public class TutorialGameController : GameController
     private AdvancedSpriteSheetAnimation MarkerCursor;
     [HideInInspector]
     public bool WaitingForForceButton;
+
     public void ShowMarkerCursor(Vector2Int pos)
     {
         MarkerCursor.transform.position = new Vector3(pos.x * TileSize, -pos.y * TileSize, MarkerCursor.transform.position.z);
@@ -20,12 +21,19 @@ public class TutorialGameController : GameController
             MarkerCursor.Restart();
         }
     }
+
     protected override void Awake()
     {
         base.Awake();
         Current = this;
-        NumRuns--; // Fix tutroial counting as a run
     }
+
+    protected override void Start()
+    {
+        LevelNumber = 1;
+        ConversationPlayer.Current.Play(CreateLevel());
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -35,6 +43,7 @@ public class TutorialGameController : GameController
             ConversationPlayer.Current.Resume();
         }
     }
+
     public override void HandleAButton(Vector2Int pos)
     {
         if (CurrentForceButton.Button == Control.CB.A && (CurrentForceButton.Pos == pos || CurrentForceButton.Pos == Vector2Int.one * -1))
@@ -48,6 +57,7 @@ public class TutorialGameController : GameController
             WrongInput();
         }
     }
+
     public override void HandleBButton(Vector2Int pos)
     {
         if (CurrentForceButton.Button == Control.CB.B && (CurrentForceButton.Pos == pos || CurrentForceButton.Pos == Vector2Int.one * -1))
@@ -61,18 +71,22 @@ public class TutorialGameController : GameController
             WrongInput();
         }
     }
+
     public override void HandleSelectButton(Vector2Int pos)
     {
         base.HandleSelectButton(pos);
     }
+
     public override void HandleStartButton(Vector2Int pos)
     {
         // No menu in tutorial (?)
     }
+
     protected override void CheckDifficulty()
     {
         difficulty = Difficulty.Insane;
     }
+
     private void WrongInput()
     {
         ConversationPlayer.Current.Resume(CurrentForceButton.WrongLine); // Repeat last line
