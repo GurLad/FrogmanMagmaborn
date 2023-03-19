@@ -35,7 +35,7 @@ public class Randomizer
             {
                 displayNameReplacements.Add(origin[i].TheDisplayName, shuffled[i].TheDisplayName);
             }
-            nameToDisplayName.Add(shuffled[i].Name, shuffled[i].TheDisplayName);
+            nameToDisplayName.Add(origin[i].Name, origin[i].TheDisplayName);
         }
         Bugger.Info(string.Join(", ", nameToDisplayName.Keys));
         // Units
@@ -84,7 +84,7 @@ public class Randomizer
             {
                 if (levelMetadata.TeamDatas[(int)unit.Team].PortraitLoadingMode != PortraitLoadingMode.Name)
                 {
-                    Bugger.Info(map.Name + ": " + unit.Class);
+                    //Bugger.Info(map.Name + ": " + unit.Class);
                     ClassData oldClass = classes[unit.Class];
                     List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies);
                     unit.Class = options[Random.Range(0, options.Count)].Name;

@@ -69,7 +69,7 @@ public static class GameCalculations
     {
         get
         {
-            return KnowledgeController.TormentPower("LifeDeath") != TormentPowerState.I;
+            return KnowledgeController.TormentPower("DeathLife") != TormentPowerState.II;
         }
     }
 
@@ -131,19 +131,19 @@ public static class GameCalculations
         int baseNum = 3;
         if (team.IsMainPlayerTeam())
         {
-            switch (KnowledgeController.TormentPower("OrderChaos"))
+            switch (KnowledgeController.TormentPower("ChaosOrder"))
             {
                 case TormentPowerState.I:
-                    baseNum = 2;
+                    baseNum = 4;
                     break;
                 case TormentPowerState.II:
-                    baseNum = 4;
+                    baseNum = 2;
                     break;
                 default:
                     baseNum = 3;
                     break;
             }
-            if (unitName == StaticGlobals.MainCharacterName && KnowledgeController.TormentPower("LifeDeath") == TormentPowerState.II)
+            if (unitName == StaticGlobals.MainCharacterName && KnowledgeController.TormentPower("DeathLife") == TormentPowerState.I)
             {
                 baseNum += GameController.Current.DeadPlayerUnits.Count;
             }
@@ -294,15 +294,15 @@ public static class GameCalculations
             {
                 level += difficulty == Difficulty.Normal ? 2 : 1;
             }
-            switch (KnowledgeController.TormentPower("OrderChaos"))
+            switch (KnowledgeController.TormentPower("ChaosOrder"))
             {
                 case TormentPowerState.None:
                     break;
                 case TormentPowerState.I:
-                    level++;
+                    level--;
                     break;
                 case TormentPowerState.II:
-                    level--;
+                    level++;
                     break;
                 default:
                     break;
@@ -411,7 +411,7 @@ public static class GameCalculations
         return 
             ((unit.Flies && !tile.High) ? 0 :
             (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier)) + 
-            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.I && unit.TheTeam.IsMainPlayerTeam() ? unit.CountAdjacentAllies(pos) : 
-            (KnowledgeController.TormentPower("GiveTake") == TormentPowerState.II && !unit.TheTeam.IsMainPlayerTeam() ? -unit.CountAdjacentAllies(pos) : 0));
+            (KnowledgeController.TormentPower("TakeGive") == TormentPowerState.II && unit.TheTeam.IsMainPlayerTeam() ? unit.CountAdjacentAllies(pos) : 
+            (KnowledgeController.TormentPower("TakeGive") == TormentPowerState.I && !unit.TheTeam.IsMainPlayerTeam() ? -unit.CountAdjacentAllies(pos) : 0));
     }
 }

@@ -5097,8 +5097,8 @@ MonoBehaviour:
       Frogman: At least I''m not trying to kill them!\a
       And Xirveros is far from sane!
 
-      Torment: But this isn''t about him,
-      is it?\a He deserved it! Ha ha!\a This is about Firbell here!
+      Torment: But this isn''t about him, is
+      it?\a He deserved it! Ha ha!\a This is about Firbell here!
 
       :play:Trickster:T
 
@@ -5193,7 +5193,6 @@ MonoBehaviour:
 
       }
 
-      
 
       ~
       After battle
@@ -5206,9 +5205,9 @@ MonoBehaviour:
       Seriously? Using that insult on me? Ha!\a Get over it. You don''t even know
       Irenhold!
 
-      She stops functioning whenever she realizes the truth.\a
-      I''m merely protecting her. Heh.\a Who''s the friend and who is the monster
-      here, eh? Ha ha!
+      She stops functioning whenever she realizes the truth.\a I''m
+      merely protecting her. Heh.\a Who''s the friend and who is the monster here,
+      eh? Ha ha!
 
       Frogman: I-
 
@@ -5231,21 +5230,18 @@ MonoBehaviour:
 
       :setFlag:FirbellDenial1
 
-      :unlockKnowledge:TormentLifeDeath
+      :unlockKnowledge:TormentDeathLife
 
       :showInfoDialogue:New
       knowledge!
 
-      
 
       # === Functions ====
 
-      
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Torment1Firbell
@@ -6384,9 +6380,9 @@ MonoBehaviour:
       Frogman:
       ...
 
-      :setFlag:HasTormentGiveTake
+      :setFlag:HasTormentTakeGive
 
-      :unlockKnowledge:TormentGiveTake
+      :unlockKnowledge:TormentTakeGive
 
       :showInfoDialogue:New
       knowledge!
@@ -6416,7 +6412,7 @@ MonoBehaviour:
 
       hasFlag:TormentXeplogi
 
-      !hasFlag:HasTormentGiveTake
+      !hasFlag:HasTormentTakeGive
 
       ~
       Demands
@@ -6695,7 +6691,7 @@ MonoBehaviour:
       See? That's much better now! Ha ha!\\a Maybe I should break your mind too.\\a
       Hm...\r\nFrogman: N-no!\\a Please don't!\\a I'd never betray you!\r\nTorment:
       HA HA HA!!! As if!\r\nBut nevertheless, I do enjoy our conversations. Heh!\r\n:loadMap:InitTormentRoom\r\n:loadUnits:InitTormentRoom\r\nYou
-      can keep your mind. For now.\r\n:unlockKnowledge:TormentOrderChaos\r\n:showInfoDialogue:New
+      can keep your mind. For now.\r\n:unlockKnowledge:TormentChaosOrder\r\n:showInfoDialogue:New
       knowledge!\r\n:loadUnits:InitTormentRoom:Player\r\n:if:hasCharacter:Xirveros{\r\nFrogman:
       ...Xirveros?\r\nXirveros: ...Ah... Arrrg... Br... Tor... Ment... \r\nFrogman:
       I'm sorry, Xirveros. I didn't know...\r\nXirveros: Blafs... Roo... Frog...\r\n}\r\n:else:{\r\nFrogman:
