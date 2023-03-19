@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     // The base controller isn't a MidBattleScreen in itself - instead, it constantly switches between menues (MidBattleScreens)
     [Header("Menus")]
     public MenuController BaseMenu;
-    public MenuController TalkMenu;
+    public ScrollingMenuController TalkMenu;
     public MenuController StatusMenu; // Might seperate it into a different class
     [Header("Menu Items")]
     public MenuItem TalkMenuItem;
@@ -20,16 +20,19 @@ public class BaseController : MonoBehaviour
         // Show the BaseMenu and store the players for the StatusMenu
         BaseMenu.Begin();
         // Populate the talk menu
-        List<ConversationData> conversations = BaseConversations.GetAllOptions();
-        foreach (ConversationData conversation in conversations)
+        List<ConversationData> conversations = BaseConversations.GetAllOptions(true);
+        for (int i = 0; i < conversations.Count; i++)
         {
+            ConversationData conversation = conversations[i];
             MenuItem conversationMenuItem = Instantiate(TalkMenuItem, TalkMenuItem.transform.parent);
             TPlayConversation conversationTrigger = conversationMenuItem.GetComponent<TPlayConversation>();
             conversationTrigger.Conversation = conversation;
             conversationTrigger.Data = string.Join("\n", conversation.Lines);
             conversationTrigger.Data += "\n:showBase:\n"; // Show the base again after the conversation is done
             conversationTrigger.NewIndicator.gameObject.SetActive(conversation.MeetsRequirement("firstTime:"));
-            conversationMenuItem.Text = " " + conversation.ToString();
+            conversationMenuItem.Awake();
+            conversationMenuItem.Text = " " + conversation.DisplayName;
+            conversationMenuItem.TheRectTransform.anchoredPosition -= new Vector2(0, TalkMenu.ItemHeight * i);
             conversationMenuItem.gameObject.SetActive(true);
             TalkMenu.MenuItems.Add(conversationMenuItem);
         }

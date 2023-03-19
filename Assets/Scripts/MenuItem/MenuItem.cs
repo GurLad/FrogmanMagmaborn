@@ -23,7 +23,8 @@ public class MenuItem : MonoBehaviour
     private Text text;
     private PalettedText palettedText;
     private List<Trigger> triggers;
-    private void Awake()
+
+    public void Awake()
     {
         TheRectTransform = GetComponent<RectTransform>();
         text = GetComponent<Text>();
@@ -35,21 +36,25 @@ public class MenuItem : MonoBehaviour
         triggers = new List<Trigger>(GetComponents<Trigger>());
         Unselect();
     }
+
     public virtual void Select()
     {
         Indicators.ForEach(a => a.SetActive(true));
         palettedText.Palette = 0;
     }
+
     public virtual void Unselect()
     {
         Indicators.ForEach(a => a.SetActive(false));
         palettedText.Palette = 3;
     }
+
     public virtual void Activate()
     {
         triggers.ForEach(a => a.Activate());
         SystemSFXController.Play(UseCancelSFX ? SystemSFXController.Type.MenuCancel : SystemSFXController.Type.MenuSelect);
     }
+
     public virtual void OnMenuDone()
     {
         // Do nothing

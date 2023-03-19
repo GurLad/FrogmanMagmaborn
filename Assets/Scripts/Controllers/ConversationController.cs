@@ -30,7 +30,7 @@ public class ConversationController : MonoBehaviour
         }
     }
 
-    public List<ConversationData> GetAllOptions()
+    public List<ConversationData> GetAllOptions(bool includeAllPriorities = false)
     {
         if (!IgnoreDoneConversations)
         {
@@ -38,7 +38,10 @@ public class ConversationController : MonoBehaviour
         }
         List<ConversationData> currentOptions = options.FindAll(a => a.MeetsRequirements());
         currentOptions.Sort();
-        currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
+        if (!includeAllPriorities)
+        {
+            currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
+        }
         Bugger.Info("GetAllOptions - they are: " + string.Join(", ", currentOptions));
         if (currentOptions.Count <= 0)
         {

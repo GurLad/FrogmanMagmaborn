@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fd535d4f067c6469a41226aa73e2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseCancelSFX: 0
   Indicators: []
   TheRectTransform: {fileID: 0}
   BattleStatsPanel: {fileID: 7164484101543946080}
@@ -715,9 +716,13 @@ MonoBehaviour:
 
       unique:F
 
+      displayName:Alfred
+
       ~ Requirements
 
       roomNumber:9
+
+      hasFlag:FashimaKilledAlfred
 
       ~
       Demands
@@ -726,17 +731,85 @@ MonoBehaviour:
 
       ~ Before battle
 
-      Frogman: Hey, Fashima.
+      # TBA
+
+      Frogman:
+      Why did you kill Alfred?
+
+      Fashima: Excuses.
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9Alfred
+  - Text: 'priority:-1
+
+      unique:F
+
+      displayName:Bodder
+
+      ~ Requirements
+
+      roomNumber:9
+
+      hasFlag:MetBodder
+
+      hasFlag:BaseGuardsAndMagi
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      Frogman: What''s the
+      deal with Bodder? He was eccentric,\a even for a Magus.\a No offense intended.
 
       Fashima:
-      Hey, Frogman.
+      Bodder has lived most of his life in isolation,\a alongside the newly cloned
+      Guards.\a His entire job is to train them,\a and instill in them the will to
+      defend humanity,\a at all costs.\a I believe some of that has gone to his head.
 
-      Frogman: The speed of light is the best.
+      Frogman:
+      That''s for sure. But he''s also quite powerful.
+
+      Fashima: Indeed. Bodder
+      has perfected all forms of magic related to\a physical enhancement.\a Fortunately,
+      he is quite predictable,\a and not too careful.\a Should you learn his pattern
+      and defeat his...\a "Super Mega Uber Form",\a as he likes to call it,\a he
+      would surely perish.
+
+      Frogman: Do you have any advice for that?
 
       Fashima:
-      No.
+      He is quite vulnerable to attacks from afar.
 
-      Frogman: Oof.
+      And pay close attention
+      to the colour of his eyes.
+
+      They change depending on the fighting style
+      he chooses.
+
+      Frogman: I see. Thanks.
+
+      Fashima: Anything for you,
+      my friend.
+
+      :setFlag:BaseFashimaBodder
 
 
       ~ After battle
@@ -755,7 +828,623 @@ MonoBehaviour:
       # Name: Text.
 
 '
-    Name: BaseLevel9Test
+    Name: BaseLevel9Bodder
+  - Text: 'priority:-1
+
+      unique:F
+
+      displayName:Brens
+
+      ~ Requirements
+
+      roomNumber:9
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      Frogman: Why did you
+      kill Brens?
+
+      Fashima: Brens, like all the other Magi,\a was detrimental
+      to our plans.\a He would have tried to stop us,\a were he to remain alive.
+
+      Frogman:
+      Still. Weren''t you allies before?\a How could you betray him so easily?
+
+      Fashima:
+      I have always despised him, even when I was still alive.
+
+      I have been
+      looking forward to dispose of him, to be honest.\a But worry not, my friend.
+      You do not bore me as he did.
+
+      Frogman: Would you seriously kill me if
+      I was boring?
+
+      Fashima: Yes.
+
+      Frogman: Uh...\a That''s not very
+      reassuring.
+
+      Fashima: That is not my problem.
+
+      Do you have any
+      further questions, my friend?
+
+      Frogman: ...
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9Brens
+  - Text: 'priority:5
+
+      unique:F
+
+      displayName:Your motive
+
+      ~ Requirements
+
+      roomNumber:9
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      # Fashima actually
+      tells the truth here, except for being a Magmaborn
+
+      Frogman: Why did
+      you join us? Why did you betray the other Magi?
+
+      Fashima: Do you know
+      how long I''ve been alive, my friend?
+
+      Frogman: Uh... No.
+
+      Fashima:
+      Me neither. But a few millenia, at least.
+
+      Frogman: Millenia?! But...
+      But you look so young! How can that be?!
+
+      Fashima: Magic, my friend.
+      Magic can transform you.\a Keep your body young and healthy.\a Indefinitely.
+
+      Frogman:
+      This is... Uh... Wow.
+
+      But this has nothing to do with my question.\a
+      Why did you let yourself die now?
+
+      Fashima: This has everything to do
+      with your question.
+
+      I''ve been alive for far longer than any other Magi.
+
+      Longer
+      than any other human, I''d wager.\a And do you know how I spent this time?
+
+      Frogman:
+      No.
+
+      Fashima: Protecting humanity from monsters,\a and your fellow Magmaborn.\a
+      Over and over again. Endlessly.\a I couldn''t bear it any more.
+
+      Frogman:
+      Why didn''t you just leave?
+
+      Fashima: You misunderstand my goal.
+
+      It
+      wasn''t merely to stop being a Magus -\a but rather to end this eternal,\a
+      foolish struggle once and for all.
+
+      Frogman: So you became a Magmaborn?
+
+      Fashima:
+      Yes. The only one capable of ending the Magi is a Magus.
+
+      Frogman: I
+      see...
+
+      :setFlag:BaseFashimaMotive
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9FashimaMotive
+  - Text: 'priority:4
+
+      unique:F
+
+      displayName:Guards and Magi
+
+      ~
+      Requirements
+
+      roomNumber:9
+
+      ~ Demands
+
+      # Nothinig
+
+      ~
+      Before battle
+
+      :if:hasFlag:FrogmanMagiHuman{
+
+      Frogman: So... You
+      used to be a Guard Magus, right?
+
+      }
+
+      :else:{
+
+      Frogman: So...
+      You used to be a Guard mage, right?
+
+      }
+
+      Fashima: No. I used to
+      be a Magus, not a Guard.\a The Guards are a completely different thing.
+
+      Frogman:
+      What''s the difference?
+
+      Fashima: Guards are simple-minded clones, created
+      using magic.\a The Magi are humans,\a trained to use magic and lead the Guards.
+
+      Frogman:
+      Wait. Clones?
+
+      Fashima: Yes. They are quite similar to the monsters created
+      by Torment.\a Both are mere minions of the actual powers here -\a the Magi
+      and Torment themselves.
+
+      Frogman: You know Torment?!
+
+      Fashima:
+      Obviously. All Magi know that they exist.
+
+      Frogman: How?
+
+      Fashima:
+      The original eight champions were the ones who sealed\a Torment in the first
+      place.\a These champions also founded the Magi and Guards,
+
+      for the sole
+      purpose of keeping Torment -\a and their monsters - sealed,\a and as far from
+      humanity as possible.
+
+      Frogman: Oh.
+
+      :setFlag:BaseGuardsAndMagi
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9GuardsAndMagi
+  - Text: 'priority:-1
+
+      unique:F
+
+      displayName:Lan
+
+      ~ Requirements
+
+      roomNumber:9
+
+      hasFlag:MetLan
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      Frogman: Can you tell
+      me a bit about Lan? He seems... eccentric.
+
+      Fashima: Oh, him.\a Pay no
+      mind to him - he is irrelevant.
+
+      Frogman: Irrelevant?
+
+      Fashima:
+      Yes. The other Magi kept pestering me about picking an\a apprentice.
+
+      So
+      I picked the most obnoxious one I could fine.
+
+      I hope he''s not giving
+      you too much trouble.
+
+      Frogman: He is a bit annoying, I have to admit.
+
+      Fashima:
+      Did you manage to kill him?
+
+      :if:compareCounter:LanLoseCount:>2{
+
+      Frogman:
+      No... He keeps running away before we can finish him.
+
+      }
+
+      :else:{
+
+      Frogman:
+      Not yet... He managed to get away.
+
+      }
+
+      Fashima: I see. I apologize
+      for any inconvenience he may have\a caused.
+
+      It was not my intention
+      to harm you, my friend.
+
+      Frogman: Right...
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9Lan
+  - Text: 'priority:3
+
+      unique:F
+
+      displayName:Magic
+
+      ~ Requirements
+
+      roomNumber:9
+
+      hasFlag:BaseFashimaMotive
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      # Lore dump time
+
+      Frogman:
+      Can you tell me more about magic?
+
+      Fashima: What do you wish to know,
+      my friend?
+
+      Frogman: Uh, maybe what are the limitations of magic?
+
+      With
+      the amount of it going around here,\a it appears as if it can do anything.
+
+      Fashima:
+      Magic can only affect living creatures.
+
+      This means that magic can''t
+      be used to set a tree on fire,\a or to open a chasm in the ground.\a In addition,
+      physical contact with the target is required.
+
+      Frogman: Physical contact?
+
+      Fashima:
+      Touching the skin - or equivalent - of the target.\a Some materials can also
+      serve as conductors, like my staff,\a which allow you to hold it more comfortably.
+
+      Usually,
+      the target will be the mage itself. Therefore,\a most spells resolve around
+      self-enhancement -\a increased speed or strength,\a illusions around the target,\a
+      teleportation,\a and transformation.
+
+      Frogman: Wow. But I remember the
+      lich attacking us by touching us\a with it''s crystal -\a what kind of spell
+      is that?
+
+      Fashima: That is the simplest spell in existence, my friend:\a
+      inflicting pain.\a The source of all magic - and all crystals -\a is Torment.
+
+      The
+      original purpose of the crystals was to inflict pain,\a and only powerful wizards
+      can use them for other spells.\a That is why magic has always been rare,\a
+      even during periods where crystals were common.
+
+      Frogman: I... see. And
+      can you cast spells remotely?\a Like with your teleportation crystals?
+
+      Fashima:
+      No. You can only cast a spell by touching the crystal.\a However, you can enchant
+      a crystal to contain a\a conditional spell,
+
+      which will be automatically
+      cast on whoever touches it.\a These spells are much more difficult to execute,
+      though.
+
+      Frogman: Oh.\a And how do Magma Emblems fit into all of this?
+
+      Fashima:
+      Since crystals are a direct connection to Torment,
+
+      some wizards have
+      found a way to communicate with them.
+
+      Once a living wizard approaches
+      Torment,
+
+      Torment will usually teach them how to make Magma Emblems\a
+      - an incredibly complex spell designed by Torment,
+
+      with the purpose
+      of turning people into their champions,\a and ultimately escaping this place.\a
+      As far as I know,
+
+      only three people have managed to create Magma Emblems
+      -\a Xirveros, The Boss, and Memerian.
+
+      Frogman: The Boss?
+
+      Fashima:
+      ...I''ve unfortunately never found out his true name.\a Nevertheless, he is
+      irrelevant and long dead by now.
+
+      Frogman: Dead?
+
+      Fashima: I do
+      not wish to speak about him, my friend.\a Now, do you have any further questions?
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9Magic
+  - Text: 'priority:-1
+
+      unique:F
+
+      displayName:Teleportation
+
+      ~
+      Requirements
+
+      roomNumber:9
+
+      hasFlag:BaseFashimaMotive
+
+      hasFlag:BaseFashimaBodder
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      Frogman: Hold on. These
+      teleportation crystals.\a Why didn''t you use them before?\a You could''ve
+      just teleported us to a lava pit or something.
+
+      Fashima: Correct. However,
+      as should be obvious by know,\a my goal was to be killed by you.
+
+      Frogman:
+      To end the Magi?
+
+      Fashima: Yes.
+
+      Frogman: Then why not just teleport
+      them to their death?
+
+      Fashima: It wouldn''t work on Lessy.
+
+      Frogman:
+      Why not?
+
+      Fashima: You will see.
+
+      Frogman: Then what about Bodder?
+
+      Fashima:
+      He makes for good practice for you, my friend.\a If you cannot defeat him,\a
+      you stand no chance against Lessy.
+
+      Frogman: Practice? He killed me once
+      already!
+
+      Fashima: And yet, here you are again, safe and sound.\a What
+      kills you only makes you stronger,\a after all.
+
+      Frogman: I-
+
+      Ugh.
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9TeleportationCrystals
+  - Text: 'priority:-1
+
+      unique:F
+
+      displayName:Werse
+
+      ~ Requirements
+
+      roomNumber:9
+
+      hasFlag:MetWerse
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      Frogman: Could you
+      tell me more about Werse?\a Their surrender was... unexpected.
+
+      Fashima:
+      It had surprised me as well.
+
+      I appear to have underestimated them.
+
+      Frogman:
+      You mean Werse?
+
+      Fashima: Yes.
+
+      I didn''t get to know them much
+      during my time as a Magus -\a they tended to deflect my questions.
+
+      I
+      assumed it was merely a general dislike towards me,\a but it appears they have
+      an agenda of their own.
+
+      Frogman: And what would that be?
+
+      Fashima:
+      I do not know, unfortunately.\a Yet they clearly possess great magical capabilities.
+
+      Frogman:
+      Greater than yours?
+
+      Fashima: I deem that unlikely.
+
+      They are the
+      second-youngest Magus alive.
+
+      They couldn''t possibly have had the time
+      to surpass me.
+
+      Frogman: I see...
+
+      Fashima: Still, they could be
+      quite dangerous.\a They are not to be trusted.
+
+      Frogman: Unlike you?
+
+      Fashima:
+      Yes. I can assure you, my friend,\a that I am quite trustworthy.
+
+      Frogman:
+      Yeah...
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: BaseLevel9Werse
   IgnoreDoneConversations: 0
   SetAsMain: 0
   Path: Conversations\Base

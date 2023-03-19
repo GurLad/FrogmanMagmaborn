@@ -12,6 +12,7 @@ public class ConversationData : System.IComparable<ConversationData>
     public Dictionary<string, List<string>> Functions;
     public bool Done { get; private set; }
     public string ID { get; private set; } = null;
+    public string DisplayName { get; private set; } = null;
     // For suspend data
     [SerializeField]
     private string sourceText;
@@ -46,12 +47,16 @@ public class ConversationData : System.IComparable<ConversationData>
                 case "id":
                     ID = lineParts[1];
                     break;
+                case "displayName":
+                    DisplayName = lineParts[1];
+                    break;
                 default:
                     break;
             }
         }
         // Check unique & id
-        ID = ID ?? altID;
+        ID ??= altID;
+        DisplayName ??= ID;
         UpdateDone();
         // Requirements, demands, text and everything else
         Requirements = new List<string>(parts[1].Split('\n'));
