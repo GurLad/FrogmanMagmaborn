@@ -19,8 +19,8 @@ Frogman: Ah!
 Kresla||L: Hi there! I've never seen you before!\a Where are you from?
 Alfred: ...Alezis.
 Kresla: Um, I've never heard of it.
-Alfred: Pah. You heard about Guard name?\a Bronzing?
-Kresla: Wait, Bronzing? I'm from there!
+Alfred: Pah. You heard about Guard name?\a Bomzing?
+Kresla: Wait, Bomzing? I'm from there!
 Alfred: Ha! Fool!\a That's Guard name.\a They try erasing our history.\a Our names!\a We mustn't forget!\a Do not listen!
 Kresla: Uh, look, when I come from, there are no "Guards".\a Nor Alezis, for that matter.
 Frogman||L: Kresla...
@@ -61,16 +61,21 @@ Frogman: Let's get out of here!
 Kresla: Whew! Well, now that we've got some time...\a Wait, what was your name again?
 Alfred: ...Alfred.
 Kresla: Right! So, Alfred.\a Can you tell me more about-
-Frogman: Uh, Kresla?
-Kresla: Yes?
-Frogman: TBA
+Alfred: No.
+Kresla: Huh?
+Alfred: We talked enough.
+Prove yourself in battle, and I'll speak further.
+Kresla: Oof.
 }
 :else:{
-Frogman: TBA
+Kresla: I can't believe Alfred died.
+Frogman: Yeah. That was unfortunate. But he'll be back.
+Kresla: I know. Still, I had so many questions for him...\a Oh well. I'll question him next time, then.
+Frogman: Right.
 }
 }
 :else:{
-Frogman||L: TBA
+Whew. At least we have some time to rest now.
 }
 
 # === Functions ====

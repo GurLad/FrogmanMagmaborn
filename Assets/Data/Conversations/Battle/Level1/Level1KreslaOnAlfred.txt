@@ -7,10 +7,26 @@ hasFlag:AlfredKresla1
 hasCharacter:Kresla
 ~
 :play:BeforeBattle
-Kresla: Hey, Frogman! Stuff about unsure where Alfred is from.
-Frogman: Okay. TBA
+:loadUnits::player
+Kresla: Hey, Frogman!
+Frogman: Hello.
+Kresla: Did you hear my conversation with Alfred?
+Frogman: Yes?
+Kresla: What he said was extremely weird and exciting!\a I mean, Guards in Bomzing?\a Them being the ones who named it that?\a I've never heard about anything like this!\a I wonder what's the meaning of this. They obviously tried to hide something, but what? Their existence? Something else from that time? Is this related to magic? I mean, the only people here who know anything about magic are Xirveros and Firbell - who are also from a place I've never heard about before. Is it all connected? Or am I just grasping at straws? I should interrogate Alfred further! And if he won't talk, we can torture him! What do you think, Frogman?
+Frogman: Wha- Uh, sure, sure. Let's do that.
+Kresla: Great! Let's go, then!
+Frogman: Go where?
+Kresla: To Alfred. To interrogate and torture him.
+Frogman: To do what now?!
+:loadUnits:
+Kresla: Interrogate Alfred! With torture!\a You agreed to this plan, remember?
+Frogman: I-I did?!
+Kresla: Obviously! Anyway, there's some pesky monsters here.\a Let's defeat them, and then torture Alfred!
+Frogman: W-wait!\a ...How did I get into this?
 :setFlag:AlfredKresla2
 :markDone:
 ~
 :play:AfterBattle
-Kresla: Ja.
+Kresla: Great! Let's go then!
+:setSingleSpeaker:R
+Frogman: How about we discuss this some more before...\a Kresla? Uh, come back here?\a Please?
