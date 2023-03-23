@@ -1,0 +1,64 @@
+priority:2
+unique:T
+~ Requirements
+roomNumber:8
+hasFlag:BrensDied
+~ Demands
+!hasCharacter:Brens
+~ Before battle
+:play:GuardTheme3
+:addGenericCharacter:Lieutenant:old
+:addGenericCharacter:Guard1:young
+:loadUnits::guard
+:setSpeaker:Guard1
+:setSpeaker:Lieutenant||R
+Guard1: ...
+Uh, sir?
+Lieutenant: Yes?
+Guard1: What is up with Werse?
+They've been gone for a few hours already,
+and we're just standing here for no real reason.
+Lieutenant: It's just the way they are. You'll get used to it.
+Guard1: But... why? What's the point? It seems pretty dum-
+Lieutenant: Shh! Don't say that!
+Guard1: What? They're not here to hear it, are they?
+Lieutenant: They can turn invisible, you know.\a They could be listening to us right now!
+Guard1: I-invisible?!
+:loadUnits::monster:T
+:killUnit:Lan:F
+Werse: Yes.
+Lieutenant: Master! It's good to see you!
+Werse: You too, [Name:Lieutenant]. And [Name:Guard1] as well.\a You're quite new here, correct?
+Guard1: C-correct, master! I-I'm terribly sorry, I didn't-
+Werse: It's quite all right, [Name:Guard1].\a Your curiosity is commendable.
+However, we don't have time for idle chatter.
+The Magmaborn are on their way here as we speak.
+Guard1: M-Magmaborn?!
+Werse: Yes. Get ready. And try to stay alive.
+Guard1: Y-yes, master!
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+:call:Reaction
+:setBattleQuote:Werse:WerseBattle
+:setFlag:MetWerse
+:markDone:
+
+~ After battle
+:unlockAchievement:DefeatWerse
+:callOther:Level8FashimaSpawn
+
+# === Functions ====
+
+~ WerseBattle
+:callOther:Level8WerseSurrender
+
+~ Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Come on, we've got no time to lose!
