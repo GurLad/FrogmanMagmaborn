@@ -53382,6 +53382,7 @@ MonoBehaviour:
     GeneratedPortraits: []
     SpeakerL: 
     SpeakerR: 
+    CurrentSpeakerIsLeft: 0
     CurrentCG: 
     CGPreviousState:
       BackgroundPalettes: []
@@ -53494,7 +53495,7 @@ MonoBehaviour:
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 
-    KillAutoSaves: 1
+    KillAutoSaves: 0
 --- !u!114 &1902908242
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,6 +53,7 @@ For final release:
  -Alow loading maps & units in the background while there's a CG
  -Improve choice UI
 ~-Unit.cs and GameController.cs have an absurd amount of bloat - seperate a ton of stuff to different classes (some seperation)
+ -Custom text speed for different characters (ex. Kresla speaks faster than anyone else)
  -Extra commands:
   -Scripted battle
   -Bigger/dynamically sized info dialogue

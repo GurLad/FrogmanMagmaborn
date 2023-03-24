@@ -204,7 +204,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         origin = conversation;
         lines.Clear();
         lines.AddRange(origin.Lines);
-        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
+        UpdateSpeed();
         StartLine(0, true, shouldFadeIn);
     }
 
@@ -220,7 +220,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         playMode = PlayMode.MidBattle;
         lines.Clear();
         lines.AddRange(text.Split('\n'));
-        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
+        UpdateSpeed();
         gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
         StartLine(0);
@@ -239,7 +239,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         MidBattleScreen.Set(this, true);
         lines.Clear();
         lines.AddRange(origin.PostBattleLines);
-        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
+        UpdateSpeed();
         StartLine(0);
     }
 
@@ -700,11 +700,16 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         SoundController.PlaySound(VoiceTypes[(int)voice.VoiceType], voice.Pitch + voiceMod);
     }
 
+    private void UpdateSpeed()
+    {
+        speed = LettersPerSecond * (SavedData.Load("TextSpeed", 0, SaveMode.Global) + 1);
+    }
+
     public SuspendDataConversationPlayer SaveToSuspendData()
     {
         if (Playing) // If there's a saved action, it's supposed to happen after this conversation (ex. battle)
         {
-            return new SuspendDataConversationPlayer(origin, currentLine, functionStack, lines, speakerL, speakerR, CGController);
+            return new SuspendDataConversationPlayer(origin, currentLine, functionStack, lines, speakerL, speakerR, currentSpeakerIsLeft, CGController);
         }
         else
         {
@@ -714,6 +719,19 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     public void LoadFromSuspendData(SuspendDataConversationPlayer data)
     {
+        void RestoreSpeakers()
+        {
+            if (data.SpeakerL != "")
+            {
+                SetSpeakerFromText(data.SpeakerL + "||L");
+            }
+            if (data.SpeakerR != "")
+            {
+                SetSpeakerFromText(data.SpeakerR + "||R");
+            }
+            currentSpeakerIsLeft = data.Lines[data.CurrentLine].Contains(":") ^ data.CurrentSpeakerIsLeft;
+        }
+
         origin = new ConversationData(data.Origin);
         if (data.Playing)
         {
@@ -725,21 +743,19 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             data.FunctionStack.ForEach(a => functionStack.Push(a));
             PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
             CrossfadeMusicPlayer.Current.Play(data.CurrentMusic);
-            if (data.SpeakerL != "")
-            {
-                SetSpeakerFromText(data.SpeakerL + "||L");
-            }
-            if (data.SpeakerR != "")
-            {
-                SetSpeakerFromText(data.SpeakerR + "||R");
-            }
+            UpdateSpeed();
             if (data.CurrentCG != "")
             {
+                // Dumb fix to prevent the previous state from overriding the speaker's palettes
+                PaletteController.Current.LoadState(data.CGPreviousState);
+                RestoreSpeakers();
+                data.CGPreviousState = PaletteController.Current.SaveState();
                 gameObject.SetActive(false);
                 CGController.FadeInCG(data.CurrentCG, data.CGPreviousState);
             }
             else
             {
+                RestoreSpeakers();
                 Resume(0);
                 //Bugger.Info("State is " + state);
             }
@@ -775,6 +791,7 @@ public class SuspendDataConversationPlayer
     public List<GeneratedPortrait> GeneratedPortraits;
     public string SpeakerL;
     public string SpeakerR;
+    public bool CurrentSpeakerIsLeft;
     public string CurrentCG;
     public PaletteController.PaletteControllerState CGPreviousState;
     public string CurrentMusic;
@@ -792,12 +809,14 @@ public class SuspendDataConversationPlayer
         List<string> lines,
         string speakerL,
         string speakerR,
+        bool currentSpeakerIsLeft,
         CGController cgController) : this(origin)
     {
         CurrentLine = currentLine;
         Lines = lines;
         SpeakerL = speakerL;
         SpeakerR = speakerR;
+        CurrentSpeakerIsLeft = currentSpeakerIsLeft;
         while (functionStack.Count > 0)
         {
             FunctionStack.Add(functionStack.Pop());
