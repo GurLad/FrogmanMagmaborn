@@ -103,20 +103,7 @@ Frogman: This seems unfair.
 # TBA: Fashima speaks, based on whether you chose to trust her
 
 ~ Reaction
-:if:hasCharacter:Memerian{
-Memerian: TBA
-:setFlag:MemerianMetMagmabornFashima
-:return:
-}
-:if:hasCharacter:Firbell{
-Firbell: TBA
-:return:
-}
-:if:hasCharacter:Kresla{
-Kresla: TBA
-:return:
-}
-# More TBA
+:callOther:Level9Reaction
 
 ~ WorkerDeath
 :callOther:Level9WorkerDeath

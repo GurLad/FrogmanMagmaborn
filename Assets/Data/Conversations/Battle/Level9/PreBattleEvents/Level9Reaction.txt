@@ -1,0 +1,135 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:setSpeaker:Frogman||L
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellMetMagmabornFashima{
+Firbell: Frogman? Where have you been?!
+Frogman: I-
+Fashima||L: He was with me. We had some important matters to discuss.
+Firbell: And who might you be?
+Fashima: I am Fashima, the former Wall Magus. I come in peace,
+to help you get away from this place.
+:if:hasCharacter:Memerian{
+:if:!hasFlag:MemerianMetMagmabornFashima{
+:if:hasFlag:FashimaBattleMemerian{
+Memerian: Heh. I knew it.
+Fashima: Did you now? Congratulations are in order, then.
+Memerian: Hmpf. You're as aloof as ever, I see.
+}
+:else:{
+Memerian: Wait, hold on. Fashima?!
+Fashima: Indeed, my friend.
+Memerian: You... Huh. This is unexpected.
+}
+What's your angle?
+Fashima: Excuse me?
+Memerian: Why are you helping us?
+Fashima: That is none of your concern. Frogman trusts me.\a That should be enough for you.
+:setFlag:MemerianMetMagmabornFashima
+}
+}
+Firbell||R: Frogman? Do you truly trust her?
+Frogman: Uh-
+Fashima||L: Yes.
+Frogman||L: Um, what she said.
+Fashima||L: Right.
+Bodder: Ahem. Are you done?
+Frogman: Huh?
+:return:
+}
+}
+:if:hasCharacter:Kresla{
+:if:!hasFlag:KreslaMetMagmabornFashima{
+Kresla: Frogman! There you are! You'll never believe what happened!\a One moment, I was with you fighting those Guards,\a and then I found myself in this extraordinary place,\a and this magic person seeked you out,\a but once he realized you weren't here he told us to wait for you, so I just sat there waiting for like 2 seconds, but this place is so incredible and I just had to check it out, and I didn't understand a thing! I mean, there's so many crystals here, and these weird cylinder things, and-
+:if:hasFlag:FashimaBattleKresla{
+Fashima: Kresla. Shut up.
+}
+:else:{
+Fashima: Shut up, please.
+}
+Kresla: Huh? Who are you?
+Fashima: I am Fashima, the former Wall Magus. I come in peace,
+to help you get away from this place.
+:if:hasCharacter:Memerian{
+:if:!hasFlag:MemerianMetMagmabornFashima{
+:if:hasFlag:FashimaBattleMemerian{
+Memerian: Heh. I knew it.
+Fashima: Did you now? Congratulations are in order, then.
+Memerian: Hmpf. You're as aloof as ever, I see.
+}
+:else:{
+Memerian: Wait, hold on. Fashima?!
+Fashima: Indeed, my friend.
+Memerian: You... Huh. This is unexpected.
+}
+What's your angle?
+Fashima: Excuse me?
+Memerian: Why are you helping us?
+Fashima: That is none of your concern. Frogman trusts me.\a That should be enough for you.
+Memerian||R: Frogman? 
+Frogman: What?
+Memerian: Do you trust Fashima?
+Frogman: Uh-
+Fashima||L: Yes.
+Frogman||L: Um, what she said.
+Fashima||L: Right.
+Memerian: ...
+:setFlag:MemerianMetMagmabornFashima
+}
+}
+:if:hasFlag:!FashimaBattleKresla{
+Kresla||R: Wait. Hold on. Who?
+Frogman: The Guard who-
+Fashima||L: Magus.
+Frogman||L: Right.
+The Magus who was blocking our way to the Fortress.
+Kresla: And she's a Magmaborn now?
+Fashima: Yes. She even has a name. Fashima.
+}
+Kresla||R: Oh. Oh! OH! This is interesting! I have so many-
+Bodder||R: Ahem.
+Frogman: Huh?
+:return:
+}
+}
+:if:hasCharacter:Memerian{
+:if:!hasFlag:MemerianMetMagmabornFashima{
+Memerian: Oh, Frogman. You took your sweet time. What happened?
+Frogman: I-
+Fashima||L: He was with me. We had some important matters to discuss.
+:if:hasFlag:FashimaBattleMemerian{
+Memerian: Who- Oh.\a Fashima.\a Heh. I knew it.
+Fashima: Did you now? Congratulations are in order, then.
+Memerian: Hmpf. You're as aloof as ever, I see.
+}
+:else:{
+Memerian: And who might you be?\a Wait, hold on.\a Fashima?!
+Fashima: Indeed, my friend.
+Memerian: You... Huh. This is unexpected.
+}
+What's your angle?
+Fashima: Excuse me?
+Memerian: Why are you helping us?
+Fashima: That is none of your concern. Frogman trusts me.\a That should be enough for you.
+Memerian||R: Frogman? 
+Frogman: What?
+Memerian: Do you trust Fashima?
+Frogman: Uh-
+Fashima||L: Yes.
+Frogman||L: Um, what she said.
+Fashima||L: Right.
+Memerian: ...
+Bodder||R: Ahem.
+Frogman: Huh?
+:return:
+}
+}
+# More TBA
+
+~ After battle
+:lose:

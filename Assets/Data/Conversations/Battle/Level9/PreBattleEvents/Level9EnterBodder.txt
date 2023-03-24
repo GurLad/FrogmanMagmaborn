@@ -1,0 +1,55 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:if:!hasFlag:EnterBodder1:{
+Bodder: Frogman, Frogman, Frogman.
+Do you know how long I've been waiting for this moment?
+Frogman: Uh... no.
+Bodder: Ever since you've slain your first Guard,\a all those months ago.
+Frogman: Are you sure it was mon-
+Bodder: And do you know why, Frogman?
+Frogman: Because you seek revenge?
+Bodder: Because I'm the guardian of the Guards, Frogman.\a I raised them.\a I trained them.\a I taught them all they know.
+Frogman: Okay.
+Bodder: And do you know what you are, Frogman?
+Frogman: Enlighten me.
+Bodder: A hideous, nefarious, bloodthirsty monster.
+One which doesn't think twice before killing people.
+One which cares for nothing but its own flesh.
+Frogman: When will this monologue end, Bodder?
+Bodder: And do you know what I hate most in this world, Frogman?
+Frogman: Silence?
+Bodder: Monsters like you, Frogman.
+Frogman: I've had enough. Let's charge, everyone!
+Bodder: And do you know-
+:setFlag:EnterBodder2
+:return:
+}
+:if:!hasFlag:EnterBodder2:{
+Bodder: And just like that, the murderer returns.
+Frogman: Ugh. Can we skip this pointless conversation,\a and get to the fighting already?
+Bodder: Do you know what makes one a monster such as you, Frogman?
+Frogman: I really couldn't care less.
+Bodder: The lack of care for other's well-being.\a The missing desire to talk and interact.
+The careless disregard for human life.
+Frogman: Do you know what I'd like to do most right now, Bodder?
+Bodder: Do you know what I think you'd like to do right now, Frogman?
+Frogman: What?
+Bodder: What?
+Frogman: ...You know what? Never mind. Let's go, everyone!
+Bodder: What?
+:setFlag:EnterBodder2
+:return:
+}
+# Generic
+Bodder: Frogman, Frogman, Frogman.
+Are you truly incapable of learning?
+Frogman: No, I'm not doing this again. Let's go!
+Bodder: Do you know-
+
+~ After battle
+:lose:

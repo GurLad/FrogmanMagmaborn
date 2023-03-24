@@ -8,12 +8,17 @@ public class ScrollingMenuController : MenuController
     public int NumItemsPerPage;
     public float ItemHeight;
     public GameObject Arrows;
+    public bool AutoSize;
     private int currentPage;
 
     protected override void Start()
     {
         base.Start();
         SetPage(currentPage);
+        if (AutoSize && MenuItems.Count < NumItemsPerPage)
+        {
+            GetComponent<RectTransform>().sizeDelta -= new Vector2(0, ItemHeight * (NumItemsPerPage - MenuItems.Count));
+        }
     }
 
     public override void SelectItem(int index, bool playSFX = false)
