@@ -214,7 +214,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         // Store current lines & position
         if (currentLine < (lines?.Count ?? 0))
         {
-            functionStack.Push(new FunctionStackObject(currentLine, lines));
+            functionStack.Push(new FunctionStackObject(currentLine, lines.Clone()));
         }
         // Load new lines
         playMode = PlayMode.MidBattle;
@@ -272,10 +272,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         SkipEmptyLines(currentLine + mod);
         if (currentLine >= lines.Count)
         {
-            if ((FinishConversation(fadeIn) & (StartLineResult.FinishConversation | StartLineResult.Fade)) != 0)
+            if ((FinishConversation(fadeIn) & (StartLineResult.FinishConversation | StartLineResult.Fade)) == 0)
             {
-                return;
+                SoftResume();
             }
+            return;
         }
         if (fadeIn)
         {
@@ -302,6 +303,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     {
         skipping = true;
         Resume();
+    }
+
+    public void CancelSkip()
+    {
+        skipping = false;
     }
     /// <summary>
     /// Checks whether the wait requiremenet was met.

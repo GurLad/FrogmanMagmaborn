@@ -22,11 +22,14 @@ public static class StaticGlobals
 {
     public static string MainCharacterName = "Frogman";
     public static Team MainPlayerTeam = Team.Player;
+
     // Extension methods
+
     public static string Name(this Team team)
     {
         return GameController.Current.LevelMetadata.TeamDatas[(int)team].Name;
     }
+
     public static Team? ToTeam(this string teamName)
     {
         return teamName.ToLower() switch
@@ -37,6 +40,7 @@ public static class StaticGlobals
             _ => null
         };
     }
+
     public static AIType? ToAIType(this string aiName)
     {
         return aiName.ToLower() switch
@@ -47,6 +51,7 @@ public static class StaticGlobals
             _ => null
         };
     }
+
     public static Skill? ToSkill(this string skillName)
     {
         return skillName.ToLower() switch
@@ -63,39 +68,53 @@ public static class StaticGlobals
             _ => null
         };
     }
+
     public static string ToColoredString(this string str, int paletteID)
     {
         return "<color=#" + paletteID + "00000>" + str + "</color>";
     }
+
     public static string ForgeJsonToUnity(this string json, string propertyName)
     {
         return "{" + '"' + propertyName + '"' + ":" + json + "}";
     }
+
     public static T GetOrAddComponenet<T>(this GameObject gameObject) where T : Component
     {
         T temp = gameObject.GetComponent<T>();
         return temp != null ? temp : gameObject.AddComponent<T>();
     }
+
     public static bool IsEnemy(this Team origin, Team target)
     {
         return origin != target && !GameController.Current.LevelMetadata.Alliances[Mathf.Abs((int)origin | (int)target) - 1];
     }
+
     public static bool PlayerControlled(this Team origin)
     {
         return GameController.Current.LevelMetadata.TeamDatas[(int)origin].PlayerControlled;
     }
+
     public static bool IsMainPlayerTeam(this Team origin)
     {
         return origin == MainPlayerTeam;
     }
+
     public static int TileSize(this Vector2Int vector2Int)
     {
         return Mathf.Abs(vector2Int.x) + Mathf.Abs(vector2Int.y);
     }
+
     public static int TileDist(this Vector2Int one, Vector2Int two)
     {
         return Mathf.Abs(one.x - two.x) + Mathf.Abs(one.y - two.y);
     }
+
+    public static List<T> Clone<T>(this List<T> list)
+    {
+        return list.FindAll(a => true); // Probably not the best way, but whatever
+    }
+
     public static List<T> Shuffle<T>(this List<T> values) // Fisher–Yates
     {
         int n = values.Count;

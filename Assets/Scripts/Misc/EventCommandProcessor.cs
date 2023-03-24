@@ -463,6 +463,7 @@ public static class EventCommandProcessor
                 return result | StartLineResult.MidBattleScreen;
             case "showBase":
                 // Args: none
+                player.CancelSkip();
                 player.Pause();
                 BaseController baseController = GameObject.Instantiate(GameController.Current.BaseMenu, GameController.Current.Canvas.transform).GetComponentInChildren<BaseController>();
                 baseController.Show(GameController.Current.PlayerUnits);
@@ -563,7 +564,7 @@ public static class EventCommandProcessor
                 if (origin.Functions.ContainsKey(args[0]))
                 {
                     // Store current lines & position
-                    functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.FindAll(a => true)));
+                    functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.Clone()));
                     // Load new lines
                     lines.Clear();
                     lines.AddRange(origin.Functions[args[0]]);
@@ -572,7 +573,7 @@ public static class EventCommandProcessor
                 throw Bugger.Error("No matching function! (" + args[0] + ")");
             case "callOther":
                 // Store current lines & position
-                functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.FindAll(a => true)));
+                functionStack.Push(new ConversationPlayer.FunctionStackObject(num, lines.Clone()));
                 // Load new conversation
                 ConversationData conversation = ConversationController.Current.SelectConversationByID(args[0]);
                 if (conversation != null)
