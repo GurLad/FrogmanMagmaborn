@@ -6,17 +6,53 @@ compareCounter:FirbellAvoidsFrogman:=1
 ~ Demands
 # Nothinig
 ~ Before battle
-:callOther:TormentBase
+# Set Torment met flags (can't use base as Firbell can't revive)
+:if:hasCharacter:Firbell{
+:setFlag:MetTormentFirbell
+}
+:if:hasCharacter:Kresla{
+:setFlag:MetTormentKresla
+}
+:if:hasCharacter:Xirveros{
+:setFlag:MetTormentXirveros
+}
+# Conv
 :play:BeforeBattle
 :loadMap:InitTormentRoom
 :loadUnits:InitTormentRoom
-Torment: Hello, Frogman!
-TBA
+Torment: Ah, Frogman. How fares my favourite monster today? Heh.
+Frogman: Torment. Let's just get this over with.
+Torment: Nope. Not yet.
+I've been pouring over Firbell's memories,\a and found something quite...\a interesting. Heh heh.
+Frogman: ...
+Torment: I know all about your little... argument. Heh.\a You two are so foolish!
+As if one needs a reason to kill and destroy! Ha ha ha!
+Frogman: I don't care much for your gloating, Torment.
+Torment: Gloating? Ha ha! I'm not here for that.\a Although, I do admit it is quite fun. Heh heh.
+:play:Trickster:T
+I'm here to clean up your mess, Frogman.\a I need you at your best to get out of here.
+Frogman: What do you mean?
+Torment: Why, wiping Firbell's memory of the incident, of course!\a Heh heh!\a You two make a pretty good team, after all.\a It would be shame to lose that,\a don't you think?
+Frogman: That's... That's wrong!
+Torment: Oh? Wrong? You would seriously use that word with me?
+Frogman: I-
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+Torment: Right and wrong is a concept made up by foolish humans.\a I don't care for it. Heh heh.\a I care for two things, Frogman:\a pain and getting out of here.\a And you shall supply me with both!\a You and Firbell! Ha ha ha!
+Frogman: Don't-
+Torment: Oh, quit whining and get to the fighting already!
 # Torment wipes Firbell's memory of fighting in the Guard city
 :setCounter:FirbellAvoidsFrogman:0
 :markDone:
 
 ~ After battle
 :play:Trickster
-Torment: TBA
-
+Torment: Superb! Your fighting prowess is incredible! Heh heh!
+Frogman: ...
+Torment: Why the sour face? Heh.
+Frogman: ...Can we leave now?
+Torment: Sure, go ahead.
+I'll be looking forward to your heartfelt reunion with\a Firbell soon! Heh heh!
+Frogman: ...
