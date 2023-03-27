@@ -14,7 +14,27 @@ hasFlag:AlfredKresla2
 :setSingleSpeaker:L
 Kresla: Hi Alfred! We're here to torture you!
 Alfred: What.
+Frogman||R: What?
+Kresla: I want to know everything about Bomzing during your time!\a And you will tell me!
+Alfred: Pah! Stop using Guard name!\a And I will never talk!
+Kresla: Oh, really? Frogman! Get me my devices!
+Frogman: What devices?
+Kresla: The torture devices, obviously!
+Frogman: I... Listen, we don't have time for this nonsense.\a There are Guards and monsters here, and-
+Kresla: Oh, who cares about them! We've talked about this, Frogman.\a You agreed to help me torture Alfred!
+Frogman: I-I did?
+Alfred: You did?!\a Pah!\a Ungrateful fools, all of you!
+Kresla: Hey, you're the one who won't talk!
+:addGenericCharacter:UniqueName
+UniqueName: Ugh, what's with all the shouting?\a Can't you just shut up and fihgt already?
+Alfred||R: ...Will do.
+Kresla: No! We have to-
+Frogman: Kresla?
+Kresla: Yes?
+Frogman: Please. Just... stop.
+Kresla: Oof...
 :setFlag:AlfredKresla3
+:markDone:
 
 ~ After battle
 Frogman: Everyone, run!
@@ -22,6 +42,42 @@ Frogman: Everyone, run!
 :loadUnits:Part2RestArea
 :play:Anticipation
 Frogman||L: Ah... Safe at last...
+:if:hasCharacter:Kresla{
+:if:hasCharacter:Alfred{
+Kresla: All right! Let the torture begin!
+Frogman: No! Enough! We're not torturing anyone!
+Kresla: Why not?
+Frogman: Because... What do you mean, why not?!
+Alfred||L: Pah!\a I've had enough nonsense today!\a See you never!
+:hideUnit:Alfred
+Kresla: Hey, wait! Get back here!\a Frogman, don't just stand there!\a We can't let him get away!
+Frogman: I... You're the one with wings!\a You go catch him if you want to so badly!
+Kresla: Hmpf, fine. Be this way. See if I care.
+:hideUnit:Kresla
+Frogman: ...Ugh. I have the worst companions.
+}
+:else:{
+Kresla: Ugh, I can't believe Alfred managed to get away.
+Frogman: Get away?
+Kresla: Don't tell me you bought that little show he pulled on.\a He obviously faked his death to avoid torture.
+Frogman: You think he faked his death?
+Kresla: Obivously! That's the only logical conclusion!\a We need to go search for him now,\a while the trail is still hot!\a He couldn't have gone far yet!
+Frogman: You... What.
+Kresla: Oh, we don't have time for this! Come on, follow me!
+:hideUnit:Kresla
+Frogman: Huh? H-hey, get back here!\a Wait for me!
+}
+}
+:else:{
+:if:hasCharacter:Alfred{
+Alfred: ...Your friend is stupid and useless.
+Frogman: Huh? Oh, I'm sure it was all just a big joke.\a Ha ha.
+Alfred: ...You think I'm a fool? Pah!\a I see through you.\a Your lie.\a I'll never forget this, Frogman.
+Frogman: Uh...
+Alfred: But you help fight the Guards.\a And I need help.\a ...We can remain allies.\a For now.
+Frogman: Thanks...?
+}
+}
 
 # === Functions ====
 
