@@ -4,25 +4,94 @@ unique:T
 # If no Alfred nor Xeplogi, just Memerian
 roomNumber:6
 !hasCharacter:Xeplogi
+hasCharacter:Alfred
 ~ Demands
 # Nothinig
 ~ Before battle
 # TBA: Text
 :callOther:GuardPreBanter
 :play:BeforeBattle2
+:setSingleSpeaker:L
+:if:firstTime:{
+:loadUnits:
+Alfred: ...Frogman.
+Frogman: Hm? What is it, Alfred?
+Alfred: I'm watching you.
+Frogman: Uh...
+Alfred: Staring.\a Studying.\a Dissecting you.
+Frogman: Um.
+Alfred: We're the same.\a You and I.\a Way we fight.
+Frogman: Sure...
+Alfred: I need more people.\a More targets.\a More deaths.
+Frogamn: Ah.
 :addUnit:Memerian
 :loadUnits:
+Memerian: Hey, Frogman!
+Frogman: Huh? Is that you, Memerian?
+Alfred||R: ...
+Memerian: Obviously. Who else would I be?
+Frogman: Oh, uh, I don't know.\a Listen, you've arrived just in time.\a We need help against the Guards here.
+Alfred||R: ...
+Memerian: Sure. Let's go.
+Frogman: Let's.
 :setSingleSpeaker:L
-Memerian: Hello.
-Frogman: Oh, uh, hi.
-Memerian: Let's begin.
+Memerian: ...
+What are you staring at?
+Alfred: ...You.
+Memerian: Yeah, I noticed that.
+Cut it out before I hammer your face in.
+Alfred: ...
+:setSingleSpeaker:L
+Memerian: ...Ugh. I hate that creep.\a What's Frogman doing with him, anyway?\a But whatever, we've got some Guards to slay.
+}
+:else:{
+:addUnit:Memerian
+:loadUnits:
+Memerian: Frogman.
+Frogman: Memerian.
+Alfred||R: ...
+Memerian: Get your little pet under control before I kill him, please.
+Frogman: What? Who?
+Memerian: Alfred. Don't you notice his stares?
+Alfred||R: ...
+Frogman: Um. Alfred?
+Alfred||R: Pah! I've got what I need.\a Goodbye.
+:setSpeaker:Frogman||R
+Memerian: Hmpf. What are you doing with him, anyway?
+Frogman: Uh... He's a good fighter?
+Memerian: I'm a better fighter, and not nearly as obnoxious.\a You really should choose your friends more carefully.
+Frogman: Thanks, I'll try.
+:unlockKnowledge:InclinationAlfred
+:showInfoDialogue:New knowledge!
+:markDone:
+}
+
 ~ After battle
 :play:Anticipation
 Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
+:hideUnit:Frogman
+:if:!foundKnowledge:InclinationAlfred{
 :if:hasCharacter:Alfred{
-Alfred: ...Fine.
+:if:hasCharacter:Memerian{
+:setSingleSpeaker:L
+Memerian: ...Didn't I tell you to cut it out?
+Alfred: ...
+Memerian: Hmpf. I'm sure Frogman wouldn't mind a little...\a accident here.\a See you never again, Alfred.
+Alfred: Pah! I've got what I need.\a Goodbye.
+:hideUnit:Alfred
+:setSingleSpeaker:L
+Memerian: Psh. Coward.
+}
+:else:{
+Alfred: ...
+...
+Memerian...
+Way you fight...
+Is interesting...
+}
 :unlockKnowledge:InclinationAlfred
 :showInfoDialogue:New knowledge!
+}
 }
 
 # === Functions ====

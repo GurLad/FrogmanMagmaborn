@@ -11,11 +11,27 @@ hasFlag:DidntTrustFashima
 :loadUnits::player
 :loadUnits::monster:T
 :showCG:FortressInside
+:setSpeaker:Frogman
 Fashima||R: You idiot.
-Frogman: You monster!
-Fashima: TBA
-:showBase:
-
+Frogman: You monster! What you've done to me was...\a It was inhumane!
+Fashima: That's what you get for questioning me, Frogman.\a Let this be a lesson to you.\a Do not disobey me again.
+Frogman: Disobey you? I'm not your servant!
+Fashima: Of course you are. You always have been.
+Frogman: I-
+:screenShake:
+Yahh!
+...Huh?
+Fashima: Pathetic. Was that your attempt at an attack?\a Really now. That was extraordinarily foolish,\a even for you.
+Frogman: You...
+Fashima: Listen. I grow weary of your antics.\a You do not understand what's at stake here.\a Do what I say and stay out of my way.\a That is your only role from now on.\a Get it?
+Frogman: ...
+Fashima: I will not hesitate to torture and kill you again,\a but that would be a blatant waste of time,\a don't you agree?\a Do not make this difficult, Frogman.\a For your own safety.
+Frogman: ...First Torment, now you...\a Am I truly doomed to be your plaything forever?
+Fashima: No. Help us get out of here,\a and I shall let you go.\a I will have no further need for you afterwards.
+Frogman: ...
+Fashima: Cease this pointless pouting, please.\a It is getting boring,\a and we've got a Magus to slay today.
+Frogman: ...Fine. Let's go, then.
+Fashima: Good boy.
 :hideCG:
 :call:EnterBodder
 
@@ -59,4 +75,4 @@ Frogman: This seems unfair.
 :callOther:Level9WorkerDeath
 
 ~ Reaction
-# Not sure if there should be any tbh
+:callOther:Level9Reaction
