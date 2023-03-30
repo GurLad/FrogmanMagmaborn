@@ -8,6 +8,8 @@ roomNumber:0
 ~ Before battle
 Dead: Ah...!
 :setSpeaker:Frogman||L
+:if:!hasTempFlag:WorkerDeathPlayerReactions{
+:setTempFlag:WorkerDeathPlayerReactions
 # Player reaction
 :if:hasCharacter:Firbell{
 Firbell: Frogman? What have you just done?!
@@ -15,21 +17,42 @@ Frogman: Uh... Killed an enemy?
 Firbell: That was a harmless, unharmed person!\a They were not our enemy, Bodder is our enemy!\a Why did you do this?
 Frogman: Um...
 Firbell: This was completely unjustified!\a You disgust me! Prepare to die!
-Frogman: Woah, hey now. No need to get aggresive.
+Frogman: Woah, hey now. No need to get aggressive.
 Firbell: No need to get aggressive?
 You just killed a person for no reason whatsoever,\a and you're calling me aggressive?!\a Ugh! I have had enough of you!
 :setTeam:Firbell:guard
 Frogman: Oops.
 }
+:if:hasCharacter:Xeplogi{
+Xeplogi: How utterly detestable!\a Killing an innocent bystander is quite unbeffiting a person\a such as yourself, Frogman!
+Frogman: Well...
+Xeplogi: Truly, have you no shame? That was simply monstrous!
+Frogman: I mean, they're still our enemy...
+Xeplogi: Enough!
+The Duke of Jess cannot be seen aiding a murderer.
+Please do not take this personally, Frogman.
+:setTeam:Xeplogi:guard
+Frogman: Wait, hold on. Are you defecting?
+Xeplogi: Indeed. Prepare to face justice, evildoer!
+Frogman: Seriously?
+}
 :if:hasCharacter:Kresla{
 Kresla: Woah. Did you just kill a random onlooker?
 Frogman: Uh... yes?
-Kresla: Wow! That's brutal! Why did you do that, though?
+Kresla: Wow! That's hardcore! Why did you do that, though?
 Frogman: To... anger Bodder?
 Kresla: You killed a person just to anger Bodder?\a I've got to admit,\a I didn't see that coming. Interesting!\a You've got quite the dark mind!
 Frogman: Thanks...?
 }
-# TBA: More reactions
+:if:hasCharacter:Memerian{
+Memerian: Heh. You're brutal. I like it.
+Frogman: I'm... glad to hear that?
+}
+:if:hasCharacter:Fashima{
+Fashima: Well. This was a surprise to be sure, but a welcome one.\a Please, do go on, my friend.
+Frogman: Right...
+}
+}
 
 # Bodder reaction
 :if:hasTempFlag:BodderTransformed{
@@ -49,7 +72,7 @@ SuBodderPre: YOU UTTER MONSTER! HAVE YOU NO SHAME?!\a ATTACKING HARMLESS CLONES?
 :else:{
 Bodder: Do you know what I hate most in this world, Frogman?
 Frogman: Not again...
-Bodder: Warriors without honor. Without any sense of justice.\a Murderers, like you.
+Bodder: Warriors without honour. Without any sense of justice.\a Murderers, like you.
 Who don't even think twice before killing an innocent.\a Like you just did.
 Frogman: I-
 Bodder: Shut up. I see now that you deserve no mercy.\a Prepare to feel my wrath!

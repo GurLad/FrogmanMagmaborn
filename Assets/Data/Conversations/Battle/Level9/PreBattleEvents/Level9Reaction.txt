@@ -40,6 +40,7 @@ Frogman||L: Um, what she said.
 Fashima||L: Right.
 Bodder: Ahem. Are you done?
 Frogman: Huh?
+:setFlag:FirbellMetMagmabornFashima
 :return:
 }
 }
@@ -94,6 +95,7 @@ Fashima: Yes. She even has a name. Fashima.
 Kresla||R: Oh. Oh! OH! This is interesting! I have so many-
 Bodder||R: Ahem.
 Frogman: Huh?
+:setFlag:KreslaMetMagmabornFashima
 :return:
 }
 }
@@ -126,10 +128,57 @@ Fashima||L: Right.
 Memerian: ...
 Bodder||R: Ahem.
 Frogman: Huh?
+:setFlag:MemerianMetMagmabornFashima
 :return:
 }
 }
-# More TBA
+:if:hasCharacter:Xeplogi{
+:if:!hasFlag:XeplogiMetMagmabornFashima{
+Xeplogi: Frogman! There you are! I had all but given up hope on you!
+Frogman: Hi, Xeplogi.
+Xeplogi: And who might your fair companion be?
+Fashima: My name is Fashima. Pleased to make your acquaintance.
+Frogman||L: She's-
+:setSpeaker:Fashima||L
+:if:hasFlag:FashimaBattleXeplogi{
+Xeplogi: Fashima? Oh, I believe that we have already met once before.\a The impeccable Wall Magus, was it?
+Fashima: Correct. Although I do not quite recall your title.
+Xeplogi: Oh, that is quite all right, my lady.\a I am the Duke of Jess, Xeplogi the Third.
+}
+:else:{
+Xeplogi: The pleasure is all mine, my lady.\a I am the Duke of Jess, Xeplogi the Third.
+}
+Fashima: Oh? A real life duke, standing here before me?\a I am honoured!
+Xeplogi: As you well should be! Oh ho ho!
+Frogman: Um, sorry to interrupt, but-
+Xeplogi: Oh, would you be so kind as to cease speaking?\a The grown-ups are talking.
+Frogman: Excuse me?
+Fashima||L: Indeed.
+I believe the fair duke and I have much to discuss.
+He is, after all, such a fine lord, is he not?
+Xeplogi: Oh ho ho! That is absolutely correct!
+Frogman: ...Seriously?
+Bodder: Ahem. Are you quite done?
+Xeplogi: How rude! We are not, in fact, done.\a I shall let you know once we are.
+Fashima: Oh, how I loathe interruptions!
+Xeplogi, would you be so kind as to dispose of that Brute?
+Xeplogi: At once, my lady!
+:setSingleSpeaker:L
+Fashima: Hm. Weak willed, weak minded, and attracted to power.\a He would have been perfect.
+I wonder why Torment chose to hide him from me.
+Frogman: Huh? You were saying something?
+Fashima: Nothing, my friend. Let us begin.
+Bodder: Not yet.
+Frogman: Hm?
+:setFlag:XeplogiMetMagmabornFashima
+:return:
+}
+}
+:if:hasCharacter:Xirveros{
+Xirveros: Frogman! You back!
+Frogman: Yes.
+:return:
+}
 
 ~ After battle
 :lose:
