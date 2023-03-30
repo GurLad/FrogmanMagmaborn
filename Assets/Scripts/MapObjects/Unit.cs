@@ -58,6 +58,8 @@ public class Unit : MapObject
     [SerializeField]
     private SkillSet skills = new SkillSet();
     [SerializeField]
+    private List<string> enemyOverrides = new List<string>();
+    [SerializeField]
     private bool moved;
     public bool Moved
     {
@@ -514,7 +516,7 @@ public class Unit : MapObject
             {
                 Unit unitAtPos = GameController.Current.FindUnitAtPos(pos.x + i, pos.y + j);
                 if (Mathf.Abs(i) + Mathf.Abs(j) <= 1 && Mathf.Abs(i) + Mathf.Abs(j) > 0 &&
-                    !(unitAtPos?.TheTeam.IsEnemy(TheTeam) ?? true) && ((unitAtPos ?? this) != this))
+                    !(unitAtPos?.IsEnemy(this) ?? true) && ((unitAtPos ?? this) != this))
                 {
                     count++;
                 }
@@ -525,7 +527,7 @@ public class Unit : MapObject
 
     public void AI(List<Unit> units)
     {
-        List<Unit> enemyUnits = units.Where(a => a.TheTeam.IsEnemy(TheTeam) && Priorities.ShouldAttack(a) && a.InsideMap).ToList(); // Pretty much all AIs need enemy units.
+        List<Unit> enemyUnits = units.Where(a => a.IsEnemy(this) && Priorities.ShouldAttack(a) && a.InsideMap).ToList(); // Pretty much all AIs need enemy units.
         switch (AIType)
         {
             case AIType.Charge:
@@ -769,7 +771,7 @@ public class Unit : MapObject
 
     public bool CanAttack(Unit other)
     {
-        return other != null && other.TheTeam.IsEnemy(TheTeam) && CanAttackPos(other.Pos);
+        return other != null && other.IsEnemy(this) && CanAttackPos(other.Pos);
     }
 
     private bool CanAttackPos(Vector2Int pos)
@@ -863,6 +865,11 @@ public class Unit : MapObject
         return (Icon?.Name == TheTeam.Name() ? Class : DisplayName) ?? DisplayName;
     }
 
+    public bool IsEnemy(Unit target)
+    {
+        return enemyOverrides.Contains(target.Name) || TheTeam.IsEnemy(target.TheTeam);
+    }
+
     public void ChangeInclination(Inclination target)
     {
         for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
@@ -874,6 +881,11 @@ public class Unit : MapObject
         {
             Stats.Growths[i]++;
         }
+    }
+
+    public void AddEnemyOverride(string target)
+    {
+        enemyOverrides.Add(target);
     }
 
     public void AddSkill(Skill skill)
@@ -1021,7 +1033,7 @@ public class Unit : MapObject
                                 {
                                     MarkMovementTile(x + i, y + j, range - cost, TileDataType.Move);
                                 }
-                                else if (!unit.TheTeam.IsEnemy(atPos.TheTeam)) // Ally - can pass through
+                                else if (!unit.IsEnemy(atPos)) // Ally - can pass through
                                 {
                                     MarkMovementTile(x + i, y + j, range - cost, TileDataType.PassThrough);
                                     if (!added) // In case PassThroughs are ignores
@@ -1172,7 +1184,7 @@ public class Unit : MapObject
                                 float weight = 50; // Make sure it's positive
                                 weight += GameController.Current.Map[target.x + i, target.y + j].ArmorModifier * 10;
                                 weight += this[target.x + i, target.y + j].Value * distanceWeight;
-                                if (targetUnit != null && targetUnit.TheTeam.IsEnemy(unit.TheTeam))
+                                if (targetUnit != null && targetUnit.IsEnemy(unit))
                                 {
                                     weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
                                 }

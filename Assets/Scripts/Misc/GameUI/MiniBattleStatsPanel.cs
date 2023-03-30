@@ -47,7 +47,7 @@ public class MiniBattleStatsPanel : MonoBehaviour
             }
         }
         else if (target != null && origin != null &&
-                !origin.TheTeam.IsEnemy(target.TheTeam) &&
+                !origin.IsEnemy(target) &&
                 ((reverse ? target : origin).CanPush(!reverse ? target : origin) || (reverse ? target : origin).CanPull(!reverse ? target : origin)))
         {
             // If origin has push/pull, use that as an ally action
@@ -69,16 +69,16 @@ public class MiniBattleStatsPanel : MonoBehaviour
             }
         }
         // Check if selecting nothing
-        bool display = !reverse || (origin != null && origin.TheTeam.IsEnemy(target.TheTeam));
+        bool display = !reverse || (origin != null && origin.IsEnemy(target));
         if (!display)
         {
             Panel.gameObject.SetActive(false);
             return;
         }
         // Find many bools
-        bool displayAttack = reverse || (origin != target && target != null && target.TheTeam.IsEnemy(origin.TheTeam));
+        bool displayAttack = reverse || (origin != target && target != null && target.IsEnemy(origin));
         bool canAttack = target != null && (!reverse || GameController.Current.InteractState == InteractState.Move || origin.CanAttack(target) || !GameController.Current.MarkerAtPos<AttackMarker>(origin.Pos));
-        bool moveToCenter = !reverse && (target == null || (!target.TheTeam.IsEnemy(origin.TheTeam) && target != origin));
+        bool moveToCenter = !reverse && (target == null || (!target.IsEnemy(origin) && target != origin));
         // Show Info
         Panel.gameObject.SetActive(true);
         Panel.Palette = (int)origin.TheTeam;

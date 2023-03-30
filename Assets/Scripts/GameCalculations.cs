@@ -384,7 +384,7 @@ public static class GameCalculations
 
     public static bool EffectiveAgainst(this Unit attacker, Unit defender) // Might change effectiveness to triangle
     {
-        return attacker.TheTeam.IsMainPlayerTeam() && defender != null && attacker.TheTeam.IsEnemy(defender.TheTeam) && attacker.Inclination == defender.Inclination && HasInclinationUpgrade;
+        return attacker.TheTeam.IsMainPlayerTeam() && defender != null && attacker.IsEnemy(defender) && attacker.Inclination == defender.Inclination && HasInclinationUpgrade;
     }
 
     // Tile extension methods

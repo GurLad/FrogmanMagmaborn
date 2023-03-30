@@ -21,6 +21,7 @@ public static class EventCommandProcessor
         new CommandStruct("setBattleQuote", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("setDeathQuote", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("addSkill", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("killUnit", CommandType.Level, CAT.String, CAT.OpBool),
         new CommandStruct("hideUnit", CommandType.Level, CAT.String),
         new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
@@ -281,6 +282,22 @@ public static class EventCommandProcessor
                         }
                         target.DeathQuote = ""; // Doesn't actually die, after all
                         GameController.Current.KillUnit(target);
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
+            case "addEnemyToUnit":
+                // Params: string unitName, string targetName
+                // Allows the unit to attack the target even if their teams are allies. The feeling is not mutual (the target won't attack the unit).
+                List<Unit> targets7 = GameController.Current.GetNamedUnits(args[0]);
+                if (targets7.Count > 0)
+                {
+                    foreach (Unit target in targets7)
+                    {
+                        target.AddEnemyOverride(args[1]);
                     }
                 }
                 else

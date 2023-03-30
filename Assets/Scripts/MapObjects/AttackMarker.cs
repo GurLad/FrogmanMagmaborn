@@ -22,7 +22,7 @@ public class AttackMarker : MarkerWithArrow
             Unit unit = GameController.Current.FindUnitAtPos(Pos.x, Pos.y);
             if (unit != null)
             {
-                if (unit.TheTeam.IsEnemy(Origin.TheTeam))
+                if (unit.IsEnemy(Origin))
                 {
                     // Fight!
                     Origin.Fight(unit);
