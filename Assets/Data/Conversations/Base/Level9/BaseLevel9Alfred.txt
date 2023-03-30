@@ -8,9 +8,19 @@ hasFlag:FashimaKilledAlfred
 # Nothinig
 ~ Before battle
 :setSpeaker:Fashima||R
-# TBA
 Frogman: Why did you kill Alfred?
-Fashima: Excuses.
+Fashima: None of your buisness.
+Frogman: Excuse me?
+You've killed one of my companions for no reason!\a That is very much my buisness!
+Fashima: It is not.
+What is between Alfred and myself does not concern you.\a Now, do you have any further questions, my friend?
+Frogman: Not before you answer that one!
+Fashima: ...Let me rephrase that in a way even a simpleton like you\a can understand.\a Cease asking me about Alfred,\a or I shall slay you as well. Understood?
+Frogman: But.. why? What has he done to you?
+:screenShake:
+Fashima: Understood?!
+Frogman: Y-yes...
+
 ~ After battle
 :play:AfterBattle
 # Name: Text.
