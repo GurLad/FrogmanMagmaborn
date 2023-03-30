@@ -6269,7 +6269,29 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :callOther:TormentBase
+      # Set Torment met flags
+      (can''t use base as Firbell can''t revive)
+
+      :if:hasCharacter:Firbell{
+
+      :setFlag:MetTormentFirbell
+
+      }
+
+      :if:hasCharacter:Kresla{
+
+      :setFlag:MetTormentKresla
+
+      }
+
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:MetTormentXirveros
+
+      }
+
+      #
+      Conv
 
       :play:BeforeBattle
 
@@ -6278,12 +6300,71 @@ MonoBehaviour:
       :loadUnits:InitTormentRoom
 
       Torment:
-      Hello, Frogman!
+      Ah, Frogman. How fares my favourite monster today? Heh.
 
-      TBA
+      Frogman: Torment.
+      Let''s just get this over with.
 
-      # Torment wipes Firbell''s memory of fighting
-      in the Guard city
+      Torment: Nope. Not yet.
+
+      I''ve
+      been pouring over Firbell''s memories,\a and found something quite...\a interesting.
+      Heh heh.
+
+      Frogman: ...
+
+      Torment: I know all about your little...
+      argument. Heh.\a You two are so foolish!
+
+      As if one needs a reason to
+      kill and destroy! Ha ha ha!
+
+      Frogman: I don''t care much for your gloating,
+      Torment.
+
+      Torment: Gloating? Ha ha! I''m not here for that.\a Although,
+      I do admit it is quite fun. Heh heh.
+
+      :play:Trickster:T
+
+      I''m here
+      to clean up your mess, Frogman.\a I need you at your best to get out of here.
+
+      Frogman:
+      What do you mean?
+
+      Torment: Why, wiping Firbell''s memory of the incident,
+      of course!\a Heh heh!\a You two make a pretty good team, after all.\a It would
+      be shame to lose that,\a don''t you think?
+
+      Frogman: That''s... That''s
+      wrong!
+
+      Torment: Oh? Wrong? You would seriously use that word with me?
+
+      Frogman:
+      I-
+
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      :loadUnits:
+
+      Torment:
+      Right and wrong is a concept made up by foolish humans.\a I don''t care for
+      it. Heh heh.\a I care for two things, Frogman:\a pain and getting out of here.\a
+      And you shall supply me with both!\a You and Firbell! Ha ha ha!
+
+      Frogman:
+      Don''t-
+
+      Torment: Oh, quit whining and get to the fighting already!
+
+      #
+      Torment wipes Firbell''s memory of fighting in the Guard city
 
       :setCounter:FirbellAvoidsFrogman:0
 
@@ -6295,8 +6376,23 @@ MonoBehaviour:
 
       :play:Trickster
 
-      Torment: TBA
+      Torment: Superb! Your fighting prowess
+      is incredible! Heh heh!
 
+      Frogman: ...
+
+      Torment: Why the sour face?
+      Heh.
+
+      Frogman: ...Can we leave now?
+
+      Torment: Sure, go ahead.
+
+      I''ll
+      be looking forward to your heartfelt reunion with\a Firbell soon! Heh heh!
+
+      Frogman:
+      ...
 
 '
     Name: Torment1RestoreFirbell
@@ -7008,8 +7104,61 @@ MonoBehaviour:
 
       Alfred: What.
 
+      Frogman||R:
+      What?
+
+      Kresla: I want to know everything about Bomzing during your time!\a
+      And you will tell me!
+
+      Alfred: Pah! Stop using Guard name!\a And I will
+      never talk!
+
+      Kresla: Oh, really? Frogman! Get me my devices!
+
+      Frogman:
+      What devices?
+
+      Kresla: The torture devices, obviously!
+
+      Frogman:
+      I... Listen, we don''t have time for this nonsense.\a There are Guards and
+      monsters here, and-
+
+      Kresla: Oh, who cares about them! We''ve talked
+      about this, Frogman.\a You agreed to help me torture Alfred!
+
+      Frogman:
+      I-I did?
+
+      Alfred: You did?!\a Pah!\a Ungrateful fools, all of you!
+
+      Kresla:
+      Hey, you''re the one who won''t talk!
+
+      :addGenericCharacter:UniqueName
+
+      UniqueName:
+      Ugh, what''s with all the shouting?\a Can''t you just shut up and fihgt already?
+
+      Alfred||R:
+      ...Will do.
+
+      Kresla: No! We have to-
+
+      Frogman: Kresla?
+
+      Kresla:
+      Yes?
+
+      Frogman: Please. Just... stop.
+
+      Kresla: Oof...
+
       :setFlag:AlfredKresla3
 
+      :markDone:
+
+      
 
       ~
       After battle
@@ -7025,14 +7174,109 @@ MonoBehaviour:
       Frogman||L:
       Ah... Safe at last...
 
+      :if:hasCharacter:Kresla{
 
-      # === Functions ====
+      :if:hasCharacter:Alfred{
 
+      Kresla:
+      All right! Let the torture begin!
+
+      Frogman: No! Enough! We''re not torturing
+      anyone!
+
+      Kresla: Why not?
+
+      Frogman: Because... What do you mean,
+      why not?!
+
+      Alfred||L: Pah!\a I''ve had enough nonsense today!\a See
+      you never!
+
+      :hideUnit:Alfred
+
+      Kresla: Hey, wait! Get back here!\a
+      Frogman, don''t just stand there!\a We can''t let him get away!
+
+      Frogman:
+      I... You''re the one with wings!\a You go catch him if you want to so badly!
+
+      Kresla:
+      Hmpf, fine. Be this way. See if I care.
+
+      :hideUnit:Kresla
+
+      Frogman:
+      ...Ugh. I have the worst companions.
+
+      }
+
+      :else:{
+
+      Kresla:
+      Ugh, I can''t believe Alfred managed to get away.
+
+      Frogman: Get away?
+
+      Kresla:
+      Don''t tell me you bought that little show he pulled on.\a He obviously faked
+      his death to avoid torture.
+
+      Frogman: You think he faked his death?
+
+      Kresla:
+      Obivously! That''s the only logical conclusion!\a We need to go search for
+      him now,\a while the trail is still hot!\a He couldn''t have gone far yet!
+
+      Frogman:
+      You... What.
+
+      Kresla: Oh, we don''t have time for this! Come on, follow
+      me!
+
+      :hideUnit:Kresla
+
+      Frogman: Huh? H-hey, get back here!\a
+      Wait for me!
+
+      }
+
+      }
+
+      :else:{
+
+      :if:hasCharacter:Alfred{
+
+      Alfred:
+      ...Your friend is stupid and useless.
+
+      Frogman: Huh? Oh, I''m sure it
+      was all just a big joke.\a Ha ha.
+
+      Alfred: ...You think I''m a fool?
+      Pah!\a I see through you.\a Your lie.\a I''ll never forget this, Frogman.
+
+      Frogman:
+      Uh...
+
+      Alfred: But you help fight the Guards.\a And I need help.\a ...We
+      can remain allies.\a For now.
+
+      Frogman: Thanks...?
+
+      }
+
+      }
+
+      
+
+      #
+      === Functions ====
+
+      
 
       ~ Sample
 
-      #
-      Name: Text.
+      # Name: Text.
 
 '
     Name: Level5AlfredKresla3
@@ -10265,6 +10509,8 @@ MonoBehaviour:
 
       !hasCharacter:Xeplogi
 
+      hasCharacter:Alfred
+
       ~
       Demands
 
@@ -10278,36 +10524,197 @@ MonoBehaviour:
 
       :play:BeforeBattle2
 
+      :setSingleSpeaker:L
+
+      :if:firstTime:{
+
+      :loadUnits:
+
+      Alfred:
+      ...Frogman.
+
+      Frogman: Hm? What is it, Alfred?
+
+      Alfred: I''m watching
+      you.
+
+      Frogman: Uh...
+
+      Alfred: Staring.\a Studying.\a Dissecting
+      you.
+
+      Frogman: Um.
+
+      Alfred: We''re the same.\a You and I.\a Way
+      we fight.
+
+      Frogman: Sure...
+
+      Alfred: I need more people.\a More
+      targets.\a More deaths.
+
+      Frogamn: Ah.
+
       :addUnit:Memerian
 
       :loadUnits:
 
+      Memerian:
+      Hey, Frogman!
+
+      Frogman: Huh? Is that you, Memerian?
+
+      Alfred||R:
+      ...
+
+      Memerian: Obviously. Who else would I be?
+
+      Frogman: Oh,
+      uh, I don''t know.\a Listen, you''ve arrived just in time.\a We need help against
+      the Guards here.
+
+      Alfred||R: ...
+
+      Memerian: Sure. Let''s go.
+
+      Frogman:
+      Let''s.
+
+      :setSingleSpeaker:L
+
+      Memerian: ...
+
+      What are
+      you staring at?
+
+      Alfred: ...You.
+
+      Memerian: Yeah, I noticed that.
+
+      Cut
+      it out before I hammer your face in.
+
+      Alfred: ...
+
       :setSingleSpeaker:L
 
       Memerian:
-      Hello.
+      ...Ugh. I hate that creep.\a What''s Frogman doing with him, anyway?\a But
+      whatever, we''ve got some Guards to slay.
 
-      Frogman: Oh, uh, hi.
+      }
 
-      Memerian: Let''s begin.
+      :else:{
 
-      ~
-      After battle
+      :addUnit:Memerian
 
-      :play:Anticipation
+      :loadUnits:
 
-      Frogman: Whew, that was tough.\a
-      Let''s go, everyone! To the fortress!
+      Memerian:
+      Frogman.
 
-      :if:hasCharacter:Alfred{
+      Frogman: Memerian.
 
-      Alfred:
-      ...Fine.
+      Alfred||R: ...
+
+      Memerian:
+      Get your little pet under control before I kill him, please.
+
+      Frogman:
+      What? Who?
+
+      Memerian: Alfred. Don''t you notice his stares?
+
+      Alfred||R:
+      ...
+
+      Frogman: Um. Alfred?
+
+      Alfred||R: Pah! I''ve got what I need.\a
+      Goodbye.
+
+      :setSpeaker:Frogman||R
+
+      Memerian: Hmpf. What are you
+      doing with him, anyway?
+
+      Frogman: Uh... He''s a good fighter?
+
+      Memerian:
+      I''m a better fighter, and not nearly as obnoxious.\a You really should choose
+      your friends more carefully.
+
+      Frogman: Thanks, I''ll try.
 
       :unlockKnowledge:InclinationAlfred
 
       :showInfoDialogue:New
       knowledge!
+
+      :markDone:
+
+      }
+
+      
+
+      ~ After battle
+
+      :play:Anticipation
+
+      Frogman:
+      Whew, that was tough.\a Let''s go, everyone! To the fortress!
+
+      :hideUnit:Frogman
+
+      :if:!foundKnowledge:InclinationAlfred{
+
+      :if:hasCharacter:Alfred{
+
+      :if:hasCharacter:Memerian{
+
+      :setSingleSpeaker:L
+
+      Memerian:
+      ...Didn''t I tell you to cut it out?
+
+      Alfred: ...
+
+      Memerian:
+      Hmpf. I''m sure Frogman wouldn''t mind a little...\a accident here.\a See you
+      never again, Alfred.
+
+      Alfred: Pah! I''ve got what I need.\a Goodbye.
+
+      :hideUnit:Alfred
+
+      :setSingleSpeaker:L
+
+      Memerian:
+      Psh. Coward.
+
+      }
+
+      :else:{
+
+      Alfred: ...
+
+      ...
+
+      Memerian...
+
+      Way
+      you fight...
+
+      Is interesting...
+
+      }
+
+      :unlockKnowledge:InclinationAlfred
+
+      :showInfoDialogue:New
+      knowledge!
+
+      }
 
       }
 
@@ -14735,13 +15142,11 @@ MonoBehaviour:
 
       :unlockAchievement:DefeatSuperBodder
 
-      :play:AfterBattle
+      :callOther:Level9Win
+
 
       #
-      Name: Text.
-
-
-      # === Functions ====
+      === Functions ====
 
 
       ~ EnterBodder
@@ -14879,13 +15284,11 @@ MonoBehaviour:
 
       :unlockAchievement:DefeatSuperBodder
 
-      :play:AfterBattle
+      :callOther:Level9Win
+
 
       #
-      Name: Text.
-
-
-      # === Functions ====
+      === Functions ====
 
 
       ~ EnterBodder
@@ -14960,7 +15363,7 @@ MonoBehaviour:
       ~
       Reaction
 
-      # Not sure if there should be any tbh
+      :callOther:Level9Reaction
 
 '
     Name: Level9Generic
@@ -14992,38 +15395,81 @@ MonoBehaviour:
 
       :showCG:FortressInside
 
+      :setSpeaker:Frogman
+
       Fashima||R:
       You idiot.
 
-      Frogman: You monster!
+      Frogman: You monster! What you''ve done to me was...\a It
+      was inhumane!
 
-      Fashima: TBA
+      Fashima: That''s what you get for questioning me, Frogman.\a
+      Let this be a lesson to you.\a Do not disobey me again.
 
-      :showBase:
+      Frogman: Disobey
+      you? I''m not your servant!
 
-      
+      Fashima: Of course you are. You always have
+      been.
+
+      Frogman: I-
+
+      :screenShake:
+
+      Yahh!
+
+      ...Huh?
+
+      Fashima:
+      Pathetic. Was that your attempt at an attack?\a Really now. That was extraordinarily
+      foolish,\a even for you.
+
+      Frogman: You...
+
+      Fashima: Listen. I grow
+      weary of your antics.\a You do not understand what''s at stake here.\a Do what
+      I say and stay out of my way.\a That is your only role from now on.\a Get it?
+
+      Frogman:
+      ...
+
+      Fashima: I will not hesitate to torture and kill you again,\a but
+      that would be a blatant waste of time,\a don''t you agree?\a Do not make this
+      difficult, Frogman.\a For your own safety.
+
+      Frogman: ...First Torment,
+      now you...\a Am I truly doomed to be your plaything forever?
+
+      Fashima:
+      No. Help us get out of here,\a and I shall let you go.\a I will have no further
+      need for you afterwards.
+
+      Frogman: ...
+
+      Fashima: Cease this pointless
+      pouting, please.\a It is getting boring,\a and we''ve got a Magus to slay today.
+
+      Frogman:
+      ...Fine. Let''s go, then.
+
+      Fashima: Good boy.
 
       :hideCG:
 
       :call:EnterBodder
 
-      
 
       ~
       After battle
 
       :unlockAchievement:DefeatSuperBodder
 
-      :play:AfterBattle
+      :callOther:Level9Win
+
 
       #
-      Name: Text.
+      === Functions ====
 
-      
-
-      # === Functions ====
-
-      
 
       ~ EnterBodder
 
@@ -15037,7 +15483,6 @@ MonoBehaviour:
 
       :play:TheInvincibleBodder:T
 
-      
 
       ~
       BodderDeath
@@ -15057,8 +15502,8 @@ MonoBehaviour:
 
       Frogman: Uh... Yes.
 
-      Bodder: This...
-      This isn''t even... my final...
+      Bodder: This... This
+      isn''t even... my final...
 
       :setCounter:Level9BodderState:1
 
@@ -15081,27 +15526,24 @@ MonoBehaviour:
       Frogman:
       Did... you just turn cyan?\a Wait.\a Your injuries...
 
-      SuBodderPre:
-      WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+      SuBodderPre: WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
 
       Frogman: This seems unfair.
 
       #
       TBA: Fashima speaks, based on whether you chose to trust her
 
-      
 
-      ~
-      WorkerDeath
+      ~ WorkerDeath
 
       :callOther:Level9WorkerDeath
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
-      #
-      Not sure if there should be any tbh
+      :callOther:Level9Reaction
 
 '
     Name: Level9PostDidntTrustFashima
@@ -15191,13 +15633,17 @@ MonoBehaviour:
 
       :setSpeaker:Frogman||L
 
+      :if:!hasTempFlag:WorkerDeathPlayerReactions{
+
+      :setTempFlag:WorkerDeathPlayerReactions
+
       #
       Player reaction
 
       :if:hasCharacter:Firbell{
 
-      Firbell: Frogman?
-      What have you just done?!
+      Firbell: Frogman? What
+      have you just done?!
 
       Frogman: Uh... Killed an enemy?
 
@@ -15211,7 +15657,7 @@ MonoBehaviour:
       was completely unjustified!\a You disgust me! Prepare to die!
 
       Frogman:
-      Woah, hey now. No need to get aggresive.
+      Woah, hey now. No need to get aggressive.
 
       Firbell: No need to get aggressive?
 
@@ -15226,15 +15672,48 @@ MonoBehaviour:
 
       }
 
+      :if:hasCharacter:Xeplogi{
+
+      Xeplogi: How utterly
+      detestable!\a Killing an innocent bystander is quite unbeffiting a person\a
+      such as yourself, Frogman!
+
+      Frogman: Well...
+
+      Xeplogi: Truly, have
+      you no shame? That was simply monstrous!
+
+      Frogman: I mean, they''re still
+      our enemy...
+
+      Xeplogi: Enough!
+
+      The Duke of Jess cannot be seen
+      aiding a murderer.
+
+      Please do not take this personally, Frogman.
+
+      :setTeam:Xeplogi:guard
+
+      Frogman:
+      Wait, hold on. Are you defecting?
+
+      Xeplogi: Indeed. Prepare to face justice,
+      evildoer!
+
+      Frogman: Seriously?
+
+      }
+
       :if:hasCharacter:Kresla{
 
-      Kresla: Woah. Did
-      you just kill a random onlooker?
+      Kresla:
+      Woah. Did you just kill a random onlooker?
 
       Frogman: Uh... yes?
 
       Kresla:
-      Wow! That''s brutal! Why did you do that, though?
+      Wow! That''s hardcore! Why did you do that, though?
 
       Frogman: To... anger
       Bodder?
@@ -15247,12 +15726,29 @@ MonoBehaviour:
 
       }
 
-      # TBA: More reactions
+      :if:hasCharacter:Memerian{
 
-      
+      Memerian:
+      Heh. You''re brutal. I like it.
 
-      #
-      Bodder reaction
+      Frogman: I''m... glad to hear that?
+
+      }
+
+      :if:hasCharacter:Fashima{
+
+      Fashima:
+      Well. This was a surprise to be sure, but a welcome one.\a Please, do go on,
+      my friend.
+
+      Frogman: Right...
+
+      }
+
+      }
+
+
+      # Bodder reaction
 
       :if:hasTempFlag:BodderTransformed{
 
@@ -15294,7 +15790,7 @@ MonoBehaviour:
       Frogman: Not again...
 
       Bodder:
-      Warriors without honor. Without any sense of justice.\a Murderers, like you.
+      Warriors without honour. Without any sense of justice.\a Murderers, like you.
 
       Who
       don''t even think twice before killing an innocent.\a Like you just did.
@@ -15302,8 +15798,8 @@ MonoBehaviour:
       Frogman:
       I-
 
-      Bodder: Shut up. I see now that you deserve no mercy.\a Prepare
-      to feel my wrath!
+      Bodder: Shut up. I see now that you deserve no mercy.\a Prepare to
+      feel my wrath!
 
       :setCounter:Level9BodderState:1
 
@@ -15326,15 +15822,14 @@ MonoBehaviour:
       Frogman:
       Did... you just turn cyan?\a Wait.\a Your injuries...
 
-      SuBodderPre:
-      WITNESS THE POWER OF THE CRYSTALS, MORTAL!\a YOU SHALL SUFFER FOR YOUR SINS!
+      SuBodderPre: WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!\a YOU SHALL SUFFER FOR YOUR SINS!
 
       Frogman:
       This seems unfair.
 
       }
 
-      
 
       ~ After battle
 
@@ -15343,15 +15838,12 @@ MonoBehaviour:
       #
       Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
       ~ BodderReaction
 
-      
 
       ~
       PlayerReaction
@@ -15413,6 +15905,165 @@ MonoBehaviour:
 
 '
     Name: Level9WorkerSpawner
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      # Never selected
+
+      roomNumber:0
+
+      ~
+      Demands
+
+      # Nothinig
+
+      ~ Before battle
+
+      :lose:
+
+
+      ~ After
+      battle
+
+      Frogman: We''ve won! Yay!
+
+      :play:ToriTheme
+
+      :loadMap:EndOfBeta
+
+      Torment|Dev:
+      Correct! And now, you''ve reached the end of the beta!\a The final boss is
+      supposed to be up next.\a However, as it''s not ready yet,\a you''ll simply
+      die!\a Heh heh heh!
+
+      The story will assume you''ve lost to Bodder,\a
+      but you can continue playing to find more\a conversations and upgrades and
+      stuff.
+
+      Frogman: Speaking of conversations ,\a have some random trivia
+      about all your characters!
+
+      Mostly to incentivise you replaying the beta.
+
+      Anyway,
+      I was originally the protagonist of a 3D top-down action-puzzle game made for
+      a\a game jam.\a Torment was the antagonist int it as well,
+
+      but was called
+      The Blue Fireball of Torment there.
+
+      :if:hasCharacter:Firbell{
+
+      Firbell:
+      I was supposed to become a total psycho during battles,\a who enjoyed blood,
+      death and destruction.\a However, since pretty much all the other\a Magmaborn
+      ended up being various shades of evil,
+
+      that element of my character
+      was scrapped.
+
+      }
+
+      :if:hasCharacter:Xirveros{
+
+      Xirveros: I
+      was heavily inspired by Tryggvi from The Banner Saga -\a Gur''s favourite game.
+
+      My
+      songs were supposed to foreshadow important events,\a just like Tryggvi''s.\a
+      Speaking of foreshadowing -\a what do you think happened to Lessy?
+
+      }
+
+      :if:hasCharacter:Kresla{
+
+      Kresla:
+      Originally, you were supposed to be able to get both me and\a Firbell in the
+      same run.\a However, that created too many conversations variants,
+
+      and
+      so the "Firbell avoids me" plotline was invented.
+
+      In short, Firbell
+      hates me just because Gur got lazy.\a Oof!
+
+      }
+
+      :if:hasCharacter:Xeplogi{
+
+      Xeplogi:
+      I changed a lot during development -\a almost as much as Fashima!\a I was,
+      at various stages of development: female,\a named Kepluigi, an actor, a self-proclaimed
+      hero,\a and an amnesic.\a I even had my portrait redrawn from scratch\a at
+      one point!\a Gur had a hard time writing every single one\a of my iterations
+      -\a including the final one.
+
+      Which is why I have so little dialogue
+      in the game.\a Oh ho ho!
+
+      }
+
+      :if:hasCharacter:Memerian{
+
+      Memerian:
+      I was pretty much constant during development,\a unlike Xeplogi.
+
+      Also,
+      Gur picks me every single time when playing.
+
+      All the later maps were
+      designed around me -
+
+      Xeplogi is the challenge/joke option by design.\a
+      Take that, Xeplogi!
+
+      }
+
+      :if:hadCharacter:Alfred{
+
+      Alfred:
+      I was originally an insufferable, annoying creep.\a But Gur had a hard time
+      writing that,\a so I was changed to an insufferable,\a annoying edgelord.\a
+      See a difference? I don''t.
+
+      Frogman: Hey, aren''t you dead?
+
+      Alfred:
+      Shush.
+
+      }
+
+      :if:hasCharacter:Fashima{
+
+      Fashima: I was actually
+      one of the very first characters conceived.\a But I changed a ton during development
+      -\a my name, gender, age, personality, design,\a and even story role were all
+      changed,\a some even multiple times!\a My final name is a reference to Gur''s
+      friend,\a who called himself Fashima in Among Us and was the impostor\a every
+      single time.
+
+      }
+
+      Torment|Dev: And that was it!\a Please send me
+      any and all feedback!\a I hope you liked the beta!\a Bye now!
+
+      :lose:
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+
+'
+    Name: Level9Win
   - Text: 'priority:-1
 
       unique:F
@@ -15563,7 +16214,7 @@ MonoBehaviour:
       That is none of your concern. Frogman trusts me.\\a That should be enough for
       you.\n:setFlag:MemerianMetMagmabornFashima\n}\n}\nFirbell||R: Frogman? Do you
       truly trust her?\nFrogman: Uh-\nFashima||L: Yes.\nFrogman||L: Um, what she
-      said.\nFashima||L: Right.\nBodder: Ahem. Are you done?\nFrogman: Huh?\n:return:\n}\n}\n:if:hasCharacter:Kresla{\n:if:!hasFlag:KreslaMetMagmabornFashima{\nKresla:
+      said.\nFashima||L: Right.\nBodder: Ahem. Are you done?\nFrogman: Huh?\n:setFlag:FirbellMetMagmabornFashima\n:return:\n}\n}\n:if:hasCharacter:Kresla{\n:if:!hasFlag:KreslaMetMagmabornFashima{\nKresla:
       Frogman! There you are! You'll never believe what happened!\\a One moment,
       I was with you fighting those Guards,\\a and then I found myself in this extraordinary
       place,\\a and this magic person seeked you out,\\a but once he realized you
@@ -15586,7 +16237,7 @@ MonoBehaviour:
       Right.\nThe Magus who was blocking our way to the Fortress.\nKresla: And she's
       a Magmaborn now?\nFashima: Yes. She even has a name. Fashima.\n}\nKresla||R:
       Oh. Oh! OH! This is interesting! I have so many-\nBodder||R: Ahem.\nFrogman:
-      Huh?\n:return:\n}\n}\n:if:hasCharacter:Memerian{\n:if:!hasFlag:MemerianMetMagmabornFashima{\nMemerian:
+      Huh?\n:setFlag:KreslaMetMagmabornFashima\n:return:\n}\n}\n:if:hasCharacter:Memerian{\n:if:!hasFlag:MemerianMetMagmabornFashima{\nMemerian:
       Oh, Frogman. You took your sweet time. What happened?\nFrogman: I-\nFashima||L:
       He was with me. We had some important matters to discuss.\n:if:hasFlag:FashimaBattleMemerian{\nMemerian:
       Who- Oh.\\a Fashima.\\a Heh. I knew it.\nFashima: Did you now? Congratulations
@@ -15596,8 +16247,29 @@ MonoBehaviour:
       Why are you helping us?\nFashima: That is none of your concern. Frogman trusts
       me.\\a That should be enough for you.\nMemerian||R: Frogman? \nFrogman: What?\nMemerian:
       Do you trust Fashima?\nFrogman: Uh-\nFashima||L: Yes.\nFrogman||L: Um, what
-      she said.\nFashima||L: Right.\nMemerian: ...\nBodder||R: Ahem.\nFrogman: Huh?\n:return:\n}\n}\n#
-      More TBA\n\n~ After battle\n:lose:\n"
+      she said.\nFashima||L: Right.\nMemerian: ...\nBodder||R: Ahem.\nFrogman: Huh?\n:setFlag:MemerianMetMagmabornFashima\n:return:\n}\n}\n:if:hasCharacter:Xeplogi{\n:if:!hasFlag:XeplogiMetMagmabornFashima{\nXeplogi:
+      Frogman! There you are! I had all but given up hope on you!\nFrogman: Hi, Xeplogi.\nXeplogi:
+      And who might your fair companion be?\nFashima: My name is Fashima. Pleased
+      to make your acquaintance.\nFrogman||L: She's-\n:setSpeaker:Fashima||L\n:if:hasFlag:FashimaBattleXeplogi{\nXeplogi:
+      Fashima? Oh, I believe that we have already met once before.\\a The impeccable
+      Wall Magus, was it?\nFashima: Correct. Although I do not quite recall your
+      title.\nXeplogi: Oh, that is quite all right, my lady.\\a I am the Duke of
+      Jess, Xeplogi the Third.\n}\n:else:{\nXeplogi: The pleasure is all mine, my
+      lady.\\a I am the Duke of Jess, Xeplogi the Third.\n}\nFashima: Oh? A real
+      life duke, standing here before me?\\a I am honoured!\nXeplogi: As you well
+      should be! Oh ho ho!\nFrogman: Um, sorry to interrupt, but-\nXeplogi: Oh, would
+      you be so kind as to cease speaking?\\a The grown-ups are talking.\nFrogman:
+      Excuse me?\nFashima||L: Indeed.\nI believe the fair duke and I have much to
+      discuss.\nHe is, after all, such a fine lord, is he not?\nXeplogi: Oh ho ho!
+      That is absolutely correct!\nFrogman: ...Seriously?\nBodder: Ahem. Are you
+      quite done?\nXeplogi: How rude! We are not, in fact, done.\\a I shall let you
+      know once we are.\nFashima: Oh, how I loathe interruptions!\nXeplogi, would
+      you be so kind as to dispose of that Brute?\nXeplogi: At once, my lady!\n:setSingleSpeaker:L\nFashima:
+      Hm. Weak willed, weak minded, and attracted to power.\\a He would have been
+      perfect.\nI wonder why Torment chose to hide him from me.\nFrogman: Huh? You
+      were saying something?\nFashima: Nothing, my friend. Let us begin.\nBodder:
+      Not yet.\nFrogman: Hm?\n:setFlag:XeplogiMetMagmabornFashima\n:return:\n}\n}\n:if:hasCharacter:Xirveros{\nXirveros:
+      Frogman! You back!\nFrogman: Yes.\n:return:\n}\n\n~ After battle\n:lose:\n"
     Name: Level9Reaction
   - Text: 'priority:-1
 
@@ -45617,7 +46289,7 @@ MonoBehaviour:
       - id: 0
       - id: 42
       - id: 56
-    Alliances: 000001
+    Alliances: 000101
     UnitReplacements:
     - Name: Goblin
       ReplacedBy:

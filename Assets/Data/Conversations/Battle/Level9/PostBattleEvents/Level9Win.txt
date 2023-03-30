@@ -1,0 +1,59 @@
+priority:-1
+unique:F
+~ Requirements
+# Never selected
+roomNumber:0
+~ Demands
+# Nothinig
+~ Before battle
+:lose:
+
+~ After battle
+Frogman: We've won! Yay!
+:play:ToriTheme
+:loadMap:EndOfBeta
+Torment|Dev: Correct! And now, you've reached the end of the beta!\a The final boss is supposed to be up next.\a However, as it's not ready yet,\a you'll simply die!\a Heh heh heh!
+The story will assume you've lost to Bodder,\a but you can continue playing to find more\a conversations and upgrades and stuff.
+Frogman: Speaking of conversations ,\a have some random trivia about all your characters!
+Mostly to incentivise you replaying the beta.
+Anyway, I was originally the protagonist of a 3D top-down action-puzzle game made for a\a game jam.\a Torment was the antagonist int it as well,
+but was called The Blue Fireball of Torment there.
+:if:hasCharacter:Firbell{
+Firbell: I was supposed to become a total psycho during battles,\a who enjoyed blood, death and destruction.\a However, since pretty much all the other\a Magmaborn ended up being various shades of evil,
+that element of my character was scrapped.
+}
+:if:hasCharacter:Xirveros{
+Xirveros: I was heavily inspired by Tryggvi from The Banner Saga -\a Gur's favourite game.
+My songs were supposed to foreshadow important events,\a just like Tryggvi's.\a Speaking of foreshadowing -\a what do you think happened to Lessy?
+}
+:if:hasCharacter:Kresla{
+Kresla: Originally, you were supposed to be able to get both me and\a Firbell in the same run.\a However, that created too many conversations variants,
+and so the "Firbell avoids me" plotline was invented.
+In short, Firbell hates me just because Gur got lazy.\a Oof!
+}
+:if:hasCharacter:Xeplogi{
+Xeplogi: I changed a lot during development -\a almost as much as Fashima!\a I was, at various stages of development: female,\a named Kepluigi, an actor, a self-proclaimed hero,\a and an amnesic.\a I even had my portrait redrawn from scratch\a at one point!\a Gur had a hard time writing every single one\a of my iterations -\a including the final one.
+Which is why I have so little dialogue in the game.\a Oh ho ho!
+}
+:if:hasCharacter:Memerian{
+Memerian: I was pretty much constant during development,\a unlike Xeplogi.
+Also, Gur picks me every single time when playing.
+All the later maps were designed around me -
+Xeplogi is the challenge/joke option by design.\a Take that, Xeplogi!
+}
+:if:hadCharacter:Alfred{
+Alfred: I was originally an insufferable, annoying creep.\a But Gur had a hard time writing that,\a so I was changed to an insufferable,\a annoying edgelord.\a See a difference? I don't.
+Frogman: Hey, aren't you dead?
+Alfred: Shush.
+}
+:if:hasCharacter:Fashima{
+Fashima: I was actually one of the very first characters conceived.\a But I changed a ton during development -\a my name, gender, age, personality, design,\a and even story role were all changed,\a some even multiple times!\a My final name is a reference to Gur's friend,\a who called himself Fashima in Among Us and was the impostor\a every single time.
+}
+Torment|Dev: And that was it!\a Please send me any and all feedback!\a I hope you liked the beta!\a Bye now!
+:lose:
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
+
