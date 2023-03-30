@@ -291,7 +291,7 @@ public static class EventCommandProcessor
                 break;
             case "addEnemyToUnit":
                 // Params: string unitName, string targetName
-                // Allows the unit to attack the target even if their teams are allies. The feeling is not mutual (the target won't attack the unit).
+                // Allows the unit to attack the target even if their teams are allies. The feeling is mutual (the target will also attack the unit).
                 List<Unit> targets7 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets7.Count > 0)
                 {

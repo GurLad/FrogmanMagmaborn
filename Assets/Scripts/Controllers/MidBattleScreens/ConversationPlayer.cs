@@ -608,14 +608,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         // Format: name|displayName|L/R
         string[] parts = speakerText.Split('|');
         Portrait portrait = PortraitController.Current.FindPortrait(parts[0]);
-        if (parts.Length > 1 && parts[1] != "")
-        {
-            Name.text = parts[1];
-        }
-        else
-        {
-            Name.text = portrait.TheDisplayName;
-        }
         bool left = (parts.Length > 2 && parts[2] != "") ? parts[2] == "L" : !currentSpeakerIsLeft;
         bool updatePortrait = (parts.Length > 3 && parts[3] != "") ? parts[3] == "T" : true;
         if (left)
@@ -635,6 +627,10 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             }
             speakerR = parts[0];
             SetSpeaker(false);
+        }
+        if (parts.Length > 1 && parts[1] != "") // Imperfect fix, but whatever
+        {
+            Name.text = parts[1];
         }
         voice = portrait.Voice;
     }

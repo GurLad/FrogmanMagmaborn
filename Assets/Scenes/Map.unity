@@ -15159,6 +15159,8 @@ MonoBehaviour:
 
       :setDeathQuote:Bodder:BodderDeath
 
+      :addEnemyToUnit:Frogman:Worker
+
       :play:TheInvincibleBodder:T
 
 
@@ -15300,6 +15302,8 @@ MonoBehaviour:
       :callOther:Level9EnterBodder
 
       :setDeathQuote:Bodder:BodderDeath
+
+      :addEnemyToUnit:Frogman:Worker
 
       :play:TheInvincibleBodder:T
 
@@ -15480,6 +15484,8 @@ MonoBehaviour:
       :callOther:Level9EnterBodder
 
       :setDeathQuote:Bodder:BodderDeath
+
+      :addEnemyToUnit:Frogman:Worker
 
       :play:TheInvincibleBodder:T
 
@@ -15943,17 +15949,17 @@ MonoBehaviour:
       but you can continue playing to find more\a conversations and upgrades and
       stuff.
 
-      Frogman: Speaking of conversations ,\a have some random trivia
+      Frogman: Speaking of conversations,\a have some random trivia
       about all your characters!
 
       Mostly to incentivise you replaying the beta.
 
       Anyway,
-      I was originally the protagonist of a 3D top-down action-puzzle game made for
-      a\a game jam.\a Torment was the antagonist int it as well,
+      I was originally the protagonist of a 3D top-down\a action-puzzle game made
+      for a game jam.\a Torment was the antagonist in it as well,
 
-      but was called
-      The Blue Fireball of Torment there.
+      but was
+      called The Blue Fireball of Torment there.
 
       :if:hasCharacter:Firbell{
 
@@ -16448,8 +16454,15 @@ MonoBehaviour:
 
       }
 
+      :addUnit:Fashima
 
-      ~ After battle
+      :loadUnits::player
+
+      :loadUnits::monster:T
+
+
+      ~
+      After battle
 
       :unlockAchievement:DefeatSuperBodder
 
@@ -16464,6 +16477,46 @@ MonoBehaviour:
 
 '
     Name: Level9TrustFashimaChoice
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      roomNumber:10
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman|Lan:
+      Ya.
+
+      Firbell: Yo.
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Test
   IgnoreDoneConversations: 1
   SetAsMain: 1
   Path: Conversations\Battle
@@ -34215,6 +34268,7 @@ MonoBehaviour:
   portraitMode: 3
   skills:
     skills: 
+  enemyOverrides: []
   moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:
@@ -42216,7 +42270,9 @@ MonoBehaviour:
       Fashima: No, I can''t die yet...\a Frogman,
       I''ll return after the battle.
 
-      :pseudoKill:Fashima'
+      :hideUnit:Fashima
+
+'
   - Name: Fashima_
     DisplayName: Fashima
     Class: Wizard
@@ -42239,12 +42295,12 @@ MonoBehaviour:
     Inclination: 2
     Growths:
       Values: 010000000300000002000000010000000300000004000000
-    DeathQuote: "Lan: No... How could I lose?! I'm too good for this!\\a This won't
-      do at all! AT ALL!\nUgh, I must leave... \nBut I'll be back, and I'll show
-      you GREATNES!\n"
+    DeathQuote: ":unlockAchievement:DefeatLan\nLan: No... How could I lose?! I'm
+      too good for this!\\a This won't do at all! AT ALL!\nUgh, I must leave... \nBut
+      I'll be back, and I'll show you GREATNES!\n"
   - Name: Werse
     DisplayName: Werse
-    Class: Breaker
+    Class: WBreaker
     Inclination: 1
     Growths:
       Values: 020000000100000003000000040000000300000001000000
@@ -42511,6 +42567,18 @@ MonoBehaviour:
       Weight: 0
       Range: 2
     MapSprite: {fileID: 21300000, guid: 38b41670ba3a687408c4c174c0ccfc08, type: 3}
+  - Name: WBreaker
+    Flies: 0
+    Inclination: 1
+    Growths:
+      Values: 010000000100000003000000030000000200000002000000
+    Weapon:
+      Name: Arm
+      HitStat: 3
+      Damage: 3
+      Weight: -1
+      Range: 1
+    MapSprite: {fileID: 21300000, guid: 6f9ec6c75b540af44812109f39a01b41, type: 3}
   BaseAnimation: {fileID: 969796486}
 --- !u!1 &1616066091
 GameObject:
@@ -54520,7 +54588,7 @@ MonoBehaviour:
   options:
     Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 9
+    EndgameLevel: 10
     ExtraLevels: 0
     Units:
     - Frogman

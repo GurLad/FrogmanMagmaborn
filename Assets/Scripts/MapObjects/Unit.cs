@@ -867,7 +867,7 @@ public class Unit : MapObject
 
     public bool IsEnemy(Unit target)
     {
-        return enemyOverrides.Contains(target.Name) || TheTeam.IsEnemy(target.TheTeam);
+        return enemyOverrides.Contains(target.Name) || target.enemyOverrides.Contains(Name) || TheTeam.IsEnemy(target.TheTeam);
     }
 
     public void ChangeInclination(Inclination target)
