@@ -42,7 +42,7 @@ Frogman: Next target?
 Fashima: Your goal is to get out of here. Correct?
 Frogman: Uh, yes?
 Fashima: Great. Then we have two more Magi standing in our way:\a Bodder and Lessy.
-:if:hasFlag:FrogmanKnowsWhatTheMagiAre{
+:if:hasFlag:FrogmanMagiHuman{
 Frogman: Wait. Weren't you a Magus yourself?\a Why are you helping us?\a Why are you fighting the other Magi?
 }
 :else:{
@@ -51,7 +51,7 @@ Fashima: The leaders of the Guards, capable of using magic.
 Frogman: Like you?
 Fashima: Exactly.
 Frogman: Oh. Then why are you helping us?\a Why are you fighting the other Magi?
-:setFlag:FrogmanKnowsWhatTheMagiAre
+:setFlag:FrogmanMagiHuman
 }
 Fashima: Please keep your questions for the end, my friend.
 Frogman: Okay...

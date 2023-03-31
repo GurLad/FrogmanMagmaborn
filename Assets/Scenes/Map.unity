@@ -13338,8 +13338,8 @@ MonoBehaviour:
       Lieutenant: N-no, they... they managed to defeat
       him, master.
 
-      Brens: Defeat?! Oh no. Not again... We can''t replace
-      him!\a What are we supposed to do?!
+      Brens: Defeat?! Oh no. Not again... We can''t replace him!\a
+      What are we supposed to do?!
 
       :loadUnits::guard
 
@@ -13354,48 +13354,48 @@ MonoBehaviour:
       Werse: I''ve been watching
       the battle.
 
-      Brens: Watching? That''s dangerous, Werse!\a We can''t
-      afford to lose you!
+      Brens: Watching? That''s dangerous, Werse!\a We can''t afford
+      to lose you!
 
-      Werse: I can take care of myself, Brens.\a Besides,
-      I remained invisible.
+      Werse: I can take care of myself, Brens.\a Besides, I remained
+      invisible.
 
       Brens: Good, good.
 
-      Lieutenant: Uh...
-      The Magmaborn are getting close...
+      Lieutenant: Uh... The Magmaborn
+      are getting close...
 
-      Brens: Right! Werse, get out of
-      here! I''ll handle them!
+      Brens: Right! Werse, get out of here! I''ll handle
+      them!
 
       Werse: This again?
 
-      Brens: Lessy didn''t
-      respond per usual,\a and Bodder refused to leave the vats.\a That''s what you
-      said.
-
-      Werse: True, but I can fight them in your stead.\a I''m the better
-      fighter, and you know it.
-
-      Brens: No. You''re my apprentice, Werse.\a
-      It''s my duty to protect the city, not yours.
-
-      Werse: Then let me fight
-      alongside you.
-
-      Brens: That''s against our rules, and you know it.
+      Brens: Lessy didn''t respond per usual,\a
+      and Bodder refused to leave the vats.\a That''s what you said.
 
       Werse:
-      What good are rules and duty for us now?!\a Fashima is dead!\a The Magmaborn
-      are in our city!\a They don''t care about our rules!
+      True, but I can fight them in your stead.\a I''m the better fighter, and you
+      know it.
 
-      Brens: But I do,
-      Werse! They exist for a reason!\a Now, leave this place!\a That''s an order!
+      Brens: No. You''re my apprentice, Werse.\a It''s my duty to
+      protect the city, not yours.
 
-      Werse:
-      ...Please don''t sacrifice yourself, Brens.
+      Werse: Then let me fight alongside you.
 
-      Werse: I won''t. Now go!
+      Brens:
+      That''s against our rules, and you know it.
+
+      Werse: What good are rules
+      and duty for us now?!\a Fashima is dead!\a The Magmaborn are in our city!\a
+      They don''t care about our rules!
+
+      Brens: But I do, Werse! They exist
+      for a reason!\a Now, leave this place!\a That''s an order!
+
+      Werse: ...Please
+      don''t sacrifice yourself, Brens.
+
+      Brens: I won''t. Now go!
 
       Werse:
       ...
@@ -13414,7 +13414,6 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       #
       Name: Text.
@@ -13423,12 +13422,10 @@ MonoBehaviour:
 
       :callOther:Level8BrensDeath
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ BrensDeath
 
@@ -13448,7 +13445,6 @@ MonoBehaviour:
 
       Brens: Urk!
 
-      
 
       ~Reaction
 
@@ -15071,7 +15067,7 @@ MonoBehaviour:
       Fashima:
       Great. Then we have two more Magi standing in our way:\a Bodder and Lessy.
 
-      :if:hasFlag:FrogmanKnowsWhatTheMagiAre{
+      :if:hasFlag:FrogmanMagiHuman{
 
       Frogman:
       Wait. Weren''t you a Magus yourself?\a Why are you helping us?\a Why are you
@@ -15094,7 +15090,7 @@ MonoBehaviour:
       Frogman: Oh.
       Then why are you helping us?\a Why are you fighting the other Magi?
 
-      :setFlag:FrogmanKnowsWhatTheMagiAre
+      :setFlag:FrogmanMagiHuman
 
       }
 
@@ -16084,21 +16080,21 @@ MonoBehaviour:
       Bodder:
       Frogman, Frogman, Frogman.
 
-      Do you know how long I''ve been waiting for
-      this moment?
+      Do you know how long have I been waiting
+      for this moment?
 
       Frogman: Uh... no.
 
-      Bodder: Ever since you''ve slain
-      your first Guard,\a all those months ago.
+      Bodder: Ever since you''ve
+      slain your first Guard,\a all those months ago.
 
-      Frogman: Are you sure it was
-      mon-
+      Frogman: Are you sure
+      it was mon-
 
       Bodder: And do you know why, Frogman?
 
-      Frogman: Because you
-      seek revenge?
+      Frogman: Because
+      you seek revenge?
 
       Bodder: Because I''m the guardian of the Guards, Frogman.\a
       I raised them.\a I trained them.\a I taught them all they know.
