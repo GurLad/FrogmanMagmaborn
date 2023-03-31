@@ -2054,52 +2054,52 @@ MonoBehaviour:
       Hm, you''re thinking about something, I can tell!\a What is it? Did you discover
       something new?!
 
-      Frogman: No, it''s... complicated.\a Have you seen
-      Firbell?
+      Frogman: No, it''s... complicated.\a Have you seen Firbell?
 
-      Kresla: Firbell? No. It''s been forever since the last time
-      I saw her,\a you know.
+      Kresla:
+      Firbell? No. It''s been forever since the last time I saw her,\a you know.
 
-      Frogman: Yes. Uh, do you remember your last
-      interaction?
+      Frogman:
+      Yes. Uh, do you remember your last interaction?
 
-      Kresla: Not really. I think she got really mad at something
-      I said?
+      Kresla: Not really.
+
+      I
+      think she got really mad at something I said?
 
       Frogman: Oh.
 
-      Kresla: Why are you asking all these questions?\a
-      Wait, is Firbell avoiding you too?!
-
-      Frogman: I think so...
-
       Kresla:
-      Oh my! What did you say?
+      Why are you asking all these questions?\a Wait, is Firbell avoiding you too?!
 
-      Frogman: It''s a long story, and we have monsters
-      to fight here.
+      Frogman:
+      I think so...
 
-      Kresla: Right. But afterwards, you''re definitely telling
-      me!
+      Kresla: Oh my! What did you say?
+
+      Frogman: It''s
+      a long story, and we have monsters to fight here.
+
+      Kresla: Right. But
+      afterwards, you''re definitely telling me!
 
       :markDone:
 
-      
 
-      ~ After battle
+      ~ After
+      battle
 
       :play:AfterBattle
 
-      Kresla:
-      So! What happened with Firbell?
+      Kresla: So! What happened with Firbell?
 
-      Frogman: She wanted us to stop trying
-      to reach the Fortress.
+      Frogman:
+      She wanted us to stop trying to reach the Fortress.
 
       Kresla: What? Why?
 
-      Frogman: She said
-      that attacking the Guards isn''t honorable.
+      Frogman:
+      She said that attacking the Guards isn''t honorable.
 
       Kresla: I see!
 
@@ -2113,11 +2113,9 @@ MonoBehaviour:
       Kresla: What? There''s a lot
       to discuss here!\a Where are you going?!
 
-      
 
       # === Functions ====
 
-      
 
       ~
       Sample
@@ -54702,7 +54700,7 @@ MonoBehaviour:
   options:
     Enabled: 0
     SkipIntro: 0
-    EndgameLevel: 6
+    EndgameLevel: 9
     ExtraLevels: 0
     Units:
     - Frogman
@@ -54711,7 +54709,7 @@ MonoBehaviour:
     - Xeplogi
     UnlimitedMove: 1
     OPPlayers: 1
-    ForceConversation: Level6FirstTimeMemerianXeplogi
+    ForceConversation: 
     ForceMap: 
     KillAutoSaves: 1
 --- !u!114 &1902908242
