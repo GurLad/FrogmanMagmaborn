@@ -606,7 +606,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         CurrentPhase = team;
         enemyMoveDelayCount = 0;
-        Bugger.Info("Units: " + string.Join(", ", units.ConvertAll(a => a.ToString())));
         foreach (var item in units)
         {
             item.Moved = false;
@@ -748,6 +747,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             character.Level++;
             character.Moved = false;
+            character.ReinforcementTurn = 0;
         }
         LevelUpController levelUpController = Instantiate(LevelUpScreen).GetComponentInChildren<LevelUpController>();
         levelUpController.Init(playerCharacters);

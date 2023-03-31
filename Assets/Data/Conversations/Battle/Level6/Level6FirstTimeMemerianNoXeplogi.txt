@@ -8,6 +8,7 @@ roomNumber:6
 ~ Demands
 # TBA: Add room tags, and force a room built for Memerian and Keplogi
 ~ Before battle
+:if:!hasFlag:MetMemerian{
 :addUnit:Memerian
 :loadUnits::player
 :play:BeforeBattle2
@@ -64,6 +65,10 @@ Memerian: Good. Then let's join forces.
 Frogman: ...
 :unlockAchievement:JoinMemerian
 :setFlag:MetMemerian
+}
+:else:{
+:callOther:GenericMemerianNoXeplogi
+}
 
 ~ After battle
 :callOther:Level6FirstTimeMemerianXeplogi

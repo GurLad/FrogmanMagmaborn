@@ -8,6 +8,7 @@ hasCharacter:Xeplogi
 ~ Demands
 # TBA: Add room tags, and force a room built for Memerian and Keplogi
 ~ Before battle
+:if:!hasFlag:MetMemerian{
 :addUnit:Memerian
 :loadUnits::player
 :play:BeforeBattle2
@@ -60,6 +61,10 @@ Xeplogi||R: W-why, you little-
 Frogman: Ugh. Just stop, you two. Let me think.
 :call:Choice
 :setFlag:MetMemerian
+}
+:else:{
+:callOther:GenericMemerianXeplogi
+}
 
 ~ After battle
 :play:Anticipation
