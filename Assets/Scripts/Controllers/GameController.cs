@@ -606,6 +606,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         CurrentPhase = team;
         enemyMoveDelayCount = 0;
+        Bugger.Info("Units: " + string.Join(", ", units.ConvertAll(a => a.ToString())));
         foreach (var item in units)
         {
             item.Moved = false;

@@ -10,8 +10,13 @@ public class InclinationPanel : MonoBehaviour
     public Image Growth2;
     public Image Bonus;
     public Text Text;
+    public RectTransform RectTransform;
+    private float baseSize = -1;
+
     public void Display(Unit unit)
     {
+        baseSize = baseSize < 0 ? RectTransform.sizeDelta.y : baseSize;
+        RectTransform.sizeDelta = new Vector2(RectTransform.sizeDelta.x, baseSize);
         if (!GameCalculations.HasInclinationUpgrade)
         {
             Destroy(gameObject);
@@ -25,14 +30,16 @@ public class InclinationPanel : MonoBehaviour
         {
             Text.text += "+2     against same type.";
             SetIcon(Bonus, (int)unit.Inclination, 0);
+            Bonus.transform.parent.gameObject.SetActive(true);
         }
         else
         {
-            GetComponent<RectTransform>().sizeDelta -= new Vector2(0, 8);
+            RectTransform.sizeDelta -= new Vector2(0, 8);
             Bonus.transform.parent.gameObject.SetActive(false);
         }
 
     }
+
     private void SetIcon(Image image, int id, int mod)
     {
         image.sprite = Icons[id * 2 + mod];
