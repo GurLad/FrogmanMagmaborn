@@ -10,7 +10,7 @@ public static class AchievementController
 #if STEAM_BUILD
         // TBA
 #endif
-        SavedData.Save("Achievement", name, 1);
+        SavedData.Save("Achievements", name, 1);
 #endif
     }
 
@@ -20,7 +20,7 @@ public static class AchievementController
 #if STEAM_BUILD
         // TBA
 #endif
-        return SavedData.Load("Achievement", name, 0) == 1;
+        return SavedData.Load("Achievements", name, 0) == 1;
 #endif
         return false;
     }

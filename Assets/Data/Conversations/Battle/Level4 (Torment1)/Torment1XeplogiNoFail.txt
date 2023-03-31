@@ -25,6 +25,7 @@ Torment: Those pathetic creatures?! Of course not!\a They're mere pawns for the 
 :if:furthestLevel:>6{
 :if:hasFlag:FrogmanKnowsFashimasName{
 Frogman: You mean like Fashima?
+}
 :else:{
 Frogman: You mean like that mage guarding the Fortress?
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 //#define MODDABLE_BUILD // Because Visual Studio doesn't work properly otherwise...
 
-#if MODDABLE_BUILD || UNITY_EDITOR
+//#if MODDABLE_BUILD || UNITY_EDITOR
 public class FrogForgeImporter : MonoBehaviour
 {
 #if MODDABLE_BUILD
@@ -42,9 +42,11 @@ public class FrogForgeImporter : MonoBehaviour
         StaticGlobalsLoader?.AutoLoad();
         CrossfadeMusicPlayer?.AutoLoad();
         DebugOptions?.AutoLoad();
+#else
+        Destroy(gameObject);
 #endif
     }
-
+#if MODDABLE_BUILD || UNITY_EDITOR
     public static void LoadSpriteOrAnimationToObject(GameObject gameObject, Sprite sprite, int width, float speed = -1, bool loop = true, bool activateOnStart = true)
     {
         SpriteRenderer renderer = gameObject.GetOrAddComponenet<SpriteRenderer>();
@@ -157,5 +159,6 @@ public class FrogForgeImporter : MonoBehaviour
         return Directory.GetFiles(DataPath + path, "*.*", SearchOption.AllDirectories).Where(a => !a.EndsWith(".meta")).ToArray();
 #endif
     }
-}
 #endif
+}
+//#endif

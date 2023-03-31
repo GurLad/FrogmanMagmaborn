@@ -29,17 +29,13 @@ Firbell||L: Firbell.\a I... seem to remember you from somewhere.\a Do I know you
 Memerian: Not anymore.
 Firbell: Excuse me?
 }
-:else:{
 :if:hasCharacter:Kresla{
 Kresla||L: Hi! I'm Kresla, a renowned scholar!\a Are you truly Memerian the Witch?!
 Memerian: I'm no witch. I'm an honest wizard and blacksmith.\a Do you actually believe Xeplogi's stupid stories?
 }
-:else:{
 :if:hasCharacter:Xirveros{
 Xirveros||L: Long time, Memerian! You okay?
 Memerian: Hi, Xirveros. Yes, I'm fine.\a Too bad you're still... you.
-}
-}
 }
 Xeplogi||L: T-that's enough! Stop talking to this trickster at once!
 All she ever does is steal and betray!
@@ -53,7 +49,7 @@ Xeplogi||L: It was rightfully mine, you... you twister of truths!
 Memerian: That's not even a real insult, you absolute liquid!
 Xeplogi: Neither is that!
 Frogman||L: Can you please-
-Xeplogi: Why are you even trying to reason with her, Frogman?\a Was I not a good and trustworthy ally?
+Xeplogi||L: Why are you even trying to reason with her, Frogman?\a Was I not a good and trustworthy ally?
 Memerian: Oh, please. You're about as good in combat as a tree.\a I, on the other hand,\a have actual experience fighting the Guards.\a And winning.
 Frogman: Really?
 Memerian: I've been to the Fortress. Multiple times.

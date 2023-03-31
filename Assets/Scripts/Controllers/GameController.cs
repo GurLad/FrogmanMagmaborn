@@ -1178,6 +1178,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         // Begin the level properly
         Interactable = GameCalculations.FirstTurnTeam.PlayerControlled();
         TurnAnimation.ShowTurn(GameCalculations.FirstTurnTeam);
+        Cursor.Palette = (int)GameCalculations.FirstTurnTeam;
         // Stats - increase the maps count of player units
         units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
     }
