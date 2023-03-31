@@ -562,7 +562,6 @@ public static class EventCommandProcessor
                 // A bit too complex to assert for now
                 string requirement = line.Substring(line.IndexOf(':', 1) + 1);
                 requirement = requirement.Substring(0, requirement.IndexOf('{'));
-                Bugger.Info(requirement);
                 if (!origin.MeetsRequirement(requirement))
                 {
                     num = SkipBlock(num, lines);

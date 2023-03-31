@@ -16475,46 +16475,6 @@ MonoBehaviour:
 
 '
     Name: Level9TrustFashimaChoice
-  - Text: 'priority:-1
-
-      unique:F
-
-      ~ Requirements
-
-      roomNumber:10
-
-      ~
-      Demands
-
-      # Nothing
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      Frogman|Lan:
-      Ya.
-
-      Firbell: Yo.
-
-
-      ~ After battle
-
-      :play:AfterBattle
-
-      #
-      Name: Text.
-
-
-      # === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Test
   IgnoreDoneConversations: 1
   SetAsMain: 1
   Path: Conversations\Battle
@@ -46366,73 +46326,6 @@ MonoBehaviour:
     - Name: Gargoyle
       ReplacedBy:
       - Slither
-  - TeamDatas:
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 22
-        - id: 50
-        - id: 56
-      Name: Happy
-      PlayerControlled: 1
-      PortraitLoadingMode: 0
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-      BaseSymbol: {fileID: 0}
-      MovedSymbol: {fileID: 0}
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 18
-        - id: 46
-        - id: 56
-      Name: Smiling
-      PlayerControlled: 1
-      PortraitLoadingMode: 2
-      AI:
-        TrueDamageWeight: 1
-        RelativeDamageWeight: 0
-        SurvivalWeight: 0
-        CautionLevel: 0
-      BaseSymbol: {fileID: 0}
-      MovedSymbol: {fileID: 0}
-    - Palette:
-        Colors:
-        - id: 13
-        - id: 17
-        - id: 45
-        - id: 56
-      Name: Flowers
-      PlayerControlled: 1
-      PortraitLoadingMode: 2
-      AI:
-        TrueDamageWeight: 0
-        RelativeDamageWeight: 0.5
-        SurvivalWeight: 0.5
-        CautionLevel: 3
-      BaseSymbol: {fileID: 0}
-      MovedSymbol: {fileID: 0}
-    MusicName: BodderUnleashed
-    Palette4:
-      Colors:
-      - id: 13
-      - id: 0
-      - id: 42
-      - id: 56
-    Alliances: 000000
-    UnitReplacements:
-    - Name: Goblin
-      ReplacedBy:
-      - Golem
-    - Name: Skeleton
-      ReplacedBy:
-      - Ooze
-    - Name: Gargoyle
-      ReplacedBy:
-      - Slither
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54646,84 +54539,33 @@ MonoBehaviour:
     ObjectiveData: Rout
     Tags: 
     MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
-  - Name: TestingArea
-    LevelNumber: 10
-    Units:
-    - Pos: {x: 8, y: 9}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 0}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 1}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 2}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 0}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: Dungeon
-    Objective: 4
-    ObjectiveData: Against Gharnef
-    Tags: 
-    MapString: 0|0|0|0|2|2|2|2|2|2|2|2|2|2|2;0|0|0|2|2|2|2|2|2|2|2|2|2|2|2;0|0|2|2|2|2|2|2|2|2|2|2|2|2|2;0|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|1|0|2|2|2|2|2;2|2|2|2|2|2|2|1|0|0|0|2|2|2|2;2|2|2|2|2|2|1|0|1|0|1|0|2|2|2;2|2|2|2|2|1|0|0|0|0|0|0|0|2|2;2|2|2|2|2|2|1|0|1|0|1|0|2|2|2;2|2|2|2|2|2|2|1|0|0|0|2|2|2|2;2|2|2|2|2|2|2|2|1|0|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
   mapData:
-    Tiles: 0|0|0|0|2|2|2|2|2|2|2|2|2|2|2;0|0|0|2|2|2|2|2|2|2|2|2|2|2|2;0|0|2|2|2|2|2|2|2|2|2|2|2|2|2;0|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|1|0|2|2|2|2|2;2|2|2|2|2|2|2|1|0|0|0|2|2|2|2;2|2|2|2|2|2|1|0|1|0|1|0|2|2|2;2|2|2|2|2|1|0|0|0|0|0|0|0|2|2;2|2|2|2|2|2|1|0|1|0|1|0|2|2|2;2|2|2|2|2|2|2|1|0|0|0|2|2|2|2;2|2|2|2|2|2|2|2|1|0|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Tiles: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
     Units:
-    - Pos: {x: 8, y: 9}
+    - Pos: {x: 7, y: 6}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 0, y: 0}
+    - Pos: {x: 5, y: 7}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 1, y: 1}
+    - Pos: {x: 6, y: 10}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 0, y: 2}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 0}
+    - Pos: {x: 10, y: 5}
       Team: 0
       Level: 0
       Class: P
@@ -54731,11 +54573,11 @@ MonoBehaviour:
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: Dungeon
-    LevelNumber: 10
-    Objective: Custom:Against Gharnef
+    Tileset: HumanDungeon
+    LevelNumber: 0
+    Objective: Rout
     Tags: 
-    Name: TestingArea
+    Name: Part2RestArea
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54862,7 +54704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 1
+    Enabled: 0
     SkipIntro: 0
     EndgameLevel: 7
     ExtraLevels: 0
@@ -54871,11 +54713,11 @@ MonoBehaviour:
     - Firbell
     - Xirveros
     - Xeplogi
-    UnlimitedMove: 0
-    OPPlayers: 0
+    UnlimitedMove: 1
+    OPPlayers: 1
     ForceConversation: 
-    ForceMap: Boss2-3-L
-    KillAutoSaves: 0
+    ForceMap: 
+    KillAutoSaves: 1
 --- !u!114 &1902908242
 MonoBehaviour:
   m_ObjectHideFlags: 0
