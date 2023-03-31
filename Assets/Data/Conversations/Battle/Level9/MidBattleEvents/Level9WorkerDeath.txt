@@ -21,6 +21,7 @@ Frogman: Woah, hey now. No need to get aggressive.
 Firbell: No need to get aggressive?
 You just killed a person for no reason whatsoever,\a and you're calling me aggressive?!\a Ugh! I have had enough of you!
 :setTeam:Firbell:guard
+:addEnemyToUnit:Frogman:Firbell
 Frogman: Oops.
 }
 :if:hasCharacter:Xeplogi{
@@ -32,6 +33,7 @@ Xeplogi: Enough!
 The Duke of Jess cannot be seen aiding a murderer.
 Please do not take this personally, Frogman.
 :setTeam:Xeplogi:guard
+:addEnemyToUnit:Frogman:Xeplogi
 Frogman: Wait, hold on. Are you defecting?
 Xeplogi: Indeed. Prepare to face justice, evildoer!
 Frogman: Seriously?
