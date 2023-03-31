@@ -245,7 +245,6 @@ MonoBehaviour:
   options:
     Enabled: 0
     SkipIntro: 0
-    StartAtEndgame: 0
     EndgameLevel: 0
     ExtraLevels: 0
     Units: []
@@ -253,6 +252,7 @@ MonoBehaviour:
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 
+    KillAutoSaves: 0
 --- !u!1001 &958128307
 PrefabInstance:
   m_ObjectHideFlags: 0

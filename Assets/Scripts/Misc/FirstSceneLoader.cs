@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class FirstSceneLoader : MonoBehaviour
 {
     private enum State { FirstFrame, ActivateImporter, Wait, LoadScene }
-#if MODDABLE_BUILD && !UNITY_EDITOR
+//#if MODDABLE_BUILD && !UNITY_EDITOR
     public FrogForgeImporter FrogForgeImporter;
-#endif
+//#endif
     public DebugOptions DebugOptions;
     public GameObject FrogForgeLogo;
     public GameObject LoadingTextObject;
