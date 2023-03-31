@@ -20,6 +20,7 @@ roomNumber:0
 }
 Guard1: F-Fashima's down! Everyone, retreat!
 :killTeam:guard
+:setSingleSpeaker:R
 # TODO: Check whether this flag (FrogmanMagiHuman( actually exists, as it doesn't make much sense for Frogman to know this before Fashima explains. If it does, delete that conversation.
 :if:hasFlag:FrogmanMagiHuman{
 Frogman: We... We did it! We beat Fashima!\a Huh? She just... disappeared?!\a Like the Guards? But I thought...

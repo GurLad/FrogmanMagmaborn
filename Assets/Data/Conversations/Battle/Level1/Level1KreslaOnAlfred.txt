@@ -18,10 +18,11 @@ Kresla: Great! Let's go, then!
 Frogman: Go where?
 Kresla: To Alfred. To interrogate and torture him.
 Frogman: To do what now?!
-:loadUnits:
+:loadUnits::monster:T
 Kresla: Interrogate Alfred! With torture!\a You agreed to this plan, remember?
 Frogman: I-I did?!
 Kresla: Obviously! Anyway, there's some pesky monsters here.\a Let's defeat them, and then torture Alfred!
+:setSingleSpeaker:R
 Frogman: W-wait!\a ...How did I get into this?
 :setFlag:AlfredKresla2
 :markDone:

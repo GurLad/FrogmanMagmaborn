@@ -1919,10 +1919,10 @@ MonoBehaviour:
       Frogman:
       To do what now?!
 
-      :loadUnits:
+      :loadUnits::monster:T
 
-      Kresla: Interrogate Alfred! With
-      torture!\a You agreed to this plan, remember?
+      Kresla: Interrogate Alfred!
+      With torture!\a You agreed to this plan, remember?
 
       Frogman: I-I did?!
 
@@ -1930,7 +1930,10 @@ MonoBehaviour:
       Obviously! Anyway, there''s some pesky monsters here.\a Let''s defeat them,
       and then torture Alfred!
 
-      Frogman: W-wait!\a ...How did I get into this?
+      :setSingleSpeaker:R
+
+      Frogman: W-wait!\a
+      ...How did I get into this?
 
       :setFlag:AlfredKresla2
 
@@ -11774,8 +11777,10 @@ MonoBehaviour:
 
       :killTeam:guard
 
-      # TODO:
-      Check whether this flag (FrogmanMagiHuman( actually exists, as it doesn''t
+      :setSingleSpeaker:R
+
+      #
+      TODO: Check whether this flag (FrogmanMagiHuman( actually exists, as it doesn''t
       make much sense for Frogman to know this before Fashima explains. If it does,
       delete that conversation.
 
@@ -11871,11 +11876,9 @@ MonoBehaviour:
       Never
       mind, let''s go!
 
-      
 
       # === Functions ====
 
-      
 
       ~ Reaction
 

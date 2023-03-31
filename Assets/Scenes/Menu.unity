@@ -1657,44 +1657,46 @@ MonoBehaviour:
       Dehar:
       ...Pleasure doing business with ya, plumcot.
 
-      Dehar||L: ...
+      :setSingleSpeaker:L
+
+      Dehar||L:
+      ...
+
+      FrogmanMan: Hey.
+
+      Dehar: Hiya. I assume you''ve heard about
+      me.
+
+      FrogmanMan: Half the port did, thanks to Menross.
+
+      You have
+      around half an hour before you''re arrested,\a I''d say.
+
+      Dehar: Heh.
+      I know ma stuff. They''d never catch me, no sir!
+
+      FrogmanMan: Listen,
+      I don''t know what''s your deal,\a but you''re no smuggler.\a Nevertheless,
+      I need a ship. Do you have one?
+
+      Dehar: The fastest there is this side
+      of tha sea.\a And I''m tha best smuggler ya''ll ever meet!
 
       FrogmanMan:
-      Hey.
+      Right. How much for it?
 
-      Dehar: Hiya. I assume you''ve heard about me.
+      Dehar: Where do ya need?
 
       FrogmanMan:
-      Half the port did, thanks to Menross.
+      Enkress.
 
-      You have around half an hour
-      before you''re arrested,\a I''d say.
+      Dehar: That''s a long journey. For provisions, quarters, crew-
 
-      Dehar: Heh. I know ma stuff. They''d
-      never catch me, no sir!
+      FrogmanMan:
+      No crew. And I don''t need the details.\a Just the cost.
 
-      FrogmanMan: Listen, I don''t know what''s your
-      deal,\a but you''re no smuggler.\a Nevertheless, I need a ship. Do you have
-      one?
-
-      Dehar: The fastest there is this side of tha sea.\a And I''m tha
-      best smuggler ya''ll ever meet!
-
-      FrogmanMan: Right. How much for it?
-
-      Dehar:
-      Where do ya need?
-
-      FrogmanMan: Enkress.
-
-      Dehar: That''s a long
-      journey. For provisions, quarters, crew-
-
-      FrogmanMan: No crew. And I
-      don''t need the details.\a Just the cost.
-
-      Dehar: ...Ya''re serious,
-      aren''t ya?\a Fine. Fifty gold.
+      Dehar: ...Ya''re
+      serious, aren''t ya?\a Fine. Fifty gold.
 
       FrogmanMan: No way. Thirty.
 
@@ -1706,8 +1708,8 @@ MonoBehaviour:
 
       Dehar: ...
 
-      Ya''re
-      one rich thief, aren''t ya?\a Well, no time to lose.\a Follow me!
+      Ya''re one
+      rich thief, aren''t ya?\a Well, no time to lose.\a Follow me!
 
       FrogmanMan:
       ...This might''ve been a mistake.
@@ -1726,23 +1728,20 @@ MonoBehaviour:
 
       :markDone:
 
-      
 
       ~
       After battle
 
       # Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: IntroFlashback4
