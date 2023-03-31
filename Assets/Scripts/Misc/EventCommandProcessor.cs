@@ -562,6 +562,7 @@ public static class EventCommandProcessor
                 // A bit too complex to assert for now
                 string requirement = line.Substring(line.IndexOf(':', 1) + 1);
                 requirement = requirement.Substring(0, requirement.IndexOf('{'));
+                Bugger.Info(requirement);
                 if (!origin.MeetsRequirement(requirement))
                 {
                     num = SkipBlock(num, lines);
@@ -747,7 +748,7 @@ public static class EventCommandProcessor
         out System.Action<StartLineResult> delayedAction)
     {
         delayedAction = null;
-        string line = lines[num];
+        string line = ProcessLine(lines[num]);
         string[] parts = line.Split(':');
         // I need to add an empty "" arg at the end, for both ":loadMap" and ":loadMap:" to work
         string[] args = GetArgsFromParts(parts);
@@ -776,6 +777,25 @@ public static class EventCommandProcessor
             default:
                 throw Bugger.Error("Impossible");
         }
+    }
+
+    public static string ProcessLine(string line)
+    {
+        int index;
+        while ((index = line.IndexOf("[Name:")) >= 0) // Character display names (ex. "[Name:FrogmanMan]" would convert to "Frogman". For attacker, generic etc.)
+        {
+            //Bugger.Info(line);
+            int lastIndex = line.IndexOf(']');
+            if (lastIndex < 0 || lastIndex <= index)
+            {
+                throw Bugger.Error("Bad [Name:] syntax: " + line);
+            }
+            string target = line.Substring(index + 6, lastIndex - index - 6);
+            line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
+            //Bugger.Info("Replace with " + PortraitController.Current.FindPortrait(target).TheDisplayName);
+            //Bugger.Info(line);
+        }
+        return line;
     }
 
     public class CommandStruct

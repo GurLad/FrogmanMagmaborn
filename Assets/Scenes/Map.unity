@@ -12926,15 +12926,14 @@ MonoBehaviour:
 
 '
     Name: Level7LanLoss4
-  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\n# This conversation isn't
-      meant to be selected - it just guarantees the same post-battle for every Fashima
-      death event\r\nroomNumber:0\r\n~ Demands\r\n# Nothinig\r\n~ Before battle\r\n:if:!hasFlag:MemerianKnowsFashimaIsDead{\r\nMemerian:
-      Huh? Who is the clown? Where is Fashima? \r\nFrogman: What? Oh, we killed Fashima.\\a
-      Didn't you know that?\r\nMemerian: No! How?! That's impossible!\r\nFrogman:
-      Uh, it's the truth.\r\nMemerian: You... Huh. I appear to have underestimated
-      you, Froman.\\a This is... interesting.\r\nFrogman: Thanks?\r\n:setFlag:MemerianKnowsFashimaIsDead\r\n}\r\n\r\n#
-      Name: Text.\r\n~ After battle\r\n:lose:\r\n\r\n# === Functions ====\r\n\r\n~
-      Reaction\r\n"
+  - Text: "priority:-1\nunique:F\n~ Requirements\n# This conversation isn't meant
+      to be selected - it just guarantees the same post-battle for every Fashima
+      death event\nroomNumber:0\n~ Demands\n# Nothinig\n~ Before battle\n:if:!hasFlag:MemerianKnowsFashimaIsDead{\n:if:hasCharacter:Memerian{\n:setSpeaker:Frogman||R\nMemerian:
+      Huh? Who is the clown? Where is Fashima? \nFrogman: What? Oh, we killed Fashima.\\a
+      Didn't you know that?\nMemerian: No! How?! That's impossible!\nFrogman: Uh,
+      it's the truth.\nMemerian: You... Huh. I appear to have underestimated you,
+      Froman.\\a This is... interesting.\nFrogman: Thanks?\n:setFlag:MemerianKnowsFashimaIsDead\n}\n}\n\n#
+      Name: Text.\n~ After battle\n:lose:\n\n# === Functions ====\n\n~ Reaction\n"
     Name: Level7MemerianFindsOutFashimaIsDead
   - Text: 'priority:-1
 
@@ -13731,59 +13730,61 @@ MonoBehaviour:
 
       ~ Demands
 
-      #
-      Nothinig
+      # Nothinig
 
-      ~ Before battle
+      ~
+      Before battle
 
       :if:!hasFlag:FirbellDoubts{
 
-      Firbell:
-      These... are homes, Frogman.
+      Firbell: These... are
+      homes, Frogman.
 
-      Frogman: Yes, I know. This must be where
-      the Guards live.
+      Frogman: Yes, I know. This must be where the Guards
+      live.
 
-      Firbell: Killing them here would be brutal. And highly
-      unjust.
+      Firbell: Killing them here would be brutal. And highly unjust.
 
-      Frogman: ...You''re right. But what choice do we have?\a We''ve
-      come this far.\a It''s too late to go back now.
+      Frogman:
+      ...You''re right. But what choice do we have?\a We''ve come this far.\a It''s
+      too late to go back now.
 
-      Firbell: It is never
-      too late, Frogman. We should return.\a Go back to... before all of this.\a
-      Fighting mindless monsters, not humans.
+      Firbell: It is never too late, Frogman. We
+      should return.\a Go back to... before all of this.\a Fighting mindless monsters,
+      not humans.
 
       Frogman: For eternity?
 
-      Firbell:
-      Until Irenhold rescues us, or reasons with these... Guards.
+      Firbell: Until Irenhold rescues
+      us, or reasons with these... Guards.
 
-      Frogman:
-      That''s unlikely, I''m afraid.
+      Frogman: That''s unlikely, I''m
+      afraid.
 
       I''m sorry, but I''m not going back.
 
-      Firbell:
-      ...Then I must-
+      Firbell: ...Then
+      I must-
 
-      Frogman: Abandon us? Your friends? Your comrades?\a
-      Would that be just?
+      Frogman: Abandon us? Your friends? Your comrades?\a Would that
+      be just?
 
       Firbell: N-no, but-
 
-      Frogman: This is no
-      time to second-guess our actions,\a Firbell.\a We need you here. Now.\a Are
-      you with us?
+      Frogman: This is no time to second-guess
+      our actions,\a Firbell.\a We need you here. Now.\a Are you with us?
 
-      Firbell: ...
+      Firbell:
+      ...
 
       Fine, Frogman.
 
-      Frogman: Good.
-      Let''s go!
+      Frogman: Good. Let''s go!
 
-      Firbell: ...
+      :setSingleSpeaker:R
+
+      Firbell:
+      ...
 
       How did this happen...?
 
@@ -13791,23 +13792,20 @@ MonoBehaviour:
 
       }
 
-      
 
       ~
       After battle
 
       # Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: Level8FirbellDoubts
@@ -51873,7 +51871,7 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Lan
     Tags: 
-    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|23|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|23;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|23;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|23|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|23
+    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|39|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|39;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|39;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|39|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|39
   - Name: Boss2-1
     LevelNumber: 7
     Units:
@@ -52361,7 +52359,7 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Lan
     Tags: 
-    MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|23|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|23;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|23;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|23;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|23|23
+    MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|39|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|39;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|39;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|39;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|39|23
   - Name: Boss2-2
     LevelNumber: 7
     Units:
@@ -52625,6 +52623,284 @@ MonoBehaviour:
     ObjectiveData: Fashima
     Tags: 
     MapString: 6|12|11|5|0|21|12|5|5|5|5|0|18|39|23;21|12|5|5|1|7|13|5|5|5|5|1|19|23|23;7|13|5|17|4|10|16|11|17|5|17|4|22|23|39;5|11|5|5|1|7|13|5|5|11|5|27|14|30|1;5|5|5|11|0|21|12|5|5|5|5|5|5|5|0;3|1|13|5|0|6|12|5|11|17|5|5|17|5|0;5|0|12|5|1|33|14|3|25|5|5|11|5|5|0;5|1|13|5|0|12|5|5|24|5|5|26|15|31|1;17|4|16|11|1|13|5|11|25|5|17|4|22|23|23;5|1|13|17|4|16|5|17|28|5|5|1|19|23|39;11|0|12|5|1|13|5|5|25|11|5|0|18|23|23;3|1|13|5|0|12|5|5|24|5|5|1|19|23|23;5|5|11|5|0|12|11|5|25|5|17|4|22|23|23;5|11|5|5|0|12|5|17|28|5|5|1|19|23|39;7|13|5|5|1|13|5|5|25|11|5|0|18|23|23;21|12|5|17|4|16|5|11|24|5|5|0|18|39|23
+  - Name: Boss2-3-L
+    LevelNumber: 7
+    Units:
+    - Pos: {x: 13, y: 13}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 14}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 13}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 13}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 11}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 8}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 4}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 1}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 5}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 7}
+      Team: 2
+      Level: 6
+      Class: Archer
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 14, y: 9}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 12, y: 9}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 15, y: 4}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 7}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 1, y: 4}
+      Team: 2
+      Level: 6
+      Class: Knight
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 10}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 6}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 8, y: 6}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 1}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 3, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 4
+      Statue: 0
+    - Pos: {x: 15, y: 3}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 6
+      Statue: 0
+    - Pos: {x: 7, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 8
+      Statue: 0
+    - Pos: {x: 3, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 10
+      Statue: 0
+    - Pos: {x: 15, y: 3}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 10
+      Statue: 0
+    - Pos: {x: 7, y: 14}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 10
+      Statue: 0
+    - Pos: {x: 1, y: 1}
+      Team: 1
+      Level: 6
+      Class: Lan
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 0}
+      Team: 1
+      Level: 0
+      Class: Brens
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 13}
+      Team: 2
+      Level: 6
+      Class: Lancer
+      AIType: 1
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents:
+    - Requirements: turn:>4
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: Reinforcements have arrived
+        from the south, master!
+
+        Lan: Okay.
+
+'
+      Repeatable: 0
+    - Requirements: turn:>6
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: We''ve just recieved some
+        reinforcments from the east!
+
+        Fashima_: Good to know.'
+      Repeatable: 0
+    - Requirements: turn:>8
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: More reinforcements are
+        here, from the south again.
+
+        Lan: Yup.'
+      Repeatable: 0
+    - Requirements: turn:>10
+      Event: ':getGenericCharacter:Guard1
+
+        Guard1: The final reinforcements
+        have arrived!
+
+        Lan: Yay!'
+      Repeatable: 0
+    - Requirements: turn:>12
+      Event: 'Lan: They''re still alive?\a Ugh, when will they get here already?!
+
+        :getGenericCharacter:Guard1
+
+        Guard1:
+        Uh, Lan?
+
+        Lan: Yes?
+
+        Guard1: Aren''t you going to...\a teleport
+        to them, master?
+
+        Lan: Why would I do that, soldier?
+
+        Guard1:
+        Uh, it''s just that Fashima-
+
+        Lan: Fashima, Smashima.\a I prefer
+        walking.
+
+        Guard1: R-right...
+
+        :setTeamAI:monster:charge'
+      Repeatable: 0
+    Tileset: Fortress
+    Objective: 1
+    ObjectiveData: Lan
+    Tags: 
+    MapString: 5|5|1|13|5|5|11|5|25|5|11|5|1|7|19;5|17|10|16|5|5|5|5|28|17|5|5|0|21|18;3|3|1|13|5|5|26|15|2|9|26|11|1|7|19;5|5|11|5|5|11|4|16|17|11|20|5|4|10|22;5|5|26|3|26|15|1|13|5|5|20|11|1|7|19;5|5|28|17|11|24|5|5|5|25|20|17|0|21|18;5|5|25|5|5|24|11|5|5|24|34|9|1|7|19;5|5|24|5|5|25|5|5|11|25|5|17|37|23|23;5|5|24|5|11|28|17|5|17|28|11|5|38|39|23;11|17|25|5|5|27|3|3|1|13|5|5|36|23|23;5|5|24|5|11|11|5|17|4|16|11|5|36|23|39;5|11|24|5|5|5|5|5|27|14|1|7|19|39|23;5|11|25|3|3|25|5|5|5|17|4|10|22|23|23;5|5|5|5|5|28|5|11|5|5|1|7|19|39|23;3|1|13|5|5|25|5|5|11|17|4|10|22|23|23;17|4|16|11|5|28|11|5|5|5|1|7|19|23|23
   - Name: Boss2-3
     LevelNumber: 7
     Units:
@@ -54588,11 +54864,14 @@ MonoBehaviour:
   options:
     Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 10
+    EndgameLevel: 8
     ExtraLevels: 0
     Units:
     - Frogman
-    UnlimitedMove: 0
+    - Firbell
+    - Xirveros
+    - Xeplogi
+    UnlimitedMove: 1
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 

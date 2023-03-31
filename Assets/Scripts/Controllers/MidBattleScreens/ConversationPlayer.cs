@@ -334,23 +334,6 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
     }
 
-    private string ProcessLine(string line)
-    {
-        int index;
-        while ((index = line.IndexOf("[Name:")) >= 0) // Character display names (ex. "[Name:FrogmanMan]" would convert to "Frogman". For attacker, generic etc.)
-        {
-            //Bugger.Info(line);
-            int lastIndex = line.IndexOf(']');
-            if (lastIndex < 0 || lastIndex <= index)
-            {
-                throw Bugger.Error("Bad [Name:] syntax: " + line);
-            }
-            string target = line.Substring(index + 6, lastIndex - index - 6);
-            line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
-        }
-        return line;
-    }
-
     private LineType GetLineType(string line)
     {
         if (line.Length <= 0) // Empty line
@@ -384,7 +367,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                 return result | FinishConversation();
             }
             currentLine = num;
-            string line = ProcessLine(lines[currentLine]);
+            string line = EventCommandProcessor.ProcessLine(lines[currentLine]);
             LineType type = GetLineType(line);
             switch (type)
             {
