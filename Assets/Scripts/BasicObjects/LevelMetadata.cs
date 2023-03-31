@@ -33,6 +33,15 @@ public class LevelMetadata
         PaletteController.Current.SpritePalettes[3].CopyFrom(Palette4);
     }
 
+    public void ReloadSymbols(LevelMetadata copyFrom)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            TeamDatas[i].BaseSymbol = copyFrom.TeamDatas[i].BaseSymbol;
+            TeamDatas[i].MovedSymbol = copyFrom.TeamDatas[i].MovedSymbol;
+        }
+    }
+
     [System.Serializable]
     public class TeamData
     {

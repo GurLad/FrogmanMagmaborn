@@ -1430,6 +1430,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         LoadMap(selectedMap);
         InitRoomObjective();
         LevelMetadata.SetPalettesFromMetadata();
+        LevelMetadata.ReloadSymbols(LevelMetadataController[LevelNumber]);
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
         foreach (string unitJSON in data.Units)
