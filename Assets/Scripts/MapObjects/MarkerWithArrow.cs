@@ -90,7 +90,7 @@ public abstract class MarkerWithArrow : Marker
             for (int i = 0; i < path.Count; i++)
             {
                 MarkerWithArrow marker = GameController.Current.GetMarkerAtPos<MarkerWithArrow>(path[i]);
-                marker.ShowArrow(i > 0 ? path[i - 1] : -Vector2Int.one, i < path.Count - 1 ? path[i + 1] : -Vector2Int.one);
+                marker?.ShowArrow(i > 0 ? path[i - 1] : -Vector2Int.one, i < path.Count - 1 ? path[i + 1] : -Vector2Int.one);
             }
         }
     }

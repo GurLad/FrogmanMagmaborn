@@ -1343,7 +1343,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void AutoSaveExecuteAction()
     {
-        if (suspendData.OnLoadAction != null)
+        if (suspendData.OnLoadAction != null && suspendData.OnLoadAction.Type != SuspendDataGameController.CurrentAction.ActionType.None)
         {
             // Create vars which we'll (probably) use later
             Unit origin, target;
@@ -1427,6 +1427,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         selectedMap.Init();
         LoadMap(selectedMap);
         InitRoomObjective();
+        LevelMetadata.SetPalettesFromMetadata();
         currentUnitsObject = new GameObject("UnitsObject").transform;
         currentUnitsObject.parent = transform;
         foreach (string unitJSON in data.Units)
@@ -1461,6 +1462,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             // Hide the conversation player - terrible workaround
             ConversationPlayer.Current.PlayOneShot("");
+            CrossfadeMusicPlayer.Current.PlayOnStart = false;
             if (AutoSaveHasAction())
             {
                 AutoSaveExecuteAction();
@@ -1469,7 +1471,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             {
                 TurnAnimation.ShowTurn(CurrentPhase);
             }
-            CrossfadeMusicPlayer.Current.Play(LevelMetadata.MusicName);
         }
         SavedData.Append("Log", "Data", "Resumed\n");
     }
@@ -1514,7 +1515,7 @@ public class SuspendDataGameController
     [System.Serializable]
     public class CurrentAction
     {
-        public enum ActionType { Move, Combat, Push, Pull }
+        public enum ActionType { None, Move, Combat, Push, Pull }
 
         public ActionType Type;
         public Vector2Int Origin;

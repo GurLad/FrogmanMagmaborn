@@ -714,6 +714,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             {
                 SetSpeakerFromText(data.SpeakerR + "||R");
             }
+            //Bugger.Info(data.SpeakerL + ", " + data.SpeakerR + ", " + string.Join("; ", data.Lines) + ", " + data.CurrentLine + ", " + data.Playing);
             currentSpeakerIsLeft = data.Lines[data.CurrentLine].Contains(":") ^ data.CurrentSpeakerIsLeft;
         }
 
@@ -724,7 +725,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             // TBA: Test
             lines.Clear();
             lines.AddRange(data.Lines);
-            currentLine = data.CurrentLine - 1; // To repeat the previous line
+            currentLine = data.CurrentLine; // To repeat the previous line
             data.FunctionStack.ForEach(a => functionStack.Push(a));
             PortraitController.Current.LoadGeneratedPortraits(data.GeneratedPortraits);
             CrossfadeMusicPlayer.Current.Play(data.CurrentMusic);
@@ -747,6 +748,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         else
         {
+            Playing = false;
             gameObject.SetActive(false); // The GameController will properly disable this ConversationPlayer later
         }
     }
