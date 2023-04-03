@@ -5,7 +5,30 @@ Going forward, the Magi are:
 -Clone - Bodder.
 -City - Brens, Werse.
 -Wall - Fashima, Lan.
-And now I noticed how only 3 of those begin with C, but it's too late to change the Wall name (and using Gate instead of Crystal is super confusing. Not that Crystal is a very good name, but still). 
+And now I noticed how only 3 of those begin with C, but it's too late to change the Wall name (and using Gate instead of Crystal is super confusing. Not that Crystal is a very good name, but still).
+
+Conversation first time rework (03/04/2023):
+Very technical and purely for myself.
+There's a large problem with the current FirstTime implementation, where you will always get the "actual" first time only once. This can cause people to skip introductions, and sometimes even plot events.
+I'm not sure how to properly explain it, but an example that happened to me: I reached level 5 with Kresla, so Firbell never met Xeplogi. However, I lost there, and won with Firbell on the next run, who referenced the FirstTime event with her (which never happaned because the pre-battle event was the generic one).
+Definitions cause I'm lazy:
+-HPC: highest priority companion (usually Firbell>Kresla>Xirveros).
+-EHPC: extended HPC - the HPC who never reached the level/finished it before.
+The rework needs to run the following logic:
+-PreActualFirst			(called from LevelXFirstTime):
+ Happens when it's the first time that both Frogman and his HPC reach the level, before the battle.
+ If Frogman arrives alone, run FirstTimeAlone.
+-PreCharacterFirstNoWin		(called from LevelXFirstTime):
+ Happens when it's the first time the current EHPC reached the level, but it's not Frogman's first time, and he also never beat this level.
+ If there isn't an EHPC (aka all of the companions have already reached the level before), run FirstTimeAfterFail.
+-PreCharacterFirstPostWin	(called from LevelXFirstTimeEHPC):
+ Happens when it's the first time the current EHPC reached the level, but Frogman already finished it before. Higher priority than other unique convos, but obviously lower than LevelXFirstTime.
+-PostActualFirst		(called from LevelXFirstTime):
+ Happens when it's the first time that Frogman finished this level, referencing the current HPC.
+-PostPostWin			(called from LevelXFirstTimeEHPC):
+ Happens when it's the first time that the current EHPC finished this level, but Frogman already beat it before.
+ Not mandatory - aka only happens on the PostBattle of LevelXFirstTimeEHPC, which calls :markDone: (or sets a flag) at the PreBattle.
+So much more writing and conditions to do... Ugh.
 
 =============================================================================================================
 

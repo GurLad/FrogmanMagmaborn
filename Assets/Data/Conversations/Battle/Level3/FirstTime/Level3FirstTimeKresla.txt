@@ -1,0 +1,78 @@
+priority:4
+unique:T
+~ Requirements
+roomNumber:3
+hasCharacter:Kresla
+!hasFlag:KreslaMetLich
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:KreslaMetLich{
+:setFlag:KreslaMetLich
+:if:!hasFlag:FrogmanMetLich{
+:play:BeforeBattle
+:showCG:FortressPreview
+Frogman: Wow.\a Kresla, what is that thing?
+Kresla: Ah, sharp eye! This is the greatest mystery in here!\a Firbell called it the Fortress,\a but refused to elaborate.\a I'd love to explore it one day!
+Frogman: Why haven't you?
+Kresla: It's not so simple.
+That place is guarded by many strong monsters -\a mostly liches.\a I could never defeat them alone.
+Frogman: Liches?
+Kresla: Mighty undead wizards! Ones actually capable of magic,\a unlike Xirveros.
+I've never seen wizards when I was alive,\a but this place is filled with them!\a Only dead ones, but still.\a I don't know why they disappeared -\a but I will find out one day!\a I do have a few-
+Frogman: Kresla. About the liches.
+Kresla: Right, right. Firbell told me -\a before she stopped talking to me, that is -\a that magic is done through unique crystals.
+Since liches have these crystals,\a they can wield magic!\a But every time I get close to study one,\a it kills me.
+Here, let me show you. Follow me!
+Frogman: Wait, where are you going?
+Kresla: To the Fortress!
+:hideCG:
+:play:ToTheDeath
+Frogman: Is that monster there a lich?
+Kresla: Indeed! Fancy fighting it?
+Frogman: Yes, let's defeat it.
+It's a better goal than endlessly wandering around.
+Kresla: Oh! I like your style!\a I WILL find out your secret, lich!
+Frogman: Let's go!
+:finishConversation:
+}
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<4{
+# PostActualFirst
+Kresla: Oh.\a It just disintegrated.\a What a shame.
+Frogman: Kresla, we need to get out of here now!
+Kresla: Right!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+Wow! I cannot believe we did it!\a We actually beat a lich!
+Frogman: Yes. Although the Fortress is still pretty far away...
+Kresla: Still, this is uncharted territory!\a I can't wait to find out what's out there!\a The source of magic?\a Aliens?\a More types of monsters? Maybe even some humans!\a I mean, someone had to build that fortress! Or could it be a tribe of magmaborn? Perhaps an underground civilization! Could dwarves actually be real? No, those are fairy tales... Then again, so is magic. You can never be sure anymore, eh, Frogman?
+Frogman: Uh, y-yes, of course.
+Kresla: There's so much to discover! Frogman, are you coming?
+With our powers combined, we can be unstoppable!
+:finishConversation:
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample

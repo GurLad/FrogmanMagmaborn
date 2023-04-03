@@ -1,0 +1,88 @@
+priority:4
+unique:T
+~ Requirements
+roomNumber:3
+hasCharacter:Firbell
+!hasFlag:FirbellMetLich
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:FirbellMetLich{
+:setFlag:FirbellMetLich
+:if:!hasFlag:FrogmanMetLich{
+# PreActualFirst
+:play:BeforeBattle
+:showCG:FortressPreview
+Frogman: Wow.\a Firbell, what is that thing?
+Firbell: What are you- Oh.\a You mean the fortress.
+Frogman: Fortress?
+Firbell: Xirveros told me about it, back before he went mad.\a He told me to stay away from it.
+Frogman: Do you know why?
+Firbell: Yes. It is guarded by many strong monsters.
+Frogman: I see. Let's try going there.
+Firbell: Why would we? It is quite dangerous.
+Frogman: It's a better goal than endlessly wandering around,\a don't you think?
+Firbell: I would rather stay alive.
+Frogman: It's not like dying costs us anything...
+Firbell: No, but-
+Frogman: Then let's go!
+Firbell: ...This is a bad idea...
+:hideCG:
+:play:ToTheDeath
+Frogman: Uh, Firbell? What is that monster over there?
+Is it one of those so-called strong monsters?
+Firbell: Indeed. This one is a lich.
+One of the strongest monsters around here,\a capable of devastating magic.
+Frogman: Magic? Never seen that before here.
+Firbell: Because magic requires magic crystals,\a which are exceedingly rare,\a especially here.
+Frogman: Aren't our Magma Emblems crystals?
+Firbell: Yes, but not magic crystals.\a They cannot be used for normal magic.
+Frogman: Oh.
+Firbell: Are you certain you wish to fight it?
+Frogman: Yes. Are you with me?
+Firbell: Ah, you leave me no choice...\a I can't just let you go on your own.\a Oh well, time to slay a few fiends.
+:finishConversation:
+}
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<4{
+# PostActualFirst
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+Firbell: Frogman, wait.
+Frogman: What is it, Firbell?
+Firbell: Are you sure you want to go on?
+Frogman: Yes. Aren't you curious what's in the Fortress?\a Or why is it so heavily guarded?
+Firbell: I admit that I am.\a However, I do not want to end up like Xirveros.
+Frogman: What's he got to do with it?
+Firbell: He used to go to the Fortress all the time.\a Before he went mad.
+Frogman: Huh. Good to know.
+But I cannot accept a life of endless, pointless survival.\a Don't you want to find a way to leave this place?
+Firbell: I do. Getting back to Irenhold...\a Yes, I must do my best to return.\a Very well, Frogman. Let us go.
+Frogman: That's the spirit.
+:finishConversation:
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample

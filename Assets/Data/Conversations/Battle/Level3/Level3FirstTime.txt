@@ -5,37 +5,33 @@ roomNumber:3
 ~ Demands
 hasTag:LichVisible
 ~ Before battle
-:if:!firstTime:{
-:call:PreAfterFail
-:finishConversation:
-}
-}
+:setFlag:FrogmanMetLich
 :if:hasCharacter:Firbell{
-:call:PreFirbell
-:finishConversation:
+:callOther:Level3FirstTimeFirbell
 }
 :if:hasCharacter:Kresla{
-:call:PreKresla
-:finishConversation:
+:callOther:Level3FirstTimeKresla
 }
 :if:hasCharacter:Xirveros{
-:call:PreXirveros
-:finishConversation:
+:callOther:Level3FirstTimeXirveros
 }
+:if:firstTime:{
 :call:PreAlone
+}
+:else:{
+:call:PreAfterFail
+}
+
 ~ After battle
 :unlockAchievement:DefeatLich
 :if:hasCharacter:Firbell{
-:call:PostFirbell
-:finishConversation:
+:callOther:Level3FirstTimeFirbell
 }
 :if:hasCharacter:Kresla{
-:call:PostKresla
-:finishConversation:
+:callOther:Level3FirstTimeKresla
 }
 :if:hasCharacter:Xirveros{
-:call:PostXirveros
-:finishConversation:
+:callOther:Level3FirstTimeXirveros
 }
 :call:PostGeneric
 

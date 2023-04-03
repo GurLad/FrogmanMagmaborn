@@ -1,0 +1,79 @@
+priority:3
+unique:T
+~ Requirements
+roomNumber:3
+hasCharacter:Xirveros
+charactersAlive:=1
+!hasFlag:XirverosMetLich
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:XirverosMetLich{
+:setFlag:XirverosMetLich
+:if:!hasFlag:FrogmanMetLich{
+:play:BeforeBattle
+:showCG:FortressPreview
+Frogman: Wow.\a Xirveros, what is that thing?
+Xirveros: That Fortress. Bad Fortress!
+Frogman: Why bad?
+Xirveros: People there. Monsters there. They there!
+Frogman: Wait, people?
+Xirveros: Blue people! Green people! Red people!
+Frogman: Sure...\a Let's go there then.
+Xirveros: Go? Go go? Go go go?
+Frogman: ...I'm going, Xirveros. Are you coming?
+Xirveros: Me go after frog!
+:hideCG:
+:play:ToTheDeath
+Frog? Bad monster here. Very bad.
+Frogman: What monster?
+Xirveros: Bad monster!\a Scary monster!\a Magic monster!
+Frogman: Magic? Never seen that before here.
+Xirveros: Magic rare! Magic bad! Magic painful!
+Frogman: Uh... Sure...\a Let's go defeat it then.
+Xirveros: Frog crazy!
+...
+Follow frog!
+:finishConversation:
+}
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<4{
+# PostActualFirst
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+Xirveros: Frog! Turn back. Now. This too far!
+Frogman: Why would I do that?
+Xirveros: They will come. You will fight.\a We will die.
+Frogman: Xirveros, you're not making any sense.
+Xirveros: Frog, don't make my mistake.
+Turn back before it's too late.
+Frogman: But why? What will happen?
+Xirveros: Do not listen. Do not listen. Do no listen.
+Frogman: Why do I even bother? Let's just go.
+:finishConversation:
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample

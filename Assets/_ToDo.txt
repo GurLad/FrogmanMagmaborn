@@ -1,3 +1,11 @@
+==== TODO ====
+Conversation first time rework:
+ -Level2FirstTime (optional I think)
+~-Level3FirstTime (seperated, not written)
+ -Level5FirstTime(Xeplogi)
+ -Level5FirstTimeAlfred
+ -LEvel6FirstTime
+
 Clash of Nerds feedback:
  -Improve tutorial
   -Maybe different tutorial for people unfamiliar with the genre?
@@ -6,34 +14,6 @@ V-Make sure you can see the lich in the first lich battle
  -Wait confirmation
 V-Make the X/Z/Enter display until the player begins a save file
 V-Add movement arrows
-
-For v0.6 release:
- -Conversations:
- V-Level1KreslaOnAlfred
- V-Torment1RestoreFirbell
- V-Level5AlfredKresla3
- V-Level5FirstTimeAlfredKresla
- V-Level6MemerianFashimaNecklace
- V-Level6MemerianFashimaTorment
- V-Level6UnlockInclinationAlfred
- V-Level6UnlockInclinationMemerianXeplogi
- V-Level7LanLoss3
- V-Level8Brens3
- V-Level8Werse2
- V-Level8FashimaSpawnWerse1
- V-Level8FashimaSpawnWerseGeneric
- V-Level9FirstTime
- V-Level9Generic
- V-Level9PostDidntTrustFashima
- V-Level9WorkerDeath
- V-Level9EnterBodder
- V-BaseLevel9Alfred
- V-BaseLevel9GuardsAndMagi
- X-BaseLevel9Magi (scrapped)
- V-BaseLevel9Magic
-V-Add menu/cursor SFX
-V-Seperate cursor code from GameController
-V-Add save log & remove all unnecessary Bugger.Info calls
 
 For final release:
 -Must have:
@@ -62,21 +42,12 @@ For final release:
   -Every single graphic (logo, UI, intro etc.)
   -Battle calculations
 
-Status screen improvements:
-V-Add cycling between units of the same team (up/down).
-V-Add cycling between teams (left/right).
-
 Add Tellius-style base for pre-level 9 with:
 V-Status (view stats of all player units in a list).
  V-Select a unit to view detailed stats of that unit.
-?-Talk.
- -Save & quit.
+V-Talk.
+V-Save & quit (auto-saves).
  -Statistics?
-
-UI bugs:
-V-Fix inclination showing against allies
-V-Fix auto-move-to-unit to be adjacent to allies (for easier push/pull)
-V-Fix displaying push/pull when can't push/pull to the target pos
 
 Urgent:
 V-Add mute
@@ -111,11 +82,6 @@ V-Make sure first level can't be lost.
  V-Torment thinks you already have their power
  ~-Fix auto-target attack pos, add indicator for that
  V-Fix softlock when last enemy retreats
-
-For next release:
-V-Add stats explanation
-V-Add transition between game and mid-battle screens like Status and Battle
-V-Change Gur Ladizhinsky to Disc-O-Key & add credits
 
  -Move all room logic to MapController.
 
@@ -156,3 +122,48 @@ V-Add game over screen
 V-Fix turn phase animation
  -Fix too long text being hidden by the arrow
 ~-Improve/replace music
+
+==== DONE ====
+I like looking back at all the things I already did, okay?
+
+For v0.6 release:
+V-Conversations:
+ V-Level1KreslaOnAlfred
+ V-Torment1RestoreFirbell
+ V-Level5AlfredKresla3
+ V-Level5FirstTimeAlfredKresla
+ V-Level6MemerianFashimaNecklace
+ V-Level6MemerianFashimaTorment
+ V-Level6UnlockInclinationAlfred
+ V-Level6UnlockInclinationMemerianXeplogi
+ V-Level7LanLoss3
+ V-Level8Brens3
+ V-Level8Werse2
+ V-Level8FashimaSpawnWerse1
+ V-Level8FashimaSpawnWerseGeneric
+ V-Level9FirstTime
+ V-Level9Generic
+ V-Level9PostDidntTrustFashima
+ V-Level9WorkerDeath
+ V-Level9EnterBodder
+ V-BaseLevel9Alfred
+ V-BaseLevel9GuardsAndMagi
+ X-BaseLevel9Magi (scrapped)
+ V-BaseLevel9Magic
+V-Add menu/cursor SFX
+V-Seperate cursor code from GameController
+V-Add save log & remove all unnecessary Bugger.Info calls
+
+Status screen improvements:
+V-Add cycling between units of the same team (up/down).
+V-Add cycling between teams (left/right).
+
+UI bugs:
+V-Fix inclination showing against allies
+V-Fix auto-move-to-unit to be adjacent to allies (for easier push/pull)
+V-Fix displaying push/pull when can't push/pull to the target pos
+
+For next release:
+V-Add stats explanation
+V-Add transition between game and mid-battle screens like Status and Battle
+V-Change Gur Ladizhinsky to Disc-O-Key & add credits
