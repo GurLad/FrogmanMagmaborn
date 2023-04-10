@@ -3989,6 +3989,602 @@ MonoBehaviour:
 
 '
     Name: Level2XirverosKreslaMadness
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:3
+
+      hasCharacter:Firbell
+
+      !hasFlag:FirbellMetLich
+
+      ~
+      Demands
+
+      # Not actual first time, so invisible Lich is fine
+
+      ~
+      Before battle
+
+      :if:!hasFlag:FirbellMetLich{
+
+      :setFlag:FirbellMetLich
+
+      :if:!hasFlag:FrogmanMetLich{
+
+      #
+      PreActualFirst
+
+      :play:BeforeBattle
+
+      :showCG:FortressPreview
+
+      Frogman:
+      Wow.\a Firbell, what is that thing?
+
+      Firbell: What are you- Oh.\a You
+      mean the fortress.
+
+      Frogman: Fortress?
+
+      Firbell: Xirveros told
+      me about it, back before he went mad.\a He told me to stay away from it.
+
+      Frogman:
+      Do you know why?
+
+      Firbell: Yes. It is guarded by many strong monsters.
+
+      Frogman:
+      I see. Let''s try going there.
+
+      Firbell: Why would we? It is quite dangerous.
+
+      Frogman:
+      It''s a better goal than endlessly wandering around,\a don''t you think?
+
+      Firbell:
+      I would rather stay alive.
+
+      Frogman: It''s not like dying costs us anything...
+
+      Firbell:
+      No, but-
+
+      Frogman: Then let''s go!
+
+      Firbell: ...This is a bad
+      idea...
+
+      :hideCG:
+
+      :play:ToTheDeath
+
+      Frogman: Uh, Firbell?
+      What is that monster over there?
+
+      Is it one of those so-called strong
+      monsters?
+
+      Firbell: Indeed. This one is a lich.
+
+      One of the strongest
+      monsters around here,\a capable of devastating magic.
+
+      Frogman: Magic?
+      Never seen that before here.
+
+      Firbell: Because magic requires magic
+      crystals,\a which are exceedingly rare,\a especially here.
+
+      Frogman:
+      Aren''t our Magma Emblems crystals?
+
+      Firbell: Yes, but not magic crystals.\a
+      They cannot be used for normal magic.
+
+      Frogman: Oh.
+
+      Firbell:
+      Are you certain you wish to fight it?
+
+      Frogman: Yes. Are you with me?
+
+      Firbell:
+      Ah, you leave me no choice...\a I can''t just let you go on your own.\a Oh
+      well, time to slay a few fiends.
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      :if:furthestLevel:<4{
+
+      #
+      PreCharacterFirstNoWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PreCharacterFirstPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      }
+
+      }
+
+      
+
+      ~
+      After battle
+
+      :if:furthestLevel:<4{
+
+      # PostActualFirst
+
+      Frogman:
+      That was tough. Let''s get out of here now!
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom:player
+
+      :play:SafeAndSound
+
+      Firbell:
+      Frogman, wait.
+
+      Frogman: What is it, Firbell?
+
+      Firbell: Are you
+      sure you want to go on?
+
+      Frogman: Yes. Aren''t you curious what''s in
+      the Fortress?\a Or why is it so heavily guarded?
+
+      Firbell: I admit that
+      I am.\a However, I do not want to end up like Xirveros.
+
+      Frogman: What''s
+      he got to do with it?
+
+      Firbell: He used to go to the Fortress all the
+      time.\a Before he went mad.
+
+      Frogman: Huh. Good to know.
+
+      But
+      I cannot accept a life of endless, pointless survival.\a Don''t you want to
+      find a way to leave this place?
+
+      Firbell: I do. Getting back to Irenhold...\a
+      Yes, I must do my best to return.\a Very well, Frogman. Let us go.
+
+      Frogman:
+      That''s the spirit.
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PostPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      
+
+      #
+      === Functions ====
+
+      
+
+      ~ Sample
+
+'
+    Name: Level3FirstTimeFirbell
+  - Text: 'priority:4
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:3
+
+      hasCharacter:Kresla
+
+      !hasFlag:KreslaMetLich
+
+      ~
+      Demands
+
+      # Not actual first time, so invisible Lich is fine
+
+      ~
+      Before battle
+
+      :if:!hasFlag:KreslaMetLich{
+
+      :setFlag:KreslaMetLich
+
+      :if:!hasFlag:FrogmanMetLich{
+
+      :play:BeforeBattle
+
+      :showCG:FortressPreview
+
+      Frogman:
+      Wow.\a Kresla, what is that thing?
+
+      Kresla: Ah, sharp eye! This is the
+      greatest mystery in here!\a Firbell called it the Fortress,\a but refused to
+      elaborate.\a I''d love to explore it one day!
+
+      Frogman: Why haven''t
+      you?
+
+      Kresla: It''s not so simple.
+
+      That place is guarded by
+      many strong monsters -\a mostly liches.\a I could never defeat them alone.
+
+      Frogman:
+      Liches?
+
+      Kresla: Mighty undead wizards! Ones actually capable of magic,\a
+      unlike Xirveros.
+
+      I''ve never seen wizards when I was alive,\a but this
+      place is filled with them!\a Only dead ones, but still.\a I don''t know why
+      they disappeared -\a but I will find out one day!\a I do have a few-
+
+      Frogman:
+      Kresla. About the liches.
+
+      Kresla: Right, right. Firbell told me -\a
+      before she stopped talking to me, that is -\a that magic is done through unique
+      crystals.
+
+      Since liches have these crystals,\a they can wield magic!\a
+      But every time I get close to study one,\a it kills me.
+
+      Here, let me
+      show you. Follow me!
+
+      Frogman: Wait, where are you going?
+
+      Kresla:
+      To the Fortress!
+
+      :hideCG:
+
+      :play:ToTheDeath
+
+      Frogman:
+      Is that monster there a lich?
+
+      Kresla: Indeed! Fancy fighting it?
+
+      Frogman:
+      Yes, let''s defeat it.
+
+      It''s a better goal than endlessly wandering
+      around.
+
+      Kresla: Oh! I like your style!\a I WILL find out your secret,
+      lich!
+
+      Frogman: Let''s go!
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      :if:furthestLevel:<4{
+
+      #
+      PreCharacterFirstNoWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PreCharacterFirstPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      }
+
+      }
+
+      
+
+      ~
+      After battle
+
+      :if:furthestLevel:<4{
+
+      # PostActualFirst
+
+      Kresla:
+      Oh.\a It just disintegrated.\a What a shame.
+
+      Frogman: Kresla, we need
+      to get out of here now!
+
+      Kresla: Right!
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom:player
+
+      :play:SafeAndSound
+
+      Wow!
+      I cannot believe we did it!\a We actually beat a lich!
+
+      Frogman: Yes.
+      Although the Fortress is still pretty far away...
+
+      Kresla: Still, this
+      is uncharted territory!\a I can''t wait to find out what''s out there!\a The
+      source of magic?\a Aliens?\a More types of monsters? Maybe even some humans!\a
+      I mean, someone had to build that fortress! Or could it be a tribe of magmaborn?
+      Perhaps an underground civilization! Could dwarves actually be real? No, those
+      are fairy tales... Then again, so is magic. You can never be sure anymore,
+      eh, Frogman?
+
+      Frogman: Uh, y-yes, of course.
+
+      Kresla: There''s
+      so much to discover! Frogman, are you coming?
+
+      With our powers combined,
+      we can be unstoppable!
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PostPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      
+
+      #
+      === Functions ====
+
+      
+
+      ~ Sample
+
+'
+    Name: Level3FirstTimeKresla
+  - Text: 'priority:3
+
+      unique:T
+
+      ~ Requirements
+
+      roomNumber:3
+
+      hasCharacter:Xirveros
+
+      charactersAlive:=1
+
+      !hasFlag:XirverosMetLich
+
+      ~
+      Demands
+
+      # Not actual first time, so invisible Lich is fine
+
+      ~
+      Before battle
+
+      :if:!hasFlag:XirverosMetLich{
+
+      :setFlag:XirverosMetLich
+
+      :if:!hasFlag:FrogmanMetLich{
+
+      :play:BeforeBattle
+
+      :showCG:FortressPreview
+
+      Frogman:
+      Wow.\a Xirveros, what is that thing?
+
+      Xirveros: That Fortress. Bad Fortress!
+
+      Frogman:
+      Why bad?
+
+      Xirveros: People there. Monsters there. They there!
+
+      Frogman:
+      Wait, people?
+
+      Xirveros: Blue people! Green people! Red people!
+
+      Frogman:
+      Sure...\a Let''s go there then.
+
+      Xirveros: Go? Go go? Go go go?
+
+      Frogman:
+      ...I''m going, Xirveros. Are you coming?
+
+      Xirveros: Me go after frog!
+
+      :hideCG:
+
+      :play:ToTheDeath
+
+      Frog?
+      Bad monster here. Very bad.
+
+      Frogman: What monster?
+
+      Xirveros:
+      Bad monster!\a Scary monster!\a Magic monster!
+
+      Frogman: Magic? Never
+      seen that before here.
+
+      Xirveros: Magic rare! Magic bad! Magic painful!
+
+      Frogman:
+      Uh... Sure...\a Let''s go defeat it then.
+
+      Xirveros: Frog crazy!
+
+      ...
+
+      Follow
+      frog!
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      :if:furthestLevel:<4{
+
+      #
+      PreCharacterFirstNoWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PreCharacterFirstPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      }
+
+      }
+
+      
+
+      ~
+      After battle
+
+      :if:furthestLevel:<4{
+
+      # PostActualFirst
+
+      Frogman:
+      That was tough. Let''s get out of here now!
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom:player
+
+      :play:SafeAndSound
+
+      Xirveros:
+      Frog! Turn back. Now. This too far!
+
+      Frogman: Why would I do that?
+
+      Xirveros:
+      They will come. You will fight.\a We will die.
+
+      Frogman: Xirveros, you''re
+      not making any sense.
+
+      Xirveros: Frog, don''t make my mistake.
+
+      Turn
+      back before it''s too late.
+
+      Frogman: But why? What will happen?
+
+      Xirveros:
+      Do not listen. Do not listen. Do no listen.
+
+      Frogman: Why do I even
+      bother? Let''s just go.
+
+      :finishConversation:
+
+      }
+
+      :else:{
+
+      #
+      PostPostWin
+
+      # TBA
+
+      :finishConversation:
+
+      }
+
+      
+
+      #
+      === Functions ====
+
+      
+
+      ~ Sample
+
+'
+    Name: Level3FirstTimeXirveros
   - Text: 'priority:1
 
       unique:T
@@ -4117,41 +4713,39 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :if:!firstTime:{
-
-      :call:PreAfterFail
-
-      :finishConversation:
-
-      }
-
-      }
+      :setFlag:FrogmanMetLich
 
       :if:hasCharacter:Firbell{
 
-      :call:PreFirbell
-
-      :finishConversation:
+      :callOther:Level3FirstTimeFirbell
 
       }
 
       :if:hasCharacter:Kresla{
 
-      :call:PreKresla
-
-      :finishConversation:
+      :callOther:Level3FirstTimeKresla
 
       }
 
       :if:hasCharacter:Xirveros{
 
-      :call:PreXirveros
-
-      :finishConversation:
+      :callOther:Level3FirstTimeXirveros
 
       }
 
+      :if:firstTime:{
+
       :call:PreAlone
+
+      }
+
+      :else:{
+
+      :call:PreAfterFail
+
+      }
+
+      
 
       ~
       After battle
@@ -4160,25 +4754,19 @@ MonoBehaviour:
 
       :if:hasCharacter:Firbell{
 
-      :call:PostFirbell
-
-      :finishConversation:
+      :callOther:Level3FirstTimeFirbell
 
       }
 
       :if:hasCharacter:Kresla{
 
-      :call:PostKresla
-
-      :finishConversation:
+      :callOther:Level3FirstTimeKresla
 
       }
 
       :if:hasCharacter:Xirveros{
 
-      :call:PostXirveros
-
-      :finishConversation:
+      :callOther:Level3FirstTimeXirveros
 
       }
 
@@ -16469,6 +17057,49 @@ MonoBehaviour:
 
 '
     Name: Level9TrustFashimaChoice
+  - Text: 'priority:21
+
+      unique:F
+
+      ~ Requirements
+
+      ~ Demands
+
+      #
+      Nothinig
+
+      ~ Before battle
+
+      :play:BeforeBattle
+
+      Frogman: I
+      am small.
+
+      :setSize:Frogman:2:2
+
+      :screenShake:
+
+      No more!
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: Test
   IgnoreDoneConversations: 1
   SetAsMain: 1
   Path: Conversations\Battle
@@ -46320,6 +46951,73 @@ MonoBehaviour:
     - Name: Gargoyle
       ReplacedBy:
       - Slither
+  - TeamDatas:
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 11
+        - id: 26
+        - id: 56
+      Name: Eat
+      PlayerControlled: 1
+      PortraitLoadingMode: 0
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+      BaseSymbol: {fileID: 21300000, guid: e0ffb0659d010ce4d842642d37c9c0ae, type: 3}
+      MovedSymbol: {fileID: 21300000, guid: 52027555b9e23ec43aa093017d5a23e8, type: 3}
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 5
+        - id: 33
+        - id: 56
+      Name: Your
+      PlayerControlled: 1
+      PortraitLoadingMode: 1
+      AI:
+        TrueDamageWeight: 1
+        RelativeDamageWeight: 0
+        SurvivalWeight: 0
+        CautionLevel: 0
+      BaseSymbol: {fileID: 21300000, guid: e43cf7e00899ade409a1afe4fc0c4c19, type: 3}
+      MovedSymbol: {fileID: 21300000, guid: c8b23c37ac8925944b89240cd860610e, type: 3}
+    - Palette:
+        Colors:
+        - id: 13
+        - id: 3
+        - id: 31
+        - id: 56
+      Name: Heart
+      PlayerControlled: 1
+      PortraitLoadingMode: 2
+      AI:
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 0.5
+        SurvivalWeight: 0.5
+        CautionLevel: 3
+      BaseSymbol: {fileID: 21300000, guid: 74529814569cf684390abc1d12ea41c3, type: 3}
+      MovedSymbol: {fileID: 21300000, guid: dd322f9cc9304294d8bc06938d52cf81, type: 3}
+    MusicName: BodderUnleashed
+    Palette4:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 42
+      - id: 56
+    Alliances: 000000
+    UnitReplacements:
+    - Name: Goblin
+      ReplacedBy:
+      - Golem
+    - Name: Skeleton
+      ReplacedBy:
+      - Ooze
+    - Name: Gargoyle
+      ReplacedBy:
+      - Slither
 --- !u!114 &1902908239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54533,45 +55231,166 @@ MonoBehaviour:
     ObjectiveData: Rout
     Tags: 
     MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
-  BaseTile: {fileID: 1597157554}
-  TilesetsContainer: {fileID: 720465191}
-  mapData:
-    Tiles: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
+  - Name: TestArea
+    LevelNumber: 10
     Units:
-    - Pos: {x: 7, y: 6}
+    - Pos: {x: 6, y: 7}
       Team: 0
       Level: 0
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 5, y: 7}
+    - Pos: {x: 0, y: 6}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 6, y: 10}
+    - Pos: {x: 0, y: 7}
       Team: 0
       Level: 0
       Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 10, y: 5}
+    - Pos: {x: 2, y: 6}
       Team: 0
       Level: 0
       Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 1
+      Level: 8
+      Class: Lich
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 9}
+      Team: 1
+      Level: 8
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 10}
+      Team: 2
+      Level: 8
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 8}
+      Team: 2
+      Level: 8
+      Class: Lancer
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: HumanDungeon
-    LevelNumber: 0
+    Tileset: Dungeon
+    Objective: 0
+    ObjectiveData: Rout
+    Tags: 
+    MapString: 2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|3|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|0|2|2|2|2|2|2;2|2|2|2|1|3|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|1|0|0|0|3|0|0|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|2|1|0|0|0|3|0|2|2|2|2;2|2|2|2|2|1|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+  BaseTile: {fileID: 1597157554}
+  TilesetsContainer: {fileID: 720465191}
+  mapData:
+    Tiles: 2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|3|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|2|2|2|2|2|2|2;2|2|2|2|2|1|0|0|0|2|2|2|2|2|2;2|2|2|2|1|3|0|0|0|0|2|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|1|0|0|0|3|0|0|2|2|2|2;2|2|2|2|1|0|0|0|0|0|0|2|2|2|2;2|2|2|2|2|1|0|0|0|3|0|2|2|2|2;2|2|2|2|2|1|0|0|0|0|2|2|2|2|2;2|2|2|2|2|2|1|0|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Units:
+    - Pos: {x: 6, y: 7}
+      Team: 0
+      Level: 0
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 0, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 6}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 6}
+      Team: 1
+      Level: 8
+      Class: Lich
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 9}
+      Team: 1
+      Level: 8
+      Class: Goblin
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 10}
+      Team: 2
+      Level: 8
+      Class: Archer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 8}
+      Team: 2
+      Level: 8
+      Class: Lancer
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Dungeon
+    LevelNumber: 10
     Objective: Rout
     Tags: 
-    Name: Part2RestArea
+    Name: TestArea
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54698,17 +55517,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 0
+    Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 9
+    EndgameLevel: 10
     ExtraLevels: 0
     Units:
     - Frogman
     - Firbell
     - Xirveros
     - Xeplogi
-    UnlimitedMove: 1
-    OPPlayers: 1
+    UnlimitedMove: 0
+    OPPlayers: 0
     ForceConversation: 
     ForceMap: 
     KillAutoSaves: 1

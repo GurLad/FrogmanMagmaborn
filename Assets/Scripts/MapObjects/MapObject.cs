@@ -6,7 +6,7 @@ public abstract class MapObject : MonoBehaviour
 {
     [SerializeField]
     private Vector2Int pos;
-    public Vector2Int Pos
+    public virtual Vector2Int Pos
     {
         get
         {

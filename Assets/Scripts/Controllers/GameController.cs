@@ -543,12 +543,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public List<MapObject> MapObjectsAtPos(int x, int y)
     {
-        return MapObjects.FindAll(a => a.Pos.x == x && a.Pos.y == y);
+        return MapObjectsAtPos(new Vector2Int(x, y));
     }
 
     public List<MapObject> MapObjectsAtPos(Vector2Int pos)
     {
-        return MapObjectsAtPos(pos.x, pos.y);
+        return MapObjects.FindAll(a => a.Pos == pos || (a is Unit unit && unit.AtPos(pos)));
     }
     /// <summary>
     /// Removes all markers.
@@ -590,12 +590,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public Unit FindUnitAtPos(Vector2Int pos)
     {
-        return FindUnitAtPos(pos.x, pos.y);
+        return (Unit)MapObjects.Find(a => a is Unit unit && unit.AtPos(pos));
     }
 
     public Unit FindUnitAtPos(int x, int y)
     {
-        return (Unit)MapObjects.Find(a => a is Unit && a.Pos.x == x && a.Pos.y == y);
+        return FindUnitAtPos(new Vector2Int(x, y));
     }
     /// <summary>
     /// Starts the given team's phase. If it's the player's (aka team 0), also advance the turn.

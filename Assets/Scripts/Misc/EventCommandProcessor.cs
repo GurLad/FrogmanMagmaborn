@@ -20,6 +20,7 @@ public static class EventCommandProcessor
         new CommandStruct("setTeam", CommandType.Level, CAT.String, CAT.Team),
         new CommandStruct("setBattleQuote", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("setDeathQuote", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("setSize", CommandType.Level, CAT.String, CAT.Int, CAT.Int),
         new CommandStruct("addSkill", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("killUnit", CommandType.Level, CAT.String, CAT.OpBool),
@@ -206,6 +207,27 @@ public static class EventCommandProcessor
                         {
                             throw Bugger.Error("No matching function! (" + args[1] + ")");
                         }
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
+            case "setSize":
+                // Params: string unitName, int x, int y
+                // Sets the unit's size to (x, y).
+                List<Unit> targets8 = GameController.Current.GetNamedUnits(args[0]);
+                Vector2Int size = new Vector2Int(int.Parse(args[1]), int.Parse(args[2]));
+                if (size.x < 1 || size.y < 1)
+                {
+                    throw Bugger.Error("Unit size can't be smaller than (1, 1)! (" + size + ")");
+                }
+                if (targets8.Count > 0)
+                {
+                    foreach (Unit target in targets8)
+                    {
+                        target.Size = size;
                     }
                 }
                 else

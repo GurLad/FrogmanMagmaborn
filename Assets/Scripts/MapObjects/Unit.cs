@@ -86,6 +86,30 @@ public class Unit : MapObject
             movement = value;
         }
     }
+    [SerializeField]
+    private Vector2Int size = Vector2Int.one;
+    public Vector2Int Size
+    {
+        get => size;
+        set
+        {
+            size = value;
+            transform.localScale = new Vector3(size.x, size.y, 1);
+            Pos = Pos;
+        }
+    }
+    public override Vector2Int Pos
+    {
+        get
+        {
+            return base.Pos;
+        }
+        set
+        {
+            base.Pos = value;
+            transform.position = new Vector3((Pos.x + (Size.x - 1) / 2.0f) * GameController.Current.TileSize, -(Pos.y + (Size.y - 1) / 2.0f) * GameController.Current.TileSize, transform.position.z);
+        }
+    }
 
     public Unit()
     {
@@ -789,7 +813,7 @@ public class Unit : MapObject
         return CanAttackPos(pos.x, pos.y, fromPos.x, fromPos.y);
     }
 
-    private bool CanAttackPos(int x, int y, int fromX, int fromY)
+    private bool CanAttackPos(int x, int y, int fromX, int fromY) // TBA: fix for multi-tile units
     {
         //return !Statue && Weapon.Range >= (Mathf.Abs(Pos.x - x) + Mathf.Abs(Pos.y - y));
         Vector2Int difference = new Vector2Int(fromX - x, fromY - y);
@@ -896,6 +920,11 @@ public class Unit : MapObject
     public bool HasSkill(Skill skill)
     {
         return skills.HasSkill(skill);
+    }
+
+    public bool AtPos(Vector2Int pos)
+    {
+        return Pos == pos || (Size != Vector2Int.one && pos.x >= Pos.x && pos.x <= Pos.x + Size.x - 1 && pos.y >= Pos.y && pos.y <= Pos.y + Size.y - 1);
     }
 
     public string Save()
@@ -1029,7 +1058,7 @@ public class Unit : MapObject
                                     continue;
                                 }
                                 Unit atPos = GameController.Current.FindUnitAtPos(x + i, y + j);
-                                if (atPos == null) // Empty space - can move
+                                if (atPos == null || atPos == unit) // Empty space/self - can move
                                 {
                                     MarkMovementTile(x + i, y + j, range - cost, TileDataType.Move);
                                 }

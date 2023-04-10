@@ -58,7 +58,7 @@ public class BattleAnimationController : MidBattleScreen
         LoadBattleBackground(attackerTile, true);
         Tile defenderTile = GameController.Current.Map[Defender.Unit.Pos.x, Defender.Unit.Pos.y];
         LoadBattleBackground(defenderTile, false);
-        bool meleeAttack = Attacker.Unit.Pos.TileDist(Defender.Unit.Pos) <= 1;
+        bool meleeAttack = Attacker.Unit.Pos.TileDist(Defender.Unit.Pos) <= 1; // TBA: fix for multi-tile units
         if (!meleeAttack)
         {
             // Move combatants slightly
