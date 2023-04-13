@@ -1036,6 +1036,52 @@ public class Unit : MapObject
 
         private AttackFrom FindMovement(int x, int y, int range)
         {
+            // Getting the tile cost & unit have more efficient versions if we asume a size of (1,1) (aka 99.9% of the time)
+            System.Func<int, int, int> GetCost;
+            System.Func<int, int, Unit> GetUnit;
+            if (unit.Size != Vector2Int.one)
+            {
+                GetCost = (x, y) =>
+                {
+                    int max = 0;
+                    for (int i = 0; i < unit.Size.x; i++)
+                    {
+                        for (int j = 0; j < unit.Size.y; j++)
+                        {
+                            max = Mathf.Max(max, GameController.Current.Map[x + i, y + j].GetMovementCost(unit));
+                        }
+                    }
+                    return max;
+                };
+            }
+            else
+            {
+                GetCost = (x, y) => GameController.Current.Map[x, y].GetMovementCost(unit);
+            }
+            if (unit.Size != Vector2Int.one)
+            {
+                GetUnit = (x, y) =>
+                {
+                    Unit max = null, temp;
+                    for (int i = 0; i < unit.Size.x; i++)
+                    {
+                        for (int j = 0; j < unit.Size.y; j++)
+                        {
+                            temp = GameController.Current.FindUnitAtPos(x + i, y + j);
+                            if (temp != null && (max == null || (max == unit && temp != unit) || (!unit.IsEnemy(max) && unit.IsEnemy(temp))))
+                            {
+                                max = temp;
+                            }
+                        }
+                    }
+                    return max;
+                };
+            }
+            else
+            {
+                GetUnit = (x, y) => GameController.Current.FindUnitAtPos(x, y);
+            }
+
             void Inner(int x, int y, int range, AttackFrom attackFrom) // Recursion
             {
                 bool added = false;
@@ -1050,14 +1096,14 @@ public class Unit : MapObject
                                 continue;
                             }
                             string posName = "Pos: " + (x + i) + ", " + (y + j) + "; ";
-                            int cost = GameController.Current.Map[x + i, y + j].GetMovementCost(unit);
+                            int cost = GetCost(x + i, y + j);
                             if (range - cost >= 0) // Isn't blocked by terrain
                             {
                                 if (this[x + i, y + j].Value > range - cost) // Found a better/same path, pointless
                                 {
                                     continue;
                                 }
-                                Unit atPos = GameController.Current.FindUnitAtPos(x + i, y + j);
+                                Unit atPos = GetUnit(x + i, y + j);
                                 if (atPos == null || atPos == unit) // Empty space/self - can move
                                 {
                                     MarkMovementTile(x + i, y + j, range - cost, TileDataType.Move);
