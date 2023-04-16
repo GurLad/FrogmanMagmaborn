@@ -33,9 +33,9 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
             FindRenderer();
         }
         Animations.ForEach(a => a.Split());
-        if (FixedSpeed)
+        if (FixedSpeed && BaseSpeed <= 0)
         {
-            BaseSpeed = fixedBaseSpeed;
+            BaseSpeed = 1;
         }
         if (ActivateOnStart)
         {
@@ -73,7 +73,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
         {
             if (FixedSpeed)
             {
-                int fixedFrame = (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count;
+                int fixedFrame = (int)(Time.time * fixedBaseSpeed * BaseSpeed) % Animations[currentAnimation].Frames.Count;
                 if (fixedFrame != currentFrame)
                 {
                     UpdateFrame(fixedFrame);

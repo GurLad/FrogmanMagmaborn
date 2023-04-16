@@ -41,7 +41,7 @@ public class MapController : MonoBehaviour // TBA: Move all map-related stuff he
             for (int j = 0; j < Tilesets[i].TileObjects.Count; j++)
             {
                 Sprite file = FrogForgeImporter.LoadSpriteFile("Images/Tilesets/" + Tilesets[i].Name + "/" + j + ".png");
-                FrogForgeImporter.LoadSpriteOrAnimationToObject(Tilesets[i].TileObjects[j].gameObject, file, 16);
+                FrogForgeImporter.LoadSpriteOrAnimationToObject(Tilesets[i].TileObjects[j].gameObject, file, 16, -Tilesets[i].SpeedOverride);
             }
         }
 #if UNITY_EDITOR
@@ -138,6 +138,7 @@ public class Tileset
     [HideInInspector]
     [SerializeField]
     private List<TileData> Tiles;
+    public float SpeedOverride;
 
     public Tileset()
     {

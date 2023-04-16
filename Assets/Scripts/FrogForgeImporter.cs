@@ -62,6 +62,10 @@ public class FrogForgeImporter : MonoBehaviour
             anim.Animations = new List<SpriteSheetData>();
             anim.Animations.Add(newData);
             anim.FixedSpeed = speed <= 0;
+            if (anim.FixedSpeed)
+            {
+                anim.BaseSpeed = -speed;
+            }
             anim.ActivateOnStart = activateOnStart;
             anim.Renderer = renderer;
         }
