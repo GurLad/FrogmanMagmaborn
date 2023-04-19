@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
             return !(MovementCost > 5 && High);
         }
     }
+
     public override string ToString()
     {
         return Name.Substring(0, Mathf.Min(Name.Length, 4)) + '\n' + (MovementCost <= 9 ? (MovementCost + (High ? "All\n" : "Mov\n") + ArmorModifier.ToString()[0] + "Arm") : High ? "\nHigh" : "\nLow");
