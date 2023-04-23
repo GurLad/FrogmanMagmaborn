@@ -10,6 +10,7 @@ public class EndgameFloorAnimator : MonoBehaviour
     private float cosTheta;
     private float sinTheta;
     private Vector3 basePos;
+    private float offest;
 
     private void Start()
     {
@@ -18,13 +19,15 @@ public class EndgameFloorAnimator : MonoBehaviour
         ratio = Random.Range(0.0001f, 1);
         // Rotate by a random angle
         float theta = Random.Range(0, 2 * Mathf.PI);
+        // Add random offset
+        offest = Random.Range(0, 2 * Mathf.PI);
         cosTheta = Mathf.Cos(theta);
         sinTheta = Mathf.Sin(theta);
     }
 
     private void Update()
     {
-        Vector2 modifier = GetPosModifier(Time.time * Speed) * Strength;
+        Vector2 modifier = GetPosModifier(Time.time * Speed + offest) * Strength;
         transform.position = basePos + new Vector3(modifier.x, modifier.y, 0);
     }
 

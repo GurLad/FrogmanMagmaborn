@@ -49,6 +49,10 @@ public class EndgameMapAnimator : MonoBehaviour
                 {
                     GroupFloor(tiles, size, i, j);
                 }
+                if (tiles[i, j].Tile.Name == BridgeName)
+                {
+                    GroupBridge(tiles, size, i, j);
+                }
             }
         }
     }
@@ -81,22 +85,49 @@ public class EndgameMapAnimator : MonoBehaviour
         // Add bottom
         for (int i = x; i < width; i++)
         {
-            AdvancedSpriteSheetAnimation newTile = Instantiate(PseudoTile, holder.transform);
-            InitNewTile(newTile, i == x ? FloorBottomL : (i == width - 1 ? FloorBottomR : FloorBottomM));
-            newTile.transform.position = new Vector2(GameController.Current.TileSize * i, -GameController.Current.TileSize * height);
-            newTile.gameObject.SetActive(true);
+            CreateNewPseudoTile(holder.transform, i == x ? FloorBottomL : (i == width - 1 ? FloorBottomR : FloorBottomM), new Vector2Int(i, height));
         }
         holder.transform.position -= new Vector3(0, 0, 0.1f);
         holder.gameObject.SetActive(true);
     }
 
-    private void GroupBridge(ProcessedTile[,] tiles, Vector2Int size, int x, int y)
+    private void GroupBridge(ProcessedTile[,] tiles, Vector2Int size, int x, int y, bool vertical = true)
     {
-        // TBA
+        Transform holder = Instantiate(BridgeBaseHolder, BridgeBaseHolder.transform.parent).transform;
+        int height = 1, width = 1;
+        if (vertical)
+        {
+            // Group
+            for (int j = y; j < size.y; j++)
+            {
+                if (tiles[x, j].Tile.Name != BridgeName)
+                {
+                    height = j;
+                    break;
+                }
+                tiles[x, j].Processed = true;
+                tiles[x, j].Tile.transform.parent = holder.transform;
+                tiles[x, j].Tile.GetComponent<AdvancedSpriteSheetAnimation>().Animations[0].SpriteSheet = BridgeTransparent;
+            }
+            // Add top/bottom
+            PalettedSprite top = CreateNewPseudoTile(holder.transform, BridgeTop, new Vector2Int(x, y - 1)).GetComponent<PalettedSprite>();
+            top.Awake();
+            top.Palette = 1;
+            PalettedSprite bottom = CreateNewPseudoTile(holder.transform, BridgeBottom, new Vector2Int(x, height)).GetComponent<PalettedSprite>();
+            bottom.Awake();
+            bottom.Palette = 1;
+        }
+        else
+        {
+            // TBA
+        }
+        holder.transform.position -= new Vector3(0, 0, 0.2f);
+        holder.gameObject.SetActive(true);
     }
 
-    private void InitNewTile(AdvancedSpriteSheetAnimation newTile, Sprite targetSprite)
+    private AdvancedSpriteSheetAnimation CreateNewPseudoTile(Transform holder, Sprite targetSprite, Vector2Int pos)
     {
+        AdvancedSpriteSheetAnimation newTile = Instantiate(PseudoTile, holder);
         SpriteSheetData newData = new SpriteSheetData();
         newData.SpriteSheet = targetSprite;
         newData.NumberOfFrames = (int)newData.SpriteSheet.rect.width / 16;
@@ -104,6 +135,10 @@ public class EndgameMapAnimator : MonoBehaviour
         newData.Name = "FloorBottom";
         newData.Loop = true;
         newTile.Animations.Add(newData);
+        newTile.transform.position = new Vector2(GameController.Current.TileSize * pos.x, -GameController.Current.TileSize * pos.y);
+        newTile.gameObject.name = targetSprite.name;
+        newTile.gameObject.SetActive(true);
+        return newTile;
     }
 
     private class ProcessedTile

@@ -32342,6 +32342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2117362470}
+  - {fileID: 1921239208}
   - {fileID: 2125922196}
   m_Father: {fileID: 20974947}
   m_RootOrder: 0
@@ -32365,9 +32366,10 @@ MonoBehaviour:
   FloorBottomM: {fileID: 21300000, guid: 9fd37483af735fe42b90c9a1ce1618c1, type: 3}
   FloorBottomR: {fileID: 21300000, guid: 7426c4203b542a44b95b648d571a2acd, type: 3}
   BridgeName: Brdg
-  BridgeTransparent: {fileID: 0}
-  BridgeTop: {fileID: 0}
-  BridgeBottom: {fileID: 0}
+  BridgeBaseHolder: {fileID: 1921239207}
+  BridgeTransparent: {fileID: 21300000, guid: c6f62e52c17b95c4099b782c430926e9, type: 3}
+  BridgeTop: {fileID: 21300000, guid: a9e36b7cec00f3c489bb2269c3217368, type: 3}
+  BridgeBottom: {fileID: 21300000, guid: efe94f0388d082d40aeec9b25c332ce3, type: 3}
 --- !u!1 &898859424
 GameObject:
   m_ObjectHideFlags: 0
@@ -57860,6 +57862,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1921239207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921239208}
+  m_Layer: 0
+  m_Name: BridgeBaseHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1921239208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921239207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 888088354}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1923387439
 GameObject:
   m_ObjectHideFlags: 0
@@ -61269,7 +61301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888088354}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2125922197
 MonoBehaviour:
