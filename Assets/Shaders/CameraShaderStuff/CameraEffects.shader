@@ -8,6 +8,7 @@
         _SizeY ("SizeY", Int) = 240
 		[Toggle] _Stretch ("Stretch", Int) = 0
 		[Toggle] _Filter ("Filter", Int) = 0
+		[Toggle] _Endgame ("Endgame", Int) = 0
     }
     SubShader
     {
@@ -58,6 +59,7 @@
             float _SizeY;
 			float _Stretch;
 			float _Filter;
+			float _Endgame;
 
             fixed4 frag(v2f ii) : SV_Target
             {
@@ -142,6 +144,11 @@
 					{
 						return renderPos(ii, pixelPos, sizeMod, _SizeX, _SizeY, _RenderTex);
 					}
+				}
+				if (_Endgame)
+				{
+					fixed4 col = tex2D(_MainTex, ii.uv);
+					return col;
 				}
                 return fixed4(0,0,0,1);
             }

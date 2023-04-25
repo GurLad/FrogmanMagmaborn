@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Camera
-  m_Shader: {fileID: 4800000, guid: 293c726564cb5e741b14bd0f6bd40fc2, type: 3}
+  m_Name: FakeTV
+  m_Shader: {fileID: 4800000, guid: ba64b4f718831fe4c9329d51b2ea6acf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -55,34 +55,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _RenderTex:
-        m_Texture: {fileID: 8400000, guid: 5b7de2f6534a1b74aa30c48011f58e09, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Endgame: 0
-    - _Filter: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NumBits: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SizeX: 256
-    - _SizeY: 240
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stretch: 2
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1out: {r: 0, g: 0.9725491, b: 0.98823535, a: 1}
+    - _Color2out: {r: 0, g: 0.53333336, b: 0.5803922, a: 1}
+    - _Color3out: {r: 0, g: 0.2509804, b: 0.34509805, a: 1}
+    - _Color4out: {r: 0, g: 0, b: 0, a: 1}
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
