@@ -127,4 +127,9 @@ public static class StaticGlobals
         }
         return values;
     }
+
+    public static float RandomValueInRange(this Vector2 range)
+    {
+        return Random.Range(range.x, range.y);
+    }
 }
