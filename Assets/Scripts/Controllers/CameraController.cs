@@ -37,6 +37,8 @@ public class CameraController : MonoBehaviour
     public PPTScript PPTScript;
     [HideInInspector]
     public int CurrentMultiplier = 0;
+    private Vector2 resolution;
+
     private void Awake()
     {
         Current = this;
@@ -48,7 +50,17 @@ public class CameraController : MonoBehaviour
             ChangeSize(0);
         }
         UpdateMode((CameraMode)SavedData.Load("CameraMode", 0, SaveMode.Global));
+        UpdateResolution();
     }
+
+    private void Update()
+    {
+        if (resolution.y != Screen.currentResolution.height || resolution.x != Screen.currentResolution.width)
+        {
+            UpdateResolution();
+        }
+    }
+
     public void UpdateMode(CameraMode mode)
     {
         Mode = mode;
@@ -57,6 +69,7 @@ public class CameraController : MonoBehaviour
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
         SavedData.SaveAll(SaveMode.Global);
     }
+
     public void ChangeSize(int increaseAmount = 0)
     {
         CurrentMultiplier += increaseAmount + MaxResolutionMultiplier;
@@ -64,7 +77,9 @@ public class CameraController : MonoBehaviour
         Screen.SetResolution(ReferenceResolution.x * (CurrentMultiplier + 1), ReferenceResolution.y * (CurrentMultiplier + 1), false);
         SavedData.Save("ScreenSize", CurrentMultiplier, SaveMode.Global);
         SavedData.SaveAll(SaveMode.Global);
+        UpdateResolution();
     }
+
     public void ScreenShake(float strength, float duration)
     {
         if (GameCalculations.ScreenShakeOn)
@@ -74,5 +89,12 @@ public class CameraController : MonoBehaviour
             screenShaker.Duration = duration;
         }
         SoundController.PlaySound(ScreenShakeSFX, 0.5f);
+    }
+
+    private void UpdateResolution()
+    {
+        PixelPerfectMaterial.SetInt("_ScreenSizeX", Screen.width);
+        PixelPerfectMaterial.SetInt("_ScreenSizeY", Screen.height);
+        resolution = new Vector2(Screen.width, Screen.height);
     }
 }

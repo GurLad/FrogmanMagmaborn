@@ -6,6 +6,8 @@
         _RenderTex ("Render Texture", 2D) = "white" {}
 		_SizeX ("SizeX", Int) = 256
         _SizeY ("SizeY", Int) = 240
+		_ScreenSizeX("ScreenSizeX", float) = 256
+		_ScreenSizeY("ScreenSizeY", float) = 256
 		[Toggle] _Stretch ("Stretch", Int) = 0
 		[Toggle] _Filter ("Filter", Int) = 0
 		[Toggle] _Endgame ("Endgame", Int) = 0
@@ -57,6 +59,8 @@
             sampler2D _RenderTex;
             float _SizeX;
             float _SizeY;
+			float _ScreenSizeX;
+			float _ScreenSizeY;
 			float _Stretch;
 			float _Filter;
 			float _Endgame;
@@ -64,7 +68,7 @@
             fixed4 frag(v2f ii) : SV_Target
             {
                 // Find screen size
-                float2 screenSize = float2(_ScreenParams.x, _ScreenParams.y);
+                float2 screenSize = float2(_ScreenSizeX, _ScreenSizeY);
 				// Find size mod
 				float sizeMod;
 				if (_Stretch)
