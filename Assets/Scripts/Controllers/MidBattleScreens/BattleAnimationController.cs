@@ -128,7 +128,7 @@ public class BattleAnimationController : MidBattleScreen
                 animationParts.Enqueue(() => BeginAnimation<BATeleportBack>(attacker, defender));
                 return false;
             default:
-                throw Bugger.Error("Impossible", false);
+                throw Bugger.Error("Invalid BattleAnimationMode!", false);
         }
     }
 

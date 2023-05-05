@@ -40,7 +40,7 @@ public class DisplayStatsHelp : Trigger
         }
         else
         {
-            throw Bugger.Error("Cannot activate DisplayStatsHelp without a previous MidBattleScreen", false);
+            throw Bugger.FMError("Cannot activate DisplayStatsHelp without a previous MidBattleScreen.", false);
         }
     }
 

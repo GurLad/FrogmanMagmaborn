@@ -62,7 +62,7 @@ public class StatusScreenController : MidBattleScreen
         currentUnit = index;
         if (currentUnit < 0)
         {
-            throw Bugger.Error("Showing the status of a non-existent unit!");
+            throw Bugger.FMError("Showing the status of a non-existent unit!");
         }
         currentUnitObject = unit;
     }

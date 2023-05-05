@@ -39,7 +39,7 @@ public class PalettedText : MonoBehaviour
     {
         if (!initialized)
         {
-            throw Bugger.Error("Uninitialized PalettedSprite - this is a Frogman Magmaborn error. Please report to the devs.");
+            throw Bugger.FMError("Uninitialized PalettedSprite.");
         }
         Color temp;
         ColorUtility.TryParseHtmlString("#" + Palette + "00000", out temp);

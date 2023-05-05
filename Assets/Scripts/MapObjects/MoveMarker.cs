@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveMarker : MarkerWithArrow
 {
+    public virtual Vector2Int TargetPos { get => Pos; set => Pos = value; }
+
     public override void Hover(InteractState interactState)
     {
         if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
@@ -16,7 +18,7 @@ public class MoveMarker : MarkerWithArrow
     {
         if (interactState == InteractState.Move && Origin.TheTeam == GameController.Current.CurrentPhase)
         {
-            Origin.MoveOrder(Pos);
+            Origin.MoveOrder(TargetPos);
             SystemSFXController.Play(SystemSFXController.Type.UnitAction);
         }
         else if (interactState == InteractState.None)

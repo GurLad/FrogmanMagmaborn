@@ -76,7 +76,7 @@ public class CGController : MonoBehaviour
         }
         else
         {
-            throw Bugger.Error("Frogman Magmaborn error - fading out a CG when there is none. Please report to the dev.");
+            throw Bugger.FMError("Fading out a CG when there is none.");
         }
     }
 

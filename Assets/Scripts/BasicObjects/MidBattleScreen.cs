@@ -22,7 +22,7 @@ public abstract class MidBattleScreen : MonoBehaviour
     {
         if (on ? Current != null : Current != caller)
         {
-            throw Bugger.Error("Another mid-battle screen is already running! Current: " + (Current != null ? Current.ToString() : "Null") + ", caller: " + caller + ", mode: " + on, false);
+            throw Bugger.FMError("Another mid-battle screen is already running! Current: " + (Current != null ? Current.ToString() : "Null") + ", caller: " + caller + ", mode: " + on, false);
         }
         Current = on ? caller : null;
     }

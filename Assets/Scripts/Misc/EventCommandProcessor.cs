@@ -227,7 +227,8 @@ public static class EventCommandProcessor
                 {
                     foreach (Unit target in targets8)
                     {
-                        target.Size = size;
+                        // TBA: Create a new multi-tile unit to replace it
+                        //target.Size = size;
                     }
                 }
                 else
@@ -335,7 +336,7 @@ public static class EventCommandProcessor
             case "setTeamAI":
                 // Params: Team team, AIType ai
                 Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
-                GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.Error("Impossible - I just validated..."));
+                GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated..."));
                 break;
             case "lose":
                 // Params: none
@@ -796,7 +797,7 @@ public static class EventCommandProcessor
             case CommandType.Menu:
                 return ExecuteMenuCommand(command.Name, parts, args, player, num, StartLineTrue);
             default:
-                throw Bugger.Error("Impossible");
+                throw Bugger.FMError("Impossible");
         }
     }
 

@@ -285,7 +285,7 @@ public class MapAnimationsController : MidBattleScreen
         // Check if an animation is even needed
         if (OnFinishAnimation == null)
         {
-            throw Bugger.Error("No OnFinishAnimation command - probably animated before assigning it.", false);
+            throw Bugger.FMError("No OnFinishAnimation command - probably animated before assigning it.", false);
         }
         if (unit.Pos == targetPos)
         {

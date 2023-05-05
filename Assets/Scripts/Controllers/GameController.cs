@@ -901,7 +901,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 unit.Inclination = classData.Inclination;
                 break;
             default:
-                throw Bugger.Error("Impossible!", false);
+                throw Bugger.FMError("Impossible!", false);
         }
         // Use ClassData for class-specific stuff (flies, weapon...)
         unit.Flies = classData.Flies;
@@ -1328,7 +1328,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         if (suspendData.OnLoadAction != null)
         {
-            throw Bugger.Error("Auto-save error: trying to save an action during another action!");
+            throw Bugger.FMError("Auto-save error: trying to save an action during another action!");
         }
         suspendData = SaveToSuspendData();
         suspendData.OnLoadAction = new SuspendDataGameController.CurrentAction(type, origin, target, additionalData);

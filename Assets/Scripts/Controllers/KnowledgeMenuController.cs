@@ -73,7 +73,7 @@ public class KnowledgeMenuController : MonoBehaviour
                         item = Instantiate(BaseMenuItem, menu.transform).AddComponent<DifficultyKnowledgeMenuItem>();
                         break;
                     default:
-                        throw Bugger.Error("No type?", false);
+                        throw Bugger.FMError("No type?", false);
                 }
                 // A very bad code for finding the indicators
                 item.Indicators = new List<GameObject>();

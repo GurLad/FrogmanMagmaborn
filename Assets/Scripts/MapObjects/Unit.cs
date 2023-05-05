@@ -86,30 +86,6 @@ public class Unit : MapObject
             movement = value;
         }
     }
-    [SerializeField]
-    private Vector2Int size = Vector2Int.one;
-    public Vector2Int Size
-    {
-        get => size;
-        set
-        {
-            size = value;
-            transform.localScale = new Vector3(size.x, size.y, 1);
-            Pos = Pos;
-        }
-    }
-    public override Vector2Int Pos
-    {
-        get
-        {
-            return base.Pos;
-        }
-        set
-        {
-            base.Pos = value;
-            transform.position = new Vector3((Pos.x + (Size.x - 1) / 2.0f) * GameController.Current.TileSize, -(Pos.y + (Size.y - 1) / 2.0f) * GameController.Current.TileSize, transform.position.z);
-        }
-    }
 
     public Unit()
     {
@@ -206,9 +182,14 @@ public class Unit : MapObject
         }
     }
 
-    private DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
+    protected virtual DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
         return DangerArea.Generate(this, x, y, range, includePassThroughMoves);
+    }
+
+    protected virtual void GenerateMultiTileMoveMarker(int i, int j, DangerArea dangerArea)
+    {
+        throw Bugger.FMError("Non-multi-tile unit tried to generate a danger area with multi-tiles?!");
     }
 
     private DangerArea GetDangerArea(bool includePassThroughMoves = false)
@@ -252,7 +233,7 @@ public class Unit : MapObject
                     case DangerArea.TileDataType.PassThrough:
                         if (!includePassThroughMoves)
                         {
-                            throw Bugger.Error("Pass through tiles found when ignoring pass throughs", false);
+                            throw Bugger.FMError("Pass through tiles found when ignoring pass throughs.", false);
                         }
                         else
                         {
@@ -261,6 +242,9 @@ public class Unit : MapObject
                         break;
                     case DangerArea.TileDataType.Attack:
                         GenerateAttackMarker(i, j, dangerArea);
+                        break;
+                    case DangerArea.TileDataType.MultiTileMove:
+                        GenerateMultiTileMoveMarker(i, j, dangerArea);
                         break;
                     default:
                         break;
@@ -308,7 +292,7 @@ public class Unit : MapObject
         {
             if (counter++ > 50)
             {
-                throw Bugger.Error("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path), false);
+                throw Bugger.FMError("Infinite loop in AnimatedMovement! Path: " + string.Join(", ", path), false);
             }
             path.Add(targetPos);
             Vector2Int currentBest = Vector2Int.zero;
@@ -328,7 +312,7 @@ public class Unit : MapObject
             }
             if (currentBest == Vector2Int.zero)
             {
-                throw Bugger.Error("Path recovery failed! Path: " + string.Join(", ", path), false);
+                throw Bugger.FMError("Path recovery failed! Path: " + string.Join(", ", path), false);
             }
             targetPos += currentBest;
         } while (targetPos != Pos);
@@ -343,7 +327,7 @@ public class Unit : MapObject
 
     public void MarkAttack() //(int x = -1, int y = -1, int range = -1, bool[,] checkedTiles = null)
     {
-        DangerArea dangerArea = DangerArea.Generate(this, Pos.x, Pos.y, 0, false);
+        DangerArea dangerArea = GetDangerArea(Pos.x, Pos.y, 0, false);
         if (HasSkill(Skill.SiegeWeapon)) // Just mark everything
         {
             for (int i = 0; i < GameController.Current.MapSize.x; i++)
@@ -724,7 +708,7 @@ public class Unit : MapObject
             }
             if (min == currentMoveTarget)
             {
-                throw Bugger.Error("Path not found... to a target with a verified path! This should be impossible... Pos: " + Pos + ", attacker: " + ToString() + ", target: " + target, false);
+                throw Bugger.FMError("Path not found... to a target with a verified path! This should be impossible... Pos: " + Pos + ", attacker: " + ToString() + ", target: " + target, false);
             }
             currentMoveTarget = min;
             range = 1;
@@ -824,7 +808,7 @@ public class Unit : MapObject
         }
         else
         {
-            return DangerArea.Generate(this, fromX, fromY, 0, false)[x, y].Type == DangerArea.TileDataType.Attack;
+            return GetDangerArea(fromX, fromY, 0, false)[x, y].Type == DangerArea.TileDataType.Attack;
         }
     }
 
@@ -922,9 +906,9 @@ public class Unit : MapObject
         return skills.HasSkill(skill);
     }
 
-    public bool AtPos(Vector2Int pos)
+    public virtual bool AtPos(Vector2Int pos)
     {
-        return Pos == pos || (Size != Vector2Int.one && pos.x >= Pos.x && pos.x <= Pos.x + Size.x - 1 && pos.y >= Pos.y && pos.y <= Pos.y + Size.y - 1);
+        return Pos == pos;
     }
 
     public string Save()
@@ -956,10 +940,10 @@ public class Unit : MapObject
 
     public class DangerArea
     {
-        public enum TileDataType { Inaccessible, Move, PassThrough, Attack }
+        public enum TileDataType { Inaccessible, Move, PassThrough, Attack, MultiTileMove }
 
         private TileData[,] data;
-        private Unit unit;
+        protected Unit unit;
 
         public TileData this[int x, int y]
         {
@@ -967,7 +951,7 @@ public class Unit : MapObject
             set => data[x, y] = value;
         }
 
-        private DangerArea(Unit unit)
+        protected DangerArea(Unit unit)
         {
             this.unit = unit;
             data = new TileData[GameController.Current.MapSize.x, GameController.Current.MapSize.y];
@@ -981,28 +965,27 @@ public class Unit : MapObject
             }
         }
 
-        public static DangerArea Generate(Unit unit, int x, int y, int range, bool includePassThroughMoves)
+        protected DangerArea(Unit unit, int x, int y, int range, bool includePassThroughMoves) : this(unit)
         {
-            DangerArea dangerArea = new DangerArea(unit);
             AttackFrom attackFrom;
             if (range > 0)
             {
-                attackFrom = dangerArea.FindMovement(x, y, range);
+                attackFrom = FindMovement(x, y, range);
             }
             else
             {
-                dangerArea.MarkMovementTile(x, y, 0, TileDataType.Move);
+                MarkMovementTile(x, y, 0, TileDataType.Move);
                 attackFrom = new AttackFrom();
                 attackFrom.Add(new Vector2Int(x, y));
             }
             if (!includePassThroughMoves) // Remove all pass through tiles
             {
-                attackFrom.RemoveAll(a => dangerArea[a.x, a.y].Type == TileDataType.PassThrough);
-                dangerArea.ClearPassThroughs();
+                attackFrom.RemoveAll(a => this[a.x, a.y].Type == TileDataType.PassThrough);
+                ClearPassThroughs();
             }
             else // Merely low priority
             {
-                attackFrom.Sort((a, b) => dangerArea[a.x, a.y].Type.CompareTo(dangerArea[b.x, b.y].Type));
+                attackFrom.Sort((a, b) => this[a.x, a.y].Type.CompareTo(this[b.x, b.y].Type));
             }
 
             //Bugger.Info(string.Join("\n", attackFrom.ConvertAll(a => a.x + ", " + a.y + ": " + dangerArea[a.x, a.y].Type)));
@@ -1011,7 +994,7 @@ public class Unit : MapObject
             {
                 if (unit.Weapon.Range > 0)
                 {
-                    attackFrom.ForEach(a => dangerArea.FindAttackPart(a.x, a.y, unit.Weapon.Range));
+                    attackFrom.ForEach(a => FindAttackPart(a.x, a.y, unit.Weapon.Range));
                 }
             }
             else
@@ -1020,68 +1003,36 @@ public class Unit : MapObject
                 {
                     for (int j = 0; j < GameController.Current.MapSize.y; j++)
                     {
-                        if (dangerArea[i, j].Value > 0 || !GameController.Current.Map[i, j].Passable)
+                        if (this[i, j].Value > 0 || !GameController.Current.Map[i, j].Passable)
                         {
                             continue;
                         }
-                        dangerArea[i, j].Type = TileDataType.Attack;
-                        dangerArea[i, j].Value = -1;
+                        this[i, j].Type = TileDataType.Attack;
+                        this[i, j].Value = -1;
                     }
                 }
             }
+        }
 
-            //Bugger.Info(dangerArea.ToString());
-            return dangerArea;
+        public static DangerArea Generate(Unit unit, int x, int y, int range, bool includePassThroughMoves)
+        {
+            return new DangerArea(unit, x, y, range, includePassThroughMoves);
+        }
+
+        protected virtual void PostProcessMovement(AttackFrom attackFrom) { }
+
+        protected virtual int FindMovementGetCost(int x, int y)
+        {
+            return GameController.Current.Map[x, y].GetMovementCost(unit);
+        }
+
+        protected virtual Unit FindMovementGetUnit(int x, int y)
+        {
+            return GameController.Current.FindUnitAtPos(x, y);
         }
 
         private AttackFrom FindMovement(int x, int y, int range)
         {
-            // Getting the tile cost & unit have more efficient versions if we asume a size of (1,1) (aka 99.9% of the time)
-            System.Func<int, int, int> GetCost;
-            System.Func<int, int, Unit> GetUnit;
-            if (unit.Size != Vector2Int.one)
-            {
-                GetCost = (x, y) =>
-                {
-                    int max = 0;
-                    for (int i = 0; i < unit.Size.x; i++)
-                    {
-                        for (int j = 0; j < unit.Size.y; j++)
-                        {
-                            max = Mathf.Max(max, GameController.Current.Map[x + i, y + j].GetMovementCost(unit));
-                        }
-                    }
-                    return max;
-                };
-            }
-            else
-            {
-                GetCost = (x, y) => GameController.Current.Map[x, y].GetMovementCost(unit);
-            }
-            if (unit.Size != Vector2Int.one)
-            {
-                GetUnit = (x, y) =>
-                {
-                    Unit max = null, temp;
-                    for (int i = 0; i < unit.Size.x; i++)
-                    {
-                        for (int j = 0; j < unit.Size.y; j++)
-                        {
-                            temp = GameController.Current.FindUnitAtPos(x + i, y + j);
-                            if (temp != null && (max == null || (max == unit && temp != unit) || (!unit.IsEnemy(max) && unit.IsEnemy(temp))))
-                            {
-                                max = temp;
-                            }
-                        }
-                    }
-                    return max;
-                };
-            }
-            else
-            {
-                GetUnit = (x, y) => GameController.Current.FindUnitAtPos(x, y);
-            }
-
             void Inner(int x, int y, int range, AttackFrom attackFrom) // Recursion
             {
                 bool added = false;
@@ -1096,14 +1047,14 @@ public class Unit : MapObject
                                 continue;
                             }
                             string posName = "Pos: " + (x + i) + ", " + (y + j) + "; ";
-                            int cost = GetCost(x + i, y + j);
+                            int cost = FindMovementGetCost(x + i, y + j);
                             if (range - cost >= 0) // Isn't blocked by terrain
                             {
                                 if (this[x + i, y + j].Value > range - cost) // Found a better/same path, pointless
                                 {
                                     continue;
                                 }
-                                Unit atPos = GetUnit(x + i, y + j);
+                                Unit atPos = FindMovementGetUnit(x + i, y + j);
                                 if (atPos == null || atPos == unit) // Empty space/self - can move
                                 {
                                     MarkMovementTile(x + i, y + j, range - cost, TileDataType.Move);
@@ -1141,10 +1092,11 @@ public class Unit : MapObject
             AttackFrom attackFrom = new AttackFrom();
             if (OutOfBounds(x, y))
             {
-                throw Bugger.Error("Checking movement of an out-of-bounds unit!", false);
+                throw Bugger.FMError("Checking movement of an out-of-bounds unit!", false);
             }
             MarkMovementTile(x, y, range, TileDataType.Move);
             Inner(x, y, range, attackFrom);
+            PostProcessMovement(attackFrom);
             return attackFrom;
         }
 
@@ -1275,13 +1227,13 @@ public class Unit : MapObject
                 }
                 if (currentBest == new Vector2Int(-1, -1))
                 {
-                    throw Bugger.Error(unit + " couldn't find a favorable place to attack pos " + target, false);
+                    throw Bugger.FMError(unit + " couldn't find a favorable place to attack pos " + target, false);
                 }
                 return currentBest;
             }
             else
             {
-                throw Bugger.Error(unit + " cannot even attack pos " + target, false);
+                throw Bugger.FMError(unit + " cannot even attack pos " + target, false);
             }
         }
 
@@ -1290,6 +1242,7 @@ public class Unit : MapObject
             public int Value = 0;
             public TileDataType Type = TileDataType.Inaccessible;
             public Vector2Int Pos;
+            public TileData Parent; // Only for multi-tiles
         }
     }
 }

@@ -64,13 +64,19 @@ public class Bugger : MonoBehaviour // Custom name for alternate Debug
 
     public static System.Exception Error(string text, bool show = true)
     {
-        current.ShowText(ColorString("ERROR: " + text, "FF0000"), 1, show);
+        current.ShowText(ColorString("ERROR: " + text, "FF5000"), 1, show);
         return new System.Exception(text);
     }
 
     public static System.Exception Crash(string text, bool show = true)
     {
-        current.ShowText(ColorString("FATAL ERROR: " + text, "AA0000"), 2, show);
+        current.ShowText(ColorString("FATAL ERROR: " + text, "FF0000"), 2, show);
+        return new System.Exception(text);
+    }
+
+    public static System.Exception FMError(string text, bool show = true)
+    {
+        current.ShowText(ColorString("FROGMAN MAGMABORN ERROR: " + text + " Please send a bug report.", "FF00FF"), 1, show);
         return new System.Exception(text);
     }
 
