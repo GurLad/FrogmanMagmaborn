@@ -72,7 +72,8 @@ public class MultiTileUnit : Unit
 
         protected override void PostProcessMovement(List<Vector2Int> attackFrom)
         {
-            foreach (Vector2Int pos in attackFrom)
+            List<Vector2Int> attackFromClone = new List<Vector2Int>(attackFrom);
+            foreach (Vector2Int pos in attackFromClone)
             {
                 for (int i = 0; i < multiTileUnit.Size.x; i++)
                 {
@@ -80,13 +81,16 @@ public class MultiTileUnit : Unit
                     {
                         if (i != 0 || j != 0)
                         {
-                            if (this[pos.x + i, pos.y + j].Value > 0 || !GameController.Current.Map[pos.x + i, pos.y + j].Passable)
+                            if (this[pos.x + i, pos.y + j].Value > 0 ||
+                                !GameController.Current.Map[pos.x + i, pos.y + j].Passable ||
+                                attackFromClone.Contains(new Vector2Int(pos.x + i, pos.y + j)))
                             {
                                 continue;
                             }
                             this[pos.x + i, pos.y + j].Type = TileDataType.MultiTileMove;
                             this[pos.x + i, pos.y + j].Value = this[pos.x, pos.y].Value;
                             this[pos.x + i, pos.y + j].Parent = this[pos.x, pos.y];
+                            attackFrom.Add(new Vector2Int(pos.x + i, pos.y + j));
                         }
                     }
                 }

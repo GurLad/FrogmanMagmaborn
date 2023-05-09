@@ -846,20 +846,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return unit;
     }
 
-    public Unit CreateUnit(string name, int level, Team team, bool canReplace)
+    private void InitUnitData(Unit unit, string name, int level, Team team)
     {
-        // Find replacement, fix level
-        if (canReplace)
-        {
-            LevelMetadata.UnitReplacement replacement = LevelMetadata.UnitReplacements.Find(a => a.Name == name);
-            if (replacement != null)
-            {
-                name = replacement.Get();
-            }
-        }
-        level = level >= 0 ? level : LevelNumber;
-        // Generate basic unit
-        Unit unit = CreateEmptyUnit();
         unit.Name = name;
         unit.name = "Unit" + name;
         unit.Level = level;
@@ -912,12 +900,40 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
         unit.LoadSkills();
         unit.Init(true);
+    }
+
+    public Unit CreateUnit(string name, int level, Team team, bool canReplace)
+    {
+        // Find replacement, fix level
+        if (canReplace)
+        {
+            LevelMetadata.UnitReplacement replacement = LevelMetadata.UnitReplacements.Find(a => a.Name == name);
+            if (replacement != null)
+            {
+                name = replacement.Get();
+            }
+        }
+        level = level >= 0 ? level : LevelNumber;
+        // Generate basic unit
+        Unit unit = CreateEmptyUnit();
+        InitUnitData(unit, name, level, team);
         return unit;
     }
 
     public Unit CreatePlayerUnit(string name)
     {
         return CreateUnit(name, -1, StaticGlobals.MainPlayerTeam, false);
+    }
+
+    public MultiTileUnit ConvertToMultiTile(Unit unit)
+    {
+        MultiTileUnit multiTileUnit = Instantiate(BaseUnit.gameObject, currentUnitsObject).AddComponent<MultiTileUnit>();
+        Destroy(multiTileUnit.GetComponent<Unit>());
+        InitUnitData(multiTileUnit, unit.Name, unit.Level, unit.TheTeam);
+        multiTileUnit.gameObject.SetActive(true);
+        unit.DeathQuote = ""; // Doesn't actually die, after all
+        GameController.Current.KillUnit(unit);
+        return multiTileUnit;
     }
 
     private void AssignUnitMapAnimation(Unit unit, ClassData classData)

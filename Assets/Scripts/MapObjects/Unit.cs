@@ -977,6 +977,7 @@ public class Unit : MapObject
                 MarkMovementTile(x, y, 0, TileDataType.Move);
                 attackFrom = new AttackFrom();
                 attackFrom.Add(new Vector2Int(x, y));
+                PostProcessMovement(attackFrom);
             }
             if (!includePassThroughMoves) // Remove all pass through tiles
             {

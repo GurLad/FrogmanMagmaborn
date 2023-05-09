@@ -184,7 +184,7 @@ public class GenericPortrait
 {
     [SerializeField]
     private string tags;
-    public int VoiceType;
+    public List<int> VoiceTypes;
     public Sprite Background;
     public Sprite Foreground;
     // For FrogForge
@@ -201,7 +201,7 @@ public class GenericPortrait
     {
         // Create a new GeneratedPortrait
         GeneratedPortrait generatedPortrait = new GeneratedPortrait();
-        generatedPortrait.Voice = PortraitController.Current.GenericVoicesAndNames[VoiceType].ToVoice();
+        generatedPortrait.Voice = PortraitController.Current.GenericVoicesAndNames[VoiceTypes[Random.Range(0, VoiceTypes.Count)]].ToVoice();
         generatedPortrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
         generatedPortrait.ForegroundColorID = Random.Range(0, 4);
         generatedPortrait.InternalName = internalName;

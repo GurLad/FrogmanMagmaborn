@@ -227,8 +227,7 @@ public static class EventCommandProcessor
                 {
                     foreach (Unit target in targets8)
                     {
-                        // TBA: Create a new multi-tile unit to replace it
-                        //target.Size = size;
+                        GameController.Current.ConvertToMultiTile(target);
                     }
                 }
                 else
