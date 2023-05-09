@@ -215,7 +215,7 @@ public static class EventCommandProcessor
                 }
                 break;
             case "setSize":
-                // Params: string unitName, int x, int y
+                // Params: string unitName, int x, int y, bool keepHealth = false
                 // Sets the unit's size to (x, y).
                 List<Unit> targets8 = GameController.Current.GetNamedUnits(args[0]);
                 Vector2Int size = new Vector2Int(int.Parse(args[1]), int.Parse(args[2]));
@@ -227,7 +227,12 @@ public static class EventCommandProcessor
                 {
                     foreach (Unit target in targets8)
                     {
-                        GameController.Current.ConvertToMultiTile(target);
+                        MultiTileUnit newUnit = GameController.Current.ConvertToMultiTile(target, size);
+                        newUnit.Pos = target.Pos;
+                        if (args.Length > 3 && args[3] == "T")
+                        {
+                            newUnit.Health = target.Health;
+                        }
                     }
                 }
                 else

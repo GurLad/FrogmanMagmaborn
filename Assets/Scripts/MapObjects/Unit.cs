@@ -9,8 +9,6 @@ using AttackFrom = System.Collections.Generic.List<UnityEngine.Vector2Int>;
 public class Unit : MapObject
 {
     [Header("Basic info")]
-    public MoveMarker MovementMarker;
-    public AttackMarker AttackMarker;
     public Team TheTeam;
     public string Name;
     public string DisplayName;
@@ -24,7 +22,11 @@ public class Unit : MapObject
     public int MaxAcceptableHitRisk = 50;
     public AIPriorities Priorities;
     [Header("Objects")]
+    public MoveMarker MovementMarker;
+    public AttackMarker AttackMarker;
     public SpriteRenderer Symbol;
+    [Header("MultiTile extra fields")]
+    public MultiTileMoveMarker MultiTileMoveMarker;
     [HideInInspector]
     public Weapon Weapon;
     [HideInInspector]
@@ -51,6 +53,7 @@ public class Unit : MapObject
     public int BattleStatsPre => Stats.Precision * 10 + Weapon.Hit - 40;
     public int BattleStatsEva => (Stats.Evasion - Weapon.Weight) * 10 - 40;
     public bool InsideMap => !(Pos == -Vector2Int.one && ReinforcementTurn > 0 && !Statue);
+    [Header("Misc")]
     [SerializeField]
     private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
@@ -303,7 +306,9 @@ public class Unit : MapObject
                     if ((i != 0 && j == 0) || (j != 0 && i == 0))
                     {
                         if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
-                            dangerArea[targetPos.x + i, targetPos.y + j].Value >= dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value)
+                            dangerArea[targetPos.x + i, targetPos.y + j].Value >= dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value &&
+                            (dangerArea[targetPos.x + i, targetPos.y + j].Type != DangerArea.TileDataType.MultiTileMove ||
+                             targetPos + new Vector2Int(i, j) == Pos))
                         {
                             currentBest = new Vector2Int(i, j);
                         }
@@ -965,7 +970,7 @@ public class Unit : MapObject
             }
         }
 
-        protected DangerArea(Unit unit, int x, int y, int range, bool includePassThroughMoves) : this(unit)
+        protected void Init(int x, int y, int range, bool includePassThroughMoves)
         {
             AttackFrom attackFrom;
             if (range > 0)
@@ -1017,7 +1022,9 @@ public class Unit : MapObject
 
         public static DangerArea Generate(Unit unit, int x, int y, int range, bool includePassThroughMoves)
         {
-            return new DangerArea(unit, x, y, range, includePassThroughMoves);
+            DangerArea dangerArea = new DangerArea(unit);
+            dangerArea.Init(x, y, range, includePassThroughMoves);
+            return dangerArea;
         }
 
         protected virtual void PostProcessMovement(AttackFrom attackFrom) { }

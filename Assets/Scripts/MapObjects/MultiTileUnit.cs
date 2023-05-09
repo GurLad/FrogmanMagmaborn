@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MultiTileUnit : Unit
 {
-    [Header("MultiTile extra fields")]
-    public MultiTileMoveMarker MultiTileMoveMarker;
     public override Vector2Int Pos
     {
         get
@@ -60,14 +58,11 @@ public class MultiTileUnit : Unit
             multiTileUnit = unit;
         }
 
-        protected MultiTileDangerArea(MultiTileUnit unit, int x, int y, int range, bool includePassThroughMoves) : base(unit, x, y, range, includePassThroughMoves)
-        {
-            multiTileUnit = unit;
-        }
-
         public static MultiTileDangerArea Generate(MultiTileUnit unit, int x, int y, int range, bool includePassThroughMoves)
         {
-            return new MultiTileDangerArea(unit, x, y, range, includePassThroughMoves);
+            MultiTileDangerArea dangerArea = new MultiTileDangerArea(unit);
+            dangerArea.Init(x, y, range, includePassThroughMoves);
+            return dangerArea;
         }
 
         protected override void PostProcessMovement(List<Vector2Int> attackFrom)
@@ -81,7 +76,7 @@ public class MultiTileUnit : Unit
                     {
                         if (i != 0 || j != 0)
                         {
-                            if (this[pos.x + i, pos.y + j].Value > 0 ||
+                            if (this[pos.x + i, pos.y + j].Type == TileDataType.Move ||
                                 !GameController.Current.Map[pos.x + i, pos.y + j].Passable ||
                                 attackFromClone.Contains(new Vector2Int(pos.x + i, pos.y + j)))
                             {

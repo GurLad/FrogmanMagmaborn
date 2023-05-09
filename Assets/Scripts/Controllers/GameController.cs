@@ -925,14 +925,20 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return CreateUnit(name, -1, StaticGlobals.MainPlayerTeam, false);
     }
 
-    public MultiTileUnit ConvertToMultiTile(Unit unit)
+    public MultiTileUnit ConvertToMultiTile(Unit unit, Vector2Int newSize)
     {
-        MultiTileUnit multiTileUnit = Instantiate(BaseUnit.gameObject, currentUnitsObject).AddComponent<MultiTileUnit>();
-        Destroy(multiTileUnit.GetComponent<Unit>());
+        MultiTileUnit multiTileUnit = unit.gameObject.AddComponent<MultiTileUnit>();
+        // Copy stuff from the old Unit componenet to the new one
+        multiTileUnit.Stats = unit.Stats;
+        multiTileUnit.Symbol = unit.Symbol;
+        multiTileUnit.MovementMarker = unit.MovementMarker;
+        multiTileUnit.AttackMarker = unit.AttackMarker;
+        multiTileUnit.MultiTileMoveMarker = unit.MultiTileMoveMarker;
+        // Down with the old, long live the new
+        Destroy(unit);
         InitUnitData(multiTileUnit, unit.Name, unit.Level, unit.TheTeam);
+        multiTileUnit.Size = newSize;
         multiTileUnit.gameObject.SetActive(true);
-        unit.DeathQuote = ""; // Doesn't actually die, after all
-        GameController.Current.KillUnit(unit);
         return multiTileUnit;
     }
 
