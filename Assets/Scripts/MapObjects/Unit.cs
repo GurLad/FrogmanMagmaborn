@@ -306,9 +306,9 @@ public class Unit : MapObject
                     if ((i != 0 && j == 0) || (j != 0 && i == 0))
                     {
                         if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
-                            dangerArea[targetPos.x + i, targetPos.y + j].Value >= dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value &&
-                            (dangerArea[targetPos.x + i, targetPos.y + j].Type != DangerArea.TileDataType.MultiTileMove ||
-                             targetPos + new Vector2Int(i, j) == Pos))
+                            dangerArea[targetPos.x + i, targetPos.y + j].Value > dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value ||
+                            (dangerArea[targetPos.x + i, targetPos.y + j].Value == dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value &&
+                             (targetPos + new Vector2Int(i, j)).TileDist(Pos) < (targetPos + currentBest).TileDist(Pos)))
                         {
                             currentBest = new Vector2Int(i, j);
                         }
@@ -347,9 +347,9 @@ public class Unit : MapObject
             }
             return;
         }
-        for (int i = Pos.x - Weapon.Range; i <= Pos.x + Weapon.Range; i++)
+        for (int i = Pos.x - Weapon.Range; i <= GameController.Current.MapSize.x; i++) // In case of multi-tiles...
         {
-            for (int j = Pos.y - Weapon.Range; j <= Pos.y + Weapon.Range; j++)
+            for (int j = Pos.y - Weapon.Range; j <= GameController.Current.MapSize.y; j++)
             {
                 if (GameController.Current.IsValidPos(i, j) && dangerArea[i, j].Value != 0)
                 {

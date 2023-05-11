@@ -76,7 +76,8 @@ public class MultiTileUnit : Unit
                     {
                         if (i != 0 || j != 0)
                         {
-                            if (this[pos.x + i, pos.y + j].Type == TileDataType.Move ||
+                            if (this[pos.x, pos.y].Type != TileDataType.Move ||
+                                this[pos.x + i, pos.y + j].Type == TileDataType.Move ||
                                 !GameController.Current.Map[pos.x + i, pos.y + j].Passable ||
                                 attackFromClone.Contains(new Vector2Int(pos.x + i, pos.y + j)))
                             {
