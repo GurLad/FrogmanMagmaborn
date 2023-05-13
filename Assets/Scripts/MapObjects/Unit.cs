@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 using AttackFrom = System.Collections.Generic.List<UnityEngine.Vector2Int>;
 
 public class Unit : MapObject
@@ -784,7 +782,7 @@ public class Unit : MapObject
 
     public bool CanAttack(Unit other)
     {
-        return other != null && other.IsEnemy(this) && CanAttackPos(other.Pos);
+        return other != null && other.IsEnemy(this) && CanAttackPos(other.GetClosetPosToUnit(this));
     }
 
     private bool CanAttackPos(Vector2Int pos)
@@ -914,6 +912,11 @@ public class Unit : MapObject
     public virtual bool AtPos(Vector2Int pos)
     {
         return Pos == pos;
+    }
+
+    public virtual Vector2Int GetClosetPosToUnit(Unit unit) // For multi-tiles
+    {
+        return Pos;
     }
 
     public string Save()
@@ -1200,33 +1203,40 @@ public class Unit : MapObject
                     return unit.Pos;
                 }
                 Vector2Int currentBest = new Vector2Int(-1, -1);
-                float currentBestWeight = -1;
+                float currentBestWeight = -Mathf.Infinity;
                 Unit targetUnit = GameController.Current.FindUnitAtPos(target.x, target.y);
                 for (int i = -unit.Weapon.Range; i <= unit.Weapon.Range; i++)
                 {
                     for (int j = -unit.Weapon.Range; j <= unit.Weapon.Range; j++)
                     {
-                        if (Mathf.Abs(i) + Mathf.Abs(j) <= unit.Weapon.Range)
+                        if (Mathf.Abs(i) + Mathf.Abs(j) <= unit.Weapon.Range && Mathf.Abs(i) + Mathf.Abs(j) > 0)
                         {
                             if (!OutOfBounds(target.x + i, target.y + j) &&
-                                this[target.x + i, target.y + j].Type == TileDataType.Move)
+                                (this[target.x + i, target.y + j].Type == TileDataType.Move ||
+                                 this[target.x + i, target.y + j].Type == TileDataType.MultiTileMove))
                             {
-                                if (!unit.CanAttackPos(target.x, target.y, target.x + i, target.y + j))
+                                Vector2Int checking = new Vector2Int(target.x + i, target.y + j);
+                                if (this[target.x + i, target.y + j].Type == TileDataType.MultiTileMove)
+                                {
+                                    checking.x = this[target.x + i, target.y + j].Parent.Pos.x;
+                                    checking.y = this[target.x + i, target.y + j].Parent.Pos.y;
+                                }
+                                if (!unit.CanAttackPos(target.x, target.y, checking.x, checking.y))
                                 {
                                     //Bugger.Info(unit + " can't attack from " + new Vector2Int(target.x + i, target.y + j));
                                     continue;
                                 }
                                 float weight = 50; // Make sure it's positive
-                                weight += GameController.Current.Map[target.x + i, target.y + j].ArmorModifier * 10;
-                                weight += this[target.x + i, target.y + j].Value * distanceWeight;
+                                weight += GameController.Current.Map[checking.x, checking.y].ArmorModifier * 10;
+                                weight += this[checking.x, checking.y].Value * distanceWeight;
                                 if (targetUnit != null && targetUnit.IsEnemy(unit))
                                 {
-                                    weight += targetUnit.CanAttackPos(target.x + i, target.y + j) ? 0 : 100; // Always prioritize attacking where enemy can't counter
+                                    weight += targetUnit.CanAttackPos(checking.x, checking.y) ? 0 : 100; // Always prioritize attacking where enemy can't counter
                                 }
                                 //Bugger.Info("Pos " + new Vector2Int(target.x + i, target.y + j) + " weight: " + weight + ", best pos " + currentBest + " weight: " + currentBestWeight);
                                 if (weight > currentBestWeight)
                                 {
-                                    currentBest = new Vector2Int(target.x + i, target.y + j);
+                                    currentBest = new Vector2Int(checking.x, checking.y);
                                     currentBestWeight = weight;
                                 }
                             }

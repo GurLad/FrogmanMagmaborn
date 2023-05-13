@@ -44,6 +44,11 @@ public class MultiTileUnit : Unit
         return base.AtPos(pos) || (Size != Vector2Int.one && pos.x >= Pos.x && pos.x <= Pos.x + Size.x - 1 && pos.y >= Pos.y && pos.y <= Pos.y + Size.y - 1);
     }
 
+    public override Vector2Int GetClosetPosToUnit(Unit unit)
+    {
+        return new Vector2Int(Mathf.Clamp(unit.Pos.x, Pos.x, Pos.x + Size.x - 1), Mathf.Clamp(unit.Pos.y, Pos.y, Pos.y + Size.y - 1));
+    }
+
     protected override DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
         return MultiTileDangerArea.Generate(this, x, y, range, includePassThroughMoves);
