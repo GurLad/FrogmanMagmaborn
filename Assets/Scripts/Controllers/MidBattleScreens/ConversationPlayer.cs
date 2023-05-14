@@ -111,7 +111,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     else
                     {
-                        count += Time.deltaTime * speed;
+                        count += Time.deltaTime * speed * voice.Speed;
                         if (count >= 1)
                         {
                             if (++currentChar < targetLine.Length)

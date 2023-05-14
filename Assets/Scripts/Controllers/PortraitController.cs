@@ -291,6 +291,8 @@ public class CharacterVoice
     public VoiceType VoiceType;
     [Range(0, 2)]
     public float Pitch = 1;
+    [Range(0, 2)]
+    public float Speed = 1;
 
     public CharacterVoice() { }
 
@@ -298,6 +300,7 @@ public class CharacterVoice
     {
         VoiceType = voice.VoiceType;
         Pitch = voice.Pitch;
+        Speed = voice.Speed;
     }
 
     public CharacterVoice Clone()

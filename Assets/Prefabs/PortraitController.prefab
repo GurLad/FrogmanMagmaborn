@@ -59,6 +59,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 3
       Pitch: 1
+      Speed: 1
     DisplayName: Frogman
   - Name: Firbell
     Background: {fileID: 21300000, guid: 7ac463c2a372528459df82bbe1d328ca, type: 3}
@@ -74,6 +75,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.8
+      Speed: 0.9
     DisplayName: Firbell
   - Name: Xirveros
     Background: {fileID: 21300000, guid: 3e277ead549e3774fb07f19be743bb2f, type: 3}
@@ -89,6 +91,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 0.5
+      Speed: 0.9
     DisplayName: Xirveros
   - Name: Kresla
     Background: {fileID: 21300000, guid: 306371f2925ffd84cacb2e2ed04e920b, type: 3}
@@ -104,6 +107,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 1
       Pitch: 1.25
+      Speed: 2
     DisplayName: Kresla
   - Name: Monster
     Background: {fileID: 21300000, guid: d72f78fd4839c79429728e6e5e3c812e, type: 3}
@@ -119,6 +123,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1
+      Speed: 1
     DisplayName: Monster
   - Name: Torment
     Background: {fileID: 21300000, guid: 4e9520428490e4342916a434f0112ae7, type: 3}
@@ -134,6 +139,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.5
+      Speed: 1.2
     DisplayName: Torment
   - Name: Xeplogi
     Background: {fileID: 21300000, guid: 6add5ec614ff386429af24351fa82f0e, type: 3}
@@ -149,6 +155,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.6
+      Speed: 0.8
     DisplayName: Xeplogi
   - Name: Memerian
     Background: {fileID: 21300000, guid: 39af27ca39c98ad429634cf4ec19c55e, type: 3}
@@ -164,6 +171,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 1
       Pitch: 0.8
+      Speed: 1
     DisplayName: Memerian
   - Name: Alfred
     Background: {fileID: 21300000, guid: a0abfefbdb411df44bdb4b34342eaddb, type: 3}
@@ -179,6 +187,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1.2
+      Speed: 1.2
     DisplayName: Alfred
   - Name: Zip
     Background: {fileID: 21300000, guid: c096b8f433b9e24429a38959c9cfa66a, type: 3}
@@ -194,6 +203,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.5
+      Speed: 1
     DisplayName: Zip
   - Name: FrogmanMan
     Background: {fileID: 21300000, guid: d63f2a31720bf92409303859040e9e05, type: 3}
@@ -209,6 +219,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 3
       Pitch: 1
+      Speed: 1
     DisplayName: Frogman
   - Name: Dehar
     Background: {fileID: 21300000, guid: a093919c3dfd1f74ca4ceff6341f9686, type: 3}
@@ -224,6 +235,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
+      Speed: 1.4
     DisplayName: Dehar
   - Name: Kebera
     Background: {fileID: 21300000, guid: 95648850fae6e9b4f92163086cc83f97, type: 3}
@@ -239,6 +251,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
+      Speed: 1.4
     DisplayName: Kebera
   - Name: FBWitness
     Background: {fileID: 21300000, guid: f5b1da1ff3990b54187b60eab8d0aa39, type: 3}
@@ -254,6 +267,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 0.8
+      Speed: 1
     DisplayName: ???
   - Name: Menross
     Background: {fileID: 21300000, guid: b8d2663e2c97e7c4887ee9daced90c5e, type: 3}
@@ -269,6 +283,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.5
+      Speed: 1
     DisplayName: Menross
   - Name: TormentFB
     Background: {fileID: 21300000, guid: 60fd7abd432beab49a5c38f773209cb1, type: 3}
@@ -284,6 +299,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.5
+      Speed: 1.2
     DisplayName: Torment
   - Name: Fashima_
     Background: {fileID: 21300000, guid: 69ee4bb687dbd6241b8d589cca9c834b, type: 3}
@@ -299,6 +315,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
+      Speed: 1.4
     DisplayName: Fashima
   - Name: Fashima
     Background: {fileID: 21300000, guid: e23beeaf41bdf01438d38c4b6d17c6a6, type: 3}
@@ -314,6 +331,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 1.6
+      Speed: 1.4
     DisplayName: Fashima
   - Name: Brens
     Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
@@ -329,6 +347,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 1
       Pitch: 0.5
+      Speed: 1
     DisplayName: Brens
   - Name: Lan
     Background: {fileID: 21300000, guid: 6f6cce5a5611e2e43b652b9dcb1fe430, type: 3}
@@ -344,6 +363,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 0.8
+      Speed: 1
     DisplayName: Lan
   - Name: Werse
     Background: {fileID: 21300000, guid: ae5fee134583d53439674acb57a8c36f, type: 3}
@@ -359,6 +379,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.9
+      Speed: 1
     DisplayName: Werse
   - Name: Bodder
     Background: {fileID: 21300000, guid: 3027795b03b3b9f469cecb23cff141ac, type: 3}
@@ -374,6 +395,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 3
       Pitch: 0.4
+      Speed: 0.9
     DisplayName: Bodder
   - Name: SuBodderPre
     Background: {fileID: 21300000, guid: c1a75e0a2a24bea4589414a00be2180c, type: 3}
@@ -389,6 +411,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.4
+      Speed: 0.6
     DisplayName: Bodder
   - Name: SuBodderPir
     Background: {fileID: 21300000, guid: b65bcb843a33537468121b3b0753bc95, type: 3}
@@ -404,6 +427,7 @@ MonoBehaviour:
     Voice:
       VoiceType: 2
       Pitch: 0.4
+      Speed: 0.6
     DisplayName: Bodder
   GenericPortraits:
   - tags: young
@@ -574,10 +598,12 @@ MonoBehaviour:
     Voice:
       VoiceType: 0
       Pitch: 1
+      Speed: 1
     DisplayName: 
   ErrorVoice:
     VoiceType: 0
     Pitch: 0
+    Speed: 1
   DebugVoices:
   - {fileID: 8300000, guid: 9ca22729db8aa8c4394223d2afe1b034, type: 3}
   - {fileID: 8300000, guid: eb61a48ce0c4b874ca932b2402ea0349, type: 3}
