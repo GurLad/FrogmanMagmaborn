@@ -18,11 +18,28 @@ public class EndgameMapAnimator : MonoBehaviour
     public Sprite BridgeTransparent;
     public Sprite BridgeTop;
     public Sprite BridgeBottom;
+    [Header("Void")]
+    public string VoidName;
+    public Vector2 VoidSpawnRate;
+    public List<Sprite> VoidSpawns; // Might add the ability for void spawns bigger than 1x1, we'll see
+    public Transform VoidHolder;
+    private List<Vector2Int> voidPoints = new List<Vector2Int>();
+    private float voidCount;
 
     private void Start()
     {
         // TEMP
         Process(GameController.Current.Map, GameController.Current.MapSize);
+    }
+
+    private void Update()
+    {
+        voidCount -= Time.deltaTime;
+        if (voidCount <= 0)
+        {
+            SpawnVoidTile();
+            voidCount = VoidSpawnRate.RandomValueInRange();
+        }
     }
 
     public void Process(Tile[,] map, Vector2Int size)
@@ -52,6 +69,10 @@ public class EndgameMapAnimator : MonoBehaviour
                 if (tiles[i, j].Tile.Name == BridgeName)
                 {
                     GroupBridge(tiles, size, i, j);
+                }
+                if (tiles[i, j].Tile.Name == VoidName)
+                {
+                    voidPoints.Add(new Vector2Int(i, j));
                 }
             }
         }
@@ -125,6 +146,17 @@ public class EndgameMapAnimator : MonoBehaviour
         holder.gameObject.SetActive(true);
     }
 
+    private void SpawnVoidTile()
+    {
+        Vector2Int pos = voidPoints[Random.Range(0, voidPoints.Count)];
+        Sprite spawn = VoidSpawns[Random.Range(0, VoidSpawns.Count)];
+        AdvancedSpriteSheetAnimation newTile = CreateNewPseudoTile(VoidHolder, spawn, pos);
+        DestroyAnimationOnFinish destroyer = newTile.gameObject.AddComponent<DestroyAnimationOnFinish>();
+        newTile.Listeners.Add(destroyer);
+        newTile.FixedSpeed = false;
+        newTile.BaseSpeed *= 2; // fixedBaseSpeed
+    }
+
     private AdvancedSpriteSheetAnimation CreateNewPseudoTile(Transform holder, Sprite targetSprite, Vector2Int pos)
     {
         AdvancedSpriteSheetAnimation newTile = Instantiate(PseudoTile, holder);
@@ -149,6 +181,21 @@ public class EndgameMapAnimator : MonoBehaviour
         public ProcessedTile(Tile tile)
         {
             Tile = tile;
+        }
+    }
+
+    public class DestroyAnimationOnFinish : MonoBehaviour, IAdvancedSpriteSheetAnimationListener
+    {
+        public void ChangedFrame(int id, string name, int newFrame)
+        {
+            Bugger.Info("Nothing");
+            // Do nothing
+        }
+
+        public void FinishedAnimation(int id, string name)
+        {
+            Bugger.Info("DEstroy?");
+            Destroy(gameObject);
         }
     }
 }
