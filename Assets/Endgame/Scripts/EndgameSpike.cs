@@ -30,7 +30,7 @@ public class EndgameSpike : MonoBehaviour
 
     private void Update()
     {
-        transform.position = basePos + new Vector3(0, UpDownDirection * (Mathf.Sin(Time.time * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
-        transform.localEulerAngles = baseRot + new Vector3(0, 360 * rotSpeed * Time.time + rotOffset);
+        transform.position = basePos + new Vector3(0, UpDownDirection * (Mathf.Sin(Time.unscaledTime * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
+        transform.localEulerAngles = baseRot + new Vector3(0, 360 * rotSpeed * Time.unscaledTime + rotOffset);
     }
 }

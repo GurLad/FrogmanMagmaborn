@@ -934,6 +934,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         multiTileUnit.MovementMarker = unit.MovementMarker;
         multiTileUnit.AttackMarker = unit.AttackMarker;
         multiTileUnit.MultiTileMoveMarker = unit.MultiTileMoveMarker;
+        multiTileUnit.AIType = unit.AIType;
+        multiTileUnit.Priorities = unit.Priorities;
         // Down with the old, long live the new
         Destroy(unit);
         InitUnitData(multiTileUnit, unit.Name, unit.Level, unit.TheTeam);

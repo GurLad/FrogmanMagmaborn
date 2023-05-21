@@ -1,0 +1,31 @@
+priority:21
+unique:F
+~ Requirements
+roomNumber:10
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle
+:loadUnits:
+:setSize:Torment:2:2
+Frogman: Whoa.
+:showChoice:Frogman:Trust Fashima:Trust Tormet
+:if:chose:0{
+Frogman: Fashimatime Time!
+:setTeamPlayable:monster:T
+:setTeam:Frogman:monster
+}
+:else:{
+Frogman: Tormenttime Time!
+:setTeamPlayable:guard:T
+:setTeam:Frogman:guard
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

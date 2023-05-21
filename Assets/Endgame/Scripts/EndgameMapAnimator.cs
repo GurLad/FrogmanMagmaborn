@@ -188,13 +188,11 @@ public class EndgameMapAnimator : MonoBehaviour
     {
         public void ChangedFrame(int id, string name, int newFrame)
         {
-            Bugger.Info("Nothing");
             // Do nothing
         }
 
         public void FinishedAnimation(int id, string name)
         {
-            Bugger.Info("DEstroy?");
             Destroy(gameObject);
         }
     }

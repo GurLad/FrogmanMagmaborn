@@ -8,6 +8,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
     public bool Active { get; private set; }
     public bool FixedSpeed;
     public float BaseSpeed;
+    public bool AffectedByGameSpeed = false;
     public bool ActivateOnStart;
     public List<IAdvancedSpriteSheetAnimationListener> Listeners = new List<IAdvancedSpriteSheetAnimationListener>();
     private static float fixedBaseSpeed = 2;
@@ -73,7 +74,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
         {
             if (FixedSpeed)
             {
-                int fixedFrame = (int)(Time.time * fixedBaseSpeed * BaseSpeed) % Animations[currentAnimation].Frames.Count;
+                int fixedFrame = (int)((AffectedByGameSpeed ? Time.time : Time.unscaledTime) * fixedBaseSpeed * BaseSpeed) % Animations[currentAnimation].Frames.Count;
                 if (fixedFrame != currentFrame)
                 {
                     UpdateFrame(fixedFrame);
@@ -105,7 +106,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
         count = 0;
-        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
+        currentFrame = FixedSpeed ? (int)((AffectedByGameSpeed ? Time.time : Time.unscaledTime) * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         SetSprite(Animations[currentAnimation].Frames[currentFrame]);
     }
@@ -130,7 +131,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
         speed = Animations[currentAnimation].Speed > 0 ? Animations[currentAnimation].Speed : BaseSpeed;
         loop = Animations[currentAnimation].Loop;
         count = 0;
-        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
+        currentFrame = FixedSpeed ? (int)((AffectedByGameSpeed ? Time.time : Time.unscaledTime) * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         SetSprite(Animations[currentAnimation].Frames[currentFrame]);
     }
@@ -149,7 +150,7 @@ public abstract class AdvancedSpriteSheetAnimationBase : MonoBehaviour
     public void Restart()
     {
         count = 0;
-        currentFrame = FixedSpeed ? (int)(Time.time * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
+        currentFrame = FixedSpeed ? (int)((AffectedByGameSpeed ? Time.time : Time.unscaledTime) * fixedBaseSpeed) % Animations[currentAnimation].Frames.Count : 0;
         Active = true;
         SetSprite(Animations[currentAnimation].Frames[currentFrame]);
     }

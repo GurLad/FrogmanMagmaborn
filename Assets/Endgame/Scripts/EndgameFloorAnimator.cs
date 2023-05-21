@@ -27,7 +27,7 @@ public class EndgameFloorAnimator : MonoBehaviour
 
     private void Update()
     {
-        Vector2 modifier = GetPosModifier(Time.time * Speed + offest) * Strength;
+        Vector2 modifier = GetPosModifier(Time.unscaledTime * Speed + offest) * Strength;
         transform.position = basePos + new Vector3(modifier.x, modifier.y, 0);
     }
 

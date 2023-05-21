@@ -28,6 +28,7 @@ public static class EventCommandProcessor
         new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
         new CommandStruct("killTeam", CommandType.Level, CAT.Team),
         new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType),
+        new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
         new CommandStruct("lose", CommandType.Level),
         new CommandStruct("win", CommandType.Level),
 
@@ -341,6 +342,11 @@ public static class EventCommandProcessor
                 // Params: Team team, AIType ai
                 Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
                 GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated..."));
+                break;
+            case "setTeamPlayable":
+                // Params: Team team, bool playable
+                Team team2 = args[0].ToTeam() ?? throw Bugger.Error("No team!");
+                GameController.Current.LevelMetadata.TeamDatas[(int)team2].PlayerControlled = args[1] == "T";
                 break;
             case "lose":
                 // Params: none

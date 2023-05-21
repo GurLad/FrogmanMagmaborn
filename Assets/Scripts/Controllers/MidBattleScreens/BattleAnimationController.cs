@@ -239,6 +239,7 @@ public class BattleAnimationController : MidBattleScreen
             // Load animations
             AdvancedSpriteSheetAnimation animation = Instantiate(BaseClassAnimation, transform);
             animation.gameObject.name = ClassAnimations[i].Name;
+            animation.AffectedByGameSpeed = true;
             foreach (BattleBackgroundData animationName in ClassAnimations[i].BattleAnimations)
             {
                 Sprite file = FrogForgeImporter.LoadSpriteFile("Images/ClassBattleAnimations/" + ClassAnimations[i].Name + "/" + animationName.Name + ".png");
