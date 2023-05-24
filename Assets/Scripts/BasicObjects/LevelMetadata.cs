@@ -16,6 +16,7 @@ public class LevelMetadata
         for (int i = 0; i < 3; i++)
         {
             TeamDatas[i] = new TeamData();
+            TeamDatas[i].Team = (Team)i;
             TeamDatas[i].Palette = new Palette();
             TeamDatas[i].Palette[3] = CompletePalette.TransparentColor;
             TeamDatas[i].Name = ((Team)i).ToString();
@@ -45,6 +46,7 @@ public class LevelMetadata
     [System.Serializable]
     public class TeamData
     {
+        public Team Team;
         public Palette Palette;
         public string Name;
         public bool PlayerControlled; // Functionality TBA

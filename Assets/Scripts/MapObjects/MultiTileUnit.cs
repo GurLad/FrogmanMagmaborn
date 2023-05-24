@@ -31,6 +31,7 @@ public class MultiTileUnit : Unit
 
     protected override void GenerateMultiTileMoveMarker(int i, int j, DangerArea dangerArea)
     {
+        MovementMarker.PalettedSprite.Palette = (int)TheTeam;
         MultiTileMoveMarker movementMarker = Instantiate(MultiTileMoveMarker.gameObject).GetComponent<MultiTileMoveMarker>();
         movementMarker.Pos = new Vector2Int(i, j);
         movementMarker.TargetPos = dangerArea[i, j].Parent?.Pos ?? throw Bugger.FMError("Multi-tile move marker without a parent?");

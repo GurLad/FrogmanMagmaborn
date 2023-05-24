@@ -1201,9 +1201,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         AssignGenericPortraitsToUnits();
         // Begin the level properly
-        Interactable = GameCalculations.FirstTurnTeam.PlayerControlled();
-        TurnAnimation.ShowTurn(GameCalculations.FirstTurnTeam);
-        Cursor.Palette = (int)GameCalculations.FirstTurnTeam;
+        CurrentPhase = units.Find(a => a.TheTeam == GameCalculations.FirstTurnTeam) != null ? GameCalculations.FirstTurnTeam :
+            ((CurrentPhase = (Team)(new List<LevelMetadata.TeamData>(LevelMetadata.TeamDatas).FindIndex(a =>
+                a.PlayerControlled && units.Find(b => b.TheTeam == a.Team)))) >= 0 ? CurrentPhase : GameCalculations.FirstTurnTeam);
+        Interactable = CurrentPhase.PlayerControlled();
+        TurnAnimation.ShowTurn(CurrentPhase);
+        Cursor.Palette = (int)CurrentPhase;
         // Stats - increase the maps count of player units
         units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
     }
