@@ -77,7 +77,7 @@ public class MiniBattleStatsPanel : MonoBehaviour
         }
         // Find many bools
         bool displayAttack = reverse || (origin != target && target != null && target.IsEnemy(origin));
-        bool canAttack = target != null && (!reverse || GameController.Current.InteractState == InteractState.Move || origin.CanAttack(target) || !GameController.Current.MarkerAtPos<AttackMarker>(origin.Pos));
+        bool canAttack = target != null && origin.Weapon.Range > 0 && (!reverse || GameController.Current.InteractState == InteractState.Move || origin.CanAttack(target) || !GameController.Current.MarkerAtPos<AttackMarker>(origin.Pos));
         bool moveToCenter = !reverse && (target == null || (!target.IsEnemy(origin) && target != origin));
         // Show Info
         Panel.gameObject.SetActive(true);

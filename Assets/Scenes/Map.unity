@@ -31289,6 +31289,8 @@ MonoBehaviour:
   VoidSpawns:
   - {fileID: 21300000, guid: e0a4dfe50f3b94c419c404f5bb95f626, type: 3}
   - {fileID: 21300000, guid: 07bfd774219471045884ecb4f4497d06, type: 3}
+  - {fileID: 21300000, guid: d9855344ad8074848aa695abaeceeb29, type: 3}
+  - {fileID: 21300000, guid: e2f7bed2b2739fb46b6cfb426f9697ff, type: 3}
   VoidHolder: {fileID: 579046893}
 --- !u!1 &888886913
 GameObject:
@@ -57668,8 +57670,87 @@ MonoBehaviour:
     ObjectiveData: 6
     Tags: 
     MapString: 16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;6|12|10|16|16|16|16|12|4|16|16|16|16|6|12;6|2|3|9|8|10|6|6|6|10|2|3|9|8|12;16|16|16|16|2|3|8|4|2|3|8|4|16|16|16;16|2|3|9|8|4|12|10|12|4|6|3|9|8|10;16|12|4|16|16|16|12|10|12|10|16|16|16|12|10;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|16|16|16|16|6|6|6|6|12|4|16|16|16|16;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|12|4|16|16|16|12|4|12|10|16|16|16|12|10;16|2|3|9|8|10|12|10|12|10|2|3|9|8|10;16|16|16|16|2|3|8|10|2|3|8|4|16|16|16;6|2|3|9|8|4|6|6|6|4|2|3|9|8|12;6|12|4|16|16|16|16|12|4|16|16|16|16|6|12;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16
-  - Name: Level10-Battle
+  - Name: Level10-Battle-2
     LevelNumber: 10
+    Units:
+    - Pos: {x: 7, y: 3}
+      Team: 2
+      Level: 16
+      Class: Torment
+      AIType: 2
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 8}
+      Team: 2
+      Level: 10
+      Class: Kresla
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 13, y: 4}
+      Team: 2
+      Level: 10
+      Class: Memerian
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 11, y: 1}
+      Team: 2
+      Level: 10
+      Class: Alfred
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 9, y: 5}
+      Team: 2
+      Level: 10
+      Class: Werse
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 8}
+      Team: 1
+      Level: 10
+      Class: Firbell
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 2, y: 4}
+      Team: 1
+      Level: 10
+      Class: Xirveros
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 4, y: 1}
+      Team: 1
+      Level: 10
+      Class: Xeplogi
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 5}
+      Team: 1
+      Level: 10
+      Class: Fashima
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 7, y: 9}
+      Team: 0
+      Level: 10
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    MapEvents: []
+    Tileset: Torment2
+    Objective: 0
+    ObjectiveData: Rout
+    Tags: 
+    MapString: 18|18|18|18|18|18|18|9|10|11|18|18|18|18|18;18|18|18|0|6|12|18|18|16|18|18|0|12|18|18;18|18|18|1|7|13|18|18|16|18|18|1|13|18|18;0|12|15|2|8|14|15|0|6|12|15|2|14|18|18;2|14|18|18|16|18|18|1|7|13|18|18|17|18|18;16|18|18|18|16|18|18|2|8|14|18|18|0|12|18;16|18|0|6|6|12|18|18|16|18|18|18|2|14|18;3|18|1|7|7|13|15|15|0|6|12|18|18|17|18;5|18|1|7|7|13|15|15|2|8|14|18|18|16|18;17|18|2|8|8|14|18|18|17|18|18|18|0|12|18;17|18|18|18|17|18|18|0|6|12|18|18|2|14|18;0|12|18|18|17|18|18|1|7|13|18|18|16|18|18;2|14|15|0|6|12|15|2|8|14|15|0|12|18|18;18|18|18|1|7|13|18|18|17|18|18|1|13|18|18;18|18|18|2|8|14|18|18|17|18|18|2|14|18|18;18|18|18|18|18|18|18|9|10|11|18|18|18|18|18
+  - Name: Level10-Battle
+    LevelNumber: 0
     Units:
     - Pos: {x: 7, y: 0}
       Team: 2
