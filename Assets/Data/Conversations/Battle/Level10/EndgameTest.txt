@@ -14,12 +14,15 @@ Frogman: Whoa.
 Frogman: Fashimatime Time!
 :setTeamPlayable:monster:T
 :setTeam:Frogman:monster
+:setTempFlag:EndgameFrogmanFashima
 }
 :else:{
 Frogman: Tormenttime Time!
 :setTeamPlayable:guard:T
 :setTeam:Frogman:guard
+:setTempFlag:EndgameFrogmanTorment
 }
+:callOther:EndgameSetDeathQuotes
 
 ~ After battle
 :play:AfterBattle
@@ -27,5 +30,29 @@ Frogman: Tormenttime Time!
 
 # === Functions ====
 
-~ Sample
-# Name: Text.
+~ FrogmanDead
+:callOther:EndgameFrogmanDead
+
+~ FashimaDead
+:callOther:EndgameFashimaDead
+
+~ FirbellDead
+:callOther:EndgameFirbellDead
+
+~ XirverosDead
+:callOther:EndgameXirverosDead
+
+~ XeplogiDead
+:callOther:EndgameXeplogiDead
+
+~ KreslaDead
+:callOther:EndgameKreslaDead
+
+~ MemerianDead
+:callOther:EndgameMemerianDead
+
+~ AlfredDead
+:callOther:EndgameAlfredDead
+
+~ WerseDead
+:callOther:EndgameWerseDead

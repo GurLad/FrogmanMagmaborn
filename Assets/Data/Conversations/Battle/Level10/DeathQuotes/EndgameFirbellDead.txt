@@ -1,0 +1,30 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+:if:hasCharacter:Xirveros{
+Firbell: Xirveros... finish this... for Irenhold...!
+:return:
+}
+:if:hasCharacter:Frogman{
+Firbell: Frogman... you must... stop that... Torment...
+:return:
+}
+Firbell: I... failed... Forgive me... mother...
+}
+:else:{
+Firbell: Rot in hell, Frogman...!
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

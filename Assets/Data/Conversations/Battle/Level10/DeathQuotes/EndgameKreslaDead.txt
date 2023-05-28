@@ -1,0 +1,22 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+Kresla: Woah, hey now, no need to get aggressive.\a T-This isn't a game anymore, yeah?\a I-I need to survive this.\a F-For future generations and all that.\a S-See you after the battle, everyone!
+}
+:else:{
+Kresla: Woah, hey now, no need to get aggressive.\a T-This isn't a game anymore, yeah?\a I-I need to survive this.\a F-For future generations and all that.\a S-See you after the battle, everyone!
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

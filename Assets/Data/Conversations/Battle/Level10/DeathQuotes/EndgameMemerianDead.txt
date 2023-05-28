@@ -1,0 +1,22 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+Memerian: ...Traitors always win, huh?\a Fine. I'll leave.\a You aren't worth my life, Torment.\a But you better win this.
+}
+:else:{
+Memerian: ...Psh. Fine. I'll leave.\a You aren't worth my life, Torment.\a But you better win this.
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

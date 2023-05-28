@@ -1,0 +1,23 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+Xeplogi: T-This cannot be! Pre-preposterous! For me, to fall in the final fight...? No, I must go... on...
+}
+:else:{
+Xeplogi: T-This cannot be! Pre-preposterous!\a For me, to fall in the final fight...?\a No, I must go... on...\a Frogman... must be stopped...
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.
+

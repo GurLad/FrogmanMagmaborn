@@ -1,0 +1,22 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+Xirveros: Torment... You shall never win. One day... Someone will... destroy you...
+}
+:else:{
+Xirveros: Frogman... Why did you betray us so...?
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

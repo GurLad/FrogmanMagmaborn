@@ -1,0 +1,22 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:if:hasTempFlag:EndgameFrogmanFashima{
+Alfred: No! NO! Traitors will NOT defeat me again! NO!!!
+}
+:else:{
+Alfred: No... Fashima! I must... have my... revenge...!
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

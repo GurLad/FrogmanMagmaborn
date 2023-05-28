@@ -1,0 +1,25 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:setDeathQuote:Frogman:FrogmanDead
+:setDeathQuote:Fashima:FashimaDead
+:setDeathQuote:Firbell:FirbellDead
+:setDeathQuote:Xirveros:XirverosDead
+:setDeathQuote:Xeplogi:XeplogiDead
+:setDeathQuote:Kresla:KreslaDead
+:setDeathQuote:Memerian:MemerianDead
+:setDeathQuote:Alfred:AlfredDead
+:setDeathQuote:Werse:WerseDead
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.
