@@ -7,7 +7,7 @@ using PlayMode = ConversationPlayer.PlayMode;
 
 public static class EventCommandProcessor
 {
-    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType } // Assume there aren't more than 10 types
+    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, Stat, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType, OpStat } // Assume there aren't more than 10 types
     public enum CommandType { Level, Conversation, MidBattleScreen, Global, Syntax, Tutorial, Menu }
 
     private static List<CommandStruct> AllCommands { get; } = new List<CommandStruct>(new CommandStruct[]
@@ -20,12 +20,15 @@ public static class EventCommandProcessor
         new CommandStruct("setTeam", CommandType.Level, CAT.String, CAT.Team),
         new CommandStruct("setBattleQuote", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("setDeathQuote", CommandType.Level, CAT.String, CAT.String),
-        new CommandStruct("setSize", CommandType.Level, CAT.String, CAT.Int, CAT.Int),
+        new CommandStruct("setSize", CommandType.Level, CAT.String, CAT.Int, CAT.Int, CAT.OpBool),
+        new CommandStruct("moveUnit", CommandType.Level, CAT.String, CAT.Int, CAT.Int, CAT.OpBool),
         new CommandStruct("addSkill", CommandType.Level, CAT.String, CAT.String),
-        new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("addStat", CommandType.Level, CAT.String, CAT.Stat, CAT.Int),
+        new CommandStruct("setStat", CommandType.Level, CAT.String, CAT.Stat, CAT.Int),
         new CommandStruct("killUnit", CommandType.Level, CAT.String, CAT.OpBool),
         new CommandStruct("hideUnit", CommandType.Level, CAT.String),
         new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
+        new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("killTeam", CommandType.Level, CAT.Team),
         new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType),
         new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
@@ -241,6 +244,27 @@ public static class EventCommandProcessor
                     throw Bugger.Error("No matching unit! (" + args[0] + ")");
                 }
                 break;
+            case "moveUnit":
+                // Params: string unitName, int x, int y, bool animate = false (animated movement is currently not supported)
+                // Moves the unit to (x, y).
+                List<Unit> targets9 = GameController.Current.GetNamedUnits(args[0]);
+                Vector2Int pos = new Vector2Int(int.Parse(args[1]), int.Parse(args[2]));
+                if (pos.x < 0 || pos.y < 0 || pos.x >= GameController.Current.MapSize.x || pos.y >= GameController.Current.MapSize.y)
+                {
+                    throw Bugger.Error("Invalid pos! (" + pos + ")");
+                }
+                if (targets9.Count > 0)
+                {
+                    foreach (Unit target in targets9)
+                    {
+                        target.MoveTo(pos, true);//, args.Length < 4 || args[3] != "T");
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
             case "addSkill":
                 // Params: string unitName, string skillName
                 // Adds a skill to a unit.
@@ -250,6 +274,38 @@ public static class EventCommandProcessor
                     foreach (Unit target in targets3)
                     {
                         target.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
+            case "addStat":
+                // Params: string unitName, Stat stat, int value
+                // Adds the given value to the given stat.
+                List<Unit> targets10 = GameController.Current.GetNamedUnits(args[0]);
+                if (targets10.Count > 0)
+                {
+                    foreach (Unit target in targets10)
+                    {
+                        target.Stats[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] += int.Parse(args[2]);
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
+            case "setStat":
+                // Params: string unitName, Stat stat, int value
+                // Adds the given value to the given stat.
+                List<Unit> targets11 = GameController.Current.GetNamedUnits(args[0]);
+                if (targets11.Count > 0)
+                {
+                    foreach (Unit target in targets11)
+                    {
+                        target.Stats[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] = int.Parse(args[2]);
                     }
                 }
                 else
@@ -820,10 +876,42 @@ public static class EventCommandProcessor
             int lastIndex = line.IndexOf(']');
             if (lastIndex < 0 || lastIndex <= index)
             {
-                throw Bugger.Error("Bad [Name:] syntax: " + line);
+                throw Bugger.Error("Bad [Name:] syntax: " + line + ", expected [Name:INSERT_NAME_HERE].");
             }
             string target = line.Substring(index + 6, lastIndex - index - 6);
             line = line.Replace("[Name:" + target + "]", PortraitController.Current.FindPortrait(target).TheDisplayName);
+            //Bugger.Info("Replace with " + PortraitController.Current.FindPortrait(target).TheDisplayName);
+            //Bugger.Info(line);
+        }
+        while ((index = line.IndexOf("[Random:")) >= 0) // Random numbers
+        {
+            //Bugger.Info(line);
+            int lastIndex = line.IndexOf(']');
+            if (lastIndex < 0 || lastIndex <= index)
+            {
+                throw Bugger.Error("Bad [Random:] syntax: " + line + ", expected [Random:MIN:MAX].");
+            }
+            string target = line.Substring(index + 8, lastIndex - index - 8);
+            string[] targets = target.Split(':');
+            int[] range = new int[2];
+            if (targets.Length != 2 || !int.TryParse(targets[0], out range[0]) || !int.TryParse(targets[1], out range[1]) || range[1] < range[0])
+            {
+                throw Bugger.Error("Bad [Random:] syntax: " + line + ", expected [Random:MIN:MAX].");
+            }
+            line = line.Replace("[Random:" + target + "]", Random.Range(range[0], range[1] + 1).ToString());
+            //Bugger.Info("Replace with " + PortraitController.Current.FindPortrait(target).TheDisplayName);
+            //Bugger.Info(line);
+        }
+        while ((index = line.IndexOf("[Counter:")) >= 0) // Counter values
+        {
+            //Bugger.Info(line);
+            int lastIndex = line.IndexOf(']');
+            if (lastIndex < 0 || lastIndex <= index)
+            {
+                throw Bugger.Error("Bad [Counter:] syntax: " + line + ", expected [Counter:COUNTER_NAME].");
+            }
+            string target = line.Substring(index + 9, lastIndex - index - 9);
+            line = line.Replace("[Counter:" + target + "]", SavedData.Load("ConversationData", "Counter" + target));
             //Bugger.Info("Replace with " + PortraitController.Current.FindPortrait(target).TheDisplayName);
             //Bugger.Info(line);
         }
@@ -897,6 +985,8 @@ public static class EventCommandProcessor
                     return true; // Non-existant team is all teams
                 case CAT.AIType:
                     return part.ToAIType() != null;
+                case CAT.Stat:
+                    return part.ToStat() != null;
                 default:
                     throw Bugger.Error("There's no command of type " + command + "!");
             }

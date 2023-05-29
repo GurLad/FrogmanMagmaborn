@@ -69,6 +69,20 @@ public static class StaticGlobals
         };
     }
 
+    public static int? ToStat(this string statName)
+    {
+        return statName.ToLower() switch
+        {
+            "str" => 0,
+            "end" => 1,
+            "pir" => 2,
+            "arm" => 3,
+            "pre" => 4,
+            "eva" => 5,
+            _ => int.TryParse(statName, out int temp) ? (int?)temp : null
+        };
+    }
+
     public static string ToColoredString(this string str, int paletteID)
     {
         return "<color=#" + paletteID + "00000>" + str + "</color>";

@@ -8,8 +8,10 @@ roomNumber:10
 :play:BeforeBattle
 :loadUnits:
 :setSize:Torment:2:2
+:moveUnit:Frogman:[Random:7:8]:9
+:setStat:Fashima:Eva:63
 Frogman: Whoa.
-:showChoice:Frogman:Trust Fashima:Trust Tormet
+:showChoice:Frogman:Trust Fashima:Trust Torment
 :if:chose:0{
 Frogman: Fashimatime Time!
 :setTeamPlayable:monster:T
