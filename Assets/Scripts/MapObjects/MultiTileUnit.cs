@@ -29,9 +29,15 @@ public class MultiTileUnit : Unit
         }
     }
 
+    public override void Init(bool callStart = false)
+    {
+        base.Init(callStart);
+        MultiTileMoveMarker.Init();
+    }
+
     protected override void GenerateMultiTileMoveMarker(int i, int j, DangerArea dangerArea)
     {
-        MovementMarker.PalettedSprite.Palette = (int)TheTeam;
+        MultiTileMoveMarker.PalettedSprite.Palette = (int)TheTeam;
         MultiTileMoveMarker movementMarker = Instantiate(MultiTileMoveMarker.gameObject).GetComponent<MultiTileMoveMarker>();
         movementMarker.Pos = new Vector2Int(i, j);
         movementMarker.TargetPos = dangerArea[i, j].Parent?.Pos ?? throw Bugger.FMError("Multi-tile move marker without a parent?");
@@ -43,6 +49,21 @@ public class MultiTileUnit : Unit
     public override bool AtPos(Vector2Int pos)
     {
         return base.AtPos(pos) || (Size != Vector2Int.one && pos.x >= Pos.x && pos.x <= Pos.x + Size.x - 1 && pos.y >= Pos.y && pos.y <= Pos.y + Size.y - 1);
+    }
+
+    protected override Vector2Int InDangerArea(DangerArea dangerArea)
+    {
+        for (int x = 0; x < Size.x; x++)
+        {
+            for (int y = 0; y < Size.y; y++)
+            {
+                if (dangerArea[Pos.x + x, Pos.y + y].Value != 0)
+                {
+                    return Pos + new Vector2Int(x, y);
+                }
+            }
+        }
+        return -Vector2Int.one;
     }
 
     public override Vector2Int GetClosetPosToUnit(Unit unit)

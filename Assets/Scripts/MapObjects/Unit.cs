@@ -93,7 +93,7 @@ public class Unit : MapObject
         Priorities = new AIPriorities(this);
     }
 
-    public void Init(bool callStart = false)
+    public virtual void Init(bool callStart = false)
     {
         palette = GetComponent<PalettedSprite>();
         //if (palette == null)
@@ -304,9 +304,9 @@ public class Unit : MapObject
                     if ((i != 0 && j == 0) || (j != 0 && i == 0))
                     {
                         if (GameController.Current.IsValidPos(targetPos.x + i, targetPos.y + j) &&
-                            dangerArea[targetPos.x + i, targetPos.y + j].Value > dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value ||
-                            (dangerArea[targetPos.x + i, targetPos.y + j].Value == dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value &&
-                             (targetPos + new Vector2Int(i, j)).TileDist(Pos) < (targetPos + currentBest).TileDist(Pos)))
+                            (dangerArea[targetPos.x + i, targetPos.y + j].Value > dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value ||
+                             (dangerArea[targetPos.x + i, targetPos.y + j].Value == dangerArea[targetPos.x + currentBest.x, targetPos.y + currentBest.y].Value &&
+                              (targetPos + new Vector2Int(i, j)).TileDist(Pos) < (targetPos + currentBest).TileDist(Pos))))
                         {
                             currentBest = new Vector2Int(i, j);
                         }
@@ -536,6 +536,11 @@ public class Unit : MapObject
         return count;
     }
 
+    protected virtual Vector2Int InDangerArea(DangerArea dangerArea)
+    {
+        return dangerArea[Pos.x, Pos.y].Value != 0 ? Pos : -Vector2Int.one;
+    }
+
     public void AI(List<Unit> units)
     {
         List<Unit> enemyUnits = units.Where(a => a.IsEnemy(this) && Priorities.ShouldAttack(a) && a.InsideMap).ToList(); // Pretty much all AIs need enemy units.
@@ -616,9 +621,10 @@ public class Unit : MapObject
         foreach (Unit unit in enemyUnits)
         {
             //Bugger.Info(this + " is trying " + unit + ", which has AI value " + HoldAITargetValue(unit));
-            if (dangerArea[unit.Pos.x, unit.Pos.y].Value != 0)
+            Vector2Int pos = unit.InDangerArea(dangerArea);
+            if (pos != -Vector2Int.one)
             {
-                Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(unit.Pos, -1);
+                Vector2Int currentBest = dangerArea.GetBestPosToAttackTargetFrom(pos, -1);
                 //Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                 MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                 MoveTo(currentBest);
