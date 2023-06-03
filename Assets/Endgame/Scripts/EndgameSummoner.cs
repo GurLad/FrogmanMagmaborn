@@ -15,7 +15,7 @@ public class EndgameSummoner : AGameControllerListener
     private Unit torment;
     private float chaosModifier = 0;
     private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.MaxHP - torment.Health) / torment.Stats.MaxHP;
-    private List<SummonCircle> circles;
+    private List<SummonCircle> circles = new List<SummonCircle>();
 
     public void Process(Tile[,] tiles, Vector2Int size)
     {
@@ -64,7 +64,7 @@ public class EndgameSummoner : AGameControllerListener
         }
         // Begin new summons
         chaosModifier += chaosModifierIncrease;
-        for (int i = 0; i < chaosModifier; i++)
+        for (int i = 0; i < Mathf.FloorToInt(chaosModifier); i++)
         {
             List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning);
             if (availableCircles.Count > 0)
@@ -80,6 +80,7 @@ public class EndgameSummoner : AGameControllerListener
             }
             chaosModifier--;
         }
+        Bugger.Info("Chaos is now " + chaosModifier);
     }
 
     public override void OnEndLevel(List<Unit> units, bool playerWon)
@@ -123,8 +124,7 @@ public class EndgameSummoner : AGameControllerListener
             case SummonNoUnitModes.CreateMagmaborn: // TBA
             case SummonNoUnitModes.CreateChaosEnemy:
                 List<ClassData> classes = GameController.Current.UnitClassData.ClassDatas.FindAll(a => a.Name != "Torment");
-                Unit summoned = GameController.Current.CreateUnit(classes[Random.Range(0, classes.Count)].Name, GameController.Current.LevelNumber, Team.Guard, false);
-                summoned.TheTeam = Team.Player;
+                Unit summoned = GameController.Current.CreateUnit(classes[Random.Range(0, classes.Count)].Name, GameController.Current.LevelNumber, Team.Player, false);
                 summoned.Pos = circle.Pos;
                 summoned.Moved = true;
                 break;
