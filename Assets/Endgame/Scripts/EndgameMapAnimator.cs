@@ -7,7 +7,7 @@ public class EndgameMapAnimator : MonoBehaviour
     [Header("Base")]
     public AdvancedSpriteSheetAnimation PseudoTile;
     [Header("Floor")]
-    public string FloorName;
+    public List<string> FloorNames;
     public EndgameFloorAnimator FloorBaseHolder;
     public Sprite FloorBottomL;
     public Sprite FloorBottomM;
@@ -62,7 +62,7 @@ public class EndgameMapAnimator : MonoBehaviour
                 {
                     continue;
                 }
-                if (tiles[i, j].Tile.Name == FloorName)
+                if (FloorNames.Contains(tiles[i, j].Tile.Name))
                 {
                     GroupFloor(tiles, size, i, j);
                 }
@@ -86,14 +86,14 @@ public class EndgameMapAnimator : MonoBehaviour
         int width = size.x;
         for (int i = x; i < size.x; i++)
         {
-            if (tiles[i, y].Tile.Name != FloorName)
+            if (!FloorNames.Contains(tiles[i, y].Tile.Name))
             {
                 width = i;
                 break;
             }
             for (int j = y; j < height; j++)
             {
-                if (tiles[i, j].Tile.Name != FloorName)
+                if (!FloorNames.Contains(tiles[i, j].Tile.Name))
                 {
                     height = j;
                     continue;
