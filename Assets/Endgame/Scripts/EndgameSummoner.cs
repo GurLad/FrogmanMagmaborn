@@ -31,7 +31,7 @@ public class EndgameSummoner : AGameControllerListener
             {
                 if (tiles[i, j].Name == ChaosCircleName)
                 {
-                    circles.Add(new SummonCircle(new Vector2Int(i, j), false, tiles[i, j].GetComponent<AdvancedSpriteSheetAnimation>()));
+                    circles.Add(new SummonCircle(new Vector2Int(i, j), tiles[i, j].GetComponent<AdvancedSpriteSheetAnimation>()));
                 }
             }
         }
@@ -49,6 +49,8 @@ public class EndgameSummoner : AGameControllerListener
         {
             if (!circle.Summoning)
             {
+                circle.Tile.Animations[0].SpriteSheet = CircleSpriteOff;
+                circle.Tile.Animations[0].Split();
                 continue;
             }
             Unit onCircle = GameController.Current.FindUnitAtPos(circle.Pos);
@@ -60,6 +62,8 @@ public class EndgameSummoner : AGameControllerListener
             {
                 SummonActionNoUnit(circle);
             }
+            circle.Tile.Animations[0].SpriteSheet = CircleSpriteOff;
+            circle.Tile.Animations[0].Split();
             circle.Summoning = false;
         }
         // Begin new summons
@@ -70,6 +74,7 @@ public class EndgameSummoner : AGameControllerListener
             if (availableCircles.Count > 0)
             {
                 SummonCircle selected = availableCircles[Random.Range(0, availableCircles.Count)];
+                //Bugger.Info("Available: " + string.Join(", ", availableCircles.ConvertAll(a => a.Pos)) + ", chose: " + selected.Pos);
                 selected.Tile.Animations[0].SpriteSheet = CircleSpriteOn;
                 selected.Tile.Animations[0].Split();
                 selected.Summoning = true;
@@ -138,13 +143,12 @@ public class EndgameSummoner : AGameControllerListener
     private class SummonCircle
     {
         public Vector2Int Pos;
-        public bool Summoning;
+        public bool Summoning = false;
         public AdvancedSpriteSheetAnimation Tile;
 
-        public SummonCircle(Vector2Int pos, bool summoning, AdvancedSpriteSheetAnimation tile)
+        public SummonCircle(Vector2Int pos, AdvancedSpriteSheetAnimation tile)
         {
             Pos = pos;
-            Summoning = summoning;
             Tile = tile;
         }
     }
