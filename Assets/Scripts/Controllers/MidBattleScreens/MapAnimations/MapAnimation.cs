@@ -6,14 +6,19 @@ public abstract class MapAnimation : MidBattleScreen
 {
     [HideInInspector]
     public System.Action OnFinishAnimation;
+    public bool Done = false; // Since after destorying, there's one critical frame where this isn't null
     protected float count;
     protected bool init = false;
+    private bool active = false;
 
     private void Update()
     {
-        Time.timeScale = GameCalculations.GameSpeed(); // Double speed
-        count += Time.deltaTime;
-        Animate();
+        if (active)
+        {
+            Time.timeScale = GameCalculations.GameSpeed(); // Double speed
+            count += Time.deltaTime;
+            Animate();
+        }
     }
 
     public virtual void StartAnimation()
@@ -23,12 +28,14 @@ public abstract class MapAnimation : MidBattleScreen
             throw Bugger.FMError("Map Animation: Missing init!");
         }
         MidBattleScreen.Set(this, true);
+        active = true;
     }
 
     protected abstract void Animate();
 
     protected void EndAnimation()
     {
+        Done = true;
         Time.timeScale = 1; // Remove double speed
         // Support for chaining animations & actions.
         count = 0;
@@ -41,6 +48,7 @@ public abstract class MapAnimation : MidBattleScreen
             tempAction?.Invoke();
         }
         Destroy(this);
+        MapAnimationsController.Current.TryPlayNextAnimation();
     }
 
     protected void FlipX(Vector2Int direction, SpriteRenderer unitRenderer)

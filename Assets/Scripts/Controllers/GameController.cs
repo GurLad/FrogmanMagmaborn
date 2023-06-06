@@ -716,7 +716,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         else // Map animations
         {
             RemoveMarkers();
-            MapAnimationsController.Current.AnimateBattle(attacker, defender, attackerRandomResult, defenderRandomResult);
             MapAnimationsController.Current.OnFinishAnimation = () =>
             {
                 if (source != null)
@@ -728,6 +727,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     FinishMoveDead();
                 }
             };
+            MapAnimationsController.Current.AnimateBattle(attacker, defender, attackerRandomResult, defenderRandomResult);
         }
     }
 

@@ -61,7 +61,7 @@ public class MABattle : MapAnimation
         defenderPanel = InitPanel(GameController.Current.GameUIController.UIDefenderPanel, defender, attacker, true);
         FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
         FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
-        return true;
+        return init = true;
     }
 
     protected override void Animate()

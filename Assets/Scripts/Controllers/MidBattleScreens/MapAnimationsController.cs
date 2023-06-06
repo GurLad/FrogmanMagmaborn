@@ -29,6 +29,23 @@ public class MapAnimationsController : MidBattleScreen
     public AudioClip NoDamageSFX;
     [HideInInspector]
     public System.Action OnFinishAnimation;
+    private Queue<MapAnimation> animations = new Queue<MapAnimation>();
+    private MapAnimation currentAnimation;
+
+    private void Awake()
+    {
+        Current = this;
+    }
+
+    public bool TryPlayNextAnimation()
+    {
+        if (animations.Count > 0 && (currentAnimation == null || currentAnimation.Done))
+        {
+            (currentAnimation = animations.Dequeue()).StartAnimation();
+            return true;
+        }
+        return false;
+    }
 
     public void AnimateMovement(Unit unit, Vector2Int targetPos)
     {
@@ -58,9 +75,9 @@ public class MapAnimationsController : MidBattleScreen
         CreateAnimation<MADelay>((anim) => anim.Init(OnFinishAnimation, DelayTime));
     }
 
-    public void AnimateTeleport(Unit unit)
+    public void AnimateTeleport(Unit unit, Vector2Int targetPos, bool move)
     {
-        CreateAnimation<MATeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX, unit));
+        CreateAnimation<MATeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX, unit, targetPos, move));
     }
 
     private bool CreateAnimation<T>(System.Func<T, bool> initFunc) where T : MapAnimation
@@ -68,8 +85,8 @@ public class MapAnimationsController : MidBattleScreen
         T newAnim = gameObject.AddComponent<T>();
         if (initFunc(newAnim))
         {
-            newAnim.StartAnimation();
-            return true;
+            animations.Enqueue(newAnim);
+            return TryPlayNextAnimation();
         }
         return false;
     }

@@ -107,11 +107,11 @@ public class EndgameSummoner : AGameControllerListener
             case SummonOnUnitModes.Teleport:
                 SummonCircle other = circles[Random.Range(0, circles.Count)];
                 Unit onOtherCircle = GameController.Current.FindUnitAtPos(other.Pos);
-                if (onOtherCircle != null)
+                if (onOtherCircle != null) // TBA: Fix animation
                 {
                     onOtherCircle.Pos = target.Pos;
                 }
-                target.Pos = other.Pos;
+                MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
                 other.Summoning = false;
                 break;
             case SummonOnUnitModes.EndMarker:
@@ -130,8 +130,8 @@ public class EndgameSummoner : AGameControllerListener
             case SummonNoUnitModes.CreateChaosEnemy:
                 List<ClassData> classes = GameController.Current.UnitClassData.ClassDatas.FindAll(a => a.Name != "Torment");
                 Unit summoned = GameController.Current.CreateUnit(classes[Random.Range(0, classes.Count)].Name, GameController.Current.LevelNumber, Team.Player, false);
-                summoned.Pos = circle.Pos;
                 summoned.Moved = true;
+                MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, true);
                 break;
             case SummonNoUnitModes.EndMarker:
                 break;

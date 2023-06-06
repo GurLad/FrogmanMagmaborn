@@ -40,7 +40,7 @@ public class MAPushPull : MapAnimation
         pushPullState = PushPullAnimationState.Approach;
         pushPullPosModifier = (attacker.Pos - defender.Pos) * (push ? -1 : 1);
         FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
-        return true;
+        return init = true;
     }
 
     protected override void Animate()

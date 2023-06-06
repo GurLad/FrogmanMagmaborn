@@ -11,7 +11,7 @@ public class MADelay : MapAnimation
         // Constructor
         OnFinishAnimation = onFinishAnimation;
         DelayTime = delayTime;
-        return true;
+        return init = true;
     }
 
     protected override void Animate()

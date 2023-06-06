@@ -506,16 +506,16 @@ public class Unit : MapObject
     {
         GameController.Current.AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType.Push, Pos, unit.Pos, "");
         GameController.Current.RemoveMarkers();
-        MapAnimationsController.Current.AnimatePushPull(this, unit, true);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+        MapAnimationsController.Current.AnimatePushPull(this, unit, true);
     }
 
     public void Pull(Unit unit)
     {
         GameController.Current.AutoSaveSaveAction(SuspendDataGameController.CurrentAction.ActionType.Pull, Pos, unit.Pos, "");
         GameController.Current.RemoveMarkers();
-        MapAnimationsController.Current.AnimatePushPull(this, unit, false);
         MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
+        MapAnimationsController.Current.AnimatePushPull(this, unit, false);
     }
 
     public int CountAdjacentAllies(Vector2Int pos)
