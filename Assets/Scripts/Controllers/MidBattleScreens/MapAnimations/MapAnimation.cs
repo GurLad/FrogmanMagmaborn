@@ -16,7 +16,7 @@ public abstract class MapAnimation : MidBattleScreen
         Animate();
     }
 
-    public void StartAnimation()
+    public virtual void StartAnimation()
     {
         if (!init)
         {
@@ -24,6 +24,8 @@ public abstract class MapAnimation : MidBattleScreen
         }
         MidBattleScreen.Set(this, true);
     }
+
+    protected abstract void Animate();
 
     protected void EndAnimation()
     {
@@ -46,5 +48,13 @@ public abstract class MapAnimation : MidBattleScreen
         unitRenderer.flipX = direction.x != 0 ? (direction.x > 0 ? true : false) : unitRenderer.flipX;
     }
 
-    protected abstract void Animate();
+    protected AdvancedSpriteSheetAnimation CreateAnimationOnUnit(Unit unit, AdvancedSpriteSheetAnimation baseAnimation)
+    {
+        AdvancedSpriteSheetAnimation animation = Instantiate(baseAnimation.gameObject, baseAnimation.transform.parent).GetComponent<AdvancedSpriteSheetAnimation>();
+        animation.transform.position = unit.transform.position;
+        animation.transform.position += new Vector3(0, 0, -0.5f);
+        animation.Start();
+        animation.gameObject.SetActive(true);
+        return animation;
+    }
 }

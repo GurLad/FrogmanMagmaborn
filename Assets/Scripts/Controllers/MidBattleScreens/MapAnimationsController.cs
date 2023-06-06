@@ -20,6 +20,9 @@ public class MapAnimationsController : MidBattleScreen
     public float PushPullApproachDistance;
     public float PushPullApproachRetreatSpeed;
     public float PushPullMoveSpeed;
+    [Header("Teleport animation")]
+    public AdvancedSpriteSheetAnimation TeleportAnimation;
+    public AudioClip TeleportSFX;
     [Header("SFX")]
     public AudioClip HitSFX;
     public AudioClip MissSFX;
@@ -53,6 +56,11 @@ public class MapAnimationsController : MidBattleScreen
     public void AnimateDelay()
     {
         CreateAnimation<MADelay>((anim) => anim.Init(OnFinishAnimation, DelayTime));
+    }
+
+    public void AnimateTeleport(Unit unit)
+    {
+        CreateAnimation<MATeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX, unit));
     }
 
     private bool CreateAnimation<T>(System.Func<T, bool> initFunc) where T : MapAnimation

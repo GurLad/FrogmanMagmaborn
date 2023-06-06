@@ -201,12 +201,8 @@ public class MABattle : MapAnimation
             case false:
                 // Show animation for miss
                 SoundController.PlaySound(MissSFX, 1);
-                missAnimation = Instantiate(BattleMissAnimation.gameObject).GetComponent<AdvancedSpriteSheetAnimation>();
-                missAnimation.transform.position = attackerAttack ? defenderBasePos : attackerBasePos;
-                missAnimation.transform.position += new Vector3(0, 0, -0.5f);
-                missAnimation.Start();
+                missAnimation = CreateAnimationOnUnit(attackerAttack ? defender : attacker, BattleMissAnimation);
                 missAnimation.Activate(0);
-                missAnimation.gameObject.SetActive(true);
                 break;
             case null:
                 // Destroy sprite for dead
