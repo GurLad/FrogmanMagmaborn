@@ -7,6 +7,9 @@ public class EndgameSummoner : AGameControllerListener
     private enum SummonOnUnitModes { Damage, Teleport, EndMarker }
     private enum SummonNoUnitModes { CreateMagmaborn, CreateChaosEnemy, EndMarker }
 
+    private static Sprite circleSpriteOn; // Terrible workaround but it works
+    private static Sprite circleSpriteOff;
+
     public string ChaosCircleName;
     public float ChaosModifierBaseIncrease;
     public float ChaosModifierTormentHealthMultiplierIncrease;
@@ -19,6 +22,8 @@ public class EndgameSummoner : AGameControllerListener
 
     public void Process(Tile[,] tiles, Vector2Int size)
     {
+        circleSpriteOn ??= CircleSpriteOn;
+        circleSpriteOff ??= CircleSpriteOff;
         List<Unit> torments = GameController.Current.GetNamedUnits("Torment");
         if (torments.Count != 1)
         {
@@ -44,13 +49,14 @@ public class EndgameSummoner : AGameControllerListener
         {
             Process(GameController.Current.Map, GameController.Current.MapSize);
         }
+        // Store current summons
+        List<SummonCircle> currentSummons = circles.FindAll(a => a.Summoning);
         // Activate old summons
-        foreach (SummonCircle circle in circles.FindAll(a => a.Summoning))
+        foreach (SummonCircle circle in currentSummons)
         {
             if (!circle.Summoning)
             {
-                circle.Tile.Animations[0].SpriteSheet = CircleSpriteOff;
-                circle.Tile.Animations[0].Split();
+                circle.Summoning = false;
                 continue;
             }
             Unit onCircle = GameController.Current.FindUnitAtPos(circle.Pos);
@@ -62,21 +68,16 @@ public class EndgameSummoner : AGameControllerListener
             {
                 SummonActionNoUnit(circle);
             }
-            circle.Tile.Animations[0].SpriteSheet = CircleSpriteOff;
-            circle.Tile.Animations[0].Split();
-            circle.Summoning = false;
         }
         // Begin new summons
         chaosModifier += chaosModifierIncrease;
         for (int i = 0; i < Mathf.FloorToInt(chaosModifier); i++)
         {
-            List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning);
+            List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning && !currentSummons.Contains(a));
             if (availableCircles.Count > 0)
             {
                 SummonCircle selected = availableCircles[Random.Range(0, availableCircles.Count)];
                 //Bugger.Info("Available: " + string.Join(", ", availableCircles.ConvertAll(a => a.Pos)) + ", chose: " + selected.Pos);
-                selected.Tile.Animations[0].SpriteSheet = CircleSpriteOn;
-                selected.Tile.Animations[0].Split();
                 selected.Summoning = true;
             }
             else
@@ -105,14 +106,18 @@ public class EndgameSummoner : AGameControllerListener
         {
             case SummonOnUnitModes.Damage: // TBA
             case SummonOnUnitModes.Teleport:
-                SummonCircle other = circles[Random.Range(0, circles.Count)];
+                SummonCircle other = circles.FindAll(a => a != circle)[Random.Range(0, circles.Count - 1)];
                 Unit onOtherCircle = GameController.Current.FindUnitAtPos(other.Pos);
                 if (onOtherCircle != null) // TBA: Fix animation
                 {
-                    onOtherCircle.Pos = target.Pos;
+                    MapAnimationsController.Current.OnFinishAnimation = () => other.Summoning = circle.Summoning = false;
+                    MapAnimationsController.Current.AnimateSwapTeleport(target, onOtherCircle);
                 }
-                MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
-                other.Summoning = false;
+                else
+                {
+                    MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
+                    MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
+                }
                 break;
             case SummonOnUnitModes.EndMarker:
                 break;
@@ -131,6 +136,7 @@ public class EndgameSummoner : AGameControllerListener
                 List<ClassData> classes = GameController.Current.UnitClassData.ClassDatas.FindAll(a => a.Name != "Torment");
                 Unit summoned = GameController.Current.CreateUnit(classes[Random.Range(0, classes.Count)].Name, GameController.Current.LevelNumber, Team.Player, false);
                 summoned.Moved = true;
+                MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
                 MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, false);
                 break;
             case SummonNoUnitModes.EndMarker:
@@ -143,8 +149,18 @@ public class EndgameSummoner : AGameControllerListener
     private class SummonCircle
     {
         public Vector2Int Pos;
-        public bool Summoning = false;
         public AdvancedSpriteSheetAnimation Tile;
+        private bool _summoning = false;
+        public bool Summoning
+        {
+            get => _summoning;
+            set
+            {
+                _summoning = value;
+                Tile.Animations[0].SpriteSheet = value ? circleSpriteOn : circleSpriteOff;
+                Tile.Animations[0].Split();
+            }
+        }
 
         public SummonCircle(Vector2Int pos, AdvancedSpriteSheetAnimation tile)
         {
