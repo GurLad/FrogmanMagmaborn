@@ -150,6 +150,7 @@ public class EndgameSummoner : AGameControllerListener
         {
             Pos = pos;
             Tile = tile;
+            Tile.gameObject.transform.position -= new Vector3(0, 0, 0.1f);
         }
     }
 }
