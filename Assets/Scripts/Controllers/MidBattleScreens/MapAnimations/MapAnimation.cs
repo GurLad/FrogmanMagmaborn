@@ -44,11 +44,14 @@ public abstract class MapAnimation : MidBattleScreen
         if (GameController.Current.CheckGameState() != GameState.SideWon)
         {
             System.Action tempAction = OnFinishAnimation;
-            OnFinishAnimation = null;
+            MapAnimationsController.Current.OnFinishAnimation = null;
             tempAction?.Invoke();
         }
         Destroy(this);
-        MapAnimationsController.Current.TryPlayNextAnimation();
+        if (!MapAnimationsController.Current.TryPlayNextAnimation())
+        {
+            //Bugger.Info("We have a problem houston");
+        }
     }
 
     protected void FlipX(Vector2Int direction, SpriteRenderer unitRenderer)

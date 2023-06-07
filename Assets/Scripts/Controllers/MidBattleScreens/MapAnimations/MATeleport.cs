@@ -19,11 +19,15 @@ public class MATeleport : MapAnimation, IAdvancedSpriteSheetAnimationListener
         currentUnit = unit;
         skipOut = !move;
         target = targetPos.x >= 0 ? targetPos : unit.Pos;
+        // Hide unit until teleport in if !move
+        if (skipOut)
+        {
+            currentUnit.Pos = target;
+            currentUnit.gameObject.SetActive(false);
+        }
         // Create animation
         TeleportAnimation = CreateAnimationOnUnit(unit, TeleportAnimation);
         TeleportAnimation.Listeners.Add(this);
-        // Hide unit until teleport in if !move
-        currentUnit.gameObject.SetActive(move);
         return init = true;
     }
 

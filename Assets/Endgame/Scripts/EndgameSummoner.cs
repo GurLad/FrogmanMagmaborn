@@ -131,7 +131,7 @@ public class EndgameSummoner : AGameControllerListener
                 List<ClassData> classes = GameController.Current.UnitClassData.ClassDatas.FindAll(a => a.Name != "Torment");
                 Unit summoned = GameController.Current.CreateUnit(classes[Random.Range(0, classes.Count)].Name, GameController.Current.LevelNumber, Team.Player, false);
                 summoned.Moved = true;
-                MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, true);
+                MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, false);
                 break;
             case SummonNoUnitModes.EndMarker:
                 break;

@@ -266,7 +266,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             {
                 RemoveMarkers();
                 Team current = CurrentPhase;
-                bool foundMainPlayerTeam = false;
+                bool showTurnAnimation = false;
                 if (units.Count == 0)
                 {
                     throw Bugger.Crash("No units?");
@@ -274,23 +274,13 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 do
                 {
                     current = (Team)(((int)current + 1) % 3);
+                    showTurnAnimation = StartPhase(current) || showTurnAnimation;
                     if (current == CurrentPhase)
                     {
                         //Bugger.Info("Only one team is alive - " + current);
                     }
-                    if (current == StaticGlobals.MainPlayerTeam)
-                    {
-                        foundMainPlayerTeam = true;
-                    }
                 } while (units.Find(a => a.TheTeam == current) == null);
                 //Bugger.Info("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
-                bool showTurnAnimation = StartPhase(current);
-                if (foundMainPlayerTeam && current != StaticGlobals.MainPlayerTeam)
-                {
-                    // Call beginning of player events
-                    Turn++;
-                    NotifyListeners(a => a.OnBeginPlayerTurn(units));
-                }
                 if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
                 {
                     // Win
