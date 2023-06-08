@@ -17,6 +17,18 @@ public class InitControls : MonoBehaviour
         {
             return;
         }
+        // Init Steam if it's the Steam build
+#if STEAM_BUILD
+        try
+        {
+            Steamworks.SteamClient.Init(1768830, true);
+        }
+        catch (System.Exception e)
+        {
+            // Something went wrong! Steam is closed?
+            Bugger.Warning("Failed to initialize Steam");
+        }
+#endif
         Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
         // Load & init the save slot
         SavedData.InitFiles();
@@ -54,4 +66,11 @@ public class InitControls : MonoBehaviour
         }
         initDone = true;
     }
+
+#if STEAM_BUILD
+    private void OnApplicationQuit()
+    {
+        Steamworks.SteamClient.Shutdown();
+    }
+#endif
 }

@@ -8,7 +8,7 @@ public static class AchievementController
     {
 #if !UNITY_EDITOR && !MODDABLE_BUILD
 #if STEAM_BUILD
-        // TBA
+        new Steamworks.Data.Achievement(name).Trigger();
 #endif
         SavedData.Save("Achievements", name, 1);
 #endif
@@ -18,7 +18,7 @@ public static class AchievementController
     {
 #if !UNITY_EDITOR && !MODDABLE_BUILD
 #if STEAM_BUILD
-        // TBA
+        return new Steamworks.Data.Achievement(name).State;
 #endif
         return SavedData.Load("Achievements", name, 0) == 1;
 #endif
