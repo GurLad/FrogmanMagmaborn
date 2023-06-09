@@ -18,7 +18,7 @@ public class InitControls : MonoBehaviour
             return;
         }
         // Init Steam if it's the Steam build
-#if STEAM_BUILD
+#if STEAM_BUILD && !UNITY_EDITOR
         try
         {
             Steamworks.SteamClient.Init(1768830, true);
@@ -67,7 +67,7 @@ public class InitControls : MonoBehaviour
         initDone = true;
     }
 
-#if STEAM_BUILD
+#if STEAM_BUILD && !UNITY_EDITOR
     private void OnApplicationQuit()
     {
         Steamworks.SteamClient.Shutdown();

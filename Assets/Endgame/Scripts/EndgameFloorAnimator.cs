@@ -6,6 +6,7 @@ public class EndgameFloorAnimator : MonoBehaviour
 {
     public float Speed;
     public float Strength;
+    public float SinglePixelSize = 16;
     private float ratio;
     private float cosTheta;
     private float sinTheta;
@@ -28,7 +29,7 @@ public class EndgameFloorAnimator : MonoBehaviour
     private void Update()
     {
         Vector2 modifier = GetPosModifier(Time.unscaledTime * Speed + offest) * Strength;
-        transform.position = basePos + new Vector3(modifier.x, modifier.y, 0);
+        transform.position = basePos + new Vector3(Mathf.Round(modifier.x * SinglePixelSize), Mathf.Round(modifier.y * SinglePixelSize), 0) / SinglePixelSize;
     }
 
     private Vector2 GetPosModifier(float t)
