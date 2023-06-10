@@ -3238,17 +3238,27 @@ PrefabInstance:
     - target: {fileID: 1829881140569651972, guid: fe87e87c6aefc7a44bf178bfa1672c93,
         type: 3}
       propertyPath: Values.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1829881140569651972, guid: fe87e87c6aefc7a44bf178bfa1672c93,
         type: 3}
       propertyPath: Values.Array.data[0]
-      value: Full
+      value: Always
       objectReference: {fileID: 0}
     - target: {fileID: 1829881140569651972, guid: fe87e87c6aefc7a44bf178bfa1672c93,
         type: 3}
       propertyPath: Values.Array.data[1]
-      value: Simple
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829881140569651972, guid: fe87e87c6aefc7a44bf178bfa1672c93,
+        type: 3}
+      propertyPath: Values.Array.data[2]
+      value: Bosses
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829881140569651972, guid: fe87e87c6aefc7a44bf178bfa1672c93,
+        type: 3}
+      propertyPath: Values.Array.data[3]
+      value: None
       objectReference: {fileID: 0}
     - target: {fileID: 5156720476288025777, guid: fe87e87c6aefc7a44bf178bfa1672c93,
         type: 3}

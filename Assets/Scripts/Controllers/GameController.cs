@@ -694,7 +694,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 FinishMoveDead();
             }
         }
-        else if (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global) == 0) // Real animations
+        else if (GameCalculations.BattleAnimationsOn(attacker, defender)) // Real animations
         {
             CrossfadeMusicPlayer.Current.SwitchBattleMode(true);
             BattleAnimationController battleAnimationController = Instantiate(Battle).GetComponentInChildren<BattleAnimationController>();
@@ -1285,6 +1285,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public void KillTeam(Team team)
     {
         units.FindAll(a => a.TheTeam == team).ForEach(a => KillUnit(a));
+    }
+
+    public bool IsBoss(Unit unit)
+    {
+        return selectedMap.Objective == Objective.Boss && selectedMap.ObjectiveData == unit.ToString();
     }
 
     public void ForceSetCursorPos(Vector2Int pos)

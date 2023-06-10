@@ -121,6 +121,22 @@ public static class GameCalculations
         }
     }
 
+    public static bool BattleAnimationsOn(Unit attacker, Unit defender)
+    {
+        switch (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global))
+        {
+            case 0: // Always
+                return true;
+            case 1: // Player
+                return attacker.TheTeam.PlayerControlled() || defender.TheTeam.PlayerControlled();
+            case 2: // Bosses
+                return GameController.Current.IsBoss(attacker) || GameController.Current.IsBoss(defender);
+            case 3: // None
+            default:
+                return false;
+        }
+    }
+
     public static int GameSpeed(bool affectedByInput = true)
     {
         return (SavedData.Load("GameSpeed", 0, SaveMode.Global) == 1 ^ (affectedByInput && Control.GetButton(Control.CB.B))) ? 2 : 1;
