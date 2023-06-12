@@ -14,12 +14,13 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
     [Header("Generator")]
     public GameObject ApplyOn;
     public GameObject CutWith;
+    public Material None;
     private float count = 0;
     private int current = 0;
 
     private void Update()
     {
-        count += Time.deltaTime;
+        count += Time.unscaledDeltaTime;
         if (count >= 1f / FrameRate)
         {
             count -= 1f / FrameRate;
@@ -37,13 +38,14 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         ApplyOn.SetActive(false);
         Parts.ForEach(a => DestroyImmediate(a));
         Parts.Clear();
+        Material baseMaterial = ApplyOn.GetComponent<MeshRenderer>().sharedMaterial;
         for (int i = 0; i < FrameCount; i++)
         {
             ApplyOn.transform.localEulerAngles = new Vector3(Mathf.Sign(Direction) * 360 * i / (float)FrameCount, 0, 0);
             Model result = CSG.Subtract(ApplyOn, CutWith);
             GameObject composite = new GameObject();
             composite.AddComponent<MeshFilter>().sharedMesh = result.mesh;
-            composite.AddComponent<MeshRenderer>().sharedMaterials = result.materials.ToArray();
+            composite.AddComponent<MeshRenderer>().sharedMaterials = new Material[] { baseMaterial, None }; // Weird fix
             composite.transform.parent = holder;
             composite.name = holder.gameObject.name + "-" + i;
             composite.gameObject.SetActive(i == 0);
