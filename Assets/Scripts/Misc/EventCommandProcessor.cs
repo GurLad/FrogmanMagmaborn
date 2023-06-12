@@ -8,7 +8,7 @@ using PlayMode = ConversationPlayer.PlayMode;
 public static class EventCommandProcessor
 {
     public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, Stat, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType, OpStat } // Assume there aren't more than 10 types
-    public enum CommandType { Level, Conversation, MidBattleScreen, Global, Syntax, Tutorial, Menu }
+    public enum CommandType { Level, Conversation, MidBattleScreen, Global, Syntax, Tutorial, Menu, Endgame }
 
     private static List<CommandStruct> AllCommands { get; } = new List<CommandStruct>(new CommandStruct[]
     {
@@ -86,7 +86,11 @@ public static class EventCommandProcessor
 
         new CommandStruct("introShowCutscene", CommandType.Menu),
         new CommandStruct("introShowUpgradeMenu", CommandType.Menu),
-        new CommandStruct("introShowTutorial", CommandType.Menu)
+        new CommandStruct("introShowTutorial", CommandType.Menu),
+
+        // Endgame
+
+        new CommandStruct("endgameBegin", CommandType.Endgame)
     });
 
     private static int SkipBlock(int currentLine, List<string> lines)
@@ -822,6 +826,36 @@ public static class EventCommandProcessor
         return result | StartLineTrue(num + 1);
     }
 
+    public static StartLineResult ExecuteEndgameCommand(
+        string commandName,
+        string[] parts,
+        string[] args,
+        ConversationPlayer player,
+        int num,
+        System.Func<int, StartLineResult> StartLineTrue)
+    {
+        StartLineResult result = StartLineResult.None;
+        switch (commandName)
+        {
+            case "endgameBegin":
+                player.Pause();
+                PaletteController.Current.FadeOut(() =>
+                {
+                    GameController.Current.BeginEndgame();
+                    CameraController.Current.ToggleEndgameCamera(true);
+                    GameController.Current.LoadMap();
+                    GameController.Current.LoadLevelUnits();
+                    GameController.Current.LevelMetadata.SetPalettesFromMetadata();
+                    // TBA: A better transition
+                    PaletteController.Current.FadeIn(() => player.Resume(), 30 / 4);
+                });
+                return result | StartLineResult.MidBattleScreen;
+            default:
+                throw Bugger.Error("No matching command! (" + commandName + ")");
+        }
+        return result | StartLineTrue(num + 1);
+    }
+
     public static StartLineResult ExecuteCommand(
         this ConversationPlayer player,
         List<string> lines,
@@ -862,6 +896,8 @@ public static class EventCommandProcessor
                 return ExecuteTutorialCommand(command.Name, parts, args, player, num, StartLineTrue);
             case CommandType.Menu:
                 return ExecuteMenuCommand(command.Name, parts, args, player, num, StartLineTrue);
+            case CommandType.Endgame:
+                return ExecuteEndgameCommand(command.Name, parts, args, player, num, StartLineTrue);
             default:
                 throw Bugger.FMError("Impossible");
         }

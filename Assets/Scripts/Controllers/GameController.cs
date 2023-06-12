@@ -37,6 +37,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     public Marker AttackMarker;
     public GameObject EscapeMarker;
     public GameObject ListenersObject;
+    [Header("Endgame")]
+    public GameObject EndgameObject;
     [HideInInspector]
     public int LevelNumber;
     [HideInInspector]
@@ -1300,6 +1302,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             GameUIController.HideUI();
         }
+    }
+
+    public void BeginEndgame()
+    {
+        Instantiate(EndgameObject);
     }
 
     public void AddListener(IGameControllerListener listener)

@@ -35,6 +35,9 @@ public class CameraController : MonoBehaviour
     public Camera PixelPerfectCamera;
     public Material PixelPerfectMaterial;
     public PPTScript PPTScript;
+    [Header("Endgame")]
+    public Camera TrueCamera;
+    public Camera EndgameCamera;
     [HideInInspector]
     public int CurrentMultiplier = 0;
     private Vector2 resolution;
@@ -59,6 +62,13 @@ public class CameraController : MonoBehaviour
         {
             UpdateResolution();
         }
+    }
+
+    private void UpdateResolution()
+    {
+        PixelPerfectMaterial.SetInt("_ScreenSizeX", Screen.width);
+        PixelPerfectMaterial.SetInt("_ScreenSizeY", Screen.height);
+        resolution = new Vector2(Screen.width, Screen.height);
     }
 
     public void UpdateMode(CameraMode mode)
@@ -91,10 +101,9 @@ public class CameraController : MonoBehaviour
         SoundController.PlaySound(ScreenShakeSFX, 0.5f);
     }
 
-    private void UpdateResolution()
+    public void ToggleEndgameCamera(bool on)
     {
-        PixelPerfectMaterial.SetInt("_ScreenSizeX", Screen.width);
-        PixelPerfectMaterial.SetInt("_ScreenSizeY", Screen.height);
-        resolution = new Vector2(Screen.width, Screen.height);
+        TrueCamera.gameObject.SetActive(!on);
+        EndgameCamera.gameObject.SetActive(on);
     }
 }

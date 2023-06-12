@@ -46,6 +46,7 @@ public class InitControls : MonoBehaviour
             SavedData.Save("MusicOn", 1, SaveMode.Global);
             SavedData.Save("SFXOn", 1, SaveMode.Global);
             SavedData.Save("GameSpeed", 1, SaveMode.Global); // Default game speed is fast
+            SavedData.Save("BattleAnimationsMode", 1, SaveMode.Global); // Default animations mode is player
         }
         if (!SavedData.HasKey("TransitionsOn", SaveMode.Global))
         {
