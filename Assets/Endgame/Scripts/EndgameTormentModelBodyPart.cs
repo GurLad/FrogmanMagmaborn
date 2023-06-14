@@ -18,10 +18,15 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
     private float count = 0;
     private int current = 0;
 
-    private void Update()
+    private void Start()
+    {
+        Generate(); // Probably a better idea than massively increasing the file size by pre-generating all models
+    }
+
+    public void UpdateRotation()
     {
         count += Time.unscaledDeltaTime;
-        if (count >= 1f / FrameRate)
+        while (count >= 1f / FrameRate)
         {
             count -= 1f / FrameRate;
             Parts[current].SetActive(false);
@@ -41,7 +46,7 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         Material baseMaterial = ApplyOn.GetComponent<MeshRenderer>().sharedMaterial;
         for (int i = 0; i < FrameCount; i++)
         {
-            ApplyOn.transform.localEulerAngles = new Vector3(Mathf.Sign(Direction) * 360 * i / (float)FrameCount, 0, 0);
+            ApplyOn.transform.localEulerAngles = CurrentRotation(i);
             Model result = CSG.Subtract(ApplyOn, CutWith);
             GameObject composite = new GameObject();
             composite.AddComponent<MeshFilter>().sharedMesh = result.mesh;
@@ -52,5 +57,11 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
             Parts.Add(composite);
         }
         ApplyOn.transform.localEulerAngles = Vector3.zero;
+    }
+
+    public Vector3 CurrentRotation(int i = -1)
+    {
+        i = i >= 0 ? i : current;
+        return new Vector3(Mathf.Sign(Direction) * 360 * i / (float)FrameCount, 0, 0);
     }
 }
