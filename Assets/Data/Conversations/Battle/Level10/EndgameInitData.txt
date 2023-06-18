@@ -1,0 +1,21 @@
+priority:-1
+unique:F
+~ Requirements
+roomNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:endgameSetSummonOptionsMagmaborn:
+# Lan isn't dead, but otherwise it's too few
+:endgameSetSummonOptionsDeadBoss:Brens,Bodder,Lan
+:endgameSetSummonOptionsGeneric:Lancer,Knight,Archer,Worker
+:endgameSetSummonOptionsMonster:Skeleton,Goblin,Gargoyle,Lich,Ooze,Golem,Slither,Pain,Fear,Despair
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

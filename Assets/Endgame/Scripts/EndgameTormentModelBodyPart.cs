@@ -37,12 +37,8 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
     [ContextMenu("Generate")]
     public void Generate()
     {
+        Clear();
         Transform holder = transform;
-        ApplyOn.name = "_" + holder.name + "Base";
-        ApplyOn.transform.parent = holder;
-        ApplyOn.SetActive(false);
-        Parts.ForEach(a => DestroyImmediate(a));
-        Parts.Clear();
         Material baseMaterial = ApplyOn.GetComponent<MeshRenderer>().sharedMaterial;
         for (int i = 0; i < FrameCount; i++)
         {
@@ -57,6 +53,17 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
             Parts.Add(composite);
         }
         ApplyOn.transform.localEulerAngles = Vector3.zero;
+    }
+
+    [ContextMenu("Clear")]
+    public void Clear()
+    {
+        Transform holder = transform;
+        ApplyOn.name = "_" + holder.name + "Base";
+        ApplyOn.transform.parent = holder;
+        ApplyOn.SetActive(false);
+        Parts.ForEach(a => DestroyImmediate(a));
+        Parts.Clear();
     }
 
     public Vector3 CurrentRotation(int i = -1)

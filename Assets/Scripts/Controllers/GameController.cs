@@ -849,7 +849,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return unit;
     }
 
-    private void InitUnitData(Unit unit, string name, int level, Team team)
+    private void InitUnitData(Unit unit, string name, int level, Team team, PortraitLoadingMode? portraitLoadingMode = null)
     {
         unit.Name = name;
         unit.name = "Unit" + name;
@@ -858,7 +858,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.Stats += unit.AutoLevel(level);
         // Find ClassData, and determine whether to use it or UnitData (based on PortraitLoadingMode)
         ClassData classData;
-        switch (LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
+        switch (portraitLoadingMode ?? LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
         {
             case PortraitLoadingMode.Name:
                 UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);
@@ -905,7 +905,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.Init(true);
     }
 
-    public Unit CreateUnit(string name, int level, Team team, bool canReplace)
+    public Unit CreateUnit(string name, int level, Team team, bool canReplace, PortraitLoadingMode? portraitLoadingMode = null)
     {
         // Find replacement, fix level
         if (canReplace)
@@ -919,7 +919,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         level = level >= 0 ? level : LevelNumber;
         // Generate basic unit
         Unit unit = CreateEmptyUnit();
-        InitUnitData(unit, name, level, team);
+        InitUnitData(unit, name, level, team, portraitLoadingMode);
         return unit;
     }
 
@@ -1276,6 +1276,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
     {
         List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam) && LevelMetadata.TeamDatas[(int)a.TheTeam].PortraitLoadingMode == PortraitLoadingMode.Generic);
         return targetUnits[0].Icon;
+    }
+
+    public List<string> GetUnitNames(Team? team = null)
+    {
+        List<Unit> targetUnits = units.FindAll(a => a.TheTeam == (team ?? a.TheTeam));
+        return targetUnits.ConvertAll(a => a.ToString());
     }
 
     public void AssignAIToTeam(Team team, AIType ai)
