@@ -18,11 +18,6 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
     private float count = 0;
     private int current = 0;
 
-    private void Start()
-    {
-        Generate(); // Probably a better idea than massively increasing the file size by pre-generating all models
-    }
-
     public void UpdateRotation()
     {
         count += Time.unscaledDeltaTime;
@@ -34,25 +29,52 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         }
     }
 
+    public Vector3 CurrentRotation(int i = -1)
+    {
+        i = i >= 0 ? i : current;
+        return new Vector3(Mathf.Sign(Direction) * 360 * i / (float)FrameCount, 0, 0);
+    }
+
+#if UNITY_EDITOR
     [ContextMenu("Generate")]
     public void Generate()
     {
         Clear();
         Transform holder = transform;
         Material baseMaterial = ApplyOn.GetComponent<MeshRenderer>().sharedMaterial;
+        GameObject tempApply = RemoveTransform(Instantiate(ApplyOn));
+        GameObject tempCutWith = RemoveTransform(Instantiate(CutWith));
         for (int i = 0; i < FrameCount; i++)
         {
-            ApplyOn.transform.localEulerAngles = CurrentRotation(i);
-            Model result = CSG.Subtract(ApplyOn, CutWith);
+            string path = @"Assets/Endgame/Models/GeneratedParts/" + holder.name + "-" + ((decimal)i/FrameCount) + ".asset";
+            Mesh found = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            if (found == null)
+            {
+                tempApply.transform.localEulerAngles = CurrentRotation(i) * Mathf.Sign(Direction);
+                Model result = CSG.Subtract(tempApply, tempCutWith);
+                UnityEditor.MeshUtility.Optimize(result.mesh);
+                UnityEditor.AssetDatabase.CreateAsset(result.mesh, path);
+                UnityEditor.AssetDatabase.SaveAssets();
+                found = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            }
             GameObject composite = new GameObject();
-            composite.AddComponent<MeshFilter>().sharedMesh = result.mesh;
+            composite.AddComponent<MeshFilter>().sharedMesh = found;
             composite.AddComponent<MeshRenderer>().sharedMaterials = new Material[] { baseMaterial, None }; // Weird fix
             composite.transform.parent = holder;
+            composite.transform.localScale = ApplyOn.transform.localScale;
+            composite.transform.localPosition = ApplyOn.transform.localPosition;
+            composite.transform.localRotation = ApplyOn.transform.localRotation;
             composite.name = holder.gameObject.name + "-" + i;
             composite.gameObject.SetActive(i == 0);
             Parts.Add(composite);
         }
         ApplyOn.transform.localEulerAngles = Vector3.zero;
+        if (Direction < 0)
+        {
+            Parts.Reverse();
+        }
+        DestroyImmediate(tempApply);
+        DestroyImmediate(tempCutWith);
     }
 
     [ContextMenu("Clear")]
@@ -66,9 +88,13 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         Parts.Clear();
     }
 
-    public Vector3 CurrentRotation(int i = -1)
+    private GameObject RemoveTransform(GameObject target)
     {
-        i = i >= 0 ? i : current;
-        return new Vector3(Mathf.Sign(Direction) * 360 * i / (float)FrameCount, 0, 0);
+        target.transform.localScale = Vector3.one;
+        target.transform.position = target.transform.localPosition;
+        target.transform.rotation = Quaternion.identity;
+        return target;
     }
+
+#endif
 }
