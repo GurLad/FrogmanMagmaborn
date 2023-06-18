@@ -858,7 +858,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.Stats += unit.AutoLevel(level);
         // Find ClassData, and determine whether to use it or UnitData (based on PortraitLoadingMode)
         ClassData classData;
-        switch (portraitLoadingMode ?? LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
+        switch (unit.PortraitMode = portraitLoadingMode ?? LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
         {
             case PortraitLoadingMode.Name:
                 UnitData unitData = UnitClassData.UnitDatas.Find(a => a.Name == unit.Name);

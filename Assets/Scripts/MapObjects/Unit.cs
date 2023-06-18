@@ -25,6 +25,8 @@ public class Unit : MapObject
     public SpriteRenderer Symbol;
     [Header("MultiTile extra fields")]
     public MultiTileMoveMarker MultiTileMoveMarker;
+    [Header("Misc")]
+    public PortraitLoadingMode PortraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     [HideInInspector]
     public Weapon Weapon;
     [HideInInspector]
@@ -51,9 +53,6 @@ public class Unit : MapObject
     public int BattleStatsPre => Stats.Precision * 10 + Weapon.Hit - 40;
     public int BattleStatsEva => (Stats.Evasion - Weapon.Weight) * 10 - 40;
     public bool InsideMap => !(Pos == -Vector2Int.one && ReinforcementTurn > 0 && !Statue);
-    [Header("Misc")]
-    [SerializeField]
-    private PortraitLoadingMode portraitMode = PortraitLoadingMode.None; // Cannot use PortraitLoadingMode? for some reason...
     private PalettedSprite palette;
     private bool started;
     [SerializeField]
@@ -129,7 +128,7 @@ public class Unit : MapObject
 
     private void LoadIcon()
     {
-        switch (portraitMode == PortraitLoadingMode.None ? (portraitMode = GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode) : portraitMode)
+        switch (PortraitMode == PortraitLoadingMode.None ? (PortraitMode = GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].PortraitLoadingMode) : PortraitMode)
         {
             case PortraitLoadingMode.Name:
                 Icon = PortraitController.Current.FindPortrait(Name);
