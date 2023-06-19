@@ -71,10 +71,14 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         ApplyOn.transform.localEulerAngles = Vector3.zero;
         if (Direction < 0)
         {
+            GameObject first = Parts[0];
+            Parts.RemoveAt(0);
             Parts.Reverse();
+            Parts.Insert(0, first);
         }
         DestroyImmediate(tempApply);
         DestroyImmediate(tempCutWith);
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
 
     [ContextMenu("Clear")]
@@ -86,6 +90,7 @@ public class EndgameTormentModelBodyPart : MonoBehaviour
         ApplyOn.SetActive(false);
         Parts.ForEach(a => DestroyImmediate(a));
         Parts.Clear();
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
 
     private GameObject RemoveTransform(GameObject target)
