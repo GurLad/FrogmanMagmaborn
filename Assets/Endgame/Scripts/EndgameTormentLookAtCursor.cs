@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EndgameTormentLookAtCursor : MonoBehaviour
 {
+    public float Speed;
     public Transform Model;
     public Vector3 Offset;
 
@@ -11,6 +12,6 @@ public class EndgameTormentLookAtCursor : MonoBehaviour
     {
         Quaternion previousRotation = Model.rotation;
         Model.LookAt(GameController.Current.Cursor.transform.position + Offset);
-        Model.rotation = Quaternion.Lerp(previousRotation, Model.rotation, Time.unscaledDeltaTime);
+        Model.rotation = Quaternion.Lerp(previousRotation, Model.rotation, Time.unscaledDeltaTime * Speed);
     }
 }

@@ -2416,7 +2416,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457666786806900128}
-  m_Mesh: {fileID: -5495902117074765545, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
+  m_Mesh: {fileID: 4493585093827132993, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
 --- !u!23 &8466541669888764212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18104,7 +18104,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2571200729236300087}
-  m_Mesh: {fileID: 4493585093827132993, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
+  m_Mesh: {fileID: -1550514412580984892, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
 --- !u!23 &5221666684930415854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24587,6 +24587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675fcde960883624097a9f0d4458e8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Model: {fileID: 2158086071036700594}
   Offset: {x: 0, y: 0, z: -30}
 --- !u!1 &3661768387896271001
@@ -31979,7 +31980,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5061557280971397431}
-  m_Mesh: {fileID: -1550514412580984892, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
+  m_Mesh: {fileID: -8678823145569952518, guid: 657b30cd5c2b032478d8ba2b7d9548bd, type: 3}
 --- !u!23 &7984419287643945852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49659,6 +49660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8803631017726581949}
   - component: {fileID: 8399898935333200727}
+  - component: {fileID: 738225501413615347}
   m_Layer: 0
   m_Name: Torment2b
   m_TagString: Untagged
@@ -49693,6 +49695,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc6016b966adce4498c636a5d68bed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &738225501413615347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171525787611317767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77e9e535b32f8c4081a255b9ca981e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: 0
+  ReferencePalette: 2
+  ReferenceColour: 1
+  TrueColours:
+  - Colors:
+    - id: 0
+    - id: 1
+    - id: 12
+    - id: 40
+  - Colors:
+    - id: 55
+    - id: 55
+    - id: 55
+    - id: 55
+  Materials:
+  - {fileID: 2100000, guid: 28f64d2e97faf184aa63b4007527812e, type: 2}
+  - {fileID: 2100000, guid: 5dd86f0a84be9124a9cc3df88c745048, type: 2}
+  - {fileID: 2100000, guid: c2d2aab6db2d50e4ba57d4053951e2ad, type: 2}
+  - {fileID: 2100000, guid: 441854fdde5420a4a85204df5504deb8, type: 2}
+  - {fileID: 2100000, guid: 3c99c30619f39dd449a770957beede25, type: 2}
 --- !u!1 &8181812663214236041
 GameObject:
   m_ObjectHideFlags: 0
