@@ -22,7 +22,6 @@ public class EndgamePaletteCheater : MonoBehaviour
     {
         int palette = Background ? PaletteController.Current.BackgroundPalettes[ReferencePalette][ReferenceColour] : PaletteController.Current.SpritePalettes[ReferencePalette][ReferenceColour];
         int jump = CompletePalette.BrightnessJump * ((palette + 1) / CompletePalette.BrightnessJump);
-        Bugger.Info(palette + " vs. " + jump.ToString());
         for (int i = 0; i < Materials.Count; i++)
         {
             Materials[i].color = CompletePalette.Colors[Mathf.Min(CompletePalette.BlackColor, TrueColours[i / 4][i % 4] + jump)];

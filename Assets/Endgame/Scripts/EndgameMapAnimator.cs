@@ -28,6 +28,7 @@ public class EndgameMapAnimator : MonoBehaviour
 
     private void Start()
     {
+        VoidHolder.transform.position -= new Vector3(0, 0, 0.1f);
         // TEMP
         Process(GameController.Current.Map, GameController.Current.MapSize);
     }
@@ -108,7 +109,7 @@ public class EndgameMapAnimator : MonoBehaviour
         {
             CreateNewPseudoTile(holder.transform, i == x ? FloorBottomL : (i == width - 1 ? FloorBottomR : FloorBottomM), new Vector2Int(i, height));
         }
-        holder.transform.position -= new Vector3(0, 0, 0.1f);
+        holder.transform.position -= new Vector3(0, 0, 0.2f);
         holder.gameObject.SetActive(true);
     }
 
@@ -142,7 +143,7 @@ public class EndgameMapAnimator : MonoBehaviour
         {
             // TBA
         }
-        holder.transform.position -= new Vector3(0, 0, 0.2f);
+        holder.transform.position -= new Vector3(0, 0, 0.3f);
         holder.gameObject.SetActive(true);
     }
 
@@ -167,7 +168,7 @@ public class EndgameMapAnimator : MonoBehaviour
         newData.Name = "FloorBottom";
         newData.Loop = true;
         newTile.Animations.Add(newData);
-        newTile.transform.position = new Vector2(GameController.Current.TileSize * pos.x, -GameController.Current.TileSize * pos.y);
+        newTile.transform.localPosition = new Vector2(GameController.Current.TileSize * pos.x, -GameController.Current.TileSize * pos.y);
         newTile.gameObject.name = targetSprite.name;
         newTile.gameObject.SetActive(true);
         return newTile;
