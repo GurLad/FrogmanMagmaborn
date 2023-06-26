@@ -652,6 +652,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void KillUnit(Unit unit)
     {
+        NotifyListeners(a => a.OnUnitDeath(unit.Name));
         if (!GameCalculations.PermaDeath && unit.TheTeam.IsMainPlayerTeam() && unit.Name != StaticGlobals.MainCharacterName) // No perma-death
         {
             PseudoKillUnit(unit);

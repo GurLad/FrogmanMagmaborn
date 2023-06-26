@@ -31,6 +31,7 @@ public class AdvancedAnimation : MonoBehaviour
     public EReturnMode ReturnMode;
     [Header("Affects")]
     public bool AffectPosition = false;
+    public bool AffectScale = false;
     [Tooltip("Changes objects' active state based on the next frame.")]
     public bool AffectActive = false;
     [Tooltip("Affects the parent of the animation (only if it has the same name as Main).")]
@@ -179,6 +180,15 @@ public class AdvancedAnimation : MonoBehaviour
                         Parts[i].localPosition = new Vector3(BaseValue2.x * (1 - Count) + FinalValue2.x * Count, BaseValue2.y * (1 - Count) + FinalValue2.y * Count, BaseValue2.z * (1 - Count) + FinalValue2.z * Count);
                     }
                 }
+                if (AffectScale)
+                {
+                    Vector3 BaseValue2 = AnimationParts[PreviousStep][Pointers[PreviousStep][i]].localScale;
+                    Vector3 FinalValue2 = AnimationParts[NextStep][Pointers[NextStep][i]].localScale;
+                    if (BaseValue2 != FinalValue2 || AffectAll)
+                    {
+                        Parts[i].localScale = new Vector3(BaseValue2.x * (1 - Count) + FinalValue2.x * Count, BaseValue2.y * (1 - Count) + FinalValue2.y * Count, BaseValue2.z * (1 - Count) + FinalValue2.z * Count);
+                    }
+                }
             }
             catch { }
             Count = BackupCount;
@@ -194,7 +204,7 @@ public class AdvancedAnimation : MonoBehaviour
     public void DoOneFrame()
     {
         if (!Active) return;
-        Count += Time.deltaTime * AnimationSteps[PreviousStep].Speed;
+        Count += Time.unscaledDeltaTime * AnimationSteps[PreviousStep].Speed;
         if (Count >= 1)
         {
             Count = 1;

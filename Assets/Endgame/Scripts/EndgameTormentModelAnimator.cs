@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndgameTormentModelAnimator : MonoBehaviour
+public class EndgameTormentModelAnimator : AGameControllerListener
 {
     private enum State { Idling, UnitDeath, Damaged }
     [Header("Idle")]
@@ -16,9 +16,12 @@ public class EndgameTormentModelAnimator : MonoBehaviour
     // Idle
     private float idleCount = 0;
     private AdvancedAnimation currentIdle;
+    // Unit Death
+    private AdvancedAnimation currentUnitDeath;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         transform.parent = GameController.Current.transform;
     }
 
@@ -29,6 +32,7 @@ public class EndgameTormentModelAnimator : MonoBehaviour
             case State.Idling:
                 if (!(currentIdle?.Active ?? false))
                 {
+                    currentIdle = null;
                     idleCount -= Time.deltaTime;
                     if (idleCount <= 0)
                     {
@@ -38,11 +42,43 @@ public class EndgameTormentModelAnimator : MonoBehaviour
                 }
                 break;
             case State.UnitDeath:
+                if (!currentUnitDeath.Active)
+                {
+                    state = State.Idling;
+                }
                 break;
             case State.Damaged:
                 break;
             default:
                 break;
         }
+    }
+
+    public override void OnBeginPlayerTurn(List<Unit> units)
+    {
+        // Do nothing
+    }
+
+    public override void OnEndLevel(List<Unit> units, bool playerWon)
+    {
+        // Do nothing
+    }
+
+    public override void OnPlayerWin(List<Unit> units)
+    {
+        // Do nothing
+    }
+
+    public override void OnUnitDeath(string unitName)
+    {
+        ClearIdle();
+        (currentUnitDeath = UnitDeathAnimations[Random.Range(0, UnitDeathAnimations.Count)]).Activate(true);
+        state = State.UnitDeath;
+    }
+
+    private void ClearIdle()
+    {
+        currentIdle?.Deactivate();
+        idleCount = IdleRate.RandomValueInRange();
     }
 }
