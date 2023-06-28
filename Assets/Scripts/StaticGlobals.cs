@@ -84,6 +84,19 @@ public static class StaticGlobals
         };
     }
 
+    public static Objective? ToObjective(this string statName)
+    {
+        return statName.ToLower() switch
+        {
+            "rout" => Objective.Rout,
+            "boss" => Objective.Boss,
+            "survive" => Objective.Survive,
+            "escape" => Objective.Escape,
+            "custom" => Objective.Custom,
+            _ => null
+        };
+    }
+
     public static string ToColoredString(this string str, int paletteID)
     {
         return "<color=#" + paletteID + "00000>" + str + "</color>";

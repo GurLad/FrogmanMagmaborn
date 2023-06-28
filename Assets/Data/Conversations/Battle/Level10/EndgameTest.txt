@@ -23,12 +23,14 @@ Frogman: Fashimatime Time!
 :setTeamPlayable:monster:T
 :setTeam:Frogman:monster
 :setTempFlag:EndgameFrogmanFashima
+:setObjective:Boss:Torment
 }
 :else:{
 Frogman: Tormenttime Time!
 :setTeamPlayable:guard:T
 :setTeam:Frogman:guard
 :setTempFlag:EndgameFrogmanTorment
+:setObjective:Survive:8
 }
 :callOther:EndgameSetDeathQuotes
 :callOther:EndgameInitData

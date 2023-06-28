@@ -1291,6 +1291,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         targetUnit.ForEach(a => a.AIType = ai);
     }
 
+    public void SetObjective(Objective objective, string objectiveData)
+    {
+        selectedMap.Objective = objective;
+        selectedMap.ObjectiveData = objectiveData;
+    }
+
     public void KillTeam(Team team)
     {
         units.FindAll(a => a.TheTeam == team).ForEach(a => KillUnit(a));

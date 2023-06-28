@@ -7,7 +7,11 @@ using PlayMode = ConversationPlayer.PlayMode;
 
 public static class EventCommandProcessor
 {
-    public enum CommandArgumentType { String, Int, Float, Bool, Team, AIType, Stat, OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType, OpStat } // Assume there aren't more than 10 types
+    public enum CommandArgumentType
+    {
+        String, Int, Float, Bool, Team, AIType, Stat, Objective,
+        OpString = 10, OpInt, OpFloat, OpBool, OpTeam, OpAIType, OpStat, OpObjective
+    } // Assume there aren't more than 10 types
     public enum CommandType { Level, Conversation, MidBattleScreen, Global, Syntax, Tutorial, Menu, Endgame }
 
     private static List<CommandStruct> AllCommands { get; } = new List<CommandStruct>(new CommandStruct[]
@@ -32,6 +36,7 @@ public static class EventCommandProcessor
         new CommandStruct("killTeam", CommandType.Level, CAT.Team),
         new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType),
         new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
+        new CommandStruct("setObjective", CommandType.Level, CAT.Objective, CAT.OpString),
         new CommandStruct("lose", CommandType.Level),
         new CommandStruct("win", CommandType.Level),
 
@@ -411,6 +416,11 @@ public static class EventCommandProcessor
                 // Params: Team team, bool playable
                 Team team2 = args[0].ToTeam() ?? throw Bugger.Error("No team!");
                 GameController.Current.LevelMetadata.TeamDatas[(int)team2].PlayerControlled = args[1] == "T";
+                break;
+            case "setObjective":
+                // Params: Objective objective, string objectiveData = ""
+                Objective objective = args[0].ToObjective() ?? throw Bugger.Error("No team!");
+                GameController.Current.SetObjective(objective, args.Length > 1 ? args[1] : "");
                 break;
             case "lose":
                 // Params: none
@@ -1040,6 +1050,8 @@ public static class EventCommandProcessor
                     return part.ToAIType() != null;
                 case CAT.Stat:
                     return part.ToStat() != null;
+                case CAT.Objective:
+                    return part.ToObjective() != null;
                 default:
                     throw Bugger.Error("There's no command of type " + command + "!");
             }

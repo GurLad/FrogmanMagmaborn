@@ -11,7 +11,7 @@ public class PauseMenuText : MonoBehaviour
         text = text ?? GetComponent<Text>();
         text.text = "  --Paused--\n";
         text.text += "Turn: " + GameController.Current.Turn + "\n";
-        text.text += "Objectve:\n" + GameController.Current.GetPauseObjectiveText() + "\n";
+        text.text += "Objective:\n" + GameController.Current.GetPauseObjectiveText() + "\n";
         text.text += "Left to move:" + GameController.Current.LeftToMove();
     }
 }
