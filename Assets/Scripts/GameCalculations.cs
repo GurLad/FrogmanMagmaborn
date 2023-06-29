@@ -383,7 +383,6 @@ public static class GameCalculations
         return Damage(attacker, defender);
     }
 
-
     public static int GetMaxHP(this Stats stats)
     {
         return stats.Endurance * (KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.II ? 1 : 2);

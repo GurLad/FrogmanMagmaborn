@@ -259,6 +259,13 @@ public class Stats
         stats.Growths = Growths;
         return stats;
     }
+    public void Reset()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            this[i] = 0;
+        }
+    }
     private string ColorText(int id)
     {
         return (statValues[id] > 0 ? (StatName(id) + ":").ToColoredString((id / 2 + 1) % 3) : StatName(id) + ":") + statValues[id].ToString().PadRight(3);
