@@ -11,7 +11,7 @@ public class SMTerrainArmor : AStatModifierPos
         get
         {
             Tile tile = GameController.Current.Map[pos.x, pos.y];
-            Stats stats = new Stats();
+            Stats stats = Stats.Zero;
             stats.Armor =
                 ((unit.Flies && !tile.High) ? 0 :
                 (unit.HasSkill(Skill.NaturalCover) ? Mathf.Abs(tile.ArmorModifier) : tile.ArmorModifier));

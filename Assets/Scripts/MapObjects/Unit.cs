@@ -14,7 +14,7 @@ public class Unit : MapObject
     public AIType AIType;
     [Header("Stats")]
     public bool Flies;
-    public Stats Stats;
+    public UnitStats Stats;
     public Inclination Inclination;
     [Header("AI Values")]
     public int MaxAcceptableHitRisk = 50;
@@ -46,15 +46,10 @@ public class Unit : MapObject
     public int ReinforcementTurn;
     [HideInInspector]
     public bool Statue;
-    public int BattleStatsStr => Stats.Strength + Weapon.Damage;
-    public int BattleStatsEnd => Stats.MaxHP;
-    public int BattleStatsPir => Stats.Pierce;
-    public int BattleStatsArm => Stats.Armor;
-    public int BattleStatsPre => Stats.Precision * 10 + Weapon.Hit - 40;
-    public int BattleStatsEva => (Stats.Evasion - Weapon.Weight) * 10 - 40;
     public bool InsideMap => !(Pos == -Vector2Int.one && ReinforcementTurn > 0 && !Statue);
     private PalettedSprite palette;
     private bool started;
+    private List<IUnitListener> listeners = new List<IUnitListener>();
     [SerializeField]
     private SkillSet skills = new SkillSet();
     [SerializeField]
@@ -123,7 +118,7 @@ public class Unit : MapObject
         //}
         LoadIcon();
         Moved = Statue;
-        Health = Stats.MaxHP;
+        Health = Stats.Base.MaxHP; // Max HP cannot be affected by modifiers (otherwise it would be weird)
     }
 
     private void LoadIcon()
@@ -827,11 +822,6 @@ public class Unit : MapObject
             "\nHIT:" + (canAttack ? this.GetHitChance(other).ToString() : "--").PadRight(padding);
     }
 
-    public string BattleStats()
-    {
-        return "ATK:" + (Weapon.Damage + Stats.Strength).ToString().PadRight(3) + "\nHIT:" + (Weapon.Hit + 10 * Stats.Precision - 40).ToString().PadRight(3) + "\nAVD:" + (10 * (Stats.Evasion - Weapon.Weight) - 40).ToString().PadRight(3);
-    }
-
     public string State()
     {
         return Statue ? "Statue" : (Moved ? "Moved" : "Normal");
@@ -851,27 +841,40 @@ public class Unit : MapObject
         if (randomResult < percent) // 1.5RN system
         {
             //Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " < " + percent + ": hit");
-            unit.Health -= this.GetDamage(unit);
-            // Kill?
-            if (unit.Health <= 0)
+            NotifyListeners((a) => a.OnHit());
+            int damage = this.GetDamage(unit);
+            if (damage > 0)
             {
-                // Stats - increase kill count if it's a player unit, increase death count if a player unit was killed
-                if (TheTeam.PlayerControlled())
+                unit.Health -= damage;
+                unit.NotifyListeners((a) => a.OnDamaged());
+                // Kill?
+                if (unit.Health <= 0)
                 {
-                    SavedData.Append("Statistics", ToString() + "KillCount", 1);
+                    // Stats - increase kill count if it's a player unit, increase death count if a player unit was killed
+                    if (TheTeam.PlayerControlled())
+                    {
+                        SavedData.Append("Statistics", ToString() + "KillCount", 1);
+                    }
+                    else if (unit.TheTeam.PlayerControlled())
+                    {
+                        SavedData.Append("Statistics", unit.ToString() + "DeathCount", 1);
+                    }
+                    GameController.Current.KillUnit(unit);
+                    return null;
                 }
-                else if (unit.TheTeam.PlayerControlled())
-                {
-                    SavedData.Append("Statistics", unit.ToString() + "DeathCount", 1);
-                }
-                GameController.Current.KillUnit(unit);
-                return null;
+                return true;
             }
-            return true;
+            else
+            {
+                unit.NotifyListeners((a) => a.OnBlocked());
+                return true; // I think true means the attack connected, regardless of damage
+            }
         }
         else
         {
             //Bugger.Info(a + ", " + (b * 2) + " - " + ((a + b) / 1.5f) + " >= " + percent + ": miss");
+            NotifyListeners((a) => a.OnMiss());
+            unit.NotifyListeners((a) => a.OnDodged());
             return false;
         }
     }
@@ -890,12 +893,12 @@ public class Unit : MapObject
     {
         for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
         {
-            Stats.Growths[i]--;
+            Stats.Base.Growths[i]--;
         }
         Inclination = target;
         for (int i = (int)Inclination * 2; i < (int)Inclination * 2 + 2; i++)
         {
-            Stats.Growths[i]++;
+            Stats.Base.Growths[i]++;
         }
     }
 
@@ -949,6 +952,30 @@ public class Unit : MapObject
     {
         Symbol.gameObject.SetActive(GameCalculations.ExtraSymbolsOn);
         Symbol.sprite = Moved ? GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].MovedSymbol : GameController.Current.LevelMetadata.TeamDatas[(int)TheTeam].BaseSymbol;
+    }
+
+    public void AddStatModifier<T>(T modifier) where T: AStatModifier
+    {
+        Stats.AddStatModifier(modifier);
+        if (modifier is IUnitListener listener)
+        {
+            AddListener(listener);
+        }
+    }
+
+    public void AddListener(IUnitListener listener)
+    {
+        listeners.Add(listener);
+    }
+
+    public void RemoveListener(IUnitListener listener)
+    {
+        listeners.Remove(listener);
+    }
+
+    private void NotifyListeners(System.Action<IUnitListener> action)
+    {
+        listeners.ForEach(a => action(a));
     }
 
     public class DangerArea

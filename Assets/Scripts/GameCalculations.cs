@@ -215,7 +215,7 @@ public static class GameCalculations
                 if (units.Count > 0)
                 {
                     Unit selected = units[Random.Range(0, units.Count)];
-                    selected.Health += Mathf.Min(selected.Stats.MaxHP - selected.Health, 2);
+                    selected.Health += Mathf.Min(selected.Stats.Base.MaxHP - selected.Health, 2);
                 }
                 break;
             default:
@@ -301,6 +301,30 @@ public static class GameCalculations
         }
     }
 
+    public static void LoadStatModifiers(this Unit unit)
+    {
+        unit.AddStatModifier(new SMTerrainArmor(unit));
+        unit.AddStatModifier(new SMWeapon(unit));
+        if (HasInclinationUpgrade)
+        {
+            unit.AddStatModifier(new SMInclinationBonus(unit));
+        }
+        switch (KnowledgeController.TormentPower("TakeGive"))
+        {
+            case TormentPowerState.None:
+                break;
+            case TormentPowerState.I:
+                unit.AddStatModifier(new SMTake(unit));
+                break;
+            case TormentPowerState.II:
+                unit.AddStatModifier(new SMGive(unit));
+                break;
+            default:
+                break;
+        }
+        // TBA: Fatigue
+    }
+
     public static Stats AutoLevel(this Unit unit, int level)
     {
         Difficulty difficulty = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0);
@@ -325,7 +349,7 @@ public static class GameCalculations
             }
         }
         unit.Level = level;
-        Stats temp = unit.Stats.GetMultipleLevelUps(level); // StatsPerLevel modifiers would be broken if they affected auto-levels
+        Stats temp = unit.Stats.Base.GetMultipleLevelUps(level); // StatsPerLevel modifiers would be broken if they affected auto-levels
         //if (unit.TheTeam == Team.Monster) // It wouldn't make sense for Torment to buff Guards, although might be too easy this way.
         //{
         //    // Based on freedback from Dan, I'm removing the drawback - better making the game too easy, than making people not use Torment Powers.
@@ -337,55 +361,49 @@ public static class GameCalculations
 
     public static int GetHitChance(this Unit attacker, Unit defender)
     {
-        int Hit(Unit attacker, Unit defender) => Mathf.Clamp(attacker.Weapon.Hit - 10 * (defender.Stats.Evasion - defender.Weapon.Weight - attacker.Stats.Precision), KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.I ? 50 : 0, 100);
-        if (attacker.EffectiveAgainst(defender))
-        {
-            attacker.Stats[(int)attacker.Inclination * 2] += 2;
-            int hit = Hit(attacker, defender);
-            attacker.Stats[(int)attacker.Inclination * 2] -= 2;
-            return hit;
-        }
-        return Hit(attacker, defender);
+        Stats attackerStats = attacker.Stats.Total;
+        Stats defenderStats = defender.Stats.Total;
+        return Mathf.Clamp(attackerStats.GetHit() - defenderStats.GetAvoid(), KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.I ? 50 : 0, 100);
     }
 
     public static int GetDamage(this Unit attacker, Unit defender)
     {
-        int armorModifier = defender.GetArmorModifier(defender.Pos);
-        int Damage(Unit attacker, Unit defender)
+        Stats attackerStats = attacker.Stats.Total;
+        Stats defenderStats = defender.Stats.Total;
+        int value = Mathf.Max(0, attackerStats.Strength - 2 * Mathf.Max(0, defenderStats.Armor - attackerStats.Pierce));
+        if (defender.HasSkill(Skill.Dragonskin))
         {
-            int value = Mathf.Max(0, attacker.Stats.Strength + attacker.Weapon.Damage - 2 * Mathf.Max(0, defender.Stats.Armor + armorModifier - attacker.Stats.Pierce));
-            if (defender.HasSkill(Skill.Dragonskin))
-            {
-                value = Mathf.CeilToInt(value / 2.0f);
-            }
-            else if (defender.HasSkill(Skill.AntiDragonskin))
-            {
-                value *= 2;
-            }
-            switch (KnowledgeController.TormentPower("HonorGlory"))
-            {
-                case TormentPowerState.I:
-                    return Mathf.Max(1, value);
-                case TormentPowerState.II:
-                    //return value * 2;
-                case TormentPowerState.None:
-                default:
-                    return value;
-            }
+            value = Mathf.CeilToInt(value / 2.0f);
         }
-        if (attacker.EffectiveAgainst(defender))
+        else if (defender.HasSkill(Skill.AntiDragonskin))
         {
-            attacker.Stats[(int)attacker.Inclination * 2] += 2;
-            int damage = Damage(attacker, defender);
-            attacker.Stats[(int)attacker.Inclination * 2] -= 2;
-            return damage;
+            value *= 2;
         }
-        return Damage(attacker, defender);
+        switch (KnowledgeController.TormentPower("HonorGlory"))
+        {
+            case TormentPowerState.I:
+                return Mathf.Max(1, value);
+            case TormentPowerState.II:
+                //return value * 2;
+            case TormentPowerState.None:
+            default:
+                return value;
+        }
     }
 
     public static int GetMaxHP(this Stats stats)
     {
         return stats.Endurance * (KnowledgeController.TormentPower("HonorGlory") == TormentPowerState.II ? 1 : 2);
+    }
+
+    public static int GetHit(this Stats stats)
+    {
+        return stats.Precision * 10;
+    }
+
+    public static int GetAvoid(this Stats stats)
+    {
+        return stats.Evasion * 10;
     }
 
     public static void LoadInclination(this Unit unit)
@@ -399,7 +417,7 @@ public static class GameCalculations
 
     public static bool EffectiveAgainst(this Unit attacker, Unit defender) // Might change effectiveness to triangle
     {
-        return attacker.TheTeam.IsMainPlayerTeam() && defender != null && attacker.IsEnemy(defender) && attacker.Inclination == defender.Inclination && HasInclinationUpgrade;
+        return HasInclinationUpgrade && attacker.TheTeam.IsMainPlayerTeam() && defender != null && attacker.IsEnemy(defender) && attacker.Inclination == defender.Inclination;
     }
 
     // Tile extension methods

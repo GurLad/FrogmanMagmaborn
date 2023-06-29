@@ -10,7 +10,7 @@ public class SMTake : AStatModifierPos
     {
         get
         {
-            Stats stats = new Stats();
+            Stats stats = Stats.Zero;
             stats.Armor = !unit.TheTeam.IsMainPlayerTeam() ? -unit.CountAdjacentAllies(pos) : 0;
             return stats;
         }

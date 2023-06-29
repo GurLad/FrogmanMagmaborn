@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class Stats
 {
+    public static Stats Zero => new Stats(0);
+
     [Header("Growths (STR, END, PIR, ARM, PRE, EVA)")]
     public int[] Growths = new int[6];
     public int Strength
@@ -109,6 +111,7 @@ public class Stats
             return _sumGrowths;
         }
     }
+
     public static Stats operator+(Stats a, Stats b)
     {
         Stats stats = new Stats();
@@ -123,6 +126,7 @@ public class Stats
         stats.Growths = a.Growths;
         return stats;
     }
+
     public static bool operator ==(Stats a, Stats b)
     {
         if ((object)a == null) return (object)b == null;
@@ -136,9 +140,21 @@ public class Stats
         }
         return true;
     }
+
     public static bool operator !=(Stats a, Stats b)
     {
         return !(a == b);
+    }
+
+    public Stats(int initValue = -1)
+    {
+        if (initValue >= 0)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                this[i] = initValue;
+            }
+        }
     }
     /// <summary>
     /// Returns the stats increased after numLevels level ups.
@@ -231,15 +247,18 @@ public class Stats
         }
         return result;
     }
+
     public override string ToString()
     {
         return ToString(3);
     }
+
     public string ToString(int padding)
     {
         return "Str:" + Strength.ToString().PadRight(padding) + "Pir:" + Pierce.ToString().PadRight(padding) + "Pre:" + Precision.ToString().PadRight(padding) +
             "\nEnd:" + Endurance.ToString().PadRight(padding) + "Arm:" + Armor.ToString().PadRight(padding) + "Eva:" + Evasion.ToString().PadRight(padding);
     }
+
     public string ToColoredString()
     {
         string result = "";
@@ -253,12 +272,14 @@ public class Stats
         }
         return result;
     }
+
     public Stats GetLevel0Stat()
     {
         Stats stats = new Stats();
         stats.Growths = Growths;
         return stats;
     }
+
     public void Reset()
     {
         for (int i = 0; i < 6; i++)
@@ -266,10 +287,12 @@ public class Stats
             this[i] = 0;
         }
     }
+
     private string ColorText(int id)
     {
         return (statValues[id] > 0 ? (StatName(id) + ":").ToColoredString((id / 2 + 1) % 3) : StatName(id) + ":") + statValues[id].ToString().PadRight(3);
     }
+
     private string StatName(int id)
     {
         switch (id)

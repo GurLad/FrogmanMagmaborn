@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class AStatModifier
 {
+    public virtual bool Visible => true;
     protected Unit unit;
 
     public AStatModifier(Unit unit)

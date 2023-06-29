@@ -10,7 +10,7 @@ public class SMInclinationBonus : AStatModifierBattle
     {
         get
         {
-            Stats stats = new Stats();
+            Stats stats = Stats.Zero;
             if (unit.EffectiveAgainst(target))
             {
                 stats[(int)unit.Inclination * 2] += 2;

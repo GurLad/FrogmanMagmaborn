@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     Unit unit = CreateEmptyUnit();
                     unit.Load(playerUnits[i], true);
                     unit.name = "Unit" + unit.Name;
-                    unit.Health = unit.Stats.MaxHP;
+                    unit.Health = unit.Stats.Base.MaxHP;
                     AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
                     playerUnitsCache.Add(unit);
@@ -485,8 +485,9 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         if (unit.TheTeam.IsMainPlayerTeam())
                         {
-                            unit.Stats = unit.Stats.GetLevel0Stat() + unit.AutoLevel(unit.Level);
-                            unit.Health = unit.Stats.MaxHP;
+                            unit.Stats = new UnitStats(unit);
+                            unit.Stats.IncreaseBaseStats(unit.AutoLevel(unit.Level));
+                            unit.Health = unit.Stats.Base.MaxHP;
                         }
                     }
                 }
@@ -856,7 +857,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         unit.name = "Unit" + name;
         unit.Level = level;
         unit.TheTeam = team;
-        unit.Stats += unit.AutoLevel(level);
+        unit.Stats = new UnitStats(unit);
         // Find ClassData, and determine whether to use it or UnitData (based on PortraitLoadingMode)
         ClassData classData;
         switch (unit.PortraitMode = portraitLoadingMode ?? LevelMetadata.TeamDatas[(int)team].PortraitLoadingMode)
@@ -874,8 +875,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     throw Bugger.Error("No matching class! (" + unit.Class + ")");
                 }
-                unit.Stats = new Stats();
-                unit.Stats.Growths = unitData.Growths.Values;
+                unit.Stats.Base.Growths = unitData.Growths.Values;
                 unit.DeathQuote = unitData.DeathQuote;
                 unit.Inclination = unitData.Inclination;
                 unit.LoadInclination();
@@ -888,8 +888,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     throw Bugger.Error("No matching class! (" + unit.Class + ")");
                 }
-                unit.Stats = new Stats();
-                unit.Stats.Growths = classData.Growths.Values;
+                unit.Stats.Base.Growths = classData.Growths.Values;
                 unit.Inclination = classData.Inclination;
                 break;
             default:
@@ -898,11 +897,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         // Use ClassData for class-specific stuff (flies, weapon...)
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
-        unit.Stats += unit.AutoLevel(level);
+        unit.Stats.IncreaseBaseStats(unit.AutoLevel(level));
         // Load sprite, priorities, skills, init
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);
         unit.LoadSkills();
+        unit.LoadStatModifiers();
         unit.Init(true);
     }
 
@@ -1066,7 +1066,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         unit = playerCharacters[++numPlayers];
                         unit.transform.parent = currentUnitsObject;
-                        unit.Health = unit.Stats.MaxHP;
+                        unit.Health = unit.Stats.Base.MaxHP;
                         unit.Pos = unitData.Pos;
                     }
                     continue;
@@ -1075,7 +1075,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 {
                     unit = playerCharacters[0];
                     unit.transform.parent = currentUnitsObject;
-                    unit.Health = unit.Stats.MaxHP;
+                    unit.Health = unit.Stats.Base.MaxHP;
                     unit.Pos = unitData.Pos;
                     Cursor.Pos = unit.Pos; // Auto-cursor
                     continue;
