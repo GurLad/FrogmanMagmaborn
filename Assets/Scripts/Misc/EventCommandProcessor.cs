@@ -302,7 +302,7 @@ public static class EventCommandProcessor
                 {
                     foreach (Unit target in targets10)
                     {
-                        target.Stats[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] += int.Parse(args[2]);
+                        target.Stats.Base[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] += int.Parse(args[2]);
                     }
                 }
                 else
@@ -312,13 +312,13 @@ public static class EventCommandProcessor
                 break;
             case "setStat":
                 // Params: string unitName, Stat stat, int value
-                // Adds the given value to the given stat.
+                // Sets the given value to the given stat.
                 List<Unit> targets11 = GameController.Current.GetNamedUnits(args[0]);
                 if (targets11.Count > 0)
                 {
                     foreach (Unit target in targets11)
                     {
-                        target.Stats[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] = int.Parse(args[2]);
+                        target.Stats.Base[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] = int.Parse(args[2]);
                     }
                 }
                 else

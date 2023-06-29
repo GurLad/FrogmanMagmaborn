@@ -485,8 +485,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     {
                         if (unit.TheTeam.IsMainPlayerTeam())
                         {
-                            unit.Stats = new UnitStats(unit);
-                            unit.Stats.IncreaseBaseStats(unit.AutoLevel(unit.Level));
+                            unit.Stats.Base = unit.Stats.Base.GetLevel0Stat() + unit.AutoLevel(unit.Level);
                             unit.Health = unit.Stats.Base.MaxHP;
                         }
                     }
@@ -897,7 +896,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         // Use ClassData for class-specific stuff (flies, weapon...)
         unit.Flies = classData.Flies;
         unit.Weapon = classData.Weapon;
-        unit.Stats.IncreaseBaseStats(unit.AutoLevel(level));
+        unit.Stats.Base += unit.AutoLevel(level);
         // Load sprite, priorities, skills, init
         AssignUnitMapAnimation(unit, classData);
         unit.Priorities.Set(LevelMetadata.TeamDatas[(int)team].AI);

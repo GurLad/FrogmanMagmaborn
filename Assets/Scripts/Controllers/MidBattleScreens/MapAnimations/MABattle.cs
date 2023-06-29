@@ -190,8 +190,8 @@ public class MABattle : MapAnimation
                 }
                 else
                 {
-                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defending.Stats.MaxHP);
-                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defending.Stats.MaxHP);
+                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defending.Stats.Base.MaxHP);
+                    battleTrueFlashTime = BattleFlashTime / (1.5f - (float)damage / defending.Stats.Base.MaxHP);
                     if (!defending.Statue)
                     {
                         defending.Moved = true; // "Flash"

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class UnitStats
 {
-    public Stats Base => baseStats;
-    public Stats VisibleModifiers => GetModifiers(null, unit.Pos, true);
+    private enum VisibilityOptions { All, VisibleOnly, InvisibleOnly }
+
+    public Stats Base;
+    public Stats VisibleModifiers => GetModifiers(null, unit.Pos, VisibilityOptions.VisibleOnly);
+    public Stats InvisibleModifiers => GetModifiers(null, unit.Pos, VisibilityOptions.InvisibleOnly);
     public Stats Total => AtPos(unit.Pos);
     private Unit unit;
-    [SerializeField]
-    private Stats baseStats;
     [SerializeField]
     private List<AStatModifier> modifiers = new List<AStatModifier>();
 
     public UnitStats(Unit unit)
     {
         this.unit = unit;
-        baseStats = new Stats();
+        Base = new Stats();
     }
 
     public Stats Against(Unit target, Vector2Int? pos)
@@ -34,14 +35,15 @@ public class UnitStats
         modifiers.Add(modifier);
     }
 
-    public void IncreaseBaseStats(Stats amount)
+    private Stats GetModifiers(Unit target, Vector2Int pos, VisibilityOptions visibilityOptions = VisibilityOptions.All)
     {
-        baseStats += amount;
-    }
-
-    private Stats GetModifiers(Unit target, Vector2Int pos, bool visibleOnly = false)
-    {
-        List<AStatModifier> active = visibleOnly ? modifiers.FindAll(a => a.Visible) : modifiers;
+        List<AStatModifier> active = visibilityOptions switch
+        {
+            VisibilityOptions.All => modifiers,
+            VisibilityOptions.VisibleOnly => modifiers.FindAll(a => a.Visible),
+            VisibilityOptions.InvisibleOnly => modifiers.FindAll(a => !a.Visible),
+            _ => throw Bugger.FMError("Impossible")
+        };
         if (target == null)
         {
             active = active.FindAll(a => !(a is AStatModifierBattle));
@@ -52,8 +54,8 @@ public class UnitStats
         }
         active.FindAll(a => a is AStatModifierPos).ForEach(a => ((AStatModifierPos)a).SetPos(pos));
         Stats sum = Stats.Zero;
-        active.ForEach(a => sum += a.Modifier);
         sum.Growths = Base.Growths;
+        active.ForEach(a => { Stats mod = a.Modifier; mod.Growths = sum.Growths; sum += mod; });
         return sum;
     }
 }

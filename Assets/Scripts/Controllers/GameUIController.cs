@@ -34,7 +34,7 @@ public class GameUIController : MonoBehaviour
         }
         if (unit != null)
         {
-            UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP;
+            UIUnitInfo.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.Base.MaxHP;
             UIUnitInfoPanel.GetComponent<PalettedSprite>().Palette = (int)unit.TheTeam;
         }
         else

@@ -25,7 +25,7 @@ public class EndgameSummoner : AGameControllerListener
     public List<string> SummonOptionsMonster { private get; set; }
     private Unit torment;
     private float chaosModifier = 0;
-    private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.MaxHP - torment.Health) / torment.Stats.MaxHP;
+    private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
     private List<SummonCircle> circles { get; } = new List<SummonCircle>();
 
     private void Awake()

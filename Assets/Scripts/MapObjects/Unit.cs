@@ -943,6 +943,11 @@ public class Unit : MapObject
         Symbol = symbol;
         LoadIcon();
         moved = !resetMoved && moved;
+        // Fix stats. TBA: think of a better solution, one which would also allow saving the data of StatModifiers between maps/save & quits
+        Stats baseStats = Stats.Base;
+        Stats = new UnitStats(this);
+        Stats.Base = baseStats;
+        this.LoadStatModifiers();
     }
 
     /// <summary>

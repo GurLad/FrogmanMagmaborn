@@ -29,14 +29,14 @@ public class DebugOptions : MonoBehaviour
         {
             foreach (Unit unit in gameController.PlayerUnits)
             {
-                unit.Stats += unit.AutoLevel(50);
+                unit.Stats.Base += unit.AutoLevel(50);
             }
         }
         if (options.ExtraLevels > 0)
         {
             foreach (Unit unit in gameController.PlayerUnits)
             {
-                unit.Stats += unit.AutoLevel(options.ExtraLevels);
+                unit.Stats.Base += unit.AutoLevel(options.ExtraLevels);
             }
         }
         ConversationPlayer.Current.Play(gameController.CreateLevel(options.ForceConversation, options.ForceMap));

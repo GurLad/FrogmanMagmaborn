@@ -39,8 +39,8 @@ public class StatusScreenController : MidBattleScreen
 
     private void Show(Unit unit, int index)
     {
-        Name.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.MaxHP + "\nLevel:" + unit.Level;
-        Stats.text = unit.Stats.ToString(6);
+        Name.text = unit.ToString() + "\nHP:" + unit.Health + "/" + unit.Stats.Base.MaxHP + "\nLevel:" + unit.Level;
+        Stats.text = unit.Stats.Base.ToString(6);
         Weapon.text = unit.Weapon.ToString();
         Status.text = "Team:" + unit.TheTeam.Name().PadRight(7) + (!unit.TheTeam.PlayerControlled() ? ("\nA.I.:" + unit.AIType.ToString().PadRight(7)) : "\n") + "\nCond:" + unit.State().PadRight(7);
         BattleStats.Display(unit);
@@ -50,7 +50,7 @@ public class StatusScreenController : MidBattleScreen
         }
         Icon.Portrait = unit.Icon;
         HealthbarFull.sizeDelta = new Vector2(unit.Health * 4, 8);
-        HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.MaxHP * 4, 8);
+        HealthbarEmpty.sizeDelta = new Vector2(unit.Stats.Base.MaxHP * 4, 8);
         // Load class icon
         ClassData classData = GameController.Current.UnitClassData.ClassDatas.Find(a => a.Name == unit.Class);
         classData.SetToClassIcon(ClassIcon);

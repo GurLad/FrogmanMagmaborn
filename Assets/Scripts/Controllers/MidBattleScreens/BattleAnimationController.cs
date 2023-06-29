@@ -187,8 +187,8 @@ public class BattleAnimationController : MidBattleScreen
                 }
                 else
                 {
-                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Unit.Stats.MaxHP);
-                    BeginAnimation<BADamageFlash>(defender, attacker).BattleFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Unit.Stats.MaxHP);
+                    SoundController.PlaySound(HitSFX, 1.5f - (float)damage / defender.Unit.Stats.Base.MaxHP);
+                    BeginAnimation<BADamageFlash>(defender, attacker).BattleFlashTime = BattleFlashTime / (1.5f - (float)damage / defender.Unit.Stats.Base.MaxHP);
                 }
                 break;
             case false:
@@ -433,7 +433,7 @@ public class BattleAnimationController : MidBattleScreen
                 item.Palette = (int)Unit.TheTeam;
             }
             Palette.Palette = Unit.Statue ? 3 : (int)Unit.TheTeam;
-            UIHealthbar.SetMax(Unit.Stats.MaxHP);
+            UIHealthbar.SetMax(Unit.Stats.Base.MaxHP);
             UIPortrait.Portrait = Unit.Icon;
         }
 
