@@ -67,8 +67,16 @@ public class EndingCardHolder : MonoBehaviour
         for (int i = 0; i < RankImages.Count; i++)
         {
             int ranking = endingData.Stats.StatRankings[i].Ranking;
-            RankImages[i].sprite = ranking < EndingCardsController.RankSprites.Count ? EndingCardsController.RankSprites[ranking] : null;
-            RankPalettedSprites[i].Palette = ranking < EndingCardsController.RankSprites.Count ? ranking : 0;
+            if (ranking < EndingCardsController.RankSprites.Count)
+            {
+                RankImages[i].gameObject.SetActive(true);
+                RankImages[i].sprite = EndingCardsController.RankSprites[ranking];
+                RankPalettedSprites[i].Palette = ranking;
+            }
+            else
+            {
+                RankImages[i].gameObject.SetActive(false);
+            }
         }
         PaletteController.Current.LoadState(EndingCardsController.SavedState);
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(endingData.CharacterName);

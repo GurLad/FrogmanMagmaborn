@@ -826,32 +826,69 @@ MonoBehaviour:
     EndingCards:
     - Requirements: 
       Title: Firbell, The Fireball
-      Card: Exploded.
+      Card: Exploded. BOOOOOOM!
   - CharacterName: Zip
     EndingCards:
     - Requirements: 
       Title: Zip, Walking Dead
       Card: Zip began the zombie apocalypse by reviving himself.
+  - CharacterName: Kresla
+    EndingCards:
+    - Requirements: 
+      Title: Kresla, Schearless Folar
+      Card: Explored many things and then died.
+  - CharacterName: Xirveros
+    EndingCards:
+    - Requirements: 
+      Title: Xirveros, Rock Lover
+      Card: He likes rocks. A lot. He just loves them. Did he tell you about his
+        rock collection?
+  - CharacterName: Xeplogi
+    EndingCards:
+    - Requirements: 
+      Title: Xeplogi, Green Stache
+      Card: Not to be confused with Luigi.
+  - CharacterName: Memerian
+    EndingCards:
+    - Requirements: 
+      Title: Memerian, Hell's Hell
+      Card: Got to hell, hell! Hell, I'm outta here!
+  - CharacterName: Alfred
+    EndingCards:
+    - Requirements: 
+      Title: Alfred, Perfect Edge
+      Card: You, Devisian knights. How much weight... can you handle? Can you withstand
+        the spirit of one who's life has passed?
+  - CharacterName: Fashima
+    EndingCards:
+    - Requirements: 
+      Title: Fashima, the Impostor
+      Card: Fashima was ejected. 0 impostors remain.
+  - CharacterName: Werse
+    EndingCards:
+    - Requirements: 
+      Title: Werse, Who?
+      Card: Who is this person? I don't remember them.
   RankSprites:
   - {fileID: 21300000, guid: 735af4d06747aff448037a81ccb4c4a0, type: 3}
   - {fileID: 21300000, guid: 025ae5a190ecb8e44b37aef6af1d63b8, type: 3}
   - {fileID: 21300000, guid: fd9a98101e3826648b67fcbc7db663c9, type: 3}
   RankPalettes:
   - Colors:
+    - id: 55
     - id: 8
     - id: 22
     - id: 36
-    - id: 55
   - Colors:
+    - id: 55
     - id: 0
     - id: 28
     - id: 42
-    - id: 55
   - Colors:
+    - id: 55
     - id: 7
     - id: 21
     - id: 35
-    - id: 55
   EndingCardHolder: {fileID: 4857826900998559625}
   SavedState:
     BackgroundPalettes: []

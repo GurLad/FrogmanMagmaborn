@@ -26,7 +26,7 @@ public class EndingCardsController : MidBattleScreen
         List<List<KeyValuePair<int, ProcessedEndingData>>> stats = new List<List<KeyValuePair<int, ProcessedEndingData>>>();
         for (int i = 0; i < UnitStats.StatInternalNames.Length; i++)
         {
-            stats[i] = new List<KeyValuePair<int, ProcessedEndingData>>();
+            stats.Add(new List<KeyValuePair<int, ProcessedEndingData>>());
         }
         for (int i = 0; i < CharacterEndings.Count; i++)
         {
@@ -43,11 +43,13 @@ public class EndingCardsController : MidBattleScreen
         for (int i = 0; i < stats.Count; i++)
         {
             stats[i].Sort((a, b) => a.Key.CompareTo(b.Key));
+            stats[i].Reverse();
             for (int j = 0; j < stats[i].Count; j++)
             {
                 stats[i][j].Value.Stats.StatRankings[i].Ranking = j;
             }
         }
+        processedEndingDatas.Sort((a, b) => a.Stats.MVPValue().CompareTo(b.Stats.MVPValue()));
     }
 
     public void DisplayNext()
@@ -113,8 +115,13 @@ public class EndingCardsController : MidBattleScreen
         {
             for (int i = 0; i < StatInternalNames.Length; i++)
             {
-                StatRankings.Add(new StatRankingPair(SavedData.Load("Statistics", unit + "DeathCount", 0)));
+                StatRankings.Add(new StatRankingPair(SavedData.Load("Statistics", unit + StatInternalNames[i] + "Count", 0)));
             }
+        }
+
+        public int MVPValue()
+        {
+            return GameCalculations.MVPValue(this[0], this[1], this[2], this[3]);
         }
 
         public override string ToString()
@@ -122,7 +129,7 @@ public class EndingCardsController : MidBattleScreen
             string res = "";
             for (int i = 0; i < StatInternalNames.Length; i++)
             {
-                res += StatDisplayNames[i] + ": " + StatRankings[i].ToString().PadRight(3) + (i % 2 == 0 ? " " : "\n");
+                res += StatDisplayNames[i] + ": " + StatRankings[i].Stat.ToString().PadRight(3) + (i % 2 == 0 ? " " : "\n");
             }
             return res.Substring(0, res.Length - 1);
         }
