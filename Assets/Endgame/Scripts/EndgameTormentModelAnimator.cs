@@ -2,22 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndgameTormentModelAnimator : AGameControllerListener
+public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListener
 {
     private enum State { Idling, UnitDeath, Damaged }
     [Header("Idle")]
     public List<AdvancedAnimation> IdleAnimations;
     public Vector2 IdleRate;
-    [Header("Unit Death")] // TBA
+    [Header("Unit Death")]
     public List<AdvancedAnimation> UnitDeathAnimations;
-    [Header("Damaged")] // TBA
+    [Header("Damaged")]
     public List<AdvancedAnimation> DamagedAnimations;
+    public EndgamePaletteCheater EndgamePaletteCheater;
+    [Header("BasePalette")]
+    public Palette BasePalette;
+    [Header("DamagedPalette")]
+    public Palette DamagedPalette;
     private State state;
     // Idle
     private float idleCount = 0;
     private AdvancedAnimation currentIdle;
     // Unit Death
     private AdvancedAnimation currentUnitDeath;
+    // Damaged
+    private AdvancedAnimation currentDamaged;
+    // Misc
+    private Unit tormentUnit;
 
     protected override void Start()
     {
@@ -27,6 +36,13 @@ public class EndgameTormentModelAnimator : AGameControllerListener
 
     private void Update()
     {
+        if (Time.timeScale > 0 && tormentUnit == null) // At Start GameController still contains the previous Torment apparently
+        {
+            tormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
+            tormentUnit.AddListener(this);
+            tormentUnit.GetComponent<SpriteRenderer>().enabled = false;
+            Bugger.Info(GameController.Current.GetNamedUnits(StaticGlobals.TormentName).Count.ToString());
+        }
         switch (state)
         {
             case State.Idling:
@@ -48,10 +64,36 @@ public class EndgameTormentModelAnimator : AGameControllerListener
                 }
                 break;
             case State.Damaged:
+                if (!currentDamaged.Active)
+                {
+                    EndgamePaletteCheater.TrueColours[0] = BasePalette;
+                    state = State.Idling;
+                }
                 break;
             default:
                 break;
         }
+    }
+
+    public override void OnUnitDeath(string unitName)
+    {
+        ClearIdle();
+        (currentUnitDeath = UnitDeathAnimations[Random.Range(0, UnitDeathAnimations.Count)]).Activate(true);
+        state = State.UnitDeath;
+    }
+
+    public void OnDamaged()
+    {
+        ClearIdle();
+        (currentDamaged = DamagedAnimations[Random.Range(0, DamagedAnimations.Count)]).Activate(true);
+        state = State.Damaged;
+        EndgamePaletteCheater.TrueColours[0] = DamagedPalette;
+    }
+
+    private void ClearIdle()
+    {
+        currentIdle?.Deactivate();
+        idleCount = IdleRate.RandomValueInRange();
     }
 
     public override void OnBeginPlayerTurn(List<Unit> units)
@@ -69,16 +111,28 @@ public class EndgameTormentModelAnimator : AGameControllerListener
         // Do nothing
     }
 
-    public override void OnUnitDeath(string unitName)
+    public void OnSpawn()
     {
-        ClearIdle();
-        (currentUnitDeath = UnitDeathAnimations[Random.Range(0, UnitDeathAnimations.Count)]).Activate(true);
-        state = State.UnitDeath;
+        // Spawn animation maybe?
     }
 
-    private void ClearIdle()
+    public void OnHit()
     {
-        currentIdle?.Deactivate();
-        idleCount = IdleRate.RandomValueInRange();
+        // Impossible
+    }
+
+    public void OnMiss()
+    {
+        // Impossible
+    }
+
+    public void OnBlocked()
+    {
+        // Impossible
+    }
+
+    public void OnDodged()
+    {
+        // Impossible(?)
     }
 }

@@ -49,7 +49,7 @@ public class Unit : MapObject
     public bool InsideMap => !(Pos == -Vector2Int.one && ReinforcementTurn > 0 && !Statue);
     private PalettedSprite palette;
     private bool started;
-    private List<IUnitListener> listeners = new List<IUnitListener>();
+    private List<IUnitListener> listeners { get; } = new List<IUnitListener>();
     [SerializeField]
     private SkillSet skills = new SkillSet();
     [SerializeField]
