@@ -17,6 +17,8 @@ public class EndingCardHolder : MonoBehaviour
     public Text Title;
     public Text Stats;
     public Text Card;
+    public List<PalettedSprite> RankPalettedSprites;
+    public List<Image> RankImages;
     private State state;
     private string cardText = "";
     private int currentLetter = 0;
@@ -57,21 +59,19 @@ public class EndingCardHolder : MonoBehaviour
         }
     }
 
-    public void Display(string characterName, string title, string card)
+    public void Display(EndingCardsController.ProcessedEndingData endingData)
     {
-        Title.text = title;
+        Title.text = endingData.Title;
         Card.text = "";
-        DisplayUnitStats(characterName);
-        PortraitHolder.Portrait = PortraitController.Current.FindPortrait(characterName);
-        GameController.Current.LevelMetadata.SetPalettesFromMetadata();
-        PaletteController.Current.FadeIn(() => { cardText = card.FindLineBreaks(LineWidth); state = State.Writing; });
-    }
-
-    private void DisplayUnitStats(string unit)
-    {
-        Stats.text = "Maps: " + SavedData.Load("Statistics", unit + "MapsCount", 0).ToString().PadRight(3) +
-            "  Fights: " + SavedData.Load("Statistics", unit + "BattleCount", 0).ToString().PadRight(3) +
-            "\nWins: " + SavedData.Load("Statistics", unit + "KillCount", 0).ToString().PadRight(3) +
-            "  Losses: " + SavedData.Load("Statistics", unit + "DeathCount", 0).ToString().PadRight(3);
+        Stats.text = endingData.Stats.ToString();
+        for (int i = 0; i < RankImages.Count; i++)
+        {
+            int ranking = endingData.Stats.StatRankings[i].Ranking;
+            RankImages[i].sprite = ranking < EndingCardsController.RankSprites.Count ? EndingCardsController.RankSprites[ranking] : null;
+            RankPalettedSprites[i].Palette = ranking < EndingCardsController.RankSprites.Count ? ranking : 0;
+        }
+        PaletteController.Current.LoadState(EndingCardsController.SavedState);
+        PortraitHolder.Portrait = PortraitController.Current.FindPortrait(endingData.CharacterName);
+        PaletteController.Current.FadeIn(() => { cardText = endingData.Card.FindLineBreaks(LineWidth); state = State.Writing; });
     }
 }

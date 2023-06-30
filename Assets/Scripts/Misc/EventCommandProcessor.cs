@@ -600,6 +600,7 @@ public static class EventCommandProcessor
                 {
                     EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
                     MidBattleScreen.Set(endingCardsController, true);
+                    endingCardsController.Init();
                     endingCardsController.DisplayNext();
                 }, null, false);
                 return result | StartLineResult.MidBattleScreen;
