@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum Difficulty { NotSet, Normal, Hard, Insane }
@@ -100,6 +101,25 @@ public static class StaticGlobals
     public static string ToColoredString(this string str, int paletteID)
     {
         return "<color=#" + paletteID + "00000>" + str + "</color>";
+    }
+
+    public static string FindLineBreaks(this string line, int lineWidth)
+    {
+        string cutLine = line;
+        for (int i = line.IndexOf(' '); i > -1; i = cutLine.IndexOf(' ', i + 1))
+        {
+            int nextLength = cutLine.Substring(i + 1).Split(' ')[0].Length;
+            int length = i + 1 + nextLength - cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a');
+            if (length > lineWidth)
+            {
+                //ErrorController.Info("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
+                line = line.Substring(0, line.LastIndexOf('\n') + 1) + cutLine.Substring(0, i) + '\n' + cutLine.Substring(i + 1);
+                i = 0;
+                cutLine = line.Substring(line.LastIndexOf('\n') + 1);
+            }
+        }
+        //ErrorController.Info(line);
+        return line;
     }
 
     public static string ForgeJsonToUnity(this string json, string propertyName)

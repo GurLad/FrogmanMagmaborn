@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3015092402651848345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7896336734614528845}
+  - component: {fileID: 8810640857672993002}
+  - component: {fileID: 2527836806800173642}
+  m_Layer: 5
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7896336734614528845
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3015092402651848345}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4857826900616635657}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8810640857672993002
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3015092402651848345}
+  m_CullTransparentMesh: 1
+--- !u!114 &2527836806800173642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3015092402651848345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4857826900603335806
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +233,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 7896336734614528845}
   - {fileID: 4857826900998559624}
   m_Father: {fileID: 4857826900603335807}
   m_RootOrder: 2
@@ -251,6 +327,7 @@ GameObject:
   - component: {fileID: 4857826900661544020}
   - component: {fileID: 4857826900661544018}
   - component: {fileID: 4857826900661544021}
+  - component: {fileID: 5266183076537240921}
   m_Layer: 5
   m_Name: StatsHolder
   m_TagString: Untagged
@@ -316,6 +393,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5266183076537240921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857826900661544023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: 0
+  palette: 3
 --- !u!1 &4857826900989875309
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +544,7 @@ RectTransform:
   - {fileID: 4857826900661544020}
   - {fileID: 4857826901744481333}
   m_Father: {fileID: 4857826900616635657}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -617,7 +708,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fedb343555acf47b2d5ce10752ee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterEndings: []
+  CharacterEndings:
+  - CharacterName: Frogman
+    EndingCards:
+    - Requirements: 
+      Title: Frogman, Friendly Frog
+      Card: Frogman the frog was a very friendly frog to all his friends.
+    - Requirements: 
+      Title: Frogman, Evil Frog
+      Card: Frogman the frog was a very evil frog to all his friends.
+  - CharacterName: Firbell
+    EndingCards:
+    - Requirements: 
+      Title: Firbell, The Fireball
+      Card: Exploded.
+  - CharacterName: Zip
+    EndingCards:
+    - Requirements: 
+      Title: Zip, Walking Dead
+      Card: Zip began the zombie apocalypse by reviving himself.
   EndingCardHolder: {fileID: 4857826900998559625}
 --- !u!1 &4857826901744481332
 GameObject:
@@ -630,6 +739,7 @@ GameObject:
   - component: {fileID: 4857826901744481333}
   - component: {fileID: 4857826901744481331}
   - component: {fileID: 4857826901744481330}
+  - component: {fileID: 4950196858882547124}
   m_Layer: 5
   m_Name: CardHolder
   m_TagString: Untagged
@@ -695,6 +805,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4950196858882547124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857826901744481332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: 0
+  palette: 3
 --- !u!1 &4857826902002800852
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +926,7 @@ GameObject:
   - component: {fileID: 4857826902074857264}
   - component: {fileID: 4857826902074857278}
   - component: {fileID: 4857826902074857265}
+  - component: {fileID: 9033896896064869727}
   m_Layer: 5
   m_Name: TitleHolder
   m_TagString: Untagged
@@ -867,6 +992,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9033896896064869727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857826902074857267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d91d29f629965c4abb8feceab88d0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: 0
+  palette: 3
 --- !u!1001 &4857826900975158536
 PrefabInstance:
   m_ObjectHideFlags: 0

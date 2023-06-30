@@ -45,6 +45,7 @@ public class EndingCardsController : MidBattleScreen
     {
         public string Requirements;
         public string Title;
+        [TextArea]
         public string Card;
     }
 }

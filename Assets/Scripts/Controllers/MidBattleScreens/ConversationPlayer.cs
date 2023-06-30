@@ -563,22 +563,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
 
     private string FindLineBreaks(string line)
     {
-        int lineWidth = LineWidth;
-        string cutLine = line;
-        for (int i = line.IndexOf(' '); i > -1; i = cutLine.IndexOf(' ', i + 1))
-        {
-            int nextLength = cutLine.Substring(i + 1).Split(' ')[0].Length;
-            int length = i + 1 + nextLength - cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a');
-            if (length > lineWidth)
-            {
-                //ErrorController.Info("Length (" + cutLine.Substring(0, i + 1) + "): " + (i + 1) + ", next word (" + cutLine.Substring(i + 1).Split(' ')[0] + "): " + nextLength + @", \a count: " + cutLine.Substring(0, i + 1 + nextLength).Count(a => a == '\a') + ", total: " + length + " / " + lineWidth);
-                line = line.Substring(0, line.LastIndexOf('\n') + 1) + cutLine.Substring(0, i) + '\n' + cutLine.Substring(i + 1);
-                i = 0;
-                cutLine = line.Substring(line.LastIndexOf('\n') + 1);
-            }
-        }
-        //ErrorController.Info(line);
-        return line;
+        return line.FindLineBreaks(LineWidth);
     }
 
     private bool LineAddition(string trueLine)

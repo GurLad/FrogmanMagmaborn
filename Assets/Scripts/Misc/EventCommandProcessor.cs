@@ -60,6 +60,7 @@ public static class EventCommandProcessor
         new CommandStruct("showPartTitle", CommandType.MidBattleScreen, CAT.String, CAT.String),
         new CommandStruct("showChoice", CommandType.MidBattleScreen, CAT.String, CAT.String, CAT.String),
         new CommandStruct("showBase", CommandType.MidBattleScreen),
+        new CommandStruct("showEnding", CommandType.MidBattleScreen),
 
         // Global commands
 
@@ -591,6 +592,16 @@ public static class EventCommandProcessor
                 player.Pause();
                 BaseController baseController = GameObject.Instantiate(GameController.Current.BaseMenu, GameController.Current.Canvas.transform).GetComponentInChildren<BaseController>();
                 baseController.Show(GameController.Current.PlayerUnits);
+                return result | StartLineResult.MidBattleScreen;
+            case "showEnding":
+                // Args: none
+                player.Pause(); // Will never continue, but still
+                player.FadeThisOut(() =>
+                {
+                    EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
+                    MidBattleScreen.Set(endingCardsController, true);
+                    endingCardsController.DisplayNext();
+                }, null, false);
                 return result | StartLineResult.MidBattleScreen;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");

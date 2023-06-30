@@ -10,6 +10,7 @@ public class EndingCardHolder : MonoBehaviour
     [Header("Vars")]
     public float Speed;
     public float WaitTime;
+    public int LineWidth = 30;
     [Header("Objects")]
     public EndingCardsController EndingCardsController;
     public PortraitHolder PortraitHolder;
@@ -59,17 +60,18 @@ public class EndingCardHolder : MonoBehaviour
     public void Display(string characterName, string title, string card)
     {
         Title.text = title;
+        Card.text = "";
         DisplayUnitStats(characterName);
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(characterName);
         GameController.Current.LevelMetadata.SetPalettesFromMetadata();
-        PaletteController.Current.FadeIn(() => cardText = card);
+        PaletteController.Current.FadeIn(() => { cardText = card.FindLineBreaks(LineWidth); state = State.Writing; });
     }
 
     private void DisplayUnitStats(string unit)
     {
-        Stats.text = "Maps: " + SavedData.Load("Statistics", unit + "MapsCount", 1).ToString().PadRight(3) +
-            "  Fights: " + SavedData.Load("Statistics", unit + "BattleCount", 1).ToString().PadRight(3) +
-            "\nWins: " + SavedData.Load("Statistics", unit + "KillCount", 1).ToString().PadRight(3) +
-            "  Losses: " + SavedData.Load("Statistics", unit + "DeathCount", 1).ToString().PadRight(3);
+        Stats.text = "Maps: " + SavedData.Load("Statistics", unit + "MapsCount", 0).ToString().PadRight(3) +
+            "  Fights: " + SavedData.Load("Statistics", unit + "BattleCount", 0).ToString().PadRight(3) +
+            "\nWins: " + SavedData.Load("Statistics", unit + "KillCount", 0).ToString().PadRight(3) +
+            "  Losses: " + SavedData.Load("Statistics", unit + "DeathCount", 0).ToString().PadRight(3);
     }
 }
