@@ -803,7 +803,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         {
             throw Bugger.Crash("Zero possible maps!");
         }
-        selectedMap = options[Random.Range(0, options.Count)];
+        selectedMap = options.RandomItemInList();
         Bugger.Info("Selected room: " + selectedMap.Name);
         // Clear previous level
         if (currentMapObject != null)
@@ -875,7 +875,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     throw Bugger.Error("No matching class! (" + unit.Class + ")");
                 }
                 unit.Stats.Base.Growths = unitData.Growths.Values;
-                unit.DeathQuote = unitData.DeathQuote;
+                unit.DeathQuote = unitData.DeathQuotes.RandomItemInList();
                 unit.Inclination = unitData.Inclination;
                 unit.LoadInclination();
                 break;

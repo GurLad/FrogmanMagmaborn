@@ -160,4 +160,14 @@ public static class StaticGlobals
     {
         return Random.Range(range.x, range.y);
     }
+
+    public static T RandomItemInList<T>(this List<T> list)
+    {
+        return list.Count > 0 ? list[Random.Range(0, list.Count)] : default(T);
+    }
+
+    public static T RandomItemInList<T>(this T[] list)
+    {
+        return list.Length > 0 ? list[Random.Range(0, list.Length)] : default(T);
+    }
 }

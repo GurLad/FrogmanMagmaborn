@@ -73,7 +73,7 @@ public class LevelMetadata
 
         public string Get()
         {
-            return ReplacedBy[Random.Range(0, ReplacedBy.Count)];
+            return ReplacedBy.RandomItemInList();
         }
     }
 }

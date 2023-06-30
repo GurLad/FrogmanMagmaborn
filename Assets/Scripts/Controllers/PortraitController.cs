@@ -64,7 +64,7 @@ public class PortraitController : MonoBehaviour
             genericPortraits = GenericPortraits;
         }
         // Select portrait
-        return genericPortraits[Random.Range(0, genericPortraits.Count)].ToPortrait(internalName);
+        return genericPortraits.RandomItemInList().ToPortrait(internalName);
     }
 
     public void AddGenericPortrait(string internalName, string tags = "")
@@ -201,8 +201,8 @@ public class GenericPortrait
     {
         // Create a new GeneratedPortrait
         GeneratedPortrait generatedPortrait = new GeneratedPortrait();
-        generatedPortrait.Voice = PortraitController.Current.GenericVoicesAndNames[VoiceTypes[Random.Range(0, VoiceTypes.Count)]].ToVoice();
-        generatedPortrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors[Random.Range(0, PortraitController.Current.GenericPossibleBackgroundColors.Count)];
+        generatedPortrait.Voice = PortraitController.Current.GenericVoicesAndNames.RandomItemInList().ToVoice();
+        generatedPortrait.BackgroundColor = PortraitController.Current.GenericPossibleBackgroundColors.RandomItemInList();
         generatedPortrait.ForegroundColorID = Random.Range(0, 4);
         generatedPortrait.InternalName = internalName;
         generatedPortrait.PortraitName = Name;
@@ -334,8 +334,8 @@ public class GenericCharacterVoice
     public NamedVoice ToVoice()
     {
         NamedVoice voice = new NamedVoice();
-        voice.Name = Names[Random.Range(0, Names.Length)];
-        voice.VoiceType = AvailableVoiceTypes[Random.Range(0, AvailableVoiceTypes.Count)];
+        voice.Name = Names.RandomItemInList();
+        voice.VoiceType = AvailableVoiceTypes.RandomItemInList();
         voice.Pitch = Random.Range(PitchRange.x, PitchRange.y);
         return voice;
     }

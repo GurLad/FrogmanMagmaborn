@@ -44,7 +44,7 @@ public class Randomizer
             // Always replace fliers with other fliers
             ClassData oldClass = classes[unitData.Class];
             List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies);
-            ClassData newClass = options[Random.Range(0, options.Count)];
+            ClassData newClass = options.RandomItemInList();
             unitData.DisplayName = shuffled.Find(a => a.Name == unitData.Name).TheDisplayName;
             unitData.Class = newClass.Name;
             unitData.Inclination = (Inclination)Random.Range(0, 3);
@@ -87,7 +87,7 @@ public class Randomizer
                     //Bugger.Info(map.Name + ": " + unit.Class);
                     ClassData oldClass = classes[unit.Class];
                     List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies);
-                    unit.Class = options[Random.Range(0, options.Count)].Name;
+                    unit.Class = options.RandomItemInList().Name;
                     if (unit == boss)
                     {
                         map.ObjectiveData = unit.Class;

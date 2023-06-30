@@ -53,7 +53,7 @@ public class ConversationController : MonoBehaviour
     public ConversationData SelectConversation()
     {
         List<ConversationData> currentOptions = GetAllOptions();
-        ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
+        ConversationData chosen = currentOptions.RandomItemInList();
         return chosen;
     }
 
@@ -67,7 +67,7 @@ public class ConversationController : MonoBehaviour
         currentOptions.Sort();
         currentOptions = currentOptions.FindAll(a => a.CompareTo(currentOptions[0]) == 0); // 0 is max, so can't be bigger anyway
         Bugger.Info("SelectConversationByID - they are: " + string.Join(", ", currentOptions));
-        ConversationData chosen = currentOptions[Random.Range(0, currentOptions.Count)];
+        ConversationData chosen = currentOptions.RandomItemInList();
         return chosen;
     }
 

@@ -52,7 +52,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
                     idleCount -= Time.deltaTime;
                     if (idleCount <= 0)
                     {
-                        (currentIdle = IdleAnimations[Random.Range(0, IdleAnimations.Count)]).Activate();
+                        (currentIdle = IdleAnimations.RandomItemInList()).Activate();
                         idleCount = IdleRate.RandomValueInRange();
                     }
                 }
@@ -78,14 +78,14 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     public override void OnUnitDeath(string unitName)
     {
         ClearIdle();
-        (currentUnitDeath = UnitDeathAnimations[Random.Range(0, UnitDeathAnimations.Count)]).Activate(true);
+        (currentUnitDeath = UnitDeathAnimations.RandomItemInList()).Activate(true);
         state = State.UnitDeath;
     }
 
     public void OnDamaged()
     {
         ClearIdle();
-        (currentDamaged = DamagedAnimations[Random.Range(0, DamagedAnimations.Count)]).Activate(true);
+        (currentDamaged = DamagedAnimations.RandomItemInList()).Activate(true);
         state = State.Damaged;
         EndgamePaletteCheater.TrueColours[0] = DamagedPalette;
     }

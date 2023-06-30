@@ -149,8 +149,8 @@ public class EndgameMapAnimator : MonoBehaviour
 
     private void SpawnVoidTile()
     {
-        Vector2Int pos = voidPoints[Random.Range(0, voidPoints.Count)];
-        Sprite spawn = VoidSpawns[Random.Range(0, VoidSpawns.Count)];
+        Vector2Int pos = voidPoints.RandomItemInList();
+        Sprite spawn = VoidSpawns.RandomItemInList();
         AdvancedSpriteSheetAnimation newTile = CreateNewPseudoTile(VoidHolder, spawn, pos);
         DestroyAnimationOnFinish destroyer = newTile.gameObject.AddComponent<DestroyAnimationOnFinish>();
         newTile.Listeners.Add(destroyer);

@@ -206,7 +206,7 @@ public static class GameCalculations
                 units = units.FindAll(a => a.TheTeam.IsEnemy(StaticGlobals.MainPlayerTeam) && !a.Moved);
                 if (units.Count > 0)
                 {
-                    Unit selected = units[Random.Range(0, units.Count)];
+                    Unit selected = units.RandomItemInList();
                     selected.Health -= Mathf.Min(selected.Health - 1, 2);
                 }
                 break;
@@ -214,7 +214,7 @@ public static class GameCalculations
                 units = units.FindAll(a => a.TheTeam.IsMainPlayerTeam() && !a.Moved);
                 if (units.Count > 0)
                 {
-                    Unit selected = units[Random.Range(0, units.Count)];
+                    Unit selected = units.RandomItemInList();
                     selected.Health += Mathf.Min(selected.Stats.Base.MaxHP - selected.Health, 2);
                 }
                 break;

@@ -89,7 +89,7 @@ public class EndgameSummoner : AGameControllerListener
             List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning && !currentSummons.Contains(a));
             if (availableCircles.Count > 0)
             {
-                SummonCircle selected = availableCircles[Random.Range(0, availableCircles.Count)];
+                SummonCircle selected = availableCircles.RandomItemInList();
                 //Bugger.Info("Available: " + string.Join(", ", availableCircles.ConvertAll(a => a.Pos)) + ", chose: " + selected.Pos);
                 selected.Summoning = true;
             }
@@ -119,7 +119,7 @@ public class EndgameSummoner : AGameControllerListener
         {
             case SummonOnUnitModes.Damage: // TBA
             case SummonOnUnitModes.Teleport:
-                SummonCircle other = circles.FindAll(a => a != circle)[Random.Range(0, circles.Count - 1)];
+                SummonCircle other = circles.FindAll(a => a != circle).RandomItemInList();
                 Unit onOtherCircle = GameController.Current.FindUnitAtPos(other.Pos);
                 if (onOtherCircle != null) // TBA: Fix animation
                 {
@@ -174,7 +174,7 @@ public class EndgameSummoner : AGameControllerListener
             default:
                 break;
         }
-        Unit summoned = GameController.Current.CreateUnit(options[Random.Range(0, options.Count)], GameController.Current.LevelNumber, team, false, portraitLoadingMode);
+        Unit summoned = GameController.Current.CreateUnit(options.RandomItemInList(), GameController.Current.LevelNumber, team, false, portraitLoadingMode);
         summoned.Moved = true;
         MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
         MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, false);
