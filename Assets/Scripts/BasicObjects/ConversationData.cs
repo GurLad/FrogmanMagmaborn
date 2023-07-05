@@ -169,7 +169,7 @@ public class ConversationData : System.IComparable<ConversationData>
             case "charactersAlive":
                 // Format: charactersAlive:?X, ex. charactersAlive:>2
                 return MeetsComparisonRequirement(parts[1][0], GameController.Current.PlayerUnits.FindAll(a => a.Name != StaticGlobals.MainCharacterName).Count, int.Parse(parts[1].Substring(1)));
-            case "roomNumber":
+            case "levelNumber":
                 // Will also have a X-Y format, for specific areas/specific part of the game (1-3,2-7 etc.)
                 return int.Parse(parts[1]) == GameController.Current.LevelNumber;
 
