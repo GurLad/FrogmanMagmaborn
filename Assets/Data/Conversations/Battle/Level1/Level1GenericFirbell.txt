@@ -1,15 +1,17 @@
+# Identifiers
 priority:-1
 unique:F
-~
+~ Requirements
 levelNumber:1
 compareCounter:FirbellAvoidsFrogman:<1
-~
+~ Demands
 hasCharacter:Firbell
-~
+~ Event (pre-battle)
+# This is a very epic event
 :play:BeforeBattle
 Firbell: Well met, Frogman.
 Frogman: Hello.
 Firbell: Time to smash a few monsters.
 Frogman: Indeed.
-~
+~ Event (post-battle)
 :play:AfterBattle
