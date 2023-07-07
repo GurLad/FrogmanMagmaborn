@@ -17786,6 +17786,9 @@ MonoBehaviour:
 
       ~ Before battle
 
+
+      ~ After battle
+
       :play:Raindance
 
       Torment:
@@ -17810,11 +17813,11 @@ MonoBehaviour:
       :setSpeaker:Frogman||L
 
       Fashima_: It was a
-      cruical part of our deal.\a Nevertheless, that is history now -\a gone and
+      crucial part of our deal.\a Nevertheless, that is history now -\a gone and
       irrelevant.\a Proceed with your death, please.
 
       Torment: Ha ha. HA HA
-      HA...!\a Heh... Heh ha heh\a hahehahahaehAHEHAHAHEA!
+      HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
       :killUnit:Torment:F
 
@@ -17839,10 +17842,12 @@ MonoBehaviour:
       HA HA HA! Without me... you are nothing...
 
       Fashima_: No. Without you
-      I am free.\a I do not need magic for that.
+      I am free. I do not need magic for that.
 
       Torment: Freedom? Heh.. Such
-      foolishness...\a Ha ha. HA HA HA...!\a Heh... Heh ha heh\a hahehahahaehAHEHAHAHEA!
+      foolishness...
+
+      Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
       :killUnit:Torment:F
 
@@ -17864,16 +17869,8 @@ MonoBehaviour:
       }
 
 
-      ~
-      After battle
-
-      :play:AfterBattle
-
-      # Name: Text.
-
-
-      # === Functions
-      ====
+      #
+      === Functions ====
 
 
       ~ Sample
@@ -17965,6 +17962,10 @@ MonoBehaviour:
       :moveUnit:Frogman:[Random:7:8]:9
 
       :setStat:Fashima:Eva:63
+
+      :setStat:Fashima:Pre:63
+
+      :addStat:Fashima:Str:2
 
       Frogman:
       Whoa.
@@ -18096,13 +18097,16 @@ MonoBehaviour:
 
       ~ Before battle
 
+
+      ~ After battle
+
       :play:Raindance
 
       :setSpeaker:Fashima||L
 
       Torment||R:
       Well, this has certainly been an entertaining little game.\a But it''s become
-      a bit... repititive, don''t you think?\a Heh.
+      a bit... repetitive, don''t you think?\a Heh.
 
       Fashima: No! I am not
       done yet!
@@ -18130,7 +18134,7 @@ MonoBehaviour:
 
       }
 
-      Fashima||L: No... No! This can''t be happening!\a
+      Fashima||L: No... No! This can''t be happening!
       I was going to win!\a To get this far, only to... Torment!\a I will stop-
 
       Torment:
@@ -18149,7 +18153,7 @@ MonoBehaviour:
       Torment: Love me.
 
       Xirveros:
-      You''re is the best thing ever!\a I love you!
+      You''re is the best thing ever! I love you!
 
       Frogman||L: What is going
       on here?!
@@ -18181,16 +18185,8 @@ MonoBehaviour:
       :showEnding:
 
 
-      ~
-      After battle
-
-      :play:AfterBattle
-
-      # Name: Text.
-
-
-      # === Functions
-      ====
+      #
+      === Functions ====
 
 
       ~ Sample
@@ -18199,52 +18195,6 @@ MonoBehaviour:
 
 '
     Name: EndgameTormentWin
-  - Text: 'priority:42
-
-      unique:F
-
-      ~ Requirements
-
-      ~ Demands
-
-      #
-      Nothing
-
-      ~ Before battle
-
-      :play:BeforeBattle
-
-      Frogman:
-      I won.
-
-      :showEnding:
-
-      Frogman: Will never happen.
-
-      :lose:
-
-      
-
-      ~
-      After battle
-
-      :play:AfterBattle
-
-      # Name: Text.
-
-      
-
-      #
-      === Functions ====
-
-      
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: Test
   IgnoreDoneConversations: 1
   SetAsMain: 1
   Path: Conversations\Battle
@@ -58533,7 +58483,7 @@ MonoBehaviour:
       ReinforcementTurn: 0
       Statue: 0
     MapEvents:
-    - Requirements: 'turn:>7
+    - Requirements: 'turn:>8
 
 '
       Event: ':callOther:EndgameTormentWin

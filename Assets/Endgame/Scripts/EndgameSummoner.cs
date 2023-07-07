@@ -57,6 +57,10 @@ public class EndgameSummoner : AGameControllerListener
 
     public override void OnBeginPlayerTurn(List<Unit> units)
     {
+        if (GameController.Current.CheckGameState() != GameState.Normal)
+        {
+            return;
+        }
         // TEMP
         if (torment == null)
         {
