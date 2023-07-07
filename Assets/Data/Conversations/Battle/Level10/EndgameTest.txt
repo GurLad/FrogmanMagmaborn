@@ -36,7 +36,13 @@ Frogman: Tormenttime Time!
 :callOther:EndgameInitData
 
 ~ After battle
-:play:AfterBattle
+:if:hasTempFlag:EndgameFrogmanFashima{
+:callOther:EndgameFashimaWin
+}
+:else:{
+:callOther:EndgameTormentWin
+}
+
 # Name: Text.
 
 # === Functions ====

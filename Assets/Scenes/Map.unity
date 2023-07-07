@@ -556,7 +556,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -633,7 +633,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -706,7 +706,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -776,7 +776,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -850,7 +850,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -915,7 +915,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -1002,7 +1002,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -1077,7 +1077,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -1169,7 +1169,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -1255,7 +1255,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:1
+      levelNumber:1
 
       hasFlag:FirbellDoubts
 
@@ -1374,7 +1374,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -1447,7 +1447,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -1537,7 +1537,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -1617,7 +1617,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -1690,35 +1690,41 @@ MonoBehaviour:
 
 '
     Name: Level1FirbellTorment1
-  - Text: 'priority:-1
+  - Text: '# Identifiers
+
+      priority:-1
 
       unique:F
 
-      ~
+      ~ Requirements
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
       ~
+      Demands
 
       hasCharacter:Firbell
 
-      ~
+      ~ Event (pre-battle)
+
+      #
+      This is a very epic event
 
       :play:BeforeBattle
 
-      Firbell:
-      Well met, Frogman.
+      Firbell: Well
+      met, Frogman.
 
       Frogman: Hello.
 
-      Firbell: Time to smash a
-      few monsters.
+      Firbell: Time to smash a few
+      monsters.
 
       Frogman: Indeed.
 
-      ~
+      ~ Event (post-battle)
 
       :play:AfterBattle
 
@@ -1730,7 +1736,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       ~
 
@@ -1762,7 +1768,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       hasFlag:AlfredKresla1
 
@@ -1849,7 +1855,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       numRuns:>5
 
@@ -1920,7 +1926,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:=1
 
@@ -2026,7 +2032,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       hasFlag:MetTormentKresla
 
@@ -2105,7 +2111,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       ~
 
@@ -2399,7 +2405,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       ~
 
@@ -2546,7 +2552,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       compareCounter:FirbellAvoidsFrogman:<1
 
@@ -2623,7 +2629,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:1
+      levelNumber:1
 
       ~
 
@@ -2671,7 +2677,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       hasCharacter:Firbell
 
@@ -2775,7 +2781,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:>0
 
@@ -2855,7 +2861,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:=0
 
@@ -2907,7 +2913,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:=0
 
@@ -3048,7 +3054,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:>0
 
@@ -3269,7 +3275,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:=0
 
@@ -3325,7 +3331,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       hasCharacter:Kresla
 
@@ -3384,7 +3390,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       hasCharacter:Firbell
 
@@ -3508,7 +3514,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       hasCharacter:Kresla
 
@@ -3627,7 +3633,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       hasKnowledge:InclinationFrogman
 
@@ -3724,7 +3730,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:2
+      levelNumber:2
 
       charactersAlive:>0
 
@@ -3791,7 +3797,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:2
+      levelNumber:2
 
       hasCharacter:Kresla
 
@@ -3890,7 +3896,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasCharacter:Firbell
 
@@ -4106,7 +4112,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasCharacter:Kresla
 
@@ -4302,7 +4308,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasCharacter:Xirveros
 
@@ -4486,7 +4492,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasFlag:XirverosPast2
 
@@ -4599,7 +4605,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       ~
       Demands
@@ -5063,7 +5069,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:3
+      levelNumber:3
 
       ~
 
@@ -5106,7 +5112,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasFlag:MetTormentKresla
 
@@ -5238,7 +5244,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:3
+      levelNumber:3
 
       hasFlag:XirverosPast1
 
@@ -5400,7 +5406,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasFlag:MetAlfred
 
@@ -5578,7 +5584,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasCharacter:Firbell
 
@@ -5786,7 +5792,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       !hasCharacter:Firbell
 
@@ -5992,7 +5998,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:4
+      levelNumber:4
 
       ~
 
@@ -6293,7 +6299,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:4
+      levelNumber:4
 
       ~
 
@@ -6356,7 +6362,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasCharacter:Kresla
 
@@ -6567,7 +6573,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasFlag:MetMemerian
 
@@ -6746,7 +6752,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       compareCounter:FirbellAvoidsFrogman:=1
 
@@ -6891,7 +6897,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:4
+      levelNumber:4
 
       hasFlag:TalkingFrogFirbell
 
@@ -6973,7 +6979,7 @@ MonoBehaviour:
 
       # Never selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -7038,7 +7044,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasFlag:MetXeplogi
 
@@ -7169,7 +7175,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:4
+      levelNumber:4
 
       hasFlag:MetXeplogi
 
@@ -7294,7 +7300,7 @@ MonoBehaviour:
 
 '
     Name: Torment1XeplogiNoFail
-  - Text: "priority:2\r\nunique:T\r\n~ Requirements\r\nroomNumber:4\r\nhasCharacter:Xirveros\r\n~
+  - Text: "priority:2\r\nunique:T\r\n~ Requirements\r\nlevelNumber:4\r\nhasCharacter:Xirveros\r\n~
       Demands\r\n# Nothinig\r\n~ Before battle\r\n:callOther:TormentBase\r\n:play:BeforeBattle\r\n:loadMap:InitTormentRoom\r\n:loadUnits:InitTormentRoom\r\n:if:firstTime:{\r\nFrogman||L:
       It's you again!\r\n:play:Trustworthy\r\nTorment: It IS me again, heh heh!\r\nAnd
       you have Xirveros with you, I see!\\a An obedient dog once again. Ha!\r\nFrogman:
@@ -7339,7 +7345,7 @@ MonoBehaviour:
 
       # Never appear
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -7440,7 +7446,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       charactersAlive:<2
 
@@ -7567,7 +7573,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       charactersAlive:<2
 
@@ -7777,7 +7783,7 @@ MonoBehaviour:
 
       ~
 
-      roomNumber:5
+      levelNumber:5
 
       ~
 
@@ -8425,7 +8431,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       #
       The first time has no requirement (like Xeplogi). This could make the run slightly
@@ -9038,7 +9044,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       charactersAlive:<2
 
@@ -9244,7 +9250,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       charactersAlive:<2
 
@@ -9308,7 +9314,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:5
+      levelNumber:5
 
       charactersAlive:>1
 
@@ -9401,7 +9407,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:6
+      levelNumber:6
 
       !hasCharacter:Xeplogi
 
@@ -9586,7 +9592,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:6
+      levelNumber:6
 
       hasCharacter:Xeplogi
 
@@ -10084,7 +10090,7 @@ MonoBehaviour:
       # If no Alfred
       nor Xeplogi, just Memerian
 
-      roomNumber:6
+      levelNumber:6
 
       !hasCharacter:Xeplogi
 
@@ -10146,7 +10152,7 @@ MonoBehaviour:
       # If got Xeplogi
       (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 
-      roomNumber:6
+      levelNumber:6
 
       hasCharacter:Xeplogi
 
@@ -10247,7 +10253,7 @@ MonoBehaviour:
       # If got Xeplogi
       (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 
-      roomNumber:6
+      levelNumber:6
 
       charactersAlive:=1
 
@@ -10612,7 +10618,7 @@ MonoBehaviour:
       # If got Xeplogi
       (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 
-      roomNumber:6
+      levelNumber:6
 
       charactersAlive:=1
 
@@ -11015,7 +11021,7 @@ MonoBehaviour:
       # If no Alfred
       nor Xeplogi, just Memerian
 
-      roomNumber:6
+      levelNumber:6
 
       !hasCharacter:Xeplogi
 
@@ -11250,7 +11256,7 @@ MonoBehaviour:
       # If got Xeplogi
       (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 
-      roomNumber:6
+      levelNumber:6
 
       hasCharacter:Xeplogi
 
@@ -11605,7 +11611,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       !hasFlag:FashimaDied
 
@@ -11761,7 +11767,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       !hasFlag:FashimaDied
 
@@ -11912,7 +11918,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same battle conversation
       for every Fashima battle event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -12253,7 +12259,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Fashima death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -12406,7 +12412,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       ~
       Demands
@@ -12631,7 +12637,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       !hasFlag:FashimaDied
 
@@ -12709,7 +12715,7 @@ MonoBehaviour:
 
 '
     Name: Level7GenericFashima
-  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n~
+  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\nlevelNumber:7\r\nhasFlag:FashimaDied\r\n~
       Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant:young\r\n:addGenericCharacter:Guard1\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\n:killUnit:Brens\r\nLan:
       Oof. I'm bored.\\a Where are all the Magmaborn?!\r\n:play:BeforeBattle2\r\n:loadUnits::player:T\r\n:setSingleSpeaker:L\r\nFrogman:
       Back again... \r\nLan: OI! MAGMABORN! WELCOME BACK!\r\nFrogman: Ugh.\r\n:callOther:Level7MemerianFindsOutFashimaIsDead\r\n\r\n~
@@ -12717,7 +12723,7 @@ MonoBehaviour:
       We did it again! Let's go, everyone!\r\n\r\n# === Functions ====\r\n\r\n~ Sample\r\n#
       Name: Text.\r\n"
     Name: Level7GenericLan
-  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:>0\r\n~
+  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nlevelNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:>0\r\n~
       Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant\r\n:addGenericCharacter:Guard1\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\nBrens:
       Lan.\r\nLan: Yes, Brens?\r\nBrens: How are you holding up?\r\nBeing the new
       Wall Magus must be quite tough.\r\nLan: Great! I'm doing great!\r\nBrens: Really?
@@ -12743,7 +12749,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       hasFlag:FashimaDied
 
@@ -12913,7 +12919,7 @@ MonoBehaviour:
 
 '
     Name: Level7LanFirstTime
-  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nroomNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:=0\r\n~
+  - Text: "priority:4\r\nunique:T\r\nid:LanSecondTime\r\n~ Requirements\r\nlevelNumber:7\r\nhasFlag:FashimaDied\r\n!hasFlag:BrensDied\r\ncompareCounter:TimesLanLost:=0\r\n~
       Demands\r\nhasCharacter:Lan\r\n~ Before battle\r\n:play:GuardTheme2\r\n:addGenericCharacter:Lieutenant\r\n:addGenericCharacter:Guard1\r\n:addGenericCharacter:Guard2\r\n:loadUnits::monster\r\n:loadUnits::guard:T\r\nBrens:
       Lan.\r\nLan: Hey.\r\nBrens: How are you holding up?\r\nBeing the new Wall Magus
       must be quite tough.\r\nLan: Tough?! Ha ha ha! This is nothing for the Great
@@ -12942,7 +12948,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       hasFlag:FashimaDied
 
@@ -13072,7 +13078,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       hasFlag:FashimaDied
 
@@ -13207,7 +13213,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:7
+      levelNumber:7
 
       hasFlag:FashimaDied
 
@@ -13440,7 +13446,7 @@ MonoBehaviour:
     Name: Level7LanLoss4
   - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\n# This conversation isn't
       meant to be selected - it just guarantees the same post-battle for every Fashima
-      death event\r\nroomNumber:0\r\n~ Demands\r\n# Nothinig\r\n~ Before battle\r\n:if:!hasFlag:MemerianKnowsFashimaIsDead{\r\n:if:hasCharacter:Memerian{\r\n:setSpeaker:Frogman||R\r\nMemerian:
+      death event\r\nlevelNumber:0\r\n~ Demands\r\n# Nothinig\r\n~ Before battle\r\n:if:!hasFlag:MemerianKnowsFashimaIsDead{\r\n:if:hasCharacter:Memerian{\r\n:setSpeaker:Frogman||R\r\nMemerian:
       Huh? Who is the clown? Where is Fashima? \r\nFrogman: What? Oh, we killed Fashima.\\a
       Didn't you know that?\r\nMemerian: No! How?! That's impossible!\r\nFrogman:
       Uh, it's the truth.\r\nMemerian: You... Huh. I appear to have underestimated
@@ -13458,7 +13464,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Brens death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -13559,7 +13565,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Brens death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -13704,7 +13710,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Brens death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -13768,7 +13774,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Brens death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -13825,7 +13831,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       !hasFlag:BrensDied
 
@@ -13995,7 +14001,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       !hasFlag:BrensDied
 
@@ -14190,7 +14196,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Werse death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -14239,7 +14245,7 @@ MonoBehaviour:
       # This conversation
       isn''t meant to be selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -14332,7 +14338,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       ~
       Demands
@@ -14551,7 +14557,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       hasFlag:BrensDied
 
@@ -14689,7 +14695,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       !hasFlag:BrensDied
 
@@ -14784,7 +14790,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       hasFlag:BrensDied
 
@@ -14889,7 +14895,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       hasFlag:BrensDied
 
@@ -15040,7 +15046,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       hasFlag:BrensDied
 
@@ -15185,7 +15191,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:8
+      levelNumber:8
 
       hasFlag:BrensDied
 
@@ -15366,7 +15372,7 @@ MonoBehaviour:
       isn''t meant to be selected - it just guarantees the same post-battle for every
       Werse death event
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -15492,7 +15498,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:9
+      levelNumber:9
 
       ~
       Demands
@@ -15754,7 +15760,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:9
+      levelNumber:9
 
       ~
       Demands
@@ -15904,7 +15910,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:9
+      levelNumber:9
 
       hasFlag:DidntTrustFashima
 
@@ -16094,7 +16100,7 @@ MonoBehaviour:
 
       # Never selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16159,7 +16165,7 @@ MonoBehaviour:
 
       # Never selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16407,7 +16413,7 @@ MonoBehaviour:
 
       # Never selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16462,7 +16468,7 @@ MonoBehaviour:
 
       # Never selected
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16473,9 +16479,10 @@ MonoBehaviour:
 
       :lose:
 
+      
 
-      ~ After
-      battle
+      ~
+      After battle
 
       :play:TheFinalStep
 
@@ -16484,33 +16491,33 @@ MonoBehaviour:
       SuBodderPre:
       AAAH! THIS... THIS IS... it can''t... I WILL...
 
-      Frogman: Bodder... It''s
-      over. For real, this time.
+      Frogman: Bodder...
+      It''s over. For real, this time.
 
-      SuBodderPre: NO! No... I-it''s not. I...
+      SuBodderPre: NO! No... I-it''s not.
+      I...
 
       :setSpeaker:Bodder||L
 
-      I
-      will...\a stop...
+      I will...\a stop...
 
       :setSingleSpeaker:R
 
-      Frogman: ...
+      Frogman:
+      ...
 
-      Fashima:
-      Ah. This is so... exquisite. Can you smell it, my friend?
+      Fashima: Ah. This is so... exquisite. Can you smell it, my friend?
 
-      Frogman: Uh,
-      what?
+      Frogman:
+      Uh, what?
 
       Fashima: The glorious smell of victory.
 
-      Oh, I have been
-      waiting such a long time for this moment.
+      Oh, I have
+      been waiting such a long time for this moment.
 
-      But I still have one more
-      task left.\a Are you ready to go, my friend?
+      But I still have one
+      more task left.\a Are you ready to go, my friend?
 
       Frogman: ...
 
@@ -16522,15 +16529,18 @@ MonoBehaviour:
 
       Fashima: Indeed.
 
+      
 
       # === Functions ====
 
+      
 
       ~
       Sample
 
       # Name: Text.
 
+      
 
 '
     Name: Level9Win
@@ -16540,7 +16550,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16673,7 +16683,7 @@ MonoBehaviour:
 
 '
     Name: Level9EnterBodder
-  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\nroomNumber:0\r\n~ Demands\r\n#
+  - Text: "priority:-1\r\nunique:F\r\n~ Requirements\r\nlevelNumber:0\r\n~ Demands\r\n#
       Nothinig\r\n~ Before battle\r\n:setSpeaker:Frogman||L\r\n:if:hasCharacter:Firbell{\r\n:if:!hasFlag:FirbellMetMagmabornFashima{\r\nFirbell:
       Frogman? Where have you been?!\r\nFrogman: I-\r\nFashima||L: He was with me.
       We had some important matters to discuss.\r\nFirbell: And who might you be?\r\nFashima:
@@ -16751,7 +16761,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16954,7 +16964,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -16977,22 +16987,25 @@ MonoBehaviour:
 
       }
 
+      
 
-      ~ After battle
+      ~
+      After battle
 
       :play:AfterBattle
 
+      # Name: Text.
+
+      
+
       #
-      Name: Text.
+      === Functions ====
 
-
-      # === Functions ====
-
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      # Name: Text.
 
 '
     Name: EndgameAlfredDead
@@ -17002,7 +17015,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17018,21 +17031,25 @@ MonoBehaviour:
       Fashima:
       Cheater.
 
+      
 
       ~ After battle
 
       :play:AfterBattle
 
-      # Name: Text.
-
-
       #
-      === Functions ====
+      Name: Text.
 
+      
+
+      # === Functions ====
+
+      
 
       ~ FrogmanDead
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameFashimaDead
@@ -17042,7 +17059,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17083,6 +17100,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~ After battle
 
@@ -17091,14 +17109,16 @@ MonoBehaviour:
       #
       Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameFirbellDead
@@ -17108,7 +17128,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17117,24 +17137,28 @@ MonoBehaviour:
 
       ~ Before battle
 
-      Frogman: No... Not again...
-      Not now...
+      Frogman: No... Not
+      again... Not now...
 
+      
 
       ~ After battle
 
       :play:AfterBattle
 
-      # Name: Text.
-
-
       #
-      === Functions ====
+      Name: Text.
 
+      
+
+      # === Functions ====
+
+      
 
       ~ FrogmanDead
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameFrogmanDead
@@ -17144,7 +17168,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17171,6 +17195,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~ After battle
 
@@ -17179,14 +17204,16 @@ MonoBehaviour:
       #
       Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameKreslaDead
@@ -17196,7 +17223,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17221,6 +17248,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~ After battle
 
@@ -17229,14 +17257,16 @@ MonoBehaviour:
       #
       Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameMemerianDead
@@ -17246,7 +17276,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17273,6 +17303,7 @@ MonoBehaviour:
 
       :setDeathQuote:Werse:WerseDead
 
+      
 
       ~
       After battle
@@ -17281,10 +17312,12 @@ MonoBehaviour:
 
       # Name: Text.
 
+      
 
-      # === Functions
-      ====
+      #
+      === Functions ====
 
+      
 
       ~ FrogmanDead
 
@@ -17298,7 +17331,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17307,9 +17340,10 @@ MonoBehaviour:
 
       ~ Before battle
 
-      Werse: ...Brens... My
-      people... I have... failed you...
+      Werse: ...Brens...
+      My people... I have... failed you...
 
+      
 
       ~ After battle
 
@@ -17318,14 +17352,16 @@ MonoBehaviour:
       #
       Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameWerseDead
@@ -17335,7 +17371,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17360,23 +17396,27 @@ MonoBehaviour:
 
       }
 
+      
 
-      ~ After battle
+      ~ After
+      battle
 
       :play:AfterBattle
 
-      #
-      Name: Text.
+      # Name: Text.
 
+      
 
-      # === Functions ====
+      # ===
+      Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      # Name: Text.
 
+      
 
 '
     Name: EndgameXeplogiDead
@@ -17386,7 +17426,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17409,22 +17449,25 @@ MonoBehaviour:
 
       }
 
+      
 
-      ~ After battle
+      ~ After
+      battle
 
       :play:AfterBattle
 
-      #
-      Name: Text.
+      # Name: Text.
 
+      
 
-      # === Functions ====
+      # ===
+      Functions ====
 
+      
 
       ~ FrogmanDead
 
-      # Name:
-      Text.
+      # Name: Text.
 
 '
     Name: EndgameXirverosDead
@@ -17437,7 +17480,7 @@ MonoBehaviour:
       ~
       Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~ Demands
 
@@ -17600,7 +17643,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
 
       ~
       Demands
@@ -17685,10 +17728,10 @@ MonoBehaviour:
 
       Memerian: I am not your friend.
 
-      Fashima: ...I know that the
-      sacrifice is great, and yet we must make it.\a Torment has been a blight upon
-      humanity for too long.\a Upon you, me, and countless human lives.\a The lives
-      of the few - even our own -\a are not worth the suffering they have caused.\a
+      Fashima: ...I know that
+      the sacrifice is great, and yet we must make it.\a Torment has been a blight
+      upon humanity for too long.\a Upon you, me, and countless human lives.\a The
+      lives of the few - even our own -\a are not worth the suffering they have caused.\a
       We must stand united-
 
       Memerian: Nope. I''m out.
@@ -17706,6 +17749,7 @@ MonoBehaviour:
 
       # TBA, too tired
 
+      
 
       ~ After battle
 
@@ -17714,13 +17758,16 @@ MonoBehaviour:
       #
       Name: Text.
 
+      
 
       # === Functions ====
 
+      
 
       ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: EndgameEnterTorment
@@ -17730,7 +17777,118 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:0
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:Raindance
+
+      Torment:
+      NO! I-IMPOSSIBLE! Heh heh... HOW COULD YOU... FASHIMA!!!
+
+      Fashima_: I
+      can do anything, Torment.\a You should not have understimated me.
+
+      :if:unitAlive:Frogman{
+
+      Frogman:
+      H-huh? You''re human again?
+
+      Fashima_: I was never a Magmaborn to begin
+      with, my friend.
+
+      Frogman: What?!
+
+      Torment||L: HA HA HA! So foolish...
+      to the very end...
+
+      :setSpeaker:Frogman||L
+
+      Fashima_: It was a
+      cruical part of our deal.\a Nevertheless, that is history now -\a gone and
+      irrelevant.\a Proceed with your death, please.
+
+      Torment: Ha ha. HA HA
+      HA...!\a Heh... Heh ha heh\a hahehahahaehAHEHAHAHEA!
+
+      :killUnit:Torment:F
+
+      :screenShake:
+
+      Fashima_:
+      Farewell.
+
+      Frogman: Wait-
+
+      :endgameFadeToWhite:
+
+      :setTempFlag:FashimaVictory
+
+      :showEnding:
+
+      }
+
+      :else:{
+
+      Torment:
+      HA HA HA! Without me... you are nothing...
+
+      Fashima_: No. Without you
+      I am free.\a I do not need magic for that.
+
+      Torment: Freedom? Heh.. Such
+      foolishness...\a Ha ha. HA HA HA...!\a Heh... Heh ha heh\a hahehahahaehAHEHAHAHEA!
+
+      :killUnit:Torment:F
+
+      :screenShake:
+
+      Fashima_:
+      Farewell.
+
+      :play:Silence
+
+      :endgameFadeToWhite:
+
+      :setTempFlag:FashimaVictory
+
+      :play:Raindance
+
+      :showEnding:
+
+      }
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: EndgameFashimaWin
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
 
       ~
       Demands
@@ -17778,7 +17936,7 @@ MonoBehaviour:
 
       ~ Requirements
 
-      roomNumber:10
+      levelNumber:10
 
       ~
       Demands
@@ -17853,6 +18011,179 @@ MonoBehaviour:
       ~
       After battle
 
+      :if:hasTempFlag:EndgameFrogmanFashima{
+
+      :callOther:EndgameFashimaWin
+
+      }
+
+      :else:{
+
+      :callOther:EndgameTormentWin
+
+      }
+
+
+      #
+      Name: Text.
+
+
+      # === Functions ====
+
+
+      ~ FrogmanDead
+
+      :callOther:EndgameFrogmanDead
+
+
+      ~
+      FashimaDead
+
+      :callOther:EndgameFashimaDead
+
+
+      ~ FirbellDead
+
+      :callOther:EndgameFirbellDead
+
+
+      ~
+      XirverosDead
+
+      :callOther:EndgameXirverosDead
+
+
+      ~ XeplogiDead
+
+      :callOther:EndgameXeplogiDead
+
+
+      ~
+      KreslaDead
+
+      :callOther:EndgameKreslaDead
+
+
+      ~ MemerianDead
+
+      :callOther:EndgameMemerianDead
+
+
+      ~
+      AlfredDead
+
+      :callOther:EndgameAlfredDead
+
+
+      ~ WerseDead
+
+      :callOther:EndgameWerseDead
+
+'
+    Name: EndgameTest
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:Raindance
+
+      :setSpeaker:Fashima||L
+
+      Torment||R:
+      Well, this has certainly been an entertaining little game.\a But it''s become
+      a bit... repititive, don''t you think?\a Heh.
+
+      Fashima: No! I am not
+      done yet!
+
+      Torment: I am.
+
+      :if:!unitAlive:Frogman{
+
+      :setTempFlag:FrogmanDied
+
+      }
+
+      :endgameEnd:
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      :setSpeaker:Torment||R
+
+      :if:hasTempFlag:FrogmanDied{
+
+      Frogman:
+      Ugh... Where am I?
+
+      }
+
+      Fashima||L: No... No! This can''t be happening!\a
+      I was going to win!\a To get this far, only to... Torment!\a I will stop-
+
+      Torment:
+      Oh, shut up. You''re a vase now.
+
+      FashimaVase: ...!
+
+      Frogman: H-huh?
+
+      Torment:
+      Ha ha ha! Now then, where was I? Ah, right. Xirveros?
+
+      Xirveros: I shall
+      never bend my knee to the forces of evil again!
+
+      Torment: Love me.
+
+      Xirveros:
+      You''re is the best thing ever!\a I love you!
+
+      Frogman||L: What is going
+      on here?!
+
+      Torment: Oh, nothing to be alarmed about.\a Merely my power
+      getting back to me. Heh.\a But I have no interest in the rest of you.\a You''re
+      free to go.
+
+      Frogman: Go where?
+
+      Torment: To your fellow pathetic
+      humans, of course! Heh heh!
+
+      Memerian: I think you forgot about something.
+
+      Torment:
+      What? Oh, right. Become human and begone.
+
+      FrogmanMan||L: Wait-
+
+      :screenShake:
+
+      :play:Silence
+
+      :showCG:Nothing
+
+      :play:Raindance
+
+      :showEnding:
+
+
+      ~
+      After battle
+
       :play:AfterBattle
 
       # Name: Text.
@@ -17862,56 +18193,12 @@ MonoBehaviour:
       ====
 
 
-      ~ FrogmanDead
+      ~ Sample
 
-      :callOther:EndgameFrogmanDead
-
-
-      ~ FashimaDead
-
-      :callOther:EndgameFashimaDead
-
-
-      ~
-      FirbellDead
-
-      :callOther:EndgameFirbellDead
-
-
-      ~ XirverosDead
-
-      :callOther:EndgameXirverosDead
-
-
-      ~
-      XeplogiDead
-
-      :callOther:EndgameXeplogiDead
-
-
-      ~ KreslaDead
-
-      :callOther:EndgameKreslaDead
-
-
-      ~
-      MemerianDead
-
-      :callOther:EndgameMemerianDead
-
-
-      ~ AlfredDead
-
-      :callOther:EndgameAlfredDead
-
-
-      ~
-      WerseDead
-
-      :callOther:EndgameWerseDead
+      # Name: Text.
 
 '
-    Name: EndgameTest
+    Name: EndgameTormentWin
   - Text: 'priority:42
 
       unique:F
@@ -17927,8 +18214,8 @@ MonoBehaviour:
 
       :play:BeforeBattle
 
-      Frogman: I
-      won.
+      Frogman:
+      I won.
 
       :showEnding:
 
@@ -17936,6 +18223,7 @@ MonoBehaviour:
 
       :lose:
 
+      
 
       ~
       After battle
@@ -17944,10 +18232,12 @@ MonoBehaviour:
 
       # Name: Text.
 
+      
 
-      # === Functions
-      ====
+      #
+      === Functions ====
 
+      
 
       ~ Sample
 
@@ -54618,120 +54908,6 @@ MonoBehaviour:
     ObjectiveData: 6
     Tags: 
     MapString: 0|21|0|0|1|21|0|15|2|21|1|0|0|21|0;6|18|3|21|15|2|9|4|11|2|15|2|1|6|18;8|4|2|0|16|3|0|16|2|1|16|2|0|5|20;1|16|2|1|8|12|10|5|10|12|20|3|21|16|3;21|16|3|15|3|16|2|1|0|16|3|15|3|16|2;6|14|10|5|10|19|2|15|2|7|10|4|10|14|18;16|2|1|17|2|16|3|16|3|16|2|17|1|21|16;7|18|2|0|1|7|12|5|12|19|3|0|0|6|19;7|20|2|21|1|7|14|4|14|19|3|21|0|8|19;16|2|1|15|2|16|3|16|3|16|2|15|3|0|16;8|12|10|4|10|19|2|17|2|7|10|5|10|12|20;0|16|3|17|3|16|2|1|21|16|3|17|3|16|2;1|16|2|1|6|14|10|4|10|14|18|3|21|16|3;6|5|2|0|16|3|21|16|2|1|16|2|0|4|18;8|20|3|21|17|2|9|5|11|2|17|2|1|8|20;0|0|21|0|1|0|21|17|2|0|1|21|0|0|21
-  - Name: Level5-0
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 2, y: 12}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 13}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 14}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 8}
-      Team: 1
-      Level: 4
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 1}
-      Team: 1
-      Level: 4
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 7}
-      Team: 1
-      Level: 4
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 0}
-      Team: 1
-      Level: 4
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 3}
-      Team: 1
-      Level: 4
-      Class: Gargoyle
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 4}
-      Team: 2
-      Level: 4
-      Class: Lancer
-      AIType: 1
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 6}
-      Team: 2
-      Level: 4
-      Class: Lancer
-      AIType: 1
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 2}
-      Team: 2
-      Level: 4
-      Class: Knight
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 2}
-      Team: 2
-      Level: 4
-      Class: Archer
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 12}
-      Team: 2
-      Level: 4
-      Class: Archer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 13}
-      Team: 2
-      Level: 4
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 11}
-      Team: 2
-      Level: 4
-      Class: Knight
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: HumanDungeon
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 28|28|28|28|28|28|32|34|29|37|28|28|28|28|28;28|28|28|28|28|28|28|31|34|34|33|33|33|33|33;33|33|33|36|28|28|28|31|34|34|34|34|29|34|34;34|34|34|34|33|33|33|34|3|6|6|9|34|34|34;34|34|34|34|34|29|34|34|4|15|24|10|34|35|34;6|6|6|6|9|34|34|34|5|0|14|10|37|28|31;16|17|27|12|10|34|29|34|34|5|8|11|37|28|31;7|1|7|13|10|34|34|34|29|34|34|34|37|28|32;7|7|7|13|0|6|6|9|34|35|35|34|37|28|28;7|7|1|14|27|15|24|10|37|28|28|31|34|33|33;1|7|7|7|7|7|14|10|37|28|28|31|34|29|34;7|7|7|1|7|7|27|10|34|33|33|34|3|6|6;7|18|21|24|1|7|12|10|34|34|34|34|4|15|16;7|19|22|25|1|7|13|10|34|34|3|6|27|7|7;7|20|23|26|7|7|13|10|34|34|4|12|7|7|1;7|7|7|7|1|1|13|10|34|34|4|13|1|7|7
   - Name: Level5-1
     LevelNumber: 5
     Units:
@@ -55685,153 +55861,6 @@ MonoBehaviour:
     ObjectiveData: Rout
     Tags: 
     MapString: 28|39|30|34|14|27|9|34|38|28|14|6|0|7|8;39|30|29|34|5|8|11|37|39|39|31|4|7|1|6;30|34|3|9|34|34|29|38|39|30|12|7|2|0|7;18|17|0|11|29|34|38|28|30|3|14|7|27|2|1;14|0|11|34|35|38|39|28|31|4|27|1|7|1|7;29|35|35|38|28|39|39|28|32|5|2|8|15|17|0;38|28|39|28|28|39|30|36|39|31|34|35|35|29|5;28|28|30|33|33|33|29|37|28|32|38|39|28|32|35;28|28|32|29|12|9|34|37|28|39|39|28|28|28|28;28|39|39|32|13|0|9|37|28|30|36|28|28|28|39;28|30|36|39|13|27|10|37|28|32|38|39|39|30|33;33|34|37|28|20|17|11|37|28|39|39|30|33|34|29;29|34|38|39|39|32|35|38|28|28|30|34|29|34|34;35|38|28|28|28|39|39|28|28|28|31|2|0|34|38;28|39|28|30|33|36|39|28|28|30|34|5|11|38|28;28|30|33|29|12|9|36|28|39|31|29|34|38|39|28
-  - Name: Boss2-0
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 7, y: 14}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 13}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 13}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 14}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 9}
-      Team: 2
-      Level: 6
-      Class: Archer
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 10}
-      Team: 2
-      Level: 6
-      Class: Archer
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 4}
-      Team: 2
-      Level: 6
-      Class: Knight
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 12, y: 7}
-      Team: 2
-      Level: 6
-      Class: Knight
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 15, y: 4}
-      Team: 2
-      Level: 6
-      Class: Knight
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 8}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 1
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 2}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 1
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 12, y: 4}
-      Team: 2
-      Level: 6
-      Class: Archer
-      AIType: 1
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 6}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 2
-      Statue: 0
-    - Pos: {x: 15, y: 9}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 4
-      Statue: 0
-    - Pos: {x: 0, y: 0}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 6
-      Statue: 0
-    - Pos: {x: 0, y: 6}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 8
-      Statue: 0
-    - Pos: {x: 15, y: 9}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 8
-      Statue: 0
-    - Pos: {x: 0, y: 0}
-      Team: 2
-      Level: 6
-      Class: Lancer
-      AIType: 0
-      ReinforcementTurn: 8
-      Statue: 0
-    - Pos: {x: 13, y: 0}
-      Team: 1
-      Level: 6
-      Class: Wizard
-      AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents:
-    - Requirements: turn:>6
-      Event: 'Dehar_: Still alive? Well, here I come!
-
-        :setUnitAI:Dehar_:teleport'
-      Repeatable: 0
-    Tileset: Fortress
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 5|5|1|13|5|20|5|5|4|16|17|5|5|0|6;5|11|4|16|17|2|15|3|1|13|5|5|5|0|6;5|5|1|13|5|11|5|5|5|5|5|11|5|0|21;11|5|0|12|5|5|5|5|17|5|5|5|5|0|6;5|5|2|14|3|1|13|5|5|5|2|9|15|1|7;5|5|17|5|5|0|12|5|5|11|0|21|18|23|23;1|7|13|11|5|0|12|11|5|5|1|7|19|23|23;0|6|12|5|5|0|12|5|5|17|4|10|22|23|23;0|6|12|11|5|1|13|5|5|5|1|7|19|23|23;0|6|12|5|17|4|16|5|5|5|0|6|18|23|23;2|1|7|13|5|2|14|3|25|11|0|21|18|23|23;5|0|21|12|5|20|5|5|24|5|0|6|18|23|23;5|1|7|13|5|28|5|17|28|5|0|6|18|23|23;17|4|10|16|11|20|11|5|24|5|0|21|18|23|23;5|1|7|13|5|2|15|3|25|5|0|6|18|23|23;11|0|21|12|17|4|16|5|11|5|1|7|19|23|23
   - Name: Boss2-1-L
     LevelNumber: 7
     Units:
@@ -57364,50 +57393,6 @@ MonoBehaviour:
     ObjectiveData: Fashima
     Tags: 
     MapString: 5|5|1|13|5|5|11|5|25|5|11|5|1|7|19;5|17|4|16|5|5|5|5|28|17|5|5|0|21|18;3|3|1|13|5|5|26|15|2|9|26|11|1|7|19;5|5|11|5|5|11|4|16|17|11|20|5|4|10|22;5|5|26|3|26|15|1|13|5|5|20|11|1|7|19;5|5|28|17|11|24|5|5|5|25|20|17|0|21|18;5|5|25|5|5|24|11|5|5|24|34|9|1|7|19;5|5|24|5|5|25|5|5|11|25|5|17|37|23|23;5|5|24|5|11|28|17|5|17|28|11|5|38|39|23;11|17|25|5|5|27|3|3|1|13|5|5|36|23|23;5|5|24|5|11|11|5|17|4|16|11|5|36|23|39;5|11|24|5|5|5|5|5|27|14|1|7|19|39|23;5|11|25|3|3|25|5|5|5|17|4|10|22|23|23;5|5|5|5|5|28|5|11|5|5|1|7|19|39|23;3|1|13|5|5|25|5|5|11|17|4|10|22|23|23;17|4|16|11|5|28|11|5|5|5|1|7|19|23|23
-  - Name: FortressSample
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 6, y: 6}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 12}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 13}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 2}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 3}
-      Team: 1
-      Level: 7
-      Class: Wizard
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: Fortress
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 20|11|5|5|0|21|12|5|5|1|7|19|23|23|23;20|5|17|5|0|6|12|11|17|4|10|22|23|23|23;20|5|11|5|0|21|12|5|5|1|7|19|23|23|23;2|9|15|3|1|7|13|5|11|0|6|18|23|23|23;0|6|12|5|5|5|5|5|5|0|6|18|23|23|23;1|7|13|5|5|5|17|5|5|1|7|19|23|23|23;4|10|16|5|11|5|5|5|17|4|10|22|23|23|23;1|7|13|5|5|5|17|5|5|1|7|19|23|23|23;0|6|12|5|5|5|5|5|5|0|21|18|23|23|23;2|8|14|3|1|7|13|11|5|0|6|18|23|23|23;20|5|5|11|0|6|12|5|5|0|6|18|23|23|23;20|5|17|5|0|6|12|5|5|0|21|18|23|23|23;20|5|5|5|1|7|13|5|11|1|7|19|23|23|23;20|11|5|17|4|10|16|5|17|4|10|22|23|23|23;20|5|5|5|1|7|13|5|5|1|7|19|23|23|23;20|5|17|11|0|21|12|11|5|0|21|18|23|23|23
   - Name: Level8-0-B
     LevelNumber: 8
     Units:
@@ -58350,163 +58335,6 @@ MonoBehaviour:
     ObjectiveData: Werse
     Tags: 
     MapString: 7|10|15|10|7|10|13|21|3|15|13|21|22|4|7;7|7|7|7|7|7|5|21|4|7|5|23|21|2|8;8|8|8|8|8|8|14|21|1|7|13|21|21|21|21;21|21|21|21|23|21|21|22|3|7|13|20|26|22|21;21|0|6|6|6|12|21|21|27|7|19|6|12|21|0;22|4|7|7|7|5|23|21|28|7|7|15|5|21|27;21|2|24|7|18|14|21|21|29|15|18|8|14|21|28;21|23|3|15|13|20|26|21|2|8|14|20|26|23|28;21|21|4|7|5|23|22|21|21|21|21|21|21|21|28;21|21|2|8|14|21|21|0|6|6|6|6|12|23|28;21|22|21|21|21|21|23|27|7|11|7|15|30|22|29;20|26|21|23|21|20|26|29|15|7|7|15|32|21|2;6|6|6|12|21|21|21|2|8|8|24|7|13|21|21;9|7|7|13|21|21|21|23|21|21|1|7|13|20|26;10|7|7|5|22|21|21|21|20|26|27|7|30|21|21;11|7|15|13|23|21|21|21|21|22|29|7|32|21|23
-  - Name: CloneVatsTest
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 8, y: 8}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 8}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 7}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 7}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 11}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 3}
-      Team: 1
-      Level: 12
-      Class: Bodder
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 6}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 6}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 12, y: 5}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 5}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 3}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 3}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 15, y: 12}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 13}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 10, y: 14}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 14}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 13}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 12}
-      Team: 2
-      Level: 0
-      Class: Worker
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents:
-    - Requirements: turn:>2
-      Event: ':if:compareCounter:Level9CloneSpawn:>0{
-
-        :loadUnits::guard:T
-
-        :setCounter:Level9CloneSpawn:0
-
-        }
-
-        :else:{
-
-        :addCounter:Level9CloneSpawn:1
-
-        }
-
-'
-      Repeatable: 1
-    - Requirements: turn:>1
-      Event: ':loadUnits::guard:T
-
-        :setCounter:Level9CloneSpawn:0'
-      Repeatable: 0
-    Tileset: CloneVats
-    Objective: 1
-    ObjectiveData: Bodder
-    Tags: 
-    MapString: 11|17|6|6|6|12|10|16|0|6|6|1|7|12|10;11|17|1|7|6|6|2|3|9|8|6|6|6|6|12;11|17|6|6|6|6|6|12|4|16|0|6|1|7|6;11|17|6|6|1|7|6|12|10|16|0|6|6|6|6;11|17|6|6|6|6|6|6|2|3|9|8|6|6|6;18|24|30|6|6|6|6|6|12|4|16|0|6|1|7;19|25|31|6|6|1|7|12|4|16|16|16|0|6|6;20|26|32|6|6|6|6|2|3|8|2|3|8|6|6;21|27|33|6|6|6|6|2|3|8|2|3|8|6|6;22|28|34|6|6|1|7|12|4|16|16|16|0|6|6;23|29|35|6|6|6|6|6|12|10|16|0|6|1|7;11|17|6|6|6|6|6|6|2|3|9|8|6|6|6;11|17|6|6|1|7|6|12|4|16|0|6|6|6|6;11|17|6|6|6|6|6|12|10|16|0|6|1|7|6;11|17|1|7|6|6|2|3|9|8|6|6|6|6|12;11|17|6|6|6|12|4|16|0|6|6|1|7|12|4
   - Name: CloneVatsTest1
     LevelNumber: 9
     Units:
@@ -58631,185 +58459,6 @@ MonoBehaviour:
     ObjectiveData: Bodder
     Tags: 
     MapString: 11|17|17|6|12|10|16|16|16|0|6|6|6|12|10;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|1|7|6|6|2|3|9|9|9|8|1|7;18|24|30|36|6|6|6|12|4|16|16|16|0|6|6;19|25|31|37|1|7|2|9|9|8|2|3|9|8|6;20|26|32|38|6|6|12|4|0|6|6|12|4|0|6;21|27|33|39|6|6|12|10|0|6|6|12|10|0|6;22|28|34|40|1|7|2|3|9|8|2|9|9|8|6;23|29|35|41|6|6|6|12|4|16|16|16|0|6|6;11|17|17|1|7|6|6|2|3|3|9|9|8|1|7;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|12|4|16|16|16|0|6|6|6|12|4
-  - Name: T
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 9, y: 13}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 14}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 7}
-      Team: 0
-      Level: 2
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 10}
-      Team: 1
-      Level: 1
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 4}
-      Team: 1
-      Level: 1
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 4}
-      Team: 1
-      Level: 1
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 15, y: 8}
-      Team: 1
-      Level: 1
-      Class: Goblin
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 8, y: 7}
-      Team: 1
-      Level: 1
-      Class: Skeleton
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: CloneVats
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 8|8|6|6|6|6|12|10|6|12|10|16|16|16|16;4|16|6|12|4|16|12|10|12|4|16|16|16|16|16;6|6|6|6|6|6|12|10|12|10|6|12|10|16|16;6|6|6|6|12|4|16|16|2|3|8|6|12|10|16;6|4|12|4|6|6|6|6|12|4|6|4|12|10|16;16|16|12|10|16|16|16|6|12|10|6|6|12|10|16;16|16|6|6|6|12|10|16|16|16|16|12|4|16|16;16|16|12|4|6|6|6|12|10|16|16|12|10|16|16;16|16|16|12|4|16|16|2|3|9|8|6|6|6|12;16|16|16|6|6|6|6|12|4|16|0|6|6|6|12;16|16|16|16|16|16|16|16|16|16|16|16|12|4|12;16|16|16|16|16|16|16|16|16|16|16|16|12|10|16;16|16|16|16|16|16|16|16|16|16|16|16|6|12|10;6|6|12|10|16|16|16|16|16|16|16|6|6|12|10;6|6|12|10|16|16|16|16|6|6|6|6|12|4|16;6|12|4|16|16|16|16|16|12|4|16|16|12|10|16
-  - Name: T2
-    LevelNumber: 0
-    Units:
-    - Pos: {x: 8, y: 7}
-      Team: 0
-      Level: 0
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 6}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 8}
-      Team: 0
-      Level: 0
-      Class: P
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 1}
-      Team: 2
-      Level: 3
-      Class: Fear
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 15, y: 7}
-      Team: 2
-      Level: 3
-      Class: Pain
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 13}
-      Team: 2
-      Level: 3
-      Class: Despair
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 13}
-      Team: 2
-      Level: 3
-      Class: Fear
-      AIType: 0
-      ReinforcementTurn: 2
-      Statue: 0
-    - Pos: {x: 0, y: 7}
-      Team: 2
-      Level: 3
-      Class: Pain
-      AIType: 0
-      ReinforcementTurn: 2
-      Statue: 0
-    - Pos: {x: 2, y: 1}
-      Team: 2
-      Level: 3
-      Class: Despair
-      AIType: 0
-      ReinforcementTurn: 2
-      Statue: 0
-    - Pos: {x: 13, y: 13}
-      Team: 2
-      Level: 3
-      Class: Fear
-      AIType: 0
-      ReinforcementTurn: 4
-      Statue: 0
-    - Pos: {x: 15, y: 7}
-      Team: 2
-      Level: 3
-      Class: Pain
-      AIType: 0
-      ReinforcementTurn: 4
-      Statue: 0
-    - Pos: {x: 13, y: 1}
-      Team: 2
-      Level: 3
-      Class: Despair
-      AIType: 0
-      ReinforcementTurn: 4
-      Statue: 0
-    - Pos: {x: 2, y: 1}
-      Team: 2
-      Level: 3
-      Class: Fear
-      AIType: 0
-      ReinforcementTurn: 6
-      Statue: 0
-    - Pos: {x: 0, y: 7}
-      Team: 2
-      Level: 3
-      Class: Pain
-      AIType: 0
-      ReinforcementTurn: 6
-      Statue: 0
-    - Pos: {x: 2, y: 13}
-      Team: 2
-      Level: 3
-      Class: Despair
-      AIType: 0
-      ReinforcementTurn: 6
-      Statue: 0
-    MapEvents: []
-    Tileset: CloneVats
-    Objective: 3
-    ObjectiveData: 6
-    Tags: 
-    MapString: 16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;6|12|10|16|16|16|16|12|4|16|16|16|16|6|12;6|2|3|9|8|10|6|6|6|10|2|3|9|8|12;16|16|16|16|2|3|8|4|2|3|8|4|16|16|16;16|2|3|9|8|4|12|10|12|4|6|3|9|8|10;16|12|4|16|16|16|12|10|12|10|16|16|16|12|10;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|16|16|16|16|6|6|6|6|12|4|16|16|16|16;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16;16|2|3|9|8|6|6|6|6|6|2|3|9|8|10;16|12|4|16|16|16|12|4|12|10|16|16|16|12|10;16|2|3|9|8|10|12|10|12|10|2|3|9|8|10;16|16|16|16|2|3|8|10|2|3|8|4|16|16|16;6|2|3|9|8|4|6|6|6|4|2|3|9|8|12;6|12|4|16|16|16|16|12|4|16|16|16|16|6|12;16|16|16|16|16|6|6|6|6|12|10|16|16|16|16
   - Name: Level10-Battle-2
     LevelNumber: 10
     Units:
@@ -58883,7 +58532,14 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: 'turn:>7
+
+'
+      Event: ':callOther:EndgameTormentWin
+
+'
+      Repeatable: 0
     Tileset: Torment2
     Objective: 0
     ObjectiveData: Rout
@@ -58968,15 +58624,6 @@ MonoBehaviour:
     ObjectiveData: Rout
     Tags: 
     MapString: 18|18|18|18|18|9|10|11|15|3|18|3|18|18|18;18|0|6|12|18|18|16|18|18|5|15|5|18|18|18;18|1|7|13|15|9|10|11|18|18|18|17|18|18|18;18|2|8|14|18|18|17|18|18|0|6|6|12|18|18;18|16|18|16|18|9|10|11|15|2|8|8|14|18|18;18|16|18|18|18|18|16|18|18|18|18|18|16|18|18;6|6|12|15|3|18|16|18|0|6|12|15|0|6|12;7|7|13|18|4|15|3|15|1|7|13|18|1|7|13;7|7|13|18|4|15|5|15|1|7|13|18|1|7|13;8|8|14|15|5|18|17|18|2|8|14|15|2|8|14;18|17|18|18|18|18|17|18|18|18|18|18|16|18|18;18|17|18|17|18|9|10|11|15|0|6|6|12|18|18;18|0|6|12|18|18|16|18|18|2|8|8|14|18|18;18|1|7|13|15|9|10|11|18|18|18|16|18|18|18;18|2|8|14|18|18|17|18|18|3|15|3|18|18|18;18|18|18|18|18|9|10|11|15|5|18|5|18|18|18
-  - Name: TilesetTest
-    LevelNumber: 0
-    Units: []
-    MapEvents: []
-    Tileset: Torment2
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|3|15|15|0|6|6|12|18;18|18|18|18|18|18|18|4|18|18|1|7|7|13|18;18|18|18|0|12|15|15|5|18|18|1|7|7|13|18;18|18|18|1|13|18|18|18|18|18|1|7|7|13|18;18|18|18|2|14|15|9|10|11|15|2|8|8|14|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18;18|18|18|18|18|18|18|18|18|18|18|18|18|18|18
   - Name: Part2RestArea
     LevelNumber: 0
     Units:

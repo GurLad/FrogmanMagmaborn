@@ -30,6 +30,13 @@ The rework needs to run the following logic:
  Not mandatory - aka only happens on the PostBattle of LevelXFirstTimeEHPC, which calls :markDone: (or sets a flag) at the PreBattle.
 So much more writing and conditions to do... Ugh.
 
+Fatigue (29/06/2023):
+Defensive player units, while fun to use, tend to slow down the game significantly, and sometimes even softlock the run (looking at you, Alfred). Nerfing them wouldn't really work - both because lucky/Normal players will always be able to reach such builds with the proper Inclination/good level ups, and because it makes sense to have some defensive characters. The Fatigue mechanic aims to solve this problem - after blocking/dodging attacks X times (probably 5), the unit loses 1 armour/evasion for this map. This mechanic will probably not trigger 90% of the time, but will prevent people from tanking 5 units each turn with Alfred. It would also circumstantially buff HP tanks (especially Xeplogi, who really needs the buff).
+The main problems with this mechanic are the increased complexity, and it not being very "fun" due to limiting options (although I would argue that turtling with defensive characters isn't very fun either, but I digress). The solution would be to use it as a difficulty modifier - adding a (normal/hard/insane)+ difficulty option for it. Fatigue alone wouldn't be enough to justify a difficulty+ mode, so there are two possible solutions:
+1. Add some more modifiers for the difficulty+ mode. Using the scrapped "enemies gain +1 stat per Torment power" mechanic would probably be enough, since too many Torment powers are strictly upgrades currently anyway.
+2. Add EBF-style cheats/handicaps. This would help people customise their experience better, but also requires coming up with additional handicaps (cheats are sort-of implemented already with the upgrades, but additional, actual cheats would make the game more accessible). This is probably the better yet more time-consuming solution.
+I'll probably go with 1.
+
 =============================================================================================================
 
 Very old (2020) (better formatted at my concept compilation file):

@@ -1,0 +1,49 @@
+priority:-1
+unique:F
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:play:Raindance
+Torment: NO! I-IMPOSSIBLE! Heh heh... HOW COULD YOU... FASHIMA!!!
+Fashima_: I can do anything, Torment.\a You should not have understimated me.
+:if:unitAlive:Frogman{
+Frogman: H-huh? You're human again?
+Fashima_: I was never a Magmaborn to begin with, my friend.
+Frogman: What?!
+Torment||L: HA HA HA! So foolish... to the very end...
+:setSpeaker:Frogman||L
+Fashima_: It was a crucial part of our deal.\a Nevertheless, that is history now -\a gone and irrelevant.\a Proceed with your death, please.
+Torment: Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
+:killUnit:Torment:F
+:screenShake:
+Fashima_: Farewell.
+Frogman: Wait-
+:endgameFadeToWhite:
+:setTempFlag:FashimaVictory
+:showEnding:
+}
+:else:{
+Torment: HA HA HA! Without me... you are nothing...
+Fashima_: No. Without you I am free. I do not need magic for that.
+Torment: Freedom? Heh.. Such foolishness...
+Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
+:killUnit:Torment:F
+:screenShake:
+Fashima_: Farewell.
+:play:Silence
+:endgameFadeToWhite:
+:setTempFlag:FashimaVictory
+:play:Raindance
+:showEnding:
+}
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

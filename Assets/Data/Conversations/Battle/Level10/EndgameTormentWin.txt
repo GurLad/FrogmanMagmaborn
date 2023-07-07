@@ -1,0 +1,51 @@
+priority:-1
+unique:F
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:play:Raindance
+:setSpeaker:Fashima||L
+Torment||R: Well, this has certainly been an entertaining little game.\a But it's become a bit... repetitive, don't you think?\a Heh.
+Fashima: No! I am not done yet!
+Torment: I am.
+:if:!unitAlive:Frogman{
+:setTempFlag:FrogmanDied
+}
+:endgameEnd:
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:setSpeaker:Torment||R
+:if:hasTempFlag:FrogmanDied{
+Frogman: Ugh... Where am I?
+}
+Fashima||L: No... No! This can't be happening! I was going to win!\a To get this far, only to... Torment!\a I will stop-
+Torment: Oh, shut up. You're a vase now.
+FashimaVase: ...!
+Frogman: H-huh?
+Torment: Ha ha ha! Now then, where was I? Ah, right. Xirveros?
+Xirveros: I shall never bend my knee to the forces of evil again!
+Torment: Love me.
+Xirveros: You're is the best thing ever! I love you!
+Frogman||L: What is going on here?!
+Torment: Oh, nothing to be alarmed about.\a Merely my power getting back to me. Heh.\a But I have no interest in the rest of you.\a You're free to go.
+Frogman: Go where?
+Torment: To your fellow pathetic humans, of course! Heh heh!
+Memerian: I think you forgot about something.
+Torment: What? Oh, right. Become human and begone.
+FrogmanMan||L: Wait-
+:screenShake:
+:play:Silence
+:showCG:Nothing
+:play:Raindance
+:showEnding:
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
