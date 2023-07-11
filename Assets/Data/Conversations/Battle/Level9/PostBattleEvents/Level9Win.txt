@@ -17,6 +17,15 @@ SuBodderPre: NO! No... I-it's not. I...
 :setSpeaker:Bodder||L
 I will...\a stop...
 :setSingleSpeaker:R
+:if:numRuns:<2{
+Frogman: Pathetic.
+Fashima: ...
+Frogman: Well, let's go then.
+We still have one more Magus to slay, right?
+Fashima: Indeed, my friend. I shall teleport us there at once.
+Frogman: Great.
+}
+:else:{
 Frogman: ...
 Fashima: Ah. This is so... exquisite. Can you smell it, my friend?
 Frogman: Uh, what?
@@ -27,6 +36,7 @@ Frogman: ...
 Fashima: Frogman?
 Frogman: H-huh? Uh, yes. Let's go.\a Let's... get out of this place.
 Fashima: Indeed.
+}
 
 # === Functions ====
 

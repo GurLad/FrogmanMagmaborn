@@ -37,7 +37,12 @@ Guard1: Magmaborn? Here?!\a Quick, sound the alarm!\a Alert Fashima!
 Lieutenant: Right away!
 :setSpeaker:Fashima_||L
 Lieutenant: Fashima! We're under attack by Magmaborn!
+:if:numRuns:<2{
+Fashima_: Already? Hm.\a Frogman is faster than I anticipated.\a Well, everyone, you know what to do.\a Defend me at all costs.
+}
+:else:{
 Fashima_: What impeccable timing.\a Well, everyone, you know what to do.\a Defend me at all costs.
+}
 Lieutenant: Yes, master!
 :setBattleQuote:Fashima_:FashimaBattleQuote
 :addSkill:Fashima_:Vantage

@@ -5,6 +5,23 @@ levelNumber:0
 ~ Demands
 # Nothinig
 ~ Before battle
+:if:numRuns:<2{
+Bodder: You there. Green face. Are you the one?
+Frogman: Excuse me?
+Bodder: The murderer. The sociopath. The savage.\a The one who has slain countless Guards in his\a first life. You are him, are you not?
+Frogman: I usually go by Frogman.
+Bodder: Frogman. A fitting name for a monstrosity such as you.
+Do you know what I hate most in this world?
+Frogman: Uh... no.
+Bodder: Monsters such as yourself.\a Ones who do not think twice before killing people.
+Who care for nothing but their own flesh.
+Frogman: Okay.
+Bodder: But your massacre ends here, Frogman. And do you know why?
+Frogman: Oh, just shut up and fight already.
+Bodder: Because-
+:setFlag:EnterBodder1
+:return:
+}
 :if:!hasFlag:EnterBodder1:{
 Bodder: Frogman, Frogman, Frogman.
 Do you know how long have I been waiting for this moment?
@@ -26,14 +43,14 @@ Frogman: Silence?
 Bodder: Monsters like you, Frogman.
 Frogman: I've had enough. Let's charge, everyone!
 Bodder: And do you know-
-:setFlag:EnterBodder2
+:setFlag:EnterBodder1
 :return:
 }
 :if:!hasFlag:EnterBodder2:{
 Bodder: And just like that, the murderer returns.
 Frogman: Ugh. Can we skip this pointless conversation,\a and get to the fighting already?
 Bodder: Do you know what makes one a monster such as you, Frogman?
-Frogman: I really couldn't care less.
+Frogman: I truly couldn't care less.
 Bodder: The lack of care for other's well-being.\a The missing desire to talk and interact.
 The careless disregard for human life.
 Frogman: Do you know what I'd like to do most right now, Bodder?

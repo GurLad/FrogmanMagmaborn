@@ -12,13 +12,26 @@ levelNumber:0
 :unlockAchievement:DefeatBrens
 :play:ShatteredDream
 Frogman||L: W-What? Who are you? Where did you come from?!
+:if:numRuns:<2{
+Fashima|???: I've got to admit, I'm impressed.
+I did not think you'd make it this far so quickly.
+Frogman: What are you talking about?!
+}
 Fashima|???: Don't you recognize me, my friend?
 :if:hasFlag:FrogmanKnowsFashimasName{
 Frogman||L: Recognize? Wait, you're... Fashima?!
+:if:numRuns:<2{
+Fashima: Yes. And I've got to admit, I'm impressed.
+I did not think you'd make it this far so quickly.
+}
 }
 :else:{
 Frogman||L: Recognize? Wait, you're... the Guard mage?!
 Fashima: Yes. And my name is Fashima. Not the Guard mage.
+:if:numRuns:<2{
+I've got to admit though, I'm impressed.
+I did not think you'd make it this far so quickly.
+}
 :setFlag:FrogmanKnowsFashimasName
 }
 :if:hasCharacter:Memerian{
