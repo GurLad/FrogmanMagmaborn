@@ -27,7 +27,7 @@ Xirveros: Me go after frog!
 :play:ToTheDeath
 Frog? Bad monster here. Very bad.
 Frogman: What monster?
-Xirveros: Bad monster!\a Scary monster!\a Magic monster!
+Xirveros: Bad monster! Scary monster! Magic monster!
 Frogman: Magic? Never seen that before here.
 Xirveros: Magic rare! Magic bad! Magic painful!
 Frogman: Uh... Sure...\a Let's go defeat it then.
@@ -39,12 +39,30 @@ Follow frog!
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
-# TBA
+:play:ToTheDeath
+Xirveros: Frog? Where you going?
+Frogman: Uh, to the Fortress?
+Xirveros: Fortress? Bad Fortress! And bad monster here.\a Very bad.
+Frogman: You mean the lich?
+Xirveros: Yes! Scary monster! Magic monster!
+Frogman: Yeah, I know that.\a Let's go defeat it then.
+Xirveros: Frog crazy!
+...
+Follow frog!
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
-# TBA
+:play:ToTheDeath
+Xirveros: Frog? Where you going?
+Frogman: Uh, to the Fortress?
+Xirveros: Fortress? Bad Fortress! And bad monster here.\a Very bad.
+Frogman: You mean the lich?
+Xirveros: Yes! Scary monster! Magic monster!
+Frogman: Yeah, I know that.\a Let's go defeat it then.
+Xirveros: Frog crazy!
+...
+Follow frog!
 :finishConversation:
 }
 }
@@ -70,7 +88,37 @@ Frogman: Why do I even bother? Let's just go.
 }
 :else:{
 # PostPostWin
-# TBA
+:if:hasCharacter:Xirveros{
+Frogman: Well, that was that. Let's get out of here, Xirveros!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+:if:!hasFlag:FrogmanKnowsXirverosWasChampion{
+Xirveros: Frog! Turn back. Now. This too far!
+Frogman: Turn back?
+Xirveros: They will come. You will fight.\a We will die.
+Frogman: They... You mean- How do you know?
+Xirveros: Frog, don't make my mistake.
+Turn back before it's too late.
+Frogman: I... can't.
+Xirveros: Do not listen. Do not listen. Do no listen.
+Frogman: ...
+}
+:else:{
+Xirveros: Frog! Turn back. Now. This too far!
+Frogman: Turn back?
+Xirveros: They will come. You will fight.\a We will die.
+Frogman: They... Oh.
+Xirveros: Frog, don't make my mistake.
+Turn back before it's too late.
+Frogman: I'm sorry, but I can't. I... won't end up like you,\a Xirveros.
+Xirveros: Do not listen. Do not listen. Do no listen.
+Frogman: ...
+}
+}
+:else:{
+:callOther:Level3Generic
+}
 :finishConversation:
 }
 

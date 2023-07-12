@@ -46,12 +46,34 @@ Firbell: Ah, you leave me no choice...\a I can't just let you go on your own.\a 
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
-# TBA
+Firbell: Frogman? Where are you going?
+Frogman: To the Fortress, of course?
+Firbell: To the Fortress? Why would you do that?
+Are you not aware of the monsters guarding the way?
+Frogman: Yes, I'm aware of the liches.\a I fought one before, in fact.
+Firbell: Oh? And did you manage to defeat it?
+Frogman: ...No.
+Firbell: As I thought. Let us leave this place before-
+Frogman: Leave? Why? We can defeat it together.
+Firbell: I would rather stay alive.
+Frogman: Are you truly so afraid of liches?
+Firbell: I am not afraid. I am merely being reasonably cautious.\a But very well, have it your way.\a Let us defeat this so-called lich.
+Frogman: Great.
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
-# TBA
+Firbell: Frogman? Where are you going?
+Frogman: To the Fortress, of course?
+Firbell: To the Fortress? Why would you do that?
+Are you not aware of the monsters guarding the way?
+Frogman: Yes, I'm aware of the liches.\a I fought one before, in fact.
+Firbell: Oh? And did you manage to defeat it?
+Frogman: Yes.
+Firbell: ...Really?
+Frogman: Yeah. It's not that tough, to be honest.\a Why, are you afraid?
+Firbell: I am not afraid. I am merely being reasonably cautious.\a But very well, have it your way.\a Let us defeat this so-called lich.
+Frogman: Great.
 :finishConversation:
 }
 }
@@ -79,7 +101,34 @@ Frogman: That's the spirit.
 }
 :else:{
 # PostPostWin
-# TBA
+# Frogman is more of a jerk the farther you go
+Frogman: That was tough. Let's get out of here now!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+:setSpeaker:Frogman||R
+Firbell: Frogman, wait.
+Frogman: What is it, Firbell?
+Firbell: Are you sure you want to go on to the Fortress?
+Frogman: Uh, yes? Don't you?
+Firbell: I admit that I am curious about it.\a However, I do not want to end up like Xirveros.
+:if:!hasFlag:FrogmanKnowsXirverosWasChampion{
+Frogman: What's he got to do with it?
+Firbell: He used to go to the Fortress all the time.\a Before he went mad.
+Frogman: Huh. Good to know.
+But I cannot accept a life of endless, pointless survival.\a I have to find a way out of this place.\a Are you with me?
+Firbell: ...Fine, then. Let us go.
+Frogman: That's the spirit.
+}
+:else:{
+Frogman: ...I will not end up like him.
+Firbell: Excuse me?
+Frogman: Never mind. We don't have time to waste - let's go!
+:setSingleSpeaker:L
+Firbell: Wait!
+...
+Ugh, the people I am stuck with...
+}
 :finishConversation:
 }
 
