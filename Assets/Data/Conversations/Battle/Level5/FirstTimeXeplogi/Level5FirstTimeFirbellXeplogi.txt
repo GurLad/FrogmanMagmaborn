@@ -1,0 +1,60 @@
+priority:4
+unique:T
+~ Requirements
+levelNumber:3
+hasCharacter:Firbell
+!hasFlag:FirbellXeplogi1
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:FirbellXeplogi1{
+:setFlag:FirbellXeplogi1
+:if:!hasFlag:MetXeplogi{
+# PreActualFirst
+:play:BeforeBattle2
+:loadUnits::player
+Frogman: Huh?\a Structures?\a I've never seen any here before.
+Firbell: Neither have I.\a We must be rather deep indeed.\a Who could have made them?
+:addUnit:Xeplogi
+:loadUnits::player
+Xeplogi|???|R: Hold. Who goes there?
+Frogman: Oh, another Magmaborn?
+Uh, I'm Frogman, and these are my fellow Magmaborn.
+Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
+Xeplogi|???: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
+Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
+Xeplogi|???: Backwater village? I'm no peasant, girl.
+Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+Firbell: Claiming to be a duke when you are not a noble?
+And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
+Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
+:call:GuardsArriveFirst
+:finishConversation:
+}
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<6{
+# PostActualFirst - part of the firstTime convo
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample

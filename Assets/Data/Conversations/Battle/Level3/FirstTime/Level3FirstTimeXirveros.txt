@@ -11,6 +11,8 @@ charactersAlive:=1
 :if:!hasFlag:XirverosMetLich{
 :setFlag:XirverosMetLich
 :if:!hasFlag:FrogmanMetLich{
+:setFlag:FrogmanMetLich
+# PreActualFirst
 :play:BeforeBattle
 :showCG:FortressPreview
 Frogman: Wow.\a Xirveros, what is that thing?

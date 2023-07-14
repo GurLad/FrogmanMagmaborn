@@ -1,4 +1,4 @@
-priority:5
+priority:6
 unique:T
 ~
 levelNumber:5
@@ -6,7 +6,15 @@ levelNumber:5
 # Guarantee a map that makes sense for the arrivals
 hasTag:PlayersSpawnFirst
 ~
-:play:BeforeBattle2
+:if:hasCharacter:Firbell{
+:callOther:Level5FirstTimeFirbellXeplogi
+}
+:if:hasCharacter:Kresla{
+:callOther:Level5FirstTimeKreslaXeplogi
+}
+:if:hasCharacter:Xirveros{
+:callOther:Level5FirstTimeXirverosXeplogi
+}
 :if:firstTime:{
 :call:PreFirst
 }
@@ -59,7 +67,7 @@ Firbell: It is just the way that he is.\a You will get used to it,\a Logi.
 Xeplogi: Then he's as crazy as they come!\a Why are you following him?
 Firbell: ...Do you have a better idea?
 Xeplogi: How about you all follow me, instead?\a I assure you, I'm quite the benelovent leader.
-Firbell: ...Goodbye,\a Duke of nowhere.
+Firbell: ...Goodbye,\a duke of nowhere.
 :hideUnit:Firbell
 Xeplogi: I'm the Duke of Jess, not Nowhere!\a W-wait, don't leave me!\a ...
 Ugh, fine...
@@ -123,76 +131,21 @@ Oh well.
 # === Functions ====
 
 ~ PreFirst
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Huh?\a Structures?\a I've never seen any here before.
-# TODO: Separate properly
-:if:hasCharacter:Firbell{
-Firbell: Neither have I.\a We must be rather deep indeed.\a Who could have made them?
-}
-:if:hasCharacter:Kresla{
-Kresla: Structures? Here?! This is incredible!\a Who made them? When? How?\a I've never even seen any usable materials!\a We must explo-
-}
 :addUnit:Xeplogi
 :loadUnits::player
 Xeplogi|???|R: Hold. Who goes there?
-:if:charactersAlive:>0:{
-Frogman: Oh, another Magmaborn?
-Uh, I'm Frogman, and these are my fellow Magmaborn.
-:if:hasCharacter:Firbell{
-Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
-Xeplogi|???: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
-Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
-Xeplogi|???: Backwater village? I'm no peasant, girl.
-Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
-Firbell: Claiming to be a duke when you are not a noble?
-And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
-Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
-:setFlag:FirbellXeplogi1
-:call:GuardsArriveFirst
-:return:
-}
-:else:{
-:if:hasCharacter:Kresla{
-Kresla||L: Wow, I've never seen you before! Who are you?
-}
-:if:hasCharacter:Xirveros{
-Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
-Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
-}
-}
-}
-Xeplogi|???|R: My, what a lovely entourage you have there!
-:else:{
 Frogman: Oh, another Magmaborn? Uh, I'm Frogman.\a Who are you?
-}
 Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
-:if:hasCharacter:Kresla{
-# TODO: Reduce length, it's way too long
-Kresla: Xeplogi of Jess? Of Xeplogi and the Witch fame?!
-Xeplogi: I'm afraid I never caught your name, er...?
-Kresla: Right, sorry. I'm Kresla, a renowned scholar.\a And you're Vengeful Xeplogi, right?
-Xeplogi: Only my enemies call me that. Please, call me Duke Xeplogi.
-Kresla: I knew it! It IS you! So this is where you disappeared to?!\a Wait, does that mean that Memerian is here too?!
-Xeplogi: Unfortunately, yes.
-I assume you'll run into her eventually.
-Kresla: I can't believe it! A fairy tale hero,\a standing right here besides me!\a This is almost as exciting as the discovery of magic!
-Xeplogi: I'm a hero, then? Oh ho ho! I like the sound of that.
-Frogman: I'm afraid I didn't get any of this.
-Kresla: What, you don't know Xeplogi and the Witch?\a It's a popular children's story!
-Xeplogi: W-wait, children?!
-Kresla: In short, there was this duke named Xeplogi,\a who wanted to be immortal.\a He heard about a legendary blacksmith named Memerian,\a who was said to have discovered immortality.\a Xeplogi tried to buy her secret, but she refused.\a They fought, and both disappeared.
-Frogman: That's... a pretty lame story.
-Xeplogi: It's a very rough outline. What really happened was-
-:setFlag:KreslaXeplogi1
-}
-:else:{
 Frogman: A duke? I... see.
 Xeplogi: Indeed I am! Have you ever heard of me, perchance?
 Frogman: No, never.
 Xeplogi: You must have lived in quite the backwater village then.\a Oh ho ho!
 Frogman: ...
-Xeplogi: Who were you before arriving here, my dear Fro-
-}
+Xeplogi: Who were you before arriving here, my dear Frogman?
+Frogman: Um, I was... That is, uh, I mean, I-
 :call:GuardsArriveFirst
 
 ~ GuardsArriveFirst

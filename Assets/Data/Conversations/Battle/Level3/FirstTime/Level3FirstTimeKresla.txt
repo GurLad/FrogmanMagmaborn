@@ -10,6 +10,8 @@ hasCharacter:Kresla
 :if:!hasFlag:KreslaMetLich{
 :setFlag:KreslaMetLich
 :if:!hasFlag:FrogmanMetLich{
+:setFlag:FrogmanMetLich
+# PreActualFirst
 :play:BeforeBattle
 :showCG:FortressPreview
 Frogman: Wow.\a Kresla, what is that thing?

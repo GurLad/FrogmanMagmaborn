@@ -1,0 +1,59 @@
+priority:3
+unique:T
+~ Requirements
+levelNumber:3
+hasCharacter:Xirveros
+!hasFlag:XirverosXeplogi1
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:XirverosXeplogi1{
+:setFlag:XirverosXeplogi1
+:if:!hasFlag:MetXeplogi{
+:play:BeforeBattle2
+:loadUnits::player
+Frogman: Huh?\a Structures?\a I've never seen any here before.
+:addUnit:Xeplogi
+:loadUnits::player
+Xeplogi|???|R: Hold. Who goes there?
+Frogman: Oh, another Magmaborn?
+Uh, I'm Frogman, and this Xirveros.
+Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
+Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
+Xeplogi|???|R: My, what a lovely entourage you have there!
+Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+Frogman: A duke? I... see.
+Xeplogi: Indeed I am! Have you ever heard of me, perchance?
+Frogman: No, never.
+Xeplogi: You must have lived in quite the backwater village then.\a Oh ho ho!
+Frogman: ...
+Xeplogi: Who were you before arriving here, my dear Frogman?
+Frogman: Um, I was... That is, uh, I mean, I-
+:finishConversation:
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<4{
+# PostActualFirst - part of the firstTime convo
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample

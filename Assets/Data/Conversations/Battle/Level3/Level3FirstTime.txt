@@ -5,7 +5,6 @@ levelNumber:3
 ~ Demands
 hasTag:LichVisible
 ~ Before battle
-:setFlag:FrogmanMetLich
 :if:hasCharacter:Firbell{
 :callOther:Level3FirstTimeFirbell
 }
@@ -15,6 +14,7 @@ hasTag:LichVisible
 :if:hasCharacter:Xirveros{
 :callOther:Level3FirstTimeXirveros
 }
+:setFlag:FrogmanMetLich
 :if:firstTime:{
 :call:PreAlone
 }

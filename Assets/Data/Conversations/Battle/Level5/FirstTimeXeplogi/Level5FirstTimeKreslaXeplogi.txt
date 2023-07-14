@@ -1,0 +1,73 @@
+priority:4
+unique:T
+~ Requirements
+levelNumber:3
+hasCharacter:Kresla
+!hasFlag:KreslaXeplogi1
+~ Demands
+# Not actual first time, so invisible Lich is fine
+~ Before battle
+:if:!hasFlag:KreslaXeplogi1{
+:setFlag:KreslaXeplogi1
+:if:!hasFlag:MetXeplogi{
+:play:BeforeBattle2
+:loadUnits::player
+Frogman: Huh?\a Structures?\a I've never seen any here before.
+Kresla: Structures? Here?! This is incredible!\a Who made them? When? How?\a I've never even seen any usable materials!\a We must explo-
+:addUnit:Xeplogi
+:loadUnits::player
+Xeplogi|???|R: Hold. Who goes there?
+Frogman: Oh, another Magmaborn?
+Uh, I'm Frogman, and these are my fellow Magmaborn.
+Kresla||L: Wow, I've never seen you before! Who are you?
+:if:hasCharacter:Xirveros{
+Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
+Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
+}
+Xeplogi|???|R: My, what a lovely entourage you have there!
+Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+Kresla: Xeplogi of Jess? Of Xeplogi and the Witch fame?!
+Xeplogi: I'm afraid I never caught your name, er...?
+Kresla: Right, sorry. I'm Kresla, a renowned scholar.\a And you're Vengeful Xeplogi, right?
+Xeplogi: Only my enemies call me that. Please, call me Duke Xeplogi.
+Kresla: I knew it! It IS you! So this is where you disappeared to?!\a Wait, does that mean that Memerian is here too?!
+Xeplogi: Unfortunately, yes.
+I assume you'll run into her eventually.
+Kresla: I can't believe it! A fairy tale hero,\a standing right here besides me!\a This is almost as exciting as the discovery of magic!
+Xeplogi: I'm a hero, then? Oh ho ho! I like the sound of that.
+Frogman: I'm afraid I didn't get any of this.
+Kresla: What, you don't know Xeplogi and the Witch?\a It's a popular children's story!
+Xeplogi: W-wait, children?!
+Kresla: In short, there was this duke named Xeplogi,\a who wanted to be immortal.\a He heard about a legendary blacksmith named Memerian,\a who was said to have discovered immortality.\a Xeplogi tried to buy her secret, but she refused.\a They fought, and both disappeared.
+Frogman: That's... a pretty lame story.
+Xeplogi: It's a very rough outline. What really happened was-
+:call:GuardsArriveFirst
+:finishConversation:
+}
+:else:{
+:if:furthestLevel:<4{
+# PreCharacterFirstNoWin
+# TBA
+:finishConversation:
+}
+:else:{
+# PreCharacterFirstPostWin
+# TBA
+:finishConversation:
+}
+}
+}
+
+~ After battle
+:if:furthestLevel:<4{
+# PostActualFirst - part of the firstTime convo
+}
+:else:{
+# PostPostWin
+# TBA
+:finishConversation:
+}
+
+# === Functions ====
+
+~ Sample
