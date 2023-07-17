@@ -22,7 +22,7 @@ public class EndgameCrystalExplode : MonoBehaviour
     private void Start()
     {
         // TEMP
-        exploding = true;
+        //exploding = true;
     }
 
     private void Update()
@@ -41,5 +41,21 @@ public class EndgameCrystalExplode : MonoBehaviour
                 Parts[i].localPosition = (1 + count) * InitialPositions[i];
             }
         }
+    }
+
+    [ContextMenu("Fix normals & bounds")]
+    public void FixNormalsAndBounds()
+    {
+        Parts.ForEach(a =>
+        {
+            Mesh mesh = a.GetComponent<MeshFilter>().sharedMesh;
+            mesh.RecalculateNormals();
+            Bugger.Info("Before: " + mesh.bounds);
+            mesh.RecalculateBounds();
+            Bugger.Info("After: " + mesh.bounds);
+            a.GetComponent<MeshFilter>().sharedMesh = mesh;
+            UnityEditor.EditorUtility.SetDirty(a);
+        });
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EndgameSpikeSpawner : MonoBehaviour
 {
-    public EndgameSpike BaseSpike;
+    public EndgameRotAndMove BaseSpike;
     public float TVWidth;
     public float XOffset;
     public float YOffset;
@@ -23,7 +23,7 @@ public class EndgameSpikeSpawner : MonoBehaviour
                 {
                     for (int m = 0; m < 2; m++)
                     {
-                        EndgameSpike newSpike = Instantiate(BaseSpike, BaseSpike.transform.parent);
+                        EndgameRotAndMove newSpike = Instantiate(BaseSpike, BaseSpike.transform.parent);
                         newSpike.transform.position += new Vector3(j * XOffset * Mathf.Sign(k - 0.5f) + TVWidth * k, m * YOffset, i * ZOffset);
                         newSpike.transform.localEulerAngles = new Vector3(-90 + 180 * m, 0, 0);
                         newSpike.UpDownDirection = (int)Mathf.Sign(k - 0.5f);

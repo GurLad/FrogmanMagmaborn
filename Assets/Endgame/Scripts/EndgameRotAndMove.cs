@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndgameSpike : MonoBehaviour
+public class EndgameRotAndMove : MonoBehaviour
 {
+    public enum Axis { X, Y, Z };
+
+    public Axis RotAxis = Axis.Y;
     public Vector2 RotSpeed;
+    public Axis UpDownAxis = Axis.Y;
     public Vector2 UpDownSpeed;
     public Vector2 UpDownStrength;
     [HideInInspector]
@@ -30,7 +34,18 @@ public class EndgameSpike : MonoBehaviour
 
     private void Update()
     {
-        transform.position = basePos + new Vector3(0, UpDownDirection * (Mathf.Sin(Time.unscaledTime * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
-        transform.localEulerAngles = baseRot + new Vector3(0, 360 * rotSpeed * Time.unscaledTime + rotOffset);
+        transform.position = basePos + AxisToVector3(UpDownAxis) * (UpDownDirection * (Mathf.Sin(Time.unscaledTime * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
+        transform.localEulerAngles = baseRot + AxisToVector3(RotAxis) * (360 * rotSpeed * Time.unscaledTime + rotOffset);
+    }
+
+    private Vector3 AxisToVector3(Axis axis)
+    {
+        return axis switch
+        {
+            Axis.X => Vector3.right,
+            Axis.Y => Vector3.up,
+            Axis.Z => Vector3.forward,
+            _ => Vector3.zero
+        };
     }
 }
