@@ -653,7 +653,6 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void KillUnit(Unit unit)
     {
-        NotifyListeners(a => a.OnUnitDeath(unit.Name));
         if (!GameCalculations.PermaDeath && unit.TheTeam.IsMainPlayerTeam() && unit.Name != StaticGlobals.MainCharacterName) // No perma-death
         {
             PseudoKillUnit(unit);
@@ -673,6 +672,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     DeadPlayerUnits.Add(unit.Name);
                 }
                 Destroy(unit.gameObject);
+                NotifyListeners(a => a.OnUnitDeath(unit.Name));
             }
         }
     }

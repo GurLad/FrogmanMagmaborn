@@ -77,6 +77,11 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
 
     public override void OnUnitDeath(string unitName)
     {
+        if (unitName == StaticGlobals.TormentName)
+        {
+            Destroy(this);
+            return;
+        }
         ClearIdle();
         (currentUnitDeath = UnitDeathAnimations.RandomItemInList()).Activate(true);
         state = State.UnitDeath;

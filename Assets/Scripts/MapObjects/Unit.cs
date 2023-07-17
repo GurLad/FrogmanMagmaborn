@@ -881,7 +881,7 @@ public class Unit : MapObject
 
     public override string ToString()
     {
-        return (Icon?.Name == TheTeam.Name() ? Class : DisplayName) ?? DisplayName;
+        return (PortraitMode == PortraitLoadingMode.Team ? Class : DisplayName) ?? DisplayName;
     }
 
     public bool IsEnemy(Unit target)
