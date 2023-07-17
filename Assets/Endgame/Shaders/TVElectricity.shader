@@ -4,7 +4,7 @@ Shader "Custom/TVElectricity"
 {
     Properties
     {
-        _ColorTint("Tint", Color) = (1,1,1,1)
+        _Color("Color", Color) = (1,1,1,1)
         _MainTex("Texture", 2D) = "white" {}
         _NoiseTex("Noise Texture", 2D) = "white" {}
         _NoiseSpeed("Noise Speed", float) = 1
@@ -46,7 +46,7 @@ Shader "Custom/TVElectricity"
             float _Offset;
             float _GlobalOffset;
             float4 _MainTex_ST;
-            fixed4 _ColorTint;
+            fixed4 _Color;
 
             v2f vert (appdata v)
             {
@@ -68,7 +68,7 @@ Shader "Custom/TVElectricity"
                 float2 pos = float2(i.screenPos[0] / i.screenPos.w, i.screenPos[1] / i.screenPos.w);
                 float2 temp = float2((pos[0] - _Offset) * co + _Offset + (pos[1] - _Offset) * si + _Offset, -(pos[0] - _Offset) * si - _Offset + (pos[1] - _Offset) * co - _Offset);
                 temp += float2(_GlobalOffset, _GlobalOffset);
-                col *= tex2D(_NoiseTex, temp) * _ColorTint;
+                col *= tex2D(_NoiseTex, temp) * _Color;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

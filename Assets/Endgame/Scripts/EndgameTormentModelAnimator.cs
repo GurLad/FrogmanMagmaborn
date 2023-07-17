@@ -17,6 +17,9 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     public Palette BasePalette;
     [Header("DamagedPalette")]
     public Palette DamagedPalette;
+    // Misc
+    [HideInInspector]
+    public Unit TormentUnit;
     private State state;
     // Idle
     private float idleCount = 0;
@@ -25,8 +28,6 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     private AdvancedAnimation currentUnitDeath;
     // Damaged
     private AdvancedAnimation currentDamaged;
-    // Misc
-    private Unit tormentUnit;
 
     protected override void Start()
     {
@@ -36,11 +37,11 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
 
     private void Update()
     {
-        if (Time.timeScale > 0 && tormentUnit == null) // At Start GameController still contains the previous Torment apparently
+        if (Time.timeScale > 0 && TormentUnit == null) // At Start GameController still contains the previous Torment apparently
         {
-            tormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
-            tormentUnit.AddListener(this);
-            tormentUnit.GetComponent<SpriteRenderer>().enabled = false;
+            TormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
+            TormentUnit.AddListener(this);
+            TormentUnit.GetComponent<SpriteRenderer>().enabled = false;
             Bugger.Info(GameController.Current.GetNamedUnits(StaticGlobals.TormentName).Count.ToString());
         }
         switch (state)

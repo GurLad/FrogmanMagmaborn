@@ -485,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482147205295082645}
   - component: {fileID: 1482147205295082644}
+  - component: {fileID: 7446225911690307163}
   m_Layer: 0
   m_Name: Summons
   m_TagString: Untagged
@@ -523,6 +524,26 @@ MonoBehaviour:
   ChaosModifierTormentHealthMultiplierIncrease: 6
   CircleSpriteOn: {fileID: 21300000, guid: b420b5072b2549d46a8f56af02fd14af, type: 3}
   CircleSpriteOff: {fileID: 21300000, guid: 5357293e26579454d9a6442d74aa501f, type: 3}
+--- !u!114 &7446225911690307163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482147205295082602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e45b9e52b527f14898bda9ec04ded6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndgameTormentModelAnimator: {fileID: 6918596191340868760}
+  EndgameMaterials:
+  - {fileID: 2100000, guid: 6233b6dcd7627fa4d8e9a3a03c0b09e1, type: 2}
+  - {fileID: 2100000, guid: f6d42b0f775e04b47ba57446c1e08a78, type: 2}
+  - {fileID: 2100000, guid: 8b5ad1b737ad58d4982f0e34c31513cf, type: 2}
+  - {fileID: 2100000, guid: add0b8168f7abbd4bba131ab4172d7a1, type: 2}
+  HueRange: {x: 180, y: 180}
+  LerpStrength: 1
 --- !u!1 &1482147205322106967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2326,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1482147205430745039}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6918596191340868760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8399898935333200727, guid: 2c192239f7ee10d4caad9042547ed738,
+    type: 3}
+  m_PrefabInstance: {fileID: 1482147205430745039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc6016b966adce4498c636a5d68bed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4670199131531352079
 PrefabInstance:
   m_ObjectHideFlags: 0
