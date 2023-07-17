@@ -126,27 +126,27 @@ public class AdvancedAnimation : MonoBehaviour
                 }
             }
         }
-        //Debug
-        string ToPrint = "---Parts---\n";
-        foreach (var item in Parts)
-        {
-            ToPrint += (item.name) + ", ";
-        }
-        Debug.Log(ToPrint + "\n---End---\n");
-        ToPrint = "---AnimationParts---\n";
-        int ii = 0;
-        foreach (var item in AnimationParts)
-        {
-            ToPrint += "In " + ii + ": ";
-            foreach (var item2 in item)
-            {
-                ToPrint += item2.name + ", ";
-            }
-            ToPrint += "\n";
-            ii++;
-        }
-        Debug.Log(ToPrint + "\n---End---\n");
-        //End debug
+        ////Debug
+        //string ToPrint = "---Parts---\n";
+        //foreach (var item in Parts)
+        //{
+        //    ToPrint += (item.name) + ", ";
+        //}
+        //Debug.Log(ToPrint + "\n---End---\n");
+        //ToPrint = "---AnimationParts---\n";
+        //int ii = 0;
+        //foreach (var item in AnimationParts)
+        //{
+        //    ToPrint += "In " + ii + ": ";
+        //    foreach (var item2 in item)
+        //    {
+        //        ToPrint += item2.name + ", ";
+        //    }
+        //    ToPrint += "\n";
+        //    ii++;
+        //}
+        //Debug.Log(ToPrint + "\n---End---\n");
+        ////End debug
     }
     private void Start()
     {

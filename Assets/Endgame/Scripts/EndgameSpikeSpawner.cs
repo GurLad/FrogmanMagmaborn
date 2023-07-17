@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EndgameSpikeSpawner : MonoBehaviour
 {
+    public EndgameHueShifter EndgameHueShifter;
     public EndgameRotAndMove BaseSpike;
     public float TVWidth;
     public float XOffset;
@@ -15,8 +16,17 @@ public class EndgameSpikeSpawner : MonoBehaviour
 
     private void Start()
     {
+        List<Material> generated = new List<Material>();
+        MeshRenderer baseRenderer = BaseSpike.GetComponent<MeshRenderer>();
         for (int i = 0; i < ZCount; i++)
         {
+            for (int n = 0; n < baseRenderer.materials.Length; n++)
+            {
+                Material a = Instantiate(baseRenderer.materials[n]);
+                a.color = new Color(a.color.r, a.color.g, a.color.b, a.color.a * ((float)ZCount - i) / ZCount);
+                a.name = "Generated " + i;
+                generated.Add(a);
+            }
             for (int j = 0; j < XCount; j++)
             {
                 for (int k = 0; k < 2; k++)
@@ -28,17 +38,15 @@ public class EndgameSpikeSpawner : MonoBehaviour
                         newSpike.transform.localEulerAngles = new Vector3(-90 + 180 * m, 0, 0);
                         newSpike.UpDownDirection = (int)Mathf.Sign(k - 0.5f);
                         MeshRenderer meshRenderer = newSpike.GetComponent<MeshRenderer>();
-                        for (int n = 0; n < meshRenderer.materials.Length; n++)
-                        {
-                            Material a = meshRenderer.materials[n];
-                            meshRenderer.materials[n] = Instantiate(meshRenderer.materials[n]);
-                            meshRenderer.materials[n].color = new Color(a.color.r, a.color.g, a.color.b, a.color.a * (ZCount - i) / ZCount);
-                        }
+                        meshRenderer.sharedMaterials = generated.GetRange(i * baseRenderer.sharedMaterials.Length, baseRenderer.sharedMaterials.Length).ToArray();
                         newSpike.gameObject.SetActive(true);
                         newSpike.name = "Spike" + i + j + k + m;
                     }
                 }
             }
         }
+        EndgameHueShifter.ColorMaterials.AddRange(generated);
+        EndgameHueShifter.EmissionMaterials.AddRange(generated);
+        EndgameHueShifter.Init();
     }
 }

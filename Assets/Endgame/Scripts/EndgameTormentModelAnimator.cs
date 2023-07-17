@@ -42,7 +42,6 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
             TormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
             TormentUnit.AddListener(this);
             TormentUnit.GetComponent<SpriteRenderer>().enabled = false;
-            Bugger.Info(GameController.Current.GetNamedUnits(StaticGlobals.TormentName).Count.ToString());
         }
         switch (state)
         {

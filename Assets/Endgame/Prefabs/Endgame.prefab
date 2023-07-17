@@ -537,12 +537,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndgameTormentModelAnimator: {fileID: 6918596191340868760}
-  EndgameMaterials:
+  ColorMaterials:
   - {fileID: 2100000, guid: 6233b6dcd7627fa4d8e9a3a03c0b09e1, type: 2}
   - {fileID: 2100000, guid: f6d42b0f775e04b47ba57446c1e08a78, type: 2}
   - {fileID: 2100000, guid: 8b5ad1b737ad58d4982f0e34c31513cf, type: 2}
   - {fileID: 2100000, guid: add0b8168f7abbd4bba131ab4172d7a1, type: 2}
-  HueRange: {x: 180, y: 180}
+  EmissionMaterials:
+  - {fileID: 2100000, guid: 8b5ad1b737ad58d4982f0e34c31513cf, type: 2}
+  - {fileID: 2100000, guid: add0b8168f7abbd4bba131ab4172d7a1, type: 2}
+  - {fileID: 2100000, guid: 6233b6dcd7627fa4d8e9a3a03c0b09e1, type: 2}
+  HueRange: {x: 0, y: 133}
   LerpStrength: 1
 --- !u!1 &1482147205322106967
 GameObject:
@@ -620,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394b74014e4bad84db232d17712cdd7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndgameHueShifter: {fileID: 7446225911690307163}
   BaseSpike: {fileID: 5042150502083922365}
   TVWidth: 6
   XOffset: 6
