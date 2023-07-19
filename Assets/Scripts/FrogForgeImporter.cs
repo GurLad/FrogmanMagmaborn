@@ -18,6 +18,7 @@ public class FrogForgeImporter : MonoBehaviour
     public UnitClassData UnitClassData;
     public BattleAnimationController BattleAnimationController;
     public PortraitController PortraitController;
+    public EndingCardsController EndingCardsController;
     public CGController CGController;
     public LevelMetadataController LevelMetadataController;
     public MapController MapController;
@@ -35,6 +36,7 @@ public class FrogForgeImporter : MonoBehaviour
         BattleAnimationController?.AutoLoadAnimations();
         BattleAnimationController?.AutoLoadBackgrounds();
         PortraitController?.AutoLoad();
+        EndingCardsController?.AutoLoad();
         CGController?.AutoLoad();
         LevelMetadataController?.AutoLoad();
         MapController?.AutoLoadMaps();

@@ -65,6 +65,18 @@ public class EndingCardsController : MidBattleScreen
         }
     }
 
+#if UNITY_EDITOR || MODDABLE_BUILD
+    public void AutoLoad()
+    {
+        // Load json
+        string json = FrogForgeImporter.LoadTextFile("CharacterEndings.json").Text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("CharacterEndings"), this);
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
+    }
+#endif
+
     [System.Serializable]
     public class CharacterEndingData
     {

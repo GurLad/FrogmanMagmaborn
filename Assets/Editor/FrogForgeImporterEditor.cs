@@ -31,6 +31,10 @@ public class FrogForgeImporterEditor : Editor
         {
             myScript.PortraitController.AutoLoad();
         }
+        if (myScript.EndingCardsController != null && GUILayout.Button("Load Ending Cards"))
+        {
+            myScript.EndingCardsController.AutoLoad();
+        }
         if (myScript.CGController != null && GUILayout.Button("Load CGs"))
         {
             myScript.CGController.AutoLoad();
