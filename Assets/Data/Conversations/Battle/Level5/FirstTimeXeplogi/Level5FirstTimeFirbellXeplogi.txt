@@ -47,11 +47,14 @@ Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy 
 
 ~ After battle
 :if:furthestLevel:<6{
-# PostActualFirst - part of the firstTime convo
+# PostActualFirst - part of the firstTime convo, never happens
 }
 :else:{
+:if:hasCharacter:Firbell{
 # PostPostWin
-# TBA
+:finishConversation:
+}
+:callOther:Level5GenericXeplogi
 :finishConversation:
 }
 

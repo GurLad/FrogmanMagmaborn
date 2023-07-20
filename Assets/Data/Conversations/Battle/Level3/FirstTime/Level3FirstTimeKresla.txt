@@ -71,7 +71,12 @@ With our powers combined, we can be unstoppable!
 }
 :else:{
 # PostPostWin
+:if:hasCharacter:Kresla{
 # TBA
+}
+:else:{
+:callOther:Level3Generic
+}
 :finishConversation:
 }
 

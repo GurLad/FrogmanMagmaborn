@@ -49,8 +49,11 @@ Frogman: Um, I was... That is, uh, I mean, I-
 # PostActualFirst - part of the firstTime convo
 }
 :else:{
+:if:hasCharacter:Xirveros{
 # PostPostWin
-# TBA
+:finishConversation:
+}
+:callOther:Level5GenericXeplogi
 :finishConversation:
 }
 

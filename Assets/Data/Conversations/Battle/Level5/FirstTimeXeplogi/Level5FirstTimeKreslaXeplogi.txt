@@ -63,8 +63,11 @@ Xeplogi: It's a very rough outline. What really happened was-
 # PostActualFirst - part of the firstTime convo
 }
 :else:{
+:if:hasCharacter:Kresla{
 # PostPostWin
-# TBA
+:finishConversation:
+}
+:callOther:Level5GenericXeplogi
 :finishConversation:
 }
 

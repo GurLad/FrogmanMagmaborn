@@ -1,0 +1,38 @@
+priority:4
+unique:T
+~ Requirements
+levelNumber:LEVEL_NUMBER
+hasCharacter:CHARACTER
+!hasFlag:CHARACTER_REACHED_THIS_LEVEL
+~ Demands
+
+~ Before battle
+:if:!hasFlag:CHARACTER_REACHED_THIS_LEVEL{
+:setFlag:CHARACTER_REACHED_THIS_LEVEL
+:if:!hasFlag:FROGMAN_REACHED_THIS_LEVEL{
+:setFlag:FROGMAN_REACHED_THIS_LEVEL
+# PreActualFirst
+:finishConversation:
+}
+:if:furthestLevel:<LEVEL_NUMBER+1{
+# PreCharacterFirstNoWin
+:finishConversation:
+}
+# PreCharacterFirstPostWin
+:finishConversation:
+}
+
+~ After battle
+:if:furthestLevel:<LEVEL_NUMBER+1{
+# PostActualFirst
+:finishConversation:
+}
+:if:hasCharacter:CHARACTER{
+# PostPostWin
+:finishConversation:
+}
+:callOther:LEVEL_GENERIC_CONVO
+
+# === Functions ====
+
+~ Sample

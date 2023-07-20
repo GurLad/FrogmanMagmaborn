@@ -102,6 +102,7 @@ Frogman: That's the spirit.
 }
 :else:{
 # PostPostWin
+:if:hasCharacter:Firbell{
 # Frogman is more of a jerk the farther you go
 Frogman: That was tough. Let's get out of here now!
 :loadMap:InitTormentRoom
@@ -129,6 +130,10 @@ Frogman: Never mind. We don't have time to waste - let's go!
 Firbell: Wait!
 ...
 Ugh, the people I am stuck with...
+}
+}
+:else:{
+:callOther:Level3Generic
 }
 :finishConversation:
 }
