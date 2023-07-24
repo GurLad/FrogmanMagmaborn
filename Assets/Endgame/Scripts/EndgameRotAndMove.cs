@@ -11,7 +11,6 @@ public class EndgameRotAndMove : MonoBehaviour
     public Axis UpDownAxis = Axis.Y;
     public Vector2 UpDownSpeed;
     public Vector2 UpDownStrength;
-    [HideInInspector]
     public int UpDownDirection;
     private Vector3 basePos;
     private Vector3 baseRot;
@@ -34,8 +33,14 @@ public class EndgameRotAndMove : MonoBehaviour
 
     private void Update()
     {
-        transform.position = basePos + AxisToVector3(UpDownAxis) * (UpDownDirection * (Mathf.Sin(Time.unscaledTime * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
-        transform.localEulerAngles = baseRot + AxisToVector3(RotAxis) * (360 * rotSpeed * Time.unscaledTime + rotOffset);
+        if (upDownSpeed > 0)
+        {
+            transform.position = basePos + AxisToVector3(UpDownAxis) * (UpDownDirection * (Mathf.Sin(Time.unscaledTime * upDownSpeed + upDownOffset) + 1) * upDownStrength / 2);
+        }
+        if (rotSpeed > 0)
+        {
+            transform.localEulerAngles = baseRot + AxisToVector3(RotAxis) * (360 * rotSpeed * Time.unscaledTime + rotOffset);
+        }
     }
 
     private Vector3 AxisToVector3(Axis axis)

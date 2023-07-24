@@ -66,7 +66,7 @@ public class EndgameCrystal : MonoBehaviour
 
     private void Start()
     {
-        Explode();
+        //Explode();
     }
 
     public void Explode()
