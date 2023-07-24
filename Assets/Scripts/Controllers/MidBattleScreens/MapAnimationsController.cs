@@ -44,7 +44,14 @@ public class MapAnimationsController : MidBattleScreen
             (currentAnimation = animations.Dequeue()).StartAnimation();
             return true;
         }
-        return animations.Count <= 0; // No next animation is fine as well
+        if (animations.Count > 0 && (currentAnimation == null || currentAnimation.Done))
+        {
+            return false;
+        }
+        else // No animation/currently running one is fine as well
+        {
+            return true;
+        }
     }
 
     public void AnimateMovement(Unit unit, Vector2Int targetPos)

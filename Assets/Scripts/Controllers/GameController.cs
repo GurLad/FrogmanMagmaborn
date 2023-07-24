@@ -284,7 +284,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     }
                 } while (units.Find(a => a.TheTeam == current) == null);
                 //Bugger.Info("Begin " + current + " phase, units: " + string.Join(", ", units.FindAll(a => a.TheTeam == current)));
-                if (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape))
+                if (!MidBattleScreen.HasCurrent && (CheckPlayerWin(Objective.Survive) || CheckPlayerWin(Objective.Escape)))
                 {
                     // Win
                     PlayPostBattle();

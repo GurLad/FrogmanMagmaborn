@@ -48,9 +48,9 @@ public abstract class MapAnimation : MidBattleScreen
             tempAction?.Invoke();
         }
         Destroy(this);
-        if (!MapAnimationsController.Current.TryPlayNextAnimation())
+        if (!MapAnimationsController.Current.TryPlayNextAnimation() && !ConversationPlayer.Current.Playing)
         {
-            //Bugger.Info("We have a problem houston");
+            throw Bugger.FMError("Failed to chain map animations correctly!");
         }
     }
 

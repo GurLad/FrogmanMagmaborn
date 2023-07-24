@@ -100,7 +100,9 @@ public static class EventCommandProcessor
         new CommandStruct("endgameSetSummonOptionsMagmaborn", CommandType.Endgame),
         new CommandStruct("endgameSetSummonOptionsDeadBoss", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetSummonOptionsGeneric", CommandType.Endgame, CAT.String),
-        new CommandStruct("endgameSetSummonOptionsMonster", CommandType.Endgame, CAT.String)
+        new CommandStruct("endgameSetSummonOptionsMonster", CommandType.Endgame, CAT.String),
+        new CommandStruct("endgameSetPostSummonConversation", CommandType.Endgame, CAT.String),
+        new CommandStruct("endgameSetPostCrystalShatterConversation", CommandType.Endgame, CAT.String)
     });
 
     private static int SkipBlock(int currentLine, List<string> lines)
@@ -888,6 +890,12 @@ public static class EventCommandProcessor
                 break;
             case "endgameSetSummonOptionsMonster":
                 EndgameSummoner.Current.SummonOptionsMonster = new List<string>(args[0].Split(','));
+                break;
+            case "endgameSetPostSummonConversation":
+                EndgameSummoner.Current.PostSummonConversation = args[0];
+                break;
+            case "endgameSetPostCrystalShatterConversation":
+                EndgameSummoner.Current.PostCrystalShatterConversation = args[0];
                 break;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");

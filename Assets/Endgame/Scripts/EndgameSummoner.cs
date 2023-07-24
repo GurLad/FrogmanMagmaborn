@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EndgameSummoner : AGameControllerListener
 {
-    private enum SummonOnUnitModes { Damage, Teleport, EndMarker }
-    private enum SummonNoUnitModes { Magmaborn, DeadBoss, Generic, Monster, EndMarker }
+    private enum SummonOnUnitMode { Damage, Teleport, EndMarker }
+    private enum SummonNoUnitMode { Magmaborn, DeadBoss, Generic, Monster, EndMarker }
 
     private static Sprite circleSpriteOn; // Terrible workaround but it works
     private static Sprite circleSpriteOff;
@@ -23,6 +23,8 @@ public class EndgameSummoner : AGameControllerListener
     public List<string> SummonOptionsDeadBoss { private get; set; }
     public List<string> SummonOptionsGeneric { private get; set; }
     public List<string> SummonOptionsMonster { private get; set; }
+    public string PostSummonConversation { private get; set; }
+    public string PostCrystalShatterConversation { private get; set; } // TBA
     private Unit torment;
     private float chaosModifier = 0;
     private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
@@ -57,10 +59,6 @@ public class EndgameSummoner : AGameControllerListener
 
     public override void OnBeginPlayerTurn(List<Unit> units)
     {
-        if (GameController.Current.CheckGameState() != GameState.Normal)
-        {
-            return;
-        }
         // TEMP
         if (torment == null)
         {
@@ -99,7 +97,7 @@ public class EndgameSummoner : AGameControllerListener
             }
             else
             {
-                return;
+                break;
             }
             chaosModifier--;
         }
@@ -118,11 +116,11 @@ public class EndgameSummoner : AGameControllerListener
 
     private void SummonActionOnUnit(SummonCircle circle, Unit target)
     {
-        SummonOnUnitModes mode = (SummonOnUnitModes)Random.Range(0, (int)SummonOnUnitModes.EndMarker);
+        SummonOnUnitMode mode = (SummonOnUnitMode)Random.Range(0, (int)SummonOnUnitMode.EndMarker);
         switch (mode)
         {
-            case SummonOnUnitModes.Damage: // TBA
-            case SummonOnUnitModes.Teleport:
+            case SummonOnUnitMode.Damage: // TBA
+            case SummonOnUnitMode.Teleport:
                 SummonCircle other = circles.FindAll(a => a != circle).RandomItemInList();
                 Unit onOtherCircle = GameController.Current.FindUnitAtPos(other.Pos);
                 if (onOtherCircle != null) // TBA: Fix animation
@@ -136,7 +134,7 @@ public class EndgameSummoner : AGameControllerListener
                     MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
                 }
                 break;
-            case SummonOnUnitModes.EndMarker:
+            case SummonOnUnitMode.EndMarker:
                 break;
             default:
                 break;
@@ -145,42 +143,48 @@ public class EndgameSummoner : AGameControllerListener
 
     private void SummonActionNoUnit(SummonCircle circle)
     {
-        SummonNoUnitModes mode = (SummonNoUnitModes)Random.Range(0, (int)SummonNoUnitModes.EndMarker);
+        SummonNoUnitMode mode = (SummonNoUnitMode)Random.Range(0, (int)SummonNoUnitMode.EndMarker);
         List<string> options = null;
         Team team = Team.Player;
         PortraitLoadingMode portraitLoadingMode = PortraitLoadingMode.Team;
         switch (mode)
         {
-            case SummonNoUnitModes.Magmaborn:
+            case SummonNoUnitMode.Magmaborn:
                 int team2Count = GameController.Current.GetUnitNames(Team.Monster).Count;
                 int team3Count = GameController.Current.GetUnitNames(Team.Guard).Count;
                 team = Random.Range(0, team2Count + team3Count) >= team2Count ? Team.Monster : Team.Guard;
                 options = team == Team.Monster ? SummonOptionsMagmabornTeam2 : SummonOptionsMagmabornTeam3;
                 portraitLoadingMode = PortraitLoadingMode.Name;
                 break;
-            case SummonNoUnitModes.DeadBoss:
+            case SummonNoUnitMode.DeadBoss:
                 options = SummonOptionsDeadBoss;
                 team = Team.Player;
                 portraitLoadingMode = PortraitLoadingMode.Name;
                 break;
-            case SummonNoUnitModes.Generic:
+            case SummonNoUnitMode.Generic:
                 options = SummonOptionsGeneric;
                 team = Team.Player;
                 portraitLoadingMode = PortraitLoadingMode.Generic;
                 break;
-            case SummonNoUnitModes.Monster:
+            case SummonNoUnitMode.Monster:
                 options = SummonOptionsMonster;
                 team = Team.Player;
                 portraitLoadingMode = PortraitLoadingMode.Team;
                 break;
-            case SummonNoUnitModes.EndMarker:
+            case SummonNoUnitMode.EndMarker:
                 break;
             default:
                 break;
         }
         Unit summoned = GameController.Current.CreateUnit(options.RandomItemInList(), GameController.Current.LevelNumber, team, false, portraitLoadingMode);
         summoned.Moved = true;
-        MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
+        MapAnimationsController.Current.OnFinishAnimation = () =>
+        {
+            circle.Summoning = false;
+            ConversationPlayer.Current.OnFinishConversation = () => MapAnimationsController.Current.TryPlayNextAnimation();
+            // TBA: Set the endgame var which stores the current SummonNoUnitMode
+            ConversationPlayer.Current.PlayOneShot(":callOther:" + PostSummonConversation);
+        };
         MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, false);
     }
 
