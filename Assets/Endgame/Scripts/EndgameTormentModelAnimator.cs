@@ -13,6 +13,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     [Header("Damaged")]
     public List<AdvancedAnimation> DamagedAnimations;
     public EndgamePaletteCheater EndgamePaletteCheater;
+    public EndgameSummoner EndgameSummoner;
     [Header("BasePalette")]
     public Palette BasePalette;
     [Header("DamagedPalette")]
@@ -39,7 +40,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     {
         if (Time.timeScale > 0 && TormentUnit == null) // At Start GameController still contains the previous Torment apparently
         {
-            TormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
+            TormentUnit = GameController.Current.GetNamedUnits(StaticGlobals.FinalBossName)[0];
             TormentUnit.AddListener(this);
             TormentUnit.GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -77,7 +78,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
 
     public override void OnUnitDeath(string unitName)
     {
-        if (unitName == StaticGlobals.TormentName)
+        if (unitName == StaticGlobals.FinalBossName)
         {
             Destroy(this);
             return;
@@ -93,6 +94,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
         (currentDamaged = DamagedAnimations.RandomItemInList()).Activate(true);
         state = State.Damaged;
         EndgamePaletteCheater.TrueColours[0] = DamagedPalette;
+        EndgameSummoner.SummonWisp();
     }
 
     private void ClearIdle()

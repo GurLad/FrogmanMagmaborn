@@ -22,7 +22,8 @@ public enum Skill { Acrobat, NaturalCover, SiegeWeapon, Push, Pull, Vantage, Ant
 public static class StaticGlobals
 {
     public static string MainCharacterName = "Frogman";
-    public static string TormentName = "Torment";
+    public static string FinalBossName = "Torment";
+    public static string FinalBossMinionName = "Wisp";
     public static Team MainPlayerTeam = Team.Player;
 
     // Extension methods

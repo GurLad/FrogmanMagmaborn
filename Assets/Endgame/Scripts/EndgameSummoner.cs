@@ -40,12 +40,12 @@ public class EndgameSummoner : AGameControllerListener
     {
         circleSpriteOn ??= CircleSpriteOn;
         circleSpriteOff ??= CircleSpriteOff;
-        List<Unit> torments = GameController.Current.GetNamedUnits(StaticGlobals.TormentName);
+        List<Unit> torments = GameController.Current.GetNamedUnits(StaticGlobals.FinalBossName);
         if (torments.Count != 1)
         {
             throw Bugger.Error("There must be exactly 1 unit named Torment for the endgame summoner to work");
         }
-        torment = GameController.Current.GetNamedUnits(StaticGlobals.TormentName)[0];
+        torment = GameController.Current.GetNamedUnits(StaticGlobals.FinalBossName)[0];
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
@@ -123,6 +123,22 @@ public class EndgameSummoner : AGameControllerListener
     public override void OnPlayerWin(List<Unit> units)
     {
         // Do nothing
+    }
+
+    public void SummonWisp()
+    {
+        bool yAxis = Random.Range(0, 2) == 0;
+        Vector2Int size = GameController.Current.MapSize;
+        Vector2Int pos;
+        int attemps = 0; // Failsafe - shouldn't ever happen
+        do
+        {
+            pos = new Vector2Int(Random.Range(0, yAxis ? size.x : 2) * (yAxis ? 1 : (size.x - 1)), Random.Range(0, yAxis ? 2 : size.y) * (yAxis ? (size.y - 1) : 1));
+        } while (GameController.Current.FindUnitAtPos(pos) != null && attemps++ < 100);
+        Unit summoned = GameController.Current.CreateUnit(StaticGlobals.FinalBossMinionName, 0, Team.Guard, false, PortraitLoadingMode.Team);
+        summoned.Pos = pos;
+        summoned.AIType = AIType.Beeline;
+        summoned.AIData = StaticGlobals.FinalBossName;
     }
 
     private void SummonActionOnUnit(SummonCircle circle, Unit target)

@@ -879,8 +879,8 @@ public static class EventCommandProcessor
                 });
                 return result | StartLineResult.MidBattleScreen;
             case "endgameSetSummonOptionsMagmaborn":
-                EndgameSummoner.Current.SummonOptionsMagmabornTeam2 = GameController.Current.GetUnitNames(Team.Monster).FindAll(a => a != StaticGlobals.TormentName);
-                EndgameSummoner.Current.SummonOptionsMagmabornTeam3 = GameController.Current.GetUnitNames(Team.Guard).FindAll(a => a != StaticGlobals.TormentName);
+                EndgameSummoner.Current.SummonOptionsMagmabornTeam2 = GameController.Current.GetUnitNames(Team.Monster).FindAll(a => a != StaticGlobals.FinalBossName);
+                EndgameSummoner.Current.SummonOptionsMagmabornTeam3 = GameController.Current.GetUnitNames(Team.Guard).FindAll(a => a != StaticGlobals.FinalBossName);
                 break;
             case "endgameSetSummonOptionsDeadBoss":
                 EndgameSummoner.Current.SummonOptionsDeadBoss = new List<string>(args[0].Split(','));
