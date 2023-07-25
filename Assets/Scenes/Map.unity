@@ -18711,15 +18711,19 @@ MonoBehaviour:
 
       :setStat:Fashima:Pre:63
 
-      :addStat:Fashima:Str:2
+      :setStat:Fashima:Str:7
+
+      :addSkill:Fashima:SiegeWeapon
+
+      :setTeam:Wisp:guard
 
       Frogman:
       Whoa.
 
       :unlockAchievement:TestAch
 
-      :showChoice:Frogman:Trust
-      Fashima:Trust Torment
+      :showChoice:Frogman:Trust Fashima:Trust
+      Torment
 
       :if:chose:0{
 
@@ -18754,7 +18758,6 @@ MonoBehaviour:
 
       :callOther:EndgameInitData
 
-      
 
       ~
       After battle
@@ -18771,68 +18774,57 @@ MonoBehaviour:
 
       }
 
-      
 
       #
       Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
       ~ FrogmanDead
 
       :callOther:EndgameFrogmanDead
 
-      
 
       ~
       FashimaDead
 
       :callOther:EndgameFashimaDead
 
-      
 
       ~ FirbellDead
 
       :callOther:EndgameFirbellDead
 
-      
 
       ~
       XirverosDead
 
       :callOther:EndgameXirverosDead
 
-      
 
       ~ XeplogiDead
 
       :callOther:EndgameXeplogiDead
 
-      
 
       ~
       KreslaDead
 
       :callOther:EndgameKreslaDead
 
-      
 
       ~ MemerianDead
 
       :callOther:EndgameMemerianDead
 
-      
 
       ~
       AlfredDead
 
       :callOther:EndgameAlfredDead
 
-      
 
       ~ WerseDead
 
@@ -45064,7 +45056,18 @@ MonoBehaviour:
     Growths:
       Values: 020000000100000003000000010000000300000004000000
     DeathQuotes:
-    - 'Fashima_: Took you... long enough...
+    - ':if:numRuns:<2{
+
+      Fashima_: That was... quick...
+
+      }
+
+      :else:{
+
+      Fashima_:
+      Took you... long enough...
+
+      }
 
       :setFlag:FashimaDied'
   - Name: Brens
@@ -45378,6 +45381,18 @@ MonoBehaviour:
       Weight: -1
       Range: 1
     MapSprite: {fileID: 21300000, guid: 6f9ec6c75b540af44812109f39a01b41, type: 3}
+  - Name: Wisp
+    Flies: 0
+    Inclination: 0
+    Growths:
+      Values: 010000000000000001000000000000000100000000000000
+    Weapon:
+      Name: None
+      HitStat: 0
+      Damage: 0
+      Weight: 0
+      Range: 0
+    MapSprite: {fileID: 21300000, guid: dc6379e53dcdd074eb1a72cb3490b6c9, type: 3}
   BaseAnimation: {fileID: 969796486}
 --- !u!1 &1608712742
 GameObject:
@@ -59048,7 +59063,7 @@ MonoBehaviour:
     ObjectiveData: Werse
     Tags: 
     MapString: 7|10|15|10|7|10|13|21|3|15|13|21|22|4|7;7|7|7|7|7|7|5|21|4|7|5|23|21|2|8;8|8|8|8|8|8|14|21|1|7|13|21|21|21|21;21|21|21|21|23|21|21|22|3|7|13|20|26|22|21;21|0|6|6|6|12|21|21|27|7|19|6|12|21|0;22|4|7|7|7|5|23|21|28|7|7|15|5|21|27;21|2|24|7|18|14|21|21|29|15|18|8|14|21|28;21|23|3|15|13|20|26|21|2|8|14|20|26|23|28;21|21|4|7|5|23|22|21|21|21|21|21|21|21|28;21|21|2|8|14|21|21|0|6|6|6|6|12|23|28;21|22|21|21|21|21|23|27|7|11|7|15|30|22|29;20|26|21|23|21|20|26|29|15|7|7|15|32|21|2;6|6|6|12|21|21|21|2|8|8|24|7|13|21|21;9|7|7|13|21|21|21|23|21|21|1|7|13|20|26;10|7|7|5|22|21|21|21|20|26|27|7|30|21|21;11|7|15|13|23|21|21|21|21|22|29|7|32|21|23
-  - Name: CloneVatsTest1
+  - Name: Level9-0
     LevelNumber: 9
     Units:
     - Pos: {x: 8, y: 8}
@@ -59245,6 +59260,34 @@ MonoBehaviour:
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
+    - Pos: {x: 3, y: 4}
+      Team: 0
+      Level: 0
+      Class: Wisp
+      AIType: 2
+      ReinforcementTurn: 16
+      Statue: 1
+    - Pos: {x: 12, y: 4}
+      Team: 0
+      Level: 0
+      Class: Wisp
+      AIType: 2
+      ReinforcementTurn: 16
+      Statue: 1
+    - Pos: {x: 7, y: 8}
+      Team: 0
+      Level: 0
+      Class: Wisp
+      AIType: 2
+      ReinforcementTurn: 16
+      Statue: 1
+    - Pos: {x: 8, y: 8}
+      Team: 0
+      Level: 0
+      Class: Wisp
+      AIType: 2
+      ReinforcementTurn: 16
+      Statue: 1
     MapEvents:
     - Requirements: 'turn:>8
 

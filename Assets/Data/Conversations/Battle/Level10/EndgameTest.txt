@@ -16,7 +16,10 @@ Frogman: What?
 :moveUnit:Frogman:[Random:7:8]:9
 :setStat:Fashima:Eva:63
 :setStat:Fashima:Pre:63
-:addStat:Fashima:Str:2
+:setStat:Fashima:Str:7
+:addSkill:Fashima:SiegeWeapon
+:setTeam:Wisp:guard
+:setTeamAI:monster:beeline:Torment
 Frogman: Whoa.
 :unlockAchievement:TestAch
 :showChoice:Frogman:Trust Fashima:Trust Torment

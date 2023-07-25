@@ -358,7 +358,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                         List<List<Unit>> unitLists = new List<List<Unit>>();
                         for (int i = 0; i < 3; i++)
                         {
-                            unitLists.Add(units.FindAll(a => (int)a.TheTeam == i && (a.TheTeam == CurrentPhase || !a.Moved)));
+                            unitLists.Add(units.FindAll(a => (int)a.TheTeam == i && a.InsideMap));
                         }
                         statusScreenController.Show(selected, unitLists);
                         statusScreenController.TransitionToThis();
@@ -939,6 +939,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         multiTileUnit.AttackMarker = unit.AttackMarker;
         multiTileUnit.MultiTileMoveMarker = unit.MultiTileMoveMarker;
         multiTileUnit.AIType = unit.AIType;
+        multiTileUnit.AIData = unit.AIData;
         multiTileUnit.Priorities = unit.Priorities;
         multiTileUnit.Init();
         // Down with the old, long live the new
@@ -1285,10 +1286,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return targetUnits.ConvertAll(a => a.ToString());
     }
 
-    public void AssignAIToTeam(Team team, AIType ai)
+    public void AssignAIToTeam(Team team, AIType ai, string aiData = "")
     {
         List<Unit> targetUnit = units.FindAll(a => a.TheTeam == team);
-        targetUnit.ForEach(a => a.AIType = ai);
+        targetUnit.ForEach(a => { a.AIType = ai; a.AIData = aiData; });
     }
 
     public void SetObjective(Objective objective, string objectiveData)

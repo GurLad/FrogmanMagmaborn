@@ -7,7 +7,7 @@ public enum Difficulty { NotSet, Normal, Hard, Insane }
 public enum KnowledgeUpgradeType { Toggle, Inclination, TormentPower, Difficulty }
 public enum HardcodedKnowledge { LevelUpChoice, InclinationBuff } // For convenience only
 public enum Team { Player, Monster, Guard }
-public enum AIType { Charge, Hold, Guard }
+public enum AIType { Charge, Hold, Guard, Beeline }
 public enum Inclination { Physical, Technical, Skillful } // Bad names
 public enum VoiceType { Square50, Square25, Square12, Triangle }
 public enum InteractState { None, Move, Attack }
@@ -50,6 +50,7 @@ public static class StaticGlobals
             "charge" => AIType.Charge,
             "guard" => AIType.Guard,
             "hold" => AIType.Hold,
+            "beeline" => AIType.Beeline,
             _ => null
         };
     }

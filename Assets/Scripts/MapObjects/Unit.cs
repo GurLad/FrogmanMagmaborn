@@ -12,6 +12,7 @@ public class Unit : MapObject
     public string DisplayName;
     public string Class;
     public AIType AIType;
+    public string AIData;
     [Header("Stats")]
     public bool Flies;
     public UnitStats Stats;
@@ -535,10 +536,11 @@ public class Unit : MapObject
         return dangerArea[Pos.x, Pos.y].Value != 0 ? Pos : -Vector2Int.one;
     }
 
-    public void AI(List<Unit> units)
+    public void AI(List<Unit> units, AIType? aiType = null)
     {
         List<Unit> enemyUnits = units.Where(a => a.IsEnemy(this) && Priorities.ShouldAttack(a) && a.InsideMap).ToList(); // Pretty much all AIs need enemy units.
-        switch (AIType)
+        DangerArea dangerArea; // Some AIs use this, but not all
+        switch (aiType ?? AIType)
         {
             case AIType.Charge:
                 // First, try the Hold AI.
@@ -584,7 +586,7 @@ public class Unit : MapObject
                 }
                 break;
             case AIType.Guard:
-                DangerArea dangerArea = GetDangerArea();
+                dangerArea = GetDangerArea();
                 enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
                 foreach (Unit unit in enemyUnits)
                 {
@@ -596,6 +598,58 @@ public class Unit : MapObject
                 }
                 MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
                 MapAnimationsController.Current.AnimateDelay();
+                break;
+            case AIType.Beeline:
+                // Doesn't take into account 2-range weapons and is generally borderline suicidal, but it works for the only level that uses this AI
+                List<Unit> targets = GameController.Current.GetNamedUnits(AIData);
+                // If the target is dead, use Charge AI
+                if (targets.Count <= 0)
+                {
+                    AI(units, AIType.Charge);
+                    return;
+                }
+                dangerArea = GetDangerArea();
+                Unit reachableTarget = targets.Find(a => dangerArea[a.Pos.x, a.Pos.y].Type != DangerArea.TileDataType.Inaccessible);
+                // If can attack the target, do that
+                Vector2Int currentBest;
+                if (reachableTarget != null)
+                {
+                    currentBest = dangerArea.GetBestPosToAttackTargetFrom(reachableTarget.Pos, -1);
+                    //Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
+                    MapAnimationsController.Current.OnFinishAnimation = () => Fight(reachableTarget);
+                    MoveTo(currentBest);
+                    return;
+                }
+                // Use A* instead of Dijkstra since we know our target(s) already, and we want to ignore units on the way
+                List<Vector2Int> path = null;
+                foreach (Unit unit in targets)
+                {
+                    List<Vector2Int> currPath = Pathfinder.GetPath(this, Pos, unit.GetClosetPosToUnit(this));
+                    // Pick the closest target
+                    if (currPath.Count < (path?.Count ?? 999))
+                    {
+                        path = currPath;
+                    }
+                }
+                // Find the furthest step on the path that we can actually reach and go there
+                path.Reverse();
+                do // If the path had a length of 0, we would have just attacked with the pseudo-hold AI
+                {
+                    currentBest = path[0];
+                    path.RemoveAt(0);
+                } while (path.Count > 0 && dangerArea[currentBest.x, currentBest.y].Type != DangerArea.TileDataType.Move);
+                // Lastly, check if we can attack someone at that pos (aka someone is choking a point on our way) and attack them after moving
+                DangerArea atPosDangerArea = GetDangerArea(currentBest.x, currentBest.y, 0);
+                enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
+                foreach (Unit unit in enemyUnits)
+                {
+                    if (atPosDangerArea[unit.Pos.x, unit.Pos.y].Type == DangerArea.TileDataType.Attack)
+                    {
+                        MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
+                        break;
+                    }
+                }
+                MoveTo(currentBest);
                 break;
             default:
                 break;
@@ -680,12 +734,12 @@ public class Unit : MapObject
         //  - Start at the target pos
         //  - In each iteration, try all 4 directions. The one with the highest remaining mov (aka min mov required to reach) is the new target
         //  - If we can reach the target this turn, do so and end the loop
-        // However, in >1 range, there might be locations you can only acces diagonaly, ex (T is target, X is low wall, - is nothing):
+        // However, in >1 range, there might be locations you can only access diagonaly, ex (T is target, X is low wall, - is nothing):
         // - X
         // X T
         // So we must check Weapon.Range instead of just the 4 adjacent squares.
         // But then there's a problem - the algorithm prefers the target with the highest amount of remaining mov.
-        // Which means it won't use the full move, and move slower than 1 range units, in most situations if we check Weapon.Range
+        // Which means it won't use the full move, and move slower than 1 range units in most situations if we check Weapon.Range
         // So we use Weapon.Range for only the first iteration, to fix the above situation...
         // ...and then change to 1 range checking to utilize the full movement.
         int range = Mathf.Max(Weapon.Range, 1); // So that 0 range units can retreat properly

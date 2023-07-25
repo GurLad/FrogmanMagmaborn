@@ -34,7 +34,7 @@ public static class EventCommandProcessor
         new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
         new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("killTeam", CommandType.Level, CAT.Team),
-        new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType),
+        new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType, CAT.OpString),
         new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
         new CommandStruct("setObjective", CommandType.Level, CAT.Objective, CAT.OpString),
         new CommandStruct("lose", CommandType.Level),
@@ -411,9 +411,9 @@ public static class EventCommandProcessor
                 GameController.Current.KillTeam(args[0].ToTeam() ?? throw Bugger.Error("No team!"));
                 break;
             case "setTeamAI":
-                // Params: Team team, AIType ai
+                // Params: Team team, AIType ai, string aiData = ""
                 Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
-                GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated..."));
+                GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated..."), args.Length > 2 ? args[2] : "");
                 break;
             case "setTeamPlayable":
                 // Params: Team team, bool playable
