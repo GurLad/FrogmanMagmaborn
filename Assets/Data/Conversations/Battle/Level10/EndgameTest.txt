@@ -36,6 +36,9 @@ Frogman: Tormenttime Time!
 :setTeam:Frogman:guard
 :setTempFlag:EndgameFrogmanTorment
 :setObjective:Survive:8
+# Set Fashima AI
+:setUnitAI:Fashima:Guard
+:addAllyToUnit:Fashima:Wisp
 }
 :callOther:EndgameSetDeathQuotes
 :callOther:EndgameInitData

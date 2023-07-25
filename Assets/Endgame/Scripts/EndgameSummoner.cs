@@ -71,7 +71,7 @@ public class EndgameSummoner : AGameControllerListener
             Crystals[0].Shatter(() =>
             {
                 ConversationPlayer.Current.OnFinishConversation = () => MapAnimationsController.Current.TryPlayNextAnimation();
-                ConversationPlayer.Current.PlayOneShot(":callOther:" + PostSummonConversation);
+                ConversationPlayer.Current.PlayOneShot(":callOther:" + PostCrystalShatterConversation);
             });
             Crystals.RemoveAt(0);
         }

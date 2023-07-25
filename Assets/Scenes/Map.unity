@@ -18616,7 +18616,7 @@ MonoBehaviour:
 
       :endgameSetPostSummonConversation:EndgamePostSummon
 
-      :endgameSetPostCrystalShatterConversation:EndgamePostSummon
+      :endgameSetPostCrystalShatterConversation:EndgamePostCrystalShatter
 
 
       ~
@@ -18652,7 +18652,100 @@ MonoBehaviour:
 
       ~ Before battle
 
+      :if:!hasTempFlag:Crystal1{
+
+      Torment:
+      Weee!
+
+      :setTempFlag:Crystal1
+
+      :return:
+
+      }
+
+      :if:!hasTempFlag:Crystal2{
+
+      Torment:
+      Wooo!
+
+      :setTempFlag:Crystal2
+
+      :setUnitAI:Fashima:Beeline:Torment
+
+      :return:
+
+      }
+
+      :if:!hasTempFlag:Crystal3{
+
+      Torment:
+      Waaa!
+
+      :setTempFlag:Crystal3
+
+      :return:
+
+      }
+
+      :if:!hasTempFlag:Crystal4{
+
+      :callOther:EndgameTormentWin
+
+      #
+      Won''t happen but still
+
+      :finishConversation:
+
+      }
+
+
+      ~ After
+      battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ FrogmanDead
+
+      # Name: Text.
+
+'
+    Name: EndgamePostCrystalShatter
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
       Torment: Ta-da!
+
+      :callOther:EndgameSetDeathQuotes
+
+      :setTeamAI:monster:beeline:Torment
+
+      :if:!hasTempFlag:Crystal2{
+
+      #
+      Keep Fashima Guarding until the second crystal shatters
+
+      :setUnitAI:Fashima:Guard
+
+      }
 
 
       ~
@@ -18753,6 +18846,13 @@ MonoBehaviour:
       :setTempFlag:EndgameFrogmanTorment
 
       :setObjective:Survive:8
+
+      #
+      Set Fashima AI
+
+      :setUnitAI:Fashima:Guard
+
+      :addAllyToUnit:Fashima:Wisp
 
       }
 
@@ -35980,6 +36080,7 @@ MonoBehaviour:
   skills:
     skills: 
   enemyOverrides: []
+  allyOverrides: []
   moved: 0
 --- !u!212 &1111376494
 SpriteRenderer:

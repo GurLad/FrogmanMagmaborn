@@ -6,6 +6,12 @@ levelNumber:0
 # Nothing
 ~ Before battle
 Torment: Ta-da!
+:callOther:EndgameSetDeathQuotes
+:setTeamAI:monster:beeline:Torment
+:if:!hasTempFlag:Crystal2{
+# Keep Fashima Guarding until the second crystal shatters
+:setUnitAI:Fashima:Guard
+}
 
 ~ After battle
 :play:AfterBattle

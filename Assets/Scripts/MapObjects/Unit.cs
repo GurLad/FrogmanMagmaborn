@@ -56,6 +56,8 @@ public class Unit : MapObject
     [SerializeField]
     private List<string> enemyOverrides = new List<string>();
     [SerializeField]
+    private List<string> allyOverrides = new List<string>();
+    [SerializeField]
     private bool moved;
     public bool Moved
     {
@@ -944,7 +946,8 @@ public class Unit : MapObject
 
     public bool IsEnemy(Unit target)
     {
-        return enemyOverrides.Contains(target.Name) || target.enemyOverrides.Contains(Name) || TheTeam.IsEnemy(target.TheTeam);
+        return !allyOverrides.Contains(target.Name) && !target.allyOverrides.Contains(Name) &&
+            (enemyOverrides.Contains(target.Name) || target.enemyOverrides.Contains(Name) || TheTeam.IsEnemy(target.TheTeam));
     }
 
     public void ChangeInclination(Inclination target)
@@ -963,6 +966,11 @@ public class Unit : MapObject
     public void AddEnemyOverride(string target)
     {
         enemyOverrides.Add(target);
+    }
+
+    public void AddAllyOverride(string target)
+    {
+        allyOverrides.Add(target);
     }
 
     public void AddSkill(Skill skill)

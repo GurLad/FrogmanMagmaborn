@@ -33,8 +33,10 @@ public static class EventCommandProcessor
         new CommandStruct("hideUnit", CommandType.Level, CAT.String),
         new CommandStruct("replaceUnit", CommandType.Level, CAT.String, CAT.String, CAT.OpBool),
         new CommandStruct("addEnemyToUnit", CommandType.Level, CAT.String, CAT.String),
+        new CommandStruct("addAllyToUnit", CommandType.Level, CAT.String, CAT.String),
         new CommandStruct("killTeam", CommandType.Level, CAT.Team),
         new CommandStruct("setTeamAI", CommandType.Level, CAT.Team, CAT.AIType, CAT.OpString),
+        new CommandStruct("setUnitAI", CommandType.Level, CAT.Team, CAT.AIType, CAT.OpString),
         new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
         new CommandStruct("setObjective", CommandType.Level, CAT.Objective, CAT.OpString),
         new CommandStruct("lose", CommandType.Level),
@@ -144,6 +146,7 @@ public static class EventCommandProcessor
         System.Func<int, StartLineResult> StartLineTrue)
     {
         StartLineResult result = StartLineResult.None;
+        List<Unit> targets;
         switch (commandName)
         {
             case "addUnit":
@@ -174,7 +177,7 @@ public static class EventCommandProcessor
             case "setTeam":
                 // Params: string unitName, Team changeTo
                 // Changes a unit's team
-                List<Unit> targets = GameController.Current.GetNamedUnits(args[0]);
+                targets = GameController.Current.GetNamedUnits(args[0]);
                 if (targets.Count > 0)
                 {
                     foreach (Unit target in targets)
@@ -191,10 +194,10 @@ public static class EventCommandProcessor
             case "setBattleQuote":
                 // Params: string unitName, string functionName
                 // Set a unit's battle quote (aka add boss battle quote). Must use a function.
-                List<Unit> targets1 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets1.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets1)
+                    foreach (Unit target in targets)
                     {
                         if (origin.Functions.ContainsKey(args[1]))
                         {
@@ -214,10 +217,10 @@ public static class EventCommandProcessor
             case "setDeathQuote":
                 // Params: string unitName, string functionName
                 // Set a unit's death quote (retains bewtween chapters). Must use a function.
-                List<Unit> targets2 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets2.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets2)
+                    foreach (Unit target in targets)
                     {
                         if (origin.Functions.ContainsKey(args[1]))
                         {
@@ -237,15 +240,15 @@ public static class EventCommandProcessor
             case "setSize":
                 // Params: string unitName, int x, int y, bool keepHealth = false
                 // Sets the unit's size to (x, y).
-                List<Unit> targets8 = GameController.Current.GetNamedUnits(args[0]);
+                targets = GameController.Current.GetNamedUnits(args[0]);
                 Vector2Int size = new Vector2Int(int.Parse(args[1]), int.Parse(args[2]));
                 if (size.x < 1 || size.y < 1)
                 {
                     throw Bugger.Error("Unit size can't be smaller than (1, 1)! (" + size + ")");
                 }
-                if (targets8.Count > 0)
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets8)
+                    foreach (Unit target in targets)
                     {
                         MultiTileUnit newUnit = GameController.Current.ConvertToMultiTile(target, size);
                         newUnit.Pos = target.Pos;
@@ -263,15 +266,15 @@ public static class EventCommandProcessor
             case "moveUnit":
                 // Params: string unitName, int x, int y, bool animate = false (animated movement is currently not supported)
                 // Moves the unit to (x, y).
-                List<Unit> targets9 = GameController.Current.GetNamedUnits(args[0]);
+                targets = GameController.Current.GetNamedUnits(args[0]);
                 Vector2Int pos = new Vector2Int(int.Parse(args[1]), int.Parse(args[2]));
                 if (pos.x < 0 || pos.y < 0 || pos.x >= GameController.Current.MapSize.x || pos.y >= GameController.Current.MapSize.y)
                 {
                     throw Bugger.Error("Invalid pos! (" + pos + ")");
                 }
-                if (targets9.Count > 0)
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets9)
+                    foreach (Unit target in targets)
                     {
                         target.MoveTo(pos, true);//, args.Length < 4 || args[3] != "T");
                     }
@@ -284,10 +287,10 @@ public static class EventCommandProcessor
             case "addSkill":
                 // Params: string unitName, string skillName
                 // Adds a skill to a unit.
-                List<Unit> targets3 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets3.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets3)
+                    foreach (Unit target in targets)
                     {
                         target.AddSkill(args[1].ToSkill() ?? throw Bugger.Error("No matching skill! (" + args[1] + ")"));
                     }
@@ -300,10 +303,10 @@ public static class EventCommandProcessor
             case "addStat":
                 // Params: string unitName, Stat stat, int value
                 // Adds the given value to the given stat.
-                List<Unit> targets10 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets10.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets10)
+                    foreach (Unit target in targets)
                     {
                         target.Stats.Base[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] += int.Parse(args[2]);
                     }
@@ -316,10 +319,10 @@ public static class EventCommandProcessor
             case "setStat":
                 // Params: string unitName, Stat stat, int value
                 // Sets the given value to the given stat.
-                List<Unit> targets11 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets11.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets11)
+                    foreach (Unit target in targets)
                     {
                         target.Stats.Base[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] = int.Parse(args[2]);
                     }
@@ -332,10 +335,10 @@ public static class EventCommandProcessor
             case "killUnit":
                 // Params: string unitName, bool showDeathQuote = true
                 // Kills a unit.
-                List<Unit> targets4 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets4.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets4)
+                    foreach (Unit target in targets)
                     {
                         if (args.Length > 1 && args[1] == "F")
                         {
@@ -353,10 +356,10 @@ public static class EventCommandProcessor
             case "hideUnit":
                 // Params: string unitName
                 // Hides a unit - equivalent to pseudo-kill (aka when units die with permadeath off).
-                List<Unit> targets5 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets5.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets5)
+                    foreach (Unit target in targets)
                     {
                         GameController.Current.PseudoKillUnit(target);
                     }
@@ -369,10 +372,10 @@ public static class EventCommandProcessor
             case "replaceUnit":
                 // Params: string oldUnit, string newUnit, bool keepHealth = false
                 // Kills oldUnit and spawns newUnit in its place
-                List<Unit> targets6 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets6.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets6)
+                    foreach (Unit target in targets)
                     {
                         Unit newUnit = GameController.Current.CreateUnit(args[1], target.Level, target.TheTeam, false);
                         newUnit.Pos = target.Pos;
@@ -392,12 +395,28 @@ public static class EventCommandProcessor
             case "addEnemyToUnit":
                 // Params: string unitName, string targetName
                 // Allows the unit to attack the target even if their teams are allies. The feeling is mutual (the target will also attack the unit).
-                List<Unit> targets7 = GameController.Current.GetNamedUnits(args[0]);
-                if (targets7.Count > 0)
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
                 {
-                    foreach (Unit target in targets7)
+                    foreach (Unit target in targets)
                     {
                         target.AddEnemyOverride(args[1]);
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
+                break;
+            case "addAllyToUnit":
+                // Params: string unitName, string targetName
+                // Prevents the unit from attacking the target even if their teams are enemies. The feeling is mutual (the target will also not attack the unit).
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
+                {
+                    foreach (Unit target in targets)
+                    {
+                        target.AddAllyOverride(args[1]);
                     }
                 }
                 else
@@ -414,6 +433,22 @@ public static class EventCommandProcessor
                 // Params: Team team, AIType ai, string aiData = ""
                 Team team = args[0].ToTeam() ?? throw Bugger.Error("No team!");
                 GameController.Current.AssignAIToTeam(team, args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated..."), args.Length > 2 ? args[2] : "");
+                break;
+            case "setUnitAI":
+                // Params: string unitName, AIType ai, string aiData = ""
+                targets = GameController.Current.GetNamedUnits(args[0]);
+                if (targets.Count > 0)
+                {
+                    foreach (Unit target in targets)
+                    {
+                        target.AIType = args[1].ToAIType() ?? throw Bugger.FMError("Impossible - I just validated...");
+                        target.AIData = args.Length > 2 ? args[2] : "";
+                    }
+                }
+                else
+                {
+                    throw Bugger.Error("No matching unit! (" + args[0] + ")");
+                }
                 break;
             case "setTeamPlayable":
                 // Params: Team team, bool playable
