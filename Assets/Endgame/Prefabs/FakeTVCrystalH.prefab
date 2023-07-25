@@ -1380,9 +1380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc152eff464b484c83a627e20b11dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplodeSpeed: 1
+  ExplodeSpeed: 2
   ExplodeRotStrength: 360
-  ExplodeKnockbackStrength: 3
+  ExplodeKnockbackStrength: 5
   Parts:
   - {fileID: 7094341208512325608}
   - {fileID: 7988558266746264559}
@@ -1449,7 +1449,7 @@ MonoBehaviour:
   - {x: -0.026011705, y: -0.08718544, z: 0.03611336}
   - {x: -0.031750083, y: -0.05256653, z: 0.16965723}
   - {x: -0.06954557, y: -0.06252158, z: 0.035781454}
-  WarmUpSpeed: 1
+  WarmUpSpeed: 2
   WarmUpStrength: 0.1
 --- !u!1 &2936919675370311690
 GameObject:

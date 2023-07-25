@@ -17,6 +17,7 @@ public class EndgameSummoner : AGameControllerListener
     public float ChaosModifierTormentHealthMultiplierIncrease;
     public Sprite CircleSpriteOn;
     public Sprite CircleSpriteOff;
+    public List<EndgameCrystal> Crystals;
     // Summon no unit options
     public List<string> SummonOptionsMagmabornTeam2 { private get; set; } // Fashima
     public List<string> SummonOptionsMagmabornTeam3 { private get; set; } // Torment
@@ -63,6 +64,16 @@ public class EndgameSummoner : AGameControllerListener
         if (torment == null)
         {
             Process(GameController.Current.Map, GameController.Current.MapSize);
+        }
+        // Shatter crystals
+        if (GameController.Current.Turn % 2 == 1 && Crystals.Count > 0)
+        {
+            Crystals[0].Shatter(() =>
+            {
+                ConversationPlayer.Current.OnFinishConversation = () => MapAnimationsController.Current.TryPlayNextAnimation();
+                ConversationPlayer.Current.PlayOneShot(":callOther:" + PostSummonConversation);
+            });
+            Crystals.RemoveAt(0);
         }
         // Store current summons
         List<SummonCircle> currentSummons = circles.FindAll(a => a.Summoning);
