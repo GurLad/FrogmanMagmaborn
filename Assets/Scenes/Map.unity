@@ -18717,6 +18717,8 @@ MonoBehaviour:
 
       :setTeam:Wisp:guard
 
+      :setTeamAI:monster:beeline:Torment
+
       Frogman:
       Whoa.
 
@@ -35944,6 +35946,7 @@ MonoBehaviour:
   DisplayName: 
   Class: Frogman
   AIType: 0
+  AIData: 
   Flies: 0
   Stats:
     Base:
@@ -59195,8 +59198,8 @@ MonoBehaviour:
       Level: 15
       Class: Torment
       AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
+      ReinforcementTurn: 16
+      Statue: 1
     - Pos: {x: 11, y: 8}
       Team: 2
       Level: 10

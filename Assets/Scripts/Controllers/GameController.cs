@@ -941,6 +941,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         multiTileUnit.AIType = unit.AIType;
         multiTileUnit.AIData = unit.AIData;
         multiTileUnit.Priorities = unit.Priorities;
+        multiTileUnit.Statue = unit.Statue;
+        multiTileUnit.ReinforcementTurn = unit.ReinforcementTurn;
         multiTileUnit.Init();
         // Down with the old, long live the new
         Destroy(unit);

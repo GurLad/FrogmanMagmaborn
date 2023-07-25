@@ -141,7 +141,7 @@ public static class Pathfinder
     {
         if (x < 0 || y < 0 || x >= GameController.Current.MapSize.x || y >= GameController.Current.MapSize.y)
         {
-            return true;
+            return false;
         }
         return GameController.Current.Map[x, y].GetMovementCost(unit) < 50;
     }

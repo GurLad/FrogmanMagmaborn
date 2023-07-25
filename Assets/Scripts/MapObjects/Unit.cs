@@ -609,12 +609,12 @@ public class Unit : MapObject
                     return;
                 }
                 dangerArea = GetDangerArea();
-                Unit reachableTarget = targets.Find(a => dangerArea[a.Pos.x, a.Pos.y].Type != DangerArea.TileDataType.Inaccessible);
+                Unit reachableTarget = targets.Find(a => a.InDangerArea(dangerArea) != -Vector2Int.one);
                 // If can attack the target, do that
                 Vector2Int currentBest;
                 if (reachableTarget != null)
                 {
-                    currentBest = dangerArea.GetBestPosToAttackTargetFrom(reachableTarget.Pos, -1);
+                    currentBest = dangerArea.GetBestPosToAttackTargetFrom(reachableTarget.InDangerArea(dangerArea), -1);
                     //Bugger.Info(this + " is moving to " + currentBest + " in order to attack " + unit + " (value " + HoldAITargetValue(unit) + ")");
                     MapAnimationsController.Current.OnFinishAnimation = () => Fight(reachableTarget);
                     MoveTo(currentBest);
@@ -643,11 +643,15 @@ public class Unit : MapObject
                 enemyUnits.Sort((a, b) => HoldAITargetValue(a).CompareTo(HoldAITargetValue(b)));
                 foreach (Unit unit in enemyUnits)
                 {
-                    if (atPosDangerArea[unit.Pos.x, unit.Pos.y].Type == DangerArea.TileDataType.Attack)
+                    if (unit.InDangerArea(atPosDangerArea) != -Vector2Int.one)
                     {
                         MapAnimationsController.Current.OnFinishAnimation = () => Fight(unit);
                         break;
                     }
+                }
+                if (MapAnimationsController.Current.OnFinishAnimation == null) // Didn't find anyone to attack
+                {
+                    MapAnimationsController.Current.OnFinishAnimation = () => GameController.Current.FinishMove(this);
                 }
                 MoveTo(currentBest);
                 break;

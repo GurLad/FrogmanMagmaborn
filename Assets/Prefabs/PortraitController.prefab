@@ -282,7 +282,7 @@ MonoBehaviour:
     AccentColor: 3
     Voice:
       VoiceType: 2
-      Pitch: 0.5
+      Pitch: 0.3
       Speed: 1
     DisplayName: Menross
   - Name: TormentFB
@@ -333,22 +333,6 @@ MonoBehaviour:
       Pitch: 1.6
       Speed: 1.4
     DisplayName: Fashima
-  - Name: Brens_
-    Background: {fileID: 21300000, guid: 756c59872a0ebab4baa14b9abb0f5469, type: 3}
-    Foreground: {fileID: 21300000, guid: 7f9c6a2125a6ab24ba49400153fb3400, type: 3}
-    BackgroundColor:
-      Colors:
-      - id: 13
-      - id: 7
-      - id: 21
-      - id: 35
-    ForegroundColorID: 3
-    AccentColor: 1
-    Voice:
-      VoiceType: 1
-      Pitch: 0.5
-      Speed: 1
-    DisplayName: Brens
   - Name: Brens
     Background: {fileID: 21300000, guid: 951fc1543d9c3d043afb48356bff9f15, type: 3}
     Foreground: {fileID: 21300000, guid: 977489b3899f54b45a7217d3e8246dcf, type: 3}
@@ -451,9 +435,9 @@ MonoBehaviour:
     BackgroundColor:
       Colors:
       - id: 13
-      - id: 25
-      - id: 39
-      - id: 53
+      - id: 23
+      - id: 12
+      - id: 40
     ForegroundColorID: 0
     AccentColor: 0
     Voice:
@@ -461,6 +445,22 @@ MonoBehaviour:
       Pitch: 1
       Speed: 1
     DisplayName: Chaos
+  - Name: FashimaVase
+    Background: {fileID: 21300000, guid: da981222367af244aa191f4bf08d6ed8, type: 3}
+    Foreground: {fileID: 21300000, guid: 6537d1238ba2f10499dafad860e74d20, type: 3}
+    BackgroundColor:
+      Colors:
+      - id: 13
+      - id: 22
+      - id: 36
+      - id: 50
+    ForegroundColorID: 2
+    AccentColor: 1
+    Voice:
+      VoiceType: 2
+      Pitch: 1.6
+      Speed: 1.4
+    DisplayName: Fashima
   GenericPortraits:
   - tags: young
     VoiceTypes: 0000000001000000
