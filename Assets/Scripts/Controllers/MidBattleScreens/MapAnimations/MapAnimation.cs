@@ -50,7 +50,8 @@ public abstract class MapAnimation : MidBattleScreen
         Destroy(this);
         if (!MapAnimationsController.Current.TryPlayNextAnimation() && !ConversationPlayer.Current.Playing)
         {
-            throw Bugger.FMError("Failed to chain map animations correctly!");
+            //throw Bugger.FMError("Failed to chain map animations correctly!");
+            Bugger.Warning("Failed to chain map animations correctly! Could be a false-positive though (crystal shatter)");
         }
     }
 

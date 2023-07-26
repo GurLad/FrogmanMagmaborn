@@ -5,7 +5,8 @@ levelNumber:0
 ~ Demands
 # Nothing
 ~ Before battle
-:endgameSetSummonOptionsMagmaborn:
+# Summoning Fashima creates too many bugs
+:endgameSetSummonOptionsMagmaborn:Fashima,Wisp
 # Lan isn't dead, but otherwise it's too few
 :endgameSetSummonOptionsDeadBoss:Brens,Bodder,Lan
 :endgameSetSummonOptionsGeneric:Lancer,Knight,Archer,Worker

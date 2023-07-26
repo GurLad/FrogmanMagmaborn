@@ -99,7 +99,7 @@ public static class EventCommandProcessor
         // Endgame
 
         new CommandStruct("endgameBegin", CommandType.Endgame),
-        new CommandStruct("endgameSetSummonOptionsMagmaborn", CommandType.Endgame),
+        new CommandStruct("endgameSetSummonOptionsMagmaborn", CommandType.Endgame, CAT.OpString),
         new CommandStruct("endgameSetSummonOptionsDeadBoss", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetSummonOptionsGeneric", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetSummonOptionsMonster", CommandType.Endgame, CAT.String),
@@ -325,6 +325,7 @@ public static class EventCommandProcessor
                     foreach (Unit target in targets)
                     {
                         target.Stats.Base[args[1].ToStat() ?? throw Bugger.Error("No matching stat! (" + args[1] + ")")] = int.Parse(args[2]);
+                        target.Health = Mathf.Min(target.Health, target.Stats.Base.MaxHP);
                     }
                 }
                 else
@@ -914,8 +915,9 @@ public static class EventCommandProcessor
                 });
                 return result | StartLineResult.MidBattleScreen;
             case "endgameSetSummonOptionsMagmaborn":
-                EndgameSummoner.Current.SummonOptionsMagmabornTeam2 = GameController.Current.GetUnitNames(Team.Monster).FindAll(a => a != StaticGlobals.FinalBossName);
-                EndgameSummoner.Current.SummonOptionsMagmabornTeam3 = GameController.Current.GetUnitNames(Team.Guard).FindAll(a => a != StaticGlobals.FinalBossName);
+                string blackList = args.Length > 0 ? args[0] : "";
+                EndgameSummoner.Current.SummonOptionsMagmabornTeam2 = GameController.Current.GetUnitNames(Team.Monster).FindAll(a => a != StaticGlobals.FinalBossName && !blackList.Contains(a.ToString()));
+                EndgameSummoner.Current.SummonOptionsMagmabornTeam3 = GameController.Current.GetUnitNames(Team.Guard).FindAll(a => a != StaticGlobals.FinalBossName && !blackList.Contains(a.ToString()));
                 break;
             case "endgameSetSummonOptionsDeadBoss":
                 EndgameSummoner.Current.SummonOptionsDeadBoss = new List<string>(args[0].Split(','));

@@ -18639,7 +18639,10 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :endgameSetSummonOptionsMagmaborn:
+      # Summoning Fashima
+      creates too many bugs
+
+      :endgameSetSummonOptionsMagmaborn:Fashima
 
       #
       Lan isn''t dead, but otherwise it''s too few
@@ -18845,6 +18848,8 @@ MonoBehaviour:
       :addSkill:Fashima:SiegeWeapon
 
       :setTeam:Wisp:guard
+
+      :setStat:Wisp:End:1
 
       :setTeamAI:monster:beeline:Torment
 

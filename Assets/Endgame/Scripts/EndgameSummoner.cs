@@ -79,11 +79,16 @@ public class EndgameSummoner : AGameControllerListener
         // Store current summons
         List<SummonCircle> currentSummons = circles.FindAll(a => a.Summoning);
         // Activate old summons
+        currentSummons.ForEach(a => a.CanSummon = true);
         foreach (SummonCircle circle in currentSummons)
         {
             if (!circle.Summoning)
             {
                 circle.Summoning = false;
+                continue;
+            }
+            if (!circle.CanSummon)
+            {
                 continue;
             }
             Unit onCircle = GameController.Current.FindUnitAtPos(circle.Pos);
@@ -132,6 +137,8 @@ public class EndgameSummoner : AGameControllerListener
         summoned.Pos = pos;
         summoned.AIType = AIType.Beeline;
         summoned.AIData = StaticGlobals.FinalBossName;
+        summoned.Stats.Base.Endurance = 1;
+        summoned.Health = summoned.Stats.Base.MaxHP;
     }
 
     private void SummonActionOnUnit(SummonCircle circle, Unit target)
@@ -141,9 +148,13 @@ public class EndgameSummoner : AGameControllerListener
         {
             case SummonOnUnitMode.Damage: // TBA
             case SummonOnUnitMode.Teleport:
-                SummonCircle other = circles.FindAll(a => a != circle).RandomItemInList();
+                SummonCircle other = circles.FindAll(a => a != circle && a.CanSummon).RandomItemInList();
+                if (other == null)
+                {
+                    throw Bugger.FMError("Cannot teleport!");
+                }
                 Unit onOtherCircle = GameController.Current.FindUnitAtPos(other.Pos);
-                if (onOtherCircle != null) // TBA: Fix animation
+                if (onOtherCircle != null)
                 {
                     MapAnimationsController.Current.OnFinishAnimation = () => other.Summoning = circle.Summoning = false;
                     MapAnimationsController.Current.AnimateSwapTeleport(target, onOtherCircle);
@@ -153,6 +164,7 @@ public class EndgameSummoner : AGameControllerListener
                     MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
                     MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
                 }
+                circle.CanSummon = other.CanSummon = false;
                 break;
             case SummonOnUnitMode.EndMarker:
                 break;
@@ -233,12 +245,14 @@ public class EndgameSummoner : AGameControllerListener
     {
         public Vector2Int Pos;
         public AdvancedSpriteSheetAnimation Tile;
+        public bool CanSummon = true;
         private bool _summoning = false;
         public bool Summoning
         {
             get => _summoning;
             set
             {
+                CanSummon = true;
                 _summoning = value;
                 Tile.Animations[0].SpriteSheet = value ? circleSpriteOn : circleSpriteOff;
                 Tile.Animations[0].Split();
