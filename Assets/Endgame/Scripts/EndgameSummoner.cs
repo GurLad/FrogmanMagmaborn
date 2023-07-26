@@ -14,6 +14,7 @@ public class EndgameSummoner : AGameControllerListener
 
     public string ChaosCircleName;
     public float ChaosModifierBaseIncrease;
+    public float ChaosModifierTurnIncrease;
     public float ChaosModifierTormentHealthMultiplierIncrease;
     public Sprite CircleSpriteOn;
     public Sprite CircleSpriteOff;
@@ -28,7 +29,7 @@ public class EndgameSummoner : AGameControllerListener
     public string PostCrystalShatterConversation { private get; set; } // TBA
     private Unit torment;
     private float chaosModifier = 0;
-    private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
+    private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTurnIncrease * (GameController.Current.Turn - 1) + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
     private List<SummonCircle> circles { get; } = new List<SummonCircle>();
 
     private void Awake()
@@ -96,23 +97,15 @@ public class EndgameSummoner : AGameControllerListener
             }
         }
         // Begin new summons
-        chaosModifier += chaosModifierIncrease;
-        for (int i = 0; i < Mathf.FloorToInt(chaosModifier); i++)
+        if (!MidBattleScreen.HasCurrent)
         {
-            List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning && !currentSummons.Contains(a));
-            if (availableCircles.Count > 0)
-            {
-                SummonCircle selected = availableCircles.RandomItemInList();
-                //Bugger.Info("Available: " + string.Join(", ", availableCircles.ConvertAll(a => a.Pos)) + ", chose: " + selected.Pos);
-                selected.Summoning = true;
-            }
-            else
-            {
-                break;
-            }
-            chaosModifier--;
+            BeginNewSummons();
         }
-        Bugger.Info("Chaos is now " + chaosModifier);
+        else
+        {
+            MapAnimationsController.Current.OnFinishAnimation = BeginNewSummons;
+            MapAnimationsController.Current.AnimateDelay();
+        }
     }
 
     public override void OnEndLevel(List<Unit> units, bool playerWon)
@@ -213,6 +206,27 @@ public class EndgameSummoner : AGameControllerListener
             ConversationPlayer.Current.PlayOneShot(":callOther:" + PostSummonConversation);
         };
         MapAnimationsController.Current.AnimateTeleport(summoned, circle.Pos, false);
+    }
+
+    private void BeginNewSummons()
+    {
+        chaosModifier += chaosModifierIncrease;
+        for (int i = 0; i < Mathf.FloorToInt(chaosModifier); i++)
+        {
+            List<SummonCircle> availableCircles = circles.FindAll(a => !a.Summoning);
+            if (availableCircles.Count > 0)
+            {
+                SummonCircle selected = availableCircles.RandomItemInList();
+                //Bugger.Info("Available: " + string.Join(", ", availableCircles.ConvertAll(a => a.Pos)) + ", chose: " + selected.Pos);
+                selected.Summoning = true;
+            }
+            else
+            {
+                break;
+            }
+            chaosModifier--;
+        }
+        Bugger.Info("Chaos is now " + chaosModifier);
     }
 
     private class SummonCircle

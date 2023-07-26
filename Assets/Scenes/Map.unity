@@ -18007,23 +18007,59 @@ MonoBehaviour:
 
       ~ Before battle
 
+      :if:unitAlive:Frogman{
+
       :setDeathQuote:Frogman:FrogmanDead
+
+      }
+
+      :if:unitAlive:Fashima{
 
       :setDeathQuote:Fashima:FashimaDead
 
+      }
+
+      :if:unitAlive:Firbell{
+
       :setDeathQuote:Firbell:FirbellDead
+
+      }
+
+      :if:unitAlive:Xirveros{
 
       :setDeathQuote:Xirveros:XirverosDead
 
+      }
+
+      :if:unitAlive:Xeplogi{
+
       :setDeathQuote:Xeplogi:XeplogiDead
+
+      }
+
+      :if:unitAlive:Kresla{
 
       :setDeathQuote:Kresla:KreslaDead
 
+      }
+
+      :if:unitAlive:Memerian{
+
       :setDeathQuote:Memerian:MemerianDead
+
+      }
+
+      :if:unitAlive:Alfred{
 
       :setDeathQuote:Alfred:AlfredDead
 
+      }
+
+      :if:unitAlive:Werse{
+
       :setDeathQuote:Werse:WerseDead
+
+      }
 
 
       ~
