@@ -89,8 +89,13 @@ public class MapAnimationsController : MidBattleScreen
 
     public void AnimateSwapTeleport(Unit unit1, Unit unit2)
     {
+        AnimateSwapTeleport(unit1, unit2, unit1.Pos, unit2.Pos);
+    }
+
+    public void AnimateSwapTeleport(Unit unit1, Unit unit2, Vector2Int unit1Pos, Vector2Int unit2Pos)
+    {
         CreateAnimation<MAMultiTeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX,
-            new List<Unit> { unit1, unit2 }, new List<Vector2Int> { unit2.Pos, unit1.Pos }, true));
+            new List<Unit> { unit1, unit2 }, new List<Vector2Int> { unit2Pos, unit1Pos }, true));
     }
 
     private bool CreateAnimation<T>(System.Func<T, bool> initFunc) where T : MapAnimation

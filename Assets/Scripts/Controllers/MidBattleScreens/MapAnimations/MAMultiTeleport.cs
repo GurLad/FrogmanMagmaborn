@@ -32,7 +32,7 @@ public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListen
         // Create animation
         for (int i = 0; i < currentUnits.Count; i++)
         {
-            animations.Add(CreateAnimationOnUnit(units[i], TeleportAnimation));
+            animations.Add(CreateAnimationOnUnit(units[i], TeleportAnimation, targetPositions[currentUnits.Count - i - 1]));
         }
         animations[0].Listeners.Add(this); // Need to listen to only one animations - the rest will (hopefully) stay in sync
         return init = true;

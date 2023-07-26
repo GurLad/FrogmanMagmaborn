@@ -160,6 +160,11 @@ public static class StaticGlobals
         return Mathf.Abs(one.x - two.x) + Mathf.Abs(one.y - two.y);
     }
 
+    public static Vector3 To3D(this Vector2Int pos, float z)
+    {
+        return new Vector3(pos.x * GameController.Current.TileSize, -pos.y * GameController.Current.TileSize, z);
+    }
+
     public static List<T> Clone<T>(this List<T> list)
     {
         return list.FindAll(a => true); // Probably not the best way, but whatever

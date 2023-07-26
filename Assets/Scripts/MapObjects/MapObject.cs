@@ -15,7 +15,7 @@ public abstract class MapObject : MonoBehaviour
         set
         {
             pos = value;
-            transform.position = new Vector3(pos.x * GameController.Current.TileSize, -pos.y * GameController.Current.TileSize, transform.position.z);
+            transform.position = pos.To3D(transform.position.z);
         }
     }
 

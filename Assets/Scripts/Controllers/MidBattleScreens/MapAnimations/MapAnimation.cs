@@ -60,10 +60,10 @@ public abstract class MapAnimation : MidBattleScreen
         unitRenderer.flipX = direction.x != 0 ? (direction.x > 0 ? true : false) : unitRenderer.flipX;
     }
 
-    protected AdvancedSpriteSheetAnimation CreateAnimationOnUnit(Unit unit, AdvancedSpriteSheetAnimation baseAnimation)
+    protected AdvancedSpriteSheetAnimation CreateAnimationOnUnit(Unit unit, AdvancedSpriteSheetAnimation baseAnimation, Vector2Int? pos = null)
     {
         AdvancedSpriteSheetAnimation animation = Instantiate(baseAnimation.gameObject, baseAnimation.transform.parent).GetComponent<AdvancedSpriteSheetAnimation>();
-        animation.transform.position = unit.transform.position;
+        animation.transform.position = pos?.To3D(unit.transform.position.z) ?? unit.transform.position;
         animation.transform.position += new Vector3(0, 0, -0.5f);
         animation.Start();
         animation.gameObject.SetActive(true);
