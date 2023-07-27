@@ -157,22 +157,32 @@ public class MABattle : MapAnimation
         rectTransform.sizeDelta = BattleBasePanelPosition.sizeDelta;
         int size = GameController.Current.MapSize.x / 2;
         // Calculate x pos - harder than it sounds
-        float posX;
+        Vector2 pos;
+        Vector2Int screenTileSize = new Vector2Int(6, 7);
         int sign;
-        if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size) || Mathf.Abs(attacking.Pos.x - defending.Pos.x) > size) // Good
+        if (Mathf.Abs(attacking.Pos.x - defending.Pos.x) > screenTileSize.x || Mathf.Abs(attacking.Pos.y - defending.Pos.y) > screenTileSize.y) // Siege weapon - put it near the target
         {
-            posX = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
-            sign = posX > 0 ? -1 : 1;
+            // For siege weapons, 99% of the time the defender won't counter, so it's more important to know where they are and not the attacker
+            pos.x = defender.Pos.x - size + 0.5f;
+            sign = pos.x > 0 ? -1 : 1;
+            pos.y = defender.Pos.y + 0.5f;
         }
-        else // Oof. Let's prioritize the attacker (not attacking), so it will be the same for both sides.
+        else if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size)) // Both attackers are on the same side - prioritize the one closer to the centre
         {
-            posX = (attacker.Pos.x * Mathf.Sign(attacker.Pos.x - size) < defender.Pos.x * Mathf.Sign(attacker.Pos.x - size) ? attacker.Pos.x - size : defender.Pos.x - size) + 0.5f;
-            sign = -(int)Mathf.Sign(attacker.Pos.x - size);
+            pos.x = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            sign = pos.x > 0 ? -1 : 1;
+            pos.y = (attacking.Pos.y + defending.Pos.y) / 2f + 0.5f;
         }
-        float posY = Mathf.Clamp((attacking.Pos.y + defending.Pos.y) / 2f + 0.5f, 3, GameController.Current.MapSize.y - 3);
+        else // Attackers on different sides - prioritize the one closer to the centre again, but use the opposite direction (if the one closer to the centre is too close to the edge, the dist is at least 1 and option 1 would be taken)
+        {
+            pos.x = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            sign = pos.x > 0 ? 1 : -1;
+            pos.y = (attacking.Pos.y + defending.Pos.y) / 2f + 0.5f;
+        }
+        pos.y = Mathf.Clamp(pos.y, 3, GameController.Current.MapSize.y - 3);
         rectTransform.anchoredPosition = new Vector2(
-            posX * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * sign,
-            -posY * GameController.Current.TileSize * 16);
+            pos.x * GameController.Current.TileSize * 16 + (BattleBasePanelPosition.sizeDelta.x / 2 + 16) * sign,
+            -pos.y * GameController.Current.TileSize * 16);
         return newPanel;
     }
 
