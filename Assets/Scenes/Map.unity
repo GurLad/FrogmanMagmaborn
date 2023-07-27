@@ -59333,7 +59333,7 @@ MonoBehaviour:
     Tags: 
     MapString: 11|17|17|6|12|10|16|16|16|0|6|6|6|12|10;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|1|7|6|6|2|3|9|9|9|8|1|7;18|24|30|36|6|6|6|12|4|16|16|16|0|6|6;19|25|31|37|1|7|2|9|9|8|2|3|9|8|6;20|26|32|38|6|6|12|4|0|6|6|12|4|0|6;21|27|33|39|6|6|12|10|0|6|6|12|10|0|6;22|28|34|40|1|7|2|3|9|8|2|9|9|8|6;23|29|35|41|6|6|6|12|4|16|16|16|0|6|6;11|17|17|1|7|6|6|2|3|3|9|9|8|1|7;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|12|4|16|16|16|0|6|6|6|12|4
   - Name: Level10-Battle-2
-    LevelNumber: 9
+    LevelNumber: 10
     Units:
     - Pos: {x: 7, y: 3}
       Team: 2
@@ -59562,250 +59562,45 @@ MonoBehaviour:
     ObjectiveData: Rout
     Tags: 
     MapString: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
-  - Name: TestArea
-    LevelNumber: 10
-    Units:
-    - Pos: {x: 1, y: 1}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 3}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 5}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 7}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 9}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 11}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 13}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 1}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 3}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 5}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 7}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 9}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 11}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 13}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 13}
-      Team: 2
-      Level: 16
-      Class: Torment
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 3}
-      Team: 0
-      Level: 0
-      Class: Wisp
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    MapEvents: []
-    Tileset: Dungeon
-    Objective: 0
-    ObjectiveData: Rout
-    Tags: 
-    MapString: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
   BaseTile: {fileID: 1597157554}
   TilesetsContainer: {fileID: 720465191}
   mapData:
-    Tiles: 2|2|2|2|2|2|2|2|2|2|2|2|2|2|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;1|0|1|0|1|0|1|0|1|0|1|0|1|0|2;2|2|2|2|2|2|2|2|2|2|2|2|2|2|2
+    Tiles: 14|11|38|28|28|32|35|35|35|38|28|28|28|30|20;35|38|28|28|28|28|39|39|39|39|28|28|28|32|38;28|28|28|28|30|33|33|33|33|33|36|28|28|28|28;28|28|28|30|18|21|21|16|16|21|24|36|28|28|28;28|28|28|31|19|23|26|7|8|20|25|9|33|36|28;28|28|30|34|13|1|7|0|35|5|14|10|29|38|28;28|28|31|29|13|0|2|37|28|31|27|10|37|28|28;28|28|32|34|13|7|1|9|33|3|0|10|37|28|28;36|28|39|31|13|1|0|8|6|1|12|11|38|39|28;37|39|39|31|13|7|11|35|12|1|13|37|39|39|39;29|36|39|32|14|27|37|28|13|0|13|37|39|39|30;34|37|39|39|31|4|15|16|23|16|26|38|39|30|29;34|34|36|39|31|5|11|34|35|35|38|39|39|31|34;9|29|37|28|32|35|35|38|28|28|28|39|30|34|3;10|34|37|28|28|28|28|28|28|28|28|30|34|3|0;0|34|37|28|28|28|28|28|28|28|28|31|12|0|27
     Units:
-    - Pos: {x: 1, y: 1}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 3, y: 3}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 5, y: 5}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 7}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 9}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 11}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 13}
-      Team: 1
-      Level: 16
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 1}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 3}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 5}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 7}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 9}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 11}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 14, y: 13}
-      Team: 2
-      Level: 16
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 0, y: 13}
-      Team: 2
-      Level: 16
-      Class: Torment
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 1, y: 3}
+    - Pos: {x: 7, y: 6}
       Team: 0
       Level: 0
-      Class: Wisp
+      Class: Frogman
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 5, y: 7}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 6, y: 10}
+      Team: 0
+      Level: 0
+      Class: P
+      AIType: 0
+      ReinforcementTurn: 0
+      Statue: 0
+    - Pos: {x: 10, y: 5}
+      Team: 0
+      Level: 0
+      Class: P
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
     MapEvents: []
-    Tileset: Dungeon
-    LevelNumber: 10
+    Tileset: HumanDungeon
+    LevelNumber: 0
     Objective: Rout
     Tags: 
-    Name: TestArea
+    Name: Part2RestArea
 --- !u!114 &1902908240
 MonoBehaviour:
   m_ObjectHideFlags: 0

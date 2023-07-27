@@ -993,6 +993,11 @@ public class Unit : MapObject
         return Pos;
     }
 
+    public virtual Vector2Int GetFarthestPosFromUnit(Unit unit) // For multi-tiles
+    {
+        return Pos;
+    }
+
     public string Save()
     {
         return JsonUtility.ToJson(this);

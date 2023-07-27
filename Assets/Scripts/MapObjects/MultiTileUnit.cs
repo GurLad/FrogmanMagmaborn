@@ -71,6 +71,11 @@ public class MultiTileUnit : Unit
         return new Vector2Int(Mathf.Clamp(unit.Pos.x, Pos.x, Pos.x + Size.x - 1), Mathf.Clamp(unit.Pos.y, Pos.y, Pos.y + Size.y - 1));
     }
 
+    public override Vector2Int GetFarthestPosFromUnit(Unit unit)
+    {
+        return 2 * Pos + Size - GetClosetPosToUnit(unit) - Vector2Int.one;
+    }
+
     protected override DangerArea GetDangerArea(int x, int y, int range, bool includePassThroughMoves = false)
     {
         return MultiTileDangerArea.Generate(this, x, y, range, includePassThroughMoves);

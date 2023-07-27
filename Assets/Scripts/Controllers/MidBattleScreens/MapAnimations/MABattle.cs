@@ -57,8 +57,8 @@ public class MABattle : MapAnimation
         defenderBasePos = defender.transform.position;
         battleDirection = (defenderBasePos - attackerBasePos).normalized;
         battleState = BattleAnimationState.AttackerAttacking;
-        attackerPanel = InitPanel(GameController.Current.GameUIController.UIAttackerPanel, attacker, defender, false);
-        defenderPanel = InitPanel(GameController.Current.GameUIController.UIDefenderPanel, defender, attacker, true);
+        attackerPanel = InitPanel(GameController.Current.GameUIController.UIAttackerPanel, attacker, defender);
+        defenderPanel = InitPanel(GameController.Current.GameUIController.UIDefenderPanel, defender, attacker);
         FlipX(defender.Pos - attacker.Pos, attacker.gameObject.GetComponent<SpriteRenderer>());
         FlipX(attacker.Pos - defender.Pos, defender.gameObject.GetComponent<SpriteRenderer>());
         return init = true;
@@ -147,7 +147,7 @@ public class MABattle : MapAnimation
         }
     }
 
-    private MiniBattleStatsPanel InitPanel(MiniBattleStatsPanel panel, Unit attacking, Unit defending, bool reverse)
+    private MiniBattleStatsPanel InitPanel(MiniBattleStatsPanel panel, Unit attacking, Unit defending)
     {
         MiniBattleStatsPanel newPanel = Instantiate(panel.gameObject, panel.transform.parent.parent).GetComponent<MiniBattleStatsPanel>();
         newPanel.DisplayMidBattleForecast(attacking, defending, false);
@@ -156,28 +156,33 @@ public class MABattle : MapAnimation
         rectTransform.anchorMax = BattleBasePanelPosition.anchorMax;
         rectTransform.sizeDelta = BattleBasePanelPosition.sizeDelta;
         int size = GameController.Current.MapSize.x / 2;
-        // Calculate x pos - harder than it sounds
+        // Calculate x & y pos - harder than it sounds
         Vector2 pos;
+        Vector2Int attackingPos = new Vector2Int(attacking.GetFarthestPosFromUnit(defending).x, attacking.GetClosetPosToUnit(defending).y);
+        Vector2Int defendingPos = new Vector2Int(defending.GetFarthestPosFromUnit(attacking).x, defending.GetClosetPosToUnit(attacking).y);
+        Vector2Int attackerPos = attacking == attacker ? attackingPos : defendingPos;
+        Vector2Int defenderPos = attacking == attacker ? defendingPos : attackingPos;
         Vector2Int screenTileSize = new Vector2Int(6, 7);
         int sign;
-        if (Mathf.Abs(attacking.Pos.x - defending.Pos.x) > screenTileSize.x || Mathf.Abs(attacking.Pos.y - defending.Pos.y) > screenTileSize.y) // Siege weapon - put it near the target
+        if (Mathf.Abs(attackingPos.x - defendingPos.x) > screenTileSize.x || Mathf.Abs(attackingPos.y - defendingPos.y) > screenTileSize.y) // Siege weapon - put it near the target
         {
             // For siege weapons, 99% of the time the defender won't counter, so it's more important to know where they are and not the attacker
             pos.x = defender.Pos.x - size + 0.5f;
             sign = pos.x > 0 ? -1 : 1;
             pos.y = defender.Pos.y + 0.5f;
         }
-        else if (Mathf.Sign(attacking.Pos.x - size) == Mathf.Sign(defending.Pos.x - size)) // Both attackers are on the same side - prioritize the one closer to the centre
+        else if (Mathf.Sign(attackingPos.x - size) == Mathf.Sign(defendingPos.x - size)) // Both attackers are on the same side - prioritize the one closer to the centre
         {
-            pos.x = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            pos.x = (Mathf.Abs(attackingPos.x - size) < Mathf.Abs(defendingPos.x - size) ? attackingPos.x - size : defendingPos.x - size) + 0.5f;
             sign = pos.x > 0 ? -1 : 1;
-            pos.y = (attacking.Pos.y + defending.Pos.y) / 2f + 0.5f;
+            pos.y = (attackingPos.y + defendingPos.y) / 2f + 0.5f;
         }
         else // Attackers on different sides - prioritize the one closer to the centre again, but use the opposite direction (if the one closer to the centre is too close to the edge, the dist is at least 1 and option 1 would be taken)
         {
-            pos.x = (Mathf.Abs(attacking.Pos.x - size) < Mathf.Abs(defending.Pos.x - size) ? attacking.Pos.x - size : defending.Pos.x - size) + 0.5f;
+            // Must use attacker/defender and not attacking/defending so that the tie breaker will always pick the same one
+            pos.x = (Mathf.Abs(attackerPos.x - size) < Mathf.Abs(defenderPos.x - size) ? attackerPos.x - size : defenderPos.x - size) + 0.5f;
             sign = pos.x > 0 ? 1 : -1;
-            pos.y = (attacking.Pos.y + defending.Pos.y) / 2f + 0.5f;
+            pos.y = (attackingPos.y + defendingPos.y) / 2f + 0.5f;
         }
         pos.y = Mathf.Clamp(pos.y, 3, GameController.Current.MapSize.y - 3);
         rectTransform.anchoredPosition = new Vector2(
