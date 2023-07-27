@@ -5,18 +5,20 @@ using UnityEngine;
 public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListener
 {
     public AdvancedSpriteSheetAnimation TeleportAnimation;
-    public AudioClip TeleportSFX;
+    public AudioClip TeleportInSFX;
+    public AudioClip TeleportOutSFX;
     private List<Unit> currentUnits;
     private List<Vector2Int> targets;
     private List<AdvancedSpriteSheetAnimation> animations = new List<AdvancedSpriteSheetAnimation>();
     private bool skipOut;
 
-    public bool Init(System.Action onFinishAnimation, AdvancedSpriteSheetAnimation teleportAnimation, AudioClip teleportSFX, List<Unit> units, List<Vector2Int> targetPositions, bool move)
+    public bool Init(System.Action onFinishAnimation, AdvancedSpriteSheetAnimation teleportAnimation, AudioClip teleportInSFX, AudioClip teleportOutSFX, List<Unit> units, List<Vector2Int> targetPositions, bool move)
     {
         // Constructor
         OnFinishAnimation = onFinishAnimation;
         TeleportAnimation = teleportAnimation;
-        TeleportSFX = teleportSFX;
+        TeleportInSFX = teleportInSFX;
+        TeleportOutSFX = teleportOutSFX;
         currentUnits = units;
         skipOut = !move;
         targets = targetPositions;
@@ -43,10 +45,12 @@ public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListen
         animations[0].Listeners.Add(this); // Need to listen to only one animations - the rest will (hopefully) stay in sync
         if (skipOut)
         {
+            SoundController.PlaySound(TeleportInSFX);
             animations.ForEach(a => a.Activate("StartIn"));
         }
         else
         {
+            SoundController.PlaySound(TeleportOutSFX);
             animations.ForEach(a => a.Activate("StartOut"));
         }
     }
@@ -73,6 +77,7 @@ public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListen
                 {
                     animations[i].transform.position = currentUnits[i].transform.position;
                     animations[i].transform.position += new Vector3(0, 0, -0.5f);
+                    SoundController.PlaySound(TeleportInSFX);
                     animations[i].Activate("StartIn");
                 }
                 break;

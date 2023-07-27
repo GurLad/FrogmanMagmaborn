@@ -22,7 +22,8 @@ public class MapAnimationsController : MidBattleScreen
     public float PushPullMoveSpeed;
     [Header("Teleport animation")]
     public AdvancedSpriteSheetAnimation TeleportAnimation;
-    public AudioClip TeleportSFX;
+    public AudioClip TeleportInSFX;
+    public AudioClip TeleportOutSFX;
     [Header("SFX")]
     public AudioClip HitSFX;
     public AudioClip MissSFX;
@@ -84,7 +85,7 @@ public class MapAnimationsController : MidBattleScreen
 
     public void AnimateTeleport(Unit unit, Vector2Int targetPos, bool move)
     {
-        CreateAnimation<MATeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX, unit, targetPos, move));
+        CreateAnimation<MATeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportInSFX, TeleportOutSFX, unit, targetPos, move));
     }
 
     public void AnimateSwapTeleport(Unit unit1, Unit unit2)
@@ -94,7 +95,7 @@ public class MapAnimationsController : MidBattleScreen
 
     public void AnimateSwapTeleport(Unit unit1, Unit unit2, Vector2Int unit1Pos, Vector2Int unit2Pos)
     {
-        CreateAnimation<MAMultiTeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportSFX,
+        CreateAnimation<MAMultiTeleport>((anim) => anim.Init(OnFinishAnimation, TeleportAnimation, TeleportInSFX, TeleportOutSFX,
             new List<Unit> { unit1, unit2 }, new List<Vector2Int> { unit2Pos, unit1Pos }, true));
     }
 
