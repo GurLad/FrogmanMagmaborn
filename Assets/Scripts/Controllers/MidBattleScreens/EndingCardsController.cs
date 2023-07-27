@@ -33,7 +33,7 @@ public class EndingCardsController : MidBattleScreen
             EndingCardData card = CharacterEndings[i].EndingCards.Find(a => new ConversationData("~\n" + a.Requirements + "\n~\n~\n").MeetsRequirements());
             if (card != null)
             {
-                ProcessedEndingData processedEndingData = new ProcessedEndingData(CharacterEndings[i].CharacterName, card.Title, card.Card);
+                ProcessedEndingData processedEndingData = new ProcessedEndingData(CharacterEndings[i].Name, card.Title, card.Card);
                 processedEndingDatas.Add(processedEndingData);
                 for (int j = 0; j < stats.Count; j++)
                 {
@@ -81,7 +81,7 @@ public class EndingCardsController : MidBattleScreen
     [System.Serializable]
     public class CharacterEndingData
     {
-        public string CharacterName;
+        public string Name;
         public List<EndingCardData> EndingCards;
     }
 

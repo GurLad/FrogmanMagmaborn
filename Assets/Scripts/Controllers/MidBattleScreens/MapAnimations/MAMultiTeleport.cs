@@ -29,18 +29,18 @@ public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListen
                 currentUnits[i].gameObject.SetActive(false);
             }
         }
-        // Create animation
-        for (int i = 0; i < currentUnits.Count; i++)
-        {
-            animations.Add(CreateAnimationOnUnit(units[i], TeleportAnimation, targetPositions[currentUnits.Count - i - 1]));
-        }
-        animations[0].Listeners.Add(this); // Need to listen to only one animations - the rest will (hopefully) stay in sync
         return init = true;
     }
 
     public override void StartAnimation()
     {
         base.StartAnimation();
+        // Create animation
+        for (int i = 0; i < currentUnits.Count; i++)
+        {
+            animations.Add(CreateAnimationOnUnit(currentUnits[i], TeleportAnimation));
+        }
+        animations[0].Listeners.Add(this); // Need to listen to only one animations - the rest will (hopefully) stay in sync
         if (skipOut)
         {
             animations.ForEach(a => a.Activate("StartIn"));

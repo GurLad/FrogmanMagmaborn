@@ -147,7 +147,7 @@ public class EndgameSummoner : AGameControllerListener
                 SummonCircle other = circles.FindAll(a => a != circle).RandomItemInList();
                 if (other.OnCircle != null)
                 {
-                    Bugger.Info("Swapping " + target + " (" + circle.Pos + ") and " + other.OnCircle + "(" + other.Pos + ")");
+                    //Bugger.Info("Swapping " + target + " " + circle.Pos + " and " + other.OnCircle + " " + other.Pos);
                     MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
                     MapAnimationsController.Current.AnimateSwapTeleport(target, other.OnCircle, circle.Pos, other.Pos);
                     circle.OnCircle = other.OnCircle;
@@ -155,7 +155,7 @@ public class EndgameSummoner : AGameControllerListener
                 }
                 else
                 {
-                    Bugger.Info("Teleporting " + target + " (" + circle.Pos + ") to " + other.Pos);
+                    //Bugger.Info("Teleporting " + target + " " + circle.Pos + " to " + other.Pos);
                     MapAnimationsController.Current.OnFinishAnimation = () => circle.Summoning = false;
                     MapAnimationsController.Current.AnimateTeleport(target, other.Pos, true);
                     circle.OnCircle = null;
@@ -206,6 +206,7 @@ public class EndgameSummoner : AGameControllerListener
         }
         Unit summoned = GameController.Current.CreateUnit(options.RandomItemInList(), GameController.Current.LevelNumber, team, false, portraitLoadingMode);
         summoned.Moved = true;
+        circle.OnCircle = summoned;
         MapAnimationsController.Current.OnFinishAnimation = () =>
         {
             circle.Summoning = false;
