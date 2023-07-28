@@ -5,13 +5,81 @@ levelNumber:0
 ~ Demands
 # Nothing
 ~ Before battle
-Torment: Ta-da!
 :callOther:EndgameSetDeathQuotes
 :setTeamAI:monster:beeline:Torment
 :if:!hasTempFlag:Crystal2{
 # Keep Fashima Guarding until the second crystal shatters
 :setUnitAI:Fashima:Guard
 }
+:if:endgameCompareLastSummonMode:=0{
+# Magmaborn
+:if:countUnits:[Name:Summoned]:>1{
+# Duplicate Magmaborn
+:if:hasTempFlag:SawDuplicateMagmaborn{
+:return:
+}
+:setTempFlag:SawDuplicateMagmaborn
+# TBA: Improve
+Summoned: Huh? Where am I?
+Summoned: You... You're me! This is impossible!
+Torment: Ha ha ha! Anything is possible in my realm!
+Did you truly think there was only one [Name:Summoned]?
+Summoned: What are you talking about?
+Summoned: What are you talking about?
+Torment: Oh, how delightful! I should've thought of doing this sooner!\a Heh heh!\a But as fun as this is, you have a battle to fight, hm?
+}
+:else:{
+# Revived Magmaborn
+:if:hasTempFlag:SawRevivedMagmaborn{
+:return:
+}
+:setTempFlag:SawRevivedMagmaborn
+Summoned: Huh? Where am I?
+:if:unitAlive:Frogman{
+# Cannot be the summoned one since we checked that there's only one
+Frogman: [Name:Summoned]?! But... I saw you die!
+Torment: Seriously, Frogman? After all this time,\a did you truly think that death was permanent?
+Frogman: ...
+}
+Torment: Welcome back, [Name:Summoned]! Heh heh!
+}
+:return:
+}
+:if:endgameCompareLastSummonMode:=1{
+# Dead boss
+:if:hasTempFlag:SawDeadBoss{
+:return:
+}
+:setTempFlag:SawDeadBoss
+:if:compareString:[Name:Summoned]:Lan{
+Lan: ...
+Fashima: Lan?\a Seriously, Torment? Of all the people to summon here,\a you chose Lan?
+Torment: I did not choose him, Fashima.\a I'm not exactly in control here, thanks to your...\a conspiracy.\a Heh.
+Fashima: Hm. That is useful information. Thank you, my friend.
+Torment: You're most welcome, my dear champion! Ha ha ha!
+:return:
+}
+:if:compareString:[Name:Summoned]:Brens{
+Brens: ...
+:if:unitAlive:Werse{
+Werse: B-Brens?! You're... But I saw you die!\a How can this be?!
+Torment: Heh heh. Do not worry, Werse. That is not the real Brens.\a I can only store the minds of those with Emblems,\a and Brens wasn't one.\a This is but an echo of his...\a physical form. Heh
+Werse: You...! Ugh, I cannot afford to lose focus.\a Forgive me, Brens...
+:return:
+}
+}
+:if:compareString:[Name:Summoned]:Bodder{
+Bodder: ...
+:if:unitAlive:Frogman{
+Frogman: Is that Bodder?\a Oh no. Not him again...
+Torment: Ha ha! Do not worry yourself, Frogman.\a This isn't the real Bodder -\a I can only store the minds of those with Emblems, after all.\a Heh.
+Frogman: But... He looks just like him!
+Torment: Oh, replicating physcal forms is a different story.\a But don't you have better things to do than chat,\a Frogman?
+Frogman: Right...
+}
+:return:
+}
+
 
 ~ After battle
 :play:AfterBattle

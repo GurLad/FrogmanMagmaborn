@@ -27,9 +27,13 @@ public class EndgameSummoner : AGameControllerListener
     public List<string> SummonOptionsMonster { private get; set; }
     public string PostSummonConversation { private get; set; }
     public string PostCrystalShatterConversation { private get; set; } // TBA
+    public int LastSummonMode { get; private set; }
     private Unit torment;
     private float chaosModifier = 0;
-    private float chaosModifierIncrease => ChaosModifierBaseIncrease + ChaosModifierTurnIncrease * (GameController.Current.Turn - 1) + ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
+    private float chaosModifierIncrease =>
+        ChaosModifierBaseIncrease +
+        ChaosModifierTurnIncrease * (GameController.Current.Turn - 1) +
+        ChaosModifierTormentHealthMultiplierIncrease * (torment.Stats.Base.MaxHP - torment.Health) / torment.Stats.Base.MaxHP;
     private List<SummonCircle> circles { get; } = new List<SummonCircle>();
 
     private void Awake()
@@ -210,6 +214,8 @@ public class EndgameSummoner : AGameControllerListener
         MapAnimationsController.Current.OnFinishAnimation = () =>
         {
             circle.Summoning = false;
+            LastSummonMode = (int)mode;
+            PortraitController.Current.AddPortraitAlias("Summoned", summoned.Icon);
             ConversationPlayer.Current.OnFinishConversation = () => MapAnimationsController.Current.TryPlayNextAnimation();
             // TBA: Set the endgame var which stores the current SummonNoUnitMode
             ConversationPlayer.Current.PlayOneShot(":callOther:" + PostSummonConversation);

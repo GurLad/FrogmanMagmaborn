@@ -181,6 +181,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "unitAlive":
                 // Return whether a certain unit is alive.
                 return GameController.Current.CheckUnitAlive(parts[1]);
+            case "countUnits":
+                // Compares the amount of units alive with the given name to the given value.
+                return MeetsComparisonRequirement(parts[2][0], GameController.Current.GetNamedUnits(parts[1]).Count, int.Parse(parts[2].Substring(1)));
             case "teamUnitsAlive":
                 // Compares the amount of living units in the given team to the given number.
                 // Params: team:?value
@@ -205,6 +208,12 @@ public class ConversationData : System.IComparable<ConversationData>
             case "stringEquals":
                 // Return the two given strings are equal
                 return parts[1] == parts[2];
+
+            // Endgame
+
+            case "endgameCompareLastSummonMode":
+                // Compares the given var with the last endgame summon mode (Magmaborn = 0, DeadBoss = 1, Generic = 2, Monster = 3
+                return MeetsComparisonRequirement(parts[1][0], EndgameSummoner.Current.LastSummonMode, int.Parse(parts[1].Substring(1)));
             default:
                 break;
         }

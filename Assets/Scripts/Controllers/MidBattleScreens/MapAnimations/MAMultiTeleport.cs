@@ -73,11 +73,11 @@ public class MAMultiTeleport : MapAnimation, IAdvancedSpriteSheetAnimationListen
                 animations.ForEach(a => a.Activate("EndOut"));
                 break;
             case "EndOut":
+                SoundController.PlaySound(TeleportInSFX);
                 for (int i = 0; i < currentUnits.Count; i++)
                 {
                     animations[i].transform.position = currentUnits[i].transform.position;
                     animations[i].transform.position += new Vector3(0, 0, -0.5f);
-                    SoundController.PlaySound(TeleportInSFX);
                     animations[i].Activate("StartIn");
                 }
                 break;
