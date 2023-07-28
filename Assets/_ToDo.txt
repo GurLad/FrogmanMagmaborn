@@ -17,12 +17,12 @@ V-Add movement arrows
 
 For final release:
 -Must have:
- -Custom size units (for Torment)
- -All hardcoded stuff...
- -Character endings + editor
+V-Custom size units (for Torment)
+V-All hardcoded stuff...
+~-Character endings + editor (missing actual ending)
  -Finish wiki
- -Achievements
- -Add save slot copy/delete
+~-Achievements (need more names + art)
+~-Add save slot copy/delete
 -Nice to have (most probably post release):
  -Alternate palettes (low contrast, colour blind etc.)
  -Seperate map & combat sprite palettes (for more NES FE style combats - ruins portraits, annoying fix)
@@ -33,7 +33,7 @@ For final release:
  -Alow loading maps & units in the background while there's a CG
  -Improve choice UI
 ~-Unit.cs and GameController.cs have an absurd amount of bloat - seperate a ton of stuff to different classes (some seperation)
- -Custom text speed for different characters (ex. Kresla speaks faster than anyone else)
+V-Custom text speed for different characters (ex. Kresla speaks faster than anyone else)
  -Extra commands:
   -Scripted battle
   -Bigger/dynamically sized info dialogue

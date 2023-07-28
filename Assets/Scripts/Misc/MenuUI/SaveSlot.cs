@@ -7,17 +7,21 @@ public class SaveSlot : MonoBehaviour
 {
     public Text Text;
     public PalettedSprite MVP;
+    public PalettedSprite NewGamePlus;
     public int MaxSlots;
     public Trigger StartTrigger;
     public UnitClassData UnitClassData;
     public List<GameObject> ContinueOnlyObjects;
+    public List<PalettedSprite> AffectedByPlayerTeamSprites;
+    [Header("External menus")]
+    public MenuController BackMenu;
+    public MenuController SelectMenu;
     private int currentSlot;
     private int previousSign;
     private new AdvancedSpriteSheetAnimation animation = null;
 
     private void Start()
     {
-        MVP.Palette = (int)StaticGlobals.MainPlayerTeam;
         Select(SavedData.Load("DefaultSaveSlot", 0, SaveMode.Global));
     }
 
@@ -32,6 +36,19 @@ public class SaveSlot : MonoBehaviour
             SystemSFXController.Play(SystemSFXController.Type.MenuSelect);
             return;
         }
+        if (Control.GetButtonDown(Control.CB.B))
+        {
+            gameObject.SetActive(false);
+            BackMenu.Begin();
+            return;
+        }
+        if (Control.GetButtonDown(Control.CB.Select))
+        {
+            gameObject.SetActive(false);
+            SelectMenu.Begin();
+            SelectMenu.SelectItem(0);
+            return;
+        }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
             Select((currentSlot - Control.GetAxisInt(Control.Axis.Y) + MaxSlots) % MaxSlots);
@@ -40,10 +57,10 @@ public class SaveSlot : MonoBehaviour
         previousSign = Control.GetAxisInt(Control.Axis.Y);
     }
 
-    private void Select(int newSlot)
+    public void Select(int newSlot = -1)
     {
         // Change the internal slot
-        SavedData.SaveSlot = currentSlot = newSlot;
+        SavedData.SaveSlot = currentSlot = (newSlot >= 0 ? newSlot : currentSlot);
         SavedData.CreateSaveSlotFiles();
         SavedData.Save("DefaultSaveSlot", currentSlot, SaveMode.Global);
         // Display the new slot's data
@@ -57,10 +74,15 @@ public class SaveSlot : MonoBehaviour
             {
                 Text.text = Text.text.ToColoredString(2);
             }
+            // Color
+            int palette = SavedData.Load("SaveSlotPalette", -1) >= 0 ? SavedData.Load("SaveSlotPalette", -1) : (int)StaticGlobals.MainPlayerTeam;
+            AffectedByPlayerTeamSprites.ForEach(a => a.Palette = palette);
             // MVP display
             AssignUnitMapAnimation(GetMVP());
             // TBA - give the MVP a background depending on the current part (ex. magma floor for part 1, tiles for part 2, Fortress tile for 3)
             ContinueOnlyObjects.ForEach(a => a.SetActive(true));
+            // New game+ display (aka turn on iff finished the game once)
+            NewGamePlus.gameObject.SetActive(SavedData.Load("FinishedGame", 0) != 0);
         }
         else
         {
@@ -71,7 +93,7 @@ public class SaveSlot : MonoBehaviour
 
     private string SecondsToTime(float seconds)
     {
-        return Mathf.FloorToInt(seconds / 3600).ToString().PadLeft(3, '0') + ":" + Mathf.FloorToInt((seconds / 60) % 60).ToString().PadLeft(2, '0');
+        return Mathf.FloorToInt(seconds / 3600).ToString().PadLeft(2, '0') + ":" + Mathf.FloorToInt((seconds / 60) % 60).ToString().PadLeft(2, '0');
     }
 
     private ClassData GetMVP()

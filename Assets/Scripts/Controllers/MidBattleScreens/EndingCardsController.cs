@@ -63,6 +63,7 @@ public class EndingCardsController : MidBattleScreen
         else
         {
             // TBA
+            SavedData.Save("FinishedGame", 1);
         }
     }
 

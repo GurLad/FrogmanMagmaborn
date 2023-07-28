@@ -13,6 +13,6 @@ public class TShowMenu : Trigger
         {
             This.Finish();
         }
-        Target.Begin();
+        Target?.Begin();
     }
 }
