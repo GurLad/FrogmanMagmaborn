@@ -1,29 +1,17 @@
-Frogman Magmaborn Beta - Version 0.6 (31/03/2023)
+Frogman Magmaborn Beta - Version 0.6.1 (29/07/2023)
 
 Changelog:
 
 * - Changes inspired by your feedback
 
 New content & features:
-	 +Added level 9 - the last level before the final boss!
-	 +Added auto-saves.
-	 +Added battle animations for Lan and Brens.
-	 +Added a map for levels 5, 6, 7 and 8.
-	 +Added and improved a lot of conversations.
-	 +Added and improved some portraits.
-	*+Added movement path display.
-	 +Added accessibility options.
-	 +Added UI SFX.
+	 +Added different save slot colours.
 
 Improvements:
-	 +Improved status screen UI.
-	 +Improved mod loading.
-	*+Changed the default game speed to Fast.
-	 +Changed the order of some Torment powers - you might have to restart the game to unlock all of them.
-	 +Modified the Charge AI to be slightly more predictable.
+	 +Improved character voices.
+	 +Improved Brens’ portrait.
+	 +Made character death quotes less repetitive.
 	 
 Bug fixes:
-	 +Minor conversation fixes.
-	*+Fixed the default controls prompt not appearing again if you closed the game before starting your first save file.
-	 +Fixed a freeze when AI priorities were set to 0.
-	 +Fixed a freeze when a computer controlled faction fought a team with reinforcements.
+	*+Fixed some conversations crashing the game and corrupting save data.
+	 +Fixed some firstTime conversations not triggering for all playable units (unfinished).

@@ -80,6 +80,7 @@ public class EndgameHalfCrystal : MonoBehaviour
     [ContextMenu("Fix normals & bounds")]
     public void FixNormalsAndBounds()
     {
+#if UNITY_EDITOR
         Parts.ForEach(a =>
         {
             Mesh mesh = a.GetComponent<MeshFilter>().sharedMesh;
@@ -90,11 +91,13 @@ public class EndgameHalfCrystal : MonoBehaviour
             a.GetComponent<MeshFilter>().sharedMesh = mesh;
         });
         UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
     }
 
     [ContextMenu("Generate meshes")]
     public void GenerateMeshes()
     {
+#if UNITY_EDITOR
         foreach (Transform child in transform)
         {
             // Clear the previous attempt
@@ -120,5 +123,6 @@ public class EndgameHalfCrystal : MonoBehaviour
             cloneFilter.sharedMesh = found;
             UnityEditor.EditorUtility.SetDirty(child);
         }
+#endif
     }
 }
