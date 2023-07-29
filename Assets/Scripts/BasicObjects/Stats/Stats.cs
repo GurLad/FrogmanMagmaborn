@@ -100,7 +100,7 @@ public class Stats
     {
         get
         {
-            if (_sumGrowths < 0)
+            if (_sumGrowths <= 0)
             {
                 _sumGrowths = 0;
                 for (int i = 0; i < Growths.Length; i++)

@@ -69,7 +69,7 @@ public class LevelUpController : MidBattleScreen
             do
             {
                 current = unit.Stats.Base.GetLevelUp(numStats);
-            } while (levelUpObjects.Find(a => a.Stats == current) != null || i >= options);
+            } while (levelUpObjects.Find(a => a.Stats == current) != null && i < options);
             levelUpObjects[i].Stats = current;
             levelUpObjects[i].Text.text = levelUpObjects[i].Stats.ToColoredString().Replace("\n", "\n\n");
         }
