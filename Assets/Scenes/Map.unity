@@ -10105,8 +10105,8 @@ MonoBehaviour:
 
       :else:{
 
-      Frogman||L: My name
-      is Frogman. Who might you be?
+      Frogman||L: My name is
+      Frogman. Who might you be?
 
       Memerian: I''m Memerian.
 
@@ -10115,19 +10115,18 @@ MonoBehaviour:
 
       }
 
-      Memerian: Did he
-      now? I hope you didn''t listen to the fool.
+      Memerian: Did he now?
+      I hope you didn''t listen to the fool.
 
-      Frogman: He said you were
-      an evil witch.
+      Frogman: He said you were an
+      evil witch.
 
       Memerian: He''s a deplorable thief.
 
-      Frogman:
-      Uh...
+      Frogman: Uh...
 
-      # Memerian is afraid to talk about Torment in public, and rightly
-      so.
+      #
+      Memerian is afraid to talk about Torment in public, and rightly so.
 
       :if:charactersAlive:<2{
 
@@ -10191,19 +10190,19 @@ MonoBehaviour:
       Memerian:
       Ugh. Meddlesome Guards. We''ll speak again soon, Frogman.
 
+      Frogman: Wait.
+      Why should I trust you?
+
+      Memerian: ...Are you seriously considering Xeplogi''s
+      allegations?\a Do you have a death wish, Frogman?\a Because I can grant it.
+
       Frogman:
-      Wait. Why should I trust you?
+      Uh, no thanks.
 
-      Memerian: ...Are you seriously considering
-      Xeplogi''s allegations?\a Do you have a death wish, Frogman?\a Because I can
-      grant it.
+      Memerian: Good. Then let''s join forces.
 
-      Frogman: Uh, no thanks.
-
-      Memerian: Good. Then let''s
-      join forces.
-
-      Frogman: ...
+      Frogman:
+      ...
 
       :unlockAchievement:JoinMemerian
 
@@ -10213,21 +10212,19 @@ MonoBehaviour:
 
       :else:{
 
-      :callOther:GenericMemerianNoXeplogi
+      :callOther:Level6GenericMemerianNoXeplogi
 
       }
 
-      
 
       ~
       After battle
 
       :callOther:Level6FirstTimeMemerianXeplogi
 
-      
 
-      #
-      === Functions ====
+      # ===
+      Functions ====
 
 '
     Name: Level6FirstTimeMemerianNoXeplogi
@@ -10291,8 +10288,8 @@ MonoBehaviour:
 
       Xeplogi: Uh-
 
-      Memerian: Didn''t think so.\a So.
-      Introcude yourselves.
+      Memerian: Didn''t think so.\a So. Introcude
+      yourselves.
 
       Frogman: Um, I''m Frogman.
 
@@ -10332,8 +10329,8 @@ MonoBehaviour:
       Xeplogi||L: T-that''s enough!
       Stop talking to this trickster at once!
 
-      All she ever does is steal
-      and betray!
+      All she ever does is steal and
+      betray!
 
       Memerian: Ha! Oh, the irony. Have you no shame, Xeplogi?
 
@@ -10343,31 +10340,30 @@ MonoBehaviour:
 
       Memerian: Work together? He murdered me!
 
-      Xeplogi:
-      She stole my Magma Emblem!
+      Xeplogi: She
+      stole my Magma Emblem!
 
-      Memerian: You stole it from me first, you
-      hypocrite!
+      Memerian: You stole it from me first, you hypocrite!
 
-      Frogman: Uh-
+      Frogman:
+      Uh-
 
-      Xeplogi||L: It was rightfully mine,
-      you... you twister of truths!
+      Xeplogi||L: It was rightfully mine, you... you twister of truths!
 
-      Memerian: That''s not even a real insult,
-      you absolute liquid!
+      Memerian:
+      That''s not even a real insult, you absolute liquid!
 
-      Xeplogi: Neither is that!
+      Xeplogi: Neither
+      is that!
 
-      Frogman||L:
-      Can you please-
+      Frogman||L: Can you please-
 
-      Xeplogi||L: Why are you even trying to reason with
-      her, Frogman?\a Was I not a good and trustworthy ally?
+      Xeplogi||L: Why are you
+      even trying to reason with her, Frogman?\a Was I not a good and trustworthy
+      ally?
 
-      Memerian: Oh,
-      please. You''re about as good in combat as a tree.\a I, on the other hand,\a
-      have actual experience fighting the Guards.\a And winning.
+      Memerian: Oh, please. You''re about as good in combat as a tree.\a
+      I, on the other hand,\a have actual experience fighting the Guards.\a And winning.
 
       Frogman:
       Really?
@@ -10380,13 +10376,13 @@ MonoBehaviour:
       Xeplogi:
       Yes. And we can still get there without her help.
 
-      Memerian||R: Ha!
-      Good luck with that.
+      Memerian||R: Ha! Good
+      luck with that.
 
       Xeplogi||R: W-why, you little-
 
-      Frogman:
-      Ugh. Just stop, you two. Let me think.
+      Frogman: Ugh.
+      Just stop, you two. Let me think.
 
       :call:Choice
 
@@ -10396,11 +10392,10 @@ MonoBehaviour:
 
       :else:{
 
-      :callOther:GenericMemerianXeplogi
+      :callOther:Level6GenericMemerianXeplogi
 
       }
 
-      
 
       ~
       After battle
@@ -10414,11 +10409,11 @@ MonoBehaviour:
 
       :if:hasCharacter:Xeplogi{
 
-      Xeplogi:
-      Indeed. Shall we go back to safer grounds now?
+      Xeplogi: Indeed.
+      Shall we go back to safer grounds now?
 
-      Frogman: Seriously?
-      We''re almost to the fortress!
+      Frogman: Seriously? We''re almost
+      to the fortress!
 
       Xeplogi: But... It could be dangerous!
 
@@ -10463,8 +10458,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Firbell{
 
-      Firbell||L: Memerian. Do
-      you know why do these Guards hate us so?
+      Firbell||L: Memerian. Do you
+      know why do these Guards hate us so?
 
       Memerian: They hate all monsters.
       In fact, from what I''ve gathered,\a all they ever do is killing monsters.
@@ -10482,21 +10477,21 @@ MonoBehaviour:
       But can we not talk to them?\a Explain that we are unlike the rest,\a and mean
       no harm?
 
-      Memerian: No harm? Please. We''ve just killed a couple of
-      them.
+      Memerian: No harm? Please. We''ve just killed a couple of them.
 
-      Firbell: I...\a I see your point.\a Still, I must try at the
-      very least.
+      Firbell:
+      I...\a I see your point.\a Still, I must try at the very least.
 
-      Memerian: You always do.
+      Memerian:
+      You always do.
 
       Firbell: What do you mean?
 
-      Memerian:
-      Never mind me. Anyway, we should get out of here.\a Frogman?
+      Memerian: Never mind
+      me. Anyway, we should get out of here.\a Frogman?
 
-      Frogman:
-      Uh, yes, let''s leave.
+      Frogman: Uh, yes,
+      let''s leave.
 
       Firbell: ...
 
@@ -10529,18 +10524,18 @@ MonoBehaviour:
 
       Frogman: She''s a bit... reckless.
 
-      Memerian: You
-      don''t need to be afraid when you''re immortal, Frogman.
+      Memerian: You don''t
+      need to be afraid when you''re immortal, Frogman.
 
-      Frogman: I
-      know. Let''s follow her, shall we?
+      Frogman: I know. Let''s
+      follow her, shall we?
 
       Memerian: Let''s.
 
       }
 
-      #
-      Memerian alone tells about Torment
+      # Memerian alone
+      tells about Torment
 
       :if:charactersAlive:=1{
 
@@ -10549,75 +10544,75 @@ MonoBehaviour:
       Memerian:
       So. About Torment
 
-      Frogman: Oh? Right, you know them.\a Why do they
-      let you remember them?
+      Frogman: Oh? Right, you know them.\a Why do they let
+      you remember them?
 
       }
 
       :else:{
 
-      Memerian: Frogman.
-      Now that we''re alone, you need to know something.
+      Memerian: Frogman. Now that
+      we''re alone, you need to know something.
 
-      Frogman: What is
-      it?
+      Frogman: What is it?
 
       }
 
-      Memerian: I used to help Torment, just like you.
+      Memerian:
+      I used to help Torment, just like you.
 
-      Frogman:
-      Really?!
+      Frogman: Really?!
 
-      Memerian: Yes. We had a... falling out eventually.\a But I
-      see he has found a replacement already.
+      Memerian:
+      Yes. We had a... falling out eventually.\a But I see he has found a replacement
+      already.
 
       Frogman: What happened?
 
-      Memerian:
-      I realized it was impossible.
+      Memerian: I realized it was
+      impossible.
 
       Frogman: What was?
 
-      Memerian:
-      Getting out of here.\a That fortress? It''s impenetrable.
+      Memerian: Getting out of here.\a
+      That fortress? It''s impenetrable.
 
-      Frogman:
-      I''m sure there''s a way inside...
+      Frogman: I''m sure there''s a way
+      inside...
 
-      Memerian: That''s not the problem.
-      It doesn''t even have a gate -\a anyone could theoretically enter it.
+      Memerian: That''s not the problem. It doesn''t even have a
+      gate -\a anyone could theoretically enter it.
 
-      Frogman:
-      Huh? Then what''s the problem?
+      Frogman: Huh? Then what''s
+      the problem?
 
-      Memerian: The one guarding it. Assuming
-      she''s still alive.\a She''s a wizard.
+      Memerian: The one guarding it. Assuming she''s still alive.\a
+      She''s a wizard.
 
       Frogman: Like Xirveros?
 
-      Memerian:
-      ...Seriously?
+      Memerian: ...Seriously?
 
-      Frogman: Yeah, that was a foolish question.\a Like the
-      lich, then?
-
-      Memerian: Similar, but much more powerful. And intelligent.
-
-      She
-      can teleport anywhere, and transform her appearance.\a Frankly, we don''t stand
-      a chance.
-
-      Frogman: Why are you helping me, then?
+      Frogman:
+      Yeah, that was a foolish question.\a Like the lich, then?
 
       Memerian:
-      Something must have changed.\a Torment has selected a new champion for a reason.\a
-      I''d like to see it.
+      Similar, but much more powerful. And intelligent.
 
-      Frogman: I... see.
+      She can teleport anywhere,
+      and transform her appearance.\a Frankly, we don''t stand a chance.
 
-      Memerian: Now that
-      we''re on the same page, let''s leave this place.
+      Frogman:
+      Why are you helping me, then?
+
+      Memerian: Something must have changed.\a
+      Torment has selected a new champion for a reason.\a I''d like to see it.
+
+      Frogman:
+      I... see.
+
+      Memerian: Now that we''re on the same page, let''s leave this
+      place.
 
       Frogman: Right.
 
@@ -10627,17 +10622,15 @@ MonoBehaviour:
 
       }
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Choice
 
-      :showChoice:Frogman:Trust
-      Xeplogi:Trust Memerian
+      :showChoice:Frogman:Trust Xeplogi:Trust
+      Memerian
 
       :if:chose:0{
 
@@ -18771,8 +18764,6 @@ MonoBehaviour:
 
       ~ Before battle
 
-      Torment: Ta-da!
-
       :callOther:EndgameSetDeathQuotes
 
       :setTeamAI:monster:beeline:Torment
@@ -18785,6 +18776,173 @@ MonoBehaviour:
       :setUnitAI:Fashima:Guard
 
       }
+
+      :if:endgameCompareLastSummonMode:=0{
+
+      #
+      Magmaborn
+
+      :if:countUnits:[Name:Summoned]:>1{
+
+      # Duplicate Magmaborn
+
+      :if:hasTempFlag:SawDuplicateMagmaborn{
+
+      :return:
+
+      }
+
+      :setTempFlag:SawDuplicateMagmaborn
+
+      #
+      TBA: Improve
+
+      Summoned: Huh? Where am I?
+
+      Summoned: You... You''re
+      me! This is impossible!
+
+      Torment: Ha ha ha! Anything is possible in my
+      realm!
+
+      Did you truly think there was only one [Name:Summoned]?
+
+      Summoned:
+      What are you talking about?
+
+      Summoned: What are you talking about?
+
+      Torment:
+      Oh, how delightful! I should''ve thought of doing this sooner!\a Heh heh!\a
+      But as fun as this is, you have a battle to fight, hm?
+
+      }
+
+      :else:{
+
+      #
+      Revived Magmaborn
+
+      :if:hasTempFlag:SawRevivedMagmaborn{
+
+      :return:
+
+      }
+
+      :setTempFlag:SawRevivedMagmaborn
+
+      Summoned:
+      Huh? Where am I?
+
+      :if:unitAlive:Frogman{
+
+      # Cannot be the summoned
+      one since we checked that there''s only one
+
+      Frogman: [Name:Summoned]?!
+      But... I saw you die!
+
+      Torment: Seriously, Frogman? After all this time,\a
+      did you truly think that death was permanent?
+
+      Frogman: ...
+
+      }
+
+      Torment:
+      Welcome back, [Name:Summoned]! Heh heh!
+
+      }
+
+      :return:
+
+      }
+
+      :if:endgameCompareLastSummonMode:=1{
+
+      #
+      Dead boss
+
+      :if:hasTempFlag:SawDeadBoss{
+
+      :return:
+
+      }
+
+      :setTempFlag:SawDeadBoss
+
+      :if:compareString:[Name:Summoned]:Lan{
+
+      Lan:
+      ...
+
+      Fashima: Lan?\a Seriously, Torment? Of all the people to summon
+      here,\a you chose Lan?
+
+      Torment: I did not choose him, Fashima.\a I''m
+      not exactly in control here, thanks to your...\a conspiracy.\a Heh.
+
+      Fashima:
+      Hm. That is useful information. Thank you, my friend.
+
+      Torment: You''re
+      most welcome, my dear champion! Ha ha ha!
+
+      :return:
+
+      }
+
+      :if:compareString:[Name:Summoned]:Brens{
+
+      Brens:
+      ...
+
+      :if:unitAlive:Werse{
+
+      Werse: B-Brens?! You''re... But I saw
+      you die!\a How can this be?!
+
+      Torment: Heh heh. Do not worry, Werse.
+      That is not the real Brens.\a I can only store the minds of those with Emblems,\a
+      and Brens wasn''t one.\a This is but an echo of his...\a physical form. Heh
+
+      Werse:
+      You...! Ugh, I cannot afford to lose focus.\a Forgive me, Brens...
+
+      :return:
+
+      }
+
+      }
+
+      :if:compareString:[Name:Summoned]:Bodder{
+
+      Bodder:
+      ...
+
+      :if:unitAlive:Frogman{
+
+      Frogman: Is that Bodder?\a Oh no.
+      Not him again...
+
+      Torment: Ha ha! Do not worry yourself, Frogman.\a This
+      isn''t the real Bodder -\a I can only store the minds of those with Emblems,
+      after all.\a Heh.
+
+      Frogman: But... He looks just like him!
+
+      Torment:
+      Oh, replicating physcal forms is a different story.\a But don''t you have better
+      things to do than chat,\a Frogman?
+
+      Frogman: Right...
+
+      }
+
+      :return:
+
+      }
+
 
 
       ~
@@ -59731,7 +59889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 1
+    Enabled: 0
     SkipIntro: 0
     EndgameLevel: 10
     ExtraLevels: 0
@@ -59741,7 +59899,7 @@ MonoBehaviour:
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 
-    KillAutoSaves: 1
+    KillAutoSaves: 0
 --- !u!114 &1902908242
 MonoBehaviour:
   m_ObjectHideFlags: 0
