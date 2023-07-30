@@ -10,6 +10,10 @@ public class SMTerrainArmor : AStatModifierPos
     {
         get
         {
+            if (!GameController.Current.IsValidPos(pos))
+            {
+                return Stats.Zero;
+            }
             Tile tile = GameController.Current.Map[pos.x, pos.y];
             Stats stats = Stats.Zero;
             stats.Armor =

@@ -109,11 +109,15 @@ public static class EventCommandProcessor
 
     private static int SkipBlock(int currentLine, List<string> lines)
     {
-        int numBrackets = 1;
-        while (numBrackets > 0)
+        int numBrackets = 1, first = currentLine;
+        while (numBrackets > 0 && currentLine + 1 < lines.Count)
         {
             numBrackets -= lines[++currentLine] == "}" ? 1 : 0;
             numBrackets += lines[currentLine].Contains("{") ? 1 : 0;
+        }
+        if (numBrackets > 0)
+        {
+            throw Bugger.Error("Unclosed block! First line is " + lines[first]);
         }
         return currentLine;
     }
@@ -778,7 +782,7 @@ public static class EventCommandProcessor
                 return result | StartLineTrue(function.LineNumber + 1);
             case "finishConversation":
                 // Params: none
-                player.FinishConversation();
+                player.FinishConversation(false, true);
                 return result | StartLineResult.FinishConversation;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");

@@ -28,14 +28,22 @@ public class BattleStatsPanel : MonoBehaviour
 
     public void Display(Unit origin, bool includeArmorMod)
     {
-        Stats visibleMods = origin.Stats.VisibleModifiers;
         Stats baseStats = origin.Stats.Base + origin.Stats.InvisibleModifiers;
-        Str.text = ":" + baseStats.Strength + ProcessMod(visibleMods.Strength);
+        Str.text = ":" + baseStats.Strength;
         End.text = ":" + origin.Stats.Base.MaxHP;
-        Pir.text = ":" + baseStats.Pierce + ProcessMod(visibleMods.Pierce);
-        Arm.text = ":" + baseStats.Armor + ProcessMod(visibleMods.Armor);
-        Pre.text = ":" + (baseStats.GetHit() - 40) + ProcessMod(visibleMods.GetHit());
-        Eva.text = ":" + (baseStats.GetAvoid() - 40) + ProcessMod(visibleMods.GetAvoid());
+        Pir.text = ":" + baseStats.Pierce;
+        Arm.text = ":" + baseStats.Armor;
+        Pre.text = ":" + (baseStats.GetHit() - 40);
+        Eva.text = ":" + (baseStats.GetAvoid() - 40);
+        if (includeArmorMod)
+        {
+            Stats visibleMods = origin.Stats.VisibleModifiers;
+            Str.text += ProcessMod(visibleMods.Strength);
+            Pir.text += ProcessMod(visibleMods.Pierce);
+            Arm.text += ProcessMod(visibleMods.Armor);
+            Pre.text += ProcessMod(visibleMods.GetHit());
+            Eva.text += ProcessMod(visibleMods.GetAvoid());
+        }
     }
 
     private string ProcessMod(int mod)

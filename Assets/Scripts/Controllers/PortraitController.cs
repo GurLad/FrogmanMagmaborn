@@ -69,12 +69,18 @@ public class PortraitController : MonoBehaviour
 
     public void AddGenericPortrait(string internalName, string tags = "")
     {
-        generatedPortraits.Add(internalName, GenerateGenericPortrait(internalName, tags));
+        if (!generatedPortraits.ContainsKey(internalName))
+        {
+            generatedPortraits.Add(internalName, GenerateGenericPortrait(internalName, tags));
+        }
     }
 
     public void AddPortraitAlias(string internalName, Portrait portrait)
     {
-        generatedPortraits.Add(internalName, new GeneratedPortrait(internalName, portrait));
+        if (!generatedPortraits.ContainsKey(internalName))
+        {
+            generatedPortraits.Add(internalName, new GeneratedPortrait(internalName, portrait));
+        }
     }
 
     public void ClearGeneratedPortraits()

@@ -453,8 +453,13 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         return result;
     }
 
-    public StartLineResult FinishConversation(bool fadedOut = false)
+    public StartLineResult FinishConversation(bool fadedOut = false, bool forceFinish = false)
     {
+        // If force finish, clear function stack
+        if (forceFinish)
+        {
+            functionStack.Clear();
+        }
         // Check if this is the last part
         if (functionStack.Count > 0)
         {

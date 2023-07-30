@@ -6,6 +6,7 @@ levelNumber:5
 # Guarantee a map that makes sense for the arrivals
 hasTag:PlayersSpawnFirst
 ~
+:loadUnits::player
 :if:hasCharacter:Firbell{
 :callOther:Level5FirstTimeFirbellXeplogi
 }
