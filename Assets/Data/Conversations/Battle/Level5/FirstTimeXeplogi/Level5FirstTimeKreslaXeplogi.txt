@@ -1,7 +1,7 @@
 priority:4
 unique:T
 ~ Requirements
-levelNumber:3
+levelNumber:5
 hasCharacter:Kresla
 !hasFlag:KreslaXeplogi1
 ~ Demands
@@ -48,11 +48,19 @@ Xeplogi: It's a very rough outline. What really happened was-
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
 # TBA
+:loadMap:
+:addUnit:Xeplogi
+:loadUnits:
+Frogman: Unfinished yay
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
 # TBA
+:loadMap:
+:addUnit:Xeplogi
+:loadUnits:
+Frogman: Unfinished yay
 :finishConversation:
 }
 }
@@ -73,4 +81,62 @@ Xeplogi: It's a very rough outline. What really happened was-
 
 # === Functions ====
 
-~ Sample
+~ GuardsArriveFirst
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
+???: Hey! Is someone there?
+Frogman|: Huh? Another Magmaborn?
+Xeplogi||R: I was in the middle-
+:loadUnits:
+Guard2: No, look! Those are Magmaborn!
+Frogman: Humans?!
+:if:hasCharacter:Firbell{
+Firbell: Humans?!
+}
+:if:hasCharacter:Kresla{
+Kresla: Humans?!
+}
+:if:hasCharacter:Xirveros{
+Xirveros: No... Again... Frog, back...
+}
+Xeplogi||R: Ugh. The detestable Guards are back.
+Frogman: You know these humans?!
+Xeplogi: Yes. They are-
+Guard1: Aha! This must be my lucky day!\a Fiends! Your reign of terror has come to an end!\a For I, [Name], shall destroy you all!
+Xeplogi: All they ever really do is-
+Guard2: How many of them are there?!\a Never mind, kill every last one of them!
+Xeplogi: They hate-
+Guard2: CHAAAAAAAAARGE!
+Xeplogi: Oh, shut up! I'm trying to explain-
+Frogman: Xeplogi, let's leave the explaining to after this battle.
+Xeplogi: You- Ugh, fine.\a Let us do just that, then.
+:unlockAchievement:JoinXeplogi
+:setFlag:MetXeplogi
+
+~ PreRepeat
+:loadUnits::player
+Frogman: Structures again? That must mean...
+:addUnit:Xeplogi
+:loadUnits::player
+Xeplogi: Frogman, my dear friend! You're back.
+Frogman: Yes.
+Xeplogi: It's so good to see you again.\a I wanted to convey my disappointment in you.
+Frogman: Likew- Wait, what?
+Xeplogi: You died last time we fought together.\a That was a very bad idea.
+Frogman: It... wasn't my idea.
+Xeplogi: Really? Then we should punish whoever suggested it.\a It was absolutley terrible.
+Frogman: Xeplogi, nobody suggested it! I was killed!
+Xeplogi: We have a murderer in our ranks?! Who could it be?
+:setSpeaker:Xeplogi||L
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
+:loadUnits:
+Guard1: ...Pfft! Ha ha ha!
+Guard2: Silence!\a Ugh, look! You've ruined our ambush!
+Xeplogi||L: Oh my! Look at all these monsters and humans!
+Frogman: Yes, they're what killed us last time.
+We should stop talking if we want to stay alive this time.
+Xeplogi: Now, that's a good idea.\a Keep them coming, boy.
+Frogman: That- Ugh. Let's just get started.
