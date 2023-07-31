@@ -51,7 +51,7 @@ public class SaveSlot : MonoBehaviour
         }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)
         {
-            Select((currentSlot - Control.GetAxisInt(Control.Axis.Y) + MaxSlots) % MaxSlots);
+            Select((currentSlot + Control.GetAxisInt(Control.Axis.Y) + MaxSlots) % MaxSlots);
             SystemSFXController.Play(SystemSFXController.Type.MenuMove);
         }
         previousSign = Control.GetAxisInt(Control.Axis.Y);
