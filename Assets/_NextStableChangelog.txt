@@ -5,13 +5,11 @@ Changelog:
 * - Changes inspired by your feedback
 
 New content & features:
-	 +Added different save slot colours.
+	 +Added save slot copying & deleting (unfinished).
 
 Improvements:
-	 +Improved character voices.
-	 +Improved Brens’ portrait.
-	 +Made character death quotes less repetitive.
+	*+Moved the global save data to the same folder as the game saves.
 	 
 Bug fixes:
-	*+Fixed some conversations crashing the game and corrupting save data.
-	 +Fixed some firstTime conversations not triggering for all playable units (unfinished).
+	*+Fixed another level 5 conversation bug.
+	*+Fixed the save slot selector scrolling in the opposite direction.

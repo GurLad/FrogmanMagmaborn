@@ -40,13 +40,22 @@ public class SaveSlot : MonoBehaviour
         {
             gameObject.SetActive(false);
             BackMenu.Begin();
+            SystemSFXController.Play(SystemSFXController.Type.MenuCancel);
             return;
         }
         if (Control.GetButtonDown(Control.CB.Select))
         {
-            gameObject.SetActive(false);
-            SelectMenu.Begin();
-            SelectMenu.SelectItem(0);
+            if (SavedData.Load("NewGame", 1) != 1)
+            {
+                gameObject.SetActive(false);
+                SelectMenu.Begin();
+                SelectMenu.SelectItem(0);
+                SystemSFXController.Play(SystemSFXController.Type.MenuSelect);
+            }
+            else
+            {
+                SystemSFXController.Play(SystemSFXController.Type.UnitForbidden);
+            }
             return;
         }
         if (Control.GetAxisInt(Control.Axis.Y) != 0 && Control.GetAxisInt(Control.Axis.Y) != previousSign)

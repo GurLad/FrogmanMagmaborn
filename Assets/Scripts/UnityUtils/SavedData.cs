@@ -37,7 +37,7 @@ public static class SavedData
     /// <summary>
     /// You must change this through code, as those files are created when the game launches.
     /// </summary>
-    public const SaveFileType DEFAULT_GLOBAL_FILES_SAVE_TYPE = SaveFileType.PlayerPrefs;
+    public const SaveFileType DEFAULT_GLOBAL_FILES_SAVE_TYPE = SaveFileType.File;
     /// <summary>
     /// You must change this through code, as those files are created when the game launches.
     /// </summary>
