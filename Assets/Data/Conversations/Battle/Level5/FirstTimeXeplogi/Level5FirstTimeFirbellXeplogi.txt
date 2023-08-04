@@ -4,8 +4,10 @@ unique:T
 levelNumber:5
 hasCharacter:Firbell
 !hasFlag:FirbellXeplogi1
+charactersAlive:>1
 ~ Demands
-# Not actual first time, so invisible Lich is fine
+# Guarantee a map that makes sense for the arrivals
+hasTag:PlayersSpawnFirst
 ~ Before battle
 :if:!hasFlag:FirbellXeplogi1{
 :setFlag:FirbellXeplogi1
@@ -24,30 +26,77 @@ Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
 Xeplogi|???: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
 Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
 Xeplogi|???: Backwater village? I'm no peasant, girl.
-Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+:setSpeaker:Xeplogi||R
+I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 Firbell: Claiming to be a duke when you are not a noble?
 And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
 Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosXeplogi1
+}
 :call:GuardsArriveFirst
 :finishConversation:
 }
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
-# TBA
-:loadMap:
+:loadUnits::player
+Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
+:loadUnits::player
+Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
+Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
+Xeplogi: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
+Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
+Xeplogi|???: Backwater village? I'm no peasant, girl.
+:setSpeaker:Xeplogi||R
+I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+Firbell: Claiming to be a duke when you are not a noble?
+And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
+Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
+:setSpeaker:Xeplogi||L
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
 :loadUnits:
-Frogman: Unfinished yay
+Guard1: ...Pfft! Ha ha ha!
+Guard2: Silence!\a Ugh, look! You've ruined our ambush!
+Xeplogi||L: Oh my! Look at all these monsters and humans!
+# TBA
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosXeplogi1
+}
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
-# TBA
-:loadMap:
+# Same as no win for now
+:loadUnits::player
+Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
+:loadUnits::player
+Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
+Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
+Xeplogi: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
+Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
+Xeplogi|???: Backwater village? I'm no peasant, girl.
+:setSpeaker:Xeplogi||R
+I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+Firbell: Claiming to be a duke when you are not a noble?
+And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
+Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
+:setSpeaker:Xeplogi||L
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
 :loadUnits:
-Frogman: Unfinished yay
+Guard1: ...Pfft! Ha ha ha!
+Guard2: Silence!\a Ugh, look! You've ruined our ambush!
+Xeplogi||L: Oh my! Look at all these monsters and humans!
+# TBA
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosXeplogi1
+}
 :finishConversation:
 }
 }

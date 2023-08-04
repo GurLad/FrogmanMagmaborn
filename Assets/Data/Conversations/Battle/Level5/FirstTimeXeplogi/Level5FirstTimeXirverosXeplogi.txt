@@ -4,8 +4,10 @@ unique:T
 levelNumber:5
 hasCharacter:Xirveros
 !hasFlag:XirverosXeplogi1
+charactersAlive:>1
 ~ Demands
-# Not actual first time, so invisible Lich is fine
+# Guarantee a map that makes sense for the arrivals
+hasTag:PlayersSpawnFirst
 ~ Before battle
 :if:!hasFlag:XirverosXeplogi1{
 :setFlag:XirverosXeplogi1
