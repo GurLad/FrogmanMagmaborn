@@ -37,20 +37,50 @@ Frogman: Um, I was... That is, uh, I mean, I-
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
-# TBA
-:loadMap:
+:loadUnits::player
+Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
+:loadUnits::player
+Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
+Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
+Frogman||L: ...Yeah, it's best to ignore him.
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
 :loadUnits:
-Frogman: Unfinished yay
+Guard1: Did someone say party? Can I join?!
+Xirveros: Yes! We can all have party!
+Guard1: Yay! I love parties!
+Frogman||L: Uh, Xirveros? This is a Guard.\a We can't have a party with them.
+Xirveros||L: Oof...
+Guard2: [Name:Guard1]! Stop messing around with the Magmaborn!
+Guard1||R: But-
+Guard2||R: No buts! Get in line and stop them!
+Guard1||R: ...Oof.
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
-# TBA
-:loadMap:
+:loadUnits::player
+Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
+:loadUnits::player
+Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
+Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
+Frogman||L: ...Yeah, it's best to ignore him.
+:addGenericCharacter:Guard1:young
+:addGenericCharacter:Guard2:old
+:play:GuardTheme
 :loadUnits:
-Frogman: Unfinished yay
+Guard1: Did someone say party? Can I join?!
+Xirveros: Yes! We can all have party!
+Guard1: Yay! I love parties!
+Frogman||L: Uh, Xirveros? This is a Guard.\a We can't have a party with them.
+Xirveros||L: Oof...
+Guard2: [Name:Guard1]! Stop messing around with the Magmaborn!
+Guard1||R: But-
+Guard2||R: No buts! Get in line and stop them!
+Guard1||R: ...Oof.
 :finishConversation:
 }
 }

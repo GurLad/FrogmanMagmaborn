@@ -55,14 +55,22 @@ Firbell: Claiming to be a duke when you are not a noble?
 And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
 Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
 :setSpeaker:Xeplogi||L
-:addGenericCharacter:Guard1:young
-:addGenericCharacter:Guard2:old
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
 :play:GuardTheme
 :loadUnits:
-Guard1: ...Pfft! Ha ha ha!
+Guard1: So I came up to him, right, and said:\a you know these statues you like so much?\a Well I- 
 Guard2: Silence!\a Ugh, look! You've ruined our ambush!
 Xeplogi||L: Oh my! Look at all these monsters and humans!
-# TBA
+Firbell||L: Humans?!
+Guard1: Oops.
+Frogman: Ugh, the Guards again... Let's get out of here.
+Firbell||L: You know these humans?!
+Frogman||L: Yes. They're-
+Guard2: Don't let them get away! Protect the Fortress!
+Frogman: All they ever really do is-
+Guard1: Hey! I wasn't done with my story!
+Frogman: ...I'll explain later. Let's go!
 :if:hasCharacter:Xirveros{
 :setFlag:XirverosXeplogi1
 }
@@ -86,14 +94,22 @@ Firbell: Claiming to be a duke when you are not a noble?
 And of a made up place you are not even from?\a Pathetic.\a Froman, let us leave this poor fool alone.
 Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy of Enkress,\a you-
 :setSpeaker:Xeplogi||L
-:addGenericCharacter:Guard1:young
-:addGenericCharacter:Guard2:old
+:addGenericCharacter:Guard1:
+:addGenericCharacter:Guard2:
 :play:GuardTheme
 :loadUnits:
-Guard1: ...Pfft! Ha ha ha!
+Guard1: So I came up to him, right, and said:\a you know these statues you like so much?\a Well I- 
 Guard2: Silence!\a Ugh, look! You've ruined our ambush!
 Xeplogi||L: Oh my! Look at all these monsters and humans!
-# TBA
+Firbell||L: Humans?!
+Guard1: Oops.
+Frogman: Ugh, the Guards again... Let's get out of here.
+Firbell||L: You know these humans?!
+Frogman||L: Yes. They're-
+Guard2: Don't let them get away! Protect the Fortress!
+Frogman: All they ever really do is-
+Guard1: Hey! I wasn't done with my story!
+Frogman: ...I'll explain later. Let's go!
 :if:hasCharacter:Xirveros{
 :setFlag:XirverosXeplogi1
 }

@@ -84,13 +84,21 @@ Frogman: That's... a pretty lame story.
 Xeplogi: It's a very rough outline. What really happened was-
 :setSpeaker:Xeplogi||L
 :addGenericCharacter:Guard1:young
-:addGenericCharacter:Guard2:old
+:addGenericCharacter:Guard2:young
 :play:GuardTheme
 :loadUnits:
-Guard1: ...Pfft! Ha ha ha!
-Guard2: Silence!\a Ugh, look! You've ruined our ambush!
-Xeplogi||L: Oh my! Look at all these monsters and humans!
-# TBA
+Guard1: Hey! Hey, [Name:Guard2]! Check this out! Magmaborn!\a Real life Magmaborn!
+Guard2: Really? Where?!
+Guard1: Over there!
+Guard2: I don't see anything special.
+Guard1: The ooze with the hat and the green-skinned thing?
+Guard2: Ah! I see them now! They look... pretty lame.\a I expected three headed dragons.
+Guard1: Of course they're three headed dragons!\a They're just hiding their true form, like Lan.
+Guard2: Oh, you're right! That makes so much sense now!
+:setSpeaker:Guard2||R
+Kresla: Humans?!
+Frogman: Uh, yes, there are humans here.\a I'll explain later, we need to run!
+Kresla: Later?! This is incredible! Where are you going?\a Come back here and tell me everything!
 :if:hasCharacter:Xirveros{
 :setFlag:XirverosXeplogi1
 }
@@ -131,13 +139,21 @@ Frogman: That's... a pretty lame story.
 Xeplogi: It's a very rough outline. What really happened was-
 :setSpeaker:Xeplogi||L
 :addGenericCharacter:Guard1:young
-:addGenericCharacter:Guard2:old
+:addGenericCharacter:Guard2:young
 :play:GuardTheme
 :loadUnits:
-Guard1: ...Pfft! Ha ha ha!
-Guard2: Silence!\a Ugh, look! You've ruined our ambush!
-Xeplogi||L: Oh my! Look at all these monsters and humans!
-# TBA
+Guard1: Hey! Hey, [Name:Guard2]! Check this out! Magmaborn!\a Real life Magmaborn!
+Guard2: Really? Where?!
+Guard1: Over there!
+Guard2: I don't see anything special.
+Guard1: The ooze with the hat and the green-skinned thing?
+Guard2: Ah! I see them now! They look... pretty lame.\a I expected three headed dragons.
+Guard1: Of course they're three headed dragons!\a They're just hiding their true form, like Lan.
+Guard2: Oh, you're right! That makes so much sense now!
+:setSpeaker:Guard2||R
+Kresla: Humans?!
+Frogman: Uh, yes, there are humans here.\a I'll explain later, we need to run!
+Kresla: Later?! This is incredible! Where are you going?\a Come back here and tell me everything!
 :if:hasCharacter:Xirveros{
 :setFlag:XirverosXeplogi1
 }
