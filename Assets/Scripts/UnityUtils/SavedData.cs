@@ -276,7 +276,7 @@ public static class SavedData
     /// Loads all data, closing &amp; saving new files as appropriate. Use at the beggining of the game, when loading a previous save etc.
     /// <para>Called automatically when changing slots.</para>
     /// </summary>
-    /// <param name="saveMode">Global to only save the global file (controls etc.), Slot to save the current slot.</param>
+    /// <param name="saveMode">Global to only load the global file (controls etc.), Slot to load the current slot.</param>
     /// <param name="saveSlot">Specify a save slot other than the currently selected one. For save data duplicating mostly.</param>
     public static void LoadAll(SaveMode saveMode = SaveMode.Slot, int saveSlot = -1)
     {
@@ -314,6 +314,28 @@ public static class SavedData
                 {
                     CreateFile(file[0], (SaveFileType)int.Parse(file[1]), saveSlot);
                 }
+            }
+        }
+    }
+    /// <summary>
+    /// Deletes all data from all open files. This does not save the deleted data - you need to call SaveAll in order to actually delete everything.
+    /// </summary>
+    /// <param name="saveMode">Global to only delete the global file (controls etc.), Slot to delete the current slot.</param>
+    /// <param name="saveSlot">Specify a save slot other than the currently selected one. For save data duplicating mostly.</param>
+    public static void DeleteAll(SaveMode saveMode = SaveMode.Slot, int saveSlot = -1)
+    {
+        if (saveMode == SaveMode.Global)
+        {
+            GlobalFile.Delete(-1);
+        }
+        else
+        {
+            saveSlot = saveSlot >= 0 ? saveSlot : SaveSlot;
+            SlotFile.Delete(saveSlot);
+            PlayerPrefs.SetString(Prefix + "AllFiles" + saveSlot, string.Join(";", SaveFiles.Values));
+            foreach (SaveFile file in SaveFiles.Values)
+            {
+                file.Delete(saveSlot);
             }
         }
     }
@@ -412,9 +434,14 @@ public static class SavedData
                 result += key + ":" + dictionary[key] + '\r';
             }
             // Save file
+            string path = Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data";
             if (result.Length > 0)
             {
-                System.IO.File.WriteAllText(Application.persistentDataPath + (Prefix != "" ? ("/" + Prefix) : "") + "/Slot" + slot + "/" + Name + "Type" + typeof(T).Name + "s.data", result.Substring(0, result.Length - 1));
+                System.IO.File.WriteAllText(path, result.Substring(0, result.Length - 1));
+            }
+            else if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
             }
         }
 
@@ -488,6 +515,14 @@ public static class SavedData
                     Set(FloatValues, parts[0], (float)Convert.ToDouble(parts[1]));
                 }
             }
+        }
+
+        public void Delete(int slot)
+        {
+            StringValues.Clear();
+            IntValues.Clear();
+            FloatValues.Clear();
+            dataChanged = true;
         }
 
         public void Set<T>(string dataName, T data)
