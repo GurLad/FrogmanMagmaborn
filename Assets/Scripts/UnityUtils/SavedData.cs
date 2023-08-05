@@ -255,7 +255,7 @@ public static class SavedData
     /// </summary>
     /// <param name="saveMode">Global to only save the global file (controls etc.), Slot to save the current slot.</param>
     /// <param name="saveSlot">Specify a save slot other than the currently selected one. For save data duplicating mostly.</param>
-    public static void SaveAll(SaveMode saveMode = SaveMode.Slot, int saveSlot = -1)
+    public static void SaveAll(SaveMode saveMode = SaveMode.Slot, int saveSlot = -1, bool forceSave = false)
     {
         if (saveMode == SaveMode.Global)
         {
@@ -264,11 +264,11 @@ public static class SavedData
         else
         {
             saveSlot = saveSlot >= 0 ? saveSlot : SaveSlot;
-            SlotFile.Save(saveSlot);
+            SlotFile.Save(saveSlot, forceSave);
             PlayerPrefs.SetString(Prefix + "AllFiles" + saveSlot, string.Join(";", SaveFiles.Values));
             foreach (SaveFile file in SaveFiles.Values)
             {
-                file.Save(saveSlot);
+                file.Save(saveSlot, forceSave);
             }
         }
     }
@@ -361,9 +361,9 @@ public static class SavedData
             AutoSave = autoSave;
         }
 
-        public void Save(int slot)
+        public void Save(int slot, bool forceSave = false)
         {
-            if (!dataChanged)
+            if (!dataChanged && !forceSave)
             {
                 return;
             }

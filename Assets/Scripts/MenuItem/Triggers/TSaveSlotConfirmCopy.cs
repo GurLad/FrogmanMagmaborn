@@ -10,6 +10,9 @@ public class TSaveSlotConfirmCopy : Trigger
 
     public override void Activate()
     {
-        // TBA
+        int oldSlot = SavedData.SaveSlot;
+        SavedData.SaveSlot = Target;
+        SavedData.LoadAll(SaveMode.Slot, oldSlot);
+        SavedData.SaveAll(SaveMode.Slot, Target, true);
     }
 }
