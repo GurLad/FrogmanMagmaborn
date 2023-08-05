@@ -41,9 +41,9 @@ public class Randomizer
         // Units
         foreach (UnitData unitData in unitClassData.UnitDatas)
         {
-            // Always replace fliers with other fliers
+            // Always replace fliers with other fliers, and 0-range units with other 0-range units
             ClassData oldClass = classes[unitData.Class];
-            List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies);
+            List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies && Mathf.Min(a.Weapon.Range, 1) == Mathf.Min(oldClass.Weapon.Range, 1));
             ClassData newClass = options.RandomItemInList();
             unitData.DisplayName = shuffled.Find(a => a.Name == unitData.Name).TheDisplayName;
             unitData.Class = newClass.Name;
@@ -64,6 +64,10 @@ public class Randomizer
         // Maps
         foreach (Map map in mapController.Maps)
         {
+            if (map.LevelNumber < 1) // It will never get selected, so
+            {
+                continue;
+            }
             LevelMetadata levelMetadata = levelMetadataController[map.LevelNumber];
             MapController.UnitPlacementData boss = null;
             if (map.Objective == Objective.Boss)
@@ -86,7 +90,7 @@ public class Randomizer
                 {
                     //Bugger.Info(map.Name + ": " + unit.Class);
                     ClassData oldClass = classes[unit.Class];
-                    List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies);
+                    List<ClassData> options = unitClassData.ClassDatas.FindAll(a => a.Flies == oldClass.Flies && Mathf.Min(a.Weapon.Range, 1) == Mathf.Min(oldClass.Weapon.Range, 1));
                     unit.Class = options.RandomItemInList().Name;
                     if (unit == boss)
                     {
