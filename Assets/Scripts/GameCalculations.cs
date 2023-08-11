@@ -203,7 +203,7 @@ public static class GameCalculations
             case TormentPowerState.None:
                 break;
             case TormentPowerState.I:
-                units = units.FindAll(a => a.TheTeam.IsEnemy(StaticGlobals.MainPlayerTeam) && !a.Moved);
+                units = units.FindAll(a => a.TheTeam.IsEnemy(StaticGlobals.MainPlayerTeam) && !a.Moved && a.Health > 1);
                 if (units.Count > 0)
                 {
                     Unit selected = units.RandomItemInList();
@@ -211,7 +211,7 @@ public static class GameCalculations
                 }
                 break;
             case TormentPowerState.II:
-                units = units.FindAll(a => a.TheTeam.IsMainPlayerTeam() && !a.Moved);
+                units = units.FindAll(a => a.TheTeam.IsMainPlayerTeam() && !a.Moved && a.Health < a.Stats.Base.MaxHP);
                 if (units.Count > 0)
                 {
                     Unit selected = units.RandomItemInList();

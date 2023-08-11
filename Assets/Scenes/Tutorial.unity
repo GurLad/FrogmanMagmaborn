@@ -178,6 +178,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}
 --- !u!114 &19928130
@@ -3137,6 +3138,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 364709708}
 --- !u!114 &364709706
@@ -6114,6 +6116,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 714431456}
 --- !u!114 &714431454
@@ -6618,7 +6621,7 @@ MonoBehaviour:
     Inclination: 2
     Growths:
       Values: 010000000100000001000000010000000100000001000000
-    DeathQuote: 
+    DeathQuotes: []
   ClassDatas:
   - Name: Frogman
     Flies: 0
@@ -7749,6 +7752,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 817546235}
 --- !u!114 &817546233
@@ -9900,6 +9904,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1051359413}
 --- !u!114 &1051359411
@@ -10038,6 +10043,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1053448145}
 --- !u!114 &1053448143
@@ -10318,6 +10324,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1067491182}
 --- !u!114 &1067491180
@@ -10978,6 +10985,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1124412632}
 --- !u!114 &1124412630
@@ -11392,6 +11400,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}
 --- !u!114 &1159069833
@@ -11940,6 +11949,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}
 --- !u!114 &1265490743
@@ -12075,6 +12085,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}
 --- !u!114 &1275283601
@@ -13235,6 +13246,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 0
   BaseSpeed: 7
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 0}
 --- !u!114 &1460440878
@@ -13585,6 +13597,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1524938352}
 --- !u!114 &1524938350
@@ -14057,6 +14070,7 @@ MonoBehaviour:
     - {fileID: 0}
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 0
   Renderer: {fileID: 0}
 --- !u!1 &1599336874
@@ -14120,17 +14134,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0}
-  MovementMarker: {fileID: 1159069834}
-  AttackMarker: {fileID: 1275283602}
   TheTeam: 0
   Name: Frogman
   DisplayName: 
   Class: Frogman
   AIType: 0
+  AIData: 
   Flies: 0
   Stats:
-    Growths: 010000000100000001000000010000000100000001000000
-    statValues: 040000000400000004000000040000000400000004000000
+    Base:
+      Growths: 
+      statValues: 
   Inclination: 0
   MaxAcceptableHitRisk: 50
   Priorities:
@@ -14138,7 +14152,11 @@ MonoBehaviour:
     RelativeDamageWeight: 0
     SurvivalWeight: 0
     CautionLevel: 0
+  MovementMarker: {fileID: 1159069834}
+  AttackMarker: {fileID: 1275283602}
   Symbol: {fileID: 1918314996}
+  MultiTileMoveMarker: {fileID: 0}
+  PortraitMode: 3
   Weapon:
     Name: 
     HitStat: 0
@@ -14152,9 +14170,10 @@ MonoBehaviour:
   PreviousPos: {x: 0, y: 0}
   ReinforcementTurn: 0
   Statue: 0
-  portraitMode: 3
   skills:
     skills: 
+  enemyOverrides: []
+  allyOverrides: []
   moved: 0
 --- !u!212 &1599336878
 SpriteRenderer:
@@ -15405,7 +15424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769937822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 872837131}
@@ -16393,6 +16412,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1824420858}
 --- !u!114 &1824420856
@@ -16645,6 +16665,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1837969777}
 --- !u!114 &1837969775
@@ -16783,6 +16804,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 1855928573}
 --- !u!114 &1855928571
@@ -17142,6 +17164,7 @@ MonoBehaviour:
   PartTitle: {fileID: 112909811045203277, guid: 5389f5b73927a774b8d02677a15b8be2,
     type: 3}
   BaseMenu: {fileID: 0}
+  EndingTitleCards: {fileID: 0}
   UnitClassData: {fileID: 734203673}
   LevelMetadataController: {fileID: 1902908239}
   MapController: {fileID: 1902908238}
@@ -17155,10 +17178,12 @@ MonoBehaviour:
   AttackMarker: {fileID: 1275283602}
   EscapeMarker: {fileID: 1265490740}
   ListenersObject: {fileID: 182921188}
+  EndgameObject: {fileID: 0}
   LevelNumber: 2
   LevelMetadata:
     TeamDatas:
-    - Palette:
+    - Team: 0
+      Palette:
         Colors:
         - id: 55
         - id: 55
@@ -17174,7 +17199,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 1
+      Palette:
         Colors:
         - id: 55
         - id: 55
@@ -17190,7 +17216,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 2
+      Palette:
         Colors:
         - id: 55
         - id: 55
@@ -17231,6 +17258,7 @@ MonoBehaviour:
       - id: 55
     TileObjects: []
     Tiles: []
+    SpeedOverride: 0
   MapObjects: []
   InteractState: 0
   Selected: {fileID: 0}
@@ -17285,10 +17313,12 @@ MonoBehaviour:
   PushPullApproachDistance: 0
   PushPullApproachRetreatSpeed: 0
   PushPullMoveSpeed: 0
+  TeleportAnimation: {fileID: 0}
+  TeleportInSFX: {fileID: 0}
+  TeleportOutSFX: {fileID: 0}
   HitSFX: {fileID: 8300000, guid: 40ca7dc105582aa4ba1b6fc405e01827, type: 3}
   MissSFX: {fileID: 8300000, guid: 734204ac8fd74b440a2794ce4507d642, type: 3}
   NoDamageSFX: {fileID: 8300000, guid: ce86335980fa1e843b15b5c2478efefd, type: 3}
-  CurrentAnimation: 0
 --- !u!114 &1902908238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17485,6 +17515,7 @@ MonoBehaviour:
       ArmorMod: 1
       Palette: 1
       High: 0
+    SpeedOverride: 0
   Maps:
   - Name: Tutorial
     LevelNumber: 1
@@ -17639,7 +17670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultMetadata:
     TeamDatas:
-    - Palette:
+    - Team: 0
+      Palette:
         Colors:
         - id: 13
         - id: 25
@@ -17655,7 +17687,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 1
+      Palette:
         Colors:
         - id: 13
         - id: 20
@@ -17671,7 +17704,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 2
+      Palette:
         Colors:
         - id: 13
         - id: 15
@@ -17698,7 +17732,8 @@ MonoBehaviour:
     UnitReplacements: []
   LevelMetadatas:
   - TeamDatas:
-    - Palette:
+    - Team: 0
+      Palette:
         Colors:
         - id: 13
         - id: 25
@@ -17714,7 +17749,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 1
+      Palette:
         Colors:
         - id: 13
         - id: 20
@@ -17730,7 +17766,8 @@ MonoBehaviour:
         CautionLevel: 0
       BaseSymbol: {fileID: 0}
       MovedSymbol: {fileID: 0}
-    - Palette:
+    - Team: 2
+      Palette:
         Colors:
         - id: 13
         - id: 12
@@ -18827,6 +18864,7 @@ MonoBehaviour:
     Frames: []
   FixedSpeed: 1
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 2037365766}
 --- !u!114 &2037365764

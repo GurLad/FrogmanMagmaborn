@@ -1349,7 +1349,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             case Objective.Boss:
                 return !CheckUnitAlive(selectedMap.ObjectiveData);
             case Objective.Escape:
-                return frogman.Pos == escapePos;
+                return frogman.Pos == escapePos || units.FindAll(a => !a.TheTeam.IsMainPlayerTeam() && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Survive:
                 return Turn > int.Parse(selectedMap.ObjectiveData) || units.FindAll(a => !a.TheTeam.IsMainPlayerTeam() && a.ReinforcementTurn <= 0).Count == 0;
             case Objective.Custom:
