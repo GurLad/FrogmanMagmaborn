@@ -9,6 +9,8 @@ public class EndingCardsController : MidBattleScreen
     [Header("Rank palettes")]
     public List<Palette> RankPalettes = new List<Palette> { new Palette() };
     public EndingCardHolder EndingCardHolder;
+    [Header("Objects")]
+    public EndingStatsController EndingStatsController;
     [HideInInspector]
     public PaletteController.PaletteControllerState SavedState;
     private int currentCharacter;
@@ -62,8 +64,12 @@ public class EndingCardsController : MidBattleScreen
         }
         else
         {
-            // TBA
-            SavedData.Save("FinishedGame", 1);
+            gameObject.SetActive(false);
+            EndingStatsController.gameObject.SetActive(true);
+            MidBattleScreen.Set(this, false);
+            MidBattleScreen.Set(EndingStatsController, true);
+            EndingStatsController.Display("TEMP", 0);
+            PaletteController.Current.FadeIn(null, 30 / 4);
         }
     }
 

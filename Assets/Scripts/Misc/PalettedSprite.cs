@@ -21,6 +21,32 @@ public class PalettedSprite : MonoBehaviour
     [SerializeField]
     [Range(0,3)]
     private int palette;
+    public Sprite Sprite
+    {
+        get
+        {
+            if (!initialized)
+            {
+                throw Bugger.FMError("Uninitialized PalettedSprite.");
+            }
+            return !ui ? renderer.sprite : image.sprite;
+        }
+        set
+        {
+            if (!initialized)
+            {
+                throw Bugger.FMError("Uninitialized PalettedSprite.");
+            }
+            if (!ui)
+            {
+                renderer.sprite = value;
+            }
+            else
+            {
+                image.sprite = value;
+            }
+        }
+    }
     private bool ui;
     private new SpriteRenderer renderer;
     private Image image;
