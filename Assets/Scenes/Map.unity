@@ -51412,6 +51412,7 @@ GameObject:
   - component: {fileID: 1902908239}
   - component: {fileID: 1902908240}
   - component: {fileID: 1902908241}
+  - component: {fileID: 1902908243}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -60491,6 +60492,18 @@ MonoBehaviour:
   UIAttackerPanel: {fileID: 1409916836}
   UIDefenderPanel: {fileID: 2146978961}
   Cursor: {fileID: 1715750239}
+--- !u!114 &1902908243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902908234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8f85e740a6dc040b89b583bd7feeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916162994
 GameObject:
   m_ObjectHideFlags: 0

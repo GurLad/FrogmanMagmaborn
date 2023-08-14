@@ -646,6 +646,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         if (team == GameCalculations.FirstTurnTeam)
         {
             Turn++;
+            RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.TurnPassed);
             NotifyListeners(a => a.OnBeginPlayerTurn(units));
         }
         return !CheckConveresationWait() && !MidBattleScreen.HasCurrent; // Wait for turn events
@@ -733,6 +734,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void Win()
     {
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.Won);
         NotifyListeners(a => a.OnEndLevel(units, true));
         LevelNumber++;
         currentKnowledge++;
@@ -1193,8 +1195,11 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void Lose()
     {
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.Lost);
         NotifyListeners(a => a.OnEndLevel(units, false));
         LevelMetadataController[0].SetPalettesFromMetadata(); // Fix Torment palette
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.RecordPlayTime);
+        RunStatsController.Current?.AddToTotal();
         SavedData.Append("Knowledge", "Amount", currentKnowledge);
         SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
         SavedData.Append("Log", "Data", "Lost :(\n");
@@ -1216,7 +1221,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         TurnAnimation.ShowTurn(CurrentPhase);
         Cursor.Palette = (int)CurrentPhase;
         // Stats - increase the maps count of player units
-        units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => SavedData.Append("Statistics", a.ToString() + "MapsCount", 1));
+        units.FindAll(a => a.TheTeam.PlayerControlled()).ForEach(a => RunStatsController.Current?.RecordUnitEvent(a, RunStatsController.UnitEvent.Spawn));
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.TurnPassed);
     }
 
     private void AssignGenericPortraitsToUnits(Team? team = null)

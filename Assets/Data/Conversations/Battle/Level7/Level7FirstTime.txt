@@ -76,6 +76,7 @@ Alfred||R: The crystals.\a The Guards.\a Just like it used to be.\a But this tim
 }
 :if:hasCharacter:Memerian{
 :if:charactersAlive:<2{
+:if:!hasFlag:MemerianMentionedFashima{
 Memerian||R: Indeed. Its entire purpose is to prevent us from leaving.\a And the monsters, of course.
 Frogman: Did you ever get insider?
 Memerian: No, never. They are always led by a powerful mage.\a Fashima.\a She was way too strong.\a Annoying as hell, too.
@@ -85,6 +86,11 @@ Our only hope is that she had died of old age by now.
 Frogman: Was she truly that powerful?
 Memerian: She's a mage. She doesn't play fair.\a But enough chitchat - you'll see for yourself,\a soon enough.
 Frogman: Right.
+:setFlag:MemerianMentionedFashima
+}
+:else:{
+Memerian||R: Hmpf.
+}
 }
 :else:{
 Memerian||R: ...Let's hope they don't have a mage in here.

@@ -8,6 +8,7 @@ public class SuspendController : MonoBehaviour
 
     public SuspendDataConversationPlayer SuspendDataConversationPlayer;
     public SuspendDataGameController SuspendDataGameController;
+    public SuspendDataRunStatsController SuspendDataRunStatsController;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class SuspendController : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.RecordPlayTime);
         SavedData.Append("PlayTime", Time.timeSinceLevelLoad);
         SaveToSuspendData();
         SavedData.SaveAll();
@@ -25,6 +27,7 @@ public class SuspendController : MonoBehaviour
     {
         SuspendDataConversationPlayer = ConversationPlayer.Current.SaveToSuspendData();
         SuspendDataGameController = GameController.Current.SaveToSuspendData();
+        SuspendDataRunStatsController = RunStatsController.Current?.SaveToSuspendData();
         SavedData.Save("HasSuspendData", 1);
         SavedData.Save("SuspendData", "SuspendData", JsonUtility.ToJson(this));
         SavedData.Append("Log", "Data", "Saved & quit\n");
@@ -37,5 +40,6 @@ public class SuspendController : MonoBehaviour
         JsonUtility.FromJsonOverwrite(SavedData.Load<string>("SuspendData", "SuspendData"), this);
         ConversationPlayer.Current.LoadFromSuspendData(SuspendDataConversationPlayer);
         GameController.Current.LoadFromSuspendData(SuspendDataGameController);
+        RunStatsController.Current?.LoadFromSuspendData(SuspendDataRunStatsController);
     }
 }

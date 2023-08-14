@@ -424,11 +424,11 @@ public class Unit : MapObject
         // Stats - increase battle count if either unit is a player
         if (TheTeam.PlayerControlled())
         {
-            SavedData.Append("Statistics", ToString() + "BattleCount", 1);
+            RunStatsController.Current?.RecordUnitEvent(this, RunStatsController.UnitEvent.Battle);
         }
-        else if (unit.TheTeam.PlayerControlled())
+        if (unit.TheTeam.PlayerControlled())
         {
-            SavedData.Append("Statistics", unit.ToString() + "BattleCount", 1);
+            RunStatsController.Current?.RecordUnitEvent(unit, RunStatsController.UnitEvent.Battle);
         }
         // Determine who attacks first
         Unit attacker, defender;
@@ -913,11 +913,11 @@ public class Unit : MapObject
                     // Stats - increase kill count if it's a player unit, increase death count if a player unit was killed
                     if (TheTeam.PlayerControlled())
                     {
-                        SavedData.Append("Statistics", ToString() + "KillCount", 1);
+                        RunStatsController.Current?.RecordUnitEvent(this, RunStatsController.UnitEvent.Won);
                     }
-                    else if (unit.TheTeam.PlayerControlled())
+                    if (unit.TheTeam.PlayerControlled())
                     {
-                        SavedData.Append("Statistics", unit.ToString() + "DeathCount", 1);
+                        RunStatsController.Current?.RecordUnitEvent(unit, RunStatsController.UnitEvent.Lost);
                     }
                     GameController.Current.KillUnit(unit);
                     return null;

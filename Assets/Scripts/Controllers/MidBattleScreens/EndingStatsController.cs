@@ -21,7 +21,10 @@ public class EndingStatsController : MidBattleScreen
         // Won text
         WonText.text = wonName.ToColoredString(wonPalette) + " won!";
         // Run stats - requires the runStats rework
-        RunStats.text = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0) + "\n" + "TBA" + "\n" + "TBA";
+        RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.RecordPlayTime);
+        RunStats.text = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0) + "\n" +
+            RunStatsController.Current.GameStats.TotalTurns + "\n" +
+            RunStatsController.Current.GameStats.PlayTime;
         // TormentPowers
         BaseDisplay.Icon.Awake();
         for (int i = 0; i < TormentPowers.Count; i++)
@@ -54,6 +57,7 @@ public class EndingStatsController : MidBattleScreen
             {
                 PaletteController.Current.FadeOut(() =>
                 {
+                    RunStatsController.Current?.AddToTotal();
                     SavedData.Save("FinishedGame", 1);
                     SavedData.SaveAll();
                     SceneController.LoadScene("Menu");
