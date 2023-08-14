@@ -11,6 +11,7 @@ public class EndingStatsController : MidBattleScreen
     public Palette FinPalette;
     [Header("Objects")]
     public RectTransform Holder;
+    public RectTransform PowersHolder;
     public Text WonText;
     public Text RunStats;
     public TormentPowerDisplay BaseDisplay;
@@ -24,17 +25,18 @@ public class EndingStatsController : MidBattleScreen
         RunStatsController.Current?.RecordGameEvent(RunStatsController.GameEvent.RecordPlayTime);
         RunStats.text = (Difficulty)SavedData.Load("Knowledge", "UpgradeDifficulty", 0) + "\n" +
             RunStatsController.Current.GameStats.TotalTurns + "\n" +
-            RunStatsController.Current.GameStats.PlayTime;
+            RunStatsController.Current.GameStats.PlayTime.SecondsToTime();
         // TormentPowers
-        BaseDisplay.Icon.Awake();
         for (int i = 0; i < TormentPowers.Count; i++)
         {
             int perRow = Mathf.Min(TormentPowersPerRow, TormentPowers.Count - (i / TormentPowersPerRow) * TormentPowersPerRow);
             TormentPowerDisplay newDisplay = Instantiate(BaseDisplay, BaseDisplay.transform.parent);
+            newDisplay.Icon.Awake();
             newDisplay.Display(TormentPowers[i]);
             newDisplay.RectTransform.anchoredPosition += new Vector2(
-                (Holder.sizeDelta.x - BaseDisplay.RectTransform.sizeDelta.x) * (perRow > 1 ? (i % perRow) / (float)(perRow - 1) : 0.5f),
-                (BaseDisplay.RectTransform.sizeDelta.y + 8) * (i / perRow));
+                (PowersHolder.sizeDelta.x - BaseDisplay.RectTransform.sizeDelta.x) * (perRow > 1 ? (i % perRow) / (float)(perRow - 1) : 0.5f),
+                -(BaseDisplay.RectTransform.sizeDelta.y + 8) * (i / TormentPowersPerRow));
+            newDisplay.gameObject.SetActive(true);
         }
     }
 
@@ -49,7 +51,7 @@ public class EndingStatsController : MidBattleScreen
                     Holder.gameObject.SetActive(false);
                     FinObject.gameObject.SetActive(true);
                     GameController.Current.LevelMetadata.SetPalettesFromMetadata();
-                    PaletteController.Current.BackgroundPalettes[0] = FinPalette;
+                    PaletteController.Current.BackgroundPalettes[0].CopyFrom(FinPalette);
                     PaletteController.Current.FadeIn(null, 30 / 4);
                 }, 30 / 4);
             }

@@ -64,7 +64,7 @@ public class EndingCardsController : MidBattleScreen
         }
         else
         {
-            gameObject.SetActive(false);
+            EndingCardHolder.gameObject.SetActive(false);
             EndingStatsController.gameObject.SetActive(true);
             MidBattleScreen.Set(this, false);
             MidBattleScreen.Set(EndingStatsController, true);

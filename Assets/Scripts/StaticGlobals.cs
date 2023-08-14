@@ -105,6 +105,11 @@ public static class StaticGlobals
         return "<color=#" + paletteID + "00000>" + str + "</color>";
     }
 
+    public static string SecondsToTime(this float seconds)
+    {
+        return Mathf.FloorToInt(seconds / 3600).ToString().PadLeft(2, '0') + ":" + Mathf.FloorToInt((seconds / 60) % 60).ToString().PadLeft(2, '0');
+    }
+
     public static string FindLineBreaks(this string line, int lineWidth)
     {
         string cutLine = line;

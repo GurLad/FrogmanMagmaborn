@@ -78,7 +78,7 @@ public class SaveSlot : MonoBehaviour
             Text.text = "-- Slot " + (currentSlot + 1) + " --\n" +
                         "Runs: " + SavedData.Load<int>("NumRuns") + "\n" +
                         "Best: " + SavedData.Load<int>("FurthestLevel") + "\n" +
-                        "Time: " + SecondsToTime(SavedData.Load<float>("PlayTime"));
+                        "Time: " + SavedData.Load<float>("PlayTime").SecondsToTime();
             if (SavedData.Load("HasSuspendData", 0) != 0)
             {
                 Text.text = Text.text.ToColoredString(2);
@@ -98,11 +98,6 @@ public class SaveSlot : MonoBehaviour
             Text.text = "-- Slot " + (currentSlot + 1) + " --\n\n" + "  New Game ";
             ContinueOnlyObjects.ForEach(a => a.SetActive(false));
         }
-    }
-
-    private string SecondsToTime(float seconds)
-    {
-        return Mathf.FloorToInt(seconds / 3600).ToString().PadLeft(2, '0') + ":" + Mathf.FloorToInt((seconds / 60) % 60).ToString().PadLeft(2, '0');
     }
 
     private ClassData GetMVP()

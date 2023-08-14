@@ -43,6 +43,8 @@ Frogman: Tormenttime Time!
 }
 :callOther:EndgameSetDeathQuotes
 :callOther:EndgameInitData
+#:setTempFlag:FashimaVictory
+:showEnding:
 
 ~ After battle
 :if:hasTempFlag:EndgameFrogmanFashima{
