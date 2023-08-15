@@ -7810,7 +7810,21 @@ MonoBehaviour:
       get away! Protect the Fortress!\nFrogman: All they ever really do is-\nGuard1:
       Hey! I wasn't done with my story!\nFrogman: ...I'll explain later. Let's go!\n:if:hasCharacter:Xirveros{\n:setFlag:XirverosXeplogi1\n}\n:finishConversation:\n}\n}\n}\n\n~
       After battle\n:if:furthestLevel:<6{\n# PostActualFirst - part of the firstTime
-      convo, never happens\n}\n:else:{\n:if:hasCharacter:Firbell{\n# PostPostWin\n:finishConversation:\n}\n:callOther:Level5GenericXeplogi\n:finishConversation:\n}\n\n#
+      convo, never happens\n}\n:else:{\n:if:hasCharacter:Firbell{\n# PostPostWin\nFrogman:
+      Everyone, this way!\\a Let's get out of here!\n:if:hasCharacter:Xeplogi{\nFrogman||L:
+      Ah... Safe at last.\nXeplogi: Indeed. I do believe we could use a moment of
+      rest.\nFrogman: ...Nah. Let's just go to the fortress now.\\a We've got no
+      time to lose.\nXeplogi: W-well...\nFrogman: Are you coming or not?\nXeplogi:
+      Wait!\n:hideUnit:Frogman\nUgh...\nFirbell: It is just the way that he is.\\a
+      You will get used to it,\\a Logi.\nXeplogi: And yet, it is so very vexing!\\a
+      Why are you following him?\nFirbell: ...Do you have a better idea?\nXeplogi:
+      How about you all follow me, instead?\\a I assure you, I'm quite the benelovent
+      leader.\nFirbell: ...Goodbye,\\a duke of nowhere.\n:hideUnit:Firbell\nXeplogi:
+      I'm the Duke of Jess, not Nowhere!\\a W-wait, don't leave me!\\a ...\nUgh,
+      fine...\n}\n:else:{\nFrogman||L: Xeplogi didn't make it, huh?\nFirbell: That
+      is good. I did not like him.\nFrogman: Because he claimed you aren't a real
+      princess?\nFirbell: Yes.\nFrogman: ...Okay.\\a We're getting pretty close to
+      the fortress.\\a Let's just move on.\nFirbell: Let us.\n:finishConversation:\n}\n:callOther:Level5GenericXeplogi\n:finishConversation:\n}\n\n#
       === Functions ====\n\n~ GuardsArriveFirst\n:addGenericCharacter:Guard1:young\n:addGenericCharacter:Guard2:old\n:play:GuardTheme\n???:
       Hey! Is someone there?\nFrogman|: Huh? Another Magmaborn?\nXeplogi||R: I was
       in the middle-\n:loadUnits:\nGuard2: No, look! Those are Magmaborn!\nFrogman:
@@ -8285,6 +8299,11 @@ MonoBehaviour:
       #
       PostPostWin
 
+      # Can''t really think of an interesting interaction between
+      Kresla & Xirveros
+
+      :callOther:Level5GenericXeplogi
+
       :finishConversation:
 
       }
@@ -8672,6 +8691,69 @@ MonoBehaviour:
 
       #
       PostPostWin
+
+      Frogman: Everyone, this way!\a Let''s get out of here!
+
+      :if:hasCharacter:Xeplogi{
+
+      Xirveros||L:
+      Ooze!
+
+      Xeplogi: Are you talking to me, perchance?
+
+      Xirveros: Yes!
+      I like you. I write your song!
+
+      Xeplogi: Oh? A song for me? My, I would
+      be delighted to hear it!
+
+      Xirveros: An ooze was here    \w@
+
+      Everyone
+      could hear \w@
+
+      As green as the sea \w@
+
+      He was nice to me   \w@
+
+      Said
+      he was of Jess \w@
+
+      And I just said yes \w@
+
+      Xeplogi: Wow. I must
+      admit, I am at quite a loss for words.
+
+      }
+
+      :else:{
+
+      Frogman||L:
+      Xeplogi didn''t make it, huh?
+
+      Xirveros: Ooze dead? No! Me like ooze.\a
+      Me write ooze song!
+
+      Frogman: No, please don''t-
+
+      Xirveros: An
+      ooze was here    \w@
+
+      Everyone could hear \w@
+
+      As green as the
+      sea \w@
+
+      He was nice to me   \w@
+
+      Said he was of Jess \w@
+
+      And
+      I just said yes \w@
+
+      Frogman: ...Wow.
+
+      }
 
       :finishConversation:
 
@@ -9418,7 +9500,7 @@ MonoBehaviour:
       Firbell: Yes.\a Did you notice how the humans disintegrated?
 
       Frogman:
-      Holy subject change, Firbell.\a Anyway- wait, what?\a Disintegrated?
+      What does that have to do with- wait, what?\a Disintegrated?
 
       Firbell:
       Yes. Whenever one died, they just disappeared.\a Like the monsters.
@@ -19604,6 +19686,18 @@ MonoBehaviour:
       :loadMap:InitTormentRoom
 
       :loadUnits:InitTormentRoom
+
+      :showPartTitle:Meow:Test
+
+      :showCG:Tavern
+
+      :showPartTitle:Wow:Test
+
+      :showCG:FortressPreview
+
+      :showPartTitle:Now:Test
+
+      :hideCG:
 
       Frogman:
       What?

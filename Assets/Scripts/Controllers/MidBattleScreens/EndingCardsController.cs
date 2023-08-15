@@ -69,6 +69,7 @@ public class EndingCardsController : MidBattleScreen
             MidBattleScreen.Set(this, false);
             MidBattleScreen.Set(EndingStatsController, true);
             EndingStatsController.Display("TEMP", 0);
+            GameController.Current.LevelMetadata.SetPalettesFromMetadata();
             PaletteController.Current.FadeIn(null, 30 / 4);
         }
     }

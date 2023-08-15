@@ -104,7 +104,9 @@ public static class EventCommandProcessor
         new CommandStruct("endgameSetSummonOptionsGeneric", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetSummonOptionsMonster", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetPostSummonConversation", CommandType.Endgame, CAT.String),
-        new CommandStruct("endgameSetPostCrystalShatterConversation", CommandType.Endgame, CAT.String)
+        new CommandStruct("endgameSetPostCrystalShatterConversation", CommandType.Endgame, CAT.String),
+        new CommandStruct("endgameFadeToWhite", CommandType.Endgame),
+        new CommandStruct("endgameEnd", CommandType.Endgame)
     });
 
     private static int SkipBlock(int currentLine, List<string> lines)
@@ -544,17 +546,27 @@ public static class EventCommandProcessor
                 {
                     if (cgController.Active)
                     {
-                        cgController.FadeOutCG(() => cgController.FadeInCG(args[0]));
-                    }
-                    else if (beforeBattleStart && shouldFadeIn)
-                    {
-                        PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
-                        cgController.FadeInCG(args[0], currentPaletteState);
+                        if (shouldFadeIn)
+                        {
+                            cgController.FadeInCG(args[0]);
+                        }
+                        else
+                        {
+                            cgController.FadeOutCG(() => cgController.FadeInCG(args[0]));
+                        }
                     }
                     else
                     {
-                        PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
-                        PaletteController.Current.FadeOut(() => cgController.FadeInCG(args[0], currentPaletteState));
+                        if (shouldFadeIn)
+                        {
+                            PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
+                            cgController.FadeInCG(args[0], currentPaletteState);
+                        }
+                        else
+                        {
+                            PaletteController.PaletteControllerState currentPaletteState = PaletteController.Current.SaveState();
+                            PaletteController.Current.FadeOut(() => cgController.FadeInCG(args[0], currentPaletteState));
+                        }
                     }
                 };
                 return result | StartLineResult.Fade;
@@ -563,8 +575,16 @@ public static class EventCommandProcessor
                 // Removes the previous CG (if any)
                 if (cgController.Active)
                 {
-                    player.Pause();
-                    cgController.FadeOutCG(() => player.Resume(1, true));
+                    if (shouldFadeIn)
+                    {
+                        cgController.HideWithoutFade();
+                        return result;
+                    }
+                    else
+                    {
+                        player.Pause();
+                        cgController.FadeOutCG(() => player.Resume(1, true));
+                    }
                 }
                 return result | StartLineResult.Fade;
             case "screenShake":
@@ -589,7 +609,9 @@ public static class EventCommandProcessor
         string commandName,
         string[] parts,
         string[] args,
-        ConversationPlayer player)
+        ConversationPlayer player,
+        bool beforeBattleStart,
+        bool shouldFadeIn)
     {
         StartLineResult result = StartLineResult.None;
         switch (commandName)
@@ -606,8 +628,16 @@ public static class EventCommandProcessor
                 PartTitleAnimation partTitle = GameObject.Instantiate(GameController.Current.PartTitle).GetComponentInChildren<PartTitleAnimation>();
                 partTitle.Begin(new List<string>(new string[] { args[0], args[1] }));
                 partTitle.transform.parent.gameObject.SetActive(false);
-                player.FadeThisOut(() => { partTitle.InitPalette(); partTitle.FadeThisIn(); }, null, false);
-                return result | StartLineResult.MidBattleScreen;
+                if (shouldFadeIn)
+                {
+                    partTitle.InitPalette();
+                    partTitle.FadeThisIn();
+                }
+                else
+                {
+                    player.FadeThisOut(() => { partTitle.InitPalette(); partTitle.FadeThisIn(); }, null, false);
+                }
+                return result | StartLineResult.MidBattleScreen | StartLineResult.Fade;
             case "showChoice":
                 // Args: choosingCharacterName, option1, option2
                 player.Pause();
@@ -638,14 +668,24 @@ public static class EventCommandProcessor
             case "showEnding":
                 // Args: none
                 player.Pause(); // Will never continue, but still
-                player.FadeThisOut(() =>
+                if (shouldFadeIn)
                 {
                     EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
                     MidBattleScreen.Set(endingCardsController, true);
                     endingCardsController.Init();
                     endingCardsController.DisplayNext();
-                }, null, false);
-                return result | StartLineResult.MidBattleScreen;
+                }
+                else
+                {
+                    player.FadeThisOut(() =>
+                    {
+                        EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
+                        MidBattleScreen.Set(endingCardsController, true);
+                        endingCardsController.Init();
+                        endingCardsController.DisplayNext();
+                    }, null, false);
+                }
+                return result | StartLineResult.MidBattleScreen | StartLineResult.Fade;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");
         }
@@ -915,7 +955,7 @@ public static class EventCommandProcessor
                     GameController.Current.LoadLevelUnits();
                     GameController.Current.LevelMetadata.SetPalettesFromMetadata();
                     // TBA: A better transition
-                    PaletteController.Current.FadeIn(() => player.Resume(), 30 / 4);
+                    PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 30 / 4);
                 });
                 return result | StartLineResult.MidBattleScreen;
             case "endgameSetSummonOptionsMagmaborn":
@@ -937,6 +977,22 @@ public static class EventCommandProcessor
                 break;
             case "endgameSetPostCrystalShatterConversation":
                 EndgameSummoner.Current.PostCrystalShatterConversation = args[0];
+                break;
+            case "endgameFadeToWhite":
+                EndgameScreenCover.Current.FadeToWhite(() =>
+                {
+                    GameController.Current.EndEndgame();
+                    CameraController.Current.ToggleEndgameCamera(false);
+                    player.Resume(1, true);
+                });
+                break;
+            case "endgameEnd":
+                EndgameScreenCover.Current.FadeToBlack(() =>
+                {
+                    GameController.Current.EndEndgame();
+                    CameraController.Current.ToggleEndgameCamera(false);
+                    player.Resume(1, true);
+                });
                 break;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");
@@ -975,7 +1031,7 @@ public static class EventCommandProcessor
             case CommandType.Conversation:
                 return ExecuteConversationCommand(command.Name, parts, args, player, num, cgController, beforeBattleStart, shouldFadeIn, StartLineTrue, out delayedAction);
             case CommandType.MidBattleScreen:
-                return ExecuteMidBattleScreenCommand(command.Name, parts, args, player);
+                return ExecuteMidBattleScreenCommand(command.Name, parts, args, player, beforeBattleStart, shouldFadeIn);
             case CommandType.Global:
                 return ExecuteGlobalCommand(command.Name, parts, args, origin, num, StartLineTrue);
             case CommandType.Syntax:

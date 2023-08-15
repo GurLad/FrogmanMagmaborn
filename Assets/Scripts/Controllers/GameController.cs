@@ -1328,7 +1328,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public void BeginEndgame()
     {
-        Instantiate(EndgameObject);
+        EndgameObject = Instantiate(EndgameObject); // Beginning more than one endgame is unsupported
+    }
+
+    public void EndEndgame()
+    {
+        Destroy(EndgameObject);
     }
 
     public void AddListener(IGameControllerListener listener)

@@ -280,7 +280,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         }
         if (fadeIn)
         {
-            FadeThisIn(() => Resume(0), false);
+            SoftResume();
+            StartLine(currentLine, false, true);
         }
         else
         {
@@ -355,7 +356,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
         return LineType.Text;
     }
 
-    private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = true)
+    private StartLineResult StartLine(int num, bool beforeBattleStart = false, bool shouldFadeIn = false)
     {
         System.Action<StartLineResult> delayedAction = null;
 
@@ -443,11 +444,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     GameController.Current.LoadLevelUnits();
                 }
             }
-            if (shouldFadeIn && (result & StartLineResult.Fade) == 0)
-            {
-                Pause();
-                PaletteController.Current.FadeIn(() => Resume(0));
-            }
+        }
+        if (shouldFadeIn && (result & StartLineResult.Fade) == 0)
+        {
+            Pause();
+            PaletteController.Current.FadeIn(() => Resume(0));
         }
         delayedAction?.Invoke(result);
         return result;

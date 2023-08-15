@@ -69,14 +69,26 @@ public class CGController : MonoBehaviour
         {
             PaletteController.Current.FadeOut(() =>
             {
-                PaletteController.Current.LoadState(PreviousState ?? PaletteController.Current.SaveState());
-                Container.SetActive(false);
+                HideWithoutFade();
                 postFadeOutAction?.Invoke();
             });
         }
         else
         {
             throw Bugger.FMError("Fading out a CG when there is none.");
+        }
+    }
+
+    public void HideWithoutFade()
+    {
+        if (Active)
+        {
+            PaletteController.Current.LoadState(PreviousState ?? PaletteController.Current.SaveState());
+            Container.SetActive(false);
+        }
+        else
+        {
+            throw Bugger.FMError("Hiding a CG when there is none.");
         }
     }
 
