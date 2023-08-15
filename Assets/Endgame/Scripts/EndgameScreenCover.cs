@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndgameScreenCover : MonoBehaviour
+public class EndgameScreenCover : MidBattleScreen
 {
     private enum State { Idle, FadeWhiteIn, HoldWhite, FadeWhiteToBlack, FadeBlackOut, HoldNothing, FadeBlackIn }
 
@@ -69,6 +69,7 @@ public class EndgameScreenCover : MonoBehaviour
                     count = 0;
                     state = State.Idle;
                     Cover.gameObject.SetActive(false);
+                    MidBattleScreen.Set(this, false);
                     postFadeAction?.Invoke();
                 }
                 break;
@@ -93,6 +94,7 @@ public class EndgameScreenCover : MonoBehaviour
         count = 0;
         state = State.FadeBlackOut;
         Cover.gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
     }
 
     public void FadeToWhite(System.Action postFadeAction)
@@ -102,6 +104,7 @@ public class EndgameScreenCover : MonoBehaviour
         count = 0;
         state = State.FadeWhiteIn;
         Cover.gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
     }
 
     public void FadeToBlack(System.Action postFadeAction)
@@ -111,5 +114,6 @@ public class EndgameScreenCover : MonoBehaviour
         count = 0;
         state = State.FadeBlackIn;
         Cover.gameObject.SetActive(true);
+        MidBattleScreen.Set(this, true);
     }
 }

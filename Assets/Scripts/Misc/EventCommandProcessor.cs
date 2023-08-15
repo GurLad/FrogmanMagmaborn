@@ -578,7 +578,7 @@ public static class EventCommandProcessor
                     if (shouldFadeIn)
                     {
                         cgController.HideWithoutFade();
-                        return result;
+                        break;
                     }
                     else
                     {
@@ -955,7 +955,7 @@ public static class EventCommandProcessor
                     GameController.Current.LoadLevelUnits();
                     GameController.Current.LevelMetadata.SetPalettesFromMetadata();
                     // TBA: A better transition
-                    PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 30 / 4);
+                    PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 2);
                 });
                 return result | StartLineResult.MidBattleScreen;
             case "endgameSetSummonOptionsMagmaborn":
@@ -979,6 +979,7 @@ public static class EventCommandProcessor
                 EndgameSummoner.Current.PostCrystalShatterConversation = args[0];
                 break;
             case "endgameFadeToWhite":
+                player.Pause();
                 EndgameScreenCover.Current.FadeToWhite(() =>
                 {
                     GameController.Current.EndEndgame();
@@ -987,6 +988,7 @@ public static class EventCommandProcessor
                 });
                 break;
             case "endgameEnd":
+                player.Pause();
                 EndgameScreenCover.Current.FadeToBlack(() =>
                 {
                     GameController.Current.EndEndgame();

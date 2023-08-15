@@ -19695,7 +19695,7 @@ MonoBehaviour:
 
       :showCG:FortressPreview
 
-      :showPartTitle:Now:Test
+      :showPartTitle:Now:Text
 
       :hideCG:
 
@@ -19729,14 +19729,12 @@ MonoBehaviour:
       Frogman:
       Whoa.
 
-      :unlockAchievement:TestAch
-
-      :showChoice:Frogman:Trust Fashima:Trust
-      Torment
+      :showChoice:Frogman:Trust Fashima:Trust Torment
 
       :if:chose:0{
 
-      Frogman: Fashimatime Time!
+      Frogman:
+      Fashimatime Time!
 
       :setTeamPlayable:monster:T
 
@@ -19774,7 +19772,14 @@ MonoBehaviour:
 
       :callOther:EndgameInitData
 
-      #:setTempFlag:FashimaVictory
+      Frogman:
+      Wait-
+
+      :play:Raindance
+
+      :endgameFadeToWhite:
+
+      :setTempFlag:FashimaVictory
 
       :showEnding:
 
