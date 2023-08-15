@@ -93,6 +93,32 @@ Guard1||R: ...Oof.
 :else:{
 :if:hasCharacter:Xirveros{
 # PostPostWin
+Frogman: Everyone, this way!\a Let's get out of here!
+:if:hasCharacter:Xeplogi{
+Xirveros||L: Ooze!
+Xeplogi: Are you talking to me, perchance?
+Xirveros: Yes! I like you. I write your song!
+Xeplogi: Oh? A song for me? My, I would be delighted to hear it!
+Xirveros: An ooze was here    \w@
+Everyone could hear \w@
+As green as the sea \w@
+He was nice to me   \w@
+Said he was of Jess \w@
+And I just said yes \w@
+Xeplogi: Wow. I must admit, I am at quite a loss for words.
+}
+:else:{
+Frogman||L: Xeplogi didn't make it, huh?
+Xirveros: Ooze dead? No! Me like ooze.\a Me write ooze song!
+Frogman: No, please don't-
+Xirveros: An ooze was here    \w@
+Everyone could hear \w@
+As green as the sea \w@
+He was nice to me   \w@
+Said he was of Jess \w@
+And I just said yes \w@
+Frogman: ...Wow.
+}
 :finishConversation:
 }
 :callOther:Level5GenericXeplogi

@@ -125,6 +125,32 @@ Frogman: ...I'll explain later. Let's go!
 :else:{
 :if:hasCharacter:Firbell{
 # PostPostWin
+Frogman: Everyone, this way!\a Let's get out of here!
+:if:hasCharacter:Xeplogi{
+Frogman||L: Ah... Safe at last.
+Xeplogi: Indeed. I do believe we could use a moment of rest.
+Frogman: ...Nah. Let's just go to the fortress now.\a We've got no time to lose.
+Xeplogi: W-well...
+Frogman: Are you coming or not?
+Xeplogi: Wait!
+:hideUnit:Frogman
+Ugh...
+Firbell: It is just the way that he is.\a You will get used to it,\a Logi.
+Xeplogi: And yet, it is so very vexing!\a Why are you following him?
+Firbell: ...Do you have a better idea?
+Xeplogi: How about you all follow me, instead?\a I assure you, I'm quite the benelovent leader.
+Firbell: ...Goodbye,\a duke of nowhere.
+:hideUnit:Firbell
+Xeplogi: I'm the Duke of Jess, not Nowhere!\a W-wait, don't leave me!\a ...
+Ugh, fine...
+}
+:else:{
+Frogman||L: Xeplogi didn't make it, huh?
+Firbell: That is good. I did not like him.
+Frogman: Because he claimed you aren't a real princess?
+Firbell: Yes.
+Frogman: ...Okay.\a We're getting pretty close to the fortress.\a Let's just move on.
+Firbell: Let us.
 :finishConversation:
 }
 :callOther:Level5GenericXeplogi

@@ -169,6 +169,8 @@ Kresla: Later?! This is incredible! Where are you going?\a Come back here and te
 :else:{
 :if:hasCharacter:Kresla{
 # PostPostWin
+# Can't really think of an interesting interaction between Kresla & Xirveros
+:callOther:Level5GenericXeplogi
 :finishConversation:
 }
 :callOther:Level5GenericXeplogi
