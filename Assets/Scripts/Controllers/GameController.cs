@@ -106,6 +106,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     unit.Health = unit.Stats.Base.MaxHP;
                     AssignUnitMapAnimation(unit, UnitClassData.ClassDatas.Find(a => a.Name == unit.Class));
                     unit.gameObject.SetActive(true);
+                    unit.Init(true);
                     playerUnitsCache.Add(unit);
                 }
             }

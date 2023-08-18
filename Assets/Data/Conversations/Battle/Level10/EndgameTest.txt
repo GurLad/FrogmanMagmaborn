@@ -10,8 +10,10 @@ levelNumber:10
 :loadUnits:InitTormentRoom
 Frogman: What?
 :play:Silence
-:endgameBegin:
+:endgameBeginFadeOut:
 :play:TheFinalStep
+:loadMap:
+:loadUnits:
 :setSize:Torment:2:2
 :moveUnit:Frogman:[Random:7:8]:9
 :setStat:Fashima:Eva:63
@@ -21,6 +23,7 @@ Frogman: What?
 :setTeam:Wisp:guard
 :setStat:Wisp:End:1
 :setTeamAI:monster:beeline:Torment
+:endgameBeginFadeIn:
 Frogman: Whoa.
 :showChoice:Frogman:Trust Fashima:Trust Torment
 :if:chose:0{
@@ -43,8 +46,9 @@ Frogman: Tormenttime Time!
 :callOther:EndgameSetDeathQuotes
 :callOther:EndgameInitData
 Frogman: Wait-
-:play:Raindance
+:play:EndingFlash
 :endgameFadeToWhite:
+:play:FrogmanMagmabornMedley
 :setTempFlag:FashimaVictory
 :showEnding:
 

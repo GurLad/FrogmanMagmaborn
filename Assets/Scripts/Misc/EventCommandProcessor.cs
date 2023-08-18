@@ -98,7 +98,8 @@ public static class EventCommandProcessor
 
         // Endgame
 
-        new CommandStruct("endgameBegin", CommandType.Endgame),
+        new CommandStruct("endgameBeginFadeOut", CommandType.Endgame),
+        new CommandStruct("endgameBeginFadeIn", CommandType.Endgame),
         new CommandStruct("endgameSetSummonOptionsMagmaborn", CommandType.Endgame, CAT.OpString),
         new CommandStruct("endgameSetSummonOptionsDeadBoss", CommandType.Endgame, CAT.String),
         new CommandStruct("endgameSetSummonOptionsGeneric", CommandType.Endgame, CAT.String),
@@ -945,18 +946,19 @@ public static class EventCommandProcessor
         StartLineResult result = StartLineResult.None;
         switch (commandName)
         {
-            case "endgameBegin":
+            case "endgameBeginFadeOut":
                 player.Pause();
                 PaletteController.Current.FadeOut(() =>
                 {
                     GameController.Current.BeginEndgame();
                     CameraController.Current.ToggleEndgameCamera(true);
-                    GameController.Current.LoadMap();
-                    GameController.Current.LoadLevelUnits();
-                    GameController.Current.LevelMetadata.SetPalettesFromMetadata();
-                    // TBA: A better transition
-                    PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 2);
+                    player.Resume();
                 });
+                return result | StartLineResult.MidBattleScreen;
+            case "endgameBeginFadeIn":
+                player.Pause();
+                GameController.Current.LevelMetadata.SetPalettesFromMetadata();
+                PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 2);
                 return result | StartLineResult.MidBattleScreen;
             case "endgameSetSummonOptionsMagmaborn":
                 string blackList = args.Length > 0 ? args[0] : "";
@@ -986,7 +988,7 @@ public static class EventCommandProcessor
                     CameraController.Current.ToggleEndgameCamera(false);
                     player.Resume(1, true);
                 });
-                break;
+                return result | StartLineResult.MidBattleScreen;
             case "endgameEnd":
                 player.Pause();
                 EndgameScreenCover.Current.FadeToBlack(() =>
@@ -995,7 +997,7 @@ public static class EventCommandProcessor
                     CameraController.Current.ToggleEndgameCamera(false);
                     player.Resume(1, true);
                 });
-                break;
+                return result | StartLineResult.MidBattleScreen;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");
         }
