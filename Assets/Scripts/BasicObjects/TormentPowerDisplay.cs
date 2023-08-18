@@ -16,7 +16,7 @@ public class TormentPowerDisplay : MonoBehaviour
         RectTransform = GetComponent<RectTransform>();
     }
 
-    public void Display(string powerName)
+    public int Display(string powerName)
     {
         int split = powerName.IndexOf(powerName.Substring(1).Where(a => a.ToString().ToUpper()[0] == a).ToList()[0]); // Clumsy as heck, but whatever
         TormentPowerState state = (TormentPowerState)Mathf.Max(0, SavedData.Load<int>("Knowledge", "UpgradeTorment" + powerName));
@@ -26,17 +26,17 @@ public class TormentPowerDisplay : MonoBehaviour
             case TormentPowerState.None:
                 Description.text = "------";
                 Icon.Palette = 3;
-                break;
+                return 0;
             case TormentPowerState.I:
                 Description.text = powerName.Substring(0, split);
                 Icon.Palette = 1;
-                break;
+                return 1;
             case TormentPowerState.II:
                 Description.text = powerName.Substring(split);
                 Icon.Palette = 2;
-                break;
+                return -1;
             default:
-                break;
+                throw Bugger.FMError("Impossible Torment Power state");
         }
     }
 }
