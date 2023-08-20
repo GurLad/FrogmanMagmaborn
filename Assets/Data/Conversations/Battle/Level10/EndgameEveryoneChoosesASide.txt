@@ -35,14 +35,16 @@ Torment||R: We'll see about that. Heh. And what about you, my...\a champion? Heh
 Frogman: Me? I...
 :showChoice:Frogman:Side with Fashima:Side with Torment
 :if:chose:0{
-Frogman: Fashimatime Time!
+Frogman||L: I will help you stop Torment, Fashima.\a I... have no life to return to on the surface.
+Fashima: Excellent choice, my friend. Let us be quick, then,\a before Torment gets away.
 :setTeamPlayable:monster:T
 :setTeam:Frogman:monster
 :setTempFlag:EndgameFrogmanFashima
 :setObjective:Boss:Torment
 }
 :else:{
-Frogman: Tormenttime Time!
+Frogman||L: Yeah, I am not sacrifisying my life here.\a What should I do, Torment?
+Torment: Ha ha ha! Oh, it is quite simple.\a Just protect me from Fashima and her...\a friends until I break this spell.
 :setTeamPlayable:guard:T
 :setTeam:Frogman:guard
 :setTempFlag:EndgameFrogmanTorment
@@ -51,8 +53,6 @@ Frogman: Tormenttime Time!
 :setUnitAI:Fashima:Guard
 :addAllyToUnit:Fashima:Wisp
 }
-:callOther:EndgameSetDeathQuotes
-:callOther:EndgameInitData
 
 ~ After battle
 :play:AfterBattle

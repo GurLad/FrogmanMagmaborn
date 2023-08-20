@@ -16,8 +16,7 @@ Torment: I am.
 :setTempFlag:FrogmanDied
 }
 :endgameEnd:
-:loadMap:InitTormentRoom
-:loadUnits:InitTormentRoom
+:showCG:CrystalRoom
 :setSpeaker:Torment||R
 :if:hasTempFlag:FrogmanDied{
 Frogman: Ugh... Where am I?
@@ -28,8 +27,8 @@ FashimaVase: ...!
 Frogman: H-huh?
 Torment: Ha ha ha! Now then, where was I? Ah, right. Xirveros?
 Xirveros: I shall never bend my knee to the forces of evil again!
-Torment: Love me.
-Xirveros: You're is the best thing ever! I love you!
+Torment: Be mad again. Love me.
+Xirveros: You is the best thing ever! I love you!\a I write Torment song soon!
 Frogman||L: What is going on here?!
 Torment: Oh, nothing to be alarmed about.\a Merely my power getting back to me. Heh.\a But I have no interest in the rest of you.\a You're free to go.
 Frogman: Go where?

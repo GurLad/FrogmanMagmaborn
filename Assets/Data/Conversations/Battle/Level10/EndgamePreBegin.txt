@@ -1,0 +1,46 @@
+priority:-1
+unique:F
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:setSpeaker:Fashima||R
+Frogman: Woah. What is this place? Is this Lessy's room?
+Fashima: No. I already killed Lessy.
+Frogman: What?!
+Fashima: This is Torment's prison, my friend.\a Once I disable the seal on this crystal,\a we will finally be free.
+Frogman: I... see.
+Fashima: This will take just a moment...
+:play:GuardTheme3
+Werse: Fashima! Stop this madness!
+Fashima: ...Stay out of this, Werse. It is none of your business.
+Werse: None of my business?! You are about to-
+:screenShake:
+Ugh!
+Fashima: Pest.
+:screenShake:
+Ah. There we go.
+:play:Trustworthy
+Torment||L: HELLO, everyone! Did you miss me? Heh heh!
+Werse: No...
+Fashima||R: Torment. It is good to see you face to face, at last.
+Torment: Indeed! Oh, this feels so good! Ha ha ha!\a But where is my welcoming party?
+Fashima: I have only teleported Frogman here.\a You can summon the rest, if you wish.
+Torment: If course I wish! Materialize.
+Firbell||R: Huh? Where am I?
+Xirveros||R: T-Tori?
+Kresla||R: Woah! What just happened? What is going on here?
+Xeplogi||R: Oh my!
+Alfred||R: Aaah! Who did this?!
+Memerian||R: Ugh. I hate teleportation.
+Fashima: Perfect.
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

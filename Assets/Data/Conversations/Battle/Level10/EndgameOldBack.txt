@@ -1,0 +1,65 @@
+# We're in the endgame now
+priority:42
+unique:T
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle
+# TBA: More intro, improve - this is just a first draft written after midnight
+# Show closed door CG
+Fashima: This is it. The door to Lessy's chamber, and the way outside.\a Are you ready to get out of here, my friend?
+Frogman: Yes.
+Fashima: Excellent. Let us enter, then.
+:screenShake:
+# Show empty room CG
+Frogman: ...Huh? What's with the huge crystal?\a And where is Lessy?
+Fashima: That is our prison. And Lessy is already dead.
+Frogman: Wait, what?
+Fashima: I killed her back when I was still alive.\a You'll understand soon enough.\a In the meantime, I need to-
+Werse: Stop right there.
+Frogman: H-huh? Who was that?\a Where did you come from?
+Fashima: Hmpf. Stay out of this, Werse.
+Werse: Fashima. I always did loathe you, you know.\a But betraying the Guards?\a Joining the Magmaborn?\a Have you no shame?
+Fashima: The feeling is mutual.\a Still, I do not have time for you.\a Begone.
+Werse: How dare-
+:screenShake:
+Ugh!
+Fashima: Good riddance.
+Werse: Don't... Don't do this... Fashima...
+Fashima: Too late.
+# Crystal glowing CG
+:screenShake:
+Torment: Hello, everyone! Ha ha ha!\a Oh, how I've missed this world's air!\a It feels so good! So... liberating!\a HA HA HA!
+Frogman: Torment...
+:if:hasCharacter:Firbell{
+Firbell: What... What is that thing?!
+# TBA, more reactions TBA as well
+}
+Torment: Oh, this is so exhilirating! Don't you agree, Fashima?\a My true champion? Heh heh heh!
+Fashima: Definitely, master. But you should thank all the Magmaborn, properly.\a They were the ones who ultimately let you out,\a not me.
+Frogman: Wait, master?
+Torment: You are correct, my champion!\a With my newfound power, it should take but a moment!
+:screenShake:
+:if:!hasCharacter:Firbell{
+:addUnit:Firbell
+Firbell: Huh?!
+# More TBA
+}
+Torment: HA HA HA! Oh, this is simply marvelous!\a We should celebrate! By KILLING EVERYONE! Ha ha ha!\a Don't you agree, Fashima?\a Hey, why are you sulking near the dusty old crystal, anyway?
+Fashima: Oh, you will see. Just a few more second, and...
+Torment: And what? Wait, what are you-
+:screenShake:
+# Fade. Slowly reveal endgame area
+Torment: What... What is going on?\a Fashima?\a What have you done?!
+Fashima: TBA
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ Sample
+# Name: Text.
