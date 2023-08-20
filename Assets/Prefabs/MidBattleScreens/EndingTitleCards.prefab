@@ -1359,13 +1359,19 @@ MonoBehaviour:
         hasTempFlag:EndgameFrogmanFashima'
       Title: Frogman, The Forgotten
       Card: Frogman promptly left after the final battle. He returned to his old
-        town and was never heard from again.
+        town, only to be killed by monsters soon after.
     - Requirements: 'hasTempFlag:TormentVictory
 
         hasTempFlag:EndgameFrogmanTorment'
-      Title: Frogman, Dark Overlord
-      Card: Frogman joined forces with Torment in their conquest of humanity, and
-        ruled over the conquered with an iron fist.
+      Title: Frogman, Collaborator
+      Card: Frogman joined forces with Torment against humanity. He wasn't very useful
+        to Torment, however, and died soon after.
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Frogman, Perfect Pawn
+      Card: Frogman was chosen by Fashima to be Torment's new champion, as the perfect
+        mix of ambition and idiocy.
   - Name: Firbell
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
@@ -1388,6 +1394,12 @@ MonoBehaviour:
       Title: Kresla, Revived Legend
       Card: She brought her discoveries back to Bromzing, and lead the new research
         on Torment's magic, to disastrous results.
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Kresla, Curious Corpse
+      Card: Kresla found a Magma Emblem with her assistant, a Guard agent. She killed
+        herself before he could take it.
   - Name: Xirveros
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
@@ -1410,20 +1422,26 @@ MonoBehaviour:
       Title: Xeplogi, Failed Duke
       Card: Xeplogi returned to his homeland and tried to warn the populace of Torment's
         return. Nobody listened.
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Xeplogi, Duke of Greed
+      Card: Xeplogi heard rumours of magic in his duchy and wanted it for himself.
+        Memerian killed him when he grabbed an Emblem.
   - Name: Memerian
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
 
 '
       Title: Memerian, Lone Hermit
-      Card: Memerian left shortly after the battle, never to be seen again. She lived
-        the rest of her life in a secluded forest.
+      Card: Memerian left shortly after the battle to a secluded forest. She was
+        never heard from again.
     - Requirements: 'hasTempFlag:FashimaVictory
 
 '
       Title: Memerian, Evil Witch
-      Card: 'Memerian managed to find a few surviving crystals, and forged them into
-        Magma Emblems. '
+      Card: Memerian managed to make a few Emblems before Duke Xeplogi found her.
+        She killed him, but his guards killed her in turn.
   - Name: Alfred
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
@@ -1446,6 +1464,12 @@ MonoBehaviour:
       Title: Fashima, Doombringer
       Card: 'Torment kept Fashima chained, powerless and in eternal pain, forcing
         her to watch as humanity burned around her. '
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Fashima, World Saviour
+      Card: Fashima left the underground and set out to explore the world, free at
+        last from all who had chained her.
   - Name: Werse
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
@@ -1454,6 +1478,12 @@ MonoBehaviour:
       Title: Werse, The Last Magus
       Card: Werse managed to rescue a few Guards from the Fortress. They founded
         a safe haven for survivors, far from Torment.
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Werse, The Last Magus
+      Card: Werse was devestated after Fashima's victory. Eventually, they left the
+        Fortress and wrote several novels about it.
   - Name: Torment
     EndingCards:
     - Requirements: 'hasTempFlag:TormentVictory
@@ -1462,6 +1492,14 @@ MonoBehaviour:
       Title: Torment, Revived God
       Card: Torment immediately set out to take over humanity again, using their
         endless power and unlimited monster hordes.
+  - Name: Lan
+    EndingCards:
+    - Requirements: 'hasTempFlag:FashimaVictory
+
+'
+      Title: Lan, The Very Best
+      Card: Lan was surprised when all the Guards vanished suddenly. He shrugged
+        it off, however, and became the best fisher ever.
   RankSprites:
   - {fileID: 21300000, guid: 735af4d06747aff448037a81ccb4c4a0, type: 3}
   - {fileID: 21300000, guid: 025ae5a190ecb8e44b37aef6af1d63b8, type: 3}

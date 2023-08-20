@@ -19223,18 +19223,16 @@ MonoBehaviour:
 
       ~ Before battle
 
-      
 
-      ~ After
-      battle
+      ~ After battle
 
       :play:Raindance
 
-      Torment: NO! I-IMPOSSIBLE! Heh heh...
-      HOW COULD YOU... FASHIMA!!!
+      Torment:
+      NO! I-IMPOSSIBLE! Heh heh... HOW COULD YOU... FASHIMA!!!
 
-      Fashima_: I can do anything, Torment.\a
-      You should not have understimated me.
+      Fashima_: I
+      can do anything, Torment.\a You should not have understimated me.
 
       :if:unitAlive:Frogman{
 
@@ -19251,8 +19249,8 @@ MonoBehaviour:
 
       :setSpeaker:Frogman||L
 
-      Fashima_: It was
-      a crucial part of our deal.\a Nevertheless, that is history now -\a gone and
+      Fashima_: It was a
+      crucial part of our deal.\a Nevertheless, that is history now -\a gone and
       irrelevant.\a Proceed with your death, please.
 
       Torment: Ha ha. HA HA
@@ -19275,7 +19273,7 @@ MonoBehaviour:
 
       :setTempFlag:FashimaVictory
 
-      :showEnding:
+      :showEnding:FASHIMA:1
 
       }
 
@@ -19309,18 +19307,14 @@ MonoBehaviour:
 
       :setTempFlag:FashimaVictory
 
-      :play:Raindance
-
-      :showEnding:
+      :showEnding:FASHIMA:1
 
       }
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -19785,9 +19779,9 @@ MonoBehaviour:
 
       :play:FrogmanMagmabornMedley
 
-      :setTempFlag:TormentVictory
+      :setTempFlag:FashimaVictory
 
-      :showEnding:
+      :showEnding:FASHIMA:1
 
 
       ~
@@ -19878,10 +19872,8 @@ MonoBehaviour:
 
       ~ Before battle
 
-      
 
-      ~ After
-      battle
+      ~ After battle
 
       :play:Raindance
 
@@ -19925,36 +19917,35 @@ MonoBehaviour:
 
       FashimaVase: ...!
 
-      Frogman:
-      H-huh?
+      Frogman: H-huh?
 
-      Torment: Ha ha ha! Now then, where was I? Ah, right. Xirveros?
+      Torment:
+      Ha ha ha! Now then, where was I? Ah, right. Xirveros?
+
+      Xirveros: I shall
+      never bend my knee to the forces of evil again!
+
+      Torment: Love me.
 
       Xirveros:
-      I shall never bend my knee to the forces of evil again!
+      You''re is the best thing ever! I love you!
 
-      Torment: Love
-      me.
+      Frogman||L: What is going
+      on here?!
 
-      Xirveros: You''re is the best thing ever! I love you!
-
-      Frogman||L:
-      What is going on here?!
-
-      Torment: Oh, nothing to be alarmed about.\a
-      Merely my power getting back to me. Heh.\a But I have no interest in the rest
-      of you.\a You''re free to go.
+      Torment: Oh, nothing to be alarmed about.\a Merely my power
+      getting back to me. Heh.\a But I have no interest in the rest of you.\a You''re
+      free to go.
 
       Frogman: Go where?
 
-      Torment: To
-      your fellow pathetic humans, of course! Heh heh!
+      Torment: To your fellow pathetic
+      humans, of course! Heh heh!
 
-      Memerian: I think
-      you forgot about something.
+      Memerian: I think you forgot about something.
 
-      Torment: What? Oh, right. Become human
-      and begone.
+      Torment:
+      What? Oh, right. Become human and begone.
 
       FrogmanMan||L: Wait-
 
@@ -19962,14 +19953,12 @@ MonoBehaviour:
 
       :play:FrogmanMagmabornMedley
 
-      :showEnding:
+      :showEnding:TORMENT:2
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 

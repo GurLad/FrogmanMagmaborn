@@ -50,8 +50,8 @@ Frogman: Wait-
 :play:EndingFlash
 :endgameFadeToWhite:
 :play:FrogmanMagmabornMedley
-:setTempFlag:TormentVictory
-:showEnding:
+:setTempFlag:FashimaVictory
+:showEnding:FASHIMA:1
 
 ~ After battle
 :if:hasTempFlag:EndgameFrogmanFashima{

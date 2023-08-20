@@ -26,7 +26,7 @@ Frogman: Wait-
 :endgameFadeToWhite:
 :play:FrogmanMagmabornMedley
 :setTempFlag:FashimaVictory
-:showEnding:
+:showEnding:FASHIMA:1
 }
 :else:{
 Torment: HA HA HA! Without me... you are nothing...
@@ -41,8 +41,7 @@ Fashima_: Farewell.
 :endgameFadeToWhite:
 :play:FrogmanMagmabornMedley
 :setTempFlag:FashimaVictory
-:play:Raindance
-:showEnding:
+:showEnding:FASHIMA:1
 }
 
 # === Functions ====

@@ -62,7 +62,7 @@ public static class EventCommandProcessor
         new CommandStruct("showPartTitle", CommandType.MidBattleScreen, CAT.String, CAT.String),
         new CommandStruct("showChoice", CommandType.MidBattleScreen, CAT.String, CAT.String, CAT.String),
         new CommandStruct("showBase", CommandType.MidBattleScreen),
-        new CommandStruct("showEnding", CommandType.MidBattleScreen),
+        new CommandStruct("showEnding", CommandType.MidBattleScreen, CAT.String, CAT.Int),
 
         // Global commands
 
@@ -667,13 +667,13 @@ public static class EventCommandProcessor
                 baseController.Show(GameController.Current.PlayerUnits);
                 return result | StartLineResult.MidBattleScreen;
             case "showEnding":
-                // Args: none
+                // Args: string winnerName, int winnerPalette
                 player.Pause(); // Will never continue, but still
                 if (shouldFadeIn)
                 {
                     EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
                     MidBattleScreen.Set(endingCardsController, true);
-                    endingCardsController.Init();
+                    endingCardsController.Init(args[0], int.Parse(args[1]));
                     endingCardsController.DisplayNext();
                 }
                 else
@@ -682,7 +682,7 @@ public static class EventCommandProcessor
                     {
                         EndingCardsController endingCardsController = GameObject.Instantiate(GameController.Current.EndingTitleCards).GetComponentInChildren<EndingCardsController>();
                         MidBattleScreen.Set(endingCardsController, true);
-                        endingCardsController.Init();
+                        endingCardsController.Init(args[0], int.Parse(args[1]));
                         endingCardsController.DisplayNext();
                     }, null, false);
                 }

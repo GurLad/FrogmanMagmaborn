@@ -18,9 +18,14 @@ public class EndingCardsController : MidBattleScreen
     private int currentCharacter = -1;
     private GlobalEndingData processedGlobalEndingData;
     private List<ProcessedEndingData> processedEndingDatas = new List<ProcessedEndingData>();
+    private string winnerName;
+    private int winnerPalette;
 
-    public void Init()
+    public void Init(string wonName, int wonPalette)
     {
+        // Ending stats
+        winnerName = wonName;
+        winnerPalette = wonPalette;
         // Global ending
         processedGlobalEndingData = GlobalEndings.Find(a => new ConversationData("~\n" + a.Requirements + "\n~\n~\n").MeetsRequirements());
         // Character endings
@@ -81,7 +86,7 @@ public class EndingCardsController : MidBattleScreen
             EndingStatsController.gameObject.SetActive(true);
             MidBattleScreen.Set(this, false);
             MidBattleScreen.Set(EndingStatsController, true);
-            EndingStatsController.Display("TEMP", 0);
+            EndingStatsController.Display(winnerName, winnerPalette);
             GameController.Current.LevelMetadata.SetPalettesFromMetadata();
             PaletteController.Current.FadeIn(null, 30 / 4);
         }
