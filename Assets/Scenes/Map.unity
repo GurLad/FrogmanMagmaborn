@@ -18912,169 +18912,153 @@ MonoBehaviour:
 
 '
     Name: EndgameXirverosDead
-  - Text: '# We''re in the endgame now
+  - Text: 'priority:42
 
-      priority:42
+      unique:F
 
-      unique:T
+      ~ Requirements
+
+      levelNumber:10
 
       ~
-      Requirements
-
-      levelNumber:0
-
-      ~ Demands
+      Demands
 
       # Nothing
 
+      ~ Before battle
+
+      :play:MomentOfTruth
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      :showCG:CrystalRoom
+
+      :callOther:EndgamePreBegin
+
+      :screenShake:
+
+      :play:Silence
+
+      :showPartTitle:Part
+      4:Pawn
+
+      :hideCG:
+
+      :endgameBeginFadeOut:
+
+      :play:Takeover
+
+      :loadMap:
+
+      :setLevelMetadata:4
+
+      :loadUnits:
+
+      :setLevelMetadata:10
+
+      :loadUnits:Level10-Battle-Wisps::T
+
+      :setSize:Torment:2:2
+
+      :moveUnit:Frogman:[Random:7:8]:9
+
+      :setStat:Fashima:Eva:63
+
+      :setStat:Fashima:Pre:63
+
+      :setStat:Fashima:Str:7
+
+      :addSkill:Fashima:SiegeWeapon
+
+      :setTeam:Wisp:guard
+
+      :setStat:Wisp:End:1
+
+      :setTeamAI:monster:beeline:Torment
+
+      :endgameBeginFadeIn:
+
+      :callOther:EndgamePostBegin
+
+      :callOther:EndgameEveryoneChoosesASide
+
+      :callOther:EndgameSetDeathQuotes
+
+      :callOther:EndgameInitData
+
+
       ~
-      Before battle
+      After battle
 
-      :play:BeforeBattle
+      :if:hasTempFlag:EndgameFrogmanFashima{
 
-      # TBA: More intro, improve
-      - this is just a first draft written after midnight
-
-      # Show closed door
-      CG
-
-      Fashima: This is it. The door to Lessy''s chamber, and the way outside.\a
-      Are you ready to get out of here, my friend?
-
-      Frogman: Yes.
-
-      Fashima:
-      Excellent. Let us enter, then.
-
-      :screenShake:
-
-      # Show empty room
-      CG
-
-      Frogman: ...Huh? What''s with the huge crystal?\a And where is Lessy?
-
-      Fashima:
-      That is our prison. And Lessy is already dead.
-
-      Frogman: Wait, what?
-
-      Fashima:
-      I killed her back when I was still alive.\a You''ll understand soon enough.\a
-      In the meantime, I need to-
-
-      Werse: Stop right there.
-
-      Frogman:
-      H-huh? Who was that?\a Where did you come from?
-
-      Fashima: Hmpf. Stay
-      out of this, Werse.
-
-      Werse: Fashima. I always did loathe you, you know.\a
-      But betraying the Guards?\a Joining the Magmaborn?\a Have you no shame?
-
-      Fashima:
-      The feeling is mutual.\a Still, I do not have time for you.\a Begone.
-
-      Werse:
-      How dare-
-
-      :screenShake:
-
-      Ugh!
-
-      Fashima: Good riddance.
-
-      Werse:
-      Don''t... Don''t do this... Fashima...
-
-      Fashima: Too late.
-
-      #
-      Crystal glowing CG
-
-      :screenShake:
-
-      Torment: Hello, everyone!
-      Ha ha ha!\a Oh, how I''ve missed this world''s air!\a It feels so good! So...
-      liberating!\a HA HA HA!
-
-      Frogman: Torment...
-
-      :if:hasCharacter:Firbell{
-
-      Firbell:
-      What... What is that thing?!
-
-      # TBA, more reactions TBA as well
+      :callOther:EndgameFashimaWin
 
       }
 
-      Torment:
-      Oh, this is so exhilirating! Don''t you agree, Fashima?\a My true champion?
-      Heh heh heh!
+      :else:{
 
-      Fashima: Definitely, master. But you should thank all
-      the Magmaborn, properly.\a They were the ones who ultimately let you out,\a
-      not me.
-
-      Frogman: Wait, master?
-
-      Torment: You are correct, my
-      champion!\a With my newfound power, it should take but a moment!
-
-      :screenShake:
-
-      :if:!hasCharacter:Firbell{
-
-      :addUnit:Firbell
-
-      Firbell:
-      Huh?!
-
-      # More TBA
+      :callOther:EndgameTormentWin
 
       }
 
-      Torment: HA HA HA! Oh, this is simply
-      marvelous!\a We should celebrate! By KILLING EVERYONE! Ha ha ha!\a Don''t you
-      agree, Fashima?\a Hey, why are you sulking near the dusty old crystal, anyway?
-
-      Fashima:
-      Oh, you will see. Just a few more second, and...
-
-      Torment: And what?
-      Wait, what are you-
-
-      :screenShake:
-
-      # Fade. Slowly reveal endgame
-      area
-
-      Torment: What... What is going on?\a Fashima?\a What have you
-      done?!
-
-      Fashima: TBA
-
-      
-
-      ~ After battle
-
-      :play:AfterBattle
 
       #
       Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
-      ~ Sample
+      ~ FrogmanDead
 
-      #
-      Name: Text.
+      :callOther:EndgameFrogmanDead
+
+
+      ~
+      FashimaDead
+
+      :callOther:EndgameFashimaDead
+
+
+      ~ FirbellDead
+
+      :callOther:EndgameFirbellDead
+
+
+      ~
+      XirverosDead
+
+      :callOther:EndgameXirverosDead
+
+
+      ~ XeplogiDead
+
+      :callOther:EndgameXeplogiDead
+
+
+      ~
+      KreslaDead
+
+      :callOther:EndgameKreslaDead
+
+
+      ~ MemerianDead
+
+      :callOther:EndgameMemerianDead
+
+
+      ~
+      AlfredDead
+
+      :callOther:EndgameAlfredDead
+
+
+      ~ WerseDead
+
+      :callOther:EndgameWerseDead
 
 '
     Name: Endgame
@@ -19093,22 +19077,24 @@ MonoBehaviour:
 
       ~ Before battle
 
-      Xeplogi: Woah! Wh-where
-      are we?
+      # Too wordy
 
-      Torment: Huh? What is going on?\a You are not supposed to be
-      here.
+      Xeplogi:
+      Woah! Wh-where are we?
+
+      Torment: Huh? What is going on?\a You are not
+      supposed to be here.
 
       Frogman: Here?
 
-      Fashima: Your time has come, Torment.\a
-      I am here to destroy you.
+      Fashima: Your time has come,
+      Torment.\a I am here to destroy you.
 
-      Werse: This... What is the meaning of this,
-      Fashima?!
+      Werse: This... What is the meaning
+      of this, Fashima?!
 
-      Torment: Destroy... me? HA HA HA! Have you lost your mind,
-      Fashima?!\a I cannot be destroyed! I feed on destruction!\a I AM destruction!\a
+      Torment: Destroy... me? HA HA HA! Have you lost your
+      mind, Fashima?!\a I cannot be destroyed! I feed on destruction!\a I AM destruction!\a
       What foolishness! Heh heh!\a But I do love me a good betryal.\a Please explain
       this neferious plan of yours!
 
@@ -19223,6 +19209,171 @@ MonoBehaviour:
 
       ~ Before battle
 
+      :play:TheFinalStep
+
+      Memerian||R:
+      No. I''m done listening to your nonsense.\a I will not die in this hellhole.\a
+      Especially not for you, Fashima.
+
+      :setTeam:Memerian:guard
+
+      Xirveros||L:
+      This fight is beyond personal grudges.
+
+      Torment has wrought countless
+      horrors upon our world,
+
+      and even the slimmest chance of stopping them
+      must be\a taken.
+
+      :setTeam:Xirveros:monster
+
+      Alfred||R: Ha!\a You
+      believe Fashima''s lies?!\a Fool!\a All she ever does is murder!\a I care not
+      for this Torment -\a Fashima is the true evil!
+
+      :setTeam:Alfred:guard
+
+      Firbell||L:
+      ...I will not allow anyone to harm Irenhold.\a I shall slay all who threaten
+      it -\a even at the cost of my own life.
+
+      :setTeam:Firbell:monster
+
+      Kresla||R:
+      Woah. It''s getting kinda dark in here.
+
+      It''s been a while since I took
+      a death threat seriously.\a But I didn''t come this far just to disappear.\a
+      Someone must live to tell our tale, right?
+
+      :setTeam:Kresla:guard
+
+      Xeplogi||L:
+      What better fate is there, than to die a hero?\a Our lives were long and full
+      of adventure.
+
+      It is high time to lay them to rest.
+
+      :setTeam:Xeplogi:monster
+
+      Werse||R:
+      ...I hate you all. Every single one of you.
+
+      You have ruined everything
+      and everyone I ever cared for.
+
+      The Guards are the only thing I have
+      left...\a For their continued survival...\a And to avenge Brens...\a I will
+      stop you, Fashima!
+
+      :setTeam:Werse:guard
+
+      :setSpeaker:Torment||R
+
+      Fashima||L:
+      ...
+
+      :setTeam:Fashima:monster
+
+      Torment||R: HA HA HA! Typical humans!
+
+      So
+      quick to turn on each other in the face of danger!
+
+      Your plan makes for
+      quite the spectacle, Fashima. Heh heh.
+
+      Fashima||L: I still have more
+      than enough Magmaborn to destroy you.
+
+      Torment||R: We''ll see about that.
+      Heh. And what about you, my...\a champion? Heh heh!\a Which side will you choose,
+      hm?
+
+      Frogman: Me? I...
+
+      :showChoice:Frogman:Side with Fashima:Side
+      with Torment
+
+      :if:chose:0{
+
+      Frogman||L: I will help you stop Torment,
+      Fashima.\a I... have no life to return to on the surface.
+
+      Fashima: Excellent
+      choice, my friend. Let us be quick, then,\a before Torment gets away.
+
+      :setTeamPlayable:monster:T
+
+      :setTeam:Frogman:monster
+
+      :setTempFlag:EndgameFrogmanFashima
+
+      :setObjective:Boss:Torment
+
+      }
+
+      :else:{
+
+      Frogman||L:
+      Yeah, I am not sacrifisying my life here.\a What should I do, Torment?
+
+      Torment:
+      Ha ha ha! Oh, it is quite simple.\a Just protect me from Fashima and her...\a
+      friends until I break this spell.
+
+      :setTeamPlayable:guard:T
+
+      :setTeam:Frogman:guard
+
+      :setTempFlag:EndgameFrogmanTorment
+
+      :setObjective:Survive:8
+
+      #
+      Set Fashima AI
+
+      :setUnitAI:Fashima:Guard
+
+      :addAllyToUnit:Fashima:Wisp
+
+      }
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ FrogmanDead
+
+      # Name: Text.
+
+'
+    Name: EndgameEveryoneChoosesASide
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
 
       ~ After battle
 
@@ -19256,14 +19407,7 @@ MonoBehaviour:
       Torment: Ha ha. HA HA
       HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
-      :killUnit:Torment:F
-
       :screenShake:
-
-      Fashima_:
-      Farewell.
-
-      Frogman: Wait-
 
       :play:EndingFlash
 
@@ -19290,14 +19434,7 @@ MonoBehaviour:
 
       Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
-      :killUnit:Torment:F
-
       :screenShake:
-
-      Fashima_:
-      Farewell.
-
-      :play:Silence
 
       :play:EndingFlash
 
@@ -19374,6 +19511,278 @@ MonoBehaviour:
 
 '
     Name: EndgameInitData
+  - Text: '# We''re in the endgame now
+
+      priority:42
+
+      unique:T
+
+      ~
+      Requirements
+
+      levelNumber:0
+
+      ~ Demands
+
+      # Nothing
+
+      ~
+      Before battle
+
+      :play:BeforeBattle
+
+      # TBA: More intro, improve -
+      this is just a first draft written after midnight
+
+      # Show closed door
+      CG
+
+      Fashima: This is it. The door to Lessy''s chamber, and the way outside.\a
+      Are you ready to get out of here, my friend?
+
+      Frogman: Yes.
+
+      Fashima:
+      Excellent. Let us enter, then.
+
+      :screenShake:
+
+      # Show empty room
+      CG
+
+      Frogman: ...Huh? What''s with the huge crystal?\a And where is Lessy?
+
+      Fashima:
+      That is our prison. And Lessy is already dead.
+
+      Frogman: Wait, what?
+
+      Fashima:
+      I killed her back when I was still alive.\a You''ll understand soon enough.\a
+      In the meantime, I need to-
+
+      Werse: Stop right there.
+
+      Frogman:
+      H-huh? Who was that?\a Where did you come from?
+
+      Fashima: Hmpf. Stay
+      out of this, Werse.
+
+      Werse: Fashima. I always did loathe you, you know.\a
+      But betraying the Guards?\a Joining the Magmaborn?\a Have you no shame?
+
+      Fashima:
+      The feeling is mutual.\a Still, I do not have time for you.\a Begone.
+
+      Werse:
+      How dare-
+
+      :screenShake:
+
+      Ugh!
+
+      Fashima: Good riddance.
+
+      Werse:
+      Don''t... Don''t do this... Fashima...
+
+      Fashima: Too late.
+
+      # Crystal
+      glowing CG
+
+      :screenShake:
+
+      Torment: Hello, everyone! Ha ha ha!\a
+      Oh, how I''ve missed this world''s air!\a It feels so good! So... liberating!\a
+      HA HA HA!
+
+      Frogman: Torment...
+
+      :if:hasCharacter:Firbell{
+
+      Firbell:
+      What... What is that thing?!
+
+      # TBA, more reactions TBA as well
+
+      }
+
+      Torment:
+      Oh, this is so exhilirating! Don''t you agree, Fashima?\a My true champion?
+      Heh heh heh!
+
+      Fashima: Definitely, master. But you should thank all the
+      Magmaborn, properly.\a They were the ones who ultimately let you out,\a not
+      me.
+
+      Frogman: Wait, master?
+
+      Torment: You are correct, my champion!\a
+      With my newfound power, it should take but a moment!
+
+      :screenShake:
+
+      :if:!hasCharacter:Firbell{
+
+      :addUnit:Firbell
+
+      Firbell:
+      Huh?!
+
+      # More TBA
+
+      }
+
+      Torment: HA HA HA! Oh, this is simply
+      marvelous!\a We should celebrate! By KILLING EVERYONE! Ha ha ha!\a Don''t you
+      agree, Fashima?\a Hey, why are you sulking near the dusty old crystal, anyway?
+
+      Fashima:
+      Oh, you will see. Just a few more second, and...
+
+      Torment: And what?
+      Wait, what are you-
+
+      :screenShake:
+
+      # Fade. Slowly reveal endgame
+      area
+
+      Torment: What... What is going on?\a Fashima?\a What have you done?!
+
+      Fashima:
+      TBA
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: EndgameOldBack
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      Xeplogi||L: Woah! Wh-where
+      are we now?
+
+      Torment||R: Huh? You are not supposed to be here.\a Neither
+      am I, for that matter.
+
+      Fashima||L: I apologise for dragging you here,
+      my friends,\a but I require your help to destroy Torment.
+
+      Werse||R:
+      This... What is the meaning of this, Fashima?!
+
+      Torment||R: Destroy...
+      me? HA HA HA! Have you lost your mind, Fashima?!\a But I do love me a good
+      betrayal.\a Please explain this nefarious plan of yours!\a Heh heh!
+
+      Fashima||L:
+      It is far from complex.\a I have merely reversed your magical seal -\a trapping
+      the Fortress inside of you,\a instead of you inside the Fortress.
+
+      Frogman||R:
+      What?
+
+      Torment||R: Ooh, very impressive!\a But such magic will surely
+      not last very long.\a Heh.\a How will you... destroy me in that time, hm?
+
+      Fashima||L:
+      I have also rendered you quite powerless for that duration,\a which should
+      give my friends enough time to slay you.
+
+      Torment||R: Powerless?
+
+      Xirveros||L:
+      Hm. Interesting manouvere.
+
+      Firbell||L: Xirveros?!
+
+      Xirveros||L:
+      Indeed. My mind has returned at last, your highness.
+
+      Torment||R: Oh,
+      I see what you mean. Clever move, Fashima. Ha!\a But why would your so-called
+      friends even want to hurt me?\a Considering the consequences, of course.\a
+      Heh heh.
+
+      Frogman||L: Consequences?
+
+      Fashima||L: ...
+
+      Torment||R:
+      Why, without me, there can be no magic.\a No monsters.\a No Guards.\a No...
+      Magmaborn.\a Heh heh!
+
+      Memerian||R: Of course there''s a catch. Typical.
+
+      Werse||R:
+      ...The Guards... will die?
+
+      Kresla||R: We''ll die?!
+
+      Alfred||R:
+      You''ve murdered enough, Fashima! No more!
+
+      :setSpeaker:Torment||R
+
+      Fashima||L:
+      ...I am well aware of that.\a And yet, it is a sacrifice I am willing to make.\a
+      We must stand united, my friends, and-
+
+      Memerian||R: I''m not your friend.
+
+      Fashima||L:
+      ...And rid this world of the evil that is Torment.\a They have been a blight
+      upon humanity for too long.\a Upon you, me, and countless human lives.\a The
+      lives of the few - even our own -\a are not worth the suffering-
+
+
+      ~
+      After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      # === Functions
+      ====
+
+
+      ~ FrogmanDead
+
+      # Name: Text.
+
+'
+    Name: EndgamePostBegin
   - Text: 'priority:-1
 
       unique:F
@@ -19668,7 +20077,123 @@ MonoBehaviour:
 
 '
     Name: EndgamePostSummon
-  - Text: 'priority:21
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :setSpeaker:Fashima||R
+
+      Frogman:
+      Woah. What is this place? Is this Lessy''s room?
+
+      Fashima: No. I already
+      killed Lessy.
+
+      Frogman: What?!
+
+      Fashima: This is Torment''s prison,
+      my friend.\a Once I disable the seal on this crystal,\a we will finally be
+      free.
+
+      Frogman: I... see.
+
+      Fashima: This will take just a moment...
+
+      :play:GuardTheme3
+
+      Werse:
+      Fashima! Stop this madness!
+
+      Fashima: ...Stay out of this, Werse. It
+      is none of your business.
+
+      Werse: None of my business?! You are about
+      to-
+
+      :screenShake:
+
+      Ugh!
+
+      :play:MomentOfTruth
+
+      :setSingleSpeaker:R
+
+      Fashima:
+      Pest.
+
+      :screenShake:
+
+      Ah. There we go.
+
+      :play:Trustworthy
+
+      Torment||L:
+      HELLO, everyone! Did you miss me? Heh heh!
+
+      Werse: No...
+
+      Fashima||R:
+      Torment. It is good to see you face to face, at last.
+
+      Torment: Indeed!
+      Oh, this feels so good! Ha ha ha!\a But where is my welcoming party?
+
+      Fashima:
+      I have only teleported Frogman here.\a You can summon the rest, if you wish.
+
+      Torment:
+      If course I wish! Materialize.
+
+      :play:Trickster:T
+
+      Firbell||R:
+      Huh? Where am I?
+
+      Xirveros||R: T-Tori?
+
+      Kresla||R: Woah! What just
+      happened? What is going on here?
+
+      Xeplogi||R: Oh my!
+
+      Alfred||R:
+      Aaah! Who did this?!
+
+      Memerian||R: Ugh. I hate teleportation.
+
+      Fashima:
+      Perfect.
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+      # Name: Text.
+
+
+      #
+      === Functions ====
+
+
+      ~ FrogmanDead
+
+      # Name: Text.
+
+'
+    Name: EndgamePreBegin
+  - Text: 'priority:-21
 
       unique:F
 
@@ -19702,7 +20227,13 @@ MonoBehaviour:
 
       :loadMap:
 
+      :setLevelMetadata:4
+
       :loadUnits:
+
+      :setLevelMetadata:10
+
+      :loadUnits:Level10-Battle-Wisps::T
 
       :setSize:Torment:2:2
 
@@ -19896,9 +20427,7 @@ MonoBehaviour:
 
       :endgameEnd:
 
-      :loadMap:InitTormentRoom
-
-      :loadUnits:InitTormentRoom
+      :showCG:CrystalRoom
 
       :setSpeaker:Torment||R
 
@@ -19925,27 +20454,28 @@ MonoBehaviour:
       Xirveros: I shall
       never bend my knee to the forces of evil again!
 
-      Torment: Love me.
+      Torment: Be mad again.
+      Love me.
 
-      Xirveros:
-      You''re is the best thing ever! I love you!
+      Xirveros: You is the best thing ever! I love you!\a I write
+      Torment song soon!
 
-      Frogman||L: What is going
-      on here?!
-
-      Torment: Oh, nothing to be alarmed about.\a Merely my power
-      getting back to me. Heh.\a But I have no interest in the rest of you.\a You''re
-      free to go.
-
-      Frogman: Go where?
-
-      Torment: To your fellow pathetic
-      humans, of course! Heh heh!
-
-      Memerian: I think you forgot about something.
+      Frogman||L: What is going on here?!
 
       Torment:
-      What? Oh, right. Become human and begone.
+      Oh, nothing to be alarmed about.\a Merely my power getting back to me. Heh.\a
+      But I have no interest in the rest of you.\a You''re free to go.
+
+      Frogman:
+      Go where?
+
+      Torment: To your fellow pathetic humans, of course! Heh heh!
+
+      Memerian:
+      I think you forgot about something.
+
+      Torment: What? Oh, right. Become
+      human and begone.
 
       FrogmanMan||L: Wait-
 
@@ -60207,79 +60737,9 @@ MonoBehaviour:
     ObjectiveData: Bodder
     Tags: 
     MapString: 11|17|17|6|12|10|16|16|16|0|6|6|6|12|10;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|1|7|6|6|2|3|9|9|9|8|1|7;18|24|30|36|6|6|6|12|4|16|16|16|0|6|6;19|25|31|37|1|7|2|9|9|8|2|3|9|8|6;20|26|32|38|6|6|12|4|0|6|6|12|4|0|6;21|27|33|39|6|6|12|10|0|6|6|12|10|0|6;22|28|34|40|1|7|2|3|9|8|2|9|9|8|6;23|29|35|41|6|6|6|12|4|16|16|16|0|6|6;11|17|17|1|7|6|6|2|3|3|9|9|8|1|7;11|17|17|6|6|6|12|4|16|16|16|0|6|6|6;11|17|17|6|6|6|12|10|16|16|16|0|6|6|6;11|17|17|6|6|2|3|9|9|9|8|6|1|7|12;11|17|17|6|12|4|16|16|16|0|6|6|6|12|4
-  - Name: Level10-Battle-2
-    LevelNumber: 10
+  - Name: Level10-Battle-Wisps
+    LevelNumber: 0
     Units:
-    - Pos: {x: 7, y: 3}
-      Team: 2
-      Level: 15
-      Class: Torment
-      AIType: 2
-      ReinforcementTurn: 16
-      Statue: 1
-    - Pos: {x: 11, y: 8}
-      Team: 2
-      Level: 10
-      Class: Kresla
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 13, y: 4}
-      Team: 2
-      Level: 10
-      Class: Memerian
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 11, y: 1}
-      Team: 2
-      Level: 10
-      Class: Alfred
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 9, y: 5}
-      Team: 2
-      Level: 10
-      Class: Werse
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 8}
-      Team: 1
-      Level: 10
-      Class: Firbell
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 2, y: 4}
-      Team: 1
-      Level: 10
-      Class: Xirveros
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 4, y: 1}
-      Team: 1
-      Level: 10
-      Class: Xeplogi
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 5}
-      Team: 1
-      Level: 10
-      Class: Fashima
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 7, y: 9}
-      Team: 0
-      Level: 10
-      Class: Frogman
-      AIType: 0
-      ReinforcementTurn: 0
-      Statue: 0
     - Pos: {x: 3, y: 4}
       Team: 0
       Level: 0
@@ -60322,84 +60782,91 @@ MonoBehaviour:
     Tags: 
     MapString: 18|18|18|18|18|18|18|9|10|11|18|18|18|18|18;18|18|18|0|6|12|18|18|16|18|18|0|6|12|18;18|18|18|1|19|13|18|18|16|18|18|1|19|13|18;0|12|15|2|8|14|15|0|6|12|15|2|8|14|18;2|14|18|18|16|18|18|1|19|13|18|18|17|18|18;16|18|18|18|16|18|18|2|8|14|18|18|0|6|12;16|18|0|6|6|12|18|18|16|18|18|18|2|8|14;3|18|1|7|7|13|15|15|0|6|12|18|18|17|18;5|18|1|7|7|13|15|15|2|8|14|18|18|16|18;17|18|2|8|8|14|18|18|17|18|18|18|0|6|12;17|18|18|18|17|18|18|0|6|12|18|18|2|8|14;0|12|18|18|17|18|18|1|19|13|18|18|16|18|18;2|14|15|0|6|12|15|2|8|14|15|0|6|12|18;18|18|18|1|19|13|18|18|17|18|18|1|19|13|18;18|18|18|2|8|14|18|18|17|18|18|2|8|14|18;18|18|18|18|18|18|18|9|10|11|18|18|18|18|18
   - Name: Level10-Battle
-    LevelNumber: 0
+    LevelNumber: 10
     Units:
-    - Pos: {x: 7, y: 0}
+    - Pos: {x: 7, y: 3}
       Team: 2
-      Level: 16
+      Level: 15
       Class: Torment
       AIType: 2
-      ReinforcementTurn: 0
-      Statue: 0
-    - Pos: {x: 6, y: 4}
-      Team: 2
+      ReinforcementTurn: 16
+      Statue: 1
+    - Pos: {x: 11, y: 8}
+      Team: 0
       Level: 10
       Class: Kresla
-      AIType: 1
+      AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 9, y: 4}
-      Team: 2
+    - Pos: {x: 13, y: 4}
+      Team: 0
       Level: 10
       Class: Memerian
-      AIType: 1
+      AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 12, y: 1}
-      Team: 2
+    - Pos: {x: 11, y: 1}
+      Team: 0
       Level: 10
       Class: Alfred
-      AIType: 2
+      AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 3, y: 1}
-      Team: 2
+    - Pos: {x: 9, y: 5}
+      Team: 0
       Level: 10
       Class: Werse
-      AIType: 2
+      AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 7, y: 13}
-      Team: 1
+    - Pos: {x: 4, y: 8}
+      Team: 0
       Level: 10
       Class: Firbell
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 13}
-      Team: 1
+    - Pos: {x: 2, y: 4}
+      Team: 0
       Level: 10
       Class: Xirveros
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 4, y: 12}
-      Team: 1
+    - Pos: {x: 4, y: 1}
+      Team: 0
       Level: 10
       Class: Xeplogi
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 11, y: 12}
-      Team: 1
+    - Pos: {x: 6, y: 5}
+      Team: 0
       Level: 10
       Class: Fashima
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    - Pos: {x: 8, y: 9}
+    - Pos: {x: 7, y: 9}
       Team: 0
       Level: 10
       Class: Frogman
       AIType: 0
       ReinforcementTurn: 0
       Statue: 0
-    MapEvents: []
+    MapEvents:
+    - Requirements: 'turn:>8
+
+'
+      Event: ':callOther:EndgameTormentWin
+
+'
+      Repeatable: 0
     Tileset: Torment2
     Objective: 0
     ObjectiveData: Rout
     Tags: 
-    MapString: 18|18|18|18|18|9|10|11|15|3|18|3|18|18|18;18|0|6|12|18|18|16|18|18|5|15|5|18|18|18;18|1|7|13|15|9|10|11|18|18|18|17|18|18|18;18|2|8|14|18|18|17|18|18|0|6|6|12|18|18;18|16|18|16|18|9|10|11|15|2|8|8|14|18|18;18|16|18|18|18|18|16|18|18|18|18|18|16|18|18;6|6|12|15|3|18|16|18|0|6|12|15|0|6|12;7|7|13|18|4|15|3|15|1|7|13|18|1|7|13;7|7|13|18|4|15|5|15|1|7|13|18|1|7|13;8|8|14|15|5|18|17|18|2|8|14|15|2|8|14;18|17|18|18|18|18|17|18|18|18|18|18|16|18|18;18|17|18|17|18|9|10|11|15|0|6|6|12|18|18;18|0|6|12|18|18|16|18|18|2|8|8|14|18|18;18|1|7|13|15|9|10|11|18|18|18|16|18|18|18;18|2|8|14|18|18|17|18|18|3|15|3|18|18|18;18|18|18|18|18|9|10|11|15|5|18|5|18|18|18
+    MapString: 18|18|18|18|18|18|18|9|10|11|18|18|18|18|18;18|18|18|0|6|12|18|18|16|18|18|0|6|12|18;18|18|18|1|19|13|18|18|16|18|18|1|19|13|18;0|12|15|2|8|14|15|0|6|12|15|2|8|14|18;2|14|18|18|16|18|18|1|19|13|18|18|17|18|18;16|18|18|18|16|18|18|2|8|14|18|18|0|6|12;16|18|0|6|6|12|18|18|16|18|18|18|2|8|14;3|18|1|7|7|13|15|15|0|6|12|18|18|17|18;5|18|1|7|7|13|15|15|2|8|14|18|18|16|18;17|18|2|8|8|14|18|18|17|18|18|18|0|6|12;17|18|18|18|17|18|18|0|6|12|18|18|2|8|14;0|12|18|18|17|18|18|1|19|13|18|18|16|18|18;2|14|15|0|6|12|15|2|8|14|15|0|6|12|18;18|18|18|1|19|13|18|18|17|18|18|1|19|13|18;18|18|18|2|8|14|18|18|17|18|18|2|8|14|18;18|18|18|18|18|18|18|9|10|11|18|18|18|18|18
   - Name: Part2RestArea
     LevelNumber: 0
     Units:

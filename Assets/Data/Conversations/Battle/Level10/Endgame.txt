@@ -5,12 +5,15 @@ levelNumber:10
 ~ Demands
 # Nothing
 ~ Before battle
-:showCG:CrystalRoom
 :play:MomentOfTruth
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:showCG:CrystalRoom
 :callOther:EndgamePreBegin
 :screenShake:
 :play:Silence
 :showPartTitle:Part 4:Pawn
+:hideCG:
 :endgameBeginFadeOut:
 :play:Takeover
 :loadMap:

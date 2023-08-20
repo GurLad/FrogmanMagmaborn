@@ -186,11 +186,50 @@ MonoBehaviour:
     BGImage2: {fileID: 0}
     FGImage1: {fileID: 21300000, guid: 1cb54738cee68cd41b4d19661fe5a8ed, type: 3}
     FGImage2: {fileID: 0}
+  - Name: Cheater
+    BGPalette1:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
+    BGPalette2:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
+    FGPalette1: 0
+    FGPalette2: 0
+    BGImage1: {fileID: 21300000, guid: 729b6784adfc54a49b8917c0de11e8f6, type: 3}
+    BGImage2: {fileID: 0}
+    FGImage1: {fileID: 0}
+    FGImage2: {fileID: 0}
+  - Name: CrystalRoom
+    BGPalette1:
+      Colors:
+      - id: 13
+      - id: 1
+      - id: 40
+      - id: 54
+    BGPalette2:
+      Colors:
+      - id: 13
+      - id: 0
+      - id: 28
+      - id: 42
+    FGPalette1: 3
+    FGPalette2: 0
+    BGImage1: {fileID: 21300000, guid: bd6cca3a53669fd45833314b0ecb1d19, type: 3}
+    BGImage2: {fileID: 0}
+    FGImage1: {fileID: 21300000, guid: 6873f0ce97469ab4aab7a4bb04019a12, type: 3}
+    FGImage2: {fileID: 0}
   Container: {fileID: 648550419450069948}
   BG1: {fileID: 7858611218519447194}
   BG2: {fileID: 8648197572188351862}
   FG1: {fileID: 5812753304563618755}
   FG2: {fileID: 6400418887542467090}
+  CurrentCG: 
 --- !u!1 &4962842649537417238
 GameObject:
   m_ObjectHideFlags: 0
