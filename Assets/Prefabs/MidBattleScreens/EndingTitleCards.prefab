@@ -1324,39 +1324,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalEndings:
-  - Requirements: 
-    Text: 'Everyone is happy.
+  - Requirements: 'hasTempFlag:TormentVictory
 
-      Everthing is good.
+'
+    Text: 'Despite her best efforts, Fashima''s plans were thwarted.
 
-      The End
+      Torment
+      and the Magmaborn were free to return to the surface at long last.
 
-      Or
-      is it?
+      With
+      their newly recovered powers, Torment returned all the Magmaborn to their human
+      forms and set them free.
 
-      Endless Text
+      Not long after, however, they launched a second
+      invasion against the surface world, leading to a long and bloody war for humanity''s
+      survival...'
+  - Requirements: 'hasTempFlag:FashimaVictory
 
-      Endless Text
+'
+    Text: 'Fashima succeeded in doing what no human has ever done before: destroying
+      Torment once and for all.
 
-      Endless Text
+      However, with Torment''s death, all magic
+      disappeared from the world - alongside all the monsters, Guards and Magmaborn.
+      Only Fashima, Werse and Lan survived.
 
-      Endless
-      Text
-
-      Endless Text
-
-      Endless Text
-
-      Endless Text
-
-      Endless
-      Text
-
-      Endless Text
-
-      Endless Text
-
-      No More Text'
+      Humanity remained forever ignorant
+      about the disaster they narrowly avoided for all eternity...'
   CharacterEndings:
   - Name: Frogman
     EndingCards:

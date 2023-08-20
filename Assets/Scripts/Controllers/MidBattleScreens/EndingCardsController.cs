@@ -93,6 +93,8 @@ public class EndingCardsController : MidBattleScreen
         // Load json
         string json = FrogForgeImporter.LoadTextFile("CharacterEndings.json").Text;
         JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("CharacterEndings"), this);
+        json = FrogForgeImporter.LoadTextFile("GlobalEndings.json").Text;
+        JsonUtility.FromJsonOverwrite(json.ForgeJsonToUnity("GlobalEndings"), this);
 #if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
 #endif

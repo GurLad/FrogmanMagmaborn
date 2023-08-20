@@ -25,6 +25,7 @@ public class EndingCardHolder : MonoBehaviour
     private string cardText = "";
     private int currentLetter = 0;
     private float count;
+    private bool playingVoice;
 
     private void Update()
     {
@@ -41,10 +42,9 @@ public class EndingCardHolder : MonoBehaviour
                 if (count >= 1)
                 {
                     count--;
-                    // A simpler version of ConversationPlayer's PlayLetter, to sound more basic/artifical (typing/writing sound vs. voice)
-                    if (count % 2 == 0 && cardText.ToLower()[currentLetter] >= 'a' && cardText.ToLower()[currentLetter] <= 'z')
+                    if (!Control.GetButton(Control.CB.Start))
                     {
-                        SoundController.PlaySound(TypeSound);
+                        PlayLetter();
                     }
                     Card.text += cardText[currentLetter++];
                     if (currentLetter >= cardText.Length)
@@ -92,5 +92,17 @@ public class EndingCardHolder : MonoBehaviour
         PaletteController.Current.LoadState(EndingCardsController.SavedState);
         PortraitHolder.Portrait = PortraitController.Current.FindPortrait(endingData.CharacterName);
         PaletteController.Current.FadeIn(() => { cardText = endingData.Card.FindLineBreaks(LineWidth); state = State.Writing; });
+    }
+
+    private void PlayLetter()
+    {
+        // A simpler version of ConversationPlayer's PlayLetter, to sound more basic/artifical (typing/writing sound vs. voice)
+        char letter = cardText.ToLower()[currentLetter];
+        if (letter < 'a' || letter > 'z' || playingVoice)
+        {
+            playingVoice = false;
+            return;
+        }
+        SoundController.PlaySound(TypeSound);
     }
 }
