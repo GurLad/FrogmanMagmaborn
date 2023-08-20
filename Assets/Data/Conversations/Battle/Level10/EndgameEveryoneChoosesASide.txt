@@ -1,0 +1,64 @@
+priority:-1
+unique:F
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:play:TheFinalStep
+Memerian||R: No. I'm done listening to your nonsense.\a I will not die in this hellhole.\a Especially not for you, Fashima.
+:setTeam:Memerian:guard
+Xirveros||L: This fight is beyond personal grudges.
+Torment has wrought countless horrors upon our world,
+and if even the slimmest chance of stopping them must\a be taken.
+:setTeam:Xirveros:monster
+Alfred||R: Ha!\a You believe Fashima's lies?!\a Fool!\a All she ever does is murder!\a I care not for this Torment -\a Fashima is the true evil!
+:setTeam:Alfred:guard
+Firbell||L: ...I will not allow anyone to harm Irenhold.\a I shall slay all who threaten it -\a even at the cost of my own life.
+:setTeam:Firbell:monster
+Kresla||R: Woah. It's getting kinda dark in here.
+It's been a while since I took a death threat seriously.\a But I didn't come this far just to disappear.\a Someone must live to tell our tale, right?
+:setTeam:Kresla:guard
+Xeplogi||L: What better is there, than to die a hero?\a Our lives were long and full of adventure.
+It is high time to lay them to rest.
+:setTeam:Xeplogi:monster
+Werse||R: ...I hate you all. Every single one of you.
+You have ruined everything and everyone I ever cared for.
+The Guards are the only thing I have left...\a For their continued survival...\a And to avenge Brens...\a I will stop you, Fashima!
+:setTeam:Werse:guard
+:setSpeaker:Torment||R
+Torment||R: HA HA HA! Typical humans!
+So quick to turn on each other in the face of danger!
+Your plan makes for quite the spectacle, Fashima. Heh heh.
+Fashima||L: I still have more than enough Magmaborn to destroy you.
+Torment||R: We'll see about that. Heh. And what about you, my...\a champion? Heh heh!\a Which side will you choose, hm?
+Frogman: Me? I...
+:showChoice:Frogman:Side with Fashima:Side with Torment
+:if:chose:0{
+Frogman: Fashimatime Time!
+:setTeamPlayable:monster:T
+:setTeam:Frogman:monster
+:setTempFlag:EndgameFrogmanFashima
+:setObjective:Boss:Torment
+}
+:else:{
+Frogman: Tormenttime Time!
+:setTeamPlayable:guard:T
+:setTeam:Frogman:guard
+:setTempFlag:EndgameFrogmanTorment
+:setObjective:Survive:8
+# Set Fashima AI
+:setUnitAI:Fashima:Guard
+:addAllyToUnit:Fashima:Wisp
+}
+:callOther:EndgameSetDeathQuotes
+:callOther:EndgameInitData
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

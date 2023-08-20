@@ -14,7 +14,10 @@ Frogman: What?
 :endgameBeginFadeOut:
 :play:TheFinalStep
 :loadMap:
+:setLevelMetadata:4
 :loadUnits:
+:setLevelMetadata:10
+:loadUnits:Level10-Battle-Wisps::T
 :setSize:Torment:2:2
 :moveUnit:Frogman:[Random:7:8]:9
 :setStat:Fashima:Eva:63

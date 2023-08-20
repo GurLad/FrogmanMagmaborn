@@ -1,0 +1,42 @@
+priority:-1
+unique:F
+~ Requirements
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+Xeplogi||L: Woah! Wh-where are we?
+Torment||R: Huh? You are not supposed to be here.\a Neither am I, for that matter.
+Fashima||L: I apologise for dragging you here, my friends,\a but I require your help to destroy Torment.
+Werse||R: This... What is the meaning of this, Fashima?!
+Torment||R: Destroy... me? HA HA HA! Have you lost your mind, Fashima?!\a But I do love me a good betryal.\a Please explain this neferious plan of yours!\a Heh heh!
+Fashima||L: It is far from complex.\a I have merely reversed your magical seal -\a trapping the Fortress inside of you,\a instead of you inside the Fortress.
+Frogman||R: What?
+Torment||R: Ooh, very impressive!\a But such magic will surely not last very long.\a Heh.\a How will you... destroy me in that time, hm?
+Fashima||L: I have also rendered you quite powerless for that duration,\a which should give my friends enough time to slay you.
+Torment||R: Powerless?
+Xirveros||L: Hm. Interesting manouvere.
+Firbell||L: Xirveros?!
+Xirveros||L: Indeed. My mind has returned at last, your highness.
+Torment||R: Oh, I see what you mean. Clever move, Fashima. Ha!\a But why would your so-called friends even want to hurt me?\a Considering the consequences, of course.\a Heh heh.
+Frogman||L: Consequences?
+Fashima||L: ...
+Torment||R: Why, without me, there can be no magic.\a No monsters.\a No Guards.\a No... Magmaborn.\a Heh heh!
+Memerian||R: Of course there's a catch. Typical.
+Werse||R: ...The Guards... will die?
+Kresla||R: We'll die?!
+Alfred||R: You've murdered enough, Fashima! No more!
+:setSpeaker:Torment||R
+Fashima||L: ...I am well aware of that.\a And yet, it is a sacrifice I am willing to make.\a We must stand united, my friends, and-
+Memerian||R: I'm not your friend.
+Fashima||L: ...And rid this world of the evil that is Torment.\a They has been a blight upon humanity for too long.\a Upon you, me, and countless human lives.\a The lives of the few - even our own -\a are not worth the suffering-
+
+
+~ After battle
+:play:AfterBattle
+# Name: Text.
+
+# === Functions ====
+
+~ FrogmanDead
+# Name: Text.

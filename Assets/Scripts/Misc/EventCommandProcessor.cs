@@ -39,6 +39,7 @@ public static class EventCommandProcessor
         new CommandStruct("setUnitAI", CommandType.Level, CAT.Team, CAT.AIType, CAT.OpString),
         new CommandStruct("setTeamPlayable", CommandType.Level, CAT.Team, CAT.Bool),
         new CommandStruct("setObjective", CommandType.Level, CAT.Objective, CAT.OpString),
+        new CommandStruct("setLevelMetadata", CommandType.Level, CAT.Int),
         new CommandStruct("lose", CommandType.Level),
         new CommandStruct("win", CommandType.Level),
 
@@ -468,6 +469,12 @@ public static class EventCommandProcessor
                 Objective objective = args[0].ToObjective() ?? throw Bugger.Error("No team!");
                 GameController.Current.SetObjective(objective, args.Length > 1 ? args[1] : "");
                 break;
+            case "setLevelMetadata":
+                // Params: int levelNumber
+                GameController.Current.LevelMetadata = GameController.Current.LevelMetadataController[int.Parse(args[0])];
+                GameController.Current.LevelMetadata.SetPalettesFromMetadata();
+                GameController.Current.LevelMetadata.UnitReplacements.ForEach(a => a.Init());
+                break;
             case "lose":
                 // Params: none
                 if (GameController.Current != null)
@@ -611,7 +618,6 @@ public static class EventCommandProcessor
         string[] parts,
         string[] args,
         ConversationPlayer player,
-        bool beforeBattleStart,
         bool shouldFadeIn)
     {
         StartLineResult result = StartLineResult.None;
@@ -941,6 +947,7 @@ public static class EventCommandProcessor
         string[] args,
         ConversationPlayer player,
         int num,
+        bool shouldFadeIn,
         System.Func<int, StartLineResult> StartLineTrue)
     {
         StartLineResult result = StartLineResult.None;
@@ -948,18 +955,27 @@ public static class EventCommandProcessor
         {
             case "endgameBeginFadeOut":
                 player.Pause();
-                PaletteController.Current.FadeOut(() =>
+                if (shouldFadeIn)
                 {
                     GameController.Current.BeginEndgame();
                     CameraController.Current.ToggleEndgameCamera(true);
                     player.Resume();
-                });
-                return result | StartLineResult.MidBattleScreen;
+                }
+                else
+                {
+                    PaletteController.Current.FadeOut(() =>
+                    {
+                        GameController.Current.BeginEndgame();
+                        CameraController.Current.ToggleEndgameCamera(true);
+                        player.Resume();
+                    });
+                }
+                return result | StartLineResult.MidBattleScreen | StartLineResult.Fade;
             case "endgameBeginFadeIn":
                 player.Pause();
                 GameController.Current.LevelMetadata.SetPalettesFromMetadata();
                 PaletteController.Current.FadeIn(() => EndgameScreenCover.Current.FadeBlackOut(() => player.Resume()), 2);
-                return result | StartLineResult.MidBattleScreen;
+                return result | StartLineResult.MidBattleScreen | StartLineResult.Fade;
             case "endgameSetSummonOptionsMagmaborn":
                 string blackList = args.Length > 0 ? args[0] : "";
                 EndgameSummoner.Current.SummonOptionsMagmabornTeam2 = GameController.Current.GetUnitNames(Team.Monster).FindAll(a => a != StaticGlobals.FinalBossName && !blackList.Contains(a.ToString()));
@@ -1035,7 +1051,7 @@ public static class EventCommandProcessor
             case CommandType.Conversation:
                 return ExecuteConversationCommand(command.Name, parts, args, player, num, cgController, beforeBattleStart, shouldFadeIn, StartLineTrue, out delayedAction);
             case CommandType.MidBattleScreen:
-                return ExecuteMidBattleScreenCommand(command.Name, parts, args, player, beforeBattleStart, shouldFadeIn);
+                return ExecuteMidBattleScreenCommand(command.Name, parts, args, player, shouldFadeIn);
             case CommandType.Global:
                 return ExecuteGlobalCommand(command.Name, parts, args, origin, num, StartLineTrue);
             case CommandType.Syntax:
@@ -1045,7 +1061,7 @@ public static class EventCommandProcessor
             case CommandType.Menu:
                 return ExecuteMenuCommand(command.Name, parts, args, player, num, StartLineTrue);
             case CommandType.Endgame:
-                return ExecuteEndgameCommand(command.Name, parts, args, player, num, StartLineTrue);
+                return ExecuteEndgameCommand(command.Name, parts, args, player, num, shouldFadeIn, StartLineTrue);
             default:
                 throw Bugger.FMError("Impossible");
         }

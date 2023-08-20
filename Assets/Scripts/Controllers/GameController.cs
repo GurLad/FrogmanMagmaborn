@@ -1086,6 +1086,12 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                     Cursor.Pos = unit.Pos; // Auto-cursor
                     continue;
                 }
+                else if ((unit = playerCharacters.Find(a => a.Name == name)) != null)
+                {
+                    unit.transform.parent = currentUnitsObject;
+                    unit.Health = unit.Stats.Base.MaxHP;
+                    unit.Pos = unitData.Pos;
+                }
                 else
                 {
                     unit = CreateUnit(name, unitData.Level, StaticGlobals.MainPlayerTeam, false);
