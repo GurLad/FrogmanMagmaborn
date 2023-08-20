@@ -11,6 +11,8 @@ public class EndingCardHolder : MonoBehaviour
     public float Speed;
     public float WaitTime;
     public int LineWidth = 30;
+    [Header("SFX")]
+    public AudioClip TypeSound;
     [Header("Objects")]
     public EndingCardsController EndingCardsController;
     public PortraitHolder PortraitHolder;
@@ -32,9 +34,18 @@ public class EndingCardHolder : MonoBehaviour
                 break;
             case State.Writing:
                 count += Time.deltaTime * Speed;
+                if (Control.GetButton(Control.CB.Start))
+                {
+                    count += 2 * Time.deltaTime * Speed;
+                }
                 if (count >= 1)
                 {
                     count--;
+                    // A simpler version of ConversationPlayer's PlayLetter, to sound more basic/artifical (typing/writing sound vs. voice)
+                    if (count % 2 == 0 && cardText.ToLower()[currentLetter] >= 'a' && cardText.ToLower()[currentLetter] <= 'z')
+                    {
+                        SoundController.PlaySound(TypeSound);
+                    }
                     Card.text += cardText[currentLetter++];
                     if (currentLetter >= cardText.Length)
                     {

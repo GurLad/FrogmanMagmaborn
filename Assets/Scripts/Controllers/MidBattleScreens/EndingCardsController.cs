@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class EndingCardsController : MidBattleScreen
 {
+    public List<GlobalEndingData> GlobalEndings;
     public List<CharacterEndingData> CharacterEndings;
     public List<Sprite> RankSprites;
     [Header("Rank palettes")]
     public List<Palette> RankPalettes = new List<Palette> { new Palette() };
-    public EndingCardHolder EndingCardHolder;
     [Header("Objects")]
+    public EndingCardHolder EndingCardHolder;
+    public EndingScrollingTextHolder EndingScrollingTextHolder;
     public EndingStatsController EndingStatsController;
     [HideInInspector]
     public PaletteController.PaletteControllerState SavedState;
-    private int currentCharacter;
+    private int currentCharacter = -1;
+    private GlobalEndingData processedGlobalEndingData;
     private List<ProcessedEndingData> processedEndingDatas = new List<ProcessedEndingData>();
 
     public void Init()
     {
+        // Global ending
+        processedGlobalEndingData = GlobalEndings.Find(a => new ConversationData("~\n" + a.Requirements + "\n~\n~\n").MeetsRequirements());
+        // Character endings
         for (int i = 0; i < RankPalettes.Count; i++)
         {
             PaletteController.Current.BackgroundPalettes[i].CopyFrom(RankPalettes[i]);
@@ -57,8 +63,15 @@ public class EndingCardsController : MidBattleScreen
 
     public void DisplayNext()
     {
-        if (currentCharacter < processedEndingDatas.Count)
+        if (currentCharacter < 0)
         {
+            EndingScrollingTextHolder.Display(processedGlobalEndingData);
+            currentCharacter++;
+        }
+        else if (currentCharacter < processedEndingDatas.Count)
+        {
+            EndingScrollingTextHolder.gameObject.SetActive(false);
+            EndingCardHolder.gameObject.SetActive(true);
             EndingCardHolder.Display(processedEndingDatas[currentCharacter]);
             currentCharacter++;
         }
@@ -85,6 +98,14 @@ public class EndingCardsController : MidBattleScreen
 #endif
     }
 #endif
+
+    [System.Serializable]
+    public class GlobalEndingData
+    {
+        public string Requirements;
+        [TextArea]
+        public string Text;
+    }
 
     [System.Serializable]
     public class CharacterEndingData

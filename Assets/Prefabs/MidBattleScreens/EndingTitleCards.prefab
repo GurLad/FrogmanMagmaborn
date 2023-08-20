@@ -397,6 +397,185 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: 1
   palette: 0
+--- !u!1 &3213106424717109269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423273301138214234}
+  - component: {fileID: 97893986315772875}
+  m_Layer: 5
+  m_Name: ScrollingTextHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1423273301138214234
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213106424717109269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8372627886942129560}
+  m_Father: {fileID: 4857826900616635657}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &97893986315772875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213106424717109269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da6a112b1faa4049891e87a526f5529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollTime: 30
+  WaitTime: 5
+  LineWidth: 30
+  EndingCardsController: {fileID: 4857826901623491134}
+  Text: {fileID: 1533249563775284903}
+--- !u!1 &3360526948918115387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8372627886942129560}
+  - component: {fileID: 4919907749043334992}
+  - component: {fileID: 1533249563775284903}
+  - component: {fileID: 3229755505127034528}
+  m_Layer: 5
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8372627886942129560
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360526948918115387}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1423273301138214234}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -16, y: 240}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4919907749043334992
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360526948918115387}
+  m_CullTransparentMesh: 1
+--- !u!114 &1533249563775284903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360526948918115387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 888da888adb5a5c4ea57d4083d9eb1eb, type: 3}
+    m_FontSize: 8
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 8
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 2
+  m_Text: 'Everyone is happy.
+
+    Everthing is good.
+
+    The End
+
+    Endless Text
+
+    Endless
+    Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless
+    Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless Text
+
+    Endless
+    Text'
+--- !u!114 &3229755505127034528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360526948918115387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb34c85b15377084ab2c3d8de2cd3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: {fileID: 0}
+  palette: 3
 --- !u!1 &4084593215062952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +830,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 7896336734614528845}
+  - {fileID: 1423273301138214234}
   - {fileID: 4857826900998559624}
   - {fileID: 3638835293173611901}
   - {fileID: 8697012063728890928}
@@ -950,7 +1130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4857826900998559624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -967,7 +1147,7 @@ RectTransform:
   - {fileID: 4857826900661544020}
   - {fileID: 4857826901744481333}
   m_Father: {fileID: 4857826900616635657}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -989,6 +1169,7 @@ MonoBehaviour:
   Speed: 12
   WaitTime: 2
   LineWidth: 30
+  TypeSound: {fileID: 8300000, guid: c886e033e6d02984d9505e0929fd9a6e, type: 3}
   EndingCardsController: {fileID: 4857826901623491134}
   PortraitHolder: {fileID: 8757572099971155980}
   Title: {fileID: 4857826900615978906}
@@ -1142,6 +1323,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fedb343555acf47b2d5ce10752ee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalEndings:
+  - Requirements: 
+    Text: 'Everyone is happy.
+
+      Everthing is good.
+
+      The End
+
+      Or
+      is it?
+
+      Endless Text
+
+      Endless Text
+
+      Endless Text
+
+      Endless
+      Text
+
+      Endless Text
+
+      Endless Text
+
+      Endless Text
+
+      Endless
+      Text
+
+      Endless Text
+
+      Endless Text
+
+      No More Text'
   CharacterEndings:
   - Name: Frogman
     EndingCards:
@@ -1274,6 +1489,7 @@ MonoBehaviour:
     - id: 21
     - id: 35
   EndingCardHolder: {fileID: 4857826900998559625}
+  EndingScrollingTextHolder: {fileID: 97893986315772875}
   EndingStatsController: {fileID: 4387823698927947925}
   SavedState:
     BackgroundPalettes: []
@@ -1644,7 +1860,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857826900616635657}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1953,7 +2169,7 @@ RectTransform:
   m_Children:
   - {fileID: 5326180258836837072}
   m_Father: {fileID: 4857826900616635657}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2571,6 +2787,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b, type: 3}
+--- !u!224 &8158119751574652215 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4857826900975158536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8757572099971155980 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4243326228390546692, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
@@ -2583,9 +2805,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9add50eb262736c4fa16a8350b73208f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8158119751574652215 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3629058407484522559, guid: 3cf149762a8b1a24c9b9aab1dfd1c73b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4857826900975158536}
-  m_PrefabAsset: {fileID: 0}
