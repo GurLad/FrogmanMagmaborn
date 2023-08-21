@@ -425,6 +425,10 @@ public class BattleAnimationController : MidBattleScreen
             Animation = Instantiate((ClassAnimationData = battleAnimationController.ClassAnimations.Find(a => a.Name == Unit.Class)).Animation, Object.transform);
             Animation.Renderer = Object;
             Animation.Animations.ForEach(a => a.Split());
+            if (Animation.Animations.Count <= 0)
+            {
+                throw Bugger.Error("Class " + Unit.Class + " doesn't have battle animation!");
+            }
             Animation.EditorPreview();
             Animation.Activate("Idle");
             Palette = Animation.transform.parent.gameObject.GetComponent<PalettedSprite>();

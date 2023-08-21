@@ -8,17 +8,18 @@ public class ScreenShaker : MonoBehaviour
     public float Duration;
     private float count;
     private Vector3 pos;
+
     private void Start()
     {
         pos = transform.position;
     }
+
     private void Update()
     {
         count += Time.deltaTime;
         if (count >= Duration)
         {
-            transform.position = pos;
-            Destroy(this);
+            End();
         }
         else
         {
@@ -26,5 +27,11 @@ public class ScreenShaker : MonoBehaviour
             float radius = Random.Range(0, Strength * (1 - count / Duration));
             transform.position = pos + new Vector3(radius * Mathf.Sin(angel), radius * Mathf.Cos(angel), 0);
         }
+    }
+
+    public void End()
+    {
+        transform.position = pos;
+        Destroy(this);
     }
 }

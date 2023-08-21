@@ -10,6 +10,7 @@ levelNumber:10
 :loadUnits:InitTormentRoom
 Frogman: What?
 :play:Silence
+:unlockAchievement:Part4
 :showPartTitle:Part 4:Pawn
 :endgameBeginFadeOut:
 :play:TheFinalStep
@@ -50,6 +51,7 @@ Frogman: Tormenttime Time!
 :callOther:EndgameSetDeathQuotes
 :callOther:EndgameInitData
 Frogman: Wait-
+:screenShake:
 :play:EndingFlash
 :endgameFadeToWhite:
 :play:FrogmanMagmabornMedley

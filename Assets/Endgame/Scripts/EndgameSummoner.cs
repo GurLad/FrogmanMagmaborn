@@ -241,7 +241,6 @@ public class EndgameSummoner : AGameControllerListener
             }
             chaosModifier--;
         }
-        Bugger.Info("Chaos is now " + chaosModifier);
     }
 
     private class SummonCircle

@@ -82,7 +82,7 @@ public class CrossfadeMusicPlayer : MonoBehaviour
             return;
         }
         CrossfadeMusicPlayerObject target = Tracks.Find(a => a.Name == name);
-        if (target == null)
+        if (target == null || target.AudioClip == null)
         {
             throw Bugger.Error("No matching audio clip! (" + name + ")");
         }

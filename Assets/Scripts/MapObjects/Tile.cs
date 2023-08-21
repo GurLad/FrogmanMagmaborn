@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     public int MovementCost;
     public int ArmorModifier;
     public bool High;
+    public bool HasBattleBackground;
     public bool Passable
     {
         get

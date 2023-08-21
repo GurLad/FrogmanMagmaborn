@@ -123,6 +123,11 @@ public static class GameCalculations
 
     public static bool BattleAnimationsOn(Unit attacker, Unit defender)
     {
+        if (!GameController.Current.Map[attacker.Pos.x, attacker.Pos.y].HasBattleBackground ||
+            !GameController.Current.Map[defender.Pos.x, defender.Pos.y].HasBattleBackground)
+        {
+            return false;
+        }
         switch (SavedData.Load<int>("BattleAnimationsMode", 0, SaveMode.Global))
         {
             case 0: // Always

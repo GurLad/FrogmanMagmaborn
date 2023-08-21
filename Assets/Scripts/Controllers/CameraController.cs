@@ -94,7 +94,12 @@ public class CameraController : MonoBehaviour
     {
         if (GameCalculations.ScreenShakeOn)
         {
-            ScreenShaker screenShaker = gameObject.AddComponent<ScreenShaker>();
+            ScreenShaker screenShaker = gameObject.GetComponent<ScreenShaker>();
+            if (screenShaker != null)
+            {
+                screenShaker.End();
+            }
+            screenShaker = gameObject.AddComponent<ScreenShaker>();
             screenShaker.Strength = strength;
             screenShaker.Duration = duration;
         }

@@ -51,7 +51,7 @@ Torment: Welcome back, [Name:Summoned]! Heh heh!
 :return:
 }
 :setTempFlag:SawDeadBoss
-:if:compareString:[Name:Summoned]:Lan{
+:if:stringEquals:[Name:Summoned]:Lan{
 Lan: ...
 Fashima: Lan?\a Seriously, Torment? Of all the people to summon here,\a you chose Lan?
 Torment: I did not choose him, Fashima.\a I'm not exactly in control here, thanks to your...\a conspiracy.\a Heh.
@@ -59,7 +59,7 @@ Fashima: Hm. That is useful information. Thank you, my friend.
 Torment: You're most welcome, my dear champion! Ha ha ha!
 :return:
 }
-:if:compareString:[Name:Summoned]:Brens{
+:if:stringEquals:[Name:Summoned]:Brens{
 Brens: ...
 :if:unitAlive:Werse{
 Werse: B-Brens?! You're... But I saw you die!\a How can this be?!
@@ -68,7 +68,7 @@ Werse: You...! Ugh, I cannot afford to lose focus.\a Forgive me, Brens...
 :return:
 }
 }
-:if:compareString:[Name:Summoned]:Bodder{
+:if:stringEquals:[Name:Summoned]:Bodder{
 Bodder: ...
 :if:unitAlive:Frogman{
 Frogman: Is that Bodder?\a Oh no. Not him again...
@@ -79,7 +79,7 @@ Frogman: Right...
 }
 :return:
 }
-
+}
 
 ~ After battle
 :play:AfterBattle

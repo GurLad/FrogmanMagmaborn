@@ -139,6 +139,9 @@ public class Tileset
     [SerializeField]
     private List<TileData> Tiles;
     public float SpeedOverride;
+    [HideInInspector]
+    [SerializeField]
+    private List<BattleAnimationController.BattleBackgroundData> BattleBackgrounds;
 
     public Tileset()
     {
@@ -158,6 +161,7 @@ public class Tileset
             tile.ArmorModifier = Tiles[i].ArmorMod;
             tile.MovementCost = Tiles[i].MoveCost;
             tile.High = Tiles[i].High;
+            tile.HasBattleBackground = BattleBackgrounds.Find(a => a.Name == tile.Name) != null;
             tile.GetComponent<PalettedSprite>().ForceSilentSetPalette(Tiles[i].Palette - 1);
             tile.name = i + " - " + tile.Name;
             TileObjects.Add(tile);
