@@ -42,11 +42,13 @@ Frogman: Let's go!
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
 # TBA
+Frogman: You again. This time, I won't lose.
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
 # TBA
+Frogman: You again. This time, I won't lose.
 :finishConversation:
 }
 }
@@ -73,6 +75,7 @@ With our powers combined, we can be unstoppable!
 # PostPostWin
 :if:hasCharacter:Kresla{
 # TBA
+:callOther:Level3Generic
 }
 :else:{
 :callOther:Level3Generic

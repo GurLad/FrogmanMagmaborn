@@ -4218,16 +4218,21 @@ MonoBehaviour:
 
       # TBA
 
+      Frogman: You again. This time, I
+      won''t lose.
+
       :finishConversation:
 
       }
 
       :else:{
 
-      #
-      PreCharacterFirstPostWin
+      # PreCharacterFirstPostWin
 
-      # TBA
+      #
+      TBA
+
+      Frogman: You again. This time, I won''t lose.
 
       :finishConversation:
 
@@ -4293,6 +4298,8 @@ MonoBehaviour:
       :if:hasCharacter:Kresla{
 
       # TBA
+
+      :callOther:Level3Generic
 
       }
 
@@ -19091,9 +19098,9 @@ MonoBehaviour:
 
       :setTeam:Xirveros:monster
 
-      Alfred||R: Ha!\a You
-      believe Fashima''s lies?!\a Fool!\a All she ever does is murder!\a I care not
-      for this Torment -\a Fashima is the true evil!
+      Alfred||R: Ha!\a
+      You believe Fashima''s lies?!\a Fool!\a All she ever does is murder!\a I care
+      not for this Torment -\a Fashima is the true evil!
 
       :setTeam:Alfred:guard
 
@@ -19106,8 +19113,8 @@ MonoBehaviour:
       Kresla||R:
       Woah. It''s getting kinda dark in here.
 
-      It''s been a while since I took
-      a death threat seriously.\a But I didn''t come this far just to disappear.\a
+      It''s been a while since I
+      took a death threat seriously.\a But I didn''t come this far just to disappear.\a
       Someone must live to tell our tale, right?
 
       :setTeam:Kresla:guard
@@ -19139,33 +19146,33 @@ MonoBehaviour:
 
       :setTeam:Fashima:monster
 
-      Torment||R: HA HA HA! Typical humans!
+      Torment||R: HA HA HA! Typical
+      humans!
 
-      So
-      quick to turn on each other in the face of danger!
+      So quick to turn on each other in the face of danger!
 
-      Your plan makes for
-      quite the spectacle, Fashima. Heh heh.
+      Your
+      plan makes for quite the spectacle, Fashima. Heh heh.
 
-      Fashima||L: I still have more
-      than enough Magmaborn to destroy you.
+      Fashima||L: I
+      still have more than enough Magmaborn to destroy you.
 
-      Torment||R: We''ll see about that.
-      Heh. And what about you, my...\a champion? Heh heh!\a Which side will you choose,
-      hm?
+      Torment||R: We''ll
+      see about that. Heh. And what about you, my...\a champion? Heh heh!\a Which
+      side will you choose, hm?
 
       Frogman: Me? I...
 
-      :showChoice:Frogman:Side with Fashima:Side
-      with Torment
+      :showChoice:Frogman:Side
+      with Fashima:Side with Torment
 
       :if:chose:0{
 
-      Frogman||L: I will help you stop Torment,
-      Fashima.\a I... have no life to return to on the surface.
+      Frogman||L: I will
+      help you stop Torment, Fashima.\a I... have no life to return to on the surface.
 
-      Fashima: Excellent
-      choice, my friend. Let us be quick, then,\a before Torment gets away.
+      Fashima:
+      Excellent choice, my friend. Let us be quick, then,\a before Torment gets away.
 
       :setTeamPlayable:monster:T
 
@@ -19205,6 +19212,7 @@ MonoBehaviour:
 
       }
 
+      
 
       ~
       After battle
@@ -19213,10 +19221,12 @@ MonoBehaviour:
 
       # Name: Text.
 
+      
 
-      # === Functions
-      ====
+      #
+      === Functions ====
 
+      
 
       ~ FrogmanDead
 
@@ -62737,9 +62747,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 1
+    Enabled: 0
     SkipIntro: 0
-    EndgameLevel: 10
+    EndgameLevel: 0
     ExtraLevels: 0
     Units:
     - Frogman
@@ -62747,7 +62757,7 @@ MonoBehaviour:
     OPPlayers: 0
     ForceConversation: 
     ForceMap: 
-    KillAutoSaves: 1
+    KillAutoSaves: 0
 --- !u!114 &1902908242
 MonoBehaviour:
   m_ObjectHideFlags: 0
