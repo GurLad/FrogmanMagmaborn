@@ -202,6 +202,10 @@ public class ConversationData : System.IComparable<ConversationData>
                 // Compaers the min pos of a unit in the given team to the given value (x or y)
                 // Params: x/y:team:?value
                 return MeetsComparisonRequirement(parts[3][0], GameController.Current.FindMinMaxPosUnit(parts[2].ToTeam(), parts[1] == "x", false), int.Parse(parts[3].Substring(1)));
+            case "unitHealth":
+                // Compaers the health of a unit with the given value
+                // Params: unitName:?health
+                return MeetsComparisonRequirement(parts[2][0], GameController.Current.GetNamedUnits(parts[1])[0].Health, int.Parse(parts[2].Substring(1)));
 
             // Misc
 

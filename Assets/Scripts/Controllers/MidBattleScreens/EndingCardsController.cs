@@ -23,6 +23,7 @@ public class EndingCardsController : MidBattleScreen
 
     public void Init(string wonName, int wonPalette)
     {
+        SavedData.Save("HasSuspendData", 0); // Nobody would close the game during the ending, right?
         // Ending stats
         winnerName = wonName;
         winnerPalette = wonPalette;

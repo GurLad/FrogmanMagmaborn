@@ -191,6 +191,7 @@ public static class EventCommandProcessor
                     foreach (Unit target in targets)
                     {
                         target.TheTeam = args[1].ToTeam() ?? target.TheTeam;
+                        target.Priorities.Set(GameController.Current.LevelMetadata.TeamDatas[(int)target.TheTeam].AI);
                         target.Moved = target.Moved;
                     }
                 }

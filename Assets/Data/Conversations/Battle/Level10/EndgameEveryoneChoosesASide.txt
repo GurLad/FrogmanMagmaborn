@@ -52,6 +52,7 @@ Torment: Ha ha ha! Oh, it is quite simple.\a Just protect me from Fashima and he
 :setTempFlag:EndgameFrogmanTorment
 :setObjective:Survive:8
 # Set Fashima AI
+:setTeamAI:monster:beeline:Torment
 :setUnitAI:Fashima:Guard
 :addAllyToUnit:Fashima:Wisp
 }

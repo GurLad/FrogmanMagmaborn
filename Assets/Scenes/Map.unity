@@ -18390,7 +18390,7 @@ MonoBehaviour:
       :else:{
 
       Firbell:
-      Rot in hell, Frogman...!
+      Curse you, Frogman...!
 
       }
 
@@ -18841,8 +18841,6 @@ MonoBehaviour:
 
       :setStat:Wisp:End:1
 
-      :setTeamAI:monster:beeline:Torment
-
       :endgameBeginFadeIn:
 
       :callOther:EndgamePostBegin
@@ -19199,6 +19197,8 @@ MonoBehaviour:
       #
       Set Fashima AI
 
+      :setTeamAI:monster:beeline:Torment
+
       :setUnitAI:Fashima:Guard
 
       :addAllyToUnit:Fashima:Wisp
@@ -19272,6 +19272,8 @@ MonoBehaviour:
       Torment: Ha ha. HA HA
       HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
+      :unlockAchievement:MiscFashimaWin
+
       :screenShake:
 
       :play:EndingFlash
@@ -19298,6 +19300,8 @@ MonoBehaviour:
       foolishness...
 
       Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
+
+      :unlockAchievement:MiscFashimaWin
 
       :screenShake:
 
@@ -19663,12 +19667,69 @@ MonoBehaviour:
 
       ~ Before battle
 
+      :setSpeaker:Fashima
+
       :if:!hasTempFlag:Crystal1{
 
-      Torment:
-      Weee!
-
       :setTempFlag:Crystal1
+
+      :if:unitHealth:Torment:<25{
+
+      Torment:
+      Heh... You''re quicker... Than expected...
+
+      Fashima: Of course I am.
+      Did you truly expect any less from me?\a Your end is nigh, Torment.
+
+      Torment:
+      We''ll... see...
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<50{
+
+      Torment:
+      Heh. You''re quicker than I expected.
+
+      Fashima: Of course I am.\a Your
+      end is nigh, Torment.
+
+      Torment: We''ll see about that. Heh.
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<75{
+
+      Torment:
+      Heh heh. Do you feel your bond weakening, Fashima?
+
+      Fashima: Do you feel
+      your life force fleeting, Torment?
+
+      Torment: A bit of a... personal question,
+      don''t you think?
+
+      Ha ha! But I''m fine, thanks for asking.
+
+      Fashima:
+      Not for long.
+
+      :return:
+
+      }
+
+      Torment: Heh heh. Do you feel
+      your seal weakening, Fashima?
+
+      Fashima: I am well aware of it, Torment.\a
+      Worry not, I will be done long before it shatters.
+
+      Torment: We''ll see.
+      Heh.
 
       :return:
 
@@ -19676,12 +19737,63 @@ MonoBehaviour:
 
       :if:!hasTempFlag:Crystal2{
 
-      Torment:
-      Wooo!
-
       :setTempFlag:Crystal2
 
       :setUnitAI:Fashima:Beeline:Torment
+
+      :if:unitHealth:Torment:<25{
+
+      Torment:
+      You''re fast... I''ll grant you that...\a But it won''t be enough. Heh.
+
+      Fashima:
+      We''ll see about that.
+
+      Torment: Indeed...
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<50{
+
+      Torment:
+      Heh. You were faster than I anticipated,\a but it won''t be enough.\a I''ll
+      be free again soon.
+
+      Fashima: I still have plenty of time left to slay
+      you.
+
+      Torment: Make it count, then. Heh.
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<75{
+
+      Torment:
+      Ha ha ha! All this blood and death, for a tiny scratch?\a I expected better
+      from you, Fashima. Heh.
+
+      Fashima: ...Everything is going according to
+      plan.
+
+      Torment: Oh, really? Well then, don''t let me interrupt this...\a
+      master plan of yours! Ha ha!
+
+      :return:
+
+      }
+
+      Torment: Ha ha
+      ha! Are you even trying, Fashima?\a To be honest, I''m dissapointed.
+
+      Fashima:
+      ...
+
+      Torment: No comment, hm? Too busy failing to harm me, are you?\a
+      Heh heh! Well, do go on! Don''t let me interrupt you!
 
       :return:
 
@@ -19689,10 +19801,68 @@ MonoBehaviour:
 
       :if:!hasTempFlag:Crystal3{
 
-      Torment:
-      Waaa!
-
       :setTempFlag:Crystal3
+
+      :if:unitHealth:Torment:<25{
+
+      Torment:
+      Heh... You got closer than I thought...\a But it will be over soon...
+
+      Fashima:
+      It won''t be over until your death, Torment.
+
+      Torment: Better be quick
+      about it, then... Or else... Ha ha ha!
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<50{
+
+      Torment:
+      I almost thought you had a chance for a second there.
+
+      But your time
+      is running out, Fashima. Heh.
+
+      Fashima: ...Worry not, your death is imminent.
+
+      Torment:
+      Ooh, imminent? Am I supposed be afraid? Ha ha ha!\a But this is your show,
+      not mine. Heh.\a So please, continue!
+
+      :return:
+
+      }
+
+      :if:unitHealth:Torment:<75{
+
+      Torment:
+      Oh, how disappointing.
+
+      I expected you to put up more a fight.
+
+      Fashima:
+      ...It''s not over yet.
+
+      Torment: Seriously? You would need a miracle
+      to pull it off now.\a Heh. But very well, let''s see you try!
+
+      :return:
+
+      }
+
+      Torment:
+      Ha ha ha! Oh, this is just precious!
+
+      All this effort, and you have nothing
+      to show for it!
+
+      Fashima: ...
+
+      Torment: Don''t give me that look.
+      Heh. You still have a bit of time.\a Better not waste it! Ha ha!
 
       :return:
 
@@ -19700,18 +19870,20 @@ MonoBehaviour:
 
       :if:!hasTempFlag:Crystal4{
 
-      :callOther:EndgameTormentWin
-
       #
-      Won''t happen but still
+      Default is Torment win
+
+      :win:
+
+      # Won''t happen but still
 
       :finishConversation:
 
       }
 
 
-      ~ After
-      battle
+      ~
+      After battle
 
       :play:AfterBattle
 
@@ -19792,8 +19964,10 @@ MonoBehaviour:
       Summoned: What are you talking about?
 
       Torment:
-      Oh, how delightful! I should''ve thought of doing this sooner!\a Heh heh!\a
-      But as fun as this is, you have a battle to fight, hm?
+      Oh, how delightful!
+
+      I should''ve thought of doing this sooner! Heh heh!\a
+      But as fun as this is,\a you have a battle to fight, hm?
 
       }
 
@@ -19862,7 +20036,7 @@ MonoBehaviour:
       not exactly in control here, thanks to your...\a conspiracy.\a Heh.
 
       Fashima:
-      Hm. That is useful information. Thank you, my friend.
+      Hm. That is useful information.\a Thank you, my friend.
 
       Torment: You''re
       most welcome, my dear champion! Ha ha ha!
@@ -20350,9 +20524,13 @@ MonoBehaviour:
 
       FrogmanMan||L: Wait-
 
+      :unlockAchievement:MiscTormentWin
+
       :screenShake:
 
       :play:FrogmanMagmabornMedley
+
+      :setTempFlag:TormentVictory
 
       :showEnding:TORMENT:2
 
@@ -54377,7 +54555,7 @@ MonoBehaviour:
         - id: 49
         - id: 56
       Name: Magi
-      PlayerControlled: 1
+      PlayerControlled: 0
       PortraitLoadingMode: 0
       AI:
         TrueDamageWeight: 0
@@ -54450,8 +54628,8 @@ MonoBehaviour:
       PlayerControlled: 0
       PortraitLoadingMode: 0
       AI:
-        TrueDamageWeight: 1
-        RelativeDamageWeight: 0
+        TrueDamageWeight: 0
+        RelativeDamageWeight: 1
         SurvivalWeight: 0
         CautionLevel: 0
       BaseSymbol: {fileID: 21300000, guid: f08d3177f18f1f848864c9623921e13d, type: 3}
