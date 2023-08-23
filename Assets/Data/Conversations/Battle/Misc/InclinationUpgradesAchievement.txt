@@ -1,0 +1,23 @@
+priority:-1
+unique:F
+~ Requirements
+# Never appear
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:addCounter:InclinationUpgrades:1
+:if:compareCounter:InclinationUpgrades:>6{
+:unlockAchievement:MiscAllInclinationUpgrades
+}
+
+~ After battle
+:addCounter:TormentPowers:1
+:if:compareCounter:InclinationUpgrades:>6{
+:unlockAchievement:MiscAllInclinationUpgrades
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

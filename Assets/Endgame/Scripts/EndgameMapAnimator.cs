@@ -13,11 +13,8 @@ public class EndgameMapAnimator : MonoBehaviour
     public Sprite FloorBottomM;
     public Sprite FloorBottomR;
     [Header("Bridge")]
-    public string BridgeName;
+    public List<BridgeType> BridgeTypes;
     public GameObject BridgeBaseHolder;
-    public Sprite BridgeTransparent;
-    public Sprite BridgeTop;
-    public Sprite BridgeBottom;
     [Header("Void")]
     public string VoidName;
     public Vector2 VoidSpawnRate;
@@ -55,6 +52,7 @@ public class EndgameMapAnimator : MonoBehaviour
             }
         }
         // Process
+        BridgeType type;
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
@@ -67,9 +65,9 @@ public class EndgameMapAnimator : MonoBehaviour
                 {
                     GroupFloor(tiles, size, i, j);
                 }
-                if (tiles[i, j].Tile.Name == BridgeName)
+                if ((type = BridgeTypes.Find(a => tiles[i, j].Tile.Name == a.Name)) != null)
                 {
-                    GroupBridge(tiles, size, i, j);
+                    GroupBridge(tiles, type, size, i, j);
                 }
                 if (tiles[i, j].Tile.Name == VoidName)
                 {
@@ -113,35 +111,59 @@ public class EndgameMapAnimator : MonoBehaviour
         holder.gameObject.SetActive(true);
     }
 
-    private void GroupBridge(ProcessedTile[,] tiles, Vector2Int size, int x, int y, bool vertical = true)
+    private void GroupBridge(ProcessedTile[,] tiles, BridgeType type, Vector2Int size, int x, int y)
     {
         Transform holder = Instantiate(BridgeBaseHolder, BridgeBaseHolder.transform.parent).transform;
         int height = 1, width = 1;
-        if (vertical)
+        if (type.Vertical)
         {
             // Group
             for (int j = y; j < size.y; j++)
             {
-                if (tiles[x, j].Tile.Name != BridgeName)
+                if (tiles[x, j].Tile.Name != type.Name)
                 {
                     height = j;
                     break;
                 }
                 tiles[x, j].Processed = true;
                 tiles[x, j].Tile.transform.parent = holder.transform;
-                tiles[x, j].Tile.GetComponent<AdvancedSpriteSheetAnimation>().Animations[0].SpriteSheet = BridgeTransparent;
+                tiles[x, j].Tile.GetComponent<AdvancedSpriteSheetAnimation>().Animations[0].SpriteSheet = type.Transparent;
             }
             // Add top/bottom
-            PalettedSprite top = CreateNewPseudoTile(holder.transform, BridgeTop, new Vector2Int(x, y - 1)).GetComponent<PalettedSprite>();
+            PalettedSprite top = CreateNewPseudoTile(holder.transform, type.TopLeft, new Vector2Int(x, y - 1)).GetComponent<PalettedSprite>();
             top.Awake();
             top.Palette = 1;
-            PalettedSprite bottom = CreateNewPseudoTile(holder.transform, BridgeBottom, new Vector2Int(x, height)).GetComponent<PalettedSprite>();
+            PalettedSprite bottom = CreateNewPseudoTile(holder.transform, type.BottomRight, new Vector2Int(x, height)).GetComponent<PalettedSprite>();
             bottom.Awake();
             bottom.Palette = 1;
         }
         else
         {
-            // TBA
+            // Group
+            for (int i = x; i < size.x; i++)
+            {
+                if (tiles[i, y].Tile.Name != type.Name)
+                {
+                    width = i;
+                    break;
+                }
+                tiles[i, y].Processed = true;
+                tiles[i, y].Tile.transform.parent = holder.transform;
+                tiles[i, y].Tile.GetComponent<AdvancedSpriteSheetAnimation>().Animations[0].SpriteSheet = type.Transparent;
+            }
+            // Add left/right
+            if (GameController.Current.IsValidPos(new Vector2Int(x - 1, y)) && BridgeTypes.Find(a => tiles[x - 1, y].Tile.Name == a.Name) == null)
+            {
+                PalettedSprite left = CreateNewPseudoTile(holder.transform, type.TopLeft, new Vector2Int(x - 1, y)).GetComponent<PalettedSprite>();
+                left.Awake();
+                left.Palette = 1;
+            }
+            if (GameController.Current.IsValidPos(new Vector2Int(width, y)) && BridgeTypes.Find(a => tiles[width, y].Tile.Name == a.Name) == null)
+            {
+                PalettedSprite right = CreateNewPseudoTile(holder.transform, type.BottomRight, new Vector2Int(width, y)).GetComponent<PalettedSprite>();
+                right.Awake();
+                right.Palette = 1;
+            }
         }
         holder.transform.position -= new Vector3(0, 0, 0.3f);
         holder.gameObject.SetActive(true);
@@ -183,6 +205,16 @@ public class EndgameMapAnimator : MonoBehaviour
         {
             Tile = tile;
         }
+    }
+
+    [System.Serializable]
+    public class BridgeType
+    {
+        public string Name;
+        public Sprite Transparent;
+        public Sprite TopLeft;
+        public Sprite BottomRight;
+        public bool Vertical;
     }
 
     public class DestroyAnimationOnFinish : MonoBehaviour, IAdvancedSpriteSheetAnimationListener

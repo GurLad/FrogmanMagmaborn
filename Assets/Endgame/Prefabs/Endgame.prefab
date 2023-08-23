@@ -915,11 +915,23 @@ MonoBehaviour:
   FloorBottomL: {fileID: 21300000, guid: 78fabfc2e9a1c5a4b92b7f0b28292090, type: 3}
   FloorBottomM: {fileID: 21300000, guid: 9fd37483af735fe42b90c9a1ce1618c1, type: 3}
   FloorBottomR: {fileID: 21300000, guid: 7426c4203b542a44b95b648d571a2acd, type: 3}
-  BridgeName: BrdgU
+  BridgeTypes:
+  - Name: BrdgU
+    Transparent: {fileID: 21300000, guid: c6f62e52c17b95c4099b782c430926e9, type: 3}
+    TopLeft: {fileID: 21300000, guid: a9e36b7cec00f3c489bb2269c3217368, type: 3}
+    BottomRight: {fileID: 21300000, guid: efe94f0388d082d40aeec9b25c332ce3, type: 3}
+    Vertical: 1
+  - Name: BrdgL
+    Transparent: {fileID: 21300000, guid: da5546ce06bcce14087c77c57a1e8fa1, type: 3}
+    TopLeft: {fileID: 21300000, guid: 5f0b6a9bf488c63469d6c0bffdbf5f9e, type: 3}
+    BottomRight: {fileID: 21300000, guid: 356602aae5842da42a2c4773fa30e8cc, type: 3}
+    Vertical: 0
+  - Name: BrdgR
+    Transparent: {fileID: 21300000, guid: 40e9134c2bf5d4542b54640b6cd46f4b, type: 3}
+    TopLeft: {fileID: 21300000, guid: 6231bdabfb2a25b41918642b54725b01, type: 3}
+    BottomRight: {fileID: 21300000, guid: 137ac42a8a8b00845a029ddcf7c3f436, type: 3}
+    Vertical: 0
   BridgeBaseHolder: {fileID: 1482147205001286322}
-  BridgeTransparent: {fileID: 21300000, guid: c6f62e52c17b95c4099b782c430926e9, type: 3}
-  BridgeTop: {fileID: 21300000, guid: a9e36b7cec00f3c489bb2269c3217368, type: 3}
-  BridgeBottom: {fileID: 21300000, guid: efe94f0388d082d40aeec9b25c332ce3, type: 3}
   VoidName: Void
   VoidSpawnRate: {x: 0.2, y: 0.5}
   VoidSpawns:

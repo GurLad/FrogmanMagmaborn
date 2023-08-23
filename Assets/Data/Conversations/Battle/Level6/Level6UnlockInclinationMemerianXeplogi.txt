@@ -70,7 +70,7 @@ Xeplogi: How dare you! You will die for this, Frogman!
 :play:Anticipation
 Frogman: Whew, that was tough.\a Let's go, everyone! To the fortress!
 :if:hasCharacter:Xeplogi{
-:if:MemerianXeplogiBalance:<1{
+:if:compareCounter:MemerianXeplogiBalance:<1{
 Xeplogi: Thank you for supporting me, Frogman.
 Frogman: Yeah, sure.
 Xeplogi: I've been thinking about what you said before.\a About changing.
@@ -81,6 +81,7 @@ Frogman: Ah.
 Xeplogi: I admit that it might leave a bit to be desired.\a Therefore, I shall change it.\a If you so wish.
 Frogman: Uh... That's something, I guess.
 :unlockKnowledge:InclinationXeplogi
+:callOther:InclinationUpgradesAchievement
 :showInfoDialogue:New knowledge!
 }
 :else:{
@@ -97,12 +98,13 @@ Xeplogi: I admit that it might leave a bit to be desired.\a Therefore, I shall c
 Frogman: Uh... That's something, I guess.
 Xeplogi: Let me prove to you that I'm worthy of your trust.
 :unlockKnowledge:InclinationXeplogi
+:callOther:InclinationUpgradesAchievement
 :showInfoDialogue:New knowledge!
 }
 }
 :else:{
 :if:hasCharacter:Memerian{
-:if:MemerianXeplogiBalance:>-1{
+:if:compareCounter:MemerianXeplogiBalance:>-1{
 Memerian: Thanks for supporting me.
 Frogman: You're welcome.
 Memerian: Listen. I've been thinking about what you said before.\a About changing.
@@ -114,6 +116,7 @@ Memerian: I'm willing to change that.
 If you think that's the right call, that is.
 Frogman: Sure...
 :unlockKnowledge:InclinationMemerian
+:callOther:InclinationUpgradesAchievement
 :showInfoDialogue:New knowledge!
 }
 :else:{
@@ -131,6 +134,7 @@ Memerian: I'm willing to change that.
 If you think that's the right call, that is.
 Frogman: Sure...
 :unlockKnowledge:InclinationMemerian
+:callOther:InclinationUpgradesAchievement
 :showInfoDialogue:New knowledge!
 }
 }
