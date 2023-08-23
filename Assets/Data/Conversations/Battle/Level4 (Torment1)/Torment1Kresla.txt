@@ -4,7 +4,7 @@ unique:T
 levelNumber:4
 hasCharacter:Kresla
 ~ Demands
-# Nothinig
+# Nothing
 ~ Before battle
 :callOther:TormentBase
 :loadMap:InitTormentRoom
@@ -78,6 +78,7 @@ Frogman: Why, you-
 Torment: Oops, gotta go now. Here, have some of my power!
 }
 :unlockKnowledge:TormentSpeedSafety
+:callOther:TormentPowersAchievement
 :showInfoDialogue:New knowledge!
 :if:hasTempFlag:TormentRage:{
 Frogman: ...Unbelievable.

@@ -4,7 +4,7 @@ unique:T
 levelNumber:4
 hasFlag:MetMemerian
 ~ Demands
-# Nothinig
+# Nothing
 ~ Before battle
 :callOther:TormentBase
 :loadMap:InitTormentRoom
@@ -64,6 +64,7 @@ Torment: ...I grow weary of you, Frogman. Heh.\a You can go now.
 :loadUnits:InitTormentRoom
 Frogman: ...Heh.
 :unlockKnowledge:TormentPushPull
+:callOther:TormentPowersAchievement
 :showInfoDialogue:New knowledge!
 
 # === Functions ====

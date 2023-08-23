@@ -1,0 +1,23 @@
+priority:-1
+unique:F
+~ Requirements
+# Never appear
+levelNumber:0
+~ Demands
+# Nothing
+~ Before battle
+:addCounter:TormentPowers:1
+:if:compareCounter:TormentPowers:>6{
+:unlockAchievement:MiscAllTormentPowers
+}
+
+~ After battle
+:addCounter:TormentPowers:1
+:if:compareCounter:TormentPowers:>6{
+:unlockAchievement:MiscAllTormentPowers
+}
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

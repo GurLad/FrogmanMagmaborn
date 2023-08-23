@@ -4,7 +4,7 @@ unique:F
 # Never selected
 levelNumber:0
 ~ Demands
-# Nothinig
+# Nothing
 ~ Before battle
 # Nothing
 
@@ -20,6 +20,7 @@ Torment: Fine, fine. You can leave.\a And try to free us this time!
 Frogman: ...
 :setFlag:HasTormentTakeGive
 :unlockKnowledge:TormentTakeGive
+:callOther:TormentPowersAchievement
 :showInfoDialogue:New knowledge!
 
 # === Functions ====

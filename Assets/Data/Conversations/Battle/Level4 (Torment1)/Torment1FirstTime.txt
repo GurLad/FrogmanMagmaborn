@@ -58,6 +58,7 @@ Torment: Ha ha ha! That's the spirit!
 :if:!hasFlag:TormentHasHurtHelp{
 But before you go, let me give you a little gift.\a You will know it soon enough... Heh heh.
 :unlockKnowledge:TormentHurtHelp
+:callOther:TormentPowersAchievement
 :setFlag:TormentHasHurtHelp
 :showInfoDialogue:New knowledge!
 }

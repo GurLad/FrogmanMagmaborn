@@ -4,7 +4,7 @@ unique:T
 levelNumber:4
 hasCharacter:Xirveros
 ~ Demands
-# Nothinig
+# Nothing
 ~ Before battle
 :callOther:TormentBase
 :play:BeforeBattle
@@ -72,6 +72,7 @@ But nevertheless, I do enjoy our conversations. Heh!
 :loadUnits:InitTormentRoom
 You can keep your mind. For now.
 :unlockKnowledge:TormentChaosOrder
+:callOther:TormentPowersAchievement
 :showInfoDialogue:New knowledge!
 :loadUnits:InitTormentRoom:Player
 :if:hasCharacter:Xirveros{
