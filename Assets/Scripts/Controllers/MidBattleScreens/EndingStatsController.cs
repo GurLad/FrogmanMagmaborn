@@ -27,6 +27,7 @@ public class EndingStatsController : MidBattleScreen
         RunStats.text = difficulty.ToString().ToColoredString((int)difficulty - 1) + "\n" +
             RunStatsController.Current.GameStats.TotalTurns + "\n" +
             RunStatsController.Current.GameStats.PlayTime.SecondsToTime();
+        AchievementController.UnlockAchievement("HardcodedWin");
         if (difficulty == Difficulty.Insane)
         {
             AchievementController.UnlockAchievement("HardcodedWinInsane");
