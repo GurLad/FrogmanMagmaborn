@@ -41,14 +41,25 @@ Frogman: Let's go!
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
-# TBA
-Frogman: You again. This time, I won't lose.
+:play:ToTheDeath
+Kresla: Hey, Frogman! Where are you going?
+Frogman: To the Fortress.
+Kresla: Really?! Oh, I've always wanted to go there!\a But how are we supposed to reach it?
+Frogman: By defeating the lich guarding it?
+Kresla: You already know about them?\a Wow, I've always wanted to dissect one!\a Yes, let's go do that!
+Frogman: Let's.
 :finishConversation:
 }
 :else:{
 # PreCharacterFirstPostWin
-# TBA
-Frogman: You again. This time, I won't lose.
+# Same as no win for now
+:play:ToTheDeath
+Kresla: Hey, Frogman! Where are you going?
+Frogman: To the Fortress.
+Kresla: Really?! Oh, I've always wanted to go there!\a But how are we supposed to reach it?
+Frogman: By defeating the lich guarding it?
+Kresla: You already know about them?\a Wow, I've always wanted to dissect one!\a Yes, let's go do that!
+Frogman: Let's.
 :finishConversation:
 }
 }
@@ -65,7 +76,7 @@ Kresla: Right!
 :play:SafeAndSound
 Wow! I cannot believe we did it!\a We actually beat a lich!
 Frogman: Yes. Although the Fortress is still pretty far away...
-Kresla: Still, this is uncharted territory!\a I can't wait to find out what's out there!\a The source of magic?\a Aliens?\a More types of monsters? Maybe even some humans!\a I mean, someone had to build that fortress! Or could it be a tribe of magmaborn? Perhaps an underground civilization! Could dwarves actually be real? No, those are fairy tales... Then again, so is magic. You can never be sure anymore, eh, Frogman?
+Kresla: Still, this is uncharted territory!\a I can't wait to find out what's out there!\a The source of magic?\a Aliens?\a More types of monsters? Maybe even some humans!\a I mean, someone had to build that fortress! Or could it be a tribe of Magmaborn? Perhaps an underground civilization! Could dwarves actually be real? No, those are fairy tales... Then again, so is magic. You can never be sure anymore, eh, Frogman?
 Frogman: Uh, y-yes, of course.
 Kresla: There's so much to discover! Frogman, are you coming?
 With our powers combined, we can be unstoppable!
@@ -74,8 +85,20 @@ With our powers combined, we can be unstoppable!
 :else:{
 # PostPostWin
 :if:hasCharacter:Kresla{
-# TBA
-:callOther:Level3Generic
+Kresla: Oh.\a It just disintegrated.\a What a shame.
+Frogman: Kresla, we need to get out of here now!
+Kresla: Right!
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom:player
+:play:SafeAndSound
+Wow! I cannot believe we did it!\a We actually beat a lich!
+Frogman: This... wasn't my first time.
+Kresla: What did you say?
+Frogman: Never mind. Let's just go.
+:hideUnit:Frogman
+:setSingleSpeaker:L
+Kresla: Yes! I can't wait to find out what's out there!\a The source of magic?\a Aliens? More types of monsters?\a Maybe even some humans!\a I mean, someone had to build that fortress! Or could it be a tribe of Magmaborn? Perhaps an underground civilization! Could dwarves actually be real? No, those are fairy tales... Then again, so is magic. You can never be sure anymore, eh, Frogman?\a Frogman?\a Where did you go? Wait for me!
+:finishConversation:
 }
 :else:{
 :callOther:Level3Generic

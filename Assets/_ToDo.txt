@@ -1,10 +1,11 @@
 ==== TODO ====
- -Death quote bug? Was Kresla suiciding against the Lich, auto-saves resulted in a Kresla with -2 health (couldn't replicate)
+ -Make the Endgame music!!!
+ -Endgame auto-save fixes (can be fixed post-release I think, but would be better to do it before that)
 
 Conversation first time rework:
  -Level2FirstTime (optional I think)
-~-Level3FirstTime (seperated, 66% written)
-~-Level5FirstTime(Xeplogi) (seperated, pre-battle is finished, post-battle 0%)
+V-Level3FirstTime
+V-Level5FirstTime(Xeplogi)
  -Level5FirstTimeAlfred
  -Level6FirstTime
 
@@ -21,15 +22,15 @@ For final release:
 -Must have:
 V-Custom size units (for Torment)
 V-All hardcoded stuff...
-~-Character endings + editor (missing actual ending)
+V-Character endings + editor
  -Finish wiki
-~-Achievements (need more names + art)
-~-Add save slot copy/delete
+~-Achievements (missing 1 art)
+V-Add save slot copy/delete
 -Nice to have (most probably post release):
  -Alternate palettes (low contrast, colour blind etc.)
  -Seperate map & combat sprite palettes (for more NES FE style combats - ruins portraits, annoying fix)
  -Improve CGs + editor
-~-GBA FE-style auto-saves, which prevent save scamming & can be used always (done, untested)
+~-GBA FE-style auto-saves, which prevent save scamming & can be used always (done, buggy)
  -In-game cheats for debugging - restart chapter, auto-win etc.
  -Bigger map support
  -Alow loading maps & units in the background while there's a CG
