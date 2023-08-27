@@ -729,6 +729,8 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                 data.CGPreviousState = PaletteController.Current.SaveState();
                 gameObject.SetActive(false);
                 CGController.FadeInCG(data.CurrentCG, data.CGPreviousState);
+                // CGs advance the line by 1 after fading in, so we need to reduce the current line
+                currentLine--;
             }
             else
             {

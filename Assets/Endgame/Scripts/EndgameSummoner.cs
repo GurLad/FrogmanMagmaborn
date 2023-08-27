@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndgameSummoner : AGameControllerListener
+public class EndgameSummoner : AGameControllerListener, ISuspendable<SuspendDataEndgameSummoner>
 {
     private enum SummonOnUnitMode { Damage, Teleport, EndMarker }
     private enum SummonNoUnitMode { Magmaborn, DeadBoss, Generic, Monster, EndMarker }
@@ -26,7 +26,7 @@ public class EndgameSummoner : AGameControllerListener
     public List<string> SummonOptionsGeneric { private get; set; }
     public List<string> SummonOptionsMonster { private get; set; }
     public string PostSummonConversation { private get; set; }
-    public string PostCrystalShatterConversation { private get; set; } // TBA
+    public string PostCrystalShatterConversation { private get; set; }
     public int LastSummonMode { get; private set; }
     private Unit torment;
     private float chaosModifier = 0;
@@ -243,6 +243,41 @@ public class EndgameSummoner : AGameControllerListener
         }
     }
 
+    public SuspendDataEndgameSummoner SaveToSuspendData()
+    {
+        SuspendDataEndgameSummoner suspendData = new SuspendDataEndgameSummoner();
+        suspendData.SummonOptionsMagmabornTeam2 = SummonOptionsMagmabornTeam2;
+        suspendData.SummonOptionsMagmabornTeam3 = SummonOptionsMagmabornTeam3;
+        suspendData.SummonOptionsDeadBoss = SummonOptionsDeadBoss;
+        suspendData.SummonOptionsGeneric = SummonOptionsGeneric;
+        suspendData.SummonOptionsMonster = SummonOptionsMonster;
+        suspendData.PostSummonConversation = PostSummonConversation;
+        suspendData.PostCrystalShatterConversation = PostCrystalShatterConversation;
+        suspendData.ChaosModifier = chaosModifier;
+        suspendData.Circles = circles.ConvertAll(a => new SummonCircleData(a.Pos, a.Summoning));
+        suspendData.CrystalCount = Crystals.Count;
+        suspendData.EndgameOn = true;
+        return suspendData;
+    }
+
+    public void LoadFromSuspendData(SuspendDataEndgameSummoner data)
+    {
+        SummonOptionsMagmabornTeam2 = data.SummonOptionsMagmabornTeam2;
+        SummonOptionsMagmabornTeam3 = data.SummonOptionsMagmabornTeam3;
+        SummonOptionsDeadBoss = data.SummonOptionsDeadBoss;
+        SummonOptionsGeneric = data.SummonOptionsGeneric;
+        SummonOptionsMonster = data.SummonOptionsMonster;
+        PostSummonConversation = data.PostSummonConversation;
+        PostCrystalShatterConversation = data.PostCrystalShatterConversation;
+        chaosModifier = data.ChaosModifier;
+        data.Circles.ForEach(a => circles.Find(b => b.Pos == a.Pos).Summoning = a.Summoning);
+        while (Crystals.Count > data.CrystalCount)
+        {
+            Destroy(Crystals[0]);
+            Crystals.RemoveAt(0);
+        }
+    }
+
     private class SummonCircle
     {
         public Vector2Int Pos;
@@ -267,4 +302,35 @@ public class EndgameSummoner : AGameControllerListener
             Tile.gameObject.transform.position -= new Vector3(0, 0, 0.1f);
         }
     }
+
+    [System.Serializable]
+    public class SummonCircleData
+    {
+        public Vector2Int Pos;
+        public bool Summoning;
+
+        public SummonCircleData() { }
+
+        public SummonCircleData(Vector2Int pos, bool summoning)
+        {
+            Pos = pos;
+            Summoning = summoning;
+        }
+    }
+}
+
+[System.Serializable]
+public class SuspendDataEndgameSummoner
+{
+    public bool EndgameOn = false;
+    public List<string> SummonOptionsMagmabornTeam2; // Fashima
+    public List<string> SummonOptionsMagmabornTeam3; // Torment
+    public List<string> SummonOptionsDeadBoss;
+    public List<string> SummonOptionsGeneric;
+    public List<string> SummonOptionsMonster;
+    public string PostSummonConversation;
+    public string PostCrystalShatterConversation;
+    public float ChaosModifier = 0;
+    public List<EndgameSummoner.SummonCircleData> Circles;
+    public int CrystalCount;
 }
