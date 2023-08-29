@@ -23,9 +23,11 @@ Frogman: Oh, another Magmaborn?
 Uh, I'm Frogman, and these are my fellow Magmaborn.
 Kresla||L: Wow, I've never seen you before! Who are you?
 :if:hasCharacter:Xirveros{
+:if:!hasFlag:XirverosXeplogi1{
 :setFlag:XirverosXeplogi1
 Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
 Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
+}
 }
 Xeplogi|???|R: My, what a lovely entourage you have there!
 Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
@@ -52,6 +54,7 @@ Xeplogi: It's a very rough outline. What really happened was-
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
@@ -59,11 +62,12 @@ Frogman: Structures again? That must mean...
 Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
 Kresla||L: Wow, I've never seen you before! Who are you?
 :if:hasCharacter:Xirveros{
+:if:!hasFlag:XirverosXeplogi1{
 :setFlag:XirverosXeplogi1
 Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
 Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
 }
-Xeplogi|???|R: My, what a lovely entourage you have there!
+}
 Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 Kresla: Xeplogi of Jess? Of Xeplogi and the Witch fame?!
 Xeplogi: I'm afraid I never caught your name, er...?
@@ -107,6 +111,7 @@ Kresla: Later?! This is incredible! Where are you going?\a Come back here and te
 :else:{
 # PreCharacterFirstPostWin
 # Same as no win
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
@@ -114,11 +119,12 @@ Frogman: Structures again? That must mean...
 Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!\a Who might you be?
 Kresla||L: Wow, I've never seen you before! Who are you?
 :if:hasCharacter:Xirveros{
+:if:!hasFlag:XirverosXeplogi1{
 :setFlag:XirverosXeplogi1
 Xirveros||L: Hello, green friend! Me named Xirveros!\a We can now have green party!
 Frogman||L: ...Yeah, it's best to ignore him.\a Who are you?
 }
-Xeplogi|???|R: My, what a lovely entourage you have there!
+}
 Xeplogi||R: I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 Kresla: Xeplogi of Jess? Of Xeplogi and the Witch fame?!
 Xeplogi: I'm afraid I never caught your name, er...?

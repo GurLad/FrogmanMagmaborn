@@ -40,6 +40,7 @@ Xeplogi: H-how dare you insult me like that!\a Jess is the most important duchy 
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
@@ -79,6 +80,7 @@ Frogman: ...I'll explain later. Let's go!
 :else:{
 # PreCharacterFirstPostWin
 # Same as no win for now
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi

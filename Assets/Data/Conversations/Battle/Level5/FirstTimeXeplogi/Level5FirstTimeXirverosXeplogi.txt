@@ -37,6 +37,7 @@ Frogman: Um, I was... That is, uh, I mean, I-
 :else:{
 :if:furthestLevel:<4{
 # PreCharacterFirstNoWin
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi
@@ -61,6 +62,7 @@ Guard1||R: ...Oof.
 }
 :else:{
 # PreCharacterFirstPostWin
+:play:BeforeBattle2
 :loadUnits::player
 Frogman: Structures again? That must mean...
 :addUnit:Xeplogi

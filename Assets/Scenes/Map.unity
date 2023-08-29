@@ -7828,13 +7828,13 @@ MonoBehaviour:
       Pathetic.\\a Froman, let us leave this poor fool alone.\nXeplogi: H-how dare
       you insult me like that!\\a Jess is the most important duchy of Enkress,\\a
       you-\n:if:hasCharacter:Xirveros{\n:setFlag:XirverosXeplogi1\n}\n:call:GuardsArriveFirst\n:finishConversation:\n}\n:else:{\n:if:furthestLevel:<4{\n#
-      PreCharacterFirstNoWin\n:loadUnits::player\nFrogman: Structures again? That
-      must mean...\n:addUnit:Xeplogi\n:loadUnits::player\nXeplogi: Frogman, my dear
-      friend! You're back.\\a And you brought company, I see!\\a Who might you be?\nFirbell||L:
-      I am Firbell, the princess of Irenhold. Who are you?\nXeplogi: Princess, are
-      you? And of a made-up kingdom, no less.\\a How amusing. Oh ho ho!\nFirbell:
-      Excuse me? Made up kingdom?!\\a Are you from the same backwater village as
-      Kresla?!\nXeplogi|???: Backwater village? I'm no peasant, girl.\n:setSpeaker:Xeplogi||R\nI
+      PreCharacterFirstNoWin\n:play:BeforeBattle2\n:loadUnits::player\nFrogman: Structures
+      again? That must mean...\n:addUnit:Xeplogi\n:loadUnits::player\nXeplogi: Frogman,
+      my dear friend! You're back.\\a And you brought company, I see!\\a Who might
+      you be?\nFirbell||L: I am Firbell, the princess of Irenhold. Who are you?\nXeplogi:
+      Princess, are you? And of a made-up kingdom, no less.\\a How amusing. Oh ho
+      ho!\nFirbell: Excuse me? Made up kingdom?!\\a Are you from the same backwater
+      village as Kresla?!\nXeplogi|???: Backwater village? I'm no peasant, girl.\n:setSpeaker:Xeplogi||R\nI
       am the Duke of Jess, Xeplogi the Third.\\a Pleased to make your acquaintance.\nFirbell:
       Claiming to be a duke when you are not a noble?\nAnd of a made up place you
       are not even from?\\a Pathetic.\\a Froman, let us leave this poor fool alone.\nXeplogi:
@@ -7847,7 +7847,7 @@ MonoBehaviour:
       You know these humans?!\nFrogman||L: Yes. They're-\nGuard2: Don't let them
       get away! Protect the Fortress!\nFrogman: All they ever really do is-\nGuard1:
       Hey! I wasn't done with my story!\nFrogman: ...I'll explain later. Let's go!\n:if:hasCharacter:Xirveros{\n:setFlag:XirverosXeplogi1\n}\n:finishConversation:\n}\n:else:{\n#
-      PreCharacterFirstPostWin\n# Same as no win for now\n:loadUnits::player\nFrogman:
+      PreCharacterFirstPostWin\n# Same as no win for now\n:play:BeforeBattle2\n:loadUnits::player\nFrogman:
       Structures again? That must mean...\n:addUnit:Xeplogi\n:loadUnits::player\nXeplogi:
       Frogman, my dear friend! You're back.\\a And you brought company, I see!\\a
       Who might you be?\nFirbell||L: I am Firbell, the princess of Irenhold. Who
@@ -7967,6 +7967,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Xirveros{
 
+      :if:!hasFlag:XirverosXeplogi1{
+
       :setFlag:XirverosXeplogi1
 
       Xirveros||L:
@@ -7974,6 +7976,8 @@ MonoBehaviour:
 
       Frogman||L:
       ...Yeah, it''s best to ignore him.\a Who are you?
+
+      }
 
       }
 
@@ -8048,10 +8052,12 @@ MonoBehaviour:
       #
       PreCharacterFirstNoWin
 
+      :play:BeforeBattle2
+
       :loadUnits::player
 
-      Frogman: Structures
-      again? That must mean...
+      Frogman:
+      Structures again? That must mean...
 
       :addUnit:Xeplogi
 
@@ -8066,6 +8072,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Xirveros{
 
+      :if:!hasFlag:XirverosXeplogi1{
+
       :setFlag:XirverosXeplogi1
 
       Xirveros||L:
@@ -8076,11 +8084,10 @@ MonoBehaviour:
 
       }
 
-      Xeplogi|???|R:
-      My, what a lovely entourage you have there!
+      }
 
-      Xeplogi||R: I am the Duke
-      of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+      Xeplogi||R:
+      I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 
       Kresla:
       Xeplogi of Jess? Of Xeplogi and the Witch fame?!
@@ -8195,6 +8202,8 @@ MonoBehaviour:
 
       # Same as no win
 
+      :play:BeforeBattle2
+
       :loadUnits::player
 
       Frogman:
@@ -8213,6 +8222,8 @@ MonoBehaviour:
 
       :if:hasCharacter:Xirveros{
 
+      :if:!hasFlag:XirverosXeplogi1{
+
       :setFlag:XirverosXeplogi1
 
       Xirveros||L:
@@ -8223,11 +8234,10 @@ MonoBehaviour:
 
       }
 
-      Xeplogi|???|R:
-      My, what a lovely entourage you have there!
+      }
 
-      Xeplogi||R: I am the Duke
-      of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
+      Xeplogi||R:
+      I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 
       Kresla:
       Xeplogi of Jess? Of Xeplogi and the Witch fame?!
@@ -8615,10 +8625,12 @@ MonoBehaviour:
       #
       PreCharacterFirstNoWin
 
+      :play:BeforeBattle2
+
       :loadUnits::player
 
-      Frogman: Structures
-      again? That must mean...
+      Frogman:
+      Structures again? That must mean...
 
       :addUnit:Xeplogi
 
@@ -8674,10 +8686,12 @@ MonoBehaviour:
       #
       PreCharacterFirstPostWin
 
+      :play:BeforeBattle2
+
       :loadUnits::player
 
-      Frogman: Structures
-      again? That must mean...
+      Frogman:
+      Structures again? That must mean...
 
       :addUnit:Xeplogi
 
@@ -9760,10 +9774,12 @@ MonoBehaviour:
       ~
       PreRepeat
 
+      :play:BeforeBattle2
+
       :loadUnits::player
 
-      Frogman: Structures again? That
-      must mean...
+      Frogman:
+      Structures again? That must mean...
 
       :addUnit:Xeplogi
 
@@ -10794,187 +10810,36 @@ MonoBehaviour:
 
 '
     Name: Level5GenericXeplogi
-  - Text: 'priority:5
-
-      unique:T
-
-      ~ Requirements
-
-      levelNumber:6
-
-      !hasCharacter:Xeplogi
-
-      #
-      Not ID since both versions have unique pre-battles
-
-      !hasFlag:Level6FirstTime
-
-      ~
-      Demands
-
-      # TBA: Add room tags, and force a room built for Memerian and
-      Keplogi
-
-      ~ Before battle
-
-      :if:!hasFlag:MetMemerian{
-
-      :addUnit:Memerian
-
-      :loadUnits::player
-
-      :play:BeforeBattle2
-
-      Memerian|???:
-      Hey. You there. Who are you?
-
-      :if:hasCharacter:Firbell{
-
-      :setFlag:FirbellSawMemerian
-
-      Firbell||L:
-      You... You seem familiar...
-
-      Frogman||L: Firbell? Who is that?
-
-      Memerian:
-      ...My name is Memerian,
-
-      and I''ve never seen this skeleton before in
-      my life.
-
-      Firbell||L: I... Forgive me, I must be mistaken...
-
-      Frogman||L:
-      Uh... Okay. My name is Frogmam, and this is Firbell.\a Wait, Memerian? I think
-      Xeplogi mentioned you.
-
-      }
-
-      :else:{
-
-      Frogman||L: My name is
-      Frogman. Who might you be?
-
-      Memerian: I''m Memerian.
-
-      Frogman:
-      Memerian? I think Xeplogi mentioned you.
-
-      }
-
-      Memerian: Did he now?
-      I hope you didn''t listen to the fool.
-
-      Frogman: He said you were an
-      evil witch.
-
-      Memerian: He''s a deplorable thief.
-
-      Frogman: Uh...
-
-      #
-      Memerian is afraid to talk about Torment in public, and rightly so.
-
-      :if:charactersAlive:<2{
-
-      :setFlag:MemerianMentionedTorment
-
-      Memerian:
-      Let''s skip the pleasentries, Frogman.\a Were you sent here by Torment?
-
-      Frogman:
-      Wait... you know Torment?!
-
-      }
-
-      :else:{
-
-      Memerian: Frogman,
-      may we speak in private?
-
-      Frogman: What for?
-
-      Memerian: I need
-      to talk to you about a... mutual friend.\a Big mouth?\a Sinister eyes?
-
-      Frogman:
-      Who?\a Wait, you mean Tor-
-
-      Memerian: Yes.
-
-      :if:hasCharacter:Firbell{
-
-      Firbell:
-      Who are you talking about?
-
-      }
-
-      :if:hasCharacter:Kresla{
-
-      Kresla:
-      Who?
-
-      }
-
-      :if:hasCharacter:Xirveros{
-
-      Xirveros: Tori? No!
-      No Tori!
-
-      }
-
-      }
-
-      :play:GuardTheme
-
-      :loadUnits:
-
-      :addGenericCharacter:Guard1:
-
-      Guard1:
-      What is all this ruckus?\a Magmaborn?!\a Everyone, charge!
-
-      Memerian:
-      Ugh. Meddlesome Guards. We''ll speak again soon, Frogman.
-
-      Frogman: Wait.
-      Why should I trust you?
-
-      Memerian: ...Are you seriously considering Xeplogi''s
-      allegations?\a Do you have a death wish, Frogman?\a Because I can grant it.
-
-      Frogman:
-      Uh, no thanks.
-
-      Memerian: Good. Then let''s join forces.
-
-      Frogman:
-      ...
-
-      :unlockAchievement:JoinMemerian
-
-      :setFlag:MetMemerian
-
-      }
-
-      :else:{
-
-      :callOther:Level6GenericMemerianNoXeplogi
-
-      }
-
-
-      ~
-      After battle
-
-      :callOther:Level6FirstTimeMemerianXeplogi
-
-
-      # ===
-      Functions ====
-
-'
+  - Text: "priority:5\nunique:T\n~ Requirements\nlevelNumber:6\n!hasCharacter:Xeplogi\n#
+      Not ID since both versions have unique pre-battles\n!hasFlag:Level6FirstTime\n~
+      Demands\n# TBA: Add room tags, and force a room built for Memerian and Keplogi\n~
+      Before battle\n:if:!hasFlag:MetMemerian{\n:addUnit:Memerian\n:loadUnits::player\n:play:BeforeBattle2\nMemerian|???:
+      Hey. You there. Who are you?\n:if:hasCharacter:Firbell{\n:setFlag:FirbellSawMemerian\nFirbell||L:
+      You... You seem familiar...\nFrogman||L: Firbell? Who is that?\nMemerian: ...My
+      name is Memerian,\nand I've never seen this skeleton before in my life.\nFirbell||L:
+      I... Forgive me, I must be mistaken...\nFrogman||L: Uh... Okay. My name is
+      Frogmam, and this is Firbell.\\a Wait, Memerian? I think Xeplogi mentioned
+      you.\n}\n:else:{\nFrogman||L: My name is Frogman. Who might you be?\nMemerian:
+      I'm Memerian.\nFrogman: Memerian? I think Xeplogi mentioned you.\n}\nMemerian:
+      Did he now? I hope you didn't listen to the fool.\nFrogman: He said you were
+      an evil witch.\nMemerian: He's a deplorable thief.\nFrogman: Uh...\n# Memerian
+      is afraid to talk about Torment in public, and rightly so.\n:if:charactersAlive:<2{\n:setFlag:MemerianMentionedTorment\nMemerian:
+      Let's skip the pleasentries, Frogman.\\a Were you sent here by Torment?\nFrogman:
+      Wait... you know Torment?!\n}\n:else:{\nMemerian: Frogman, may we speak in
+      private?\nFrogman: What for?\nMemerian: I need to talk to you about a... mutual
+      friend.\\a Big mouth?\\a Sinister eyes?\nFrogman: Who?\\a Wait, you mean Tor-\nMemerian:
+      Yes.\n:if:hasCharacter:Firbell{\nFirbell: Who are you talking about?\n}\n:if:hasCharacter:Kresla{\nKresla:
+      Who?\n}\n:if:hasCharacter:Xirveros{\nXirveros: Tori? No! No Tori!\n}\n}\n:play:GuardTheme\n:loadUnits:\n:addGenericCharacter:Guard1:\nGuard1:
+      What is all this ruckus?\\a Magmaborn?!\\a Everyone, charge!\nMemerian: Ugh.
+      Meddlesome Guards. We'll speak again soon, Frogman.\nFrogman: Wait. Why should
+      I trust you?\nMemerian: ...Are you seriously considering Xeplogi's allegations?\\a
+      Do you have a death wish, Frogman?\\a Because I can grant it.\nFrogman: Uh,
+      no thanks.\nMemerian: Besides, I've been to the Fortress. Multiple times.\\a
+      Isn't that where you're heading?\nFrogman: Really?! We've been trying to reach
+      that place for ages!\nMemerian: Good. Then let's join forces.\nFrogman: Um,
+      sure... \n:unlockAchievement:JoinMemerian\n:setFlag:MetMemerian\n}\n:else:{\n:callOther:Level6GenericMemerianNoXeplogi\n}\n\n~
+      After battle\n:callOther:Level6FirstTimeMemerianXeplogi\n\n# === Functions
+      ====\n"
     Name: Level6FirstTimeMemerianNoXeplogi
   - Text: 'priority:5
 
@@ -63016,14 +62881,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 1
+    Enabled: 0
     SkipIntro: 0
-    EndgameLevel: 10
+    EndgameLevel: 1
     ExtraLevels: 0
-    Units:
-    - Frogman
-    - Kresla
-    - Xirveros
+    Units: []
     UnlimitedMove: 0
     OPPlayers: 0
     ForceConversation: 
