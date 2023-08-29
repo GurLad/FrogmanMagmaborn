@@ -12278,6 +12278,8 @@ MonoBehaviour:
 
       hasCharacter:Alfred
 
+      hasKnowledge:InclinationBuff
+
       ~
       Demands
 
@@ -12336,8 +12338,8 @@ MonoBehaviour:
 
       Memerian: Obviously. Who else would I be?
 
-      Frogman: Oh,
-      uh, I don''t know.\a Listen, you''ve arrived just in time.\a We need help against
+      Frogman: Oh, uh,
+      I don''t know.\a Listen, you''ve arrived just in time.\a We need help against
       the Guards here.
 
       Alfred||R: ...
@@ -12351,8 +12353,8 @@ MonoBehaviour:
 
       Memerian: ...
 
-      What are
-      you staring at?
+      What are you
+      staring at?
 
       Alfred: ...You.
 
@@ -12384,11 +12386,11 @@ MonoBehaviour:
 
       Alfred||R: ...
 
-      Memerian:
-      Get your little pet under control before I kill him, please.
+      Memerian: Get
+      your little pet under control before I kill him, please.
 
-      Frogman:
-      What? Who?
+      Frogman: What?
+      Who?
 
       Memerian: Alfred. Don''t you notice his stares?
 
@@ -12422,7 +12424,6 @@ MonoBehaviour:
 
       }
 
-      
 
       ~ After battle
 
@@ -12446,9 +12447,9 @@ MonoBehaviour:
 
       Alfred: ...
 
-      Memerian:
-      Hmpf. I''m sure Frogman wouldn''t mind a little...\a accident here.\a See you
-      never again, Alfred.
+      Memerian: Hmpf.
+      I''m sure Frogman wouldn''t mind a little...\a accident here.\a See you never
+      again, Alfred.
 
       Alfred: Pah! I''ve got what I need.\a Goodbye.
 
@@ -12487,16 +12488,14 @@ MonoBehaviour:
 
       }
 
-      
 
       # === Functions ====
 
-      
 
-      ~
-      Sample
+      ~ Sample
 
-      # Name: Text.
+      #
+      Name: Text.
 
 '
     Name: Level6UnlockInclinationAlfred
@@ -12514,6 +12513,8 @@ MonoBehaviour:
       hasCharacter:Xeplogi
 
       !hasFlag:InclinationMemrianXeplogi
+
+      hasKnowledge:InclinationBuff
 
       ~
       Demands
@@ -12545,11 +12546,11 @@ MonoBehaviour:
 
       Frogman: Xeplogi. Memerian.
 
-      How about we put
-      our differences aside for now,\a and-
+      How about we put our
+      differences aside for now,\a and-
 
-      Memerian: No. I am not working
-      with this slime.
+      Memerian: No. I am not working with
+      this slime.
 
       Xeplogi: Ha! As if I would ever join forces with you!
 
@@ -12603,12 +12604,12 @@ MonoBehaviour:
       Guard1:
       This is boring. Let''s just kill them already.
 
-      Guard2: Boring? How
-      can you say that?!\a They''re now getting to the good part!
+      Guard2: Boring? How can
+      you say that?!\a They''re now getting to the good part!
 
-      Guard1:
-      I doubt they''re capable of a good part.\a They''re just arguing.\a Even the
-      insults are lame.\a I''d rather we just kill them.
+      Guard1: I doubt
+      they''re capable of a good part.\a They''re just arguing.\a Even the insults
+      are lame.\a I''d rather we just kill them.
 
       Guard2: But...
 
@@ -12617,8 +12618,7 @@ MonoBehaviour:
       Frogman:
       Right. We are out of time.
 
-      :showChoice:Frogman:Trust Xeplogi:Trust
-      Memerian
+      :showChoice:Frogman:Trust Xeplogi:Trust Memerian
 
       :if:chose:0{
 
@@ -12660,7 +12660,6 @@ MonoBehaviour:
 
       }
 
-      
 
       ~
       After battle
@@ -12722,8 +12721,8 @@ MonoBehaviour:
       Frogman:
       Thanks.
 
-      Xeplogi: I''ve been thinking about what you said before.\a
-      About changing.
+      Xeplogi: I''ve been thinking about what you said before.\a About
+      changing.
 
       Frogman: Really? Are you ready to finally forgive Memerian?
 
@@ -12853,12 +12852,10 @@ MonoBehaviour:
 
       }
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -14922,7 +14919,7 @@ MonoBehaviour:
       Alfred: Huh? How do you know me?!\a Wait...\a
       You! You''re the traitor? Alfashima?!
 
-      Fashima_: Hah. Alfashima.
+      Fashima: Hah. Alfashima.
 
       It''s
       been millennia since anyone used that honorific.
@@ -14931,7 +14928,7 @@ MonoBehaviour:
       don''t deserve it! You betrayed us!\a Killed Boss! Killed me! Stole our crystals!\a
       Defected to the Guards!!!
 
-      Fashima_: I don''t expect an idiot like you
+      Fashima: I don''t expect an idiot like you
       to understand.\a But we don''t have time for this.\a Die.
 
       :setFlag:FashimaBattleAlfred
@@ -14943,7 +14940,7 @@ MonoBehaviour:
       Alfred:
       AHHH!
 
-      :killUnit:Alfred
+      :killUnit:Alfred:F
 
       Frogman||L: Y-you killed Alfred?!
 
@@ -14953,14 +14950,14 @@ MonoBehaviour:
 
       :if:hasFlag:MetWerse{
 
-      Frogman:
-      Wait-
+      Frogman: Wait-
 
       }
 
       :else:{
 
-      Frogman: What''s this crys-
+      Frogman:
+      What''s this crys-
 
       }
 
@@ -14982,15 +14979,15 @@ MonoBehaviour:
       Alfred:
       AHHH!
 
-      :killUnit:Alfred
+      :killUnit:Alfred:F
 
       Frogman||L: S-stop killing Alfred like
       this!
 
       Fashima: No.
 
-      Now then, I believe it''s time for us to
-      leave this place,\a my friend.
+      Now then, I believe it''s time for us to leave
+      this place,\a my friend.
 
       Frogman: I-
 
@@ -15000,12 +14997,10 @@ MonoBehaviour:
 
       :finishConversation:
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -60169,7 +60164,7 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Lan
     Tags: 
-    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|39|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|39;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|39;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|39|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|39
+    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|39|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|39;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|39;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|39|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|11|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|39
   - Name: Boss2-1
     LevelNumber: 7
     Units:
@@ -60394,7 +60389,7 @@ MonoBehaviour:
     Objective: 1
     ObjectiveData: Fashima
     Tags: 
-    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|39|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|39;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|39;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|39|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|17|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|39
+    MapString: 0|21|12|11|5|1|13|5|11|0|18|23|23|23|23;1|7|13|5|17|4|16|5|5|0|18|39|23|23|23;11|5|5|5|5|1|13|5|5|1|19|23|23|23|39;5|11|17|5|5|0|12|5|17|4|22|23|23|23|23;5|5|26|15|3|1|13|5|5|27|14|1|19|23|23;5|5|0|12|5|5|5|11|5|5|17|4|22|23|23;5|5|1|13|11|35|3|25|5|11|5|1|19|23|23;5|17|4|10|5|20|5|28|17|5|17|4|22|23|23;5|5|1|13|17|20|17|24|5|26|15|1|19|23|23;5|5|0|12|5|34|3|25|17|4|22|23|23|23|39;11|11|0|12|11|5|5|5|5|1|19|23|23|23|23;5|5|27|14|3|1|13|5|5|0|18|23|39|23|23;5|5|5|11|5|0|12|11|5|27|14|30|30|30|30;3|1|7|13|5|1|13|5|11|17|5|5|5|5|5;17|4|10|16|11|4|16|5|5|26|15|31|31|31|31;5|1|7|13|11|1|13|5|17|4|22|23|23|23|39
   - Name: Boss2-2-L
     LevelNumber: 7
     Units:
@@ -61683,7 +61678,7 @@ MonoBehaviour:
       Statue: 0
     MapEvents:
     - Requirements: turn:>2
-      Event: 'Brens: Reinforcements begin next turn!'
+      Event: 'Brens: Reinforcements are on their way!'
       Repeatable: 0
     - Requirements: turn:>9
       Event: 'Brens: I''ve had enough! Time to charge!
@@ -62154,7 +62149,7 @@ MonoBehaviour:
       Statue: 0
     MapEvents:
     - Requirements: turn:>2
-      Event: 'Brens: Reinforcements begin next turn!'
+      Event: 'Brens: Reinforcements are on their way!'
       Repeatable: 0
     - Requirements: turn:>9
       Event: 'Brens: I''ve had enough! Time to charge!

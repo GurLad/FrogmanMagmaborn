@@ -20,15 +20,15 @@ Fashima: I tire of your antics, Alfred. Begone.
 Alfred||L: You... You look like Guard!\a How dare you! Using the Magma Emblem you stole!\a From US!
 Fashima: I don't remember seeing you before.\a You must be Alfred, then.\a Correct?
 Alfred: Huh? How do you know me?!\a Wait...\a You! You're the traitor? Alfashima?!
-Fashima_: Hah. Alfashima.
+Fashima: Hah. Alfashima.
 It's been millennia since anyone used that honorific.
 Alfred: You... You don't deserve it! You betrayed us!\a Killed Boss! Killed me! Stole our crystals!\a Defected to the Guards!!!
-Fashima_: I don't expect an idiot like you to understand.\a But we don't have time for this.\a Die.
+Fashima: I don't expect an idiot like you to understand.\a But we don't have time for this.\a Die.
 :setFlag:FashimaBattleAlfred
 }
 :screenShake:
 Alfred: AHHH!
-:killUnit:Alfred
+:killUnit:Alfred:F
 Frogman||L: Y-you killed Alfred?!
 Fashima: Yes. He was detrimental to our plans, my friend.\a Now, let's leave before more Guards arrive.\a Catch.
 :if:hasFlag:MetWerse{
@@ -45,7 +45,7 @@ Alfred||L: FASHIMA! I'll destroy you!
 Fashima: Yeah, right.
 :screenShake:
 Alfred: AHHH!
-:killUnit:Alfred
+:killUnit:Alfred:F
 Frogman||L: S-stop killing Alfred like this!
 Fashima: No.
 Now then, I believe it's time for us to leave this place,\a my friend.
