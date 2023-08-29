@@ -64,21 +64,27 @@ public class RunStatsController : MonoBehaviour, ISuspendable<SuspendDataRunStat
         }
     }
 
-    public void AddToTotal() // Adds the current run stats to the total stats
+    public void AddToTotal(bool game = true, bool units = true) // Adds the current run stats to the total stats
     {
-        SavedData.Append("Statistics", "GameTurnsCount", GameStats.TotalTurns);
-        SavedData.Append("Statistics", "GameWinCount", GameStats.TotalWins);
-        SavedData.Append("Statistics", "GameLossCount", GameStats.Lost ? 1 : 0);
-        SavedData.Append("Statistics", "GamePlayTime", GameStats.PlayTime);
-        GameStats = new GameStatsData();
-        unitStats.Values.ToList().ForEach(a =>
+        if (game)
         {
-            SavedData.Append("Statistics", a.ToString() + "MapsCount", a.Maps);
-            SavedData.Append("Statistics", a.ToString() + "BattleCount", a.Battles);
-            SavedData.Append("Statistics", a.ToString() + "KillCount", a.Wins);
-            SavedData.Append("Statistics", a.ToString() + "DeathCount", a.Losses);
-        });
-        unitStats.Clear();
+            SavedData.Append("Statistics", "GameTurnsCount", GameStats.TotalTurns);
+            SavedData.Append("Statistics", "GameWinCount", GameStats.TotalWins);
+            SavedData.Append("Statistics", "GameLossCount", GameStats.Lost ? 1 : 0);
+            SavedData.Append("Statistics", "GamePlayTime", GameStats.PlayTime);
+            GameStats = new GameStatsData();
+        }
+        if (units)
+        {
+            unitStats.Values.ToList().ForEach(a =>
+            {
+                SavedData.Append("Statistics", a.ToString() + "MapsCount", a.Maps);
+                SavedData.Append("Statistics", a.ToString() + "BattleCount", a.Battles);
+                SavedData.Append("Statistics", a.ToString() + "KillCount", a.Wins);
+                SavedData.Append("Statistics", a.ToString() + "DeathCount", a.Losses);
+            });
+            unitStats.Clear();
+        }
     }
 
     public SuspendDataRunStatsController SaveToSuspendData()

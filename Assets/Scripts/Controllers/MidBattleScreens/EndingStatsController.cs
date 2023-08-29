@@ -74,7 +74,7 @@ public class EndingStatsController : MidBattleScreen
             {
                 PaletteController.Current.FadeOut(() =>
                 {
-                    RunStatsController.Current?.AddToTotal();
+                    RunStatsController.Current?.AddToTotal(true, false);
                     SavedData.Save("FinishedGame", 1);
                     SavedData.SaveAll();
                     SceneController.LoadScene("Menu");

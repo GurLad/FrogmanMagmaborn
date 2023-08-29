@@ -42,6 +42,9 @@ Frogman: Oh.
 Firbell: Are you certain you wish to fight it?
 Frogman: Yes. Are you with me?
 Firbell: Ah, you leave me no choice...\a I can't just let you go on your own.\a Oh well, time to slay a few fiends.
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 :else:{
@@ -60,6 +63,9 @@ Firbell: I would rather stay alive.
 Frogman: Are you truly so afraid of liches?
 Firbell: I am not afraid. I am merely being reasonably cautious.\a But very well, have it your way.\a Let us defeat this so-called lich.
 Frogman: Great.
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 :else:{
@@ -75,6 +81,9 @@ Firbell: ...Really?
 Frogman: Yeah. It's not that tough, to be honest.\a Why, are you afraid?
 Firbell: I am not afraid. I am merely being reasonably cautious.\a But very well, have it your way.\a Let us defeat this so-called lich.
 Frogman: Great.
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 }

@@ -9,7 +9,7 @@ levelNumber:0
 :lose:
 
 ~ After battle
-:if:hasFlag:FashimaSpawnWerse1{
+:if:!hasFlag:FashimaSpawnWerse1{
 :callOther:Level8FashimaSpawnWerse1
 }
 :else:{

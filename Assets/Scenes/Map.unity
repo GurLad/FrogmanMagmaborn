@@ -3892,6 +3892,12 @@ MonoBehaviour:
       Ah, you leave me no choice...\a I can''t just let you go on your own.\a Oh
       well, time to slay a few fiends.
 
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
+
       :finishConversation:
 
       }
@@ -3938,6 +3944,12 @@ MonoBehaviour:
 
       Frogman: Great.
 
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
+
       :finishConversation:
 
       }
@@ -3975,6 +3987,12 @@ MonoBehaviour:
       it your way.\a Let us defeat this so-called lich.
 
       Frogman: Great.
+
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
 
       :finishConversation:
 
@@ -4233,6 +4251,12 @@ MonoBehaviour:
 
       Frogman: Let''s go!
 
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
+
       :finishConversation:
 
       }
@@ -4263,35 +4287,47 @@ MonoBehaviour:
       Frogman:
       Let''s.
 
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
+
       :finishConversation:
 
       }
 
       :else:{
 
-      # PreCharacterFirstPostWin
-
       #
-      Same as no win for now
+      PreCharacterFirstPostWin
+
+      # Same as no win for now
 
       :play:ToTheDeath
 
-      Kresla: Hey, Frogman!
-      Where are you going?
+      Kresla:
+      Hey, Frogman! Where are you going?
 
       Frogman: To the Fortress.
 
-      Kresla: Really?!
-      Oh, I''ve always wanted to go there!\a But how are we supposed to reach it?
+      Kresla:
+      Really?! Oh, I''ve always wanted to go there!\a But how are we supposed to
+      reach it?
 
-      Frogman:
-      By defeating the lich guarding it?
+      Frogman: By defeating the lich guarding it?
 
-      Kresla: You already know about them?\a
-      Wow, I''ve always wanted to dissect one!\a Yes, let''s go do that!
+      Kresla:
+      You already know about them?\a Wow, I''ve always wanted to dissect one!\a Yes,
+      let''s go do that!
 
-      Frogman:
-      Let''s.
+      Frogman: Let''s.
+
+      :if:hasCharacter:Xirveros{
+
+      :setFlag:XirverosMetLich
+
+      }
 
       :finishConversation:
 
@@ -4302,8 +4338,8 @@ MonoBehaviour:
       }
 
 
-      ~ After
-      battle
+      ~
+      After battle
 
       :if:furthestLevel:<4{
 
@@ -7834,7 +7870,7 @@ MonoBehaviour:
       you be?\nFirbell||L: I am Firbell, the princess of Irenhold. Who are you?\nXeplogi:
       Princess, are you? And of a made-up kingdom, no less.\\a How amusing. Oh ho
       ho!\nFirbell: Excuse me? Made up kingdom?!\\a Are you from the same backwater
-      village as Kresla?!\nXeplogi|???: Backwater village? I'm no peasant, girl.\n:setSpeaker:Xeplogi||R\nI
+      village as Kresla?!\nXeplogi: Backwater village? I'm no peasant, girl.\n:setSpeaker:Xeplogi||R\nI
       am the Duke of Jess, Xeplogi the Third.\\a Pleased to make your acquaintance.\nFirbell:
       Claiming to be a duke when you are not a noble?\nAnd of a made up place you
       are not even from?\\a Pathetic.\\a Froman, let us leave this poor fool alone.\nXeplogi:
@@ -7853,8 +7889,8 @@ MonoBehaviour:
       Who might you be?\nFirbell||L: I am Firbell, the princess of Irenhold. Who
       are you?\nXeplogi: Princess, are you? And of a made-up kingdom, no less.\\a
       How amusing. Oh ho ho!\nFirbell: Excuse me? Made up kingdom?!\\a Are you from
-      the same backwater village as Kresla?!\nXeplogi|???: Backwater village? I'm
-      no peasant, girl.\n:setSpeaker:Xeplogi||R\nI am the Duke of Jess, Xeplogi the
+      the same backwater village as Kresla?!\nXeplogi: Backwater village? I'm no
+      peasant, girl.\n:setSpeaker:Xeplogi||R\nI am the Duke of Jess, Xeplogi the
       Third.\\a Pleased to make your acquaintance.\nFirbell: Claiming to be a duke
       when you are not a noble?\nAnd of a made up place you are not even from?\\a
       Pathetic.\\a Froman, let us leave this poor fool alone.\nXeplogi: H-how dare
@@ -7869,7 +7905,7 @@ MonoBehaviour:
       Hey! I wasn't done with my story!\nFrogman: ...I'll explain later. Let's go!\n:if:hasCharacter:Xirveros{\n:setFlag:XirverosXeplogi1\n}\n:finishConversation:\n}\n}\n}\n\n~
       After battle\n:if:furthestLevel:<6{\n# PostActualFirst - part of the firstTime
       convo, never happens\n}\n:else:{\n:if:hasCharacter:Firbell{\n# PostPostWin\nFrogman:
-      Everyone, this way!\\a Let's get out of here!\n:if:hasCharacter:Xeplogi{\nFrogman||L:
+      Everyone, this way!\\a Let's get out of here!\n:loadMap:Part2RestArea\n:loadUnits:Part2RestArea\n:play:Anticipation\n:if:hasCharacter:Xeplogi{\nFrogman||L:
       Ah... Safe at last.\nXeplogi: Indeed. I do believe we could use a moment of
       rest.\nFrogman: ...Nah. Let's just go to the fortress now.\\a We've got no
       time to lose.\nXeplogi: W-well...\nFrogman: Are you coming or not?\nXeplogi:
@@ -8765,6 +8801,12 @@ MonoBehaviour:
       PostPostWin
 
       Frogman: Everyone, this way!\a Let''s get out of here!
+
+      :loadMap:Part2RestArea
+
+      :loadUnits:Part2RestArea
+
+      :play:Anticipation
 
       :if:hasCharacter:Xeplogi{
 
@@ -14057,78 +14099,77 @@ MonoBehaviour:
 
       Lan|???: Hey, you.
 
-      Lieutenant:
-      Me?
+      Lieutenant: Me?
 
-      Lan|???: Yes, you.\a Who''s the best Magus, eh?
+      Lan|???:
+      Yes, you.\a Who''s the best Magus, eh?
 
-      Lieutenant:
+      Lieutenant: Uh... You?
+
+      Lieutenant|???:
       Uh... You?
-
-      Lieutenant|???: Uh... You?
 
       :setSpeaker:Lan|???|R
 
-      Come
-      on, show some more enthusiasm.\a I''m your new master, remember?
+      Come on, show some more enthusiasm.\a
+      I''m your new master, remember?
+
+      Lieutenant: U-um, of course, master!
+      You''re the best, master!
+
+      Lan|???: That''s more like it! Good soldier!\a
+      You can go back to doing...\a Whatever it was you were doing before.
 
       Lieutenant:
-      U-um, of course, master! You''re the best, master!
-
-      Lan|???: That''s
-      more like it! Good soldier!\a You can go back to doing...\a Whatever it was
-      you were doing before.
-
-      Lieutenant: Right away, master!
-
-      :setSingleSpeaker:R
-
-      Lan|???:
-      ...
-
-      ...
-
-      Hey.\a Hey, you.
-
-      Lieutenant: Are you talking
-      to me again, master?
-
-      Lan|???: Obviously. So. Uh.\a What is it that
-      we''re doing here, again?
-
-      Lieutenant: ...Protecting the city from the
-      Magmaborn?
-
-      Lan|???: Right, right. I knew that, of course.\a I was just
-      testing you.
-
-      Lieutenant: O-of course, master.
-
-      Lan|???: So.
-      You''re new here, eh?
-
-      Lieutenant: Actually, I''ve been here with Fashima
-      before.\a I-I was supposed to be her new lieutenant for the battle,\a but I
-      overslept, a-and then she...
-
-      Lan|???: Died. Yes, we all know about
-      that.\a You''re better off with me, anyway.\a I''m much better than her.
-
-      Lieutenant:
-      You''re not mad...? Uh, of course, master!\a You''re the greatest, master!
-
-      Lan|???:
-      Ha! Of course I am! Now, go back to your... spot, soldier.
-
-      Lieutenant:
-      Thank you, master!
+      Right away, master!
 
       :setSingleSpeaker:R
 
       Lan|???: ...
 
-      Ugh,
-      this job sucks. It''s so boring.\a Where''s all the action?
+      ...
+
+      Hey.\a
+      Hey, you.
+
+      Lieutenant: Are you talking to me again, master?
+
+      Lan|???:
+      Obviously. So. Uh.\a What is it that we''re doing here, again?
+
+      Lieutenant:
+      ...Protecting the city from the Magmaborn?
+
+      Lan|???: Right, right. I
+      knew that, of course.\a I was just testing you.
+
+      Lieutenant: O-of course,
+      master.
+
+      Lan|???: So. You''re new here, eh?
+
+      Lieutenant: Actually,
+      I''ve been here with Fashima before.\a I-I was supposed to be her new lieutenant
+      for the battle,\a but I overslept, a-and then she...
+
+      Lan|???: Died.
+      Yes, we all know about that.\a You''re better off with me, anyway.\a I''m much
+      better than her.
+
+      Lieutenant: You''re not mad...? Uh, of course, master!\a
+      You''re the greatest, master!
+
+      Lan|???: Ha! Of course I am! Now, go back
+      to your... spot, soldier.
+
+      Lieutenant: Thank you, master!
+
+      :setSingleSpeaker:R
+
+      Lan|???:
+      ...
+
+      Ugh, this job sucks. It''s so boring.\a Where''s all the action?
 
       :play:BeforeBattle2
 
@@ -14147,8 +14188,8 @@ MonoBehaviour:
       Lieutenant: Master!
       The Magmaborn! They''re here!
 
-      Lan|???: Oh, finally! What took them
-      so long?!
+      Lan|???: Oh, finally! What took them so
+      long?!
 
       HEY! MAGMABORN!
 
@@ -14168,9 +14209,10 @@ MonoBehaviour:
 
       :callOther:Level7MemerianFindsOutFashimaIsDead
 
+      :setFlag:MetLan
+
       :markDone:
 
-      
 
       ~
       After battle
@@ -14184,12 +14226,10 @@ MonoBehaviour:
       Frogman:
       Huh. This... Lan seems weird.\a Oh well, time to go, everyone!
 
-      
 
-      #
-      === Functions ====
+      # ===
+      Functions ====
 
-      
 
       ~ Sample
 
@@ -15033,6 +15073,8 @@ MonoBehaviour:
 
       ~ After battle
 
+      :play:Anticipation
+
       :setSpeaker:Frogman
 
       Fashima:
@@ -15059,12 +15101,10 @@ MonoBehaviour:
 
       :setFlag:FashimaSpawnWerse1
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -15097,6 +15137,8 @@ MonoBehaviour:
 
       ~ After battle
 
+      :play:Anticipation
+
       :setSpeaker:Frogman
 
       Fashima:
@@ -15120,12 +15162,10 @@ MonoBehaviour:
 
       :screenShake:
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -15515,11 +15555,10 @@ MonoBehaviour:
 
       :lose:
 
-      
 
       ~ After battle
 
-      :if:hasFlag:FashimaSpawnWerse1{
+      :if:!hasFlag:FashimaSpawnWerse1{
 
       :callOther:Level8FashimaSpawnWerse1
 
@@ -15531,12 +15570,10 @@ MonoBehaviour:
 
       }
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ Sample
 
@@ -16839,14 +16876,14 @@ MonoBehaviour:
 
       :if:charactersAlive:>0{
 
-      And where is
-      everyone?!
+      And where is everyone?!
 
       }
 
       :else:{
 
-      Fashima: I...
+      Fashima:
+      I...
 
       }
 
@@ -16926,8 +16963,8 @@ MonoBehaviour:
 
       Fashima: Exactly.
 
-      Frogman:
-      Oh. Then why are you helping us?\a Why are you fighting the other Magi?
+      Frogman: Oh.
+      Then why are you helping us?\a Why are you fighting the other Magi?
 
       :setFlag:FrogmanMagiHuman
 
@@ -16959,13 +16996,16 @@ MonoBehaviour:
 
       Frogman: ...
 
+      :markDone:
+
       :callOther:Level9TrustFashimaChoice
+
+      :unlockAchievement:JoinFashima
 
       :hideCG:
 
       :call:EnterBodder
 
-      
 
       ~
       After battle
@@ -16974,12 +17014,10 @@ MonoBehaviour:
 
       :callOther:Level9Win
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ EnterBodder
 
@@ -16995,7 +17033,6 @@ MonoBehaviour:
 
       :play:TheInvincibleBodder:T
 
-      
 
       ~
       BodderDeath
@@ -17015,8 +17052,8 @@ MonoBehaviour:
 
       Frogman: Uh... Yes.
 
-      Bodder: This...
-      This isn''t even... my final...
+      Bodder: This... This
+      isn''t even... my final...
 
       :setCounter:Level9BodderState:1
 
@@ -17039,24 +17076,22 @@ MonoBehaviour:
       Frogman:
       Did you just... turn cyan?\a Wait.\a Your injuries...
 
-      SuBodderPre:
-      WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+      SuBodderPre: WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
 
       Frogman: This seems unfair.
 
       #
       TBA: Fashima speaks, based on whether you chose to trust her
 
-      
 
-      ~
-      Reaction
+      ~ Reaction
 
       :callOther:Level9Reaction
 
-      
 
-      ~ WorkerDeath
+      ~
+      WorkerDeath
 
       :callOther:Level9WorkerDeath
 
@@ -17091,8 +17126,8 @@ MonoBehaviour:
       Fashima||R:
       Welcome back, my friend.
 
-      Frogman: Ugh... I''d really appreciate it
-      if you stopped teleporting\a me like that.
+      Frogman: Ugh... I''d really appreciate it if
+      you stopped teleporting\a me like that.
 
       Fashima: That is the safest
       way to proceed, my friend.
@@ -17102,8 +17137,8 @@ MonoBehaviour:
 
       Frogman: ...
 
-      Fashima: Now. Do you have any further
-      questions - or requests -\a before we proceed?
+      Fashima: Now. Do you have any further questions
+      - or requests -\a before we proceed?
 
       :showBase:
 
@@ -17111,11 +17146,12 @@ MonoBehaviour:
 
       :callOther:Level9TrustFashimaChoice
 
+      :unlockAchievement:JoinFashima
+
       :hideCG:
 
       :call:EnterBodder
 
-      
 
       ~
       After battle
@@ -17124,12 +17160,10 @@ MonoBehaviour:
 
       :callOther:Level9Win
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ EnterBodder
 
@@ -17145,7 +17179,6 @@ MonoBehaviour:
 
       :play:TheInvincibleBodder:T
 
-      
 
       ~
       BodderDeath
@@ -17165,8 +17198,8 @@ MonoBehaviour:
 
       Frogman: Uh... Yes.
 
-      Bodder: This...
-      This isn''t even... my final...
+      Bodder: This... This
+      isn''t even... my final...
 
       :setCounter:Level9BodderState:1
 
@@ -17189,24 +17222,22 @@ MonoBehaviour:
       Frogman:
       Did you just... turn cyan?\a Wait.\a Your injuries...
 
-      SuBodderPre:
-      WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+      SuBodderPre: WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
 
       Frogman: This seems unfair.
 
       #
       TBA: Fashima speaks, based on whether you chose to trust her
 
-      
 
-      ~
-      WorkerDeath
+      ~ WorkerDeath
 
       :callOther:Level9WorkerDeath
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
       :callOther:Level9Reaction
 
@@ -17254,8 +17285,8 @@ MonoBehaviour:
       Frogman: Disobey
       you? I''m not your servant!
 
-      Fashima: Of course you are. You always
-      have been.
+      Fashima: Of course you are. You always have
+      been.
 
       Frogman: I-
 
@@ -17271,19 +17302,19 @@ MonoBehaviour:
 
       Frogman: You...
 
-      Fashima: Listen. I
-      grow weary of your antics.\a You do not understand what''s at stake here.\a
-      Do what I say and stay out of my way.\a That is your only role from now on.\a
-      Get it?
-
-      Frogman: ...
-
-      Fashima: I will not hesitate to torture
-      and kill you again,\a but that would be a blatant waste of time,\a don''t you
-      agree?\a Do not make this difficult, Frogman.\a For your own safety.
+      Fashima: Listen. I grow
+      weary of your antics.\a You do not understand what''s at stake here.\a Do what
+      I say and stay out of my way.\a That is your only role from now on.\a Get it?
 
       Frogman:
-      ...First Torment, now you...\a Am I truly doomed to be your plaything forever?
+      ...
+
+      Fashima: I will not hesitate to torture and kill you again,\a but
+      that would be a blatant waste of time,\a don''t you agree?\a Do not make this
+      difficult, Frogman.\a For your own safety.
+
+      Frogman: ...First Torment,
+      now you...\a Am I truly doomed to be your plaything forever?
 
       Fashima:
       No. Help us get out of here,\a and I shall let you go.\a I will have no further
@@ -17299,11 +17330,14 @@ MonoBehaviour:
 
       Fashima: Good boy.
 
+      :markDone:
+
+      :unlockAchievement:JoinFashima
+
       :hideCG:
 
       :call:EnterBodder
 
-      
 
       ~
       After battle
@@ -17312,12 +17346,10 @@ MonoBehaviour:
 
       :callOther:Level9Win
 
-      
 
       #
       === Functions ====
 
-      
 
       ~ EnterBodder
 
@@ -17333,7 +17365,6 @@ MonoBehaviour:
 
       :play:TheInvincibleBodder:T
 
-      
 
       ~
       BodderDeath
@@ -17353,8 +17384,8 @@ MonoBehaviour:
 
       Frogman: Uh... Yes.
 
-      Bodder: This...
-      This isn''t even... my final...
+      Bodder: This... This
+      isn''t even... my final...
 
       :setCounter:Level9BodderState:1
 
@@ -17377,24 +17408,22 @@ MonoBehaviour:
       Frogman:
       Did you just... turn cyan?\a Wait.\a Your injuries...
 
-      SuBodderPre:
-      WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+      SuBodderPre: WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
 
       Frogman: This seems unfair.
 
       #
       TBA: Fashima speaks, based on whether you chose to trust her
 
-      
 
-      ~
-      WorkerDeath
+      ~ WorkerDeath
 
       :callOther:Level9WorkerDeath
 
-      
 
-      ~ Reaction
+      ~
+      Reaction
 
       :callOther:Level9Reaction
 

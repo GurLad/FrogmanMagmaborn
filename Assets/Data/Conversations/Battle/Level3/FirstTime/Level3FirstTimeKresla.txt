@@ -36,6 +36,9 @@ Frogman: Yes, let's defeat it.
 It's a better goal than endlessly wandering around.
 Kresla: Oh! I like your style!\a I WILL find out your secret, lich!
 Frogman: Let's go!
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 :else:{
@@ -48,6 +51,9 @@ Kresla: Really?! Oh, I've always wanted to go there!\a But how are we supposed t
 Frogman: By defeating the lich guarding it?
 Kresla: You already know about them?\a Wow, I've always wanted to dissect one!\a Yes, let's go do that!
 Frogman: Let's.
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 :else:{
@@ -60,6 +66,9 @@ Kresla: Really?! Oh, I've always wanted to go there!\a But how are we supposed t
 Frogman: By defeating the lich guarding it?
 Kresla: You already know about them?\a Wow, I've always wanted to dissect one!\a Yes, let's go do that!
 Frogman: Let's.
+:if:hasCharacter:Xirveros{
+:setFlag:XirverosMetLich
+}
 :finishConversation:
 }
 }

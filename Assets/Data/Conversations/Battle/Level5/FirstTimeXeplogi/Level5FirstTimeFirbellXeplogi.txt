@@ -49,7 +49,7 @@ Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!
 Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
 Xeplogi: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
 Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
-Xeplogi|???: Backwater village? I'm no peasant, girl.
+Xeplogi: Backwater village? I'm no peasant, girl.
 :setSpeaker:Xeplogi||R
 I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 Firbell: Claiming to be a duke when you are not a noble?
@@ -89,7 +89,7 @@ Xeplogi: Frogman, my dear friend! You're back.\a And you brought company, I see!
 Firbell||L: I am Firbell, the princess of Irenhold. Who are you?
 Xeplogi: Princess, are you? And of a made-up kingdom, no less.\a How amusing. Oh ho ho!
 Firbell: Excuse me? Made up kingdom?!\a Are you from the same backwater village as Kresla?!
-Xeplogi|???: Backwater village? I'm no peasant, girl.
+Xeplogi: Backwater village? I'm no peasant, girl.
 :setSpeaker:Xeplogi||R
 I am the Duke of Jess, Xeplogi the Third.\a Pleased to make your acquaintance.
 Firbell: Claiming to be a duke when you are not a noble?
@@ -128,6 +128,9 @@ Frogman: ...I'll explain later. Let's go!
 :if:hasCharacter:Firbell{
 # PostPostWin
 Frogman: Everyone, this way!\a Let's get out of here!
+:loadMap:Part2RestArea
+:loadUnits:Part2RestArea
+:play:Anticipation
 :if:hasCharacter:Xeplogi{
 Frogman||L: Ah... Safe at last.
 Xeplogi: Indeed. I do believe we could use a moment of rest.

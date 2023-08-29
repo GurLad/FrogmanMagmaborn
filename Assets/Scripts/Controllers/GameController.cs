@@ -1467,7 +1467,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
 
     public bool AutoSaveHasAction()
     {
-        return suspendData.OnLoadAction != null;
+        return suspendData.OnLoadAction != null && suspendData.OnLoadAction.Type != SuspendDataGameController.CurrentAction.ActionType.None;
     }
 
     public SuspendDataGameController SaveToSuspendData()
