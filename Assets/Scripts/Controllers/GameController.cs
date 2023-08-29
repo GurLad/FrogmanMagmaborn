@@ -932,24 +932,28 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         return CreateUnit(name, -1, StaticGlobals.MainPlayerTeam, false);
     }
 
-    public MultiTileUnit ConvertToMultiTile(Unit unit, Vector2Int newSize)
+    public MultiTileUnit ConvertToMultiTile(Unit unit, Vector2Int newSize, bool copyData = true)
     {
         MultiTileUnit multiTileUnit = unit.gameObject.AddComponent<MultiTileUnit>();
-        // Copy stuff from the old Unit componenet to the new one
-        multiTileUnit.Stats = unit.Stats;
+        // Copy object data from the old Unit componenet to the new one
         multiTileUnit.Symbol = unit.Symbol;
         multiTileUnit.MovementMarker = unit.MovementMarker;
         multiTileUnit.AttackMarker = unit.AttackMarker;
         multiTileUnit.MultiTileMoveMarker = unit.MultiTileMoveMarker;
-        multiTileUnit.AIType = unit.AIType;
-        multiTileUnit.AIData = unit.AIData;
-        multiTileUnit.Priorities = unit.Priorities;
-        multiTileUnit.Statue = unit.Statue;
-        multiTileUnit.ReinforcementTurn = unit.ReinforcementTurn;
-        multiTileUnit.Init();
+        // Copy game data & init
+        if (copyData)
+        {
+            multiTileUnit.Stats = unit.Stats;
+            multiTileUnit.AIType = unit.AIType;
+            multiTileUnit.AIData = unit.AIData;
+            multiTileUnit.Priorities = unit.Priorities;
+            multiTileUnit.Statue = unit.Statue;
+            multiTileUnit.ReinforcementTurn = unit.ReinforcementTurn;
+            multiTileUnit.Init();
+            InitUnitData(multiTileUnit, unit.Name, unit.Level, unit.TheTeam);
+        }
         // Down with the old, long live the new
         Destroy(unit);
-        InitUnitData(multiTileUnit, unit.Name, unit.Level, unit.TheTeam);
         multiTileUnit.Size = newSize;
         multiTileUnit.gameObject.SetActive(true);
         return multiTileUnit;
@@ -1511,6 +1515,10 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         foreach (string unitJSON in data.Units)
         {
             Unit unit = CreateEmptyUnit();
+            if (unitJSON.Contains(",\"size\":")) // Bad workaround, but whatever
+            {
+                unit = ConvertToMultiTile(unit, Vector2Int.one, false);
+            }
             unit.Load(unitJSON);
             Vector2Int tempPos = unit.Pos;
             bool tempMoved = unit.Moved;

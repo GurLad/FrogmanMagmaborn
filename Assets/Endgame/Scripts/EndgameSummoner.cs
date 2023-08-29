@@ -270,10 +270,11 @@ public class EndgameSummoner : AGameControllerListener, ISuspendable<SuspendData
         PostSummonConversation = data.PostSummonConversation;
         PostCrystalShatterConversation = data.PostCrystalShatterConversation;
         chaosModifier = data.ChaosModifier;
+        Process(GameController.Current.Map, GameController.Current.MapSize);
         data.Circles.ForEach(a => circles.Find(b => b.Pos == a.Pos).Summoning = a.Summoning);
         while (Crystals.Count > data.CrystalCount)
         {
-            Destroy(Crystals[0]);
+            Destroy(Crystals[0].gameObject);
             Crystals.RemoveAt(0);
         }
     }

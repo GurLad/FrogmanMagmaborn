@@ -81,6 +81,12 @@ public class MultiTileUnit : Unit
         return MultiTileDangerArea.Generate(this, x, y, range, includePassThroughMoves);
     }
 
+    public override void Load(string json, bool resetMoved = false)
+    {
+        base.Load(json, resetMoved);
+        Size = Size;
+    }
+
     public class MultiTileDangerArea : Unit.DangerArea
     {
         private MultiTileUnit multiTileUnit;

@@ -1003,7 +1003,7 @@ public class Unit : MapObject
         return JsonUtility.ToJson(this);
     }
 
-    public void Load(string json, bool resetMoved = false)
+    public virtual void Load(string json, bool resetMoved = false)
     {
         MoveMarker movementMarker = MovementMarker; // Change to load one from GameController depending on player/enemy
         AttackMarker attackMarker = AttackMarker; // Change to load one from GameController depending on player/enemy

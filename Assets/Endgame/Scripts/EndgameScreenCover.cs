@@ -116,4 +116,9 @@ public class EndgameScreenCover : MidBattleScreen
         Cover.gameObject.SetActive(true);
         MidBattleScreen.Set(this, true);
     }
+
+    public void Hide()
+    {
+        Cover.gameObject.SetActive(false);
+    }
 }
