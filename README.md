@@ -1,5 +1,5 @@
 # Frogman Magmaborn
-Frogman Magmaborn is an open-source rogue-like startegy RPG made in Unity. It is now complete! You can download the latest version here:
+Frogman Magmaborn is an open-source rogue-like strategy RPG made in Unity. It is now complete! You can download the latest version here:
  - [Steam](https://store.steampowered.com/app/1768830/Frogman_Magmaborn)
  - [itch.io](https://disc-o-key.itch.io/frogman-magmaborn)
  - [GitHub](https://github.com/GurLad/FrogmanMagmaborn/releases)
