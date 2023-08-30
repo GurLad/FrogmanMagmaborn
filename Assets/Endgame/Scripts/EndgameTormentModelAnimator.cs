@@ -10,8 +10,11 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
     public Vector2 IdleRate;
     [Header("Unit Death")]
     public List<AdvancedAnimation> UnitDeathAnimations;
+    public List<AudioClip> UnitDeathSFX;
     [Header("Damaged")]
     public List<AdvancedAnimation> DamagedAnimations;
+    public List<AudioClip> DamagedSFX;
+    [Header("Palettes")]
     public EndgamePaletteCheater EndgamePaletteCheater;
     public EndgameSummoner EndgameSummoner;
     [Header("BasePalette")]
@@ -86,6 +89,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
         ClearIdle();
         (currentUnitDeath = UnitDeathAnimations.RandomItemInList()).Activate(true);
         state = State.UnitDeath;
+        SoundController.PlaySound(UnitDeathSFX.RandomItemInList(), 1);
     }
 
     public void OnDamaged()
@@ -95,6 +99,7 @@ public class EndgameTormentModelAnimator : AGameControllerListener, IUnitListene
         state = State.Damaged;
         EndgamePaletteCheater.TrueColours[0] = DamagedPalette;
         EndgameSummoner.SummonWisp();
+        SoundController.PlaySound(DamagedSFX.RandomItemInList(), 1);
     }
 
     private void ClearIdle()

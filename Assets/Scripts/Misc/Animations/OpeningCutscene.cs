@@ -98,7 +98,7 @@ public class OpeningCutscene : Trigger
         }
         else
         {
-            if (Control.GetButtonDown(Control.CB.Start))
+            if (Control.GetButtonDown(Control.CB.Start) || Control.GetButtonDown(Control.CB.A))
             {
                 if (transition != null)
                 {

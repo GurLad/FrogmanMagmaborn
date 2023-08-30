@@ -7,7 +7,7 @@ public class PressStart : MonoBehaviour
     public MenuController Menu;
     private void Update()
     {
-        if (Control.GetButtonDown(Control.CB.Start))
+        if (Control.GetButtonDown(Control.CB.Start) || Control.GetButtonDown(Control.CB.A))
         {
             Menu.Begin();
             Destroy(gameObject);
