@@ -19374,8 +19374,10 @@ MonoBehaviour:
       crucial part of our deal.\a Nevertheless, that is history now -\a gone and
       irrelevant.\a Proceed with your death, please.
 
-      Torment: Ha ha. HA HA
-      HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
+      :toggleAutoScroll:T
+
+      Torment:
+      Ha ha. HA HA HA...! Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
 
       :unlockAchievement:MiscFashimaWin
 
@@ -19404,7 +19406,10 @@ MonoBehaviour:
       Torment: Freedom? Heh.. Such
       foolishness...
 
-      Ha ha. HA HA HA...!\a Heh... Heh ha heh hahehahahaehAHEHAHAHEA!
+      :toggleAutoScroll:T
+
+      Ha ha. HA HA HA...! Heh...
+      Heh ha heh hahehahahaehAHEHAHAHEA!
 
       :unlockAchievement:MiscFashimaWin
 
@@ -62905,16 +62910,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 0
+    Enabled: 1
     SkipIntro: 0
-    EndgameLevel: 1
+    EndgameLevel: 10
     ExtraLevels: 0
-    Units: []
-    UnlimitedMove: 0
-    OPPlayers: 0
+    Units:
+    - Frogman
+    - Firbell
+    UnlimitedMove: 1
+    OPPlayers: 1
     ForceConversation: 
     ForceMap: 
-    KillAutoSaves: 0
+    KillAutoSaves: 1
 --- !u!114 &1902908242
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -62,6 +62,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     private List<string> lines { get; } = new List<string>();
     private string[] previousLineParts;
     private bool skipping;
+    private bool autoScroll = false;
 
     private void Awake()
     {
@@ -78,7 +79,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     {
         if (origin != null)
         {
-            if (skipping && state != CurrentState.Hold)
+            if (skipping && state != CurrentState.Hold && !autoScroll)
             {
                 if (++currentLine >= lines.Count)
                 {
@@ -93,7 +94,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
             switch (state)
             {
                 case CurrentState.Writing:
-                    if (Control.GetButtonDown(Control.CB.A))
+                    if (Control.GetButtonDown(Control.CB.A) && !autoScroll)
                     {
                         PlayLetter('m');
                         int aIndex = targetLine.IndexOf('\a', currentChar + 1);
@@ -158,7 +159,7 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
                     }
                     break;
                 case CurrentState.Waiting:
-                    if (Control.GetButtonDown(Control.CB.A))
+                    if (Control.GetButtonDown(Control.CB.A) || autoScroll)
                     {
                         if (targetLine != "")
                         {
@@ -309,6 +310,11 @@ public class ConversationPlayer : MidBattleScreen, ISuspendable<SuspendDataConve
     public void CancelSkip()
     {
         skipping = false;
+    }
+
+    public void SetAutoScrollMode(bool? mode = null)
+    {
+        autoScroll = mode ?? !autoScroll;
     }
     /// <summary>
     /// Checks whether the wait requiremenet was met.

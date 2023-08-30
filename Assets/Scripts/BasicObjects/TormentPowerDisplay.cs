@@ -18,7 +18,7 @@ public class TormentPowerDisplay : MonoBehaviour
 
     public int Display(string powerName)
     {
-        int split = powerName.IndexOf(powerName.Substring(1).Where(a => a.ToString().ToUpper()[0] == a).ToList()[0]); // Clumsy as heck, but whatever
+        int split = powerName.IndexOf(powerName.Substring(1).Where(a => a.ToString().ToUpper()[0] == a).ToList()[0], 1); // Clumsy as heck, but whatever
         TormentPowerState state = (TormentPowerState)Mathf.Max(0, SavedData.Load<int>("Knowledge", "UpgradeTorment" + powerName));
         Icon.Sprite = Modes[(int)state];
         switch (state)

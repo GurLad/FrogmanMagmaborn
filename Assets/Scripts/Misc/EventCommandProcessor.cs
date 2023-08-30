@@ -56,6 +56,7 @@ public static class EventCommandProcessor
         new CommandStruct("hideCG", CommandType.Conversation),
         new CommandStruct("screenShake", CommandType.Conversation, CAT.OpFloat, CAT.OpFloat),
         new CommandStruct("darkenScreen", CommandType.Conversation, CAT.OpBool),
+        new CommandStruct("toggleAutoScroll", CommandType.Conversation, CAT.OpBool),
 
         // Show other screens (MidBattleScreens)
 
@@ -607,6 +608,11 @@ public static class EventCommandProcessor
                 // Params: bool fixDoubleWhite = false
                 // Darkens all palettes by one stage. If fixDoubleWhite is on, darkens true white (0) twice.
                 PaletteController.Current.DarkenScreen(args.Length > 0 ? args[0] == "T" : false);
+                break;
+            case "toggleAutoScroll":
+                // Params: bool? mode = null (toggle)
+                // Changed the AutoScroll mode. Leave blank for toggle, T for begin auto scoll, F for end auto scroll
+                ConversationPlayer.Current.SetAutoScrollMode(args.Length > 0 ? (args[0] == "T" ? true : (args[0] == "F" ? (bool?)false : null)) : null);
                 break;
             default:
                 throw Bugger.Error("No matching command! (" + commandName + ")");
