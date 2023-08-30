@@ -1,6 +1,14 @@
 # Frogman Magmaborn
-A rogue-like SRPG made in Unity. Currently in a very early (and unstable) beta version, with about 80% of the planned content. You shouldn't really play it yet.
-## [Frog Forge](../../../FrogForge)
-Frog Forge is the tool I made to edit game files (maps, conversations, classes...). You still need Unity to use it, as the game files are compiled into the build.
+Frogman Magmaborn is an open-source rogue-like startegy RPG made in Unity. It is now complete! You can download the latest version here:
+ - [Steam](https://store.steampowered.com/app/1768830/Frogman_Magmaborn)
+ - [itch.io](https://disc-o-key.itch.io/frogman-magmaborn)
+ - [GitHub](https://github.com/GurLad/FrogmanMagmaborn/releases)
+ - [The Disc-O-Key website](https://disk-o-key.com/frogmanMagmaborn.html)
+## Building the game
+Frogman Magmaborn was made in Unity 2020.3.38f1. It has two build modes, which you can change using the `Scripting Define Symbols` option in the build settings:
+ - Normal (no symbols) - all game data must be loaded in Unity, and will not change during run-time. Equivalent to the base `Frogman Magmaborn` release.
+ - Moddable (use the `MODDABLE_BUILD` symbol) - all game data will be loaded during run-time from the `Data` folder. Equivalent to the Game folder in the base `Frog Forge` (not gameless) release.
 
-Like the game, this is also in an early beta version. Use it at your own risk.
+In order to edit the game's data for either version, it's heavily recommended to use Frog Forge.
+## [Frog Forge](../../../FrogForge)
+Frog Forge is the modding tool I made to edit game files (maps, conversations, classes...). You can view more information about it in its repository.
