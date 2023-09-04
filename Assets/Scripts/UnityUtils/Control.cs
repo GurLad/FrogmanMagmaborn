@@ -5,43 +5,45 @@ using static SavedData;
 
 public static class Control
 {
-    private const KeyCode HARDCODED_START_ALTERNATIVE = KeyCode.Escape;
+    private const KeyCode HARDCODED_ESCAPE_KEY_CODE = KeyCode.Escape;
     public enum CB { A, B, Select, Start }
     public enum CM { Keyboard, Controller }
     public enum Axis { X, Y }
 
     public static CM ControlMode = CM.Keyboard;
     public static float DeadZone = 0.3f;
-    private static bool? _isStartAlternativeBound = null;
-    private static bool IsStartAlternativeBound
+    private static bool? _isEscapeBound = null;
+    private static bool IsEscapeBound
     {
         get
         {
-            if (_isStartAlternativeBound == null)
+            if (_isEscapeBound == null)
             {
-                _isStartAlternativeBound = false;
-                for (CB i = 0; i < CB.Start; i++)
+                _isEscapeBound = false;
+                for (CB i = 0; i <= CB.Start; i++)
                 {
-                    if (GetKeyCode(i.ToString()) == HARDCODED_START_ALTERNATIVE)
+                    //Bugger.Info(i + " is " + GetKeyCode(i.ToString()));
+                    if (GetKeyCode(i.ToString()) == HARDCODED_ESCAPE_KEY_CODE)
                     {
-                        _isStartAlternativeBound = true;
+                        _isEscapeBound = true;
                     }
                 }
-                for (Axis i = 0; i < Axis.Y; i++)
+                for (Axis i = 0; i <= Axis.Y; i++)
                 {
-                    if (GetKeyCode(i.ToString() + "+") == HARDCODED_START_ALTERNATIVE || GetKeyCode(i.ToString() + "-") == HARDCODED_START_ALTERNATIVE)
+                    //Bugger.Info(i + " is " + GetKeyCode(i.ToString() + "+") + " and " + GetKeyCode(i.ToString() + "-"));
+                    if (GetKeyCode(i.ToString() + "+") == HARDCODED_ESCAPE_KEY_CODE || GetKeyCode(i.ToString() + "-") == HARDCODED_ESCAPE_KEY_CODE)
                     {
-                        _isStartAlternativeBound = true;
+                        _isEscapeBound = true;
                     }
                 }
             }
-            return _isStartAlternativeBound ?? throw Bugger.FMError("Failed to check whether Escape is bound!");
+            return _isEscapeBound ?? throw Bugger.FMError("Failed to check whether Escape is bound!");
         }
     }
 
     public static bool GetButton(CB button)
     {
-        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKey(HARDCODED_START_ALTERNATIVE))
+        if (button == CB.Start && !IsEscapeBound && Input.GetKey(HARDCODED_ESCAPE_KEY_CODE))
         {
             return true;
         }
@@ -50,7 +52,7 @@ public static class Control
 
     public static bool GetButtonUp(CB button)
     {
-        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKeyUp(HARDCODED_START_ALTERNATIVE))
+        if (button == CB.Start && !IsEscapeBound && Input.GetKeyUp(HARDCODED_ESCAPE_KEY_CODE))
         {
             return true;
         }
@@ -59,11 +61,26 @@ public static class Control
 
     public static bool GetButtonDown(CB button)
     {
-        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKeyDown(HARDCODED_START_ALTERNATIVE))
+        if (button == CB.Start && !IsEscapeBound && Input.GetKeyDown(HARDCODED_ESCAPE_KEY_CODE))
         {
             return true;
         }
         return Input.GetKeyDown(GetKeyCode(button.ToString()));
+    }
+
+    public static bool GetEscapeButton()
+    {
+        return !IsEscapeBound && Input.GetKey(HARDCODED_ESCAPE_KEY_CODE);
+    }
+
+    public static bool GetEscapeButtonUp()
+    {
+        return !IsEscapeBound && Input.GetKeyUp(HARDCODED_ESCAPE_KEY_CODE);
+    }
+
+    public static bool GetEscapeButtonDown()
+    {
+        return !IsEscapeBound && Input.GetKeyDown(HARDCODED_ESCAPE_KEY_CODE);
     }
 
     public static float GetAxis(Axis axis)
@@ -130,6 +147,7 @@ public static class Control
     public static void SetKey(string keySaveName, KeyCode value)
     {
         Save(keySaveName + SaveNameModifier(), (int)value, SaveMode.Global);
+        _isEscapeBound = null;
     }
 
     public static string DisplayButtonName(string keySaveName)

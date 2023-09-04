@@ -36,6 +36,10 @@ public class MenuController : MidBattleScreen
 
     private void Update()
     {
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
         if (Control.GetButtonDown(Control.CB.A))
         {
             FinishMenu();
@@ -43,7 +47,7 @@ public class MenuController : MidBattleScreen
             AfterMenuDone?.Activate();
             return;
         }
-        if (Control.GetButtonDown(Control.CB.B) && Cancelable)
+        if (Cancelable && (Control.GetButtonDown(Control.CB.B) || (StartTrigger == null && Control.GetEscapeButtonDown())))
         {
             FinishMenu();
             if (CancelTrigger != null)

@@ -1,15 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InitControls : MonoBehaviour
 {
     private static bool initDone = false;
-
-    public Text InitA;
-    public Text InitB;
-    public Text InitStart;
 
     private void Awake()
     {
@@ -54,15 +49,6 @@ public class InitControls : MonoBehaviour
         if (!SavedData.HasKey("ScreenShakeOn", SaveMode.Global))
         {
             SavedData.Save("ScreenShakeOn", 1, SaveMode.Global);
-        }
-        if (!SavedData.HasKey("HasASaveSlot", SaveMode.Global))
-        {
-            if (InitA != null)
-            {
-                InitA.gameObject.SetActive(true);
-                InitB.gameObject.SetActive(true);
-                InitStart.text = InitStart.text.Replace("Start", "Enter");
-            }
         }
         initDone = true;
     }

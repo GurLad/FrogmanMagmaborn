@@ -17,6 +17,7 @@ public class OpeningCutscene : Trigger
     public PalettedText CreditsObject;
     public GameObject PressStart;
     public LevelMetadataController LevelMetadataController;
+    public MenuController ControlsMenu;
     [HideInInspector]
     public System.Action OnFinishFadeOut;
     private bool fadeOut;
@@ -27,6 +28,7 @@ public class OpeningCutscene : Trigger
     private Palette creditsReverse;
     private float count;
     private bool firstFrame = true;
+    private bool on = false;
 
     public override void Activate()
     {
@@ -56,17 +58,28 @@ public class OpeningCutscene : Trigger
 
     private void Start()
     {
-        CrossfadeMusicPlayer.Current.Play("Menu", false);
-        LevelMetadataController[0].SetPalettesFromMetadata();
-        CreditsObject.Text.text = "";
-        creditsReverse = new Palette();
-        for (int i = 1; i < 4; i++)
+        if (!SavedData.HasKey("HasASaveSlot", SaveMode.Global))
         {
-            creditsReverse[i] = CreditsColor[4 - i];
+            LevelMetadataController[0].SetPalettesFromMetadata();
+            ControlsMenu.gameObject.SetActive(true);
+            ControlsMenu.SelectItem(ControlsMenu.MenuItems.Count - 1);
+            PaletteController.Current.FadeIn(() =>
+            {
+                ControlsMenu.Begin();
+            });
+        }
+        else
+        {
+            BeginCutscene();
         }
     }
+
     private void Update()
     {
+        if (!on)
+        {
+            return;
+        }
         if (firstFrame)
         {
             firstFrame = false;
@@ -205,6 +218,7 @@ public class OpeningCutscene : Trigger
             }
         }
     }
+
     private void ShowCurrentCredit()
     {
         transition = PaletteController.Current.PaletteTransitionTo(false, 0, currentPart % 2 == 0 ? CreditsColor : creditsReverse, Speed, currentPart % 2 == 1);
@@ -212,12 +226,27 @@ public class OpeningCutscene : Trigger
         //CreditsObject.color = currentPart % 2 == 0 ? Color.black : Color.white;
         lastCheckedCurrent = transition.Current;
     }
+
     private void ShowCurrentImage()
     {
         transition = PaletteController.Current.PaletteTransitionTo(true, currentPart, ImagePalettes[currentPart], Speed);
         ImageParts[currentPart].gameObject.SetActive(true);
         lastCheckedCurrent = transition.Current;
     }
+
+    public void BeginCutscene()
+    {
+        CrossfadeMusicPlayer.Current.Play("Menu", false);
+        LevelMetadataController[0].SetPalettesFromMetadata();
+        CreditsObject.Text.text = "";
+        creditsReverse = new Palette();
+        for (int i = 1; i < 4; i++)
+        {
+            creditsReverse[i] = CreditsColor[4 - i];
+        }
+        on = true;
+    }
+
     public void Restore()
     {
         fadeOut = false;
