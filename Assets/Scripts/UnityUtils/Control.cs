@@ -5,24 +5,64 @@ using static SavedData;
 
 public static class Control
 {
+    private const KeyCode HARDCODED_START_ALTERNATIVE = KeyCode.Escape;
     public enum CB { A, B, Select, Start }
     public enum CM { Keyboard, Controller }
     public enum Axis { X, Y }
+
     public static CM ControlMode = CM.Keyboard;
     public static float DeadZone = 0.3f;
+    private static bool? _isStartAlternativeBound = null;
+    private static bool IsStartAlternativeBound
+    {
+        get
+        {
+            if (_isStartAlternativeBound == null)
+            {
+                _isStartAlternativeBound = false;
+                for (CB i = 0; i < CB.Start; i++)
+                {
+                    if (GetKeyCode(i.ToString()) == HARDCODED_START_ALTERNATIVE)
+                    {
+                        _isStartAlternativeBound = true;
+                    }
+                }
+                for (Axis i = 0; i < Axis.Y; i++)
+                {
+                    if (GetKeyCode(i.ToString() + "+") == HARDCODED_START_ALTERNATIVE || GetKeyCode(i.ToString() + "-") == HARDCODED_START_ALTERNATIVE)
+                    {
+                        _isStartAlternativeBound = true;
+                    }
+                }
+            }
+            return _isStartAlternativeBound ?? throw Bugger.FMError("Failed to check whether Escape is bound!");
+        }
+    }
 
     public static bool GetButton(CB button)
     {
+        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKey(HARDCODED_START_ALTERNATIVE))
+        {
+            return true;
+        }
         return Input.GetKey(GetKeyCode(button.ToString()));
     }
 
     public static bool GetButtonUp(CB button)
     {
+        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKeyUp(HARDCODED_START_ALTERNATIVE))
+        {
+            return true;
+        }
         return Input.GetKeyUp(GetKeyCode(button.ToString()));
     }
 
     public static bool GetButtonDown(CB button)
     {
+        if (button == CB.Start && !IsStartAlternativeBound && Input.GetKeyDown(HARDCODED_START_ALTERNATIVE))
+        {
+            return true;
+        }
         return Input.GetKeyDown(GetKeyCode(button.ToString()));
     }
 

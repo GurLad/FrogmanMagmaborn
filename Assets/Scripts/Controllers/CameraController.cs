@@ -52,6 +52,7 @@ public class CameraController : MonoBehaviour
             CurrentMultiplier = SavedData.Load("ScreenSize", 0, SaveMode.Global);
             ChangeSize(0);
         }
+        UpdateTargetFPS(SavedData.Load("TargetFPS", 60, SaveMode.Global));
         UpdateMode((CameraMode)SavedData.Load("CameraMode", 0, SaveMode.Global));
         UpdateResolution();
     }
@@ -77,6 +78,13 @@ public class CameraController : MonoBehaviour
         PixelPerfectMaterial.SetInt("_Filter", (int)(mode & CameraMode.Filter));
         PixelPerfectMaterial.SetInt("_Stretch", !FullScreen ? 1 : (int)(mode & CameraMode.Stretch));
         SavedData.Save("CameraMode", (int)mode, SaveMode.Global);
+        SavedData.SaveAll(SaveMode.Global);
+    }
+
+    public void UpdateTargetFPS(int target)
+    {
+        Application.targetFrameRate = target;
+        SavedData.Save("TargetFPS", target, SaveMode.Global);
         SavedData.SaveAll(SaveMode.Global);
     }
 

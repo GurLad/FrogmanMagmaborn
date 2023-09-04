@@ -29,7 +29,6 @@ public class InitControls : MonoBehaviour
             Bugger.Warning("Failed to initialize Steam");
         }
 #endif
-        Application.targetFrameRate = 60; // To prevent my laptop from burning itself trying to run the game at 700 FPS
         // Load & init the save slot
         SavedData.InitFiles();
         SavedData.SaveSlot = SavedData.Load("DefaultSaveSlot", 0, SaveMode.Global);
