@@ -270,7 +270,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
             {
                 RemoveMarkers();
                 Team current = CurrentPhase;
-                bool showTurnAnimation = false;
+                bool showTurnAnimation = true;
                 if (units.Count == 0)
                 {
                     throw Bugger.Crash("No units?");
@@ -278,7 +278,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
                 do
                 {
                     current = (Team)(((int)current + 1) % 3);
-                    showTurnAnimation = StartPhase(current) || showTurnAnimation;
+                    showTurnAnimation = StartPhase(current) && showTurnAnimation;
                     if (current == CurrentPhase)
                     {
                         //Bugger.Info("Only one team is alive - " + current);
