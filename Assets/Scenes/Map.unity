@@ -18479,7 +18479,7 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :play:TheFrogman
+      :play:GameOver
 
       :showCG:Cheater
 
@@ -18780,7 +18780,8 @@ MonoBehaviour:
 
       }
 
-      
+      :setDeathQuote:Torment:TormentDead
+
 
       ~
       After battle
@@ -18789,12 +18790,10 @@ MonoBehaviour:
 
       # Name: Text.
 
-      
 
-      #
-      === Functions ====
+      # === Functions
+      ====
 
-      
 
       ~ FrogmanDead
 
@@ -19014,12 +19013,11 @@ MonoBehaviour:
 
       :callOther:EndgameInitData
 
-      
 
       ~
       After battle
 
-      :if:hasTempFlag:EndgameFrogmanFashima{
+      :if:hasTempFlag:EndgameFashimaWon{
 
       :callOther:EndgameFashimaWin
 
@@ -19031,72 +19029,69 @@ MonoBehaviour:
 
       }
 
-      
 
       #
       Name: Text.
 
-      
 
       # === Functions ====
 
-      
 
       ~ FrogmanDead
 
       :callOther:EndgameFrogmanDead
 
-      
 
       ~
       FashimaDead
 
       :callOther:EndgameFashimaDead
 
-      
 
       ~ FirbellDead
 
       :callOther:EndgameFirbellDead
 
-      
 
       ~
       XirverosDead
 
       :callOther:EndgameXirverosDead
 
-      
 
       ~ XeplogiDead
 
       :callOther:EndgameXeplogiDead
 
-      
 
       ~
       KreslaDead
 
       :callOther:EndgameKreslaDead
 
-      
 
       ~ MemerianDead
 
       :callOther:EndgameMemerianDead
 
-      
 
       ~
       AlfredDead
 
       :callOther:EndgameAlfredDead
 
-      
 
       ~ WerseDead
 
       :callOther:EndgameWerseDead
+
+
+      ~
+      TormentDead
+
+      :setTempFlag:EndgameFashimaWon
+
+      :win:
 
 '
     Name: Endgame
@@ -20122,7 +20117,7 @@ MonoBehaviour:
       #
       Keep Fashima Guarding until the second crystal shatters
 
-      :if:!hasFlag:EndgameFrogmanFashima{
+      :if:!hasTempFlag:EndgameFrogmanFashima{
 
       :setUnitAI:Fashima:Guard
 
@@ -63018,7 +63013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-    Enabled: 1
+    Enabled: 0
     SkipIntro: 0
     EndgameLevel: 10
     ExtraLevels: 0

@@ -9,7 +9,7 @@ levelNumber:0
 :setTeamAI:monster:beeline:Torment
 :if:!hasTempFlag:Crystal2{
 # Keep Fashima Guarding until the second crystal shatters
-:if:!hasFlag:EndgameFrogmanFashima{
+:if:!hasTempFlag:EndgameFrogmanFashima{
 :setUnitAI:Fashima:Guard
 }
 }

@@ -37,7 +37,7 @@ levelNumber:10
 :callOther:EndgameInitData
 
 ~ After battle
-:if:hasTempFlag:EndgameFrogmanFashima{
+:if:hasTempFlag:EndgameFashimaWon{
 :callOther:EndgameFashimaWin
 }
 :else:{
@@ -74,3 +74,7 @@ levelNumber:10
 
 ~ WerseDead
 :callOther:EndgameWerseDead
+
+~ TormentDead
+:setTempFlag:EndgameFashimaWon
+:win:

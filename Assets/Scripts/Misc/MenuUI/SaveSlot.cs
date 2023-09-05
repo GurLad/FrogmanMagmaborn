@@ -16,6 +16,8 @@ public class SaveSlot : MonoBehaviour
     [Header("External menus")]
     public MenuController BackMenu;
     public MenuController SelectMenu;
+    [Header("Misc")]
+    public Text ButtonHelp;
     private int currentSlot;
     private int previousSign;
     private new AdvancedSpriteSheetAnimation animation = null;
@@ -23,6 +25,7 @@ public class SaveSlot : MonoBehaviour
     private void Start()
     {
         Select(SavedData.Load("DefaultSaveSlot", 0, SaveMode.Global));
+        ButtonHelp.text = ButtonHelp.text.Replace("[Select]", Control.DisplayShortButtonName(Control.CB.Select));
     }
 
     private void Update()

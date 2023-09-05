@@ -45,7 +45,7 @@ public class FirstSceneLoader : MonoBehaviour
                 }
                 break;
             case State.LoadScene:
-                string target = DebugOptions.SkipIntro ? "Map" : "Menu";
+                string target = (DebugOptions.Enabled && DebugOptions.SkipIntro) ? "Map" : "Menu";
                 SceneManager.LoadSceneAsync(target);
                 Destroy(this);
                 break;
