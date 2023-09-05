@@ -155,6 +155,8 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 6f5b65457ecd5524393d7a863158a867, type: 3}
   - Name: EmbersOfTreasonIntro
     AudioClip: {fileID: 8300000, guid: d64d6caf9c7a70c4d9b35235ddac8afc, type: 3}
+  - Name: TormentEndingLaugh
+    AudioClip: {fileID: 8300000, guid: 5dcc1ccd60e3c314788eefe303d64acd, type: 3}
   FadeSpeed: 2
   PlayOnStart: 1
   KeepTimestamp: 1
@@ -172,9 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa729effd9d041448ad43c6fd223141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitA: {fileID: 0}
-  InitB: {fileID: 0}
-  InitStart: {fileID: 0}
 --- !u!114 &6239217429005851178
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -126,6 +126,16 @@ public class CrossfadeMusicPlayer : MonoBehaviour
         playingBattle = true;
     }
 
+    public AudioClip GetAudioClip(string name)
+    {
+        CrossfadeMusicPlayerObject target = Tracks.Find(a => a.Name == name);
+        if (target == null || target.AudioClip == null)
+        {
+            throw Bugger.Error("No matching audio clip! (" + name + ")");
+        }
+        return target.AudioClip;
+    }
+
     private void Update()
     {
         if (seconderyAudioSource.clip != null)

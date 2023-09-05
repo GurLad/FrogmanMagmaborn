@@ -47,6 +47,7 @@ public static class EventCommandProcessor
         
         new CommandStruct("play", CommandType.Conversation, CAT.String, CAT.OpBool),
         new CommandStruct("playIntro", CommandType.Conversation, CAT.String),
+        new CommandStruct("playSFX", CommandType.Conversation, CAT.String),
         new CommandStruct("setMapTheme", CommandType.Conversation, CAT.String),
         new CommandStruct("addGenericCharacter", CommandType.Conversation, CAT.String, CAT.OpString),
         new CommandStruct("getGenericCharacter", CommandType.Conversation, CAT.String, CAT.OpTeam),
@@ -523,6 +524,10 @@ public static class EventCommandProcessor
             case "playIntro":
                 // Params: string name
                 CrossfadeMusicPlayer.Current.PlayIntro(args[0], false);
+                break;
+            case "playSFX":
+                // Params: string name
+                SoundController.PlaySound(CrossfadeMusicPlayer.Current.GetAudioClip(args[0]));
                 break;
             case "setMapTheme":
                 // Params: string name
