@@ -742,6 +742,8 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         SavedData.Save("FurthestLevel", Mathf.Max(LevelNumber, SavedData.Load("FurthestLevel", 0)));
         SavedData.Append("Log", "Data", "Won :)\n");
         SavedData.SaveAll(SaveMode.Slot);
+        // No idea what is wrong with it, but ruining auto-saves just won't do
+        AutoSaveClearAction();
         PlayersLevelUp();
     }
 

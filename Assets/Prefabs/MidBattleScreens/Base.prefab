@@ -213,7 +213,7 @@ MonoBehaviour:
   Cancelable: 0
   FinishOnSelect: 1
   CancelTrigger: {fileID: 0}
-  StartTrigger: {fileID: 1277396828}
+  StartTrigger: {fileID: 0}
   AfterMenuDone: {fileID: 0}
 --- !u!114 &1870708667118770592
 MonoBehaviour:
@@ -1732,6 +1732,7 @@ MonoBehaviour:
     - {fileID: 0}
   FixedSpeed: 0
   BaseSpeed: 0
+  AffectedByGameSpeed: 0
   ActivateOnStart: 1
   Renderer: {fileID: 353703547167543794}
 --- !u!1001 &1555977643624847503
