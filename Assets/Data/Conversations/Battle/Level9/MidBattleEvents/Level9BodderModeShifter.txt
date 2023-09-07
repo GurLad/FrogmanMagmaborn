@@ -8,12 +8,14 @@ levelNumber:0
 ~ Before battle
 :if:compareCounter:Level9BodderState:>0{
 :replaceUnit:SuBodderPre:SuBodderPir:T
+:addStat:SuBodderPir:Pir:3
 :addSkill:SuBodderPir:DragonSkin
 SuBodderPir: RUN, LITTLE MICE! RUN FROM BODDER!
 :setCounter:Level9BodderState:0
 }
 :else:{
 :replaceUnit:SuBodderPir:SuBodderPre:T
+:addStat:SuBodderPre:Pre:3
 :addSkill:SuBodderPre:DragonSkin
 SuBodderPre: THERE IS NO ESCAPE FROM ME, DEMONS!
 :setCounter:Level9BodderState:1
