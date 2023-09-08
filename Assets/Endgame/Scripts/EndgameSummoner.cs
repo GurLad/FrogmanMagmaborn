@@ -147,10 +147,14 @@ public class EndgameSummoner : AGameControllerListener, ISuspendable<SuspendData
         List<Vector2Int> options = new List<Vector2Int>();
         do
         {
-            for (int x = xRange.x; x < xRange.y; x++)
+            for (int x = xRange.x; x <= xRange.y; x++)
             {
-                for (int y = yRange.x; y < yRange.y; y++)
+                for (int y = yRange.x; y <= yRange.y; y++)
                 {
+                    if (x != xRange.x && x != xRange.y && y != yRange.x && y != yRange.y)
+                    {
+                        continue;
+                    }
                     Vector2Int pos = new Vector2Int(x, y);
                     if (GameController.Current.FindUnitAtPos(pos) == null)
                     {
@@ -158,17 +162,26 @@ public class EndgameSummoner : AGameControllerListener, ISuspendable<SuspendData
                     }
                 }
             }
+            xRange.x--;
+            xRange.y++;
+            yRange.x--;
+            yRange.y++;
+            if (!GameController.Current.IsValidPos(xRange.x, 0) || !GameController.Current.IsValidPos(xRange.y, 0) || !GameController.Current.IsValidPos(0, yRange.x) || !GameController.Current.IsValidPos(0, yRange.y))
+            {
+                Bugger.Warning("Zero possible locations for a wisp!");
+                return;
+            }
         } while (options.Count <= 0);
         // Summon
         Unit summoned = GameController.Current.CreateUnit(StaticGlobals.FinalBossMinionName, 0, Team.Guard, false, PortraitLoadingMode.Team);
         summoned.Pos = options.RandomItemInList();// pos;
-        summoned.AIType = AIType.Beeline;
+        summoned.AIType = AIType.Guard;// AIType.Beeline;
         summoned.AIData = StaticGlobals.FinalBossName;
         summoned.Stats.Base.Endurance = 1;
         summoned.Health = summoned.Stats.Base.MaxHP;
         // New version
         summoned.ReinforcementTurn = 16;
-        summoned.Statue = true;
+        summoned.Moved = summoned.Statue = true;
     }
 
     private void SummonActionOnUnit(SummonCircle circle, Unit target)
