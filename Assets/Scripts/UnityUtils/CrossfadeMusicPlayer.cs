@@ -115,6 +115,10 @@ public class CrossfadeMusicPlayer : MonoBehaviour
 
     public void SwitchBattleMode(bool on)
     {
+        if (playingIntro)
+        {
+            return;
+        }
         if (on)
         {
             Play(Playing + "_Battle");

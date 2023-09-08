@@ -11,6 +11,15 @@ levelNumber:0
 :addStat:SuBodderPir:Pir:3
 :addSkill:SuBodderPir:DragonSkin
 SuBodderPir: RUN, LITTLE MICE! RUN FROM BODDER!
+:if:!hasTempFlag:SuBodderTransformed{
+:setTempFlag:SuBodderTransformed
+Frogman: Uh... Did your eyes change color too now?\a That seems pointless.
+:if:hasCharacter:Fashima{
+Fashima: Bodder would not modify his form without reason.
+He must have changed something substantial as well.
+Frogman: If you say so...
+}
+}
 :setCounter:Level9BodderState:0
 }
 :else:{

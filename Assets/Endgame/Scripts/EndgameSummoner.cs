@@ -125,20 +125,50 @@ public class EndgameSummoner : AGameControllerListener, ISuspendable<SuspendData
 
     public void SummonWisp()
     {
-        bool yAxis = Random.Range(0, 2) == 0;
-        Vector2Int size = GameController.Current.MapSize;
-        Vector2Int pos;
-        int attemps = 0; // Failsafe - shouldn't ever happen
+        // Old version
+        //bool yAxis = Random.Range(0, 2) == 0;
+        //Vector2Int size = GameController.Current.MapSize;
+        //Vector2Int pos;
+        //int attemps = 0; // Failsafe - shouldn't ever happen
+        //do
+        //{
+        //    pos = new Vector2Int(Random.Range(0, yAxis ? size.x : 2) * (yAxis ? 1 : (size.x - 1)), Random.Range(0, yAxis ? 2 : size.y) * (yAxis ? (size.y - 1) : 1));
+        //} while (GameController.Current.FindUnitAtPos(pos) != null && attemps++ < 100);
+
+        // New version
+        // TEMP
+        if (torment == null)
+        {
+            Process(GameController.Current.Map, GameController.Current.MapSize);
+        }
+        MultiTileUnit multiTile = torment is MultiTileUnit temp ? temp : null;
+        Vector2Int xRange = new Vector2Int(torment.Pos.x - 1, torment.Pos.x + (multiTile?.Size.x ?? 1));
+        Vector2Int yRange = new Vector2Int(torment.Pos.y - 1, torment.Pos.y + (multiTile?.Size.y ?? 1));
+        List<Vector2Int> options = new List<Vector2Int>();
         do
         {
-            pos = new Vector2Int(Random.Range(0, yAxis ? size.x : 2) * (yAxis ? 1 : (size.x - 1)), Random.Range(0, yAxis ? 2 : size.y) * (yAxis ? (size.y - 1) : 1));
-        } while (GameController.Current.FindUnitAtPos(pos) != null && attemps++ < 100);
+            for (int x = xRange.x; x < xRange.y; x++)
+            {
+                for (int y = yRange.x; y < yRange.y; y++)
+                {
+                    Vector2Int pos = new Vector2Int(x, y);
+                    if (GameController.Current.FindUnitAtPos(pos) == null)
+                    {
+                        options.Add(pos);
+                    }
+                }
+            }
+        } while (options.Count <= 0);
+        // Summon
         Unit summoned = GameController.Current.CreateUnit(StaticGlobals.FinalBossMinionName, 0, Team.Guard, false, PortraitLoadingMode.Team);
-        summoned.Pos = pos;
+        summoned.Pos = options.RandomItemInList();// pos;
         summoned.AIType = AIType.Beeline;
         summoned.AIData = StaticGlobals.FinalBossName;
         summoned.Stats.Base.Endurance = 1;
         summoned.Health = summoned.Stats.Base.MaxHP;
+        // New version
+        summoned.ReinforcementTurn = 16;
+        summoned.Statue = true;
     }
 
     private void SummonActionOnUnit(SummonCircle circle, Unit target)
