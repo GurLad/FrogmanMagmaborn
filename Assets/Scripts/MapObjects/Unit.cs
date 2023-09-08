@@ -842,7 +842,7 @@ public class Unit : MapObject
 
     public bool CanAttack(Unit other)
     {
-        return other != null && other.IsEnemy(this) && CanAttackPos(other.GetClosetPosToUnit(this));
+        return other != null && other.IsEnemy(this) && InsideMap && other.InsideMap && CanAttackPos(other.GetClosetPosToUnit(this));
     }
 
     private bool CanAttackPos(Vector2Int pos)
