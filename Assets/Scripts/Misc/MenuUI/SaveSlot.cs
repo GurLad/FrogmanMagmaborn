@@ -136,6 +136,7 @@ public class SaveSlot : MonoBehaviour
         animation = Instantiate(UnitClassData.BaseAnimation, MVP.transform);
         animation.Renderer = MVP.GetComponent<SpriteRenderer>();
         animation.Animations[0].SpriteSheet = classData.MapSprite;
+        animation.Animations[0].NumberOfFrames = classData.MapSpriteNumberOfFrames;
         animation.Start();
         animation.Activate(0);
     }

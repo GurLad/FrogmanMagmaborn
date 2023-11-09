@@ -966,6 +966,7 @@ public class GameController : MonoBehaviour, ISuspendable<SuspendDataGameControl
         AdvancedSpriteSheetAnimation animation = Instantiate(UnitClassData.BaseAnimation, unit.transform);
         animation.Renderer = unit.GetComponent<SpriteRenderer>();
         animation.Animations[0].SpriteSheet = classData.MapSprite;
+        animation.Animations[0].NumberOfFrames = classData.MapSpriteNumberOfFrames;
         animation.Start();
         animation.Activate(0);
     }

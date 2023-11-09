@@ -18,6 +18,7 @@ public class UnitClassData : MonoBehaviour
         for (int i = 0; i < ClassDatas.Count; i++)
         {
             ClassDatas[i].MapSprite = FrogForgeImporter.LoadSpriteFile("Images/ClassMapSprites/" + ClassDatas[i].Name + ".png");
+            ClassDatas[i].MapSpriteNumberOfFrames = (int)ClassDatas[i].MapSprite.rect.width / 16;
         }
 #if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(gameObject);
@@ -57,6 +58,7 @@ public class ClassData
     public UnitClassData.GrowthsStruct Growths;
     public Weapon Weapon;
     public Sprite MapSprite;
+    public int MapSpriteNumberOfFrames;
 
     public override string ToString()
     {
@@ -66,6 +68,7 @@ public class ClassData
     public void SetToClassIcon(AdvancedSpriteSheetAnimationUI classIcon)
     {
         classIcon.Animations[0].SpriteSheet = MapSprite;
+        classIcon.Animations[0].NumberOfFrames = MapSpriteNumberOfFrames;
         if (!classIcon.Active)
         {
             classIcon.Start();
