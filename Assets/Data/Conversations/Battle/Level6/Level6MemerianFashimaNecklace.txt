@@ -3,7 +3,7 @@ unique:T
 ~ Requirements
 # If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
 levelNumber:6
-charactersAlive:=1
+charactersAlive:=0
 compareCounter:MemerianXeplogiBalance:>0
 hasFlag:FashimaBattleMemerian
 # Pointless discussion if Memerian already knows her theory is correct
