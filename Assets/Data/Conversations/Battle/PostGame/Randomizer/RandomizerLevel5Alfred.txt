@@ -1,0 +1,22 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+levelNumber:5
+charactersAlive:<2
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits:
+:setSingleSpeaker:L
+Alfred: [Name], Guard hater. Hi.
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

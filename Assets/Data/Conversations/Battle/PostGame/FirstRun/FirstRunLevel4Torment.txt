@@ -1,0 +1,18 @@
+priority:41
+unique:F
+~
+knowledgeUpgradeActive:FirstRun
+levelNumber:4
+~
+# No demands (I can do this since a non-existent demand defaults to true :))
+~
+:callOther:TormentBase
+:play:Trustworthy
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+:loadUnits:
+~
+:play:Trickster

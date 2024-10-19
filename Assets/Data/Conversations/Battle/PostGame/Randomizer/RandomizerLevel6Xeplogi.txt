@@ -1,0 +1,33 @@
+priority:51
+unique:F
+~ Requirements
+# If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+knowledgeUpgradeActive:Randomize
+levelNumber:6
+hasCharacter:Xeplogi
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+:setSpeaker:Xeplogi
+Memerian: I'm [Name] the blacksmith. Choose me!
+Xeplogi: No, keep me!
+:showChoice:Frogman:Trust [Name:Xeplogi]:Trust [Name:Memerian]
+:if:chose:0{
+Memerian: ...Die, fools.
+:setTeam:Memerian:monster
+}
+:else:{
+Xeplogi: How dare you!
+:setTeam:Xeplogi:monster
+}
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

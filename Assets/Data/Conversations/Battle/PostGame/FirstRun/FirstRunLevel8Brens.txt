@@ -1,0 +1,29 @@
+priority:41
+unique:F
+~ Requirements
+knowledgeUpgradeActive:FirstRun
+levelNumber:8
+~ Demands
+hasCharacter:Brens
+~ Before battle
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Werse
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+
+# Name: Text.
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ BrensDeath
+:setFlag:BrensDied
+:play:GuardTheme3
+Brens: Ha... You're tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+:play:Silence
+Fashima|???: Not so fast, old man.
+:screenShake:
+Brens: Urk!

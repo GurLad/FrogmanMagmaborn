@@ -1,0 +1,22 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+levelNumber:5
+charactersAlive:>1
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Xeplogi
+:loadUnits:
+:setSingleSpeaker:L
+Xeplogi: Duke [Name], at your service.
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

@@ -1,0 +1,15 @@
+priority:41
+unique:F
+~
+knowledgeUpgradeActive:FirstRun
+levelNumber:2
+charactersAlive:=0
+~
+charactersAlive:=1
+~
+:play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits:
+
+~
+:play:AfterBattle

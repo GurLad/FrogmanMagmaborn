@@ -194,6 +194,11 @@ public static class GameCalculations
         return KnowledgeController.FoundKnowledge(name);
     }
 
+    public static bool GetUpgradeActive(string name) // For conversations. Pretty bad idea to allow access to these - GameCalculations should be the only class using Knowledge.
+    {
+        return KnowledgeController.GetUpgradeActive(name);
+    }
+
     public static void UnlockKnowledge(string name)
     {
         KnowledgeController.UnlockKnowledge(name);

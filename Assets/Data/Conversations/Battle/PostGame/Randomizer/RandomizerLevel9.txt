@@ -1,0 +1,53 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+levelNumber:9
+~ Demands
+# Nothing
+~ Before battle
+# Pre-battle Fashima stuff
+:play:MomentOfTruth
+:loadUnits::player
+:loadUnits::monster:T
+:showCG:FortressInside
+Fashima: I'm [Name:Fashima_], and I'm back! Missed me?
+:showBase:
+:hideCG:
+:call:EnterBodder
+
+~ After battle
+:play:TheFinalStep
+Frogman: Ready for the endgame?
+That one wasn't changed for maximum chaos.
+
+# === Functions ====
+
+~ EnterBodder
+:play:EnterTheBodder
+Bodder: Do you know what I hate most?
+Being [Name] instead of Bodder.
+:setDeathQuote:Bodder:BodderDeath
+:addEnemyToUnit:Frogman:Worker
+:play:TheInvincibleBodder:T
+
+~ BodderDeath
+:play:Anticipation
+Bodder: This... This isn't even... my final...
+:setCounter:Level9BodderState:1
+:setTempFlag:BodderTransformed
+:replaceUnit:Bodder:SuBodderPre
+:addStat:SuBodderPre:Pre:3
+:addSkill:SuBodderPre:DragonSkin
+:setSpeaker:SuBodderPre||L
+:screenShake:
+:playIntro:BodderUnleashed
+:setMapTheme:BodderUnleashed
+FORM!
+WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+
+~ WorkerDeath
+:callOther:Level9WorkerDeath
+
+~ Reaction
+:callOther:Level9Reaction

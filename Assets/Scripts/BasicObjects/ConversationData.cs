@@ -136,6 +136,9 @@ public class ConversationData : System.IComparable<ConversationData>
             case "hasKnowledge":
                 // Return if has knowledge upgrade, based on internal name (ex. InclinationFrogman)
                 return GameCalculations.HasKnowledge(parts[1]);
+            case "knowledgeUpgradeActive":
+                // Return if activated a knowledge upgrade, based on internal name (ex. InclinationFrogman)
+                return GameCalculations.GetUpgradeActive(parts[1]);
             case "foundKnowledge":
                 // Return if found knowledge upgrade, based on internal name (ex. InclinationFrogman)
                 return GameCalculations.FoundKnowledge(parts[1]);

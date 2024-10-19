@@ -1,0 +1,39 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+!knowledgeUpgradeActive:FirstRun
+levelNumber:8
+~ Demands
+!hasCharacter:Brens
+~ Before battle
+:loadUnits::guard
+:loadUnits::monster:T
+:killUnit:Lan:F
+:loadUnits::player:T
+:play:BeforeBattle3
+:setSingleSpeaker:L
+Werse: I'm [Name]. Ready to surrender.
+Brens: I'm too busy being dead to join the battle..
+:setBattleQuote:Werse:WerseBattle
+
+# Name: Text.
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ WerseBattle
+Werse: Surrender time.
+:killUnit:Werse
+:killTeam:guard
+
+~ Reaction
+:if:hasCharacter:Firbell{
+:if:!hasFlag:FirbellDoubts{
+Frogman: We're back...
+:callOther:Level8FirbellDoubts
+:return:
+}
+}
+Frogman: We're back... Come on, we've got no time to lose!

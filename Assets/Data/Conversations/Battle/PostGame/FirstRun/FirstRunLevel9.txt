@@ -1,0 +1,51 @@
+priority:41
+unique:F
+~ Requirements
+knowledgeUpgradeActive:FirstRun
+levelNumber:9
+~ Demands
+# Nothing
+~ Before battle
+# Pre-battle Fashima stuff
+:play:MomentOfTruth
+:loadUnits::player
+:loadUnits::monster:T
+:showCG:FortressInside
+:showBase:
+:hideCG:
+:call:EnterBodder
+
+~ After battle
+:play:TheFinalStep
+Frogman: Ready for the endgame?
+That one wasn't changed at all.
+
+# === Functions ====
+
+~ EnterBodder
+:play:EnterTheBodder
+:setDeathQuote:Bodder:BodderDeath
+:addEnemyToUnit:Frogman:Worker
+:play:TheInvincibleBodder:T
+Frogman: From here on out, you might encounter some text.
+
+~ BodderDeath
+:play:Anticipation
+Bodder: This... This isn't even... my final...
+:setCounter:Level9BodderState:1
+:setTempFlag:BodderTransformed
+:replaceUnit:Bodder:SuBodderPre
+:addStat:SuBodderPre:Pre:3
+:addSkill:SuBodderPre:DragonSkin
+:setSpeaker:SuBodderPre||L
+:screenShake:
+:playIntro:BodderUnleashed
+:setMapTheme:BodderUnleashed
+FORM!
+WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+
+~ WorkerDeath
+:callOther:Level9WorkerDeath
+
+~ Reaction
+:callOther:Level9Reaction

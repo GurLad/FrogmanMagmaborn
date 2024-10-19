@@ -1,0 +1,16 @@
+priority:51
+unique:F
+~
+knowledgeUpgradeActive:Randomize
+levelNumber:2
+charactersAlive:=0
+~
+charactersAlive:=1
+~
+:play:BeforeBattle
+:addUnit:Xirveros
+:loadUnits:
+Xirveros: I'm [Name] the mad wizard! Weeeee!
+
+~
+:play:AfterBattle

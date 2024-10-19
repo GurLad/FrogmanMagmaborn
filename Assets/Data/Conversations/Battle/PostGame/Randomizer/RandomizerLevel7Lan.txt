@@ -1,0 +1,24 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+!knowledgeUpgradeActive:FirstRun
+levelNumber:7
+~ Demands
+hasCharacter:Lan
+~ Before battle
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+:play:BeforeBattle2
+:loadUnits::player:T
+Lan: Hey hey! Ready for some [Name] the Great action?!
+Fashima_: I'm totally dead and will never come back.
+
+~ After battle
+:play:AfterBattle
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

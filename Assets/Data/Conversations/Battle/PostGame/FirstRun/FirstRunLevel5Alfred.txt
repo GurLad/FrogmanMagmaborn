@@ -1,0 +1,20 @@
+priority:41
+unique:F
+~ Requirements
+knowledgeUpgradeActive:FirstRun
+levelNumber:5
+charactersAlive:<2
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Alfred
+:loadUnits:
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

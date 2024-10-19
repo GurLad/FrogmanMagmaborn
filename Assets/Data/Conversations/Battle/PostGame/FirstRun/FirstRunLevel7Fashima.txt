@@ -1,0 +1,23 @@
+priority:41
+unique:F
+~ Requirements
+knowledgeUpgradeActive:FirstRun
+levelNumber:7
+~ Demands
+hasCharacter:Fashima_
+~ Before battle
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+:play:BeforeBattle2
+:loadUnits::player:T
+:addSkill:Fashima_:Vantage
+
+~ After battle
+:play:Raindance
+
+# === Functions ====
+
+~ FashimaBattleQuote
+:callOther:Level7FashimaBattleQuote
+:setBattleQuote:Fashima_:FashimaBattleQuote

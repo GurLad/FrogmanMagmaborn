@@ -1,0 +1,28 @@
+priority:41
+unique:F
+~ Requirements
+# If got Xeplogi (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+knowledgeUpgradeActive:FirstRun
+levelNumber:6
+hasCharacter:Xeplogi
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+:showChoice:Frogman:Trust Xeplogi:Trust Memerian
+:if:chose:0{
+:setTeam:Memerian:monster
+}
+:else:{
+:setTeam:Xeplogi:monster
+}
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

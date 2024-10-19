@@ -1,0 +1,27 @@
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+knowledgeUpgradeActive:FirstRun
+levelNumber:7
+~ Demands
+hasCharacter:Fashima_
+~ Before battle
+:loadUnits::monster
+:loadUnits::guard:T
+:killUnit:Brens
+:play:BeforeBattle2
+:loadUnits::player:T
+Fashima_: I'm [Name], my friend. Dying is my master plan.
+Lan: [Name] the Great doesn't exist in this timeline. Oof!
+:addSkill:Fashima_:Vantage
+
+~ After battle
+:play:Raindance
+Fashima_: I'll be back as [Name:Fashima].
+
+# === Functions ====
+
+~ FashimaBattleQuote
+:callOther:Level7FashimaBattleQuote
+:setBattleQuote:Fashima_:FashimaBattleQuote

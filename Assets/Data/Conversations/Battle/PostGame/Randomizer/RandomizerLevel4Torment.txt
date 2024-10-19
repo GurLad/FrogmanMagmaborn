@@ -1,0 +1,23 @@
+priority:51
+unique:F
+~
+knowledgeUpgradeActive:Randomize
+levelNumber:4
+~
+# No demands (I can do this since a non-existent demand defaults to true :))
+~
+:callOther:TormentBase
+:play:Trustworthy
+:loadMap:InitTormentRoom
+:loadUnits:InitTormentRoom
+Torment|???: I am... pain.\a Fear.\a Despair.
+I am your life, and your death.\a Undeath, as well.
+I am your magic.\a Your god.
+I am...
+:playIntro:Tormentor
+:loadMap:
+:screenShake:
+Torment: [Name]!!!
+:loadUnits:
+~
+:play:Trickster

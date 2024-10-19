@@ -1,0 +1,14 @@
+# Identifiers
+priority:41
+unique:F
+~ Requirements
+knowledgeUpgradeActive:FirstRun
+levelNumber:1
+~ Demands
+hasCharacter:Firbell
+~ Event (pre-battle)
+# This is a very epic event
+:play:BeforeBattle
+
+~ Event (post-battle)
+:play:AfterBattle

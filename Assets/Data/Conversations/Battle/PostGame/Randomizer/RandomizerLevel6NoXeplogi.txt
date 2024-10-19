@@ -1,0 +1,22 @@
+priority:51
+unique:F
+~ Requirements
+# If no Alfred nor Xeplogi, just Memerian
+knowledgeUpgradeActive:Randomize
+levelNumber:6
+!hasCharacter:Xeplogi
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+Memerian: I'm [Name] the blacksmith.
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

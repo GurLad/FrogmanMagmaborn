@@ -1,0 +1,21 @@
+priority:41
+unique:F
+~ Requirements
+# If no Alfred nor Xeplogi, just Memerian
+knowledgeUpgradeActive:FirstRun
+levelNumber:6
+!hasCharacter:Xeplogi
+~ Demands
+# Nothing
+~ Before battle
+:play:BeforeBattle2
+:addUnit:Memerian
+:loadUnits:
+
+~ After battle
+:play:Anticipation
+
+# === Functions ====
+
+~ Sample
+# Name: Text.

@@ -1,0 +1,15 @@
+# Identifiers
+priority:51
+unique:F
+~ Requirements
+knowledgeUpgradeActive:Randomize
+levelNumber:1
+~ Demands
+hasCharacter:Firbell
+~ Event (pre-battle)
+# This is a very epic event
+:play:BeforeBattle
+Frogman: I'm [Name] Magmaborn, the main character.
+Firbell: And I'm Princess [Name].
+~ Event (post-battle)
+:play:AfterBattle
