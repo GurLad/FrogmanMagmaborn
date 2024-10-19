@@ -94,6 +94,7 @@ Bodder: This... This isn't even... my final...
 :setCounter:Level9BodderState:1
 :setTempFlag:BodderTransformed
 :replaceUnit:Bodder:SuBodderPre
+:setDeathQuote:SuBodderPre:SuBodderDeath
 :addStat:SuBodderPre:Pre:3
 :addSkill:SuBodderPre:DragonSkin
 :setSpeaker:SuBodderPre||L
@@ -105,6 +106,9 @@ Frogman: Did you just... turn cyan?\a Wait.\a Your injuries...
 SuBodderPre: WITNESS THE POWER OF THE CRYSTALS, MORTAL!
 Frogman: This seems unfair.
 # TBA: Fashima speaks, based on whether you chose to trust her
+
+~ SuBodderDeath
+:win:
 
 ~ Reaction
 :callOther:Level9Reaction

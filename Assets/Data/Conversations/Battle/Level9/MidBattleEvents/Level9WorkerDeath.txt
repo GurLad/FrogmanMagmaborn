@@ -60,12 +60,16 @@ Frogman: Right...
 :if:hasTempFlag:BodderTransformed{
 :if:compareCounter:Level9BodderState:>0{
 :replaceUnit:SuBodderPre:SuBodderPir:T
+:setDeathQuote:SuBodderPir:SuBodderDeath
+:addStat:SuBodderPir:Pir:3
 :addSkill:SuBodderPir:DragonSkin
 SuBodderPir: YOU UTTER MONSTER! ATTACKING HARMLESS CLONES?!\a HAVE YOU NO SHAME?!\a ARRRRGH! YOU'RE A DEAD MAN, FROGMAN!
 :setCounter:Level9BodderState:0
 }
 :else:{
 :replaceUnit:SuBodderPir:SuBodderPre:T
+:setDeathQuote:SuBodderPre:SuBodderDeath
+:addStat:SuBodderPre:Pre:3
 :addSkill:SuBodderPre:DragonSkin
 SuBodderPre: YOU UTTER MONSTER! HAVE YOU NO SHAME?!\a ATTACKING HARMLESS CLONES?!\a YOU'RE A DEAD MAN, FROGMAN! ARRRRGH!
 :setCounter:Level9BodderState:1
@@ -81,6 +85,7 @@ Bodder: Shut up. I see now that you deserve no mercy.\a Prepare to feel my wrath
 :setCounter:Level9BodderState:1
 :setTempFlag:BodderTransformed
 :replaceUnit:Bodder:SuBodderPre
+:setDeathQuote:SuBodderPre:SuBodderDeath
 :addStat:SuBodderPre:Pre:3
 :addSkill:SuBodderPre:DragonSkin
 :setSpeaker:SuBodderPre||R

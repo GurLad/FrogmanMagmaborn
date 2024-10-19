@@ -13,6 +13,9 @@ levelNumber:9
 :showCG:FortressInside
 Fashima: I'm [Name:Fashima_], and I'm back! Missed me?
 :showBase:
+:addUnit:Fashima
+:loadUnits::player
+:loadUnits::monster:T
 :hideCG:
 :call:EnterBodder
 
@@ -37,6 +40,7 @@ Bodder: This... This isn't even... my final...
 :setCounter:Level9BodderState:1
 :setTempFlag:BodderTransformed
 :replaceUnit:Bodder:SuBodderPre
+:setDeathQuote:SuBodderPre:SuBodderDeath
 :addStat:SuBodderPre:Pre:3
 :addSkill:SuBodderPre:DragonSkin
 :setSpeaker:SuBodderPre||L
@@ -45,6 +49,9 @@ Bodder: This... This isn't even... my final...
 :setMapTheme:BodderUnleashed
 FORM!
 WITNESS THE POWER OF THE CRYSTALS, MORTAL!
+
+~ SuBodderDeath
+:win:
 
 ~ WorkerDeath
 :callOther:Level9WorkerDeath
