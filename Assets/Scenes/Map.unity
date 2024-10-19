@@ -7791,54 +7791,6 @@ MonoBehaviour:
 
 '
     Name: TormentBase
-  - Text: 'priority:-1
-
-      unique:F
-
-      ~ Requirements
-
-      # Never appear
-
-      levelNumber:0
-
-      ~
-      Demands
-
-      # Nothing
-
-      ~ Before battle
-
-      :addCounter:TormentPowers:1
-
-      :if:compareCounter:TormentPowers:>6{
-
-      :unlockAchievement:MiscAllTormentPowers
-
-      }
-
-
-      ~
-      After battle
-
-      :addCounter:TormentPowers:1
-
-      :if:compareCounter:TormentPowers:>6{
-
-      :unlockAchievement:MiscAllTormentPowers
-
-      }
-
-
-      #
-      === Functions ====
-
-
-      ~ Sample
-
-      # Name: Text.
-
-'
-    Name: TormentPowersAchievement
   - Text: "priority:4\r\nunique:T\r\n~ Requirements\r\nlevelNumber:5\r\nhasCharacter:Firbell\r\n!hasFlag:FirbellXeplogi1\r\ncharactersAlive:>1\r\n~
       Demands\r\n# Guarantee a map that makes sense for the arrivals\r\nhasTag:PlayersSpawnFirst\r\n~
       Before battle\r\n:if:!hasFlag:FirbellXeplogi1{\r\n:setFlag:FirbellXeplogi1\r\n:if:!hasFlag:MetXeplogi{\r\n#
@@ -20870,23 +20822,93 @@ MonoBehaviour:
 
       ~ Before battle
 
-      :addCounter:InclinationUpgrades:1
+      # The original implementation
+      used Torment powers counter for the post battle accidently :facepalm:
 
-      :if:compareCounter:InclinationUpgrades:>6{
+      #
+      This broke both for old save files, so just rewriting it dumber now
+
+      #
+      (it also never worked since you get one upgrade in the intro...)
+
+      #:addCounter:InclinationUpgrades:1
+
+      #:if:compareCounter:InclinationUpgrades:>6{
+
+      #:unlockAchievement:MiscAllInclinationUpgrades
+
+      #}
+
+      :if:foundKnowledge:InclinationFrogman{
+
+      :if:foundKnowledge:InclinationFirbell{
+
+      :if:foundKnowledge:InclinationXirveros{
+
+      :if:foundKnowledge:InclinationKresla{
+
+      :if:foundKnowledge:InclinationXeplogi{
+
+      :if:foundKnowledge:InclinationMemerian{
+
+      :if:foundKnowledge:InclinationAlfred{
 
       :unlockAchievement:MiscAllInclinationUpgrades
 
       }
 
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
 
       ~
       After battle
 
-      :addCounter:TormentPowers:1
+      #:addCounter:TormentPowers:1
 
-      :if:compareCounter:InclinationUpgrades:>6{
+      #:if:compareCounter:InclinationUpgrades:>6{
+
+      #:unlockAchievement:MiscAllInclinationUpgrades
+
+      #}
+
+      :if:foundKnowledge:InclinationFrogman{
+
+      :if:foundKnowledge:InclinationFirbell{
+
+      :if:foundKnowledge:InclinationXirveros{
+
+      :if:foundKnowledge:InclinationKresla{
+
+      :if:foundKnowledge:InclinationXeplogi{
+
+      :if:foundKnowledge:InclinationMemerian{
+
+      :if:foundKnowledge:InclinationAlfred{
 
       :unlockAchievement:MiscAllInclinationUpgrades
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
 
       }
 
@@ -20901,6 +20923,1501 @@ MonoBehaviour:
 
 '
     Name: InclinationUpgradesAchievement
+  - Text: 'priority:-1
+
+      unique:F
+
+      ~ Requirements
+
+      # Never appear
+
+      levelNumber:0
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      # This one I think only
+      breaks if you unlock one in the intro. Still, it also gets a dumber rewrite.
+
+      #:addCounter:TormentPowers:1
+
+      #:if:compareCounter:TormentPowers:>6{
+
+      #:unlockAchievement:MiscAllTormentPowers
+
+      #}
+
+      :if:foundKnowledge:TormentHurtHelp{
+
+      :if:foundKnowledge:TormentDeathLife{
+
+      :if:foundKnowledge:TormentChaosOrder{
+
+      :if:foundKnowledge:TormentSpeedSafety{
+
+      :if:foundKnowledge:TormentTakeGive{
+
+      :if:foundKnowledge:TormentPushPull{
+
+      :if:foundKnowledge:TormentAngerCalm{
+
+      :unlockAchievement:MiscAllTormentPowers
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+      ~
+      After battle
+
+      #:addCounter:TormentPowers:1
+
+      #:if:compareCounter:TormentPowers:>6{
+
+      #:unlockAchievement:MiscAllTormentPowers
+
+      #}
+
+      :if:foundKnowledge:TormentHurtHelp{
+
+      :if:foundKnowledge:TormentDeathLife{
+
+      :if:foundKnowledge:TormentChaosOrder{
+
+      :if:foundKnowledge:TormentSpeedSafety{
+
+      :if:foundKnowledge:TormentTakeGive{
+
+      :if:foundKnowledge:TormentPushPull{
+
+      :if:foundKnowledge:TormentAngerCalm{
+
+      :unlockAchievement:MiscAllTormentPowers
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: TormentPowersAchievement
+  - Text: '# Identifiers
+
+      priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:1
+
+      ~
+      Demands
+
+      hasCharacter:Firbell
+
+      ~ Event (pre-battle)
+
+      # This
+      is a very epic event
+
+      :play:BeforeBattle
+
+
+      ~ Event (post-battle)
+
+      :play:AfterBattle
+
+'
+    Name: FirstRunLevel1Firbell
+  - Text: 'priority:41
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:1
+
+      ~
+
+      hasCharacter:Kresla
+
+      ~
+
+      :play:BeforeBattle
+
+
+      ~
+
+      :play:AfterBattle
+
+'
+    Name: FirstRunLevel1Kresla
+  - Text: 'priority:41
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:2
+
+      charactersAlive:>0
+
+      ~
+
+      charactersAlive:=2
+
+      ~
+
+      :play:BeforeBattle
+
+      :addUnit:Xirveros
+
+      :loadUnits:
+
+
+      ~
+
+      :play:AfterBattle
+
+
+'
+    Name: FirstRunLevel2
+  - Text: 'priority:41
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:2
+
+      charactersAlive:=0
+
+      ~
+
+      charactersAlive:=1
+
+      ~
+
+      :play:BeforeBattle
+
+      :addUnit:Xirveros
+
+      :loadUnits:
+
+
+      ~
+
+      :play:AfterBattle
+
+'
+    Name: FirstRunLevel2Alone
+  - Text: 'priority:41
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:3
+
+      ~
+
+      ~
+
+      :play:ToTheDeath
+
+
+      ~
+
+      :play:SafeAndSound
+
+'
+    Name: FirstRunLevel3
+  - Text: 'priority:41
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:4
+
+      ~
+
+      #
+      No demands (I can do this since a non-existent demand defaults to true :))
+
+      ~
+
+      :callOther:TormentBase
+
+      :play:Trustworthy
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      :loadUnits:
+
+      ~
+
+      :play:Trickster
+
+'
+    Name: FirstRunLevel4Torment
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:5
+
+      charactersAlive:<2
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Alfred
+
+      :loadUnits:
+
+
+      ~
+      After battle
+
+      :play:Anticipation
+
+
+      # === Functions ====
+
+
+      ~
+      Sample
+
+      # Name: Text.
+
+'
+    Name: FirstRunLevel5Alfred
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:5
+
+      charactersAlive:>1
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Xeplogi
+
+      :loadUnits:
+
+
+      ~
+      After battle
+
+      :play:Anticipation
+
+
+      # === Functions ====
+
+
+      ~
+      Sample
+
+      # Name: Text.
+
+'
+    Name: FirstRunLevel5Xeplogi
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      # If no Alfred
+      nor Xeplogi, just Memerian
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:6
+
+      !hasCharacter:Xeplogi
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Memerian
+
+      :loadUnits:
+
+
+      ~
+      After battle
+
+      :play:Anticipation
+
+
+      # === Functions ====
+
+
+      ~
+      Sample
+
+      # Name: Text.
+
+'
+    Name: FirstRunLevel6NoXeplogi
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      # If got Xeplogi
+      (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:6
+
+      hasCharacter:Xeplogi
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Memerian
+
+      :loadUnits:
+
+      :showChoice:Frogman:Trust
+      Xeplogi:Trust Memerian
+
+      :if:chose:0{
+
+      :setTeam:Memerian:monster
+
+      }
+
+      :else:{
+
+      :setTeam:Xeplogi:monster
+
+      }
+
+
+      ~
+      After battle
+
+      :play:Anticipation
+
+
+      # === Functions ====
+
+
+      ~
+      Sample
+
+      # Name: Text.
+
+'
+    Name: FirstRunLevel6Xeplogi
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:7
+
+      ~
+      Demands
+
+      hasCharacter:Fashima_
+
+      ~ Before battle
+
+      :loadUnits::monster
+
+      :loadUnits::guard:T
+
+      :killUnit:Brens
+
+      :play:BeforeBattle2
+
+      :loadUnits::player:T
+
+      :addSkill:Fashima_:Vantage
+
+
+      ~
+      After battle
+
+      :play:Raindance
+
+
+      # === Functions ====
+
+
+      ~
+      FashimaBattleQuote
+
+      :callOther:Level7FashimaBattleQuote
+
+      :setBattleQuote:Fashima_:FashimaBattleQuote
+
+'
+    Name: FirstRunLevel7Fashima
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:8
+
+      ~
+      Demands
+
+      hasCharacter:Brens
+
+      ~ Before battle
+
+      :loadUnits::monster
+
+      :loadUnits::guard:T
+
+      :killUnit:Werse
+
+      :loadUnits::player:T
+
+      :play:BeforeBattle3
+
+      :setSingleSpeaker:L
+
+
+      #
+      Name: Text.
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      # === Functions
+      ====
+
+
+      ~ BrensDeath
+
+      :setFlag:BrensDied
+
+      :play:GuardTheme3
+
+      Brens:
+      Ha... You''re tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+
+      :play:Silence
+
+      Fashima|???:
+      Not so fast, old man.
+
+      :screenShake:
+
+      Brens: Urk!
+
+'
+    Name: FirstRunLevel8Brens
+  - Text: 'priority:41
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:9
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      # Pre-battle Fashima
+      stuff
+
+      :play:MomentOfTruth
+
+      :loadUnits::player
+
+      :loadUnits::monster:T
+
+      :showCG:FortressInside
+
+      :showBase:
+
+      :hideCG:
+
+      :call:EnterBodder
+
+
+      ~
+      After battle
+
+      :play:TheFinalStep
+
+      Frogman: Ready for the endgame?
+
+      That
+      one wasn''t changed at all.
+
+
+      # === Functions ====
+
+
+      ~ EnterBodder
+
+      :play:EnterTheBodder
+
+      :setDeathQuote:Bodder:BodderDeath
+
+      :addEnemyToUnit:Frogman:Worker
+
+      :play:TheInvincibleBodder:T
+
+      Frogman:
+      From here on out, you might encounter some text.
+
+
+      ~ BodderDeath
+
+      :play:Anticipation
+
+      Bodder:
+      This... This isn''t even... my final...
+
+      :setCounter:Level9BodderState:1
+
+      :setTempFlag:BodderTransformed
+
+      :replaceUnit:Bodder:SuBodderPre
+
+      :addStat:SuBodderPre:Pre:3
+
+      :addSkill:SuBodderPre:DragonSkin
+
+      :setSpeaker:SuBodderPre||L
+
+      :screenShake:
+
+      :playIntro:BodderUnleashed
+
+      :setMapTheme:BodderUnleashed
+
+      FORM!
+
+      WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
+
+
+      ~ WorkerDeath
+
+      :callOther:Level9WorkerDeath
+
+
+      ~
+      Reaction
+
+      :callOther:Level9Reaction
+
+'
+    Name: FirstRunLevel9
+  - Text: '# Identifiers
+
+      priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:1
+
+      ~
+      Demands
+
+      hasCharacter:Firbell
+
+      ~ Event (pre-battle)
+
+      # This
+      is a very epic event
+
+      :play:BeforeBattle
+
+      Frogman: I''m [Name]
+      Magmaborn, the main character.
+
+      Firbell: And I''m Princess [Name].
+
+      ~
+      Event (post-battle)
+
+      :play:AfterBattle
+
+'
+    Name: RandomizerLevel1Firbell
+  - Text: 'priority:51
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:1
+
+      ~
+
+      hasCharacter:Kresla
+
+      ~
+
+      :play:BeforeBattle
+
+      Frogman:
+      I''m [Name] Magmaborn, the main character.
+
+      Firbell: And I''m [Name]
+      the Scholar.
+
+      ~
+
+      :play:AfterBattle
+
+'
+    Name: RandomizerLevel1Kresla
+  - Text: 'priority:51
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:2
+
+      charactersAlive:>0
+
+      ~
+
+      charactersAlive:=2
+
+      ~
+
+      :play:BeforeBattle
+
+      :addUnit:Xirveros
+
+      :loadUnits:
+
+      Xirveros:
+      I''m [Name] the mad wizard! Weeeee!
+
+
+      ~
+
+      :play:AfterBattle
+
+
+'
+    Name: RandomizerLevel2
+  - Text: 'priority:51
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:2
+
+      charactersAlive:=0
+
+      ~
+
+      charactersAlive:=1
+
+      ~
+
+      :play:BeforeBattle
+
+      :addUnit:Xirveros
+
+      :loadUnits:
+
+      Xirveros:
+      I''m [Name] the mad wizard! Weeeee!
+
+
+      ~
+
+      :play:AfterBattle
+
+'
+    Name: RandomizerLevel2Alone
+  - Text: 'priority:51
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:3
+
+      ~
+
+      ~
+
+      :play:ToTheDeath
+
+      Monster:
+      A lich was I.
+
+      ~
+
+      :play:SafeAndSound
+
+'
+    Name: RandomizerLevel3
+  - Text: 'priority:51
+
+      unique:F
+
+      ~
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:4
+
+      ~
+
+      #
+      No demands (I can do this since a non-existent demand defaults to true :))
+
+      ~
+
+      :callOther:TormentBase
+
+      :play:Trustworthy
+
+      :loadMap:InitTormentRoom
+
+      :loadUnits:InitTormentRoom
+
+      Torment|???:
+      I am... pain.\a Fear.\a Despair.
+
+      I am your life, and your death.\a Undeath,
+      as well.
+
+      I am your magic.\a Your god.
+
+      I am...
+
+      :playIntro:Tormentor
+
+      :loadMap:
+
+      :screenShake:
+
+      Torment:
+      [Name]!!!
+
+      :loadUnits:
+
+      ~
+
+      :play:Trickster
+
+'
+    Name: RandomizerLevel4Torment
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:5
+
+      charactersAlive:<2
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Alfred
+
+      :loadUnits:
+
+      :setSingleSpeaker:L
+
+      Alfred:
+      [Name], Guard hater. Hi.
+
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: RandomizerLevel5Alfred
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:5
+
+      charactersAlive:>1
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Xeplogi
+
+      :loadUnits:
+
+      :setSingleSpeaker:L
+
+      Xeplogi:
+      Duke [Name], at your service.
+
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: RandomizerLevel5Xeplogi
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      # If no Alfred
+      nor Xeplogi, just Memerian
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:6
+
+      !hasCharacter:Xeplogi
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Memerian
+
+      :loadUnits:
+
+      Memerian:
+      I''m [Name] the blacksmith.
+
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: RandomizerLevel6NoXeplogi
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      # If got Xeplogi
+      (high units count) and still has high unit count, chooses Xeplogi or Memerian.
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:6
+
+      hasCharacter:Xeplogi
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      :play:BeforeBattle2
+
+      :addUnit:Memerian
+
+      :loadUnits:
+
+      :setSpeaker:Xeplogi
+
+      Memerian:
+      I''m [Name] the blacksmith. Choose me!
+
+      Xeplogi: No, keep me!
+
+      :showChoice:Frogman:Trust
+      [Name:Xeplogi]:Trust [Name:Memerian]
+
+      :if:chose:0{
+
+      Memerian: ...Die,
+      fools.
+
+      :setTeam:Memerian:monster
+
+      }
+
+      :else:{
+
+      Xeplogi:
+      How dare you!
+
+      :setTeam:Xeplogi:monster
+
+      }
+
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: RandomizerLevel6Xeplogi
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:7
+
+      ~
+      Demands
+
+      hasCharacter:Fashima_
+
+      ~ Before battle
+
+      :loadUnits::monster
+
+      :loadUnits::guard:T
+
+      :killUnit:Brens
+
+      :play:BeforeBattle2
+
+      :loadUnits::player:T
+
+      Fashima_:
+      I''m [Name], my friend. Dying is my master plan.
+
+      Lan: [Name] the Great
+      doesn''t exist in this timeline. Oof!
+
+      :addSkill:Fashima_:Vantage
+
+
+      ~
+      After battle
+
+      :play:Raindance
+
+      Fashima_: I''ll be back as [Name:Fashima].
+
+
+      #
+      === Functions ====
+
+
+      ~ FashimaBattleQuote
+
+      :callOther:Level7FashimaBattleQuote
+
+      :setBattleQuote:Fashima_:FashimaBattleQuote
+
+'
+    Name: RandomizerLevel7Fashima
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      !knowledgeUpgradeActive:FirstRun
+
+      levelNumber:7
+
+      ~
+      Demands
+
+      hasCharacter:Lan
+
+      ~ Before battle
+
+      :loadUnits::monster
+
+      :loadUnits::guard:T
+
+      :killUnit:Brens
+
+      :play:BeforeBattle2
+
+      :loadUnits::player:T
+
+      Lan:
+      Hey hey! Ready for some [Name] the Great action?!
+
+      Fashima_: I''m totally
+      dead and will never come back.
+
+
+      ~ After battle
+
+      :play:AfterBattle
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: RandomizerLevel7Lan
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      knowledgeUpgradeActive:FirstRun
+
+      levelNumber:8
+
+      ~
+      Demands
+
+      hasCharacter:Brens
+
+      ~ Before battle
+
+      :loadUnits::monster
+
+      :loadUnits::guard:T
+
+      :killUnit:Werse
+
+      :loadUnits::player:T
+
+      :play:BeforeBattle3
+
+      :setSingleSpeaker:L
+
+      Brens:
+      I''m the City Magus, [Brens]!
+
+      Weres: I''ll be back.
+
+
+      # Name:
+      Text.
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      # === Functions
+      ====
+
+
+      ~ BrensDeath
+
+      :setFlag:BrensDied
+
+      :play:GuardTheme3
+
+      Brens:
+      Ha... You''re tough... Ugh, I hate to do this,\a but for Werse, I must retr-
+
+      :play:Silence
+
+      Fashima|???:
+      Not so fast, old man.
+
+      :screenShake:
+
+      Brens: Urk!
+
+'
+    Name: RandomizerLevel8Brens
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      !knowledgeUpgradeActive:FirstRun
+
+      levelNumber:8
+
+      ~
+      Demands
+
+      !hasCharacter:Brens
+
+      ~ Before battle
+
+      :loadUnits::guard
+
+      :loadUnits::monster:T
+
+      :killUnit:Lan:F
+
+      :loadUnits::player:T
+
+      :play:BeforeBattle3
+
+      :setSingleSpeaker:L
+
+      Werse:
+      I''m [Name]. Ready to surrender.
+
+      Brens: I''m too busy being dead to
+      join the battle..
+
+      :setBattleQuote:Werse:WerseBattle
+
+
+      # Name:
+      Text.
+
+      ~ After battle
+
+      :play:Anticipation
+
+
+      # === Functions
+      ====
+
+
+      ~ WerseBattle
+
+      Werse: Surrender time.
+
+      :killUnit:Werse
+
+      :killTeam:guard
+
+
+      ~
+      Reaction
+
+      :if:hasCharacter:Firbell{
+
+      :if:!hasFlag:FirbellDoubts{
+
+      Frogman:
+      We''re back...
+
+      :callOther:Level8FirbellDoubts
+
+      :return:
+
+      }
+
+      }
+
+      Frogman:
+      We''re back... Come on, we''ve got no time to lose!
+
+'
+    Name: RandomizerLevel8Werse
+  - Text: 'priority:51
+
+      unique:F
+
+      ~ Requirements
+
+      knowledgeUpgradeActive:Randomize
+
+      levelNumber:9
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      # Pre-battle Fashima
+      stuff
+
+      :play:MomentOfTruth
+
+      :loadUnits::player
+
+      :loadUnits::monster:T
+
+      :showCG:FortressInside
+
+      Fashima:
+      I''m [Name:Fashima_], and I''m back! Missed me?
+
+      :showBase:
+
+      :hideCG:
+
+      :call:EnterBodder
+
+
+      ~
+      After battle
+
+      :play:TheFinalStep
+
+      Frogman: Ready for the endgame?
+
+      That
+      one wasn''t changed for maximum chaos.
+
+
+      # === Functions ====
+
+
+      ~
+      EnterBodder
+
+      :play:EnterTheBodder
+
+      Bodder: Do you know what I hate
+      most?
+
+      Being [Name] instead of Bodder.
+
+      :setDeathQuote:Bodder:BodderDeath
+
+      :addEnemyToUnit:Frogman:Worker
+
+      :play:TheInvincibleBodder:T
+
+
+      ~
+      BodderDeath
+
+      :play:Anticipation
+
+      Bodder: This... This isn''t even...
+      my final...
+
+      :setCounter:Level9BodderState:1
+
+      :setTempFlag:BodderTransformed
+
+      :replaceUnit:Bodder:SuBodderPre
+
+      :addStat:SuBodderPre:Pre:3
+
+      :addSkill:SuBodderPre:DragonSkin
+
+      :setSpeaker:SuBodderPre||L
+
+      :screenShake:
+
+      :playIntro:BodderUnleashed
+
+      :setMapTheme:BodderUnleashed
+
+      FORM!
+
+      WITNESS
+      THE POWER OF THE CRYSTALS, MORTAL!
+
+
+      ~ WorkerDeath
+
+      :callOther:Level9WorkerDeath
+
+
+      ~
+      Reaction
+
+      :callOther:Level9Reaction
+
+'
+    Name: RandomizerLevel9
   IgnoreDoneConversations: 1
   SetAsMain: 1
   Path: Conversations\Battle

@@ -1123,8 +1123,8 @@ MonoBehaviour:
 
       What... is this place?
 
-      Wait...\a Who am I?\a
-      What is going on?!
+      Wait...\a Who am
+      I?\a What is going on?!
 
       ???: Hey! You there!
 
@@ -1200,6 +1200,35 @@ MonoBehaviour:
 
 '
     Name: Intro3
+  - Text: 'priority:-1
+
+      unique:T
+
+      ~
+
+      ~
+
+      ~
+
+      :callOther:InclinationUpgradesAchievement
+
+      :callOther:TormentPowersAchievement
+
+      :play:BeforeBattle
+
+      :introShowCutscene:
+
+      Frogman:
+      Ah...! Not again!
+
+      *sigh* Here we go again...
+
+      :introShowUpgradeMenu:
+
+      :markDone:
+
+'
+    Name: IntroFixBrokenAchievements
   - Text: 'priority:4
 
       unique:T
@@ -1230,11 +1259,11 @@ MonoBehaviour:
 
       FrogmanMan: Ha! This is... nothing...
 
-      Zip: Heh.\a Well,
-      I think we''re safe. Let''s rest a bit, eh?
+      Zip: Heh.\a
+      Well, I think we''re safe. Let''s rest a bit, eh?
 
-      FrogmanMan: Yeah.\a But
-      first, what''s our status?
+      FrogmanMan: Yeah.\a
+      But first, what''s our status?
 
       Zip: Oh, give me a break!
 
@@ -1263,8 +1292,8 @@ MonoBehaviour:
       Zip:
       Yeah. Too bad. I would''ve loved to see one in action.
 
-      FrogmanMan: If
-      the rumours about the war in Straberod are true,\a you probably don''t want
+      FrogmanMan:
+      If the rumours about the war in Straberod are true,\a you probably don''t want
       that.
 
       Zip: I know, I know. Still,\a throwing these away is a shame.
@@ -1289,18 +1318,18 @@ MonoBehaviour:
 
       :markDone:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1379,68 +1408,68 @@ MonoBehaviour:
 
       Kebera: Thank you.
 
-      FrogmanMan: This
-      is my colleague, Zip.
+      FrogmanMan:
+      This is my colleague, Zip.
 
       Zip||R: ...
 
-      FrogmanMan||R: I hope you do
-      not mind having him here.\a Treat him as my shadow.
-
-      Kebera: I see.
-
-      FrogmanMan:
-      So. Let''s get to business. What do you want?
-
-      Kebera: Let me start from
-      the beginning. My name is-
-
-      FrogmanMan: I know who you are. Your request?
+      FrogmanMan||R: I hope
+      you do not mind having him here.\a Treat him as my shadow.
 
       Kebera:
-      I''ll be blunt then.
+      I see.
 
-      I was sent here on behalf of the governor of Straberod.\a
-      She offers you a mission.
-
-      FrogmanMan: In the middle of the war?
+      FrogmanMan: So. Let''s get to business. What do you want?
 
       Kebera:
-      Yes. The mission is quite vital for it.
+      Let me start from the beginning. My name is-
 
-      FrogmanMan: I don''t care much
-      for Straberod, but let''s hear it.
+      FrogmanMan: I know who
+      you are. Your request?
 
-      Kebera: Unfortunately, I cannot disclose
-      it to anyone but you,\a Frogman.\a Those are my instructions.
+      Kebera: I''ll be blunt then.
+
+      I was sent
+      here on behalf of the governor of Straberod.\a She offers you a mission.
 
       FrogmanMan:
-      Unacceptable. Zip will hear everything I will.
+      In the middle of the war?
 
-      Kebera: She is willing
-      to pay quite handsomely for this, Frogman.
+      Kebera: Yes. The mission is quite vital for
+      it.
 
-      FrogmanMan: I don''t care.
-      It''s both of us, or nothing.
+      FrogmanMan: I don''t care much for Straberod, but let''s hear it.
 
-      Kebera: ...Is there any way to change
-      your mind?
+      Kebera:
+      Unfortunately, I cannot disclose it to anyone but you,\a Frogman.\a Those are
+      my instructions.
 
-      FrogmanMan: No.\a If that is all, I think we''re done here.\a
-      Zip, show her out.
+      FrogmanMan: Unacceptable. Zip will hear everything
+      I will.
 
-      Kebera: There is no need, Frogman.\a Thank you for
-      your hospitality.
+      Kebera: She is willing to pay quite handsomely for this, Frogman.
+
+      FrogmanMan:
+      I don''t care. It''s both of us, or nothing.
+
+      Kebera: ...Is there any
+      way to change your mind?
+
+      FrogmanMan: No.\a If that is all, I think
+      we''re done here.\a Zip, show her out.
+
+      Kebera: There is no need, Frogman.\a
+      Thank you for your hospitality.
 
       Zip||L: ...
 
-      I told you she''s trouble.
+      I told you she''s
+      trouble.
 
-      FrogmanMan:
-      You were right. She was testing us.\a Me.\a Let''s tail her. Ready to go?
+      FrogmanMan: You were right. She was testing us.\a Me.\a Let''s
+      tail her. Ready to go?
 
-      Zip:
-      Always.
+      Zip: Always.
 
       :hideCG:
 
@@ -1457,18 +1486,18 @@ MonoBehaviour:
 
       :markDone:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1513,29 +1542,29 @@ MonoBehaviour:
 
       ...
 
-      Kebera||R: Would you care to show yourselves,\a or
-      are you still pretending to sneak about?
+      Kebera||R: Would you care to show yourselves,\a
+      or are you still pretending to sneak about?
 
-      FrogmanMan: ...I want you out
-      of my city, Kebera.\a Dead or alive.
+      FrogmanMan: ...I want you
+      out of my city, Kebera.\a Dead or alive.
 
-      Kebera||R: Do you now? And how,
-      exactly,\a do you plan on making me leave?
+      Kebera||R: Do you now? And
+      how, exactly,\a do you plan on making me leave?
 
-      FrogmanMan: You''re cornered.
-      And alone.\a Zip and I are well known for a reason.\a Give up, and you might
-      yet live.
+      FrogmanMan: You''re
+      cornered. And alone.\a Zip and I are well known for a reason.\a Give up, and
+      you might yet live.
 
-      Kebera||R: So sure of yourself, are you?\a Daring to threaten
-      me?\a But that won''t save you now,\a Frogman.\a Time to meet your maker.
+      Kebera||R: So sure of yourself, are you?\a Daring
+      to threaten me?\a But that won''t save you now,\a Frogman.\a Time to meet your
+      maker.
 
-      FrogmanMan:
-      Wrong answer. Zip, feather-
+      FrogmanMan: Wrong answer. Zip, feather-
 
       :setSingleSpeaker:L
 
-      Huh?\a Where
-      did she go?
+      Huh?\a
+      Where did she go?
 
       Zip||R: Don''t know, boss. She just-
 
@@ -1603,18 +1632,18 @@ MonoBehaviour:
 
       :markDone:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1800,51 +1829,51 @@ MonoBehaviour:
       FrogmanMan: What?! But you said it''ll only
       be for a few minutes!\a Just until we left that port!
 
-      Dehar: I was wondering
-      how long ya''ll stay there.\a Didn''t think ya''d truly wait for my signal.
+      Dehar: I was
+      wondering how long ya''ll stay there.\a Didn''t think ya''d truly wait for
+      my signal.
+
+      FrogmanMan: Why, you-
+
+      Dehar: Hey, easy now! It was
+      just a little prank!
+
+      FrogmanMan: I-
+
+      Dehar: Tell ya what. Let
+      me make up for that.\a Here, ya can have this ring.
+
+      FrogmanMan: Huh?
+      Why would I want a ring?
+
+      Dehar: I think it''ll look good on ya.
 
       FrogmanMan:
-      Why, you-
+      I don''t really-
 
-      Dehar: Hey, easy now! It was just a little prank!
+      Dehar: Please? Just try it on, will ya?
 
       FrogmanMan:
-      I-
-
-      Dehar: Tell ya what. Let me make up for that.\a Here, ya can have
-      this ring.
-
-      FrogmanMan: Huh? Why would I want a ring?
-
-      Dehar: I
-      think it''ll look good on ya.
-
-      FrogmanMan: I don''t really-
-
-      Dehar:
-      Please? Just try it on, will ya?
-
-      FrogmanMan: I... Ugh, whatever. Give
-      it to me.\a Here.\a Happy now?
+      I... Ugh, whatever. Give it to me.\a Here.\a Happy now?
 
       :play:Silence
 
-      Dehar: ...You''re
-      very trusting, Frogman.\a That''s a useful quality.
-
-      FrogmanMan: Huh?
-
       Dehar:
-      Not very bright, either. Yes, you''ll do just fine.
+      ...You''re very trusting, Frogman.\a That''s a useful quality.
 
-      FrogmanMan: What
-      is going on?\a Wait, the ring-
+      FrogmanMan:
+      Huh?
+
+      Dehar: Not very bright, either. Yes, you''ll do just fine.
+
+      FrogmanMan:
+      What is going on?\a Wait, the ring-
 
       :play:Trustworthy
 
-      TormentFB: You
-      don''t want to do that, Frogman.\a Take off that ring now, and you''ll die.
-      Heh heh.
+      TormentFB:
+      You don''t want to do that, Frogman.\a Take off that ring now, and you''ll
+      die. Heh heh.
 
       FrogmanMan: What?! Who is talking? Where are you?!
 
@@ -1879,13 +1908,13 @@ MonoBehaviour:
       Dehar|||F: What about- Wait, why is his body still
       here?
 
-      TormentFB|||F: He''s not quite dead yet, Fashima.\a Have you lost
-      your touch, perhaps? Heh heh.
+      TormentFB|||F: He''s not quite dead yet, Fashima.\a Have you
+      lost your touch, perhaps? Heh heh.
 
       :darkenScreen:T
 
-      Dehar|||F: Ugh.
-      If you knew he was still alive,\a why did you blow my cover?
+      Dehar|||F:
+      Ugh. If you knew he was still alive,\a why did you blow my cover?
 
       TormentFB|||F:
       Don''t worry, Fashima. He''ll forget everything, any-
@@ -1915,11 +1944,11 @@ MonoBehaviour:
       Torment: Ha! Do you truly think you can
       betray me now?
 
-      Frogman: You killed me, Torment! You and Fashima!\a Of
-      course I''ll no longer work with you!
+      Frogman: You killed me, Torment! You and Fashima!\a
+      Of course I''ll no longer work with you!
 
-      Torment: Heh heh. So much passion.\a
-      Too bad you''ll forget all of this.
+      Torment: Heh heh. So much
+      passion.\a Too bad you''ll forget all of this.
 
       Frogman: What are you-
 
@@ -1933,18 +1962,18 @@ MonoBehaviour:
 
       :lose:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -1953,7 +1982,7 @@ MonoBehaviour:
 
 '
     Name: IntroFlashback5
-  - Text: 'priority:-1
+  - Text: 'priority:-2
 
       unique:F
 
@@ -2034,18 +2063,18 @@ MonoBehaviour:
 
       :markDone:
 
-
+      
 
       ~
       After battle
 
       # Name: Text.
 
-
+      
 
       # === Functions ====
 
-
+      
 
       ~
       Sample
@@ -2054,6 +2083,55 @@ MonoBehaviour:
 
 '
     Name: IntroPostFlashback5
+  - Text: 'priority:21
+
+      unique:T
+
+      ~
+
+      furthestLevel:>9
+
+      ~
+
+      ~
+
+      :play:Trustworthy
+
+      Torment|Dev:
+      Hello there!
+
+      Congratulations on beating the game, hope you had fun!
+
+      There
+      is still more to discover, though -\a such as the ending you didn''t pick!
+      Heh.\a The story will assume you lost to Bodder,\a should you continue.
+
+      Oh,
+      and before I go - here, have some post-game options.\a Enjoy!
+
+      :unlockKnowledge:Randomize
+
+      :unlockKnowledge:FirstRun
+
+      :showInfoDialogue:New
+      knowledge!
+
+      :play:BeforeBattle
+
+      :introShowCutscene:
+
+      Frogman:
+      Ah...! How am I back...? Didn''t we... win? Sort of?
+
+      Nah, I must be
+      imagining things...
+
+      :markDone:
+
+      :introShowUpgradeMenu:
+
+'
+    Name: IntroPostGame
   - Text: 'priority:4
 
       unique:T
@@ -2119,6 +2197,235 @@ MonoBehaviour:
 
 '
     Name: IntroTormentFail
+  - Text: 'priority:-11
+
+      unique:F
+
+      ~ Requirements
+
+      # Never appear
+
+      furthestLevel:>9000
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      # The original implementation
+      used Torment powers counter for the post battle accidently :facepalm:
+
+      #
+      This broke both for old save files, so just rewriting it dumber now
+
+      #
+      (it also never worked since you get one upgrade in the intro...)
+
+      #:addCounter:InclinationUpgrades:1
+
+      #:if:compareCounter:InclinationUpgrades:>6{
+
+      #:unlockAchievement:MiscAllInclinationUpgrades
+
+      #}
+
+      :if:foundKnowledge:InclinationFrogman{
+
+      :if:foundKnowledge:InclinationFirbell{
+
+      :if:foundKnowledge:InclinationXirveros{
+
+      :if:foundKnowledge:InclinationKresla{
+
+      :if:foundKnowledge:InclinationXeplogi{
+
+      :if:foundKnowledge:InclinationMemerian{
+
+      :if:foundKnowledge:InclinationAlfred{
+
+      :unlockAchievement:MiscAllInclinationUpgrades
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+
+      ~
+      After battle
+
+      #:addCounter:TormentPowers:1
+
+      #:if:compareCounter:InclinationUpgrades:>6{
+
+      #:unlockAchievement:MiscAllInclinationUpgrades
+
+      #}
+
+      :if:foundKnowledge:InclinationFrogman{
+
+      :if:foundKnowledge:InclinationFirbell{
+
+      :if:foundKnowledge:InclinationXirveros{
+
+      :if:foundKnowledge:InclinationKresla{
+
+      :if:foundKnowledge:InclinationXeplogi{
+
+      :if:foundKnowledge:InclinationMemerian{
+
+      :if:foundKnowledge:InclinationAlfred{
+
+      :unlockAchievement:MiscAllInclinationUpgrades
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: InclinationUpgradesAchievement
+  - Text: 'priority:-11
+
+      unique:F
+
+      ~ Requirements
+
+      # Never appear
+
+      furthestLevel:>9000
+
+      ~
+      Demands
+
+      # Nothing
+
+      ~ Before battle
+
+      # This one I think only
+      breaks if you unlock one in the intro. Still, it also gets a dumber rewrite.
+
+      #:addCounter:TormentPowers:1
+
+      #:if:compareCounter:TormentPowers:>6{
+
+      #:unlockAchievement:MiscAllTormentPowers
+
+      #}
+
+      :if:foundKnowledge:TormentHurtHelp{
+
+      :if:foundKnowledge:TormentDeathLife{
+
+      :if:foundKnowledge:TormentChaosOrder{
+
+      :if:foundKnowledge:TormentSpeedSafety{
+
+      :if:foundKnowledge:TormentTakeGive{
+
+      :if:foundKnowledge:TormentPushPull{
+
+      :if:foundKnowledge:TormentAngerCalm{
+
+      :unlockAchievement:MiscAllTormentPowers
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+      ~
+      After battle
+
+      #:addCounter:TormentPowers:1
+
+      #:if:compareCounter:TormentPowers:>6{
+
+      #:unlockAchievement:MiscAllTormentPowers
+
+      #}
+
+      :if:foundKnowledge:TormentHurtHelp{
+
+      :if:foundKnowledge:TormentDeathLife{
+
+      :if:foundKnowledge:TormentChaosOrder{
+
+      :if:foundKnowledge:TormentSpeedSafety{
+
+      :if:foundKnowledge:TormentTakeGive{
+
+      :if:foundKnowledge:TormentPushPull{
+
+      :if:foundKnowledge:TormentAngerCalm{
+
+      :unlockAchievement:MiscAllTormentPowers
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+      }
+
+
+      #
+      === Functions ====
+
+
+      ~ Sample
+
+      # Name: Text.
+
+'
+    Name: TormentPowersAchievement
   IgnoreDoneConversations: 0
   SetAsMain: 1
   Path: Conversations\Intro
@@ -10286,7 +10593,7 @@ MonoBehaviour:
       ChoiceValue: 0
     - Name: Boss Revival
       InternalName: FirstRun
-      Description: Revives Fashima and Brens, making their levels slightly harder.
+      Description: Revives Fashima and Brens, making levels 7 & 8 slightly harder.
       AltDescription: 
       Cost: 0
       DefaultState: -1
